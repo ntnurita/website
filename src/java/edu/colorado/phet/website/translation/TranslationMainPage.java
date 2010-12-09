@@ -18,6 +18,7 @@ import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
+import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -154,6 +155,8 @@ public class TranslationMainPage extends TranslationPage {
                 PageParameters params = new PageParameters();
                 params.put( TranslationEditPage.TRANSLATION_ID, ret[0].getId() );
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( localeChoice.getLocale() ) );
+
+                NotificationHandler.sendTranslationCreatedNotification( ret[0].getId(), localeChoice.getLocale(), PhetSession.get().getUser() );
 
                 setResponsePage( TranslationEditPage.class, params );
             }

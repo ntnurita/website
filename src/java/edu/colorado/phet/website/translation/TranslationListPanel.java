@@ -1,11 +1,6 @@
 package edu.colorado.phet.website.translation;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import javax.mail.MessagingException;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -23,13 +18,13 @@ import edu.colorado.phet.common.phetcommon.util.PhetLocales;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
-import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Translation;
+import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -184,33 +179,14 @@ public class TranslationListPanel extends PhetPanel {
                     public void onClick() {
                         boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                             public boolean run( Session session ) {
-                                try {
-                                    Translation t = (Translation) session.load( Translation.class, translation.getId() );
+                                Translation t = (Translation) session.load( Translation.class, translation.getId() );
 
-                                    String subject = "Website Translation Submitted: " + t.getLocale();
-                                    String from = WebsiteConstants.PHET_NO_REPLY_EMAIL_ADDRESS;
-                                    EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, from );
-
-                                    // TODO: refactor adding the address
-                                    String url = "http://phet.colorado.edu" + TranslationMainPage.getLinker().getDefaultRawUrl();
-                                    message.addRecipient( "olsonsjc@gmail.com" );
-                                    message.addRecipient( "phethelp@colorado.edu" );
-                                    message.setBody(
-                                            "<p>Translation submitted for the locale " + t.getLocale() + " with the ID #" + t.getId() + "</p>" +
-                                            "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>" +
-                                            "<p>Replying to this email will send the response to the translation creator(s).</p>"
-                                    );
-                                    for ( Object u : t.getAuthorizedUsers() ) {
-                                        PhetUser user = (PhetUser) u;
-                                        message.addReplyTo( user.getEmail() );
-                                    }
-
-                                    return EmailUtils.sendMessage( message );
+                                List<PhetUser> users = new LinkedList<PhetUser>();
+                                for ( Object u : t.getAuthorizedUsers() ) {
+                                    users.add( (PhetUser) u );
                                 }
-                                catch ( MessagingException e ) {
-                                    e.printStackTrace();
-                                    return false; // failure
-                                }
+
+                                return NotificationHandler.sendTranslationSubmittedNotification( translation.getId(), t.getLocale(), users );
                             }
                         } );
 
@@ -284,9 +260,14 @@ public class TranslationListPanel extends PhetPanel {
         }
 
         public void delete( final Translation translation ) {
-            HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+            final List<PhetUser> users = new LinkedList<PhetUser>();
+            final Locale locale = translation.getLocale();
+            final int id = translation.getId();
+            final boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
                     session.load( translation, translation.getId() );
+
+                    logger.info( "attempting to delete translation #" + translation.getId() + " from user " + PhetSession.get().getUser().getEmail() + " and IP " + PhetRequestCycle.get().getHttpServletRequest().getRemoteHost() );
 
                     translations.remove( translation );
                     for ( Object o : translation.getTranslatedStrings() ) {
@@ -294,6 +275,7 @@ public class TranslationListPanel extends PhetPanel {
                     }
                     for ( Object o : translation.getAuthorizedUsers() ) {
                         PhetUser user = (PhetUser) o;
+                        users.add( user );
                         user.getTranslations().remove( translation );
                         session.update( user );
                     }
@@ -301,6 +283,9 @@ public class TranslationListPanel extends PhetPanel {
                     return true;
                 }
             } );
+            if ( success ) {
+                NotificationHandler.sendTranslationDeletedNotification( id, locale, users );
+            }
         }
     }
 

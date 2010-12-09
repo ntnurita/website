@@ -1,17 +1,18 @@
 package edu.colorado.phet.website.notification;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import javax.mail.BodyPart;
+import javax.mail.MessagingException;
 
 import org.apache.log4j.Logger;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.WebsiteProperties;
+import edu.colorado.phet.website.authentication.PhetSession;
+import edu.colorado.phet.website.constants.NotificationEmails;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.NotificationEvent;
 import edu.colorado.phet.website.data.PhetUser;
@@ -20,6 +21,7 @@ import edu.colorado.phet.website.data.contribution.ContributionComment;
 import edu.colorado.phet.website.data.contribution.ContributionNomination;
 import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
+import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -145,4 +147,51 @@ public class NotificationHandler {
         return body;
     }
 
+    private static final String TRANSLATION_NOTIFICATION_FROM = WebsiteConstants.PHET_NO_REPLY_EMAIL_ADDRESS;
+
+    private static final String TRANSLATION_NOTIFICATION_FOOTER = "<p>Replying to this email will send the response to the translation creator(s).</p>";
+
+    private static String getTranslationSubject( String action, int id, Locale locale ) {
+        return "Website Translation #" + id + "/" + LocaleUtils.localeToString( locale ) + " " + action;
+    }
+
+    private static boolean sendTranslationNotificationCore( String action, String body, int id, Locale locale, Collection<PhetUser> users ) {
+        try {
+            String subject = getTranslationSubject( action, id, locale );
+            EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, TRANSLATION_NOTIFICATION_FROM );
+
+            for ( String email : NotificationEmails.TRANSLATION_NOTIFICATIONS ) {
+                message.addRecipient( email );
+            }
+            message.setBody(
+                    "<p>Translation " + action + " for the locale " + locale + " with the ID #" + id + "</p>" +
+                    body + TRANSLATION_NOTIFICATION_FOOTER
+            );
+            for ( PhetUser user : users ) {
+                message.addReplyTo( user.getEmail() );
+            }
+
+            return EmailUtils.sendMessage( message );
+        }
+        catch ( MessagingException e ) {
+            logger.warn( "Email failure on attempting to notify of translation " + action, e );
+            return false;
+        }
+    }
+
+    public static boolean sendTranslationCreatedNotification( int id, Locale locale, PhetUser user ) {
+        String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
+        List<PhetUser> users = new LinkedList<PhetUser>();
+        users.add( user );
+        return sendTranslationNotificationCore( "created", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
+    }
+
+    public static boolean sendTranslationSubmittedNotification( int id, Locale locale, Collection<PhetUser> users ) {
+        String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
+        return sendTranslationNotificationCore( "submitted", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
+    }
+
+    public static boolean sendTranslationDeletedNotification( int id, Locale locale, Collection<PhetUser> users ) {
+        return sendTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + PhetSession.get().getUser().getEmail() + "</p>", id, locale, users );
+    }
 }
