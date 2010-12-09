@@ -11,7 +11,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 
 public class NewsletterEntity extends TranslationEntity {
     public NewsletterEntity() {
-        addString( "newsletter.subscribe.email" );
+        addString( "newsletter.subscribe.email", "Newsletter is English-only, so it may help to note that." );
         addString( "newsletter.subscribe.submit" );
         addString( "newsletter.validation.email.Required" );
         addString( "newsletter.validation.email" );
