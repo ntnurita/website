@@ -21,6 +21,9 @@ import edu.colorado.phet.website.util.PageContext;
  */
 public class LogInOutPanel extends PhetPanel {
 
+    public static final String SIGN_IN_ID = "sign-in-link";
+    public static final String SIGN_OUT_ID = "sign-out-link";
+
     public LogInOutPanel( String id, PageContext context ) {
         super( id, context );
 
@@ -31,7 +34,7 @@ public class LogInOutPanel extends PhetPanel {
         if ( psession != null && psession.isSignedIn() ) {
             // user is signed in
 
-            add( SignOutPage.getLinker().getLink( "sign-out", context, getPhetCycle() ) );
+            addWithId( SignOutPage.getLinker().getLink( "sign-out", context, getPhetCycle() ), SIGN_OUT_ID );
             add( EditProfilePage.getLinker( path ).getLink( "edit-profile", context, getPhetCycle() ) );
             add( new InvisibleComponent( "sign-in" ) );
             add( new Label( "current-email", psession.getUser().getEmail() ) );
@@ -50,8 +53,7 @@ public class LogInOutPanel extends PhetPanel {
             add( new InvisibleComponent( "edit-profile" ) );
             add( new InvisibleComponent( "sign-out" ) );
             if ( DistributionHandler.displayLogin( getPhetCycle() ) ) {
-
-                add( SignInPage.getLinker( path ).getLink( "sign-in", context, getPhetCycle() ) );
+                addWithId( SignInPage.getLinker( path ).getLink( "sign-in", context, getPhetCycle() ), SIGN_IN_ID );
             }
             else {
                 add( new InvisibleComponent( "sign-in" ) );
