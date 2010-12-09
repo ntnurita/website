@@ -293,4 +293,16 @@ public class PhetPanel extends Panel implements Stylable {
     public String getStyle( String key ) {
         return "";
     }
+
+    /**
+     * @param component The component to add
+     * @param id        The HTML id attribute
+     * @return The panel itself
+     */
+    public PhetPanel addWithId( Component component, String id ) {
+        add( component );
+        component.setMarkupId( id );
+        component.setOutputMarkupId( true );
+        return this; // similar to MarkupContainer.add()
+    }
 }

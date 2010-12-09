@@ -15,7 +15,10 @@
           <root url="jar://$MODULE_DIR$/root/WEB-INF/lib/wicket-extensions-1.4.8.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../src/apache-wicket-1.4.8/src/wicket-extensions/src/main/java" />
+          <root url="file://$MODULE_DIR$/../../src/apache-wicket-1.4.8/src/wicket/src/main/java" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -130,6 +133,25 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../svn/trunk/simulations-java/contrib/slf4j/jul-to-slf4j-1.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/contrib/junit-4.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Selenium">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/contrib/selenium-java-client-driver-1.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/contrib/selenium-server-1.0.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

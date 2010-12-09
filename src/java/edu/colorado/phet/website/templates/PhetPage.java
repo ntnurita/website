@@ -6,6 +6,7 @@ import java.util.Locale;
 import javax.servlet.ServletContext;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.Session;
 import org.apache.wicket.behavior.AbstractHeaderContributor;
@@ -341,6 +342,18 @@ public abstract class PhetPage extends WebPage implements Stylable {
      */
     protected void verifySignedIn() {
         AuthenticatedPage.checkSignedIn();
+    }
+
+    /**
+     * @param component The component to add
+     * @param id        The HTML id attribute
+     * @return The page itself
+     */
+    public PhetPage addWithId( Component component, String id ) {
+        add( component );
+        component.setMarkupId( id );
+        component.setOutputMarkupId( true );
+        return this; // similar to MarkupContainer.add()
     }
 
 }

@@ -32,6 +32,9 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
  * The panel which represents the main content portion of the home (index) page
  */
 public class IndexPanel extends PhetPanel {
+
+    public static final String PLAY_SIMS_ID = "play-sims";
+
     public IndexPanel( String id, PageContext context ) {
         super( id, context );
 
@@ -65,7 +68,7 @@ public class IndexPanel extends PhetPanel {
                 ResearchPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( CategoryPage.getLinker().getLink( "play-sims-link", context, getPhetCycle() ) );
+        addWithId( CategoryPage.getLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
 
         add( RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() ) );
         add( CategoryPage.getLinker().getLink( "on-line-link", context, getPhetCycle() ) );
