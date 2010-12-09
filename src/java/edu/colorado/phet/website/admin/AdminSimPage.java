@@ -498,21 +498,31 @@ public class AdminSimPage extends AdminPage {
                     // we need to fail out if we try to create a duplicate key
                     final String key = keyText.getInput();
                     final String value = valueText.getInput();
-                    HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                        public Void run( Session session ) {
-                            List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
-                                    .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "value", value ).list();
-                            for ( Object o : list ) {
-                                TranslatedString ts = (TranslatedString) o;
-                                if ( ts.getKey().startsWith( "keyword." ) ) {
-                                    HashMap<String, Object> map = new HashMap<String, Object>();
-                                    map.put( "0", ts.getKey() );
-                                    error( keyText, "admin.keyword.create.duplicate", map );
+                    final String localizationKey = "keyword." + key;
+
+                    String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, PhetWicketApplication.getDefaultLocale() );
+                    if ( preexistingValue != null ) {
+                        HashMap<String, Object> map = new HashMap<String, Object>();
+                        map.put( "0", preexistingValue );
+                        error( keyText, "admin.keyword.create.exists", map );
+                    }
+                    else {
+                        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+                            public Void run( Session session ) {
+                                List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
+                                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "value", value ).list();
+                                for ( Object o : list ) {
+                                    TranslatedString ts = (TranslatedString) o;
+                                    if ( ts.getKey().startsWith( "keyword." ) ) {
+                                        HashMap<String, Object> map = new HashMap<String, Object>();
+                                        map.put( "0", ts.getKey() );
+                                        error( keyText, "admin.keyword.create.duplicate", map );
+                                    }
                                 }
+                                return null;
                             }
-                            return null;
-                        }
-                    } );
+                        } );
+                    }
                 }
             } );
         }
@@ -528,28 +538,29 @@ public class AdminSimPage extends AdminPage {
             final String key = keyText.getModelObject();
             final String value = valueText.getModelObject();
             final String localizationKey = "keyword." + key;
+
             String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, PhetWicketApplication.getDefaultLocale() );
-            if ( preexistingValue == null ) {
-                boolean success = StringUtils.setEnglishString( getHibernateSession(), localizationKey, value );
-                if ( success ) {
-                    final Keyword keyword = new Keyword();
-                    keyword.setKey( localizationKey );
-                    success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                        public boolean run( Session session ) {
-                            List sameKeywords = session.createQuery( "select k from Keyword as k where k.key = :key" ).setString( "key", key ).list();
-                            if ( sameKeywords.isEmpty() ) {
-                                session.save( keyword );
-                                return true;
-                            }
-                            else {
-                                return false;
-                            }
+            assert ( preexistingValue == null );
+            
+            boolean success = StringUtils.setEnglishString( getHibernateSession(), localizationKey, value );
+            if ( success ) {
+                final Keyword keyword = new Keyword();
+                keyword.setKey( localizationKey );
+                success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                    public boolean run( Session session ) {
+                        List sameKeywords = session.createQuery( "select k from Keyword as k where k.key = :key" ).setString( "key", key ).list();
+                        if ( sameKeywords.isEmpty() ) {
+                            session.save( keyword );
+                            return true;
                         }
-                    } );
-                    if ( success ) {
-                        allKeywords.add( keyword );
-                        sortKeywords( allKeywords );
+                        else {
+                            return false;
+                        }
                     }
+                } );
+                if ( success ) {
+                    allKeywords.add( keyword );
+                    sortKeywords( allKeywords );
                 }
             }
         }

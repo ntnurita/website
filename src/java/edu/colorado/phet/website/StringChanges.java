@@ -46,6 +46,7 @@ public class StringChanges {
         addString( session, "newsletter.redirection", "In a few seconds you will be redirected to your original page." );
 
         addString( session, "admin.keyword.create.duplicate", "Keyword ${0} already has the same value" );
+        addString( session, "admin.keyword.create.exists", "The keyword already exists with the value ${0}" );
 
         overwriteString( session, "newsletter.toFinishSubscribing", "To finish subscribing, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for subscribing. An e-mail has been sent to {0}." );
         overwriteString( session, "newsletter.toFinishRegistering", "To finish creating your account, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for registering. An e-mail has been sent to {0}." );
