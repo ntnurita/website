@@ -495,7 +495,6 @@ public class AdminSimPage extends AdminPage {
                 }
 
                 public void validate( Form<?> form ) {
-                    logger.error( "TMP: 1" );
                     // we need to fail out if we try to create a duplicate key
                     final String key = keyText.getInput();
                     final String value = valueText.getInput();
@@ -504,9 +503,7 @@ public class AdminSimPage extends AdminPage {
                             List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
                                     .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "value", value ).list();
                             for ( Object o : list ) {
-                                logger.error( "TMP: 2" );
                                 TranslatedString ts = (TranslatedString) o;
-                                logger.error( "TMP: " + ts.getKey() );
                                 if ( ts.getKey().startsWith( "keyword." ) ) {
                                     HashMap<String, Object> map = new HashMap<String, Object>();
                                     map.put( "0", ts.getKey() );
