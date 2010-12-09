@@ -156,12 +156,12 @@
         <p>If problems occur, please contact the website administrator</p>
 
         <div wicket:id="create-keyword-feedback" class="create-keyword-feedback">
-                <ul class="feedbackPanel">
-                    <li class="feedbackPanelERROR">
-                        <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
-                    </li>
-                </ul>
-            </div>
+            <ul class="feedbackPanel">
+                <li class="feedbackPanelERROR">
+                    <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
+                </li>
+            </ul>
+        </div>
 
         <form wicket:id="create-keyword">
             <table>
@@ -181,6 +181,32 @@
                     <td/>
                     <td>
                         <input type="submit" name="submit" value="create keyword"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <h3>Edit a keyword</h3>
+
+        <form wicket:id="edit-keyword">
+            <table class="admin">
+                <tr>
+                    <th>Keyword</th>
+                    <th>New Value</th>
+                    <th/>
+                </tr>
+                <tr>
+                    <td>
+                        <select wicket:id="current-keywords">
+                            <option>This is an option</option>
+                            <option>Another option</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input wicket:id="value" type="text" value=""/>
+                    </td>
+                    <td>
+                        <input type="submit" name="submit" value="update keyword"/>
                     </td>
                 </tr>
             </table>

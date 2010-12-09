@@ -35,6 +35,7 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 public class AdminSimPage extends AdminPage {
@@ -121,6 +122,8 @@ public class AdminSimPage extends AdminPage {
         createKeywordfeedback = new FeedbackPanel( "create-keyword-feedback", new ContainerFeedbackMessageFilter( createKeywordForm ) );
         createKeywordfeedback.setVisible( false );
         add( createKeywordfeedback );
+
+        add( new EditKeywordForm( "edit-keyword", allKeywords ) );
 
         add( new DesignTeamForm( "design-team" ) );
         add( new LibrariesForm( "libraries" ) );
@@ -554,6 +557,47 @@ public class AdminSimPage extends AdminPage {
             }
         }
     }
+
+    private class EditKeywordForm extends Form {
+        public KeywordDropDownChoice dropDownChoice;
+        private TextField<String> valueText;
+
+        public EditKeywordForm( String id, List<Keyword> allKeywords ) {
+            super( id );
+
+            dropDownChoice = new KeywordDropDownChoice( "current-keywords", allKeywords );
+            add( dropDownChoice );
+
+            add( valueText = new TextField<String>( "value", new Model<String>( "" ) ) );
+        }
+
+        @Override
+        protected void onSubmit() {
+            final int keywordId = Integer.valueOf( dropDownChoice.getModelValue() );
+            if ( keywordId != -1 ) {
+                Result<Keyword> keywordResult = HibernateUtils.load( getHibernateSession(), Keyword.class, keywordId );
+                if ( keywordResult.success ) {
+                    Keyword keyword = keywordResult.value;
+                    StringUtils.setEnglishString( getHibernateSession(), keyword.getLocalizationKey(), valueText.getModelObject() );
+                }
+            }
+        }
+
+        public class KeywordDropDownChoice extends DropDownChoice<Keyword> {
+            public KeywordDropDownChoice( String id, List<Keyword> allKeywords ) {
+                super( id, new Model<Keyword>(), allKeywords, new IChoiceRenderer<Keyword>() {
+                    public Object getDisplayValue( Keyword keyword ) {
+                        return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( keyword.getKey(), AdminSimPage.this ) + " (" + keyword.getKey() + ")";
+                    }
+
+                    public String getIdValue( Keyword keyword, int index ) {
+                        return String.valueOf( keyword.getId() );
+                    }
+                } );
+            }
+        }
+    }
+
 
     public class DesignTeamForm extends TextSetForm {
 
