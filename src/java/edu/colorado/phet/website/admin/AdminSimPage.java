@@ -569,9 +569,11 @@ public class AdminSimPage extends AdminPage {
     private class EditKeywordForm extends Form {
         public KeywordDropDownChoice dropDownChoice;
         private TextField<String> valueText;
+        private List<Keyword> allKeywords;
 
         public EditKeywordForm( String id, List<Keyword> allKeywords ) {
             super( id );
+            this.allKeywords = allKeywords;
 
             dropDownChoice = new KeywordDropDownChoice( "current-keywords", allKeywords );
             add( dropDownChoice );
@@ -587,6 +589,7 @@ public class AdminSimPage extends AdminPage {
                 if ( keywordResult.success ) {
                     Keyword keyword = keywordResult.value;
                     StringUtils.setEnglishString( getHibernateSession(), keyword.getLocalizationKey(), valueText.getModelObject() );
+                    sortKeywords( allKeywords );
                 }
             }
         }
