@@ -8,13 +8,16 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
+import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
@@ -34,10 +37,12 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 public class AdminSimPage extends AdminPage {
     private Simulation simulation = null;
     private List<LocalizedSimulation> localizedSimulations;
+    private FeedbackPanel createKeywordfeedback;
 
     private static final Logger logger = Logger.getLogger( AdminSimPage.class.getName() );
 
@@ -113,7 +118,11 @@ public class AdminSimPage extends AdminPage {
 
         add( new AddTopicForm( "add-topic", simTopics, allKeywords ) );
 
-        add( new CreateKeywordForm( "create-keyword", allKeywords ) );
+        CreateKeywordForm createKeywordForm = new CreateKeywordForm( "create-keyword", allKeywords );
+        add( createKeywordForm );
+        createKeywordfeedback = new FeedbackPanel( "create-keyword-feedback", new ComponentFeedbackMessageFilter( createKeywordForm ) );
+        createKeywordfeedback.setVisible( false );
+        add( createKeywordfeedback );
 
         add( new DesignTeamForm( "design-team" ) );
         add( new LibrariesForm( "libraries" ) );
@@ -469,22 +478,57 @@ public class AdminSimPage extends AdminPage {
     private class CreateKeywordForm extends Form {
 
         private final ValueMap properties = new ValueMap();
-        private TextField valueText;
-        private TextField keyText;
+        private TextField<String> keyText;
+        private TextField<String> valueText;
         private List<Keyword> allKeywords;
 
         public CreateKeywordForm( String id, List<Keyword> allKeywords ) {
             super( id );
             this.allKeywords = allKeywords;
 
-            add( valueText = new StringTextField( "value", new PropertyModel( properties, "value" ) ) );
-            add( keyText = new StringTextField( "key", new PropertyModel( properties, "key" ) ) );
+            add( keyText = new TextField<String>( "key", new PropertyModel<String>( properties, "key" ) ) );
+            add( valueText = new TextField<String>( "value", new PropertyModel<String>( properties, "value" ) ) );
+
+            add( new AbstractFormValidator() {
+                public FormComponent<?>[] getDependentFormComponents() {
+                    return new FormComponent<?>[] { keyText, valueText };
+                }
+
+                public void validate( Form<?> form ) {
+                    logger.error( "TMP: 1" );
+                    // we need to fail out if we try to create a duplicate key
+                    final String key = keyText.getModelObject();
+                    final String value = valueText.getModelObject();
+                    HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
+                        public Void run( Session session ) {
+                            List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
+                                    .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "value", value ).list();
+                            for ( Object o : list ) {
+                                TranslatedString ts = (TranslatedString) o;
+                                logger.error( "TMP: " + ts.getKey() );
+                                if ( ts.getKey().startsWith( "keyword." ) ) {
+                                    HashMap<String, Object> map = new HashMap<String, Object>();
+                                    map.put( "0", ts.getKey() );
+                                    error( keyText, "admin.keyword.create.duplicate", map );
+                                }
+                            }
+                            return null;
+                        }
+                    } );
+                }
+            } );
+        }
+
+        @Override
+        protected void onValidate() {
+            super.onValidate();
+            createKeywordfeedback.setVisible( createKeywordfeedback.anyMessage() );
         }
 
         @Override
         protected void onSubmit() {
-            final String key = keyText.getModelObject().toString();
-            final String value = valueText.getModelObject().toString();
+            final String key = keyText.getModelObject();
+            final String value = valueText.getModelObject();
             final String localizationKey = "keyword." + key;
             String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, PhetWicketApplication.getDefaultLocale() );
             if ( preexistingValue == null ) {
