@@ -16,18 +16,32 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
         selenium.start();
     }
 
+    public void loadWithoutError() {
+        pageLoad();
+        assertNoError();
+    }
+
+    public void pageLoad() {
+        selenium.waitForPageToLoad( "30000" );
+    }
+
+    public void assertNoError() {
+        assertNotEquals( selenium.getTitle(), "error.internalError" );
+        assert ( !selenium.getBodyText().contains( "Unexpected RuntimeException" ) );
+    }
+
     @Test
     public void testClickOnLogo() throws Exception {
         selenium.open( "/" );
         selenium.click( "//img[@alt='PhET Logo']" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
     }
 
     @Test
     public void testClickOnPlay() throws Exception {
         selenium.open( "/" );
         selenium.click( IndexPanel.PLAY_SIMS_ID );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
     }
 
     @Test
@@ -39,23 +53,32 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
 
         selenium.open( "/" );
         selenium.click( LogInOutPanel.SIGN_IN_ID );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         selenium.type( "username", "bogus-email" );
         selenium.type( "password", "bogus-password" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         assert ( selenium.getBodyText().contains( signInFailed ) );
         assertEquals( selenium.getTitle(), signInTitle );
         selenium.type( "username", "test@phet.colorado.edu" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         assert ( selenium.getBodyText().contains( signInFailed ) );
         assertEquals( selenium.getTitle(), signInTitle );
         selenium.type( "password", "test-password" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         assert ( !selenium.getBodyText().contains( signInFailed ) );
         assertNotEquals( selenium.getTitle(), signInTitle );
+    }
+
+    @Test
+    public void testSearch() throws Exception {
+        selenium.open( "/" );
+        selenium.type( "q", "circuit" );
+        selenium.click( "search-submit-id" );
+        loadWithoutError();
+        assert ( selenium.getBodyText().contains( "Circuit Construction Kit" ) );
     }
 
     @After
