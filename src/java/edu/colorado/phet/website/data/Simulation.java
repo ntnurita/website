@@ -34,6 +34,9 @@ public class Simulation implements Serializable, IntId {
      */
     private int oldId;
 
+    public static final String DEFAULT_DESCRIPTION = "Description coming soon";
+    public static final String DEFAULT_LEARNING_GOALS = "Learning goals coming soon";
+
     public Simulation() {
     }
 

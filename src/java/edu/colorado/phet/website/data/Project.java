@@ -22,6 +22,7 @@ import edu.colorado.phet.buildtools.util.FileUtils;
 import edu.colorado.phet.buildtools.util.ProjectPropertiesFile;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;
+import edu.colorado.phet.website.StringChanges;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -173,10 +174,12 @@ public class Project implements Serializable, IntId {
 
         syncLogger.info( "Synchronizing project " + projectName + " with docroot " + docRoot.getAbsolutePath() );
 
+        // add in simulation descriptions and learning goals
+        final HashMap<String, String> englishStringsToAdd = new HashMap<String, String>();
 
         // wrap it in a transaction for exception handling. this should properly roll back anything that goes bad, and will
         // log any exceptions
-        HibernateUtils.wrapTransaction( session, new HibernateTask() {
+        boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
             public boolean run( Session session ) {
                 try {
                     File projectRoot = new File( docRoot, "sims/" + projectName );
@@ -309,6 +312,8 @@ public class Project implements Serializable, IntId {
                                 simulation.setSimulationVisible( false );
                                 createdSims.add( simulation );
                                 simulationCache.put( simName, simulation );
+                                englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
+                                englishStringsToAdd.put( simulation.getLearningGoalsKey(), Simulation.DEFAULT_LEARNING_GOALS );
                             }
                             else {
                                 simulation = (Simulation) slist.get( 0 );
@@ -412,6 +417,12 @@ public class Project implements Serializable, IntId {
                 return true;
             }
         } );
+        if ( success ) {
+            // add in English strings for simulations, but ONLY IF THEY DO NOT EXIST!
+            for ( String key : englishStringsToAdd.keySet() ) {
+                StringChanges.addString( session, key, englishStringsToAdd.get( key ) );
+            }
+        }
     }
 
     /**

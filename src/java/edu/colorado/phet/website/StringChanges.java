@@ -70,7 +70,7 @@ public class StringChanges {
     * newsletter-instructions
     *----------------------------------------------------------------------------*/
 
-    private static void addString( Session session, String key, String value ) {
+    public static void addString( Session session, String key, String value ) {
         String result = StringUtils.getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
         if ( result == null ) {
             logger.warn( "Auto-setting English string with key=" + key + " value=" + value );
