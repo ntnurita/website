@@ -109,6 +109,8 @@ public class TranslationMainPage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_ID, ret[0].getId() );
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( ret[0].getLocale() ) );
 
+                NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), PhetSession.get().getUser(), translation.getId() );
+
                 setResponsePage( TranslationEditPage.class, params );
             }
         }

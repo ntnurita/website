@@ -186,6 +186,13 @@ public class NotificationHandler {
         return sendTranslationNotificationCore( "created", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
+    public static boolean sendTranslationCreatedBasedOnNotification( int id, Locale locale, PhetUser user, int oldId ) {
+        String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
+        List<PhetUser> users = new LinkedList<PhetUser>();
+        users.add( user );
+        return sendTranslationNotificationCore( "created based on #" + oldId, "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
+    }
+
     public static boolean sendTranslationSubmittedNotification( int id, Locale locale, Collection<PhetUser> users ) {
         String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
         return sendTranslationNotificationCore( "submitted", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
