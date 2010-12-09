@@ -55,6 +55,7 @@ import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.PhetInfoServicePage;
 import edu.colorado.phet.website.services.SchedulerService;
 import edu.colorado.phet.website.services.SimJarRedirectPage;
+import edu.colorado.phet.website.services.StringGetter;
 import edu.colorado.phet.website.templates.StaticPage;
 import edu.colorado.phet.website.test.NestedFormTest;
 import edu.colorado.phet.website.test.PublicChangelogTest;
@@ -201,6 +202,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/phet-info.php", PhetInfoServicePage.class );
         mountBookmarkablePage( "services/sim-jar-redirect", SimJarRedirectPage.class );
         mountBookmarkablePage( "services/sim-jar-redirect.php", SimJarRedirectPage.class );
+        mountBookmarkablePage( "services/get-string", StringGetter.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
 
         // FOR XSS TESTING
