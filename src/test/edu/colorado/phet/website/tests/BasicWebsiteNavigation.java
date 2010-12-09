@@ -32,6 +32,7 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
 
     @Test
     public void testSignIn() throws Exception {
+        // checks validation
         selenium.open( "/" );
         selenium.click( LogInOutPanel.SIGN_IN_ID );
         selenium.waitForPageToLoad( "30000" );
