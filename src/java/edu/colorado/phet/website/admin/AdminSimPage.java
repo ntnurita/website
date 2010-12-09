@@ -8,7 +8,7 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
+import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
@@ -19,9 +19,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.util.value.ValueMap;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -120,7 +118,7 @@ public class AdminSimPage extends AdminPage {
 
         CreateKeywordForm createKeywordForm = new CreateKeywordForm( "create-keyword", allKeywords );
         add( createKeywordForm );
-        createKeywordfeedback = new FeedbackPanel( "create-keyword-feedback", new ComponentFeedbackMessageFilter( createKeywordForm ) );
+        createKeywordfeedback = new FeedbackPanel( "create-keyword-feedback", new ContainerFeedbackMessageFilter( createKeywordForm ) );
         createKeywordfeedback.setVisible( false );
         add( createKeywordfeedback );
 
@@ -477,7 +475,6 @@ public class AdminSimPage extends AdminPage {
 
     private class CreateKeywordForm extends Form {
 
-        private final ValueMap properties = new ValueMap();
         private TextField<String> keyText;
         private TextField<String> valueText;
         private List<Keyword> allKeywords;
@@ -486,8 +483,8 @@ public class AdminSimPage extends AdminPage {
             super( id );
             this.allKeywords = allKeywords;
 
-            add( keyText = new TextField<String>( "key", new PropertyModel<String>( properties, "key" ) ) );
-            add( valueText = new TextField<String>( "value", new PropertyModel<String>( properties, "value" ) ) );
+            add( keyText = new TextField<String>( "key", new Model<String>( "" ) ) );
+            add( valueText = new TextField<String>( "value", new Model<String>( "" ) ) );
 
             add( new AbstractFormValidator() {
                 public FormComponent<?>[] getDependentFormComponents() {
@@ -497,13 +494,14 @@ public class AdminSimPage extends AdminPage {
                 public void validate( Form<?> form ) {
                     logger.error( "TMP: 1" );
                     // we need to fail out if we try to create a duplicate key
-                    final String key = keyText.getModelObject();
-                    final String value = valueText.getModelObject();
-                    HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
+                    final String key = keyText.getInput();
+                    final String value = valueText.getInput();
+                    HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
                         public Void run( Session session ) {
                             List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
                                     .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "value", value ).list();
                             for ( Object o : list ) {
+                                logger.error( "TMP: 2" );
                                 TranslatedString ts = (TranslatedString) o;
                                 logger.error( "TMP: " + ts.getKey() );
                                 if ( ts.getKey().startsWith( "keyword." ) ) {
