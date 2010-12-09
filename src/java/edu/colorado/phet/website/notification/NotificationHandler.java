@@ -152,7 +152,7 @@ public class NotificationHandler {
     private static final String TRANSLATION_NOTIFICATION_FOOTER = "<p>Replying to this email will send the response to the translation creator(s).</p>";
 
     private static String getTranslationSubject( String action, int id, Locale locale ) {
-        return "Website Translation #" + id + "/" + LocaleUtils.localeToString( locale ) + " " + action;
+        return "Website Translation #" + id + " / " + LocaleUtils.localeToString( locale ) + " " + action;
     }
 
     private static boolean sendTranslationNotificationCore( String action, String body, int id, Locale locale, Collection<PhetUser> users ) {
