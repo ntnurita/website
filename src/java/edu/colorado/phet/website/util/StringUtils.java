@@ -249,6 +249,7 @@ public class StringUtils {
 
     public static boolean setString( Session session, String key, String value, Locale locale ) {
         // Tested on Mac, Safari 4.0.5, Firefox 3.6.3
+        // TODO: note don't modify unless checking the below setString. refactor
         value = value.replaceAll( "\r", "" );
         value = value.replaceAll( "\n", "<br/>" );
 
