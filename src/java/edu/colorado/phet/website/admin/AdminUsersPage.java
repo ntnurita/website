@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -15,6 +16,7 @@ import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.data.PhetUser;
+import edu.colorado.phet.website.newsletter.NewsletterUtils;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -86,6 +88,8 @@ public class AdminUsersPage extends AdminPage {
             }
         } );
 
+        add( new SubscribeUsersForm( "subscribe-form" ) );
+
     }
 
     private abstract static class UserEmailForm extends Form {
@@ -100,6 +104,25 @@ public class AdminUsersPage extends AdminPage {
 
         public String getEmailAddress() {
             return emailField.getModelObject();
+        }
+    }
+
+    private class SubscribeUsersForm extends Form {
+        private TextArea<String> emailArea;
+
+        private SubscribeUsersForm( String id ) {
+            super( id );
+
+            add( emailArea = new TextArea<String>( "emails", new Model<String>( "" ) ) );
+        }
+
+        @Override
+        protected void onSubmit() {
+            String emailText = emailArea.getModelObject();
+            logger.info( "Attempting to subscribe a list of users:\n" + emailText );
+            for ( String email : emailText.split( "\n" ) ) {
+                NewsletterUtils.subscribeUserAndSendEmail( getPageContext(), getHibernateSession(), email.trim(), true );
+            }
         }
     }
 }

@@ -1,8 +1,12 @@
 package edu.colorado.phet.website.newsletter;
 
+import java.util.List;
+
 import javax.mail.MessagingException;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.constants.WebsiteConstants;
@@ -12,6 +16,10 @@ import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.Task;
+import edu.colorado.phet.website.util.hibernate.TaskException;
 
 public class NewsletterUtils {
 
@@ -115,6 +123,65 @@ public class NewsletterUtils {
         catch ( MessagingException e ) {
             logger.warn( "message send error: ", e );
             return false;
+        }
+    }
+
+    private static Result<PhetUser> subscribeUser( Session session, final String emailAddress, final boolean automated ) {
+        return HibernateUtils.resultTransaction( session, new Task<PhetUser>() {
+            public PhetUser run( Session session ) {
+                List users = session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", emailAddress ).list();
+                PhetUser user;
+                if ( users.size() > 1 ) {
+                    throw new TaskException( "More than 1 user for an email address.", Level.ERROR );
+                }
+                else if ( users.size() == 1 ) {
+                    user = (PhetUser) users.get( 0 );
+                    if ( automated && !user.isNewsletterOnlyAccount() && !user.isReceiveEmail() ) {
+                        // user has full account and has selected to not receive email. DO NOT OVERRIDE
+                        throw new TaskException( "Email " + emailAddress + " was attempted to be automatically subscribed but has selected to not receive email. Overriding" );
+                    }
+                    user.setConfirmationKey( PhetUser.generateConfirmationKey() );
+                    user.setReceiveEmail( true );
+                    session.update( user );
+                }
+                else {
+                    // brand new, create a newsletter-only and unconfirmed user
+                    user = new PhetUser( emailAddress, true );
+                    user.setReceiveEmail( true );
+                    session.save( user );
+                }
+                return user;
+            }
+        } );
+    }
+
+    /**
+     * Subscribe a user, and send a confirmation email
+     * <p/>
+     * If the user does not exist, a newsletter-only account is added.
+     *
+     * @param context      Page context
+     * @param session      Hibernate session
+     * @param emailAddress User email address
+     * @param automated    If automated, subscribing users who have checked "Do not receive email" will not be overridden
+     * @return Result. Check result.success for success. If successful, will contain a user reference of result.value
+     */
+    public static Result<PhetUser> subscribeUserAndSendEmail( PageContext context, Session session, final String emailAddress, boolean automated ) {
+        Result<PhetUser> userResult = subscribeUser( session, emailAddress, automated );
+        if ( userResult.success ) {
+            boolean emailSuccess = NewsletterUtils.sendConfirmSubscriptionEmail( context, emailAddress, userResult.value.getConfirmationKey() );
+            if ( emailSuccess ) {
+                return userResult;
+            }
+            else {
+                logger.warn( "Unable to send confirm-subscription email to " + emailAddress );
+                return new Result<PhetUser>( false, userResult.value, null ); // send failure
+            }
+        }
+        else {
+            // hibernate failed (or some more internal error)
+            logger.error( "Subscribe action failed for" + emailAddress );
+            return new Result<PhetUser>( false, userResult.value, null ); // send failure
         }
     }
 }

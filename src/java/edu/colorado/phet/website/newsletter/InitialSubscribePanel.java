@@ -1,10 +1,8 @@
 package edu.colorado.phet.website.newsletter;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -12,19 +10,14 @@ import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
-import org.hibernate.Session;
 
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.content.ErrorPage;
-import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
-import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
-import edu.colorado.phet.website.util.hibernate.Task;
-import edu.colorado.phet.website.util.hibernate.TaskException;
 
 public class InitialSubscribePanel extends PhetPanel {
 
@@ -118,42 +111,13 @@ public class InitialSubscribePanel extends PhetPanel {
         protected void onSubmit() {
             final String emailAddress = emailTextField.getInput();
 
-            final Result<PhetUser> userResult = HibernateUtils.resultTransaction( getHibernateSession(), new Task<PhetUser>() {
-                public PhetUser run( Session session ) {
-                    List users = session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", emailAddress ).list();
-                    PhetUser user;
-                    if ( users.size() > 1 ) {
-                        throw new TaskException( "More than 1 user for an email address.", Level.ERROR );
-                    }
-                    else if ( users.size() == 1 ) {
-                        user = (PhetUser) users.get( 0 );
-                        user.setConfirmationKey( PhetUser.generateConfirmationKey() );
-                        user.setReceiveEmail( true );
-                        session.update( user );
-                    }
-                    else {
-                        // brand new, create a newsletter-only and unconfirmed user
-                        user = new PhetUser( emailAddress, true );
-                        user.setReceiveEmail( true );
-                        session.save( user );
-                    }
-                    return user;
-                }
-            } );
+            final Result<PhetUser> userResult = NewsletterUtils.subscribeUserAndSendEmail( context, getHibernateSession(), emailAddress, false );
 
             if ( userResult.success ) {
-                boolean emailSuccess = NewsletterUtils.sendConfirmSubscriptionEmail( context, emailAddress, userResult.value.getConfirmationKey() );
-                if ( emailSuccess ) {
-                    setResponsePage( ConfirmEmailSentPage.class, ConfirmEmailSentPage.getParameters( userResult.value ) );
-                }
-                else {
-                    // sending the email failed
-                    setResponsePage( ErrorPage.class );
-                }
+                PhetUser user = userResult.value;
+                setResponsePage( ConfirmEmailSentPage.class, ConfirmEmailSentPage.getParameters( user ) );
             }
             else {
-                // hibernate failed (or some more internal error)
-                // generic internal error page for now. should redirect people to phethelp if it is serious
                 setResponsePage( ErrorPage.class );
             }
         }

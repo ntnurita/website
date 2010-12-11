@@ -53,6 +53,18 @@
             <input wicket:id="email" type="text" value="" size="40"/>
             <input type="submit" name="submit" value="Delete user"/>
         </form>
+
+        <h2>Subscribe list of users</h2>
+
+        <p>
+            Put email addresses on separate lines. If a user has selected to not receive newsletters, this will not
+            override their selection.
+        </p>
+
+        <form wicket:id="subscribe-form">
+            <textarea rows="40" cols="50" name="emails" wicket:id="emails"></textarea>
+            <input type="submit" name="submit" value="Subscribe users"/>
+        </form>
     </div>
 </wicket:extend>
 
