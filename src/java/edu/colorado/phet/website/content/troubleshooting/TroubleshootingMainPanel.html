@@ -126,6 +126,18 @@
                     </wicket:message>
                 </a></li>
 
+                <li class="faq"><a href="#q15">
+                    <wicket:message key="troubleshooting.main.q15.title">
+                        Can I run PhET simulations from a USB drive?
+                    </wicket:message>
+                </a></li>
+
+                <li class="faq"><a href="#q16">
+                    <wicket:message key="troubleshooting.main.q16.title">
+                        Where does the name "PhET" come from?
+                    </wicket:message>
+                </a></li>
+
                 <li class="faq"><a href="#" wicket:id="licensing-link">
                     <wicket:message key="troubleshooting.main.licensingRequirements">
                         What are Licensing requirements?
@@ -554,6 +566,52 @@
                 <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221</a>,
                 and the producers of Java have acknowledged
                 the problem and reported that they plan to fix it in an upcoming version of Java.
+            </p>
+        </div>
+
+        <p class="to-top">
+            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
+            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+        </p>
+
+        <h3 id="q15">
+            <wicket:message key="troubleshooting.main.q15.title">
+                Can I run PhET simulations from a USB drive?
+            </wicket:message>
+        </h3>
+        <div wicket:id="troubleshooting-main-q15-answer">
+            <p>
+                Yes, but there are some situations where problems may be encountered. If you only want to run a small
+                number of simulations, the best approach is to download the individual JAR files (i.e. the files that
+                are downloaded when you press the “Download” button on the simulation pages) and save them on your USB
+                drive. This should work under most circumstances. If you want to install all simulations using the
+                Offline Website Installer, there can be some complications. The reason for this is that some of the
+                simulations – specifically the ones that run under Java – have hardcoded path information in their
+                launch files. This is due to a limitation of the Java Network Launching Protocol. This limitation means
+                that if you install the Offline Website Installer to your hard drive and then copy all of the installed
+                files to a USB drive, there is a good chance that many of the simulations will not run. One possible
+                alternative approach is to install the Offline Website Installer directly on to your USB drive. This
+                should work in situations where the USB drive is assigned the same drive designation (e.g. “E:”) when
+                attached to a new machine as was assigned when the Offline Website Installer was installed. If the USB
+                drive is assigned a different drive designation, again, many of the simulations will not run.
+            </p>
+        </div>
+
+        <p class="to-top">
+            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
+            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+        </p>
+
+        <h3 id="q16">
+            <wicket:message key="troubleshooting.main.q16.title">
+                Where does the name &quot;PhET&quot; come from?
+            </wicket:message>
+        </h3>
+        <div wicket:id="troubleshooting-main-q16-answer">
+            <p>
+                Our project originally focused on physics sims, and was hence named the *Ph*ysics *E*ducation
+                *T*echnology project, or *PhET*. When we branched into chemistry, biology, mathematics and other areas,
+                we decided to keep the name *PhET*, but to no longer describe it as an acronym.
             </p>
         </div>
 

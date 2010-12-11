@@ -72,6 +72,10 @@ public class TroubleshootingMainPanel extends PhetPanel {
                 "<a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221\">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221</a>"
         } ) );
 
+        add( new LocalizedText( "troubleshooting-main-q15-answer", "troubleshooting.main.q15.answer" ) );
+
+        add( new LocalizedText( "troubleshooting-main-q16-answer", "troubleshooting.main.q16.answer" ) );
+
         add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
 
         add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
