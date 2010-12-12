@@ -2,10 +2,14 @@
  Handles sorting of columns in the contribution lists available on the "Browse Contribution" and "Simulation" pages
  */
 
-// TODO: remember to detect correct colspan
+// TODO: flag duplicates!
+
 var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold;";
 
+// TODO: promote to phet.contribution
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
+
+phet.separators = [];
 
 phet.trace = function( mess ) {
     var debugs = $( "#phet-page-debug" );
@@ -82,18 +86,45 @@ phet.sortContributionsByUpdated = function() {
 };
 
 phet.sortContributionsByLevel = function() {
+    phet.beforeSort( 'ct-contribution' );
     var items = $( ".ct-contribution" );
+    var noDupItems = $( '.ct-contribution:not(.ct-contribution[rel="duplicate"])' );
+    phet.trace( "items.length: " + items.length );
+    phet.trace( "noDupItems.length: " + noDupItems.length );
     var table = $( "#ct-table" )[0];
 
-    items.each( function( index ) {
-        var tr = items[index];
-        var rel = $( tr ).find( '.ct-level' ).attr( 'rel' );
-        phet.trace( "rel: " + rel );
+    var dups = {};
+
+    // initialize directory
+    var directory = {};
+    $.each( phet.getAllLevels(), function( idx, val ) {
+        directory[val] = [];
     } );
 
-    phet.trace( "colspan: " + $( "#ct-table-header" ).children().length );
+    // fill directory
+    items.each( function( index ) {
+        var tr = items[index];
+        dups[tr] = false;
+        $.each( $( tr ).find( '.ct-level' ).attr( 'rel' ).split( ',' ), function( idx, levelString ) {
+            directory[levelString].push( tr );
+        } );
+        $( tr ).remove(); // remove the rows
+    } );
 
-    phet.trace( "table.rel: " + $( table ).attr( 'rel' ) );
+    // add everything back in
+    $.each( phet.getAllLevels(), function( idx, levelString ) {
+        if ( directory[levelString].length > 0 ) {
+            phet.addContributionSeparator( levelString );
+            $.each( directory[levelString], function( idx, tr ) {
+                var newNode = tr.cloneNode( true );
+                table.appendChild( newNode );
+                if ( dups[tr] ) {
+                    newNode.setAttribute( "rel", "duplicate" );
+                }
+                dups[tr] = true;
+            } );
+        }
+    } );
 
     return false;
 };
@@ -110,6 +141,11 @@ $( document ).ready( function() {
 phet.currentSort = {className: 'BOGUS_CLASS_NAME', reverse: false}; // set up initial conditions
 
 phet.beforeSort = function( className ) {
+    $.each( phet.separators, function( idx, separator ) {
+        $( separator ).remove();
+    } );
+    phet.separators = [];
+
     if ( className == phet.currentSort.className ) {
         // if already sorted on the desired column, reverse it. we can ignore the reverse flag if we want
         phet.currentSort.reverse = !phet.currentSort.reverse;
@@ -120,3 +156,30 @@ phet.beforeSort = function( className ) {
         phet.currentSort.reverse = false;
     }
 };
+
+phet.addContributionSeparator = function( text ) {
+    var tr = document.createElement( 'tr' );
+    var td = document.createElement( 'td' );
+    td.innerHTML = text;
+    td.setAttribute( 'style', ContributionSectionStyle );
+    td.setAttribute( 'colspan', '' + phet.colspan() ); // our number of columns can change, so we need to set it correctly here
+    tr.appendChild( td );
+    $( "#ct-table" )[0].appendChild( tr );
+    phet.separators.push( tr );
+};
+
+phet.colspan = function() {
+    return $( "#ct-table-header" ).children().length;
+};
+
+// return array of level strings
+phet.getAllLevels = function() {
+    return $( '#ct-table' ).attr( 'rel' ).split( '|' )[0].split( ',' );
+};
+
+// return array of type strings
+phet.getAllTypes = function() {
+    return $( '#ct-table' ).attr( 'rel' ).split( '|' )[1].split( ',' );
+};
+
+
