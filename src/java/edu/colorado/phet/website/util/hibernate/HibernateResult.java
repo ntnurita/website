@@ -5,7 +5,6 @@ import java.io.Serializable;
 /**
  * Enables wrapping of any result type within an inner class.
  * <p/>
- * TODO: add success flag?
  * TODO: use instead of arrays
  *
  * @param <T>
