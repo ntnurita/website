@@ -5,7 +5,10 @@
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
 
 phet.trace = function( mess ) {
-    $( "#phet-page-debug" )[0].innerHTML += "<br/>" + mess;
+    var debugs = $( "#phet-page-debug" );
+    if ( debugs.length > 0 ) {
+        $( "#phet-page-debug" )[0].innerHTML += "<br/>" + mess;
+    }
 };
 
 phet.compareClassText = function( className, reverse ) {
@@ -58,20 +61,38 @@ phet.sortContributionsWithFunction = function( compare ) {
 };
 
 phet.sortContributionsByTitle = function() {
-    phet.sortContributionsWithFunction( phet.compareClassText( 'ct-title', false ) );
+    phet.beforeSort( 'ct-title' );
+    phet.sortContributionsWithFunction( phet.compareClassText( 'ct-title', phet.currentSort.reverse ) );
     return false;
 };
 
 phet.sortContributionsByAuthors = function() {
-    phet.sortContributionsWithFunction( phet.compareClassText( 'ct-authors', false ) );
+    phet.beforeSort( 'ct-authors' );
+    phet.sortContributionsWithFunction( phet.compareClassText( 'ct-authors', phet.currentSort.reverse ) );
     return false;
 };
 
 phet.sortContributionsByUpdated = function() {
-    phet.sortContributionsWithFunction( phet.compareClassRel( 'ct-updated', false ) );
+    phet.beforeSort( 'ct-updated' );
+    phet.sortContributionsWithFunction( phet.compareClassRel( 'ct-updated', phet.currentSort.reverse ) );
     return false;
 };
 
+// initial setup and handling
 $( document ).ready( function() {
 
 } );
+
+phet.currentSort = {className: 'BOGUS_CLASS_NAME', reverse: false}; // set up initial conditions
+
+phet.beforeSort = function( className ) {
+    if ( className == phet.currentSort.className ) {
+        // if already sorted on the desired column, reverse it. we can ignore the reverse flag if we want
+        phet.currentSort.reverse = !phet.currentSort.reverse;
+    }
+    else {
+        // change column sorted row, and set to initially not reverse
+        phet.currentSort.className = className;
+        phet.currentSort.reverse = false;
+    }
+};
