@@ -28,10 +28,8 @@ public class MultipleFileUploadPanel extends PhetPanel {
 
     public List<FileUpload> getUploadedFiles() {
         LinkedList<FileUpload> ret = new LinkedList<FileUpload>();
-        Iterator iter = uploads.iterator();
-        while ( iter.hasNext() ) {
-            FileUpload fup = (FileUpload) iter.next();
-            ret.add( fup );
+        for ( FileUpload upload : uploads ) {
+            ret.add( upload );
         }
         return ret;
     }
