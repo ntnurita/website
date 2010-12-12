@@ -33,6 +33,8 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class ContributionBrowsePanel extends PhetPanel {
 
+    private final List<Contribution> newContributions;
+
     private static final Logger logger = Logger.getLogger( ContributionBrowsePanel.class.getName() );
 
     /**
@@ -62,6 +64,8 @@ public class ContributionBrowsePanel extends PhetPanel {
         logger.debug( System.currentTimeMillis() + " start" );
 
         add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+
+        newContributions = new LinkedList<Contribution>();
 
         logger.debug( System.currentTimeMillis() + " A" );
 

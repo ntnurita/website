@@ -24,6 +24,7 @@ public class DeployResourcePage extends AdminPage {
     private static final Logger logger = Logger.getLogger( DeployResourcePage.class.getName() );
     private static final Set<File> usedDirs = new HashSet<File>();
     private static final HashMap<File, LoggerComponentThread> serverMap = new HashMap<File, LoggerComponentThread>();
+    private static final HashMap<File, List<String>> projectsMap = new HashMap<File, List<String>>();
     private static final Object usedLock = new Object();
 
     public DeployResourcePage( PageParameters parameters ) {
@@ -174,7 +175,15 @@ public class DeployResourcePage extends AdminPage {
                     resourceTmpDir
             );
 
+            projectsMap.put( resourceTmpDir, runner.getExistingProjects() );
+
             runner.process( new File( docRoot, "sims" ) );
+
+//                Session session = HibernateUtils.getInstance().openSession();
+//                for ( String projectName : runner.getExistingProjects() ) {
+//                    Project.backupProject( docRoot, projectName );
+//                }
+//                session.close();
 
             FileUtils.writeString( new File( resourceTmpDir, "finished.txt" ), "finished at " + new Date() );
             return true;
@@ -182,6 +191,8 @@ public class DeployResourcePage extends AdminPage {
 
         @Override
         public Component getFinishedComponent( String id, String rawText ) {
+            //return new TranslationDeployServerFinishedPanel( id, getPageContext(), rawText, resourceTmpDir, PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot() );
+            //return new RawLabel( id, rawText );
             return new WebsiteResourceFinishedPanel( id, PageContext.getNewDefaultContext(), rawText, resourceTmpDir, docRoot );
         }
 
