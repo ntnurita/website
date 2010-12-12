@@ -52,7 +52,7 @@ public class TranslationLinksPanel extends PhetPanel {
         }
         add( englishLink );
 
-        ListView listView = new ListView<String>( "translation-links", ( (PhetWicketApplication) getApplication() ).getTranslationLocaleStrings() ) {
+        ListView listView = new ListView<String>( "translation-links", PhetWicketApplication.get().getTranslationLocaleStrings() ) {
             protected void populateItem( ListItem<String> item ) {
                 String localeString = item.getModelObject();
                 Locale locale = LocaleUtils.stringToLocale( localeString );
