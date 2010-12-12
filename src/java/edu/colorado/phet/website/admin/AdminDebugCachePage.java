@@ -41,10 +41,9 @@ public class AdminDebugCachePage extends AdminPage {
             }
         } );
 
-        add( new ListView( "entries", entries ) {
-            protected void populateItem( ListItem item ) {
-                CacheItem entry = (CacheItem) item.getModel().getObject();
-                IPanelCacheEntry panelEntry = entry.getEntry();
+        add( new ListView<CacheItem>( "entries", entries ) {
+            protected void populateItem( ListItem<CacheItem> item ) {
+                CacheItem entry = item.getModel().getObject();
                 item.add( new Label( "panel", entry.getEntry().getPanelClass().getCanonicalName() ) );
                 Class parentClass = entry.getEntry().getParentClass();
                 if ( parentClass == null ) {

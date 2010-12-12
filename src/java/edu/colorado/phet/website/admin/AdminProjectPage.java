@@ -57,7 +57,7 @@ public class AdminProjectPage extends AdminPage {
 
         ProjectPropertiesFile projectPropertiesFile = project.getProjectPropertiesFile( ( (PhetWicketApplication) getApplication() ).getWebsiteProperties().getPhetDocumentRoot() );
 
-        RawLabel projectChecks = null;
+        RawLabel projectChecks;
         if ( projectPropertiesFile.exists() ) {
             String str = "Detected project properties: " + projectPropertiesFile.getFullVersionString();
             if ( statusString != null ) {
@@ -70,9 +70,9 @@ public class AdminProjectPage extends AdminPage {
         }
         add( projectChecks );
 
-        add( new ListView( "simulation", simulations ) {
-            protected void populateItem( ListItem item ) {
-                Simulation sim = (Simulation) item.getModel().getObject();
+        add( new ListView<Simulation>( "simulation", simulations ) {
+            protected void populateItem( ListItem<Simulation> item ) {
+                Simulation sim = item.getModelObject();
                 item.add( new Label( "simulation-name", sim.getName() ) );
             }
         } );
@@ -84,7 +84,7 @@ public class AdminProjectPage extends AdminPage {
                 simulations.clear();
                 HibernateUtils.wrapTransaction( getHibernateSession(), new StartTask() );
                 projectForm.update( project );
-                title.setDefaultModel( new Model( getTitleString() ) );
+                title.setDefaultModel( new Model<String>( getTitleString() ) );
 
                 PageParameters params = new PageParameters();
                 params.put( PROJECT_ID, projectId );
@@ -99,31 +99,31 @@ public class AdminProjectPage extends AdminPage {
     }
 
     private class ProjectForm extends Form {
-        private TextField major;
-        private TextField minor;
-        private TextField dev;
-        private TextField revision;
-        private TextField timestamp;
+        private TextField<String> major;
+        private TextField<String> minor;
+        private TextField<String> dev;
+        private TextField<String> revision;
+        private TextField<String> timestamp;
         private DropDownChoice visible;
 
         public void setMajor( int major ) {
-            this.major.setModel( new Model( String.valueOf( major ) ) );
+            this.major.setModel( new Model<String>( String.valueOf( major ) ) );
         }
 
         public void setMinor( int minor ) {
-            this.minor.setModel( new Model( String.valueOf( minor ) ) );
+            this.minor.setModel( new Model<String>( String.valueOf( minor ) ) );
         }
 
         public void setDev( int dev ) {
-            this.dev.setModel( new Model( String.valueOf( dev ) ) );
+            this.dev.setModel( new Model<String>( String.valueOf( dev ) ) );
         }
 
         public void setRevision( int revision ) {
-            this.revision.setModel( new Model( String.valueOf( revision ) ) );
+            this.revision.setModel( new Model<String>( String.valueOf( revision ) ) );
         }
 
         public void setTimestamp( long timestamp ) {
-            this.timestamp.setModel( new Model( String.valueOf( timestamp ) ) );
+            this.timestamp.setModel( new Model<String>( String.valueOf( timestamp ) ) );
         }
 
         public void update( Project project ) {
@@ -137,26 +137,26 @@ public class AdminProjectPage extends AdminPage {
         public ProjectForm( String id ) {
             super( id );
 
-            visible = new DropDownChoice( "visible", new Model( project.isVisible() ? "True" : "False" ), Arrays.asList( "True", "False" ), new IChoiceRenderer() {
-                public Object getDisplayValue( Object object ) {
-                    return object.toString();
+            visible = new DropDownChoice<String>( "visible", new Model<String>( project.isVisible() ? "True" : "False" ), Arrays.asList( "True", "False" ), new IChoiceRenderer<String>() {
+                public Object getDisplayValue( String str ) {
+                    return str;
                 }
 
-                public String getIdValue( Object object, int index ) {
-                    return String.valueOf( object );
+                public String getIdValue( String str, int index ) {
+                    return String.valueOf( str );
                 }
             } );
             add( visible );
 
-            major = new StringTextField( "major", new Model( String.valueOf( project.getVersionMajor() ) ) );
+            major = new StringTextField( "major", new Model<String>( String.valueOf( project.getVersionMajor() ) ) );
             add( major );
-            minor = new StringTextField( "minor", new Model( String.valueOf( project.getVersionMinor() ) ) );
+            minor = new StringTextField( "minor", new Model<String>( String.valueOf( project.getVersionMinor() ) ) );
             add( minor );
-            dev = new StringTextField( "dev", new Model( String.valueOf( project.getVersionDev() ) ) );
+            dev = new StringTextField( "dev", new Model<String>( String.valueOf( project.getVersionDev() ) ) );
             add( dev );
-            revision = new StringTextField( "revision", new Model( String.valueOf( project.getVersionRevision() ) ) );
+            revision = new StringTextField( "revision", new Model<String>( String.valueOf( project.getVersionRevision() ) ) );
             add( revision );
-            timestamp = new StringTextField( "timestamp", new Model( String.valueOf( project.getVersionTimestamp() ) ) );
+            timestamp = new StringTextField( "timestamp", new Model<String>( String.valueOf( project.getVersionTimestamp() ) ) );
             add( timestamp );
         }
 
@@ -166,11 +166,11 @@ public class AdminProjectPage extends AdminPage {
 
             logger.info( "setting project values for " + project.getName() );
             logger.info( "visible: " + visible.getModelValue() );
-            logger.info( "major: " + major.getModelObject().toString() );
-            logger.info( "minor: " + minor.getModelObject().toString() );
-            logger.info( "dev: " + dev.getModelObject().toString() );
-            logger.info( "revision: " + revision.getModelObject().toString() );
-            logger.info( "timestamp: " + timestamp.getModelObject().toString() );
+            logger.info( "major: " + major.getModelObject() );
+            logger.info( "minor: " + minor.getModelObject() );
+            logger.info( "dev: " + dev.getModelObject() );
+            logger.info( "revision: " + revision.getModelObject() );
+            logger.info( "timestamp: " + timestamp.getModelObject() );
 
             HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
@@ -188,11 +188,11 @@ public class AdminProjectPage extends AdminPage {
                         throw new RuntimeException( "True or False?" );
                     }
 
-                    project.setVersionMajor( Integer.valueOf( major.getModelObject().toString() ) );
-                    project.setVersionMinor( Integer.valueOf( minor.getModelObject().toString() ) );
-                    project.setVersionDev( Integer.valueOf( dev.getModelObject().toString() ) );
-                    project.setVersionRevision( Integer.valueOf( revision.getModelObject().toString() ) );
-                    project.setVersionTimestamp( Long.valueOf( timestamp.getModelObject().toString() ) );
+                    project.setVersionMajor( Integer.valueOf( major.getModelObject() ) );
+                    project.setVersionMinor( Integer.valueOf( minor.getModelObject() ) );
+                    project.setVersionDev( Integer.valueOf( dev.getModelObject() ) );
+                    project.setVersionRevision( Integer.valueOf( revision.getModelObject() ) );
+                    project.setVersionTimestamp( Long.valueOf( timestamp.getModelObject() ) );
 
                     session.update( project );
 
