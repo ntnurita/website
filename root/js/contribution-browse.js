@@ -131,10 +131,10 @@ phet.sortContributionsByTag = function( className, tags ) {
             $.each( directory[tagString], function( idx, tr ) {
                 var newNode = tr.cloneNode( true );
                 if ( idx % 2 == 0 ) {
-                    $( tr ).addClass( 'list-highlight-background' );
+                    $( newNode ).addClass( 'list-highlight-background' );
                 }
                 else {
-                    $( tr ).removeClass( 'list-highlight-background' );
+                    $( newNode ).removeClass( 'list-highlight-background' );
                 }
                 table.appendChild( newNode );
             } );
