@@ -142,8 +142,6 @@ public class WebsiteTranslationDeployPublisher {
     }
 
     //generate new JNLPs in sims directory
-    //TODO: this is currently very brittle, no parser for the JNLP and just using string matching
-
     private void generateJNLPs( File translationDir, String project, String[] locales ) throws IOException {
         //TODO generate fresh JNLPs instead?
         //might be safer to copy existing JNLP to make sure main class is right, etc.
