@@ -28,7 +28,7 @@ phet.compareClassRel = function( className, reverse ) {
         // that's right. we are storing the timestamps in the 'rel' attribute so this will validate
         var timestampA = parseInt( $( a ).find( '.' + className ).attr( 'rel' ) );
         var timestampB = parseInt( $( b ).find( '.' + className ).attr( 'rel' ) );
-        return (timestampA - timestampB ) * (reverse ? -1 : 1);
+        return (timestampA - timestampB ) * (reverse ? 1 : -1);
     };
 };
 
