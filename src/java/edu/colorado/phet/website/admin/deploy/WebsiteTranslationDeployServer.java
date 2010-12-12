@@ -267,7 +267,7 @@ public class WebsiteTranslationDeployServer {
                 simNames.add( simName );
             }
 
-            return simNames.toArray( new String[] { } );
+            return simNames.toArray( new String[simNames.size()] );
 
         }
         catch ( Exception e ) {

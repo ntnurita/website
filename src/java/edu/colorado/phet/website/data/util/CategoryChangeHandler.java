@@ -18,25 +18,25 @@ public class CategoryChangeHandler {
     }
 
     public static synchronized void notifySimulationChange( Category category, Simulation simulation ) {
-        for ( Listener listener : listeners.toArray( new Listener[0] ) ) {
+        for ( Listener listener : listeners.toArray( new Listener[listeners.size()] ) ) {
             listener.categorySimulationChanged( category, simulation );
         }
     }
 
     public static synchronized void notifyAdded( Category category ) {
-        for ( Listener listener : listeners.toArray( new Listener[0] ) ) {
+        for ( Listener listener : listeners.toArray( new Listener[listeners.size()] ) ) {
             listener.categoryAdded( category );
         }
     }
 
     public static synchronized void notifyRemoved( Category category ) {
-        for ( Listener listener : listeners.toArray( new Listener[0] ) ) {
+        for ( Listener listener : listeners.toArray( new Listener[listeners.size()] ) ) {
             listener.categoryRemoved( category );
         }
     }
 
     public static synchronized void notifyChildrenReordered( Category category ) {
-        for ( Listener listener : listeners.toArray( new Listener[0] ) ) {
+        for ( Listener listener : listeners.toArray( new Listener[listeners.size()] ) ) {
             listener.categoryChildrenReordered( category );
         }
     }

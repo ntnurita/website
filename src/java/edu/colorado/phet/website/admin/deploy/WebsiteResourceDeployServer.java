@@ -100,7 +100,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                         logger.warn( "project " + projectName + " was not found on the production server" );
                     }
                 }
-                projectNames = existingProjects.toArray( new String[] { } );
+                projectNames = existingProjects.toArray( new String[existingProjects.size()] );
 
                 ready = true;
             }

@@ -256,7 +256,7 @@ public class TranslateEntityPanel extends PhetPanel {
 
     @Override
     public String getVariation() {
-        return new Integer( translationId ).toString();
+        return Integer.toString( translationId );
     }
 
     private Long renderStart;
