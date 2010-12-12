@@ -33,8 +33,6 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class ContributionBrowsePanel extends PhetPanel {
 
-    private final List<Contribution> newContributions;
-
     private static final Logger logger = Logger.getLogger( ContributionBrowsePanel.class.getName() );
 
     /**
@@ -64,8 +62,6 @@ public class ContributionBrowsePanel extends PhetPanel {
         logger.debug( System.currentTimeMillis() + " start" );
 
         add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
-
-        newContributions = new LinkedList<Contribution>();
 
         logger.debug( System.currentTimeMillis() + " A" );
 
@@ -216,25 +212,6 @@ public class ContributionBrowsePanel extends PhetPanel {
             ContributionType type = (ContributionType) o;
             String key = type.getType().getAbbreviatedTranslationKey();
             ret += localizer.getString( key, this );
-        }
-        return ret;
-    }
-
-    public String getSimulationString( Contribution contribution ) {
-        PhetLocalizer localizer = getPhetLocalizer();
-        String ret = "";
-        boolean started = false;
-        for ( Object o : contribution.getSimulations() ) {
-            if ( started ) {
-                ret += "<br/>";
-            }
-            started = true;
-
-            Simulation sim = (Simulation) o;
-            LocalizedSimulation lsim = sim.getBestLocalizedSimulation( getLocale() );
-
-            // translated title
-            ret += lsim.getTitle();
         }
         return ret;
     }
