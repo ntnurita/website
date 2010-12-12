@@ -39,11 +39,11 @@
                     </th>
 
                 </tr>
-                <tr wicket:id="contributions">
+                <tr wicket:id="contributions" id="ct-contributions">
 
                     <td>
                         <a href="#" wicket:id="contribution-link">
-                            <span wicket:id="contribution-title"></span>
+                            <span wicket:id="contribution-title" class="ct-title"></span>
                         </a>
                         <img wicket:id="phet-contribution"
                              src="../../../../../../../../root/images/contributions/phet-logo-icon-small.jpg"
@@ -52,15 +52,16 @@
                              src="../../../../../../../../root/images/contributions/gold-star-small.jpg"
                              alt="Gold Star Contribution" wicket:message="title:tooltip.legend.goldStar"/>
                     </td>
-                    <td wicket:id="contribution-authors"></td>
-                    <td wicket:id="contribution-level"></td>
-                    <td wicket:id="contribution-type"></td>
+                    <td wicket:id="contribution-authors" class="ct-authors"></td>
+                    <td wicket:id="contribution-level" class="ct-level"></td>
+                    <td wicket:id="contribution-type" class="ct-type"></td>
                     <td wicket:id="contribution-simulation-list">
                     <span wicket:id="contribution-simulations">
-                        <a href="#" wicket:id="simulation-link"><span wicket:id="simulation-title"></span><br/></a>
+                        <a href="#" wicket:id="simulation-link"><span wicket:id="simulation-title"
+                                                                      class="ct-sim"></span><br/></a>
                     </span>
                     </td>
-                    <td wicket:id="contribution-updated"></td>
+                    <td wicket:id="contribution-updated" class="ct-updated"></td>
 
                 </tr>
             </table>
