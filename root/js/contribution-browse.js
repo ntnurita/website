@@ -102,15 +102,16 @@ phet.sortContributionsByUpdated = function() {
     return false;
 };
 
-phet.sortContributionsByLevel = function() {
-    phet.beforeSort( 'ct-level' );
+// sorts by level and type.
+phet.sortContributionsByTag = function( className, tags ) {
+    phet.beforeSort( className );
     var items = phet.getContributions();
     phet.trace( "items.length: " + items.length );
     var table = $( "#ct-table" )[0];
 
-    // initialize directory
+    // initialize directory (maps tags => array of contributions)
     var directory = {};
-    $.each( phet.getAllLevels(), function( idx, val ) {
+    $.each( tags, function( idx, val ) {
         directory[val] = [];
     } );
 
@@ -118,16 +119,16 @@ phet.sortContributionsByLevel = function() {
 
     // fill directory
     $.each( items, function( index, tr ) {
-        $.each( $( tr ).find( '.ct-level' ).attr( 'rel' ).split( ',' ), function( idx, levelString ) {
-            directory[levelString].push( tr );
+        $.each( $( tr ).find( '.' + className ).attr( 'rel' ).split( ',' ), function( idx, tagString ) {
+            directory[tagString].push( tr );
         } );
     } );
 
     // add everything back in
-    $.each( phet.getAllLevels(), function( idx, levelString ) {
-        if ( directory[levelString].length > 0 ) {
-            phet.addContributionSeparator( levelString );
-            $.each( directory[levelString], function( idx, tr ) {
+    $.each( tags, function( idx, tagString ) {
+        if ( directory[tagString].length > 0 ) {
+            phet.addContributionSeparator( tagString );
+            $.each( directory[tagString], function( idx, tr ) {
                 var newNode = tr.cloneNode( true );
                 if ( idx % 2 == 0 ) {
                     $( tr ).addClass( 'list-highlight-background' );
@@ -139,11 +140,15 @@ phet.sortContributionsByLevel = function() {
             } );
         }
     } );
+};
 
+phet.sortContributionsByLevel = function() {
+    phet.sortContributionsByTag( "ct-level", phet.getAllLevels() );
     return false;
 };
 
 phet.sortContributionsByType = function() {
+    phet.sortContributionsByTag( "ct-type", phet.getAllTypes() );
     return false;
 };
 
