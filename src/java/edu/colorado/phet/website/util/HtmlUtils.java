@@ -45,6 +45,8 @@ public class HtmlUtils {
      * <p/>
      * Escaping other things is just to appease the Nessus monster. This will cause jibberish for <>'s.
      *
+     * NOTE: Not suitable for encoding if JS is going to be involved!
+     *
      * @param s String to encode
      * @return HTML encoded response
      */
