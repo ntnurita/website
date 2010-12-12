@@ -2,7 +2,7 @@
  Handles sorting of columns in the contribution lists available on the "Browse Contribution" and "Simulation" pages
  */
 
-var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold; font-size: 120%;";
+var ContributionSectionStyle = "background-color: white; border-top: 1px solid #aaa; font-weight: bold; font-size: 120%;";
 
 // TODO: promote to phet.contribution
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
