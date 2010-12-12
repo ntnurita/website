@@ -19,12 +19,7 @@ phet.compareClassText = function( className, reverse ) {
         if ( reverse ) {
             larger = !larger;
         }
-        if ( larger ) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
+        return larger ? 1 : -1;
     };
 };
 
