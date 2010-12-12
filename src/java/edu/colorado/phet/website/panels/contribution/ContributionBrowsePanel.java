@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.behavior.HeaderContributor;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -17,6 +18,7 @@ import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.JS;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -64,6 +66,7 @@ public class ContributionBrowsePanel extends PhetPanel {
         logger.debug( System.currentTimeMillis() + " start" );
 
         add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        add( JavascriptPackageResource.getHeaderContribution( JS.JQUERY ) );
 
         newContributions = new LinkedList<Contribution>();
 
