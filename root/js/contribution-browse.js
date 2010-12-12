@@ -2,7 +2,7 @@
  Handles sorting of columns in the contribution lists available on the "Browse Contribution" and "Simulation" pages
  */
 
-var ContributionSectionStyle = "background-color: white; border-top: 1px solid #aaa; font-weight: bold; font-size: 120%;";
+var ContributionSectionStyle = "background-color: white; font-weight: bold; font-size: 120%;";
 
 // TODO: promote to phet.contribution
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
@@ -32,6 +32,10 @@ phet.getContributions = function() {
     } );
     phet.trace( 'contributions.length: ' + arr.length );
     return arr;
+};
+
+phet.getTable = function() {
+    return $( "#ct-table" )[0];
 };
 
 phet.wipeContributions = function() {
@@ -66,7 +70,7 @@ phet.compareClassRel = function( className, reverse ) {
 
 phet.sortContributionsWithFunction = function( compare ) {
     var arr = phet.getContributions();
-    var table = $( "#ct-table" )[0];
+    var table = phet.getTable();
 
     phet.wipeContributions();
 
@@ -107,7 +111,9 @@ phet.sortContributionsByTag = function( className, tags ) {
     phet.beforeSort( className );
     var items = phet.getContributions();
     phet.trace( "items.length: " + items.length );
-    var table = $( "#ct-table" )[0];
+    var table = phet.getTable();
+
+    items.sort( phet.compareClassRel( 'ct-updated', false ) );
 
     // initialize directory (maps tags => array of contributions)
     var directory = {};
@@ -152,6 +158,51 @@ phet.sortContributionsByType = function() {
     return false;
 };
 
+phet.sortContributionsBySimulations = function() {
+    phet.beforeSort( "ct-sim" );
+    var items = phet.getContributions();
+    var table = phet.getTable();
+
+    items.sort( phet.compareClassRel( 'ct-updated', false ) );
+
+    var directory = {};
+    phet.wipeContributions();
+    var simNames = [];
+
+    $.each( items, function( index, tr ) {
+        $( tr ).find( '.ct-sim' ).each( function( idx, sim ) {
+            var simName = $( sim ).text();
+            if ( typeof directory[simName] == "undefined" ) {
+                directory[simName] = [];
+                simNames.push( simName );
+            }
+            directory[simName].push( tr );
+        } );
+    } );
+
+    simNames.sort();
+
+    if ( phet.currentSort.reverse ) {
+        simNames.reverse();
+    }
+
+    $.each( simNames, function( idx, simName ) {
+        phet.addContributionSeparator( simName );
+        $.each( directory[simName], function( idx, tr ) {
+            var newNode = tr.cloneNode( true );
+            if ( idx % 2 == 0 ) {
+                $( newNode ).addClass( 'list-highlight-background' );
+            }
+            else {
+                $( newNode ).removeClass( 'list-highlight-background' );
+            }
+            table.appendChild( newNode );
+        } );
+    } );
+
+    return false;
+};
+
 // initial setup and handling
 $( document ).ready( function() {
 
@@ -183,7 +234,7 @@ phet.addContributionSeparator = function( text ) {
     td.setAttribute( 'style', ContributionSectionStyle );
     td.setAttribute( 'colspan', '' + phet.colspan() ); // our number of columns can change, so we need to set it correctly here
     tr.appendChild( td );
-    $( "#ct-table" )[0].appendChild( tr );
+    phet.getTable().appendChild( tr );
     phet.separators.push( tr );
 };
 

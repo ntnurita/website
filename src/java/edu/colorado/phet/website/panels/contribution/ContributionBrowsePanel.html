@@ -39,7 +39,9 @@
                     </th>
                     <wicket:enclosure child="sim-col-1">
                         <th>
-                            <wicket:message key="contribution.browse.simulations">Simulations</wicket:message>
+                            <a href="#" onclick="return phet.sortContributionsBySimulations()">
+                                <wicket:message key="contribution.browse.simulations">Simulations</wicket:message>
+                            </a>
                             <span wicket:id="sim-col-1"></span>
                         </th>
                     </wicket:enclosure>
