@@ -25,12 +25,11 @@ import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
-import edu.colorado.phet.website.data.contribution.Contribution;
-import edu.colorado.phet.website.data.contribution.ContributionLevel;
-import edu.colorado.phet.website.data.contribution.ContributionType;
+import edu.colorado.phet.website.data.contribution.*;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -115,9 +114,13 @@ public class ContributionBrowsePanel extends PhetPanel {
                     item.add( link );
                     item.add( new Label( "contribution-authors", contribution.getAuthors() ) );
 
-                    item.add( new RawLabel( "contribution-level", getLevelString( contribution ) ) );
+                    RawLabel levelLabel = new RawLabel( "contribution-level", getLevelString( contribution ) );
+                    // add in full level strings for JS matching and display
+                    levelLabel.add( new AttributeModifier( "rel", true, new Model<String>( getCommaSeparatedFullLevelStrings( contribution ) ) ) );
+                    item.add( levelLabel );
 
                     Label typeLabel = new Label( "contribution-type", getTypeString( contribution ) );
+                    typeLabel.add( new AttributeModifier( "rel", true, new Model<String>( getCommaSeparatedFullTypeStrings( contribution ) ) ) );
                     typeLabel.setEscapeModelStrings( false );
                     item.add( typeLabel );
 
@@ -198,6 +201,7 @@ public class ContributionBrowsePanel extends PhetPanel {
 
     }
 
+    // TODO: refactor all of this common mkString-like code
     public String getLevelString( Contribution contribution ) {
         PhetLocalizer localizer = getPhetLocalizer();
         String ret = "";
@@ -210,6 +214,39 @@ public class ContributionBrowsePanel extends PhetPanel {
 
             ContributionLevel level = (ContributionLevel) o;
             String key = level.getLevel().getAbbreviatedTranslationKey();
+            ret += localizer.getString( key, this );
+        }
+        return ret;
+    }
+
+    public String getCommaSeparatedFullLevelStrings( Contribution contribution ) {
+        PhetLocalizer localizer = getPhetLocalizer();
+        String ret = "";
+        boolean started = false;
+        for ( Object o : contribution.getLevels() ) {
+            if ( started ) {
+                ret += ",";
+            }
+            started = true;
+
+            ContributionLevel level = (ContributionLevel) o;
+            String key = level.getLevel().getTranslationKey();
+            ret += localizer.getString( key, this );
+        }
+        return ret;
+    }
+
+    public String getCommaSeparatedFullLevelStrings() {
+        PhetLocalizer localizer = getPhetLocalizer();
+        String ret = "";
+        boolean started = false;
+        for ( Level level : Level.values() ) {
+            if ( started ) {
+                ret += ",";
+            }
+            started = true;
+
+            String key = level.getTranslationKey();
             ret += localizer.getString( key, this );
         }
         return ret;
@@ -232,4 +269,44 @@ public class ContributionBrowsePanel extends PhetPanel {
         return ret;
     }
 
+    public String getCommaSeparatedFullTypeStrings( Contribution contribution ) {
+        PhetLocalizer localizer = getPhetLocalizer();
+        String ret = "";
+        boolean started = false;
+        for ( Object o : contribution.getTypes() ) {
+            if ( started ) {
+                ret += ",";
+            }
+            started = true;
+
+            ContributionType type = (ContributionType) o;
+            String key = type.getType().getTranslationKey();
+            ret += localizer.getString( key, this );
+        }
+        return ret;
+    }
+
+    public String getCommaSeparatedFullTypeStrings() {
+        PhetLocalizer localizer = getPhetLocalizer();
+        String ret = "";
+        boolean started = false;
+        for ( Type type : Type.values() ) {
+            if ( started ) {
+                ret += ",";
+            }
+            started = true;
+
+            String key = type.getTranslationKey();
+            ret += localizer.getString( key, this );
+        }
+        return ret;
+    }
+
+    @Override
+    public String getStyle( String key ) {
+        if ( key.equals( "style.orders" ) ) {
+            return HtmlUtils.encodeForAttribute( getCommaSeparatedFullLevelStrings() + "|" + getCommaSeparatedFullTypeStrings() );
+        }
+        return super.getStyle( key );
+    }
 }

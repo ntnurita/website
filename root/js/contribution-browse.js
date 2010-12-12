@@ -2,6 +2,9 @@
  Handles sorting of columns in the contribution lists available on the "Browse Contribution" and "Simulation" pages
  */
 
+// TODO: remember to detect correct colspan
+var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold;";
+
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
 
 phet.trace = function( mess ) {
@@ -75,6 +78,27 @@ phet.sortContributionsByAuthors = function() {
 phet.sortContributionsByUpdated = function() {
     phet.beforeSort( 'ct-updated' );
     phet.sortContributionsWithFunction( phet.compareClassRel( 'ct-updated', phet.currentSort.reverse ) );
+    return false;
+};
+
+phet.sortContributionsByLevel = function() {
+    var items = $( ".ct-contribution" );
+    var table = $( "#ct-table" )[0];
+
+    items.each( function( index ) {
+        var tr = items[index];
+        var rel = $( tr ).find( '.ct-level' ).attr( 'rel' );
+        phet.trace( "rel: " + rel );
+    } );
+
+    phet.trace( "colspan: " + $( "#ct-table-header" ).children().length );
+
+    phet.trace( "table.rel: " + $( table ).attr( 'rel' ) );
+
+    return false;
+};
+
+phet.sortContributionsByType = function() {
     return false;
 };
 
