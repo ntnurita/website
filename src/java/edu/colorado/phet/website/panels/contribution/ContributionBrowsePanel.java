@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.*;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -11,6 +12,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
@@ -166,8 +168,11 @@ public class ContributionBrowsePanel extends PhetPanel {
                         item.add( new InvisibleComponent( "contribution-simulation-list" ) );
                     }
 
-                    item.add( new Label( "contribution-updated", format.format( contribution.getDateUpdated() ) ) );
-                    //logger.debug( "finish item" );
+                    Label updatedLabel = new Label( "contribution-updated", format.format( contribution.getDateUpdated() ) );
+                    // add in a long timestamp so we can sort these more easily in JavaScript. BEWARE that the above format.format
+                    // will render dates in different orders in different locales. This would be an utter mess in JS.
+                    updatedLabel.add( new AttributeModifier( "rel", true, new Model<String>( Long.toString( contribution.getDateUpdated().getTime() ) ) ) );
+                    item.add( updatedLabel );
 
                     WicketUtils.highlightListItem( item );
                 }
