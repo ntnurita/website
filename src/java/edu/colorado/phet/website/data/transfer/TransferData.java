@@ -579,7 +579,7 @@ public class TransferData {
 
     }
 
-    private static final void deleteAllInQuery( Session session, String query ) {
+    private static void deleteAllInQuery( Session session, String query ) {
         List obs = session.createQuery( query ).list();
         for ( Object o : obs ) {
             session.delete( o );

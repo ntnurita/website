@@ -186,14 +186,14 @@ public class WebsiteTranslationDeployServer {
         //integrate translations with jar -uf
         //logger.info( "Getting translated locales" );
         String[] locales = getJavaTranslatedLocales( translationDir, project );
-        for ( int i = 0; i < locales.length; i++ ) {
+        for ( String locale : locales ) {
             //logger.info( "Updating sim JAR for locale: " + locales[i] );
-            copyTranslationSubDir( translationDir, project, locales[i] );
+            copyTranslationSubDir( translationDir, project, locale );
             //logger.info( "Copied translation sub dir" );
             File dst = getLocalCopyOfAllJAR( translationDir, project );
 
-            String command = jarCommand + " uf " + dst.getAbsolutePath() + " -C " + translationDir.getAbsolutePath() + " " + project + "/localization/" + propertiesFilename( project, locales[i] );
-            logger.info( "Updating sim JAR for " + project + " (" + locales[i] + ")" );
+            String command = jarCommand + " uf " + dst.getAbsolutePath() + " -C " + translationDir.getAbsolutePath() + " " + project + "/localization/" + propertiesFilename( project, locale );
+            logger.info( "Updating sim JAR for " + project + " (" + locale + ")" );
             runStringCommand( command );
         }
     }
@@ -301,14 +301,13 @@ public class WebsiteTranslationDeployServer {
     }
 
     private static HashSet<String> getProjectNames( File translationDir, final String endString, String typeString ) {
-        File[] f = translationDir.listFiles( new FilenameFilter() {
+        File[] files = translationDir.listFiles( new FilenameFilter() {
             public boolean accept( File dir, String name ) {
                 return ( name.endsWith( endString ) ) && name.indexOf( "-strings_" ) > 0;
             }
         } );
         HashSet<String> set = new HashSet<String>();
-        for ( int i = 0; i < f.length; i++ ) {
-            File file = f[i];
+        for ( File file : files ) {
             String projectName = file.getName().substring( 0, file.getName().indexOf( "-strings_" ) );
             logger.info( "Found " + typeString + " project: " + projectName );
             set.add( projectName );
