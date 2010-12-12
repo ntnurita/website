@@ -175,6 +175,7 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
                     logger.warn( "item id: " + item.getId() );
                     logger.warn( "item display value: " + item.getDisplayValue() );
                 }
+                throw new RuntimeException( "item or getDisplayValue() null" );
             }
             return getDisplayValue().compareToIgnoreCase( item.getDisplayValue() );
         }
