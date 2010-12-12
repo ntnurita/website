@@ -866,7 +866,7 @@ public class AdminSimPage extends AdminPage {
         @Override
         protected void onSubmit() {
             super.onSubmit();
-            Boolean v = (Boolean) checkbox.getModelObject();
+            Boolean v = checkbox.getModelObject();
             handle( v );
         }
     }

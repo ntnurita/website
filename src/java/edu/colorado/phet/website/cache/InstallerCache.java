@@ -31,7 +31,7 @@ public class InstallerCache {
     }
 
     public static synchronized long getTimestampMilliseconds() {
-        return ( (long) t ) * 1000;
+        return t * 1000;
     }
 
     public static synchronized long getWinSize() {

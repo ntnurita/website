@@ -423,6 +423,6 @@ public class StringUtils {
     }
 
     public static String getSeparator( Component component ) {
-        return ( (PhetLocalizer) component.getLocalizer() ).getString( StringUtils.LIST_SEPARATOR_KEY, component ) + " ";
+        return component.getLocalizer().getString( StringUtils.LIST_SEPARATOR_KEY, component ) + " ";
     }
 }

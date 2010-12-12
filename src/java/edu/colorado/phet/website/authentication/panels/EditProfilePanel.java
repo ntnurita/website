@@ -172,10 +172,10 @@ public class EditProfilePanel extends PhetPanel {
                         user.setPhone1( phone1.getModelObject().toString() );
                         user.setPhone2( phone2.getModelObject().toString() );
                         user.setFax( fax.getModelObject().toString() );
-                        user.setReceiveEmail( (Boolean) receiveEmail.getModelObject() );
+                        user.setReceiveEmail( receiveEmail.getModelObject() );
                         if ( PhetSession.get().getUser().isTeamMember() ) {
-                            user.setReceiveWebsiteNotifications( (Boolean) receiveWebsiteNotifications.getModelObject() );
-                            user.setTeamMember( (Boolean) teamMember.getModelObject() );
+                            user.setReceiveWebsiteNotifications( receiveWebsiteNotifications.getModelObject() );
+                            user.setTeamMember( teamMember.getModelObject() );
                         }
                         session.update( user );
                         return true;
@@ -199,10 +199,10 @@ public class EditProfilePanel extends PhetPanel {
                     user.setPhone1( phone1.getModelObject().toString() );
                     user.setPhone2( phone2.getModelObject().toString() );
                     user.setFax( fax.getModelObject().toString() );
-                    user.setReceiveEmail( (Boolean) receiveEmail.getModelObject() );
+                    user.setReceiveEmail( receiveEmail.getModelObject() );
                     if ( PhetSession.get().getUser().isTeamMember() ) {
-                        user.setReceiveWebsiteNotifications( (Boolean) receiveWebsiteNotifications.getModelObject() );
-                        user.setTeamMember( (Boolean) teamMember.getModelObject() );
+                        user.setReceiveWebsiteNotifications( receiveWebsiteNotifications.getModelObject() );
+                        user.setTeamMember( teamMember.getModelObject() );
                     }
                 }
                 error = !success;
