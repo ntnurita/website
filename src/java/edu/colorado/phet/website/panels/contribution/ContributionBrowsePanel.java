@@ -67,7 +67,8 @@ public class ContributionBrowsePanel extends PhetPanel {
 
         add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
-        // add our necessary resources for column sortability
+        // add our necessary resources for column sortability.
+        // NOTE: order matters!
         add( JavascriptPackageResource.getHeaderContribution( JS.JQUERY ) );
         add( JavascriptPackageResource.getHeaderContribution( JS.CONTRIBUTION_BROWSE ) );
 
