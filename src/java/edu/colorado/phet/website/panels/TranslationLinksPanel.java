@@ -48,13 +48,13 @@ public class TranslationLinksPanel extends PhetPanel {
         LocalizedLabel englishLabel = new LocalizedLabel( "translation-label", englishLocale, new ResourceModel( "language.name" ) );
         englishLink.add( englishLabel );
         if ( context.getLocale().equals( englishLocale ) ) {
-            englishLabel.add( new AttributeAppender( "class", true, new Model( "current-locale" ), " " ) );
+            englishLabel.add( new AttributeAppender( "class", true, new Model<String>( "current-locale" ), " " ) );
         }
         add( englishLink );
 
-        ListView listView = new ListView( "translation-links", ( (PhetWicketApplication) getApplication() ).getTranslationLocaleStrings() ) {
-            protected void populateItem( ListItem item ) {
-                String localeString = (String) item.getModel().getObject();
+        ListView listView = new ListView<String>( "translation-links", ( (PhetWicketApplication) getApplication() ).getTranslationLocaleStrings() ) {
+            protected void populateItem( ListItem<String> item ) {
+                String localeString = item.getModelObject();
                 Locale locale = LocaleUtils.stringToLocale( localeString );
                 PageContext newContext = context.withNewLocale( locale );
                 String path = newContext.getPrefix() + HtmlUtils.encode( newContext.getPath() ) + queryString;
@@ -62,7 +62,7 @@ public class TranslationLinksPanel extends PhetPanel {
                 LocalizedLabel label = new LocalizedLabel( "translation-label", locale, new ResourceModel( "language.name" ) );
                 link.add( label );
                 if ( context.getLocale().equals( locale ) ) {
-                    label.add( new AttributeAppender( "class", true, new Model( "current-locale" ), " " ) );
+                    label.add( new AttributeAppender( "class", true, new Model<String>( "current-locale" ), " " ) );
                 }
                 item.add( link );
             }
