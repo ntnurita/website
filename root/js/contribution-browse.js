@@ -2,7 +2,7 @@
  Handles sorting of columns in the contribution lists available on the "Browse Contribution" and "Simulation" pages
  */
 
-var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold; font-size: 120%; margin-top: 1em;";
+var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold; font-size: 120%;";
 
 // TODO: promote to phet.contribution
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
@@ -174,7 +174,7 @@ phet.beforeSort = function( className ) {
 phet.addContributionSeparator = function( text ) {
     var tr = document.createElement( 'tr' );
     var td = document.createElement( 'td' );
-    td.innerHTML = text;
+    td.innerHTML = "<br/>" + text;
     td.setAttribute( 'style', ContributionSectionStyle );
     td.setAttribute( 'colspan', '' + phet.colspan() ); // our number of columns can change, so we need to set it correctly here
     tr.appendChild( td );
