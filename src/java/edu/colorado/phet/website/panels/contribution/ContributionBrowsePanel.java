@@ -114,6 +114,8 @@ public class ContributionBrowsePanel extends PhetPanel {
                     item.add( link );
                     item.add( new Label( "contribution-authors", contribution.getAuthors() ) );
 
+                    item.add( new AttributeModifier( "rel", true, new Model<String>( Double.toHexString( Math.random() ) ) ) );
+
                     RawLabel levelLabel = new RawLabel( "contribution-level", getLevelString( contribution ) );
                     // add in full level strings for JS matching and display
                     levelLabel.add( new AttributeModifier( "rel", true, new Model<String>( getCommaSeparatedFullLevelStrings( contribution ) ) ) );

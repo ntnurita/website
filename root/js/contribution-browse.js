@@ -2,9 +2,7 @@
  Handles sorting of columns in the contribution lists available on the "Browse Contribution" and "Simulation" pages
  */
 
-// TODO: flag duplicates!
-
-var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold;";
+var ContributionSectionStyle = "background-color: white; border-top: 1px solid #666; font-weight: bold; font-size: 120%; margin-top: 1em;";
 
 // TODO: promote to phet.contribution
 var phet = new Object(); // it's like our namespace. TODO: when we include multiple JS files (if we do), do this first
@@ -16,6 +14,30 @@ phet.trace = function( mess ) {
     if ( debugs.length > 0 ) {
         $( "#phet-page-debug" )[0].innerHTML += "<br/>" + mess;
     }
+};
+
+// get an array of contributions (tr elements)
+phet.getContributions = function() {
+    var items = $( ".ct-contribution" );
+    var arr = [];
+    var spot = {};
+    phet.trace( 'items.length: ' + items.length );
+    items.each( function( idx, tr ) {
+        var rel = $( tr ).attr( 'rel' ); // unique string
+        if ( !spot[rel] ) {
+            // not added
+            arr.push( tr );
+            spot[rel] = true;
+        }
+    } );
+    phet.trace( 'contributions.length: ' + arr.length );
+    return arr;
+};
+
+phet.wipeContributions = function() {
+    $( ".ct-contribution" ).each( function( idx, tr ) {
+        $( tr ).remove();
+    } );
 };
 
 phet.compareClassText = function( className, reverse ) {
@@ -43,27 +65,22 @@ phet.compareClassRel = function( className, reverse ) {
 };
 
 phet.sortContributionsWithFunction = function( compare ) {
-    var arr = []; // we store all the rows here
-    var items = $( ".ct-contribution" );
+    var arr = phet.getContributions();
     var table = $( "#ct-table" )[0];
 
-    // store rows and remove them
-    items.each( function( index ) {
-        arr.push( items[index] );
-        $( items[index] ).remove();
-    } );
+    phet.wipeContributions();
 
     arr.sort( compare );
 
-    $.each( arr, function( idx, val ) {
+    $.each( arr, function( idx, tr ) {
         // give every other row a background color
         if ( idx % 2 == 0 ) {
-            $( val ).addClass( 'list-highlight-background' );
+            $( tr ).addClass( 'list-highlight-background' );
         }
         else {
-            $( val ).removeClass( 'list-highlight-background' );
+            $( tr ).removeClass( 'list-highlight-background' );
         }
-        table.appendChild( val );
+        table.appendChild( tr );
     } );
 };
 
@@ -86,14 +103,10 @@ phet.sortContributionsByUpdated = function() {
 };
 
 phet.sortContributionsByLevel = function() {
-    phet.beforeSort( 'ct-contribution' );
-    var items = $( ".ct-contribution" );
-    var noDupItems = $( '.ct-contribution:not(.ct-contribution[rel="duplicate"])' );
+    phet.beforeSort( 'ct-level' );
+    var items = phet.getContributions();
     phet.trace( "items.length: " + items.length );
-    phet.trace( "noDupItems.length: " + noDupItems.length );
     var table = $( "#ct-table" )[0];
-
-    var dups = {};
 
     // initialize directory
     var directory = {};
@@ -101,14 +114,13 @@ phet.sortContributionsByLevel = function() {
         directory[val] = [];
     } );
 
+    phet.wipeContributions();
+
     // fill directory
-    items.each( function( index ) {
-        var tr = items[index];
-        dups[tr] = false;
+    $.each( items, function( index, tr ) {
         $.each( $( tr ).find( '.ct-level' ).attr( 'rel' ).split( ',' ), function( idx, levelString ) {
             directory[levelString].push( tr );
         } );
-        $( tr ).remove(); // remove the rows
     } );
 
     // add everything back in
@@ -117,11 +129,13 @@ phet.sortContributionsByLevel = function() {
             phet.addContributionSeparator( levelString );
             $.each( directory[levelString], function( idx, tr ) {
                 var newNode = tr.cloneNode( true );
-                table.appendChild( newNode );
-                if ( dups[tr] ) {
-                    newNode.setAttribute( "rel", "duplicate" );
+                if ( idx % 2 == 0 ) {
+                    $( tr ).addClass( 'list-highlight-background' );
                 }
-                dups[tr] = true;
+                else {
+                    $( tr ).removeClass( 'list-highlight-background' );
+                }
+                table.appendChild( newNode );
             } );
         }
     } );
