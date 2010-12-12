@@ -80,7 +80,7 @@ public class ContributionBrowsePage extends PhetRegularPage {
                                 .setFetchMode( "levels", FetchMode.SELECT )
                                 .setFetchMode( "types", FetchMode.SELECT )
                                 .setFetchMode( "simulations", FetchMode.SELECT )
-                                .add( Restrictions.eq( "approved", new Boolean( true ) ) );
+                                .add( Restrictions.eq( "approved", true ) );
                         if ( !allSims ) {
                             Criteria tmp = criteria.createCriteria( "simulations" );
                             Disjunction d = Restrictions.disjunction();

@@ -77,7 +77,7 @@ public class TransferData {
                         TeachersGuide guide = new TeachersGuide();
 
                         newObs.add( guide );
-                        Simulation simulation = badlyNamedVariable.get( new Integer( result.getInt( "teachers_guide_id" ) ) );
+                        Simulation simulation = badlyNamedVariable.get( result.getInt( "teachers_guide_id" ) );
                         if ( simulation == null ) {
                             logger.warn( "couldn't find simulation for teachers guide id " + result.getInt( "teachers_guide_id" ) );
                             return false;

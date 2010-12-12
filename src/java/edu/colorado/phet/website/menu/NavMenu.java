@@ -279,8 +279,8 @@ public class NavMenu implements Serializable {
                         Collections.sort( location1.getChildren(), new Comparator<NavLocation>() {
                             public int compare( NavLocation a, NavLocation b ) {
                                 // slowsort
-                                Integer ai = new Integer( clocs.indexOf( a ) );
-                                Integer bi = new Integer( clocs.indexOf( b ) );
+                                Integer ai = clocs.indexOf( a );
+                                Integer bi = clocs.indexOf( b );
                                 if ( ai == -1 ) { ai = 1000000; }
                                 if ( bi == -1 ) { bi = 1000000; }
                                 return ai.compareTo( bi );

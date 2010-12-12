@@ -181,7 +181,7 @@ public class AdminSimPage extends AdminPage {
                 boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                     public boolean run( Session session ) {
                         session.delete( session.createQuery( "select tg from TeachersGuide as tg where tg.simulation = :sim" )
-                                .setEntity( "sim", simulation ).uniqueResult() );
+                                                .setEntity( "sim", simulation ).uniqueResult() );
                         return true;
                     }
                 } );
@@ -541,7 +541,7 @@ public class AdminSimPage extends AdminPage {
 
             String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, PhetWicketApplication.getDefaultLocale() );
             assert ( preexistingValue == null );
-            
+
             boolean success = StringUtils.setEnglishString( getHibernateSession(), localizationKey, value );
             if ( success ) {
                 final Keyword keyword = new Keyword();
@@ -859,7 +859,7 @@ public class AdminSimPage extends AdminPage {
         public CheckBoxForm( String id ) {
             super( id );
 
-            checkbox = new CheckBox( "value", new Model( new Boolean( getCurrentValue() ) ) );
+            checkbox = new CheckBox( "value", new Model<Boolean>( getCurrentValue() ) );
             add( checkbox );
         }
 
@@ -877,7 +877,7 @@ public class AdminSimPage extends AdminPage {
         private KilobytesForm( String id ) {
             super( id );
 
-            textfield = new StringTextField( "value", new Model( Integer.toString( simulation.getKilobytes() ) ) );
+            textfield = new StringTextField( "value", new Model<String>( Integer.toString( simulation.getKilobytes() ) ) );
             add( textfield );
         }
 

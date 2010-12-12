@@ -373,8 +373,8 @@ public class HibernateUtils {
         logger.debug( "1" );
         Criteria criteria = session.createCriteria( Simulation.class )
                 .setFetchMode( "localizedSimulations", FetchMode.SELECT )
-                .add( Restrictions.eq( "simulationVisible", new Boolean( true ) ) );
-        criteria.createCriteria( "project" ).add( Restrictions.eq( "visible", new Boolean( true ) ) );
+                .add( Restrictions.eq( "simulationVisible", true ) );
+        criteria.createCriteria( "project" ).add( Restrictions.eq( "visible", true ) );
         //List sims = session.createQuery( "select s from Simulation as s where s.project.visible = true and s.simulationVisible = true" ).list();
         List sims = criteria.list();
         logger.debug( "2" );

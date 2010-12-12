@@ -75,8 +75,8 @@ public class SimulationCache {
             }
             Criteria criteria = session.createCriteria( Simulation.class )
                     .setFetchMode( "localizedSimulations", FetchMode.SELECT )
-                    .add( Restrictions.eq( "simulationVisible", new Boolean( true ) ) );
-            criteria.createCriteria( "project" ).add( Restrictions.eq( "visible", new Boolean( true ) ) );
+                    .add( Restrictions.eq( "simulationVisible", true ) );
+            criteria.createCriteria( "project" ).add( Restrictions.eq( "visible", true ) );
             List sims = criteria.list();
             List<LocalizedSimulation> lsims = new LinkedList<LocalizedSimulation>();
             for ( Object o : sims ) {
