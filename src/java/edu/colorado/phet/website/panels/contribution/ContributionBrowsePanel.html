@@ -7,6 +7,7 @@
     <title>[PREVIEW] ContributionBrowsePanel</title>
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+        <script type="text/javascript" src="../../../../../../../../root/js/contribution-browse.js"></script>
     </wicket:remove>
 </head>
 <body wicket:message="dir:language.dir">
@@ -14,19 +15,27 @@
 <wicket:panel>
     <div wicket:message="dir:language.dir">
         <wicket:enclosure child="contributions">
-            <table class="contribution-browse-table">
+            <table class="contribution-browse-table" id="ct-table">
                 <tr>
                     <th>
-                        <wicket:message key="contribution.browse.title">Title</wicket:message>
+                        <a href="#" onclick="return sortContributionsByTitle()">
+                            <wicket:message key="contribution.browse.title">Title</wicket:message>
+                        </a>
                     </th>
                     <th>
-                        <wicket:message key="contribution.browse.authors">Authors</wicket:message>
+                        <a href="#" onclick="return sortContributionsByAuthors()">
+                            <wicket:message key="contribution.browse.authors">Authors</wicket:message>
+                        </a>
                     </th>
                     <th>
-                        <wicket:message key="contribution.browse.level">Level</wicket:message>
+                        <a href="#" onclick="return sortContributionsByLevel()">
+                            <wicket:message key="contribution.browse.level">Level</wicket:message>
+                        </a>
                     </th>
                     <th>
-                        <wicket:message key="contribution.browse.type">Type</wicket:message>
+                        <a href="#" onclick="return sortContributionsByType()">
+                            <wicket:message key="contribution.browse.type">Type</wicket:message>
+                        </a>
                     </th>
                     <wicket:enclosure child="sim-col-1">
                         <th>
@@ -35,11 +44,13 @@
                         </th>
                     </wicket:enclosure>
                     <th>
-                        <wicket:message key="contribution.browse.updated">Updated</wicket:message>
+                        <a href="#" onclick="return sortContributionsByUpdated()">
+                            <wicket:message key="contribution.browse.updated">Updated</wicket:message>
+                        </a>
                     </th>
 
                 </tr>
-                <tr wicket:id="contributions" id="ct-contributions">
+                <tr wicket:id="contributions" class="ct-contribution">
 
                     <td>
                         <a href="#" wicket:id="contribution-link">

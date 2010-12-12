@@ -279,6 +279,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
                                                            "            div.style.padding = \"0.3em\";\n" +
                                                            "            div.style.background = \"#fff\";\n" +
                                                            "            div.style.maxWidth = \"300px\";\n" +
+                                                           "            div.id = \"phet-page-debug\";\n" +
                                                            "            div.innerHTML = \"" + debugText.toString() + "\";\n" +
                                                            "            document.body.appendChild( div );\n" +
                                                            "        }, false );</script>" );
