@@ -21,9 +21,7 @@ import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
-import edu.colorado.phet.website.util.hibernate.HibernateTask;
-import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
+import edu.colorado.phet.website.util.hibernate.*;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 public class TranslateLanguagePage extends TranslationPage {
@@ -66,47 +64,37 @@ public class TranslateLanguagePage extends TranslationPage {
 
     private class CreateTranslationForm extends Form {
 
-        private LocaleDropDownChoice localeChoice;
-
         public CreateTranslationForm( String id ) {
             super( id );
-
-            localeChoice = new LocaleDropDownChoice( "locales", getPageContext() );
-            add( localeChoice );
         }
 
         @Override
         protected void onSubmit() {
-            if ( localeChoice.getLocale() == null ) {
-                return;
-            }
-
-            final Translation ret[] = new Translation[1];
-
-            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                public boolean run( Session session ) {
+            Result<Translation> result = HibernateUtils.resultTransaction( getHibernateSession(), new Task<Translation>() {
+                public Translation run( Session session ) {
                     Translation translation = new Translation();
-                    translation.setLocale( localeChoice.getLocale() );
+                    translation.setLocale( locale );
                     translation.setVisible( false );
 
                     PhetUser user = (PhetUser) session.load( PhetUser.class, PhetSession.get().getUser().getId() );
                     translation.addUser( user );
-                    ret[0] = translation;
 
                     session.save( translation );
                     session.save( user );
-                    return true;
+                    return translation;
                 }
             } );
 
-            logger.info( "Created translation: " + ret[0] );
+            if ( result.success ) {
+                Translation translation = result.value;
 
-            if ( success ) {
+                logger.info( "Created translation: " + translation );
+
                 PageParameters params = new PageParameters();
-                params.put( TranslationEditPage.TRANSLATION_ID, ret[0].getId() );
-                params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( localeChoice.getLocale() ) );
+                params.put( TranslationEditPage.TRANSLATION_ID, translation.getId() );
+                params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( locale ) );
 
-                NotificationHandler.sendTranslationCreatedNotification( ret[0].getId(), localeChoice.getLocale(), PhetSession.get().getUser() );
+                NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, PhetSession.get().getUser() );
 
                 setResponsePage( TranslationEditPage.class, params );
             }
