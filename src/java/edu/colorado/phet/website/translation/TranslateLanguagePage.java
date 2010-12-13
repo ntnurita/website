@@ -43,7 +43,6 @@ public class TranslateLanguagePage extends TranslationPage {
         locale = LocaleUtils.stringToLocale( parameters.getString( TRANSLATION_LOCALE ) );
 
         final List<Translation> translations = new LinkedList<Translation>();
-        final PhetUser user = PhetSession.get().getUser();
         HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public Void run( Session session ) {
                 List trans = session.createQuery( "select t from Translation as t where t.locale = :locale order by t.id" )
