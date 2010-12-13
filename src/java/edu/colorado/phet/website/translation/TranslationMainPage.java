@@ -1,5 +1,6 @@
 package edu.colorado.phet.website.translation;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -23,6 +24,7 @@ import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 public class TranslationMainPage extends TranslationPage {
@@ -42,7 +44,21 @@ public class TranslationMainPage extends TranslationPage {
 
         add( new CreateTranslationForm( "create-new-translation-form" ) );
 
-        TranslationListPanel translationList = new TranslationListPanel( "translation-list-panel", getPageContext() );
+        final List<Translation> translations = new LinkedList<Translation>();
+        final PhetUser user = PhetSession.get().getUser();
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+            public Void run( Session session ) {
+                List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
+                for ( Object o : trans ) {
+                    Translation translation = (Translation) o;
+                    if ( user.isTeamMember() || translation.isUserAuthorized( user ) ) {
+                        translations.add( translation );
+                    }
+                }
+                return null;
+            }
+        } );
+        TranslationListPanel translationList = new TranslationListPanel( "translation-list-panel", getPageContext(), translations );
 
         add( translationList );
 

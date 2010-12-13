@@ -34,10 +34,11 @@ public class TranslationListPanel extends PhetPanel {
     private PhetLocales phetLocales;
 
     private static final Logger logger = Logger.getLogger( TranslationListPanel.class.getName() );
-    private List<Translation> translations = new LinkedList<Translation>();
+    private List<Translation> translations;
 
-    public TranslationListPanel( String id, PageContext context ) {
+    public TranslationListPanel( String id, PageContext context, final List<Translation> translations ) {
         super( id, context );
+        this.translations = translations;
 
         final Map<Translation, Integer> sizes = new HashMap<Translation, Integer>();
 
@@ -45,20 +46,22 @@ public class TranslationListPanel extends PhetPanel {
 
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
-                List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
-                for ( Object tran : trans ) {
-                    Translation translation = (Translation) tran;
-
-                    if ( !translation.allowView( PhetSession.get().getUser() ) ) {
-                        // don't show translations that the user doesn't have access to
-                        continue;
-                    }
-
-                    // count the number of strings
-                    sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" ).setEntity( "translation", translation ).iterate().next() ).intValue() );
-
-                    translations.add( translation );
+                for ( Translation translation : translations ) {
+                    sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" )
+                            .setEntity( "translation", translation ).iterate().next() ).intValue() );
                 }
+//                List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
+//                for ( Object tran : trans ) {
+//                    Translation translation = (Translation) tran;
+//
+//                    if ( !translation.allowView( PhetSession.get().getUser() ) ) {
+//                        // don't show translations that the user doesn't have access to
+//                        continue;
+//                    }
+//
+//                    // count the number of strings
+//                    sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" ).setEntity( "translation", translation ).iterate().next() ).intValue() );
+//                }
                 return true;
             }
         } );
