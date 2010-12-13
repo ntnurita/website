@@ -29,8 +29,6 @@ import edu.colorado.phet.website.util.links.AbstractLinker;
 
 public class TranslationMainPage extends TranslationPage {
 
-    private PhetLocales phetLocales;
-
     private static final Logger logger = Logger.getLogger( TranslationMainPage.class.getName() );
 
     public TranslationMainPage( PageParameters parameters ) {
@@ -39,8 +37,6 @@ public class TranslationMainPage extends TranslationPage {
         if ( !PhetSession.get().isSignedIn() ) {
             throw new RestartResponseAtInterceptPageException( SignInPage.class );
         }
-
-        phetLocales = ( (PhetWicketApplication) getApplication() ).getSupportedLocales();
 
         add( new CreateTranslationForm( "create-new-translation-form" ) );
 
