@@ -33,23 +33,13 @@
             <div wicket:id="translation-list-panel"></div>
         </wicket:enclosure>
 
-        <h2>Create a new translation</h2>
+        <h2>Pick a language to help translate</h2>
 
-        <form wicket:id="create-new-translation-form">
-            Create a translation:
+        <form wicket:id="pick-language-form">
             <span wicket:id="locales">
 
             </span>
-            <input type="submit" value="create"/>
-        </form>
-
-        <h2>Create a new version of an existing translation</h2>
-
-        <form wicket:id="create-version-translation-form">
-            Pick an existing translation:
-            <select wicket:id="translations"></select>
-
-            <input type="submit" value="create"/>
+            <input type="submit" value="select"/>
         </form>
 
         <h2>Instructions</h2>
