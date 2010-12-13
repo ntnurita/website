@@ -23,6 +23,7 @@ import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -156,6 +157,10 @@ public class NotificationHandler {
     }
 
     private static boolean sendTranslationNotificationCore( String action, String body, int id, Locale locale, Collection<PhetUser> users ) {
+        if ( !PhetRequestCycle.get().isForProductionServer() ) {
+            logger.info( "not sending translation email because we are not on the production server" );
+            return true; // fail out gracefully if we are not the production server
+        }
         try {
             String subject = getTranslationSubject( action, id, locale );
             EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, TRANSLATION_NOTIFICATION_FROM );
