@@ -47,6 +47,18 @@ public class TranslateLanguagePage extends TranslationPage {
                         .setLocale( "locale", locale ).list();
                 for ( Object o : trans ) {
                     Translation translation = (Translation) o;
+                    // skip translations where team-members are the only ones with access
+                    if ( translation.isVisible() ) {
+                        boolean nonAdminUser = false;
+                        for ( Object user : translation.getAuthorizedUsers() ) {
+                            if ( !( (PhetUser) user ).isTeamMember() ) {
+                                nonAdminUser = true;
+                            }
+                        }
+                        if ( nonAdminUser ) {
+                            continue;
+                        }
+                    }
                     translations.add( translation );
                 }
                 return null;
