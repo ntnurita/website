@@ -50,18 +50,6 @@ public class TranslationListPanel extends PhetPanel {
                     sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" )
                             .setEntity( "translation", translation ).iterate().next() ).intValue() );
                 }
-//                List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
-//                for ( Object tran : trans ) {
-//                    Translation translation = (Translation) tran;
-//
-//                    if ( !translation.allowView( PhetSession.get().getUser() ) ) {
-//                        // don't show translations that the user doesn't have access to
-//                        continue;
-//                    }
-//
-//                    // count the number of strings
-//                    sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" ).setEntity( "translation", translation ).iterate().next() ).intValue() );
-//                }
                 return true;
             }
         } );
