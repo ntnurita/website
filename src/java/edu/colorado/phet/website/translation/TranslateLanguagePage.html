@@ -28,24 +28,35 @@
         <wicket:enclosure child="translation-list-panel">
             <h3>Translations already in this language</h3>
 
+            <p>
+                You can send a request to collaborate on a translation by clicking "request to collaborate" on a
+                translation below. This will send an email to the translators with your email address, so they can
+                contact you about collaboration.
+            </p>
+
             <div wicket:id="translation-list-panel"></div>
         </wicket:enclosure>
 
+        <wicket:enclosure child="create-version-translation-form">
+            <h3>Create a new version of an existing translation</h3>
+
+            <form wicket:id="create-version-translation-form">
+                Pick an existing translation:
+                <select wicket:id="translations"></select>
+
+                <input type="submit" value="create"/>
+            </form>
+        </wicket:enclosure>
+
         <h3>Create a new translation</h3>
+
+        <p>To create a fresh translation, please click "Create" below.</p>
 
         <form wicket:id="create-new-translation-form">
             Create a translation:
             <input type="submit" value="create"/>
         </form>
 
-        <h3>Create a new version of an existing translation</h3>
-
-        <form wicket:id="create-version-translation-form">
-            Pick an existing translation:
-            <select wicket:id="translations"></select>
-
-            <input type="submit" value="create"/>
-        </form>
 
     </div>
 </wicket:extend>

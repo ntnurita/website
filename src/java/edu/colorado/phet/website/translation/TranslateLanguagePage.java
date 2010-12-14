@@ -129,6 +129,10 @@ public class TranslateLanguagePage extends TranslationPage {
             super( id );
 
             add( new DropDownChoice<Translation>( "translations", new PropertyModel<Translation>( this, "translation" ), translations ) );
+
+            if ( translations.isEmpty() ) {
+                setVisible( false );
+            }
         }
 
         @Override
