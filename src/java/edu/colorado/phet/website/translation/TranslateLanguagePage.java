@@ -7,12 +7,14 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.PropertyModel;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.data.PhetUser;
@@ -21,6 +23,7 @@ import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.*;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
@@ -39,6 +42,10 @@ public class TranslateLanguagePage extends TranslationPage {
         }
 
         locale = LocaleUtils.stringToLocale( parameters.getString( TRANSLATION_LOCALE ) );
+
+        String localeString = StringUtils.getLocaleTitle( locale, PhetWicketApplication.getDefaultLocale(), getPhetLocalizer() );
+
+        add( new Label( "header", localeString ) );
 
         final List<Translation> translations = new LinkedList<Translation>();
         final PhetUser currentUser = PhetSession.get().getUser();
