@@ -84,6 +84,7 @@ public class TranslationListPanel extends PhetPanel {
             boolean visibleToggleShown = translation.allowToggleVisibility( user );
             boolean editShown = translation.allowEdit( user );
             boolean deleteShown = translation.allowDelete( user );
+            boolean requestShown = translation.allowRequestToCollaborate( user );
 
             item.add( new Label( "id", String.valueOf( translation.getId() ) ) );
             item.add( new Label( "locale", phetLocales.getName( translation.getLocale() ) + " (" + LocaleUtils.localeToString( translation.getLocale() ) + ")" ) );
@@ -197,6 +198,35 @@ public class TranslationListPanel extends PhetPanel {
             }
             else {
                 item.add( new InvisibleComponent( "delete" ) );
+            }
+
+            if ( requestShown ) {
+                item.add( new Link( "request-to-collaborate" ) {
+                    @Override
+                    public void onClick() {
+                        boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                            public boolean run( Session session ) {
+                                Translation t = (Translation) session.load( Translation.class, translation.getId() );
+
+                                List<PhetUser> users = new LinkedList<PhetUser>();
+                                for ( Object u : t.getAuthorizedUsers() ) {
+                                    users.add( (PhetUser) u );
+                                }
+
+                                PhetUser currentUser = PhetSession.get().getUser();
+
+                                return NotificationHandler.sendTranslationRequestForCollaboration( translation.getId(), t.getLocale(), users, currentUser );
+                            }
+                        } );
+
+                        if ( success ) {
+                            setResponsePage( CollaborationRequestSubmittedPage.class );
+                        }
+                    }
+                } );
+            }
+            else {
+                item.add( new InvisibleComponent( "request-to-collaborate" ) );
             }
 
             WicketUtils.highlightListItem( item );

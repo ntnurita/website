@@ -10,6 +10,7 @@ import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.WebsiteProperties;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.constants.NotificationEmails;
@@ -21,9 +22,12 @@ import edu.colorado.phet.website.data.contribution.ContributionComment;
 import edu.colorado.phet.website.data.contribution.ContributionNomination;
 import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
+import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -205,5 +209,30 @@ public class NotificationHandler {
 
     public static boolean sendTranslationDeletedNotification( int id, Locale locale, Collection<PhetUser> users ) {
         return sendTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + PhetSession.get().getUser().getEmail() + "</p>", id, locale, users );
+    }
+
+    public static boolean sendTranslationRequestForCollaboration( int id, Locale locale, List<PhetUser> users, PhetUser currentUser ) {
+        String localeName = StringUtils.getLocaleTitle( locale, PhetWicketApplication.getDefaultLocale(), PhetLocalizer.get() );
+        logger.info( "Sending collaboration request from user " + currentUser.getEmail() + " at IP " + PhetRequestCycle.get().getHttpServletRequest().getRemoteAddr() );
+        try {
+            String subject = "PhET translator requests access to your " + localeName + " website translation #" + id;
+            EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, TRANSLATION_NOTIFICATION_FROM );
+
+            for ( PhetUser user : users ) {
+                message.addRecipient( user.getEmail() );
+            }
+            message.addReplyTo( currentUser.getEmail() );
+
+            message.setBody( "<p>The translator &quot;" + HtmlUtils.encode( currentUser.getName() ) + "&quot; &lt;" + HtmlUtils.encode( currentUser.getEmail() ) + "&gt; has requested to collaborate on your " + localeName + " website translation #" + id + "</p>"
+                             + "<p>Replying to this email should send your message to the person who requested to collaborate.</p>"
+                             + "<p>If you choose to, you can give this translator permission to edit your translation by logging in, going to the website translation area, clicking 'edit' on your translation, and scrolling down to the 'User Access' area.</p>"
+                             + "<p style='color: #666666;'>Your email address has not been given out to this translator.</p>" );
+
+            return EmailUtils.sendMessage( message );
+        }
+        catch ( MessagingException e ) {
+            logger.warn( "Email failure on sending collaboration request", e );
+            return false;
+        }
     }
 }

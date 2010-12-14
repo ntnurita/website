@@ -94,6 +94,11 @@ public class Translation implements Serializable, IntId {
         return !isVisible() && isUserAuthorized( user ) && ( ( user.isTeamMember() && !isDefault() ) || ( !isDefault() && !isLocked() ) );
     }
 
+    public boolean allowRequestToCollaborate( PhetUser user ) {
+        // TODO: add opt-out for collaboration
+        return !isUserAuthorized( user );
+    }
+
     /*---------------------------------------------------------------------------*
     * object method implementations
     *----------------------------------------------------------------------------*/
