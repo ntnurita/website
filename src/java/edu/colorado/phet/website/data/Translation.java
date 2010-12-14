@@ -74,10 +74,6 @@ public class Translation implements Serializable, IntId {
         return false;
     }
 
-    public boolean allowView( PhetUser user ) {
-        return user.isTeamMember() || isUserAuthorized( user ) || isVisible();
-    }
-
     public boolean allowToggleVisibility( PhetUser user ) {
         return user.isTeamMember() && !isDefault();
     }
@@ -88,6 +84,10 @@ public class Translation implements Serializable, IntId {
 
     public boolean allowEdit( PhetUser user ) {
         return isUserAuthorized( user ) && ( user.isTeamMember() || !isLocked() );
+    }
+
+    public boolean allowSubmit( PhetUser user ) {
+        return isUserAuthorized( user ) && !isVisible() && !isLocked();
     }
 
     public boolean allowDelete( PhetUser user ) {

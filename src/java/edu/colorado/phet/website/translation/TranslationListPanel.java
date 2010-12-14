@@ -83,6 +83,7 @@ public class TranslationListPanel extends PhetPanel {
 
             boolean visibleToggleShown = translation.allowToggleVisibility( user );
             boolean editShown = translation.allowEdit( user );
+            boolean submitShown = translation.allowSubmit( user );
             boolean deleteShown = translation.allowDelete( user );
             boolean requestShown = translation.allowRequestToCollaborate( user );
 
@@ -162,7 +163,7 @@ public class TranslationListPanel extends PhetPanel {
                 item.add( new InvisibleComponent( "lock-toggle" ) );
             }
 
-            if ( translation.isVisible() || translation.isLocked() ) {
+            if ( !submitShown ) {
                 item.add( new InvisibleComponent( "submit-link" ) );
             }
             else {
