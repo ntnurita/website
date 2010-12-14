@@ -41,14 +41,15 @@ public class TranslateLanguagePage extends TranslationPage {
         locale = LocaleUtils.stringToLocale( parameters.getString( TRANSLATION_LOCALE ) );
 
         final List<Translation> translations = new LinkedList<Translation>();
+        final PhetUser currentUser = PhetSession.get().getUser();
         HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public Void run( Session session ) {
                 List trans = session.createQuery( "select t from Translation as t where t.locale = :locale order by t.id" )
                         .setLocale( "locale", locale ).list();
                 for ( Object o : trans ) {
                     Translation translation = (Translation) o;
-                    // skip translations where team-members are the only ones with access
-                    if ( translation.isVisible() ) {
+                    // skip translations where team-members are the only ones with access (unless you are a team member)
+                    if ( !currentUser.isTeamMember() && translation.isVisible() ) {
                         boolean nonAdminUser = false;
                         for ( Object user : translation.getAuthorizedUsers() ) {
                             if ( !( (PhetUser) user ).isTeamMember() ) {
