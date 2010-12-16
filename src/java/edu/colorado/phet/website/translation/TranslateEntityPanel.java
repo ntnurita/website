@@ -139,6 +139,7 @@ public class TranslateEntityPanel extends PhetPanel {
                     }
                 };
                 editableLabel.setCols( 80 );
+                // TODO: to increase performance, we could batch-request ALL the strings for the translation, then process
                 if ( !isStringSet( tString.getKey() ) ) {
                     editableLabel.add( new AttributeAppender( "class", true, new Model<String>( "not-translated" ), " " ) );
                 }
