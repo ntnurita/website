@@ -55,6 +55,7 @@ public class TranslationListPanel extends PhetPanel {
                     }
 
                     // count the number of strings
+                    // TODO: performance: the iteration (where this is the main issue) takes currently 70ms. This will go up in the future
                     sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" ).setEntity( "translation", translation ).iterate().next() ).intValue() );
 
                     translations.add( translation );
