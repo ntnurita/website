@@ -461,17 +461,18 @@ public class AdminSimPage extends AdminPage {
             }
         }
 
-        public class KeywordDropDownChoice extends DropDownChoice {
+        public class KeywordDropDownChoice extends DropDownChoice<Keyword> {
             public KeywordDropDownChoice( String id, List<Keyword> allKeywords ) {
-                super( id, new Model(), allKeywords, new IChoiceRenderer() {
-                    public Object getDisplayValue( Object object ) {
-                        return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( ( (Keyword) object ).getKey(), AdminSimPage.this );
+                super( id, new Model<Keyword>(), allKeywords, new IChoiceRenderer<Keyword>() {
+                    public Object getDisplayValue( Keyword object ) {
+                        return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( object.getKey(), AdminSimPage.this );
                     }
 
-                    public String getIdValue( Object object, int index ) {
-                        return String.valueOf( ( (Keyword) object ).getId() );
+                    public String getIdValue( Keyword object, int index ) {
+                        return String.valueOf( object.getId() );
                     }
                 } );
+                setEscapeModelStrings( false ); // stop wicket from double-escaping these.
             }
         }
     }
@@ -605,6 +606,7 @@ public class AdminSimPage extends AdminPage {
                         return String.valueOf( keyword.getId() );
                     }
                 } );
+                setEscapeModelStrings( false ); // stop wicket from double-escaping these.
             }
         }
     }
