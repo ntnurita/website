@@ -67,15 +67,15 @@ public class TranslateEntityPanel extends PhetPanel {
         add( panel );
 
         if ( entity.getMinDisplaySize() <= 225 ) {
-            add( new AttributeAppender( "class", new Model( "preview-small" ), " " ) );
+            add( new AttributeAppender( "class", new Model<String>( "preview-small" ), " " ) );
         }
         else if ( entity.getMinDisplaySize() <= 525 ) {
-            add( new AttributeAppender( "class", new Model( "preview-medium" ), " " ) );
+            add( new AttributeAppender( "class", new Model<String>( "preview-medium" ), " " ) );
         }
 
-        ListView stringList = new ListView( "translation-string-list", entity.getStrings() ) {
-            protected void populateItem( final ListItem item ) {
-                final TranslationEntityString tString = (TranslationEntityString) item.getModel().getObject();
+        ListView stringList = new ListView<TranslationEntityString>( "translation-string-list", entity.getStrings() ) {
+            protected void populateItem( final ListItem<TranslationEntityString> item ) {
+                final TranslationEntityString tString = item.getModelObject();
 
                 item.setOutputMarkupId( true );
                 String markupId = "id_string_" + tString.getKey().replaceAll( "\\.", "_" );
@@ -83,7 +83,7 @@ public class TranslateEntityPanel extends PhetPanel {
 
                 String initString = getLocalizer().getString( tString.getKey(), TranslateEntityPanel.this );
                 initString = initString.replaceAll( "<br/>", "\n" );
-                final Model model = new Model( initString );
+                final Model<String> model = new Model<String>( initString );
                 stringModelMap.put( tString.getKey(), model );
 
                 if ( tString.getNotes() == null ) {
@@ -105,12 +105,12 @@ public class TranslateEntityPanel extends PhetPanel {
                     item.add( new LocalizedLabel( "translation-string-english", PhetWicketApplication.getDefaultLocale(), new ResourceModel( tString.getKey() ) ) );
                 }
 
-                final AjaxEditableMultiLineLabel editableLabel = new AjaxEditableMultiLineLabel( "translation-string-value", model ) {
+                final AjaxEditableMultiLineLabel<String> editableLabel = new AjaxEditableMultiLineLabel<String>( "translation-string-value", model ) {
                     @Override
                     protected void onSubmit( AjaxRequestTarget target ) {
                         super.onSubmit( target );
                         int status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
-                        String value = (String) model.getObject();
+                        String value = model.getObject();
                         if ( !stringHasXSS( value ) ) {
                             StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
                             if ( status == StringUtils.STRING_OUT_OF_DATE ) {
@@ -123,7 +123,7 @@ public class TranslateEntityPanel extends PhetPanel {
                                 Integer old = map.get( translationId );
                                 map.put( translationId, old - 1 );
                             }
-                            add( new AttributeModifier( "class", new Model( "string-value" ) ) );
+                            add( new AttributeModifier( "class", new Model<String>( "string-value" ) ) );
                         }
                         else {
                             // mostly preventative measure to prevent attacks
@@ -140,10 +140,10 @@ public class TranslateEntityPanel extends PhetPanel {
                 };
                 editableLabel.setCols( 80 );
                 if ( !isStringSet( tString.getKey() ) ) {
-                    editableLabel.add( new AttributeAppender( "class", true, new Model( "not-translated" ), " " ) );
+                    editableLabel.add( new AttributeAppender( "class", true, new Model<String>( "not-translated" ), " " ) );
                 }
                 else if ( !isStringUpToDate( tString.getKey() ) ) {
-                    editableLabel.add( new AttributeAppender( "class", true, new Model( "string-out-of-date" ), " " ) );
+                    editableLabel.add( new AttributeAppender( "class", true, new Model<String>( "string-out-of-date" ), " " ) );
                 }
                 item.add( editableLabel );
 
@@ -172,7 +172,7 @@ public class TranslateEntityPanel extends PhetPanel {
                                 map.put( translationId, old - 1 );
                             }
                             target.addComponent( page.getEntityListPanel() );
-                            editableLabel.add( new AttributeModifier( "class", new Model( "string-value" ) ) );
+                            editableLabel.add( new AttributeModifier( "class", new Model<String>( "string-value" ) ) );
                             model.setObject( value );
                         }
                     } );
