@@ -47,6 +47,7 @@ public class TranslationListPanel extends PhetPanel {
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 for ( Translation translation : translations ) {
+                    // TODO: we're taking 100ms hit on this, likely to get much bigger
                     sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" )
                             .setEntity( "translation", translation ).iterate().next() ).intValue() );
                 }
