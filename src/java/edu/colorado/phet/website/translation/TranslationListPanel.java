@@ -28,6 +28,8 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.Task;
 
 public class TranslationListPanel extends PhetPanel {
 
@@ -35,6 +37,11 @@ public class TranslationListPanel extends PhetPanel {
 
     private static final Logger logger = Logger.getLogger( TranslationListPanel.class.getName() );
     private List<Translation> translations;
+
+    /**
+     * Whether we should highlight translations who have child translations that are visible
+     */
+    private boolean highlightPreferred = false;
 
     public TranslationListPanel( String id, PageContext context, final List<Translation> translations ) {
         super( id, context );
@@ -63,6 +70,10 @@ public class TranslationListPanel extends PhetPanel {
 
     }
 
+    public void setHighlightPreferred( boolean highlightPreferred ) {
+        this.highlightPreferred = highlightPreferred;
+    }
+
     public List<Translation> getTranslations() {
         return translations;
     }
@@ -79,8 +90,18 @@ public class TranslationListPanel extends PhetPanel {
             final Translation translation = item.getModelObject();
             final PhetUser user = PhetSession.get().getUser();
 
-            // whether this is the main English translation
-            boolean isDefaultEnglish = translation.isVisible() && translation.getLocale().equals( PhetWicketApplication.getDefaultLocale() );
+            Result<Boolean> isParentOfVisibleResult = HibernateUtils.resultCatchTransaction( getHibernateSession(), new Task<Boolean>() {
+                public Boolean run( Session session ) {
+                    Translation t = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
+                            .setLocale( "locale", translation.getLocale() ).uniqueResult();
+                    return t.getParent().getId() == translation.getId();
+                }
+            } );
+            if ( isParentOfVisibleResult.success && isParentOfVisibleResult.value ) {
+                // this is a parent of a visible translation
+                // TODO: abstract out this behavior
+                item.add( new AttributeAppender( "class", true, new Model<String>( "translation-preferred" ), " " ) );
+            }
 
             boolean visibleToggleShown = translation.allowToggleVisibility( user );
             boolean editShown = translation.allowEdit( user );
