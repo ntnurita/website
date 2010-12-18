@@ -74,7 +74,7 @@ public class NewsChangelogPanel extends PhetPanel {
                 Project project = entryItem.getModelObject().getProject();
                 entryItem.add( new Label( "header", project.getName() + " " + entry.headerString( getLocale(), false ) ) );
 
-                entryItem.add( new ListView<Simulation>( "sim", new LinkedList<Simulation>( project.getSimulations() ) ) {
+                entryItem.add( new ListView<Simulation>( "sim", new LinkedList<Simulation>( project.getVisibleSimulations() ) ) {
                     @Override
                     protected void populateItem( ListItem<Simulation> simItem ) {
                         Simulation sim = simItem.getModelObject();

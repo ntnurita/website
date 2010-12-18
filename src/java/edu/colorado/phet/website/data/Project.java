@@ -98,6 +98,17 @@ public class Project implements Serializable, IntId {
         builder.append( "<br/><font color='#FF0000'>WARNING: " ).append( message ).append( "</font>" );
     }
 
+    public List<Simulation> getVisibleSimulations() {
+        List<Simulation> ret = new LinkedList<Simulation>();
+        for ( Object o : simulations ) {
+            Simulation sim = (Simulation) o;
+            if ( sim.isVisible() ) {
+                ret.add( sim );
+            }
+        }
+        return ret;
+    }
+
     /**
      * Back up the project files to an external directory
      *
