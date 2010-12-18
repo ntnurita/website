@@ -16,6 +16,7 @@ import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -62,6 +63,10 @@ public class CollaborationRequestPage extends TranslationPage {
                     }
 
                     PhetUser currentUser = PhetSession.get().getUser();
+
+                    if ( !PhetRequestCycle.get().isForProductionServer() ) {
+                        return false; // on dev server, ignore this
+                    }
 
                     return NotificationHandler.sendTranslationRequestForCollaboration( translationId, t.getLocale(), users, currentUser, message.getModelObject() );
                 }

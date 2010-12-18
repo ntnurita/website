@@ -74,7 +74,9 @@ public class TranslationUrlStrategy implements IRequestTargetUrlCodingStrategy {
                 throw e;
             }
         }
-        session.close();
+        finally {
+            session.close();
+        }
 
         if ( locale == null ) {
             locale = LocaleUtils.stringToLocale( "en" );

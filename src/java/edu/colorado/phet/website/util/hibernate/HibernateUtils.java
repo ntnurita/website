@@ -37,6 +37,7 @@ public class HibernateUtils {
     }
 
     public static SessionFactory getInstance() {
+        // TODO: examine openSessions and
         return sessionFactory;
     }
 
@@ -404,8 +405,13 @@ public class HibernateUtils {
      */
     public static boolean wrapSession( HibernateTask task ) {
         Session session = getInstance().openSession();
-        boolean ret = wrapTransaction( session, task );
-        session.close();
+        boolean ret = false;
+        try {
+            ret = wrapTransaction( session, task );
+        }
+        finally {
+            session.close();
+        }
         return ret;
     }
 

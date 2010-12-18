@@ -20,6 +20,7 @@ import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.*;
@@ -118,7 +119,7 @@ public class TranslateLanguagePage extends TranslationPage {
             } );
 
             if ( result.success ) {
-                Translation translation = result.value;
+                final Translation translation = result.value;
 
                 logger.info( "Created translation: " + translation );
 
@@ -126,8 +127,23 @@ public class TranslateLanguagePage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_ID, translation.getId() );
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( locale ) );
 
-                NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, PhetSession.get().getUser() );
-                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), translation );
+                final PhetUser user = PhetSession.get().getUser();
+
+                if ( PhetRequestCycle.get().isForProductionServer() ) {
+                    ( new Thread() {
+                        @Override
+                        public void run() {
+                            Session session = HibernateUtils.getInstance().openSession();
+                            try {
+                                NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, user );
+                                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), translation );
+                            }
+                            finally {
+                                session.close();
+                            }
+                        }
+                    } ).start();
+                }
 
                 setResponsePage( TranslationEditPage.class, params );
             }
@@ -198,8 +214,23 @@ public class TranslateLanguagePage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_ID, ret[0].getId() );
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( ret[0].getLocale() ) );
 
-                NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), PhetSession.get().getUser(), translation.getId() );
-                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), ret[0] );
+                final PhetUser user = PhetSession.get().getUser();
+
+                if ( PhetRequestCycle.get().isForProductionServer() ) {
+                    ( new Thread() {
+                        @Override
+                        public void run() {
+                            Session session = HibernateUtils.getInstance().openSession();
+                            try {
+                                NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), user, translation.getId() );
+                                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), ret[0] );
+                            }
+                            finally {
+                                session.close();
+                            }
+                        }
+                    } ).start();
+                }
 
                 setResponsePage( TranslationEditPage.class, params );
             }

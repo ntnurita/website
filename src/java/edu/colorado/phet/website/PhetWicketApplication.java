@@ -74,6 +74,7 @@ public class PhetWicketApplication extends WebApplication {
     private PhetUrlMapper mapper;
     private NavMenu menu;
     private WebsiteProperties websiteProperties;
+    private static PhetWicketApplication instance = null;
 
     // TODO: flesh out and improve thread-safeness of translations part
     private List<Translation> translations = new LinkedList<Translation>();
@@ -92,6 +93,10 @@ public class PhetWicketApplication extends WebApplication {
     @Override
     protected void init() {
         super.init();
+
+        synchronized ( PhetWicketApplication.class ) {
+            instance = this;
+        }
 
         // move JUL logging statements to slf4j
         setupJulSfl4j();
@@ -450,7 +455,15 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     public static PhetWicketApplication get() {
-        return (PhetWicketApplication) WebApplication.get();
+        try {
+            return (PhetWicketApplication) WebApplication.get();
+        }
+        catch ( WicketRuntimeException e ) {
+            // attempting from an outside thread
+            synchronized ( PhetWicketApplication.class ) {
+                return instance;
+            }
+        }
     }
 
     @Override

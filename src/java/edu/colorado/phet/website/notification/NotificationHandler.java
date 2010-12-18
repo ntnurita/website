@@ -165,10 +165,6 @@ public class NotificationHandler {
     }
 
     private static boolean sendInternalTranslationNotificationCore( String action, String body, int id, Locale locale, Collection<PhetUser> users ) {
-        if ( !PhetRequestCycle.get().isForProductionServer() ) {
-            logger.info( "not sending translation email because we are not on the production server" );
-            return true; // fail out gracefully if we are not the production server
-        }
         try {
             String subject = getTranslationSubject( action, id, locale );
             EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, TRANSLATION_NOTIFICATION_FROM );
@@ -239,14 +235,14 @@ public class NotificationHandler {
     }
 
     public static boolean sendTranslationCreatedNotification( int id, Locale locale, PhetUser user ) {
-        String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
+        String url = "https://phet.colorado.edu" + TranslationMainPage.getLinker().getDefaultRawUrl();
         List<PhetUser> users = new LinkedList<PhetUser>();
         users.add( user );
         return sendInternalTranslationNotificationCore( "created", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
     public static boolean sendTranslationCreatedBasedOnNotification( int id, Locale locale, PhetUser user, int oldId ) {
-        String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
+        String url = "https://phet.colorado.edu" + TranslationMainPage.getLinker().getDefaultRawUrl();
         List<PhetUser> users = new LinkedList<PhetUser>();
         users.add( user );
         return sendInternalTranslationNotificationCore( "created based on #" + oldId, "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );

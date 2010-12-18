@@ -184,6 +184,10 @@ public class TranslationListPanel extends PhetPanel {
                                     users.add( (PhetUser) u );
                                 }
 
+                                if ( !PhetRequestCycle.get().isForProductionServer() ) {
+                                    return false; // on dev server, ignore this
+                                }
+
                                 return NotificationHandler.sendTranslationSubmittedNotification( translation.getId(), t.getLocale(), users );
                             }
                         } );
@@ -301,7 +305,20 @@ public class TranslationListPanel extends PhetPanel {
                 }
             } );
             if ( success ) {
-                NotificationHandler.sendTranslationDeletedNotification( id, locale, users );
+                if ( PhetRequestCycle.get().isForProductionServer() ) {
+                    ( new Thread() {
+                        @Override
+                        public void run() {
+                            Session session = HibernateUtils.getInstance().openSession();
+                            try {
+                                NotificationHandler.sendTranslationDeletedNotification( id, locale, users );
+                            }
+                            finally {
+                                session.close();
+                            }
+                        }
+                    } ).start();
+                }
             }
         }
     }
