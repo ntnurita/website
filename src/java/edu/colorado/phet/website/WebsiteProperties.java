@@ -22,6 +22,8 @@ public class WebsiteProperties {
 
     public static final String HTTPS_AVAILABLE = "https-available";
 
+    public static final String WEB_HOSTNAME = "web-hostname";
+
     public WebsiteProperties( ServletContext servletContext ) {
         this.servletContext = servletContext;
     }
@@ -69,6 +71,10 @@ public class WebsiteProperties {
     public boolean isHttpsAvailable() {
         String https = getParameter( HTTPS_AVAILABLE );
         return https != null && https.equals( "yes" );
+    }
+
+    public String getWebHostname() {
+        return getParameter( WEB_HOSTNAME );
     }
 
     /**

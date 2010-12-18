@@ -488,4 +488,12 @@ public class PhetWicketApplication extends WebApplication {
         return "phet-server.colorado.edu";
     }
 
+    public boolean isProductionServer() {
+        return websiteProperties.getWebHostname().equals( getProductionServerName() );
+    }
+
+    public boolean isTestingServer() {
+        return websiteProperties.getWebHostname().equals( getTestingServerName() );
+    }
+
 }

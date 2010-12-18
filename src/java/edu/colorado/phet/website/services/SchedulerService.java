@@ -33,12 +33,17 @@ public class SchedulerService {
                 InitialSubscribePanel.resetSecurity();
             }
         } );
-        masterScheduler.schedule( "59 23 * * fri", new Runnable() {
-            public void run() {
-                logger.info( "Running NotificationHandler.sendNotifications" );
-                NotificationHandler.sendNotifications();
-            }
-        } );
+        if ( app.isProductionServer() ) {
+            masterScheduler.schedule( "59 23 * * fri", new Runnable() {
+                public void run() {
+                    logger.info( "Running NotificationHandler.sendNotifications" );
+                    NotificationHandler.sendNotifications();
+                }
+            } );
+        }
+        else {
+            logger.info( "Not starting NotificationHandler, hostname: " + app.getWebsiteProperties().getWebHostname() );
+        }
 
         masterScheduler.start();
     }
