@@ -37,11 +37,6 @@ public class TranslationListPanel extends PhetPanel {
     private static final Logger logger = Logger.getLogger( TranslationListPanel.class.getName() );
     private List<Translation> translations;
 
-    /**
-     * Whether we should highlight translations who have child translations that are visible
-     */
-    private boolean highlightPreferred = false;
-
     public TranslationListPanel( String id, PageContext context, final List<Translation> translations ) {
         super( id, context );
         this.translations = translations;
@@ -67,10 +62,6 @@ public class TranslationListPanel extends PhetPanel {
 
         add( new TranslationListView( "translation-list", sizes ) );
 
-    }
-
-    public void setHighlightPreferred( boolean highlightPreferred ) {
-        this.highlightPreferred = highlightPreferred;
     }
 
     public List<Translation> getTranslations() {
