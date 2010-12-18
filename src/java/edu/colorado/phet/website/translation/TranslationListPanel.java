@@ -28,6 +28,9 @@ import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
+/**
+ * Shows a list of website translations to the user, along with the ability to perform actions on them
+ */
 public class TranslationListPanel extends PhetPanel {
 
     private PhetLocales phetLocales;
