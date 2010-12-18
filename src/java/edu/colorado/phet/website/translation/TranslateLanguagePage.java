@@ -12,6 +12,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.SignInPage;
@@ -129,7 +130,7 @@ public class TranslateLanguagePage extends TranslationPage {
 
                 final PhetUser user = PhetSession.get().getUser();
 
-                if ( PhetRequestCycle.get().isForProductionServer() ) {
+                if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                     ( new Thread() {
                         @Override
                         public void run() {
@@ -216,7 +217,7 @@ public class TranslateLanguagePage extends TranslationPage {
 
                 final PhetUser user = PhetSession.get().getUser();
 
-                if ( PhetRequestCycle.get().isForProductionServer() ) {
+                if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                     ( new Thread() {
                         @Override
                         public void run() {

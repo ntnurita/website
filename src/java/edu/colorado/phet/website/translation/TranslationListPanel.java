@@ -13,6 +13,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.common.phetcommon.util.PhetLocales;
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
@@ -184,7 +185,7 @@ public class TranslationListPanel extends PhetPanel {
                                     users.add( (PhetUser) u );
                                 }
 
-                                if ( !PhetRequestCycle.get().isForProductionServer() ) {
+                                if ( !DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                                     return false; // on dev server, ignore this
                                 }
 
@@ -305,7 +306,7 @@ public class TranslationListPanel extends PhetPanel {
                 }
             } );
             if ( success ) {
-                if ( PhetRequestCycle.get().isForProductionServer() ) {
+                if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                     ( new Thread() {
                         @Override
                         public void run() {

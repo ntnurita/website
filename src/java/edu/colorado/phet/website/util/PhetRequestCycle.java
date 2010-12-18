@@ -147,6 +147,10 @@ public class PhetRequestCycle extends WebRequestCycle {
         return getHttpServletRequest().getServerName().equals( PhetWicketApplication.getProductionServerName() );
     }
 
+    public boolean isForTestingServer() {
+        return getHttpServletRequest().getServerName().equals( PhetWicketApplication.getTestingServerName() );
+    }
+
     public boolean isLocalRequest() {
         String addr = getHttpServletRequest().getRemoteAddr();
         String host = getHttpServletRequest().getRemoteHost();

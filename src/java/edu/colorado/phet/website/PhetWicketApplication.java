@@ -484,4 +484,8 @@ public class PhetWicketApplication extends WebApplication {
         return "phet.colorado.edu";
     }
 
+    public static String getTestingServerName() {
+        return "phet-server.colorado.edu";
+    }
+
 }

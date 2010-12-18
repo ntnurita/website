@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.data.PhetUser;
@@ -64,7 +65,7 @@ public class CollaborationRequestPage extends TranslationPage {
 
                     PhetUser currentUser = PhetSession.get().getUser();
 
-                    if ( !PhetRequestCycle.get().isForProductionServer() ) {
+                    if ( !DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                         return false; // on dev server, ignore this
                     }
 

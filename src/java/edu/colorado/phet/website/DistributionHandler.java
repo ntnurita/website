@@ -30,6 +30,10 @@ public class DistributionHandler {
         throw new AssertionError();
     }
 
+    public static boolean allowNotificationEmails( PhetRequestCycle cycle ) {
+        return cycle.isForProductionServer() || cycle.isForTestingServer();
+    }
+
     /**
      * Whether or not to show anything related to website translations on the website
      *
