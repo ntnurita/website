@@ -220,7 +220,7 @@ public class NotificationHandler {
 
                 message.addRecipient( user.getEmail() );
                 message.setBody(
-                        "<p>A translation was created for the language " + StringUtils.getLocaleTitle( translation.getLocale(), PhetWicketApplication.getDefaultLocale(), PhetLocalizer.get() ) + " with the id #" + translation.getId() + "</p>" +
+                        "<p>A translation was created for the language " + StringUtils.getEnglishLocaleTitle( session, translation.getLocale() ) + " with the id #" + translation.getId() + "</p>" +
                         "<p>You received this email because you are marked as a translator for a translation with the same language.</p>" +
                         NewsletterUtils.THANKYOU_MESSAGE
                 );

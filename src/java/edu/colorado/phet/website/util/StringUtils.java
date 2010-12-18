@@ -409,6 +409,11 @@ public class StringUtils {
         return languageName;
     }
 
+    public static String getEnglishLocaleTitle( Session session, Locale locale ) {
+        String defaultLanguageName = locale.getDisplayName( locale );
+        return PhetLocalizer.get().getDefaultString( session, "language.names." + LocaleUtils.localeToString( locale ), defaultLanguageName, false );
+    }
+
     public static String combineStringsIntoList( Component component, List<String> strings, String separator ) {
         String ret = "";
         boolean started = false;

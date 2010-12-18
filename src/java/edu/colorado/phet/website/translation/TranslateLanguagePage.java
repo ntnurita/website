@@ -136,7 +136,7 @@ public class TranslateLanguagePage extends TranslationPage {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
                                 NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, user );
-                                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), translation );
+                                NotificationHandler.sendCreationNotificationToTranslators( session, translation );
                             }
                             finally {
                                 session.close();
@@ -223,7 +223,7 @@ public class TranslateLanguagePage extends TranslationPage {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
                                 NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), user, translation.getId() );
-                                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), ret[0] );
+                                NotificationHandler.sendCreationNotificationToTranslators( session, ret[0] );
                             }
                             finally {
                                 session.close();
