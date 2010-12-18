@@ -28,8 +28,6 @@ public class NewsChangelogPanel extends PhetPanel {
     public NewsChangelogPanel( String id, final PageContext context ) {
         super( id, context );
 
-        // TODO: localize
-
         final List<ProjectEntry> entries = new LinkedList<ProjectEntry>();
 
         // store titles for later so we don't have to open multiple hibernate transactions
