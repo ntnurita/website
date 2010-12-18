@@ -5,9 +5,14 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import org.hibernate.Session;
+
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.data.util.IntId;
+import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.Task;
 
 /**
  * A translation, which has a certain number of strings and authorized users.
@@ -58,6 +63,17 @@ public class Translation implements Serializable, IntId {
      */
     public boolean isDefault() {
         return isVisible() && getLocale().equals( PhetWicketApplication.getDefaultLocale() );
+    }
+
+    public boolean hasVisibleChild( Session session ) {
+        Result<Boolean> isParentOfVisibleResult = HibernateUtils.resultCatchTransaction( session, new Task<Boolean>() {
+            public Boolean run( Session session ) {
+                Translation t = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
+                        .setLocale( "locale", getLocale() ).uniqueResult();
+                return t.getParent().getId() == getId();
+            }
+        } );
+        return ( isParentOfVisibleResult.success && isParentOfVisibleResult.value );
     }
 
     /*---------------------------------------------------------------------------*

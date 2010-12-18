@@ -27,8 +27,6 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.Result;
-import edu.colorado.phet.website.util.hibernate.Task;
 
 public class TranslationListPanel extends PhetPanel {
 
@@ -80,14 +78,7 @@ public class TranslationListPanel extends PhetPanel {
             final Translation translation = item.getModelObject();
             final PhetUser user = PhetSession.get().getUser();
 
-            Result<Boolean> isParentOfVisibleResult = HibernateUtils.resultCatchTransaction( getHibernateSession(), new Task<Boolean>() {
-                public Boolean run( Session session ) {
-                    Translation t = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
-                            .setLocale( "locale", translation.getLocale() ).uniqueResult();
-                    return t.getParent().getId() == translation.getId();
-                }
-            } );
-            if ( isParentOfVisibleResult.success && isParentOfVisibleResult.value ) {
+            if ( translation.hasVisibleChild( getHibernateSession() ) ) {
                 // this is a parent of a visible translation
                 item.add( new ClassAppender( "translation-preferred" ) );
             }
