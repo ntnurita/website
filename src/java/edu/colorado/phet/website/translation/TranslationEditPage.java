@@ -31,6 +31,7 @@ public class TranslationEditPage extends TranslationPage {
     private TranslationEntityListPanel entityListPanel;
     private Locale testLocale;
     private String selectedEntityName = null;
+    private TranslationEntity selectedEntity;
 
     private boolean showUntranslated = true;
     private boolean showOutOfDate = true;
@@ -87,10 +88,8 @@ public class TranslationEditPage extends TranslationPage {
 
         panelHolder = new PanelHolder( "translation-panel", getPageContext() );
         add( panelHolder );
-        TranslationEntity firstEntity = TranslationEntity.getTranslationEntities().get( 0 );
-        selectedEntityName = firstEntity.getDisplayName();
-        subPanel = new TranslateEntityPanel( panelHolder.getWicketId(), getPageContext(), this, firstEntity, translationId, testLocale );
-        panelHolder.add( subPanel );
+        setSelectedEntity( TranslationEntity.getTranslationEntities().get( 0 ) );
+        updateEntityPanel();
 
         entityListPanel = new TranslationEntityListPanel( "entity-list-panel", getPageContext(), this );
         add( entityListPanel );
@@ -98,7 +97,27 @@ public class TranslationEditPage extends TranslationPage {
         add( new TranslationUserPanel( "user-panel", getPageContext(), translationId ) );
 
         add( new StringFilterForm( "string-filter-form" ) );
+    }
 
+    /**
+     * Attaches a new entity panel to the panel holder using the current data.
+     */
+    public void updateEntityPanel() {
+        if ( subPanel != null ) {
+            panelHolder.remove( subPanel );
+        }
+        subPanel = new TranslateEntityPanel( panelHolder.getWicketId(), getPageContext(), this, selectedEntity, translationId, testLocale );
+        panelHolder.add( subPanel );
+    }
+
+    /**
+     * Updates the entity panel with a new instance, and adds it to the current ajax request target
+     *
+     * @param target Ajax request target
+     */
+    public void updateEntityPanel( AjaxRequestTarget target ) {
+        updateEntityPanel();
+        target.addComponent( panelHolder );
     }
 
     public int getTranslationId() {
@@ -121,8 +140,9 @@ public class TranslationEditPage extends TranslationPage {
         return selectedEntityName;
     }
 
-    public void setSelectedEntityName( String selectedEntityName ) {
-        this.selectedEntityName = selectedEntityName;
+    public void setSelectedEntity( TranslationEntity entity ) {
+        this.selectedEntityName = entity.getDisplayName();
+        this.selectedEntity = entity;
     }
 
     public boolean isShowUntranslated() {
@@ -154,18 +174,21 @@ public class TranslationEditPage extends TranslationPage {
                 @Override
                 protected void onUpdate( AjaxRequestTarget target ) {
                     showUntranslated = untranslatedBox.getModelObject();
+                    target.addComponent( panelHolder );
                 }
             } );
             add( outOfDateBox = new AjaxCheckBox( "out-of-date-check", new Model<Boolean>( showOutOfDate ) ) {
                 @Override
                 protected void onUpdate( AjaxRequestTarget target ) {
                     showOutOfDate = outOfDateBox.getModelObject();
+                    target.addComponent( panelHolder );
                 }
             } );
             add( upToDateBox = new AjaxCheckBox( "up-to-date-check", new Model<Boolean>( showUpToDate ) ) {
                 @Override
                 protected void onUpdate( AjaxRequestTarget target ) {
                     showUpToDate = upToDateBox.getModelObject();
+                    target.addComponent( panelHolder );
                 }
             } );
         }

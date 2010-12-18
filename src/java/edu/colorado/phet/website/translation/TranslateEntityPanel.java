@@ -11,8 +11,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableMultiLineLabel;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -27,7 +25,6 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedLabel;
-import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.test.TestTranslateString;
@@ -140,9 +137,15 @@ public class TranslateEntityPanel extends PhetPanel {
                 // TODO: to increase performance, we could batch-request ALL the strings for the translation, then process
                 if ( !isStringSet( tString.getKey() ) ) {
                     editableLabel.add( new ClassAppender( "not-translated" ) );
+                    item.setVisible( page.isShowUntranslated() );
                 }
                 else if ( !isStringUpToDate( tString.getKey() ) ) {
                     editableLabel.add( new ClassAppender( "string-out-of-date" ) );
+                    item.setVisible( page.isShowOutOfDate() );
+                }
+                else {
+                    // up to date
+                    item.setVisible( page.isShowUpToDate() );
                 }
                 item.add( editableLabel );
 

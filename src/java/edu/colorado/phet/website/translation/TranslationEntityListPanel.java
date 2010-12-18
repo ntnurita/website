@@ -17,7 +17,6 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
-import edu.colorado.phet.website.panels.PanelHolder;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
 import edu.colorado.phet.website.util.ClassAppender;
@@ -51,14 +50,9 @@ public class TranslationEntityListPanel extends PhetPanel {
 
                 AjaxLink link = new AjaxLink( "translation-entity-link" ) {
                     public void onClick( AjaxRequestTarget target ) {
-                        PanelHolder panelHolder = page.getPanelHolder();
-                        TranslateEntityPanel subPanel = page.getSubPanel();
-                        panelHolder.remove( subPanel );
-                        subPanel = new TranslateEntityPanel( panelHolder.getWicketId(), page.getPageContext(), page, entity, page.getTranslationId(), page.getTestLocale() );
-                        panelHolder.add( subPanel );
-                        target.addComponent( panelHolder );
+                        page.setSelectedEntity( entity );
+                        page.updateEntityPanel( target ); // adds necessary component to target
                         target.addComponent( TranslationEntityListPanel.this );
-                        page.setSelectedEntityName( entity.getDisplayName() );
                     }
                 };
                 if ( page.getSelectedEntityName().equals( entity.getDisplayName() ) ) {
