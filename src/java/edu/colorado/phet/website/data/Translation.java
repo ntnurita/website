@@ -32,6 +32,8 @@ public class Translation implements Serializable, IntId {
      */
     private boolean locked;
 
+    private Translation parent;
+
     public void addString( TranslatedString str ) {
         translatedStrings.add( str );
         str.setTranslation( this );
@@ -179,5 +181,13 @@ public class Translation implements Serializable, IntId {
 
     public void setLocked( boolean locked ) {
         this.locked = locked;
+    }
+
+    public Translation getParent() {
+        return parent;
+    }
+
+    public void setParent( Translation parent ) {
+        this.parent = parent;
     }
 }

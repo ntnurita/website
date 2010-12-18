@@ -10,6 +10,7 @@
         <property name="locale" type="locale"/>
         <property name="visible"/>
         <property name="locked"/>
+        <many-to-one name="parent" class="edu.colorado.phet.website.data.Translation"/>
         <set name="translatedStrings" inverse="true" cascade="all">
             <key column="translation" on-delete="cascade"/>
             <one-to-many class="edu.colorado.phet.website.data.TranslatedString"/>

@@ -147,6 +147,7 @@ public class TranslateLanguagePage extends TranslationPage {
             boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
                     Translation newTranslation = new Translation();
+                    newTranslation.setParent( translation );
                     newTranslation.setLocale( translation.getLocale() );
                     newTranslation.setVisible( false );
 
