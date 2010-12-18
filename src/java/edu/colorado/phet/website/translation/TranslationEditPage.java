@@ -6,15 +6,19 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.authorization.AuthorizationException;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.panels.PanelHolder;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
+import edu.colorado.phet.website.util.PageContext;
 
 public class TranslationEditPage extends TranslationPage {
     private int translationId;
@@ -66,6 +70,12 @@ public class TranslationEditPage extends TranslationPage {
             }
             throw e;
         }
+
+        final PageContext externalContext = new PageContext( "/translation/" + String.valueOf( translationId ) + "/", "", testLocale );
+        Link popupLink = IndexPage.getLinker().getLink( "translation-popup", externalContext, getPhetCycle() );
+        popupLink.setPopupSettings( new PopupSettings( PopupSettings.LOCATION_BAR | PopupSettings.MENU_BAR | PopupSettings.RESIZABLE
+                                                       | PopupSettings.SCROLLBARS | PopupSettings.STATUS_BAR | PopupSettings.TOOL_BAR ) );
+        add( popupLink );
 
         panelHolder = new PanelHolder( "translation-panel", getPageContext() );
         add( panelHolder );

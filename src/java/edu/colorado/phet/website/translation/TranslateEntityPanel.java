@@ -60,8 +60,6 @@ public class TranslateEntityPanel extends PhetPanel {
 
         setOutputMarkupId( true );
 
-        add( new Label( "translation-id", String.valueOf( translationId ) ) );
-
         panel = new PreviewHolder( "panel", externalContext, entity );
         panel.setOutputMarkupId( true );
         add( panel );
@@ -185,12 +183,6 @@ public class TranslateEntityPanel extends PhetPanel {
             }
         };
         add( stringList );
-
-
-        Link popupLink = IndexPage.getLinker().getLink( "translation-popup", externalContext, getPhetCycle() );
-        popupLink.setPopupSettings( new PopupSettings( PopupSettings.LOCATION_BAR | PopupSettings.MENU_BAR | PopupSettings.RESIZABLE
-                                                       | PopupSettings.SCROLLBARS | PopupSettings.STATUS_BAR | PopupSettings.TOOL_BAR ) );
-        add( popupLink );
     }
 
     public boolean isStringUpToDate( final String key ) {
