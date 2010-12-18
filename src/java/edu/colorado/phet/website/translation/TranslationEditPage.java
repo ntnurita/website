@@ -4,11 +4,15 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.authorization.AuthorizationException;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
+import org.apache.wicket.model.Model;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,6 +31,10 @@ public class TranslationEditPage extends TranslationPage {
     private TranslationEntityListPanel entityListPanel;
     private Locale testLocale;
     private String selectedEntityName = null;
+
+    private boolean showUntranslated = true;
+    private boolean showOutOfDate = true;
+    private boolean showUpToDate = true;
 
     public static final String TRANSLATION_ID = "translationId";
     public static final String TRANSLATION_LOCALE = "translationLocale";
@@ -89,6 +97,8 @@ public class TranslationEditPage extends TranslationPage {
 
         add( new TranslationUserPanel( "user-panel", getPageContext(), translationId ) );
 
+        add( new StringFilterForm( "string-filter-form" ) );
+
     }
 
     public int getTranslationId() {
@@ -115,7 +125,49 @@ public class TranslationEditPage extends TranslationPage {
         this.selectedEntityName = selectedEntityName;
     }
 
+    public boolean isShowUntranslated() {
+        return showUntranslated;
+    }
+
+    public boolean isShowOutOfDate() {
+        return showOutOfDate;
+    }
+
+    public boolean isShowUpToDate() {
+        return showUpToDate;
+    }
+
     public TranslationEntityListPanel getEntityListPanel() {
         return entityListPanel;
+    }
+
+    public class StringFilterForm extends Form {
+
+        private AjaxCheckBox untranslatedBox;
+        private AjaxCheckBox outOfDateBox;
+        private AjaxCheckBox upToDateBox;
+
+        public StringFilterForm( String id ) {
+            super( id );
+
+            add( untranslatedBox = new AjaxCheckBox( "untranslated-check", new Model<Boolean>( showUntranslated ) ) {
+                @Override
+                protected void onUpdate( AjaxRequestTarget target ) {
+                    showUntranslated = untranslatedBox.getModelObject();
+                }
+            } );
+            add( outOfDateBox = new AjaxCheckBox( "out-of-date-check", new Model<Boolean>( showOutOfDate ) ) {
+                @Override
+                protected void onUpdate( AjaxRequestTarget target ) {
+                    showOutOfDate = outOfDateBox.getModelObject();
+                }
+            } );
+            add( upToDateBox = new AjaxCheckBox( "up-to-date-check", new Model<Boolean>( showUpToDate ) ) {
+                @Override
+                protected void onUpdate( AjaxRequestTarget target ) {
+                    showUpToDate = upToDateBox.getModelObject();
+                }
+            } );
+        }
     }
 }

@@ -35,9 +35,33 @@
     <div class="translation-edit-content">
         <h2>Edit Translation: <span wicket:id="translation"></span></h2>
 
-        <p>
-            <a href="TranslateEntityPanel.html#" wicket:id="translation-popup">Open preview in a new window</a>
-        </p>
+        <table style="width: 100%; margin-bottom: 10px;">
+            <tr>
+                <td align="left">
+                    <a href="TranslateEntityPanel.html#" wicket:id="translation-popup">Open preview in a new window</a>
+                </td>
+                <td align="right">
+                    <form wicket:id="string-filter-form">
+                        Show strings that are:
+                        <span style="border: 1px solid red; margin: 0.2em; padding: 0.1em;">
+                            <input type="checkbox" style="vertical-align: middle; position: relative; bottom: 1px;"
+                                    wicket:id="untranslated-check"/>
+                            not translated
+                        </span>
+                        <span style="border: 1px solid orange; margin: 0.2em; padding: 0.1em;">
+                            <input type="checkbox" style="vertical-align: middle; position: relative; bottom: 1px;"
+                                    wicket:id="out-of-date-check"/>
+                            out of date
+                        </span>
+                        <span style="border: 1px solid blue; margin: 0.2em; padding: 0.1em;">
+                            <input type="checkbox" style="vertical-align: middle; position: relative; bottom: 1px;"
+                                    wicket:id="up-to-date-check"/>
+                            up to date
+                        </span>
+                    </form>
+                </td>
+            </tr>
+        </table>
 
         <div class="above-entity-list">
         </div>
