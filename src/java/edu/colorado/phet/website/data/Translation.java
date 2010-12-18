@@ -1,9 +1,7 @@
 package edu.colorado.phet.website.data;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 import org.hibernate.Session;
 
@@ -74,6 +72,20 @@ public class Translation implements Serializable, IntId {
             }
         } );
         return ( isParentOfVisibleResult.success && isParentOfVisibleResult.value );
+    }
+
+    /**
+     * NOTE: needs to be in a transaction!
+     */
+    public List<Translation> getChildren( Session session ) {
+        final List<Translation> ret = new LinkedList<Translation>();
+        Translation thisTranslation = (Translation) session.load( Translation.class, getId() );
+        List list = session.createQuery( "select t from Translation as t where t.parent = :translation" )
+                .setEntity( "translation", thisTranslation ).list();
+        for ( Object o : list ) {
+            ret.add( (Translation) o );
+        }
+        return ret;
     }
 
     /*---------------------------------------------------------------------------*

@@ -276,6 +276,11 @@ public class TranslationListPanel extends PhetPanel {
                 public boolean run( Session session ) {
                     session.load( translation, translation.getId() );
 
+                    for ( Translation childTranslation : translation.getChildren( session ) ) {
+                        childTranslation.setParent( null );
+                        session.update( childTranslation );
+                    }
+
                     logger.info( "attempting to delete translation #" + translation.getId() + " from user " + PhetSession.get().getUser().getEmail() + " and IP " + PhetRequestCycle.get().getHttpServletRequest().getRemoteHost() );
 
                     translations.remove( translation );
