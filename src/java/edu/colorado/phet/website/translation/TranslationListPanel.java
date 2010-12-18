@@ -206,24 +206,9 @@ public class TranslationListPanel extends PhetPanel {
                 item.add( new Link( "request-to-collaborate" ) {
                     @Override
                     public void onClick() {
-                        boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                            public boolean run( Session session ) {
-                                Translation t = (Translation) session.load( Translation.class, translation.getId() );
-
-                                List<PhetUser> users = new LinkedList<PhetUser>();
-                                for ( Object u : t.getAuthorizedUsers() ) {
-                                    users.add( (PhetUser) u );
-                                }
-
-                                PhetUser currentUser = PhetSession.get().getUser();
-
-                                return NotificationHandler.sendTranslationRequestForCollaboration( translation.getId(), t.getLocale(), users, currentUser );
-                            }
-                        } );
-
-                        if ( success ) {
-                            setResponsePage( CollaborationRequestSubmittedPage.class );
-                        }
+                        PageParameters params = new PageParameters();
+                        params.add( CollaborationRequestPage.TRANSLATION_ID, String.valueOf( translation.getId() ) );
+                        setResponsePage( CollaborationRequestPage.class, params );
                     }
                 } );
             }

@@ -211,7 +211,7 @@ public class NotificationHandler {
         return sendTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + PhetSession.get().getUser().getEmail() + "</p>", id, locale, users );
     }
 
-    public static boolean sendTranslationRequestForCollaboration( int id, Locale locale, List<PhetUser> users, PhetUser currentUser ) {
+    public static boolean sendTranslationRequestForCollaboration( int id, Locale locale, List<PhetUser> users, PhetUser currentUser, String translatorMessageString ) {
         String localeName = StringUtils.getLocaleTitle( locale, PhetWicketApplication.getDefaultLocale(), PhetLocalizer.get() );
         logger.info( "Sending collaboration request from user " + currentUser.getEmail() + " at IP " + PhetRequestCycle.get().getHttpServletRequest().getRemoteAddr() );
         try {
@@ -223,10 +223,15 @@ public class NotificationHandler {
             }
             message.addReplyTo( currentUser.getEmail() );
 
-            message.setBody( "<p>The translator &quot;" + HtmlUtils.encode( currentUser.getName() ) + "&quot; &lt;" + HtmlUtils.encode( currentUser.getEmail() ) + "&gt; has requested to collaborate on your " + localeName + " website translation #" + id + "</p>"
-                             + "<p>Replying to this email should send your message to the person who requested to collaborate.</p>"
-                             + "<p>If you choose to, you can give this translator permission to edit your translation by logging in, going to the website translation area, clicking 'edit' on your translation, and scrolling down to the 'User Access' area.</p>"
-                             + "<p style='color: #666666;'>Your email address has not been given out to this translator.</p>" );
+            String body = "<p>The translator &quot;" + HtmlUtils.encode( currentUser.getName() ) + "&quot; &lt;" + HtmlUtils.encode( currentUser.getEmail() ) + "&gt; has requested to collaborate on your " + localeName + " website translation #" + id + ":</p>";
+            if ( translatorMessageString != null && translatorMessageString.length() > 0 ) {
+                body += "<p style='border: 1px solid #888; padding: 2em;'>" + HtmlUtils.encode( translatorMessageString ) + "</p>";
+            }
+            body += "<p>Replying to this email should send your message to the person who requested to collaborate.</p>"
+                    + "<p>If you choose to, you can give this translator permission to edit your translation by logging in, going to the website translation area, clicking 'edit' on your translation, and scrolling down to the 'User Access' area.</p>"
+                    + "<p style='color: #666666;'>Your email address has not been given out to this translator.</p>";
+            body = body.replaceAll( "\n", "<br/>" );
+            message.setBody( body );
 
             return EmailUtils.sendMessage( message );
         }

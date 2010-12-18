@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title wicket:id="page-title">[PREVIEW] CollaborationRequestPage</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+            .index-content {
+                width: 765px;
+                margin: 0 auto;
+                padding: 10px;
+            }
+        </style>
+    </wicket:head>
+</head>
+<body wicket:message="dir:language.dir">
+
+<wicket:extend>
+    <div class="index-content">
+        <h2>Request to Collaborate</h2>
+
+        <p>
+            This will allow you to send an email to the translators with your email address, so they can contact you
+            about collaboration.
+        </p>
+
+        <form wicket:id="request-form">
+            <label>
+                <h3 style="margin: 0;">Message</h3>
+                <textarea rows="10" cols="50" wicket:id="message" name="message"
+                          style="width: 100%; margin: 10px;"></textarea>
+            </label>
+            <input type="submit" value="send request"/>
+        </form>
+
+        <p style="text-align: center;">
+            <a href="#" wicket:id="return">Return to the Translation Page</a>
+        </p>
+    </div>
+</wicket:extend>
+
+</body>
+</html>
+
