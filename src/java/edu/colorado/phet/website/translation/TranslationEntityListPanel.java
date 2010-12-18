@@ -11,7 +11,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -21,6 +20,7 @@ import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.panels.PanelHolder;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
+import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -42,12 +42,12 @@ public class TranslationEntityListPanel extends PhetPanel {
 
         setOutputMarkupId( true );
 
-        ListView entities = new ListView( "translation-entities", TranslationEntity.getTranslationEntities() ) {
-            private AttributeAppender appender = new AttributeAppender( "class", true, new Model( "selected" ), " " );
+        ListView entities = new ListView<TranslationEntity>( "translation-entities", TranslationEntity.getTranslationEntities() ) {
+            private AttributeAppender appender = new ClassAppender( "selected" );
             private ListItem selected = null;
 
-            protected void populateItem( final ListItem item ) {
-                final TranslationEntity entity = (TranslationEntity) item.getModel().getObject();
+            protected void populateItem( final ListItem<TranslationEntity> item ) {
+                final TranslationEntity entity = item.getModelObject();
 
                 AjaxLink link = new AjaxLink( "translation-entity-link" ) {
                     public void onClick( AjaxRequestTarget target ) {

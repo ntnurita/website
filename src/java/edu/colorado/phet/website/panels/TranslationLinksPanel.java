@@ -3,12 +3,10 @@ package edu.colorado.phet.website.panels;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
@@ -17,6 +15,7 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.LocalizedLabel;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.constants.CSS;
+import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -48,7 +47,7 @@ public class TranslationLinksPanel extends PhetPanel {
         LocalizedLabel englishLabel = new LocalizedLabel( "translation-label", englishLocale, new ResourceModel( "language.name" ) );
         englishLink.add( englishLabel );
         if ( context.getLocale().equals( englishLocale ) ) {
-            englishLabel.add( new AttributeAppender( "class", true, new Model<String>( "current-locale" ), " " ) );
+            englishLabel.add( new ClassAppender( "current-locale" ) );
         }
         add( englishLink );
 
@@ -62,7 +61,7 @@ public class TranslationLinksPanel extends PhetPanel {
                 LocalizedLabel label = new LocalizedLabel( "translation-label", locale, new ResourceModel( "language.name" ) );
                 link.add( label );
                 if ( context.getLocale().equals( locale ) ) {
-                    label.add( new AttributeAppender( "class", true, new Model<String>( "current-locale" ), " " ) );
+                    label.add( new ClassAppender( "current-locale" ) );
                 }
                 item.add( link );
             }

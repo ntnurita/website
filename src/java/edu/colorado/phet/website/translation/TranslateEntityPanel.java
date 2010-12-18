@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.extensions.ajax.markup.html.AjaxEditableMultiLineLabel;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -33,6 +32,7 @@ import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.test.TestTranslateString;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
+import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -67,10 +67,10 @@ public class TranslateEntityPanel extends PhetPanel {
         add( panel );
 
         if ( entity.getMinDisplaySize() <= 225 ) {
-            add( new AttributeAppender( "class", new Model<String>( "preview-small" ), " " ) );
+            add( new ClassAppender( "preview-small" ) );
         }
         else if ( entity.getMinDisplaySize() <= 525 ) {
-            add( new AttributeAppender( "class", new Model<String>( "preview-medium" ), " " ) );
+            add( new ClassAppender( "preview-medium" ) );
         }
 
         ListView stringList = new ListView<TranslationEntityString>( "translation-string-list", entity.getStrings() ) {
@@ -141,10 +141,10 @@ public class TranslateEntityPanel extends PhetPanel {
                 editableLabel.setCols( 80 );
                 // TODO: to increase performance, we could batch-request ALL the strings for the translation, then process
                 if ( !isStringSet( tString.getKey() ) ) {
-                    editableLabel.add( new AttributeAppender( "class", true, new Model<String>( "not-translated" ), " " ) );
+                    editableLabel.add( new ClassAppender( "not-translated" ) );
                 }
                 else if ( !isStringUpToDate( tString.getKey() ) ) {
-                    editableLabel.add( new AttributeAppender( "class", true, new Model<String>( "string-out-of-date" ), " " ) );
+                    editableLabel.add( new ClassAppender( "string-out-of-date" ) );
                 }
                 item.add( editableLabel );
 

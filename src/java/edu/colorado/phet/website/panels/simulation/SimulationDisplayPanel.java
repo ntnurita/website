@@ -3,7 +3,6 @@ package edu.colorado.phet.website.panels.simulation;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -11,13 +10,13 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.GridView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
 
@@ -42,7 +41,7 @@ public class SimulationDisplayPanel extends PhetPanel {
                 link.add( new Label( "title", simulation.getTitle() ) );
                 if ( !simulation.getLocale().getLanguage().equals( context.getLocale().getLanguage() ) ) {
                     // sim isn't translated
-                    link.add( new AttributeAppender( "class", new Model( "untranslated-sim" ), " " ) );
+                    link.add( new ClassAppender( "untranslated-sim" ) );
                 }
                 String alt;
                 try {

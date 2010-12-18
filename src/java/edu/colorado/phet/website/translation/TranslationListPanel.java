@@ -4,13 +4,11 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
@@ -23,6 +21,7 @@ import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WicketUtils;
@@ -99,8 +98,7 @@ public class TranslationListPanel extends PhetPanel {
             } );
             if ( isParentOfVisibleResult.success && isParentOfVisibleResult.value ) {
                 // this is a parent of a visible translation
-                // TODO: abstract out this behavior
-                item.add( new AttributeAppender( "class", true, new Model<String>( "translation-preferred" ), " " ) );
+                item.add( new ClassAppender( "translation-preferred" ) );
             }
 
             boolean visibleToggleShown = translation.allowToggleVisibility( user );
@@ -114,7 +112,7 @@ public class TranslationListPanel extends PhetPanel {
             item.add( new Label( "num-strings", String.valueOf( sizes.get( translation ) ) ) );
             Label visibleLabel = new Label( "visible-label", String.valueOf( translation.isVisible() ? "visible" : "hidden" ) );
             if ( translation.isVisible() ) {
-                visibleLabel.add( new AttributeAppender( "class", true, new Model<String>( "translation-visible" ), " " ) );
+                visibleLabel.add( new ClassAppender( "translation-visible" ) );
             }
             item.add( visibleLabel );
 
@@ -165,7 +163,7 @@ public class TranslationListPanel extends PhetPanel {
             if ( user.isTeamMember() || translation.isUserAuthorized( user ) ) {
                 Label lockLabel = new Label( "locked-label", String.valueOf( translation.isLocked() ? "locked" : "editable" ) );
                 if ( translation.isLocked() ) {
-                    lockLabel.add( new AttributeAppender( "class", true, new Model<String>( "translation-locked" ), " " ) );
+                    lockLabel.add( new ClassAppender( "translation-locked" ) );
                 }
                 item.add( lockLabel );
             }
