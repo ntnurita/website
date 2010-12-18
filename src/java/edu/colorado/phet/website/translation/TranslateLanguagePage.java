@@ -61,7 +61,7 @@ public class TranslateLanguagePage extends TranslationPage {
                                 nonAdminUser = true;
                             }
                         }
-                        if ( nonAdminUser ) {
+                        if ( !nonAdminUser ) {
                             continue;
                         }
                     }
