@@ -75,8 +75,8 @@ public class TranslateLanguagePage extends TranslationPage {
             public Void run( final Session session ) {
                 Collections.sort( translations, new Comparator<Translation>() {
                     public int compare( Translation a, Translation b ) {
-                        boolean ba = a.hasVisibleChild( session );
-                        boolean bb = b.hasVisibleChild( session );
+                        boolean ba = a.isPublished( session );
+                        boolean bb = b.isPublished( session );
                         if ( ba == bb ) { return 0; }
                         return ( ba ? -1 : 1 );
                     }

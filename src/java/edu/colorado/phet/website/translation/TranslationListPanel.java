@@ -81,12 +81,12 @@ public class TranslationListPanel extends PhetPanel {
             final Translation translation = item.getModelObject();
             final PhetUser user = PhetSession.get().getUser();
 
-            if ( translation.hasVisibleChild( getHibernateSession() ) ) {
+            if ( translation.isPublished( getHibernateSession() ) ) {
                 // this is a parent of a visible translation
                 item.add( new ClassAppender( "translation-preferred" ) );
             }
 
-            boolean visibleToggleShown = translation.allowToggleVisibility( user );
+            final boolean visibleToggleShown = translation.allowToggleVisibility( user );
             boolean editShown = translation.allowEdit( user );
             boolean submitShown = translation.allowSubmit( user );
             boolean deleteShown = translation.allowDelete( user );
@@ -95,7 +95,7 @@ public class TranslationListPanel extends PhetPanel {
             item.add( new Label( "id", String.valueOf( translation.getId() ) ) );
             item.add( new Label( "locale", phetLocales.getName( translation.getLocale() ) + " (" + LocaleUtils.localeToString( translation.getLocale() ) + ")" ) );
             item.add( new Label( "num-strings", String.valueOf( sizes.get( translation ) ) ) );
-            Label visibleLabel = new Label( "visible-label", String.valueOf( translation.isVisible() ? "visible" : "hidden" ) );
+            Label visibleLabel = new Label( "visible-label", getTranslationVisibilityString( translation ) );
             if ( translation.isVisible() ) {
                 visibleLabel.add( new ClassAppender( "translation-visible" ) );
             }
@@ -303,6 +303,18 @@ public class TranslationListPanel extends PhetPanel {
             if ( success ) {
                 NotificationHandler.sendTranslationDeletedNotification( id, locale, users );
             }
+        }
+    }
+
+    public String getTranslationVisibilityString( Translation translation ) {
+        if ( translation.isVisible() ) {
+            return "visible";
+        }
+        else if ( translation.isPublished( getHibernateSession() ) ) {
+            return "published";
+        }
+        else {
+            return "hidden";
         }
     }
 

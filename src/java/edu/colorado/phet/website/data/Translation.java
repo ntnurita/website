@@ -23,6 +23,11 @@ public class Translation implements Serializable, IntId {
     private Set translatedStrings = new HashSet();
     private Set authorizedUsers = new HashSet();
 
+    public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[] {
+            PhetWicketApplication.getDefaultLocale(),
+            LocaleUtils.stringToLocale( "ar_SA" )
+    };
+
     /**
      * Whether this translation is globally visible (and shown in the links of translations at the bottom of the page).
      * There can be multiple translations with the same locale, but only ONE of these can be visible.
@@ -63,7 +68,12 @@ public class Translation implements Serializable, IntId {
         return isVisible() && getLocale().equals( PhetWicketApplication.getDefaultLocale() );
     }
 
-    public boolean hasVisibleChild( Session session ) {
+    public boolean isPublished( Session session ) {
+        for ( Locale locale : DIRECTLY_EDITED_LOCALES ) {
+            if ( getLocale().equals( locale ) ) {
+                return isVisible();
+            }
+        }
         Result<Boolean> isParentOfVisibleResult = HibernateUtils.resultCatchTransaction( session, new Task<Boolean>() {
             public Boolean run( Session session ) {
                 Translation t = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
