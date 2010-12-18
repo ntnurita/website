@@ -479,6 +479,7 @@ public class HibernateUtils {
         return transactionCore( session, task, true );
     }
 
+    // TODO: make a version of this that will not print out errors?
     public static <T> Result<T> resultCatchTransaction( Session session, Task<T> task ) {
         return transactionCore( session, task, false );
     }

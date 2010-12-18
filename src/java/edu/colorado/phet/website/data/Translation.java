@@ -78,7 +78,7 @@ public class Translation implements Serializable, IntId {
             public Boolean run( Session session ) {
                 Translation t = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
                         .setLocale( "locale", getLocale() ).uniqueResult();
-                if ( t == null ) {
+                if ( t == null || t.getParent() == null ) {
                     return false;
                 }
                 return t.getParent().getId() == getId();
