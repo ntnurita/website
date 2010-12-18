@@ -1,8 +1,6 @@
 package edu.colorado.phet.website.translation;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -69,6 +67,20 @@ public class TranslateLanguagePage extends TranslationPage {
                     }
                     translations.add( translation );
                 }
+                return null;
+            }
+        } );
+        // sort the translations so that "preferred" simulations are at the top
+        HibernateUtils.resultCatchTransaction( getHibernateSession(), new VoidTask() {
+            public Void run( final Session session ) {
+                Collections.sort( translations, new Comparator<Translation>() {
+                    public int compare( Translation a, Translation b ) {
+                        boolean ba = a.hasVisibleChild( session );
+                        boolean bb = b.hasVisibleChild( session );
+                        if ( ba == bb ) { return 0; }
+                        return ( ba ? -1 : 1 );
+                    }
+                } );
                 return null;
             }
         } );
