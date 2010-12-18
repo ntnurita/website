@@ -127,6 +127,7 @@ public class TranslateLanguagePage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( locale ) );
 
                 NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, PhetSession.get().getUser() );
+                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), translation );
 
                 setResponsePage( TranslationEditPage.class, params );
             }
@@ -198,6 +199,7 @@ public class TranslateLanguagePage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( ret[0].getLocale() ) );
 
                 NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), PhetSession.get().getUser(), translation.getId() );
+                NotificationHandler.sendCreationNotificationToTranslators( getHibernateSession(), ret[0] );
 
                 setResponsePage( TranslationEditPage.class, params );
             }

@@ -23,7 +23,7 @@ import edu.colorado.phet.website.util.hibernate.TaskException;
 
 public class NewsletterUtils {
 
-    private static final String THANKYOU_MESSAGE = "<p><br/>Thanks,<br/>" +
+    public static final String THANKYOU_MESSAGE = "<p><br/>Thanks,<br/>" +
                                                    "The PhET Team<br/>" +
                                                    "<a href=\"http://phet.colorado.edu\">http://phet.colorado.edu</a></p>";
 

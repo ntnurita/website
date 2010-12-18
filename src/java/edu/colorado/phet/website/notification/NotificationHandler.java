@@ -6,6 +6,7 @@ import javax.mail.BodyPart;
 import javax.mail.MessagingException;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
 
@@ -17,11 +18,13 @@ import edu.colorado.phet.website.constants.NotificationEmails;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.NotificationEvent;
 import edu.colorado.phet.website.data.PhetUser;
+import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.data.contribution.ContributionComment;
 import edu.colorado.phet.website.data.contribution.ContributionNomination;
 import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
+import edu.colorado.phet.website.newsletter.NewsletterUtils;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
@@ -30,6 +33,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Handles email notification of events that should be reviewed by the PhET team
@@ -157,10 +161,10 @@ public class NotificationHandler {
     private static final String TRANSLATION_NOTIFICATION_FOOTER = "<p>Replying to this email will send the response to the translation creator(s).</p>";
 
     private static String getTranslationSubject( String action, int id, Locale locale ) {
-        return "Website Translation #" + id + " (" + LocaleUtils.localeToString( locale ) + ") " + action;
+        return "PhET Website Translation #" + id + " (" + LocaleUtils.localeToString( locale ) + ") " + action;
     }
 
-    private static boolean sendTranslationNotificationCore( String action, String body, int id, Locale locale, Collection<PhetUser> users ) {
+    private static boolean sendInternalTranslationNotificationCore( String action, String body, int id, Locale locale, Collection<PhetUser> users ) {
         if ( !PhetRequestCycle.get().isForProductionServer() ) {
             logger.info( "not sending translation email because we are not on the production server" );
             return true; // fail out gracefully if we are not the production server
@@ -188,27 +192,73 @@ public class NotificationHandler {
         }
     }
 
+    /**
+     * Send an email to all translators who are editors of a translation with the same locale
+     */
+    public static void sendCreationNotificationToTranslators( Session session, final Translation translation ) {
+        // TODO: add in
+//        if ( !PhetRequestCycle.get().isForProductionServer() ) {
+//            logger.info( "not sending translation email because we are not on the production server" );
+//            return true; // fail out gracefully if we are not the production server
+//        }
+
+        String subject = getTranslationSubject( "created", translation.getId(), translation.getLocale() );
+
+        final Set<PhetUser> translators = new HashSet<PhetUser>();
+
+        HibernateUtils.wrapTransaction( session, new VoidTask() {
+            public Void run( Session session ) {
+                List list = session.createQuery( "select t from Translation as t where t.locale = :locale" )
+                        .setLocale( "locale", translation.getLocale() ).list();
+                for ( Object o : list ) {
+                    Translation otherTranslation = (Translation) o;
+                    translators.addAll( otherTranslation.getAuthorizedUsers() );
+                }
+                return null;
+            }
+        } );
+
+        for ( PhetUser user : translators ) {
+            try {
+                EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, TRANSLATION_NOTIFICATION_FROM );
+
+                message.addRecipient( user.getEmail() );
+                message.setBody(
+                        "<p>A translation was created for the language " + StringUtils.getLocaleTitle( translation.getLocale(), PhetWicketApplication.getDefaultLocale(), PhetLocalizer.get() ) + " with the id #" + translation.getId() + "</p>" +
+                        "<p>You received this email because you are marked as a translator for a translation with the same language.</p>" +
+                        NewsletterUtils.THANKYOU_MESSAGE
+                );
+
+                logger.info( "Sending automatic translation notification to " + user.getEmail() );
+                EmailUtils.sendMessage( message );
+            }
+            catch ( MessagingException e ) {
+                logger.warn( "Email failure on attempting to notify of translation creation to user " + user.getEmail(), e );
+            }
+        }
+    }
+
     public static boolean sendTranslationCreatedNotification( int id, Locale locale, PhetUser user ) {
         String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
         List<PhetUser> users = new LinkedList<PhetUser>();
         users.add( user );
-        return sendTranslationNotificationCore( "created", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
+        return sendInternalTranslationNotificationCore( "created", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
     public static boolean sendTranslationCreatedBasedOnNotification( int id, Locale locale, PhetUser user, int oldId ) {
         String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
         List<PhetUser> users = new LinkedList<PhetUser>();
         users.add( user );
-        return sendTranslationNotificationCore( "created based on #" + oldId, "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
+        return sendInternalTranslationNotificationCore( "created based on #" + oldId, "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
     public static boolean sendTranslationSubmittedNotification( int id, Locale locale, Collection<PhetUser> users ) {
         String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
-        return sendTranslationNotificationCore( "submitted", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
+        return sendInternalTranslationNotificationCore( "submitted", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
     public static boolean sendTranslationDeletedNotification( int id, Locale locale, Collection<PhetUser> users ) {
-        return sendTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + PhetSession.get().getUser().getEmail() + "</p>", id, locale, users );
+        return sendInternalTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + PhetSession.get().getUser().getEmail() + "</p>", id, locale, users );
     }
 
     public static boolean sendTranslationRequestForCollaboration( int id, Locale locale, List<PhetUser> users, PhetUser currentUser, String translatorMessageString ) {
