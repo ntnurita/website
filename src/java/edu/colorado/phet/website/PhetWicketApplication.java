@@ -205,7 +205,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/sim-jar-redirect", SimJarRedirectPage.class );
         mountBookmarkablePage( "services/sim-jar-redirect.php", SimJarRedirectPage.class );
         mountBookmarkablePage( "services/get-string", StringGetter.class );
-        mountBookmarkablePage( "services/nc-info", NCInformationPage.class );
+        mountBookmarkablePage( "services/nc-info.csv", NCInformationPage.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
 
         // FOR XSS TESTING

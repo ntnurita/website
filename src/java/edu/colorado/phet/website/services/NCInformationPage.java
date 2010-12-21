@@ -1,5 +1,6 @@
 package edu.colorado.phet.website.services;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,7 +8,11 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.content.simulations.SimulationPage;
+import edu.colorado.phet.website.data.Category;
+import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -35,7 +40,7 @@ public class NCInformationPage extends WebPage {
 
         // simulations
         HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new VoidTask() {
-            public Void run( Session session ) {
+            public Void run( final Session session ) {
                 List list = session.createQuery( "select s from Simulation as s" ).list();
                 List<Simulation> simulations = new LinkedList<Simulation>( list );
                 for ( Simulation simulation : simulations ) {
@@ -46,34 +51,71 @@ public class NCInformationPage extends WebPage {
                                 column( english.getTitle() );
                                 break;
                             case DESCRIPTION:
-                                column( PhetLocalizer.get().getDefaultString( session, simulation.getDescriptionKey(), "", true ) );
+                                column( lookup( session, simulation.getDescriptionKey() ) );
                                 break;
                             case KEYWORDS:
-                                emptyColumn();
+                                column( generalMap( simulation.getKeywords(), new Stringifier<Keyword>() {
+                                    public String stringify( Keyword keyword ) {
+                                        return lookup( session, keyword.getLocalizationKey() );
+                                    }
+                                } ) );
                                 break;
                             case SUBJECT:
-                                emptyColumn();
+                                column( generalMap( simulation.getCategories(), new Stringifier<Category>() {
+                                    public String stringify( Category category ) {
+                                        if (
+                                                category.getName().equals( "elementary-school" )
+                                                || category.getName().equals( "middle-school" )
+                                                || category.getName().equals( "high-school" )
+                                                || category.getName().equals( "university" )
+                                                ) {
+                                            return null;
+                                        }
+                                        return lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
+                                    }
+                                } ) );
                                 break;
                             case RESOURCE_TYPE:
-                                emptyColumn();
+                                column( "Simulation" );
                                 break;
                             case EDUCATION_LEVEL:
-                                emptyColumn();
+                                column( generalMap( simulation.getCategories(), new Stringifier<Category>() {
+                                    public String stringify( Category category ) {
+                                        if (
+                                                category.getName().equals( "elementary-school" )
+                                                || category.getName().equals( "middle-school" )
+                                                || category.getName().equals( "high-school" )
+                                                || category.getName().equals( "university" )
+                                                ) {
+                                            return lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
+                                        }
+                                        return null;
+                                    }
+                                } ) );
                                 break;
                             case LANGUAGE:
-                                emptyColumn();
+                                column( generalMap( simulation.getLocalizedSimulations(), new Stringifier<LocalizedSimulation>() {
+                                    public String stringify( LocalizedSimulation lsim ) {
+                                        return lsim.getLocale().getDisplayName();
+                                    }
+                                } ) );
                                 break;
                             case CREATION_DATE:
-                                emptyColumn();
+                                if ( simulation.getCreateTime() != null ) {
+                                    column( simulation.getCreateTime().toString() );
+                                }
+                                else {
+                                    emptyColumn();
+                                }
                                 break;
                             case PUBLICLY_ACCESSIBLE:
-                                emptyColumn();
+                                column( "http://phet.colorado.edu" + SimulationPage.getLinker( simulation ).getDefaultRawUrl() );
                                 break;
                             case COPYRIGHT:
-                                emptyColumn();
+                                column( "University of Colorado" );
                                 break;
                             case DRM:
-                                emptyColumn();
+                                column( "no" );
                                 break;
                         }
                     }
@@ -88,6 +130,27 @@ public class NCInformationPage extends WebPage {
         }} );
 
         getResponse().setContentType( "text/csv" );
+    }
+
+    private String lookup( Session session, String key ) {
+        return PhetLocalizer.get().getDefaultString( session, key, "", true );
+    }
+
+    private <T> String generalMap( Collection collection, Stringifier<T> stringifier ) {
+        StringBuffer buf = new StringBuffer();
+        int count = 0;
+        for ( Object o : collection ) {
+            if ( o != null ) {
+                String toAdd = stringifier.stringify( (T) o );
+                if ( toAdd != null ) {
+                    toAdd = toAdd.replace( ",", "" );
+                    if ( count > 0 ) {buf.append( "," );}
+                    buf.append( toAdd ); // get rid of commas
+                    count++;
+                }
+            }
+        }
+        return buf.toString();
     }
 
     private int columnsPrinted = 0;
@@ -113,6 +176,10 @@ public class NCInformationPage extends WebPage {
             columnsPrinted = 0;
         }
     }
+}
+
+interface Stringifier<T> {
+    public String stringify( T ob );
 }
 
 enum Column {
