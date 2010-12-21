@@ -82,9 +82,7 @@ public class TranslateEntityPanel extends PhetPanel {
                 stringModelMap.put( tString.getKey(), model );
 
                 if ( tString.getNotes() == null ) {
-                    Label label = new Label( "translation-string-notes", "UNSEEN" );
-                    label.setVisible( false );
-                    item.add( label );
+                    item.add( new InvisibleComponent( "translation-string-notes" ) );
                 }
                 else {
                     Label label = new Label( "translation-string-notes", tString.getNotes() );
