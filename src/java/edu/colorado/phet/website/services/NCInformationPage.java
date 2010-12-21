@@ -10,11 +10,15 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.contribution.Contribution;
+import edu.colorado.phet.website.data.contribution.ContributionLevel;
+import edu.colorado.phet.website.data.contribution.ContributionSubject;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -44,6 +48,9 @@ public class NCInformationPage extends WebPage {
                 List list = session.createQuery( "select s from Simulation as s" ).list();
                 List<Simulation> simulations = new LinkedList<Simulation>( list );
                 for ( Simulation simulation : simulations ) {
+                    if ( !simulation.isVisible() ) {
+                        continue;
+                    }
                     LocalizedSimulation english = simulation.getEnglishSimulation();
                     for ( Column column : Column.values() ) {
                         switch( column ) {
@@ -125,6 +132,63 @@ public class NCInformationPage extends WebPage {
             }
         } );
 
+        // activities
+        HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new VoidTask() {
+            public Void run( final Session session ) {
+                List list = session.createQuery( "select c from Contribution as c" ).list();
+                List<Contribution> contributions = new LinkedList<Contribution>( list );
+                for ( Contribution contribution : contributions ) {
+                    for ( Column column : Column.values() ) {
+                        switch( column ) {
+                            case TITLE:
+                                column( contribution.getTitle() );
+                                break;
+                            case DESCRIPTION:
+                                column( contribution.getDescription() );
+                                break;
+                            case KEYWORDS:
+                                column( contribution.getKeywords() );
+                                break;
+                            case SUBJECT:
+                                column( generalMap( contribution.getSubjects(), new Stringifier<ContributionSubject>() {
+                                    public String stringify( ContributionSubject cSubject ) {
+                                        return lookup( session, cSubject.getSubject().getTranslationKey() );
+                                    }
+                                } ) );
+                                break;
+                            case RESOURCE_TYPE:
+                                column( "Contributed Activity" );
+                                break;
+                            case EDUCATION_LEVEL:
+                                column( generalMap( contribution.getLevels(), new Stringifier<ContributionLevel>() {
+                                    public String stringify( ContributionLevel level ) {
+                                        return lookup( session, level.getLevel().getTranslationKey() );
+                                    }
+                                } ) );
+                                break;
+                            case LANGUAGE:
+                                column( contribution.getLocale().getDisplayName() );
+                                break;
+                            case CREATION_DATE:
+                                column( contribution.getDateCreated().toString() );
+                                break;
+                            case PUBLICLY_ACCESSIBLE:
+                                column( "http://phet.colorado.edu" + ContributionPage.getLinker( contribution ).getDefaultRawUrl() );
+                                break;
+                            case COPYRIGHT:
+                                column( contribution.getPhetUser().getName() );
+                                break;
+                            case DRM:
+                                column( "no" );
+                                break;
+                        }
+                    }
+                    betweenLines();
+                }
+                return null;
+            }
+        } );
+
         add( new RawLabel( "text", str.toString() ) {{
             setRenderBodyOnly( true );
         }} );
@@ -133,7 +197,7 @@ public class NCInformationPage extends WebPage {
     }
 
     private String lookup( Session session, String key ) {
-        return PhetLocalizer.get().getDefaultString( session, key, "", true );
+        return PhetLocalizer.get().getDefaultString( session, key, "", true ).replace( "&#039;", "'" ).replace( "&quot;", "\"" ).replace( "&amp;", "&" ).replace( "&lt;", "<" ).replace( "&gt;", ">" );
     }
 
     private <T> String generalMap( Collection collection, Stringifier<T> stringifier ) {
