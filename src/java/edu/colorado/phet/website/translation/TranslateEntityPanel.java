@@ -85,8 +85,10 @@ public class TranslateEntityPanel extends PhetPanel {
                     item.add( new InvisibleComponent( "translation-string-notes" ) );
                 }
                 else {
-                    Label label = new Label( "translation-string-notes", tString.getNotes() );
-                    item.add( label );
+                    item.add( new Label( "translation-string-notes", tString.getNotes() ) {{
+                        // allow customization of CSS for each string note
+                        add( new ClassAppender( "string-note-" + tString.getKey().replace( '.', '-' ) ) );
+                    }} );
                 }
 
                 item.add( new Label( "translation-string-key", tString.getKey() ) );
