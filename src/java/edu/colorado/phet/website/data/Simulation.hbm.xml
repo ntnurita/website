@@ -40,5 +40,7 @@
             <many-to-many class="edu.colorado.phet.website.data.contribution.Contribution" column="contribution_id"/>
         </set>
         <property name="oldId"/>
+        <property name="createTime" type="timestamp"/>
+        <property name="updateTime" type="timestamp"/>
     </class>
 </hibernate-mapping>

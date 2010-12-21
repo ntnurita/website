@@ -34,6 +34,9 @@ public class Simulation implements Serializable, IntId {
      */
     private int oldId;
 
+    private Date createTime;
+    private Date updateTime;
+
     public static final String DEFAULT_DESCRIPTION = "Description coming soon";
     public static final String DEFAULT_LEARNING_GOALS = "Learning goals coming soon";
 
@@ -260,5 +263,21 @@ public class Simulation implements Serializable, IntId {
 
     public void setOldId( int oldId ) {
         this.oldId = oldId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime( Date createTime ) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime( Date updateTime ) {
+        this.updateTime = updateTime;
     }
 }
