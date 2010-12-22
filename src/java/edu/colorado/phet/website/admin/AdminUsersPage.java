@@ -81,6 +81,15 @@ public class AdminUsersPage extends AdminPage {
                     public Void run( Session session ) {
                         PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" )
                                 .setString( "email", getEmailAddress() ).uniqueResult();
+
+                        { // delete password requests
+                            List reqs = session.createQuery( "select r from ResetPasswordRequest as r where r.phetUser = :user" )
+                                    .setEntity( "user", user ).list();
+                            for ( Object req : reqs ) {
+                                session.delete( req );
+                            }
+                        }
+
                         session.delete( user );
                         return null;
                     }
