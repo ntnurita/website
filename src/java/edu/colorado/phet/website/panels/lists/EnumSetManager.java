@@ -8,6 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -120,8 +121,13 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
     }
 
 
-    public SortedList<ListItem<E>> getComponent( String id, PageContext context ) {
+    public SortedList<ListItem<E>> getComponent( final String id, PageContext context ) {
         return new SortedList<ListItem<E>>( id, context, items, allItems ) {
+            {
+                setOutputMarkupId( true );
+                setMarkupId( "enum-manager-" + HtmlUtils.sanitizeId( id ) );
+            }
+
             public boolean onItemAdd( final ListItem item ) {
                 for ( ListItem oldItem : items ) {
                     if ( oldItem.getId() == item.getId() ) {

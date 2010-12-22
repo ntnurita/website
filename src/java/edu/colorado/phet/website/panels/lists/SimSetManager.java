@@ -6,6 +6,7 @@ import java.util.*;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -71,8 +72,13 @@ public abstract class SimSetManager implements Serializable {
         }
     }
 
-    public SortedList<SimOrderItem> getComponent( String id, PageContext context ) {
+    public SortedList<SimOrderItem> getComponent( final String id, PageContext context ) {
         return new SortedList<SimOrderItem>( id, context, items, allItems ) {
+            {
+                setOutputMarkupId( true );
+                setMarkupId( "sim-manager-" + HtmlUtils.sanitizeId( id ) );
+            }
+
             public boolean onItemAdd( final SimOrderItem item ) {
                 for ( SimOrderItem oldItem : items ) {
                     if ( oldItem.getId() == item.getId() ) {

@@ -15,6 +15,7 @@ import edu.colorado.phet.website.components.VisListView;
 import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 
@@ -27,6 +28,8 @@ public class NavMenuList extends PhetPanel {
             protected void populateItem( ListItem item ) {
                 NavLocation location = (NavLocation) item.getModel().getObject();
                 Link link = location.getLink( "link", context, (PhetRequestCycle) getRequestCycle() );
+                link.setMarkupId( "nav-location-" + HtmlUtils.sanitizeId( location.getBaseKey() ) );
+                link.setOutputMarkupId( true );
 
                 RawLabel label = new RawLabel( "link-label", new ResourceModel( location.getLocalizationKey() ) );
 

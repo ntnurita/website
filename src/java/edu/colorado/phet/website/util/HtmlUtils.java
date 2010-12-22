@@ -44,7 +44,7 @@ public class HtmlUtils {
      * Encodes a string into an HTML-escaped version (attribute version, skips ampersands).
      * <p/>
      * Escaping other things is just to appease the Nessus monster. This will cause jibberish for <>'s.
-     *
+     * <p/>
      * NOTE: Not suitable for encoding if JS is going to be involved!
      *
      * @param s String to encode
@@ -77,5 +77,9 @@ public class HtmlUtils {
             }
         }
         return buf.toString();
+    }
+
+    public static String sanitizeId( String id ) {
+        return id.replace( '.', '-' );
     }
 }
