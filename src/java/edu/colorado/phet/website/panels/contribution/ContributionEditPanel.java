@@ -373,14 +373,14 @@ public class ContributionEditPanel extends PhetPanel {
 
                     for ( Object sim : selectedSims ) {
                         if ( !containsId( sims, sim ) ) {
-                            logger.info( "adding sim " + ( (Simulation) sim ).getName() + " to contribution" );
+                            logger.debug( "adding sim " + ( (Simulation) sim ).getName() + " to contribution" );
                             contribution.addSimulation( (Simulation) session.load( Simulation.class, ( (Simulation) sim ).getId() ) );
                         }
                     }
 
                     for ( Object sim : iterSims ) {
                         if ( !containsId( selectedSims, sim ) ) {
-                            logger.info( "removing sim " + ( (Simulation) sim ).getName() + " from contribution" );
+                            logger.debug( "removing sim " + ( (Simulation) sim ).getName() + " from contribution" );
                             contribution.removeSimulation( (Simulation) sim );
                         }
                     }
@@ -403,7 +403,7 @@ public class ContributionEditPanel extends PhetPanel {
                         if ( exists ) {
                             continue;
                         }
-                        logger.info( "adding type " + type + " to contribution" );
+                        logger.debug( "adding type " + type + " to contribution" );
                         ContributionType ctype = new ContributionType();
                         ctype.setType( type );
                         contribution.addType( ctype );
@@ -436,7 +436,7 @@ public class ContributionEditPanel extends PhetPanel {
                         if ( exists ) {
                             continue;
                         }
-                        logger.info( "adding level " + level + " to contribution" );
+                        logger.debug( "adding level " + level + " to contribution" );
                         ContributionLevel clevel = new ContributionLevel();
                         clevel.setLevel( level );
                         contribution.addLevel( clevel );
@@ -469,7 +469,7 @@ public class ContributionEditPanel extends PhetPanel {
                         if ( exists ) {
                             continue;
                         }
-                        logger.info( "adding subject " + subject + " to contribution" );
+                        logger.debug( "adding subject " + subject + " to contribution" );
                         ContributionSubject csubject = new ContributionSubject();
                         csubject.setSubject( subject );
                         contribution.addSubject( csubject );
