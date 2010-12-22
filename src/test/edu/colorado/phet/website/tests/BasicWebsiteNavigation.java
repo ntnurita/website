@@ -81,6 +81,59 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
         assert ( selenium.getBodyText().contains( "Circuit Construction Kit" ) );
     }
 
+    @Test
+    public void testContributionCreateDelete() throws Exception {
+        selenium.open( "/" );
+        selenium.click( "sign-in-link" );
+        selenium.waitForPageToLoad( "30000" );
+        selenium.type( "username", "" );
+        selenium.type( "username", "test@phet.colorado.edu" );
+        selenium.type( "password", "test-password" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        selenium.click( "home-submit-activity-link" );
+        selenium.waitForPageToLoad( "30000" );
+        selenium.click( "//a[@id='nav-location-nav-teacherIdeas-submit']/span" );
+        selenium.waitForPageToLoad( "30000" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "Please enter a title for the contribution" ) );
+        selenium.type( "cep-title", "Sample Title" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "Please enter keywords for the contribution" ) );
+        selenium.type( "cep-keywords", "key1,key2" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "The activity must reference at least one simulation" ) );
+        selenium.select( "options6", "label=Acid-Base Solutions" );
+        selenium.click( "//option[@value='100']" );
+        selenium.click( "button7" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "The activity must specify at least one type" ) );
+        selenium.select( "options9", "label=Concept Questions" );
+        selenium.click( "//select[@id='options9']/option[2]" );
+        selenium.click( "buttona" );
+        selenium.select( "optionsc", "label=Graduate" );
+        selenium.click( "//select[@id='optionsc']/option[2]" );
+        selenium.click( "buttond" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "The activity must contain at least one file." ) );
+        selenium.type( "upload3", "/home/jon/tmp/upload.pdf" );
+        selenium.click( "submit" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "Update Success" ) );
+        selenium.click( "link=Continue to the activity >>" );
+        selenium.waitForPageToLoad( "30000" );
+        verifyTrue( selenium.isTextPresent( "Sample Title" ) );
+        selenium.click( "//a[@id='nav-location-nav-teacherIdeas-manage']/span" );
+        selenium.waitForPageToLoad( "30000" );
+        selenium.click( "link=delete" );
+        selenium.waitForPageToLoad( "30000" );
+    }
+
     @After
     public void tearDown() throws Exception {
         selenium.stop();

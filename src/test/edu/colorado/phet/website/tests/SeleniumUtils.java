@@ -20,7 +20,7 @@ public class SeleniumUtils {
     public static final int PORT = 4444;
 
     public static Selenium createDefaultSelenium() {
-        return new DefaultSelenium( "localhost", SeleniumUtils.PORT, "*firefox", "http://" + SeleniumUtils.WEB_SERVER + "/" );
+        return new DefaultSelenium( "localhost", SeleniumUtils.PORT, "*chrome", "http://" + SeleniumUtils.WEB_SERVER + "/" );
     }
 
     public static String getString( String key ) {
