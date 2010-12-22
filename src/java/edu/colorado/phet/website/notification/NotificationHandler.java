@@ -228,8 +228,9 @@ public class NotificationHandler {
                 }
                 else {
                     message.setBody(
-                            "<p>A translation was created for the language " + language + " with the id #" + translation.getId() + "</p>" +
-                            "<p>You received this email because you are marked as a translator for a translation with the same language.</p>" +
+                            "<p>A new translation was created for the language " + language + " with the id #" + translation.getId() + "</p>" +
+                            "<p>You received this email because you are marked as a translator for a translation with the same language. You can contact the author of this new translation through the PhET website translation manager.</p>" +
+                            "<p>Since we can only publish one translation per language, we encourage you to collaborate on one translation in your language.</p>" +
                             NewsletterUtils.THANKYOU_MESSAGE
                     );
                 }
