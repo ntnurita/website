@@ -321,6 +321,9 @@ public class Project implements Serializable, IntId {
                                 simulation.setGuidanceRecommended( false );
                                 simulation.setClassroomTested( false );
                                 simulation.setSimulationVisible( false );
+                                Date currentDate = new Date();
+                                simulation.setCreateTime( currentDate );
+                                simulation.setUpdateTime( currentDate );
                                 createdSims.add( simulation );
                                 simulationCache.put( simName, simulation );
                                 englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
