@@ -214,7 +214,7 @@ public class ContributionEditPanel extends PhetPanel {
             setOutputMarkupId( true );
 
             setMultiPart( true );
-            setMaxSize( Bytes.megabytes( 64 ) );
+            setMaxSize( Bytes.megabytes( 512 ) );
 
             add( new RequiredTextField<String>( "authors" ) );
             add( new RequiredTextField<String>( "authorOrganization" ) );
