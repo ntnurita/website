@@ -16,6 +16,7 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.SignInPage;
+import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
@@ -94,6 +95,13 @@ public class TranslateLanguagePage extends TranslationPage {
 
         add( new CopyTranslationForm( "create-version-translation-form", translationList.getTranslations() ) );
 
+        if ( translations.isEmpty() ) {
+            add( new InvisibleComponent( "no-strings-translated" ) );
+        }
+        else {
+            add( new Label( "no-strings-translated", "This will create a translation with no strings translated." ) );
+        }
+
     }
 
     private class CreateTranslationForm extends Form {
@@ -137,7 +145,7 @@ public class TranslateLanguagePage extends TranslationPage {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
                                 NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, user );
-                                NotificationHandler.sendCreationNotificationToTranslators( session, translation );
+                                NotificationHandler.sendCreationNotificationToTranslators( session, translation, PhetSession.get().getUser() );
                             }
                             finally {
                                 session.close();
@@ -224,7 +232,7 @@ public class TranslateLanguagePage extends TranslationPage {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
                                 NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), user, translation.getId() );
-                                NotificationHandler.sendCreationNotificationToTranslators( session, ret[0] );
+                                NotificationHandler.sendCreationNotificationToTranslators( session, ret[0], PhetSession.get().getUser() );
                             }
                             finally {
                                 session.close();
