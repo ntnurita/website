@@ -1,5 +1,7 @@
 package edu.colorado.phet.website.tests;
 
+import javax.swing.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -121,11 +123,16 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
         selenium.click( "submit" );
         selenium.waitForPageToLoad( "30000" );
         verifyTrue( selenium.isTextPresent( "The activity must contain at least one file." ) );
-        selenium.type( "upload3", "/home/jon/tmp/upload.pdf" );
+
+//        selenium.focus( "upload3" );
+
+        JOptionPane.showMessageDialog( null, "Please select a file, then click here" );
+
         selenium.click( "submit" );
         selenium.waitForPageToLoad( "30000" );
+        Thread.sleep( 1000 );
         verifyTrue( selenium.isTextPresent( "Update Success" ) );
-        selenium.click( "link=Continue to the activity >>" );
+        selenium.click( "continue-to-the-activity" );
         selenium.waitForPageToLoad( "30000" );
         verifyTrue( selenium.isTextPresent( "Sample Title" ) );
         selenium.click( "//a[@id='nav-location-nav-teacherIdeas-manage']/span" );
