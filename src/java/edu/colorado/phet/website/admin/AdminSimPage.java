@@ -137,8 +137,6 @@ public class AdminSimPage extends AdminPage {
         add( new ClassroomTestedForm( "classroom-tested" ) );
         add( new VisibleForm( "simulation-visibility" ) );
 
-        add( new KilobytesForm( "kilobytes" ) );
-
         add( new ModifyTranslationForm( "add-set-translation" ) );
 
         add( new ListView<LocalizedSimulation>( "translation-list", localizedSimulations ) {
@@ -870,37 +868,6 @@ public class AdminSimPage extends AdminPage {
             super.onSubmit();
             Boolean v = checkbox.getModelObject();
             handle( v );
-        }
-    }
-
-    private class KilobytesForm extends Form {
-        private TextField textfield;
-
-        private KilobytesForm( String id ) {
-            super( id );
-
-            textfield = new StringTextField( "value", new Model<String>( Integer.toString( simulation.getKilobytes() ) ) );
-            add( textfield );
-        }
-
-        @Override
-        protected void onSubmit() {
-            super.onSubmit();
-            try {
-                final int kilobytes = Integer.valueOf( textfield.getModelObject().toString() );
-                HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                    public boolean run( Session session ) {
-                        Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
-                        sim.setKilobytes( kilobytes );
-                        session.update( sim );
-                        return true;
-                    }
-                } );
-            }
-            catch ( NumberFormatException e ) {
-                // silent failure
-            }
-
         }
     }
 
