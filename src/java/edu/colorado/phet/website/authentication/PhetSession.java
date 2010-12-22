@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.wicket.Request;
 import org.apache.wicket.Session;
@@ -12,10 +13,7 @@ import org.hibernate.Query;
 
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.util.PhetRequestCycle;
-import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.Result;
-import edu.colorado.phet.website.util.hibernate.Task;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
+import edu.colorado.phet.website.util.hibernate.*;
 
 public class PhetSession extends WebSession {
 
@@ -82,6 +80,9 @@ public class PhetSession extends WebSession {
                 query.setString( "compatiblePassword", compatibleHash );
 
                 PhetUser user = (PhetUser) query.uniqueResult();
+                if ( user == null ) {
+                    throw new TaskException( "User does not exist", Level.DEBUG );
+                }
                 if ( user.getConfirmationKey() == null ) {
                     // for old users without confirmation keys
                     user.setConfirmationKey( PhetUser.generateConfirmationKey() );
