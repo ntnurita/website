@@ -214,7 +214,7 @@ public class ContributionEditPanel extends PhetPanel {
             setOutputMarkupId( true );
 
             setMultiPart( true );
-            setMaxSize( Bytes.megabytes( 512 ) );
+            setMaxSize( Bytes.megabytes( ( PhetSession.get().getUser().isTeamMember() ? 1048576 : 64 ) ) ); // 1 TB for team members, 64 MB for others
 
             add( new RequiredTextField<String>( "authors" ) );
             add( new RequiredTextField<String>( "authorOrganization" ) );
