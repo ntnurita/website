@@ -193,6 +193,8 @@ public class Project implements Serializable, IntId {
         boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
             public boolean run( Session session ) {
                 try {
+                    boolean projectDirty = false; // whether things are actually getting updated. will stay false if nothing changed
+
                     File projectRoot = new File( docRoot, "sims/" + projectName );
                     if ( !projectRoot.exists() ) {
                         syncLogger.warn( "Project root " + projectRoot.getAbsolutePath() + " for project " + projectName + " does not exist" );
@@ -227,35 +229,41 @@ public class Project implements Serializable, IntId {
                         project.setName( projectName );
                         project.setVisible( false );
                         project.setType( type );
+                        projectDirty = true;
                     }
 
                     ProjectPropertiesFile projectProperties = project.getProjectPropertiesFile( docRoot );
                     if ( project.versionMajor != projectProperties.getMajorVersion() ) {
                         syncLogger.info( "Updating Major to " + projectProperties.getMajorVersion() );
                         project.setVersionMajor( projectProperties.getMajorVersion() );
+                        projectDirty = true;
                     }
                     if ( project.versionMinor != projectProperties.getMinorVersion() ) {
                         syncLogger.info( "Updating Minor to " + projectProperties.getMinorVersion() );
                         project.setVersionMinor( projectProperties.getMinorVersion() );
+                        projectDirty = true;
                     }
                     if ( project.versionDev != projectProperties.getDevVersion() ) {
                         syncLogger.info( "Updating Dev to " + projectProperties.getDevVersion() );
                         project.setVersionDev( projectProperties.getDevVersion() );
+                        projectDirty = true;
                     }
                     if ( project.versionRevision != projectProperties.getSVNVersion() ) {
                         syncLogger.info( "Updating Revision to " + projectProperties.getSVNVersion() );
                         project.setVersionRevision( projectProperties.getSVNVersion() );
+                        projectDirty = true;
                     }
                     if ( project.versionTimestamp != projectProperties.getVersionTimestamp() ) {
                         syncLogger.info( "Updating Timestamp to " + projectProperties.getVersionTimestamp() );
                         project.setVersionTimestamp( projectProperties.getVersionTimestamp() );
+                        projectDirty = true;
                     }
 
                     // used so we know which simulations we have already encountered
                     Map<String, Simulation> simulationCache = new HashMap<String, Simulation>();
 
                     // used for session save / update at the end
-                    List<Simulation> modifiedSims = new LinkedList<Simulation>();
+                    List<Simulation> nonCreatedSims = new LinkedList<Simulation>();
                     List<Simulation> createdSims = new LinkedList<Simulation>();
                     List<LocalizedSimulation> modifiedLSims = new LinkedList<LocalizedSimulation>();
                     List<LocalizedSimulation> createdLSims = new LinkedList<LocalizedSimulation>();
@@ -321,19 +329,17 @@ public class Project implements Serializable, IntId {
                                 simulation.setGuidanceRecommended( false );
                                 simulation.setClassroomTested( false );
                                 simulation.setSimulationVisible( false );
-                                Date currentDate = new Date();
-                                simulation.setCreateTime( currentDate );
-                                simulation.setUpdateTime( currentDate );
                                 createdSims.add( simulation );
                                 simulationCache.put( simName, simulation );
                                 englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
                                 englishStringsToAdd.put( simulation.getLearningGoalsKey(), Simulation.DEFAULT_LEARNING_GOALS );
+                                projectDirty = true;
                             }
                             else {
                                 simulation = (Simulation) slist.get( 0 );
                                 simulationCache.put( simName, simulation );
                                 missedSimulations.remove( simulation );
-                                modifiedSims.add( simulation );
+                                nonCreatedSims.add( simulation );
                                 syncLogger.debug( "Found simulation " + simulation.getName() );
                                 if ( simulation.getProject().getId() != project.getId() ) {
                                     syncLogger.warn( "Found simulation " + simulation.getName() + " specified with a different project " + simulation.getProject().getName() + " instead of " + project.getName() + "." );
@@ -363,6 +369,7 @@ public class Project implements Serializable, IntId {
                             lsim.setSimulation( simulation );
                             lsim.setTitle( simTitle );
                             lsim.setLocale( simLocale );
+                            projectDirty = true;
                         }
                         else {
                             LocalizedSimulation lsim = (LocalizedSimulation) llist.get( 0 );
@@ -371,6 +378,7 @@ public class Project implements Serializable, IntId {
                                 syncLogger.info( "Changing lsim title for " + lsim.getSimulation().getName() + " and locale " + simLocaleString + " from '" + lsim.getTitle() + "' to '" + simTitle + "'" );
                                 lsim.setTitle( simTitle );
                                 modifiedLSims.add( lsim );
+                                projectDirty = true;
                             }
                         }
 
@@ -394,6 +402,8 @@ public class Project implements Serializable, IntId {
                         logger.warn( "Visit the simulation page(s) to manually remove translations" );
                     }
 
+                    Date currentTime = new Date();
+
                     // save the project
                     if ( projectExisted ) {
                         session.update( project );
@@ -402,13 +412,18 @@ public class Project implements Serializable, IntId {
                         session.save( project );
                     }
 
-                    for ( Simulation sim : modifiedSims ) {
+                    for ( Simulation sim : nonCreatedSims ) {
+                        if ( projectDirty ) { // only set the update time if we made modifications
+                            sim.setUpdateTime( currentTime );
+                        }
                         session.update( sim );
                     }
                     for ( LocalizedSimulation lsim : modifiedLSims ) {
                         session.update( lsim );
                     }
                     for ( Simulation sim : createdSims ) {
+                        sim.setCreateTime( currentTime );
+                        sim.setUpdateTime( currentTime );
                         session.save( sim );
                     }
                     for ( LocalizedSimulation lsim : createdLSims ) {
