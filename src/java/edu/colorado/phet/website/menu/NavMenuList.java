@@ -28,7 +28,7 @@ public class NavMenuList extends PhetPanel {
             protected void populateItem( ListItem item ) {
                 NavLocation location = (NavLocation) item.getModel().getObject();
                 Link link = location.getLink( "link", context, (PhetRequestCycle) getRequestCycle() );
-                link.setMarkupId( "nav-location-" + HtmlUtils.sanitizeId( location.getBaseKey() ) );
+                link.setMarkupId( "nav-location-" + HtmlUtils.sanitizeId( location.getLocalizationKey() ) );
                 link.setOutputMarkupId( true );
 
                 RawLabel label = new RawLabel( "link-label", new ResourceModel( location.getLocalizationKey() ) );
