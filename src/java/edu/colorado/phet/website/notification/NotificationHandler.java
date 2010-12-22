@@ -11,6 +11,7 @@ import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.WebsiteProperties;
 import edu.colorado.phet.website.authentication.PhetSession;
@@ -191,12 +192,11 @@ public class NotificationHandler {
     /**
      * Send an email to all translators who are editors of a translation with the same locale
      */
-    public static void sendCreationNotificationToTranslators( Session session, final Translation translation ) {
-        // TODO: add in
-//        if ( !PhetRequestCycle.get().isForProductionServer() ) {
-//            logger.info( "not sending translation email because we are not on the production server" );
-//            return true; // fail out gracefully if we are not the production server
-//        }
+    public static void sendCreationNotificationToTranslators( Session session, final Translation translation, final PhetUser owner ) {
+        if ( !DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
+            logger.info( "not sending translation email because we are not on the production server" );
+            return; // fail out gracefully if we are not allowed to send notification emails
+        }
 
         String subject = getTranslationSubject( "created", translation.getId(), translation.getLocale() );
 
@@ -218,12 +218,21 @@ public class NotificationHandler {
             try {
                 EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, TRANSLATION_NOTIFICATION_FROM );
 
+                String language = StringUtils.getEnglishLocaleTitle( session, translation.getLocale() );
+
                 message.addRecipient( user.getEmail() );
-                message.setBody(
-                        "<p>A translation was created for the language " + StringUtils.getEnglishLocaleTitle( session, translation.getLocale() ) + " with the id #" + translation.getId() + "</p>" +
-                        "<p>You received this email because you are marked as a translator for a translation with the same language.</p>" +
-                        NewsletterUtils.THANKYOU_MESSAGE
-                );
+                if ( user.equals( owner ) ) {
+                    message.setBody( "<p>Thank you for initiating a new translation for the language " + language + " with the id #" + translation.getId() + ".</p>" +
+                                     "<p>If you experience any trouble with the translation process, please contact us at <a href=\"phethelp@colorado.edu\">phethelp@colorado.edu</a>.</p>" +
+                                     NewsletterUtils.THANKYOU_MESSAGE );
+                }
+                else {
+                    message.setBody(
+                            "<p>A translation was created for the language " + language + " with the id #" + translation.getId() + "</p>" +
+                            "<p>You received this email because you are marked as a translator for a translation with the same language.</p>" +
+                            NewsletterUtils.THANKYOU_MESSAGE
+                    );
+                }
 
                 logger.info( "Sending automatic translation notification to " + user.getEmail() );
                 EmailUtils.sendMessage( message );
