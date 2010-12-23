@@ -41,8 +41,8 @@ public class StringChanges {
         addString( session, "newsletter.unsubscribed.title", "Unsubscribed from PhET Newsletter" );
         addString( session, "newsletter.unsubscribed", "Unsubscribed from PhET Newsletter" );
 
-        addString( session, "newsletter.pleaseCheckSubscribing", "Please check your e-mail and click on the link to complete your newsletter subscription." );
-        addString( session, "newsletter.pleaseCheckRegistering", "Please check your e-mail and click on the link to complete your account registration." );
+        addString( session, "newsletter.pleaseCheckSubscribing", "Please check your email and click on the link to complete your newsletter subscription." );
+        addString( session, "newsletter.pleaseCheckRegistering", "Please check your email and click on the link to complete your account registration." );
         addString( session, "newsletter.redirection", "In a few seconds you will be redirected to your original page." );
 
         addString( session, "admin.keyword.create.duplicate", "Keyword ${0} already has the same value" );
@@ -54,18 +54,18 @@ public class StringChanges {
         addString( session, "troubleshooting.main.q16.title", "Where does the name \"PhET\" come from?" );
         addString( session, "troubleshooting.main.q16.answer", "<p>Our project originally focused on physics sims, and was hence named the *Ph*ysics *E*ducation *T*echnology project, or *PhET*. When we branched into chemistry, biology, mathematics and other areas, we decided to keep the name *PhET*, but to no longer describe it as an acronym.</p>" );
 
-        overwriteString( session, "newsletter.toFinishSubscribing", "To finish subscribing, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for subscribing. An e-mail has been sent to {0}." );
-        overwriteString( session, "newsletter.toFinishRegistering", "To finish creating your account, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for registering. An e-mail has been sent to {0}." );
+        overwriteString( session, "newsletter.toFinishSubscribing", "To finish subscribing, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for subscribing. An email has been sent to {0}." );
+        overwriteString( session, "newsletter.toFinishRegistering", "To finish creating your account, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for registering. An email has been sent to {0}." );
         overwriteString( session, "newsletter.troubleshooting", "If you don't receive the email momentarily, please make sure your email filter allows emails sent from {0}. For additional help, please email {1}.", "For help, please email {0}." );
         overwriteString( session, "newsletter.nowSubscribed", "{0} is now subscribed to the PhET newsletter.", "Thank you for subscribing to the PhET newsletter! Your subscription is now complete." );
         overwriteString( session, "newsletter.nowRegistered", "Thank you for registering! In a few seconds you will be redirected to your original page.", "Thank you for registering! You account is now active." );
         overwriteString( session, "newsletter.pleaseSignUp", "Please sign up if you would like to receive the PhET Newsletter. Once you have submitted your email address, you should receive a confirmation of your subscription via email.", "Please sign up if you would like to receive the PhET Quarterly Newsletter. " );
 
-        overwriteString( session, "newsletter.pleaseCheckSubscribing", "Please check your e-mail and click on the link to complete your newsletter subscription.", "Please <strong>check your e-mail and click on the link</strong> to complete your newsletter subscription." );
-        overwriteString( session, "newsletter.pleaseCheckRegistering", "Please check your e-mail and click on the link to complete your account registration.", "Please <strong>check your e-mail and click on the link</strong> to complete your account registration." );
+        overwriteString( session, "newsletter.pleaseCheckSubscribing", "Please check your email and click on the link to complete your newsletter subscription.", "Please <strong>check your email and click on the link</strong> to complete your newsletter subscription." );
+        overwriteString( session, "newsletter.pleaseCheckRegistering", "Please check your email and click on the link to complete your account registration.", "Please <strong>check your email and click on the link</strong> to complete your account registration." );
 
-        overwriteString( session, "newsletter.toFinishSubscribing", "Thank you for subscribing. An e-mail has been sent to {0}.", "Thank you for subscribing. An e-mail has been sent to <strong>{0}</strong>." );
-        overwriteString( session, "newsletter.toFinishRegistering", "Thank you for registering. An e-mail has been sent to {0}.", "Thank you for registering. An e-mail has been sent to <strong>{0}</strong>." );
+        overwriteString( session, "newsletter.toFinishSubscribing", "Thank you for subscribing. An email has been sent to {0}.", "Thank you for subscribing. An email has been sent to <strong>{0}</strong>." );
+        overwriteString( session, "newsletter.toFinishRegistering", "Thank you for registering. An email has been sent to {0}.", "Thank you for registering. An email has been sent to <strong>{0}</strong>." );
 
         overwriteString( session, "simulations.translated.untranslated", "Untranslated Simulations", "Simulations not yet translated into {0}" );
 
