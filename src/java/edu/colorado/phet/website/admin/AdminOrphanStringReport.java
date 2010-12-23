@@ -23,8 +23,7 @@ public class AdminOrphanStringReport extends AdminPage {
     public AdminOrphanStringReport( PageParameters parameters ) {
         super( parameters );
 
-        final List<TranslationEntity> entities = TranslationEntity.getTranslationEntities();
-        entities.add( new EnglishEntity() ); // ignore strings that should be just English
+        final List<TranslationEntity> entities = TranslationEntity.getAllTranslationEntities();
         final List<TranslatedString> englishStrings = new LinkedList<TranslatedString>();
         final List<TranslatedString> orphanStrings = new LinkedList<TranslatedString>();
         final List<String> orphanKeys = new LinkedList<String>();

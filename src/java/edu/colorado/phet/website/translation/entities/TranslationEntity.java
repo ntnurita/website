@@ -1,11 +1,9 @@
 package edu.colorado.phet.website.translation.entities;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
 import edu.colorado.phet.website.translation.PhetPanelPreview;
@@ -75,12 +73,29 @@ public abstract class TranslationEntity implements Serializable {
     }
 
     private static List<TranslationEntity> cachedEntities = null;
+    private static TranslationEntity cachedEnglishEntity = null;
+
+    public static List<TranslationEntity> getTranslationEntitiesForLocale( Locale locale ) {
+        if ( PhetWicketApplication.getDefaultLocale().equals( locale ) ) {
+            return getAllTranslationEntities();
+        }
+        else {
+            return getTranslationEntities();
+        }
+    }
+
+    public static synchronized List<TranslationEntity> getAllTranslationEntities() {
+        List<TranslationEntity> ret = getTranslationEntities();
+        ret.add( cachedEnglishEntity );
+        return ret;
+    }
 
     /**
      * @return The list (in order) of the entities that should be shown in the translation area
      */
     public static synchronized List<TranslationEntity> getTranslationEntities() {
         if ( cachedEntities == null ) {
+            cachedEnglishEntity = new EnglishEntity();
             cachedEntities = new LinkedList<TranslationEntity>();
             cachedEntities.add( new CommonEntity() );
             cachedEntities.add( new IndexEntity() );

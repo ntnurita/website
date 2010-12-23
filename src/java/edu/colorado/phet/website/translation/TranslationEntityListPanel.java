@@ -18,6 +18,7 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.translation.entities.EnglishEntity;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
 import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
@@ -28,10 +29,14 @@ public class TranslationEntityListPanel extends PhetPanel {
 
     private int translationId;
 
+    private TranslationEditPage page;
+
     private static final Logger logger = Logger.getLogger( TranslationEntityListPanel.class.getName() );
 
     public TranslationEntityListPanel( String id, PageContext context, final TranslationEditPage page ) {
         super( id, context );
+
+        this.page = page;
 
         translationId = page.getTranslationId();
 
@@ -41,7 +46,8 @@ public class TranslationEntityListPanel extends PhetPanel {
 
         setOutputMarkupId( true );
 
-        ListView entities = new ListView<TranslationEntity>( "translation-entities", TranslationEntity.getTranslationEntities() ) {
+        List<TranslationEntity> translationEntities = TranslationEntity.getTranslationEntitiesForLocale( page.getTestLocale() );
+        ListView entities = new ListView<TranslationEntity>( "translation-entities", translationEntities ) {
             private AttributeAppender appender = new ClassAppender( "selected" );
             private ListItem selected = null;
 
@@ -124,7 +130,7 @@ public class TranslationEntityListPanel extends PhetPanel {
 
     private void initializeEntities() {
         logger.debug( "initializing entries for translation id " + translationId );
-        final List<TranslationEntity> entities = TranslationEntity.getTranslationEntities();
+        final List<TranslationEntity> entities = TranslationEntity.getTranslationEntitiesForLocale( page.getTestLocale() );
 
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
