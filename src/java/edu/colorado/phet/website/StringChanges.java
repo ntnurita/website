@@ -38,7 +38,7 @@ public class StringChanges {
         addString( session, "newsletter.subscribe.title", "Subscribe to PhET" );
         addString( session, "newsletter.confirmedEmail.title", "Confirmed PhET Email" );
         addString( session, "newsletter.confirmedEmail", "Email Confirmed" );
-        addString( session, "newsletter.unsubscribed.title", "Unsubscribed to PhET Newsletters" );
+        addString( session, "newsletter.unsubscribed.title", "Unsubscribed from PhET Newsletter" );
         addString( session, "newsletter.unsubscribed", "Unsubscribed from PhET Newsletter" );
 
         addString( session, "newsletter.pleaseCheckSubscribing", "Please check your e-mail and click on the link to complete your newsletter subscription." );
@@ -68,6 +68,8 @@ public class StringChanges {
         overwriteString( session, "newsletter.toFinishRegistering", "Thank you for registering. An e-mail has been sent to {0}.", "Thank you for registering. An e-mail has been sent to <strong>{0}</strong>." );
 
         overwriteString( session, "simulations.translated.untranslated", "Untranslated Simulations", "Simulations not yet translated into {0}" );
+
+        overwriteString( session, "newsletter.unsubscribed.title", "Unsubscribed to PhET Newsletters", "Unsubscribed from PhET Newsletter" );
 
         deleteString( session, "newsletter.pastEditions" );
 
