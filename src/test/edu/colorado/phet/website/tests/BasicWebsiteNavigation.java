@@ -205,6 +205,62 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
         loadWithoutError();
     }
 
+    @Test
+    public void testSignInOutProfile() throws Exception {
+        selenium.open( "/" );
+        selenium.click( "sign-in-link" );
+        loadWithoutError();
+        selenium.type( "username", "test@phet.colorado.edu" );
+        selenium.type( "password", "test-password" );
+        selenium.click( "submit" );
+        loadWithoutError();
+        selenium.click( "link=Edit profile" );
+        loadWithoutError();
+        selenium.type( "jobTitle", "New Job Title" );
+        selenium.click( "submit" );
+        loadWithoutError();
+        selenium.click( "link=Edit profile" );
+        loadWithoutError();
+        verifyEquals( "New Job Title", selenium.getValue( "jobTitle" ) );
+        selenium.click( "//img[@alt='PhET Logo']" );
+        loadWithoutError();
+        selenium.click( "sign-out-link" );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "session.loginRegister" ) ) );
+    }
+
+    @Test
+    public void testKeywordPage() throws Exception {
+        selenium.open( "/en/simulations/keyword/electricity" );
+        verifyTrue( selenium.isTextPresent( "Balloons and Static Electricity" ) );
+        verifyTrue( selenium.isTextPresent( "Charges and Fields" ) );
+    }
+
+    @Test
+    public void testBrowseContributions() throws Exception {
+        selenium.open( "/en/for-teachers/browse-activities" );
+        selenium.removeSelection( "contrib-search-sims", "label=All Simulations" );
+        selenium.addSelection( "contrib-search-sims", "label=Acid-Base Solutions" );
+        selenium.addSelection( "contrib-search-sims", "label=Alpha Decay" );
+        selenium.addSelection( "contrib-search-sims", "label=Arithmetic" );
+        selenium.addSelection( "contrib-search-sims", "label=Atomic Interactions" );
+        selenium.addSelection( "contrib-search-sims", "label=Balloons & Buoyancy" );
+        selenium.addSelection( "contrib-search-sims", "label=Balloons and Static Electricity" );
+        selenium.addSelection( "contrib-search-sims", "label=Band Structure" );
+        selenium.addSelection( "contrib-search-sims", "label=Battery Voltage" );
+        selenium.addSelection( "contrib-search-sims", "label=Battery-Resistor Circuit" );
+        selenium.addSelection( "contrib-search-sims", "label=Beta Decay" );
+        selenium.click( "//input[@value='browse']" );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( "Inquiry Based Modeling Static Electricity" ) );
+    }
+
+    @Test
+    public void testContributionView() throws Exception {
+        selenium.open( "/en/contributions/view/2847" );
+        verifyTrue( selenium.isTextPresent( "Inquiry Based Modeling Static Electricity" ) );
+    }
+
 
     @After
     public void tearDown() throws Exception {
