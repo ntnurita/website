@@ -87,59 +87,126 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
     public void testContributionCreateDelete() throws Exception {
         selenium.open( "/" );
         selenium.click( "sign-in-link" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         selenium.type( "username", "" );
         selenium.type( "username", "test@phet.colorado.edu" );
         selenium.type( "password", "test-password" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         selenium.click( "home-submit-activity-link" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         selenium.click( "//a[@id='nav-location-nav-teacherIdeas-submit']/span" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
-        verifyTrue( selenium.isTextPresent( "Please enter a title for the contribution" ) );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.title.Required" ) ) );
         selenium.type( "cep-title", "Sample Title" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
-        verifyTrue( selenium.isTextPresent( "Please enter keywords for the contribution" ) );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.keywords.Required" ) ) );
         selenium.type( "cep-keywords", "key1,key2" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
-        verifyTrue( selenium.isTextPresent( "The activity must reference at least one simulation" ) );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.validation.mustHaveSims" ) ) );
         selenium.select( "options6", "label=Acid-Base Solutions" );
         selenium.click( "//option[@value='100']" );
         selenium.click( "button7" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
-        verifyTrue( selenium.isTextPresent( "The activity must specify at least one type" ) );
-        selenium.select( "options9", "label=Concept Questions" );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.validation.mustHaveTypes" ) ) );
+        selenium.select( "options9", "label=" + SeleniumUtils.getString( "contribution.type.conceptQuestions" ) );
         selenium.click( "//select[@id='options9']/option[2]" );
         selenium.click( "buttona" );
-        selenium.select( "optionsc", "label=Graduate" );
+        selenium.select( "optionsc", "label=" + SeleniumUtils.getString( "contribution.level.graduate" ) );
         selenium.click( "//select[@id='optionsc']/option[2]" );
         selenium.click( "buttond" );
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
-        verifyTrue( selenium.isTextPresent( "The activity must contain at least one file." ) );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.validation.mustHaveFiles" ) ) );
 
-//        selenium.focus( "upload3" );
+        selenium.focus( "upload3" );
 
         JOptionPane.showMessageDialog( null, "Please select a file, then click here" );
 
         selenium.click( "submit" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         Thread.sleep( 1000 );
-        verifyTrue( selenium.isTextPresent( "Update Success" ) );
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.successHeader" ) ) );
         selenium.click( "continue-to-the-activity" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         verifyTrue( selenium.isTextPresent( "Sample Title" ) );
         selenium.click( "//a[@id='nav-location-nav-teacherIdeas-manage']/span" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
         selenium.click( "link=delete" );
-        selenium.waitForPageToLoad( "30000" );
+        loadWithoutError();
     }
+
+    @Test
+    public void testBasicNavigation() throws Exception {
+        selenium.open( "/" );
+        selenium.click( "play-sims" );
+        loadWithoutError();
+        selenium.click( "nav-location-nav-physics" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-electricity-magnets-and-circuits']/span" );
+        loadWithoutError();
+        selenium.click( "simulation-display-thumbnail-capacitor-lab" );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( "Capacitor Lab" ) );
+        selenium.click( "link=change log" );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( "1.00 (Dec 7, 2010)" ) );
+        selenium.click( "//a[@id='nav-location-nav-teacherIdeas']/span" );
+        loadWithoutError();
+        verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "teacherIdeas.adviceSection" ) ) );
+        selenium.click( "//a[@id='nav-location-nav-teacherIdeas-browse']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-workshops']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-teacherIdeas-submit']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-teacherIdeas-manage']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-about-legend']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-stayConnected']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-get-phet']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-get-phet-full-install']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-get-phet-one-at-a-time']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-troubleshooting-main']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-troubleshooting-java']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-troubleshooting-flash']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-troubleshooting-javascript']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-forTranslators']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-forTranslators-translationUtility']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-donate']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-research']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-about']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-about-source-code']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-about-news']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-about-licensing']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-about-contact']/span" );
+        loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-sponsors']/span" );
+        loadWithoutError();
+    }
+
 
     @After
     public void tearDown() throws Exception {
