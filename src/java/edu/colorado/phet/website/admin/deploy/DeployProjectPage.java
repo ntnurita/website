@@ -31,8 +31,6 @@ public class DeployProjectPage extends PhetPage {
         super( parameters );
 
         synchronized( lock ) {
-
-
             String addr = getPhetCycle().getWebRequest().getHttpServletRequest().getRemoteAddr();
             String host = getPhetCycle().getWebRequest().getHttpServletRequest().getRemoteHost();
             String localhost = getPhetCycle().getWebRequest().getHttpServletRequest().getServerName();
