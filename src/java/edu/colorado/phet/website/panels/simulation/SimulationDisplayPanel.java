@@ -27,8 +27,8 @@ public class SimulationDisplayPanel extends PhetPanel {
     public SimulationDisplayPanel( String id, final PageContext context, List<LocalizedSimulation> simulations ) {
         super( id, context );
 
-        IDataProvider simData = new SimulationDataProvider( simulations );
-        GridView gridView = new GridView( "rows", simData ) {
+        SimulationDataProvider simData = new SimulationDataProvider( simulations );
+        GridView gridView = new GridView<LocalizedSimulation>( "rows", simData ) {
             @Override
             protected void populateEmptyItem( Item item ) {
                 item.setVisible( false );
@@ -36,7 +36,7 @@ public class SimulationDisplayPanel extends PhetPanel {
 
             @Override
             protected void populateItem( Item item ) {
-                LocalizedSimulation simulation = (LocalizedSimulation) item.getModelObject();
+                final LocalizedSimulation simulation = (LocalizedSimulation) item.getModelObject();
                 Link link = SimulationPage.getLinker( simulation ).getLink( "simulation-link", context, getPhetCycle() );
                 link.add( new Label( "title", simulation.getTitle() ) );
                 if ( !simulation.getLocale().getLanguage().equals( context.getLocale().getLanguage() ) ) {
@@ -47,11 +47,14 @@ public class SimulationDisplayPanel extends PhetPanel {
                 try {
                     alt = StringUtils.messageFormat( "Screenshot of the simulation {0}", encode( simulation.getTitle() ) );
                 }
-                catch ( RuntimeException e ) {
+                catch( RuntimeException e ) {
                     e.printStackTrace();
                     alt = "Screenshot of the simulation";
                 }
-                link.add( new StaticImage( "thumbnail", simulation.getSimulation().getThumbnailUrl(), alt ) );
+                link.add( new StaticImage( "thumbnail", simulation.getSimulation().getThumbnailUrl(), alt ) {{
+                    setOutputMarkupId( true );
+                    setMarkupId( "simulation-display-thumbnail-" + simulation.getSimulation().getName() );
+                }} );
                 item.add( link );
             }
         };
@@ -62,7 +65,7 @@ public class SimulationDisplayPanel extends PhetPanel {
 
     }
 
-    private static class SimulationDataProvider implements IDataProvider {
+    private static class SimulationDataProvider implements IDataProvider<LocalizedSimulation> {
         private List<LocalizedSimulation> simulations;
 
         private SimulationDataProvider( List<LocalizedSimulation> simulations ) {
@@ -70,7 +73,7 @@ public class SimulationDisplayPanel extends PhetPanel {
         }
 
 
-        public Iterator iterator( int first, int count ) {
+        public Iterator<LocalizedSimulation> iterator( int first, int count ) {
             int endIndex = first + count;
             if ( endIndex > simulations.size() ) {
                 endIndex = simulations.size();
@@ -82,13 +85,13 @@ public class SimulationDisplayPanel extends PhetPanel {
             return simulations.size();
         }
 
-        public IModel model( final Object o ) {
-            return new IModel() {
-                public Object getObject() {
+        public IModel<LocalizedSimulation> model( final LocalizedSimulation o ) {
+            return new IModel<LocalizedSimulation>() {
+                public LocalizedSimulation getObject() {
                     return o;
                 }
 
-                public void setObject( Object o ) {
+                public void setObject( LocalizedSimulation o ) {
 
                 }
 
