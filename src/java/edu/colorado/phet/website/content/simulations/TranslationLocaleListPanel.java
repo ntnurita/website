@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 import org.hibernate.event.PostUpdateEvent;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.cache.CacheableUrlStaticPanel;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.constants.CSS;
@@ -29,6 +30,13 @@ import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
+/**
+ * Displays a list of locales (languages) to which our simulations have been translated.
+ * <p/>
+ * It lists the locale name in the
+ * viewer's current locale (usually English), the name in its own language, and the number of simulations translated
+ * into the locale.
+ */
 public class TranslationLocaleListPanel extends PhetPanel implements CacheableUrlStaticPanel {
 
     private static final Logger logger = Logger.getLogger( TranslationLocaleListPanel.class.getName() );
@@ -87,22 +95,23 @@ public class TranslationLocaleListPanel extends PhetPanel implements CacheableUr
             HibernateUtils.orderSimulations( simulationList, context.getLocale() );
         }
 
-        add( new ListView( "locale-list", locales ) {
-            protected void populateItem( ListItem item ) {
-                Locale locale = (Locale) item.getModel().getObject();
+        add( new ListView<Locale>( "locale-list", locales ) {
+            protected void populateItem( ListItem<Locale> item ) {
+                Locale locale = item.getModelObject();
 
                 // TODO: override with language.name when possible
                 item.add( new Label( "locale-title-translated", locale.getDisplayName( locale ) ) );
 
                 //RawLink link = new RawLink( "locale-link", "#" + LocaleUtils.localeToString( locale ) );
                 Link link = TranslatedSimsPage.getLinker( locale ).getLink( "locale-link", context, getPhetCycle() );
+                link.setOutputMarkupId( true );
+                link.setMarkupId( "locale-translation-link-" + LocaleUtils.localeToString( locale ) );
                 link.add( new Label( "locale-title", localeNames.get( locale ) ) );
                 item.add( link );
 
                 item.add( new Label( "number-of-translations", String.valueOf( localeMap.get( locale ).size() ) ) );
 
                 WicketUtils.highlightListItem( item );
-
             }
         } );
 
