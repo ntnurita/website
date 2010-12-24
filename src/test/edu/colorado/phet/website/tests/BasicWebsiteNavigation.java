@@ -1,6 +1,6 @@
 package edu.colorado.phet.website.tests;
 
-import javax.swing.*;
+import java.io.File;
 
 import org.junit.After;
 import org.junit.Before;
@@ -117,20 +117,18 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
         selenium.select( "options9", "label=" + SeleniumUtils.getString( "contribution.type.conceptQuestions" ) );
         selenium.click( "//select[@id='options9']/option[2]" );
         selenium.click( "buttona" );
+        Thread.sleep( 5000 ); // allow ajax to load
         selenium.select( "optionsc", "label=" + SeleniumUtils.getString( "contribution.level.graduate" ) );
         selenium.click( "//select[@id='optionsc']/option[2]" );
         selenium.click( "buttond" );
         selenium.click( "submit" );
         loadWithoutError();
         verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.validation.mustHaveFiles" ) ) );
-
-        selenium.focus( "upload3" );
-
-        JOptionPane.showMessageDialog( null, "Please select a file, then click here" );
-
+        Thread.sleep( 5000 );
+        selenium.attachFile( "upload3", new File( "/home/jon/tmp/upload.pdf" ).toURL().toString() );
         selenium.click( "submit" );
         loadWithoutError();
-        Thread.sleep( 1000 );
+        Thread.sleep( 5000 );
         verifyTrue( selenium.isTextPresent( SeleniumUtils.getString( "contribution.edit.successHeader" ) ) );
         selenium.click( "continue-to-the-activity" );
         loadWithoutError();
