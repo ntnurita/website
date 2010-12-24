@@ -40,6 +40,7 @@ public class DeployProjectPage extends PhetPage {
             logger.debug( "localhost: " + localhost );
 
             if ( getPhetCycle().isLocalRequest() ) {
+                logger.debug( "starting deployment" );
                 deploy( parameters );
                 setTitle( "Project Deployment OK" );
             }

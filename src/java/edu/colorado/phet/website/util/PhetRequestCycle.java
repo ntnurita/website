@@ -156,7 +156,7 @@ public class PhetRequestCycle extends WebRequestCycle {
         String host = getHttpServletRequest().getRemoteHost();
         String localhost = getHttpServletRequest().getServerName();
 
-        if ( localhost.equals( host ) || localhost.equals( "phetsims.colorado.edu" ) || localhost.equals( "phet.colorado.edu" ) ) {
+        if ( localhost.equals( host ) || localhost.equals( "phetsims.colorado.edu" ) || localhost.equals( "phet.colorado.edu" ) || localhost.equals( "phet-server.colorado.edu" ) ) {
             return true;
         }
         else {
