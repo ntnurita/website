@@ -210,7 +210,8 @@ public class DistributionHandler {
     }
 
     public static boolean showSimSponsor( PhetRequestCycle cycle ) {
-        return !cycle.isForProductionServer();
+        return true;
+        //return !cycle.isForProductionServer();
     }
 
     /**
