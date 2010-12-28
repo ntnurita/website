@@ -59,16 +59,16 @@ public class IndexPanel extends PhetPanel {
 //        add( new StaticImage( "facebook-image", "/images/icons/social/facebook.png", null));
 //        add( new StaticImage( "twitter-image", "/images/icons/social/twitter.png", null));
 
-        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
+        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[]{
                 "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\"/>"
         } ) );
-        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[] {
+        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[]{
                 "<img class=\"index-social-image\" src=\"/images/icons/social/twitter.png\" alt=\"Twitter icon\"/>"
         } ) );
         add( new LocalizedText( "blog-text", "home.blogText" ) );
         add( InitialSubscribePage.getLinker().getLink( "subscribe-link", context, getPhetCycle() ) );
 
-        add( new LocalizedText( "index-main-text", "home.subheader", new Object[] {
+        add( new LocalizedText( "index-main-text", "home.subheader", new Object[]{
                 ResearchPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 

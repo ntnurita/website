@@ -18,7 +18,6 @@ import org.hibernate.Session;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.translation.TranslationEntityString;
-import edu.colorado.phet.website.translation.entities.EnglishEntity;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;

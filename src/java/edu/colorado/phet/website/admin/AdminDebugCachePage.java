@@ -13,7 +13,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
 import edu.colorado.phet.website.cache.CacheItem;
-import edu.colorado.phet.website.cache.IPanelCacheEntry;
 import edu.colorado.phet.website.cache.PanelCache;
 
 public class AdminDebugCachePage extends AdminPage {

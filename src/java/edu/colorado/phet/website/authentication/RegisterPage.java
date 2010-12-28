@@ -46,7 +46,7 @@ public class RegisterPage extends PhetMenuPage {
                     }
                     return "register?dest=" + URLEncoder.encode( finalDestination, "UTF-8" );
                 }
-                catch ( UnsupportedEncodingException e ) {
+                catch( UnsupportedEncodingException e ) {
                     e.printStackTrace();
                     throw new RuntimeException( e );
                 }

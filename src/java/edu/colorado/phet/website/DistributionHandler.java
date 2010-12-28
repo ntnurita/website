@@ -151,7 +151,7 @@ public class DistributionHandler {
      * Pages which we want all links to them to point to phet.colorado.edu sub-sites (depend on the particular page)
      * Young & Freedman specific
      */
-    private static final Class[] yfPageRedirects = new Class[] {
+    private static final Class[] yfPageRedirects = new Class[]{
             AboutContactPanel.class,
             AboutLicensingPanel.class,
             AboutMainPanel.class,

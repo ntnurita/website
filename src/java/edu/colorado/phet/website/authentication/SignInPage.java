@@ -60,7 +60,7 @@ public class SignInPage extends PhetMenuPage {
                     }
                     return "sign-in?dest=" + URLEncoder.encode( finalDestination, "UTF-8" );
                 }
-                catch ( UnsupportedEncodingException e ) {
+                catch( UnsupportedEncodingException e ) {
                     e.printStackTrace();
                     throw new RuntimeException( e );
                 }

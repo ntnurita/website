@@ -274,7 +274,7 @@ public class WebsiteTranslationDeployServer {
             return simNames.toArray( new String[simNames.size()] );
 
         }
-        catch ( Exception e ) {
+        catch( Exception e ) {
             throw new RuntimeException( e );
         }
     }

@@ -32,7 +32,7 @@ public class ContributionCreatePage extends PhetRegularPage {
 
         add( new ContributionEditPanel( "contribution-edit-panel", getPageContext(), new Contribution() ) );
 
-        add( new LocalizedText( "check-guidelines", "contribution.create.checkGuidelines", new Object[] {
+        add( new LocalizedText( "check-guidelines", "contribution.create.checkGuidelines", new Object[]{
                 ContributionGuidelinesPanel.getLinker().getHref( getPageContext(), getPhetCycle() ),
                 Linkers.CONTRIBUTION_GUIDELINES_PDF.getHref( getPageContext(), getPhetCycle() )
         } ) );

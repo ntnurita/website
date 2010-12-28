@@ -66,10 +66,10 @@ public class NewsletterSender {
 //                images.add( imageFile );
 //            }
         }
-        catch ( FileNotFoundException e ) {
+        catch( FileNotFoundException e ) {
             logger.error( "message prep error: ", e );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             logger.error( "message prep error: ", e );
         }
     }
@@ -81,7 +81,7 @@ public class NewsletterSender {
                 return a.getName().compareTo( b.getName() );
             }
         } );
-        synchronized ( lock ) {
+        synchronized( lock ) {
             if ( sending ) {
                 return false; // exit immediately. don't double-send
             }
@@ -92,7 +92,7 @@ public class NewsletterSender {
                 sendNewsletter( user );
             }
         }
-        synchronized ( lock ) {
+        synchronized( lock ) {
             sending = false;
         }
         return true;
@@ -122,7 +122,7 @@ public class NewsletterSender {
 //            }
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "message send error: ", e );
             return false;
         }

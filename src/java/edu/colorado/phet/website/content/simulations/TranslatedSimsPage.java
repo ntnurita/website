@@ -45,7 +45,7 @@ public class TranslatedSimsPage extends PhetRegularPage {
             String localeKey = "language.names." + localeName;
             initializeLocation( getNavMenu().getLocationByKey( localeKey ) );
 
-            String title = StringUtils.messageFormat( getPhetLocalizer().getString( "simulations.translated.language.title", this ), new Object[] { getPhetLocalizer().getString( localeKey, this ) } );
+            String title = StringUtils.messageFormat( getPhetLocalizer().getString( "simulations.translated.language.title", this ), new Object[]{getPhetLocalizer().getString( localeKey, this )} );
             setTitle( title );
 
             PhetPanel panel = new SimplePanelCacheEntry( TranslationListPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
@@ -72,8 +72,8 @@ public class TranslatedSimsPage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^simulations/translated$", TranslatedSimsPage.class, new String[] { } );
-        mapper.addMap( "^simulations/translated/([^/]+)$", TranslatedSimsPage.class, new String[] { "translationlocale" } );
+        mapper.addMap( "^simulations/translated$", TranslatedSimsPage.class, new String[]{} );
+        mapper.addMap( "^simulations/translated/([^/]+)$", TranslatedSimsPage.class, new String[]{"translationlocale"} );
     }
 
     public static AbstractLinker getLinker() {

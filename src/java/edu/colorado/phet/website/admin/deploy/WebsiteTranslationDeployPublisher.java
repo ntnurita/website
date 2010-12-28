@@ -83,7 +83,7 @@ public class WebsiteTranslationDeployPublisher {
             try {
                 FileUtils.copyToDir( new File( translationDir, project + ".xml" ), new File( sims, project ) );
             }
-            catch ( IOException e ) {
+            catch( IOException e ) {
                 e.printStackTrace();
             }
         }
@@ -108,7 +108,7 @@ public class WebsiteTranslationDeployPublisher {
                     File toHTMLFile = new File( sims, project + "/" + HTMLName );
                     FileUtils.copyTo( fromHTMLFile, toHTMLFile );
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
 
                     // this should be a failure point
@@ -121,7 +121,7 @@ public class WebsiteTranslationDeployPublisher {
             try {
                 FileUtils.copyTo( new File( translationDir, englishJarName ), new File( sims, project + "/" + englishJarName ) );
             }
-            catch ( IOException e ) {
+            catch( IOException e ) {
                 logger.warn( "was unable to copy english JAR " + englishJarName );
             }
         }

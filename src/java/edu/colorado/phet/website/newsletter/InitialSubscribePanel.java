@@ -65,7 +65,7 @@ public class InitialSubscribePanel extends PhetPanel {
             // validating the emails should hopefully block most things
             add( new AbstractFormValidator() {
                 public FormComponent<?>[] getDependentFormComponents() {
-                    return new FormComponent<?>[] { emailTextField };
+                    return new FormComponent<?>[]{emailTextField};
                 }
 
                 public void validate( Form<?> form ) {
@@ -77,7 +77,7 @@ public class InitialSubscribePanel extends PhetPanel {
                     }
                     Integer i;
                     Integer j;
-                    synchronized ( this ) {
+                    synchronized( this ) {
                         i = ipAttempts.get( ip );
                         j = emailAttempts.get( emailAddress );
                     }
@@ -93,7 +93,7 @@ public class InitialSubscribePanel extends PhetPanel {
                     else {
                         j += 1;
                     }
-                    synchronized ( this ) {
+                    synchronized( this ) {
                         ipAttempts.put( ip, i );
                         emailAttempts.put( emailAddress, j );
                     }

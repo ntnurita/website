@@ -55,7 +55,7 @@ public class SimsByKeywordPage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^simulations/keyword/([^/]+)$", SimsByKeywordPage.class, new String[] { "keyword" } );
+        mapper.addMap( "^simulations/keyword/([^/]+)$", SimsByKeywordPage.class, new String[]{"keyword"} );
     }
 
     public static RawLinkable getLinker( final String keyword ) {

@@ -251,7 +251,7 @@ public class TranslateLanguagePage extends TranslationPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "for-translators/website", TranslateLanguagePage.class, new String[] { } );
+        mapper.addMap( "for-translators/website", TranslateLanguagePage.class, new String[]{} );
     }
 
     public static AbstractLinker getLinker() {

@@ -83,7 +83,7 @@ public class TranslationMainPage extends TranslationPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "for-translators/website", TranslationMainPage.class, new String[] { } );
+        mapper.addMap( "for-translators/website", TranslationMainPage.class, new String[]{} );
     }
 
     public static AbstractLinker getLinker() {

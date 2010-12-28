@@ -132,7 +132,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
                     add( new InvisibleComponent( "search-panel" ) );
                     break;
                 case OFFLINE_INSTALLER:
-                    add( new LocalizedText( "search-panel", "installer.mostUpToDate", new Object[] {
+                    add( new LocalizedText( "search-panel", "installer.mostUpToDate", new Object[]{
                             new Date(),
                             FullInstallPanel.getLinker().getHref( getPageContext(), getPhetCycle() )
                     } ) );
@@ -271,7 +271,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
             add( new AbstractHeaderContributor() {
                 @Override
                 public IHeaderContributor[] getHeaderContributors() {
-                    return new IHeaderContributor[] {
+                    return new IHeaderContributor[]{
                             new IHeaderContributor() {
                                 public void renderHead( IHeaderResponse response ) {
                                     response.renderString( "<script type=\"text/javascript\">addEventListener( 'load', function() {\n" +

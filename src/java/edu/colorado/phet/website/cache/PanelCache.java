@@ -41,7 +41,7 @@ public class PanelCache {
      * @return The singleton instance of the panel cache
      */
     public static PanelCache get() {
-        synchronized ( lock ) {
+        synchronized( lock ) {
             if ( instance == null ) {
                 instance = new PanelCache();
             }
@@ -54,7 +54,7 @@ public class PanelCache {
      * @return Whether the cache contains a cached version for this entry
      */
     public boolean contains( IPanelCacheEntry entry ) {
-        synchronized ( lock ) {
+        synchronized( lock ) {
             return cache.containsKey( entry );
         }
     }
@@ -65,7 +65,7 @@ public class PanelCache {
      *         there is no such component
      */
     public IPanelCacheEntry getMatching( IPanelCacheEntry entry ) {
-        synchronized ( lock ) {
+        synchronized( lock ) {
             CacheItem item = cache.get( entry );
             return item == null ? null : item.getEntry();
         }
@@ -80,7 +80,7 @@ public class PanelCache {
      */
     public boolean addIfMissing( IPanelCacheEntry entry ) {
         boolean adding;
-        synchronized ( lock ) {
+        synchronized( lock ) {
             adding = !cache.containsKey( entry );
             if ( adding ) {
                 cache.put( entry, new CacheItem( entry ) );
@@ -100,7 +100,7 @@ public class PanelCache {
      */
     public void remove( IPanelCacheEntry entry ) {
         logger.debug( "attempting to remove from cache: " + entry );
-        synchronized ( lock ) {
+        synchronized( lock ) {
             cache.remove( entry );
             entry.onExitCache();
         }
@@ -111,7 +111,7 @@ public class PanelCache {
      */
     public Set<CacheItem> getEntries() {
         Set<CacheItem> ret = new HashSet<CacheItem>();
-        synchronized ( lock ) {
+        synchronized( lock ) {
             ret.addAll( cache.values() );
         }
         return ret;
@@ -121,7 +121,7 @@ public class PanelCache {
      * Clear all of this cache
      */
     public void clear() {
-        synchronized ( lock ) {
+        synchronized( lock ) {
             cache = new HashMap<IPanelCacheEntry, CacheItem>();
         }
     }

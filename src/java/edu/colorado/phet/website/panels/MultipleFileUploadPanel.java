@@ -5,7 +5,6 @@
 package edu.colorado.phet.website.panels;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 

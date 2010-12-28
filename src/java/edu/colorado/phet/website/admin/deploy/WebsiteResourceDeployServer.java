@@ -112,10 +112,10 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                 inputStream.close();
             }
         }
-        catch ( FileNotFoundException e ) {
+        catch( FileNotFoundException e ) {
             e.printStackTrace();
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -179,11 +179,11 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                 copyJavaJNLPs();
             }
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
             return false;
         }
-        catch ( InterruptedException e ) {
+        catch( InterruptedException e ) {
             e.printStackTrace();
             return false;
         }
@@ -226,7 +226,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                     try {
                         logger.warn( "JNLP does not exist: " + baseJnlpFile.getCanonicalPath() );
                     }
-                    catch ( IOException e ) {
+                    catch( IOException e ) {
                         e.printStackTrace();
                     }
                     finally {

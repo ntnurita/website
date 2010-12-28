@@ -207,7 +207,7 @@ public class HibernateUtils {
         throw new RuntimeException( "WARNING: matches more than 3 simulations!" );
     }
 
-    public static final String[] SIM_TITLE_IGNORE_WORDS = { "The", "La", "El" };
+    public static final String[] SIM_TITLE_IGNORE_WORDS = {"The", "La", "El"};
 
     public static String getLeadingSimCharacter( String name, Locale locale ) {
         String str = name;
@@ -445,7 +445,7 @@ public class HibernateUtils {
                 //logger.warn( "tx not active", new RuntimeException( "exception made for stack trace" ) );
             }
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             ret = false;
             logger.warn( "Exception", e );
             if ( tx != null && tx.isActive() ) {
@@ -453,7 +453,7 @@ public class HibernateUtils {
                     logger.warn( "Attempting to roll back" );
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction!", e1 );
                 }
                 throw e;
@@ -472,7 +472,7 @@ public class HibernateUtils {
                 logger.info( "Attempting to roll back" );
                 tx.rollback();
             }
-            catch ( HibernateException e1 ) {
+            catch( HibernateException e1 ) {
                 logger.error( "ERROR: Error rolling back transaction!", e1 );
                 throw e1;
             }
@@ -515,12 +515,12 @@ public class HibernateUtils {
             }
             return new Result<T>( true, ret, null );
         }
-        catch ( TaskException e ) {
+        catch( TaskException e ) {
             logger.log( e.level, "exception: ", e ); // log the TaskException at the desired level
             tryRollback( tx );
             return new Result<T>( false, ret, e );
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( "exception: ", e );
             tryRollback( tx );
             if ( throwHibernateExceptions ) {

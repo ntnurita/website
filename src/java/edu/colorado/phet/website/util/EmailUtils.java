@@ -153,10 +153,10 @@ public class EmailUtils {
             Transport.send( message );
             return true; // success = true
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             e.printStackTrace();
         }
-        catch ( UnsupportedEncodingException e ) {
+        catch( UnsupportedEncodingException e ) {
             e.printStackTrace();
         }
 
@@ -207,7 +207,7 @@ public class EmailUtils {
 
             return true; // success = true
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             e.printStackTrace();
         }
 

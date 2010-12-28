@@ -73,13 +73,13 @@ public class SimulationMainEntity extends TranslationEntity {
 
                     tx.commit();
                 }
-                catch ( RuntimeException e ) {
+                catch( RuntimeException e ) {
                     logger.warn( "Exception: " + e );
                     if ( tx != null && tx.isActive() ) {
                         try {
                             tx.rollback();
                         }
-                        catch ( HibernateException e1 ) {
+                        catch( HibernateException e1 ) {
                             logger.error( "ERROR: Error rolling back transaction", e1 );
                         }
                         throw e;

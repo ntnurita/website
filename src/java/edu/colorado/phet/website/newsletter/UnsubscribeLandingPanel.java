@@ -14,7 +14,7 @@ public class UnsubscribeLandingPanel extends PhetPanel {
     public UnsubscribeLandingPanel( String id, PageContext context, PhetUser user ) {
         super( id, context );
 
-        add( new LocalizedText( "now-unsubscribed", "newsletter.nowUnsubscribed", new Object[] {
+        add( new LocalizedText( "now-unsubscribed", "newsletter.nowUnsubscribed", new Object[]{
                 HtmlUtils.encode( user.getEmail() )
         } ) );
     }

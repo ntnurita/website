@@ -98,7 +98,7 @@ public class ConfirmEmailLandingPage extends PhetMenuPage {
                 try {
                     return "confirm-email?key=" + key + "&destination=" + URLEncoder.encode( destination, "UTF-8" );
                 }
-                catch ( UnsupportedEncodingException e ) {
+                catch( UnsupportedEncodingException e ) {
                     throw new RuntimeException( e ); // this really shouldn't happen
                 }
             }

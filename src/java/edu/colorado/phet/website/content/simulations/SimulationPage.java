@@ -59,13 +59,13 @@ public class SimulationPage extends PhetMenuPage {
             }
             tx.commit();
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -97,7 +97,7 @@ public class SimulationPage extends PhetMenuPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^simulation/([^/]+)$", SimulationPage.class, new String[] { "simulation" } );
+        mapper.addMap( "^simulation/([^/]+)$", SimulationPage.class, new String[]{"simulation"} );
     }
 
     public static AbstractLinker getLinker( final String projectName, final String simulationName ) {

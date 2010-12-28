@@ -42,7 +42,7 @@ public class TestTranslateString {
         try {
             encodedText = URLEncoder.encode( text, "UTF-8" );
         }
-        catch ( UnsupportedEncodingException e ) {
+        catch( UnsupportedEncodingException e ) {
             e.printStackTrace();
         }
 
@@ -113,7 +113,7 @@ public class TestTranslateString {
                 System.err.println( "----------------" );
             }
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
 

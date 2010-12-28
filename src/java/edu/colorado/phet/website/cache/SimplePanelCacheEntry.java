@@ -17,12 +17,12 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 
 /**
  * Cacheable panel entry. Upon the first non-cached request, it will deliver the panel specified in
- * {@see constructPanel(String,PageContext)} with modifications that will cause it to be put in the cache when rendered.
+ * {@see constructPanel(String, PageContext)} with modifications that will cause it to be put in the cache when rendered.
  * Afterwards (when the panel is in the cache), a placeholder panel will be inserted with the prerendered version.
  * <p/>
  * <pre>
  * {@code
- * add(newSimplePanelCacheEntry( SponsorsPanel.class,null,getPageContext().getLocale(), "tester" ) {
+ * add(newSimplePanelCacheEntry( SponsorsPanel.class, null, getPageContext().getLocale(), "tester" ) {
  * public PhetPanel constructPanel( String id, PageContext context ) {
  * return new SponsorsPanel( id, context );
  * }

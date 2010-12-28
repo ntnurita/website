@@ -67,16 +67,16 @@ public class TranslationEditPage extends TranslationPage {
 
             tx.commit();
         }
-        catch ( AuthorizationException e ) {
+        catch( AuthorizationException e ) {
             setResponsePage( AccessDeniedPage.class );
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;

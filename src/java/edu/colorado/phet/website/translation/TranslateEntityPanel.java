@@ -209,8 +209,8 @@ public class TranslateEntityPanel extends PhetPanel {
         return success;
     }
 
-    private static final String[] allowedTags = new String[] { "p", "strong", "em", "br", "ul", "ol", "li", "a", "span", "table", "tbody", "thead", "tr", "td" };
-    private static final String[] blacklistedStrings = new String[] { "<scr" + "ipt", "<SC" + "RIPT", "<fo" + "rm", "<FO" + "RM", "expres" + "sion(", "docu" + "ment.coo" + "kie" };
+    private static final String[] allowedTags = new String[]{"p", "strong", "em", "br", "ul", "ol", "li", "a", "span", "table", "tbody", "thead", "tr", "td"};
+    private static final String[] blacklistedStrings = new String[]{"<scr" + "ipt", "<SC" + "RIPT", "<fo" + "rm", "<FO" + "RM", "expres" + "sion(", "docu" + "ment.coo" + "kie"};
 
     public static boolean stringHasXSS( String str ) {
         for ( String blacklistedString : blacklistedStrings ) {
@@ -235,13 +235,13 @@ public class TranslateEntityPanel extends PhetPanel {
 
             tx.commit();
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;

@@ -35,17 +35,17 @@ public class AboutMainPanel extends PhetPanel {
     public AboutMainPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( new LocalizedText( "about-p1", "about.p1", new Object[] {
+        add( new LocalizedText( "about-p1", "about.p1", new Object[]{
                 ResearchPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
         add( new LocalizedText( "about-p2", "about.p2" ) );
 
-        add( new LocalizedText( "about-p3", "about.p3", new Object[] {
+        add( new LocalizedText( "about-p3", "about.p3", new Object[]{
                 AboutLegendPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "about-p4", "about.p4", new Object[] {
+        add( new LocalizedText( "about-p4", "about.p4", new Object[]{
                 IndexPage.getLinker().getHref( context, getPhetCycle() ),
                 TroubleshootingJavaPanel.getLinker().getHref( context, getPhetCycle() ),
                 TroubleshootingFlashPanel.getLinker().getHref( context, getPhetCycle() )

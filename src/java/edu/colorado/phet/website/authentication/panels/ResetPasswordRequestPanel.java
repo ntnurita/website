@@ -71,7 +71,7 @@ public class ResetPasswordRequestPanel extends PhetPanel {
             // just validate email matching. don't bother making sure the email is in the proper form, since it won't matter anyways
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { emailTextField };
+                    return new FormComponent[]{emailTextField};
                 }
 
                 public void validate( Form<?> form ) {
@@ -111,7 +111,7 @@ public class ResetPasswordRequestPanel extends PhetPanel {
                         session.save( resetPasswordRequest );
 
                         //send the email to the user
-                        String body = StringUtils.messageFormat( getPhetLocalizer().getString( "resetPasswordRequest.emailBody", EnterEmailAddressForm.this ), new Object[] { "http://phet.colorado.edu" + ResetPasswordCallbackPage.getLinker( key ).getRawUrl( context, getPhetCycle() ) } );
+                        String body = StringUtils.messageFormat( getPhetLocalizer().getString( "resetPasswordRequest.emailBody", EnterEmailAddressForm.this ), new Object[]{"http://phet.colorado.edu" + ResetPasswordCallbackPage.getLinker( key ).getRawUrl( context, getPhetCycle() )} );
                         String subject = getPhetLocalizer().getString( "resetPasswordRequest.emailSubject", EnterEmailAddressForm.this );
                         try {
                             EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, WebsiteConstants.PHET_NO_REPLY_EMAIL_ADDRESS );
@@ -120,7 +120,7 @@ public class ResetPasswordRequestPanel extends PhetPanel {
                             message.addReplyTo( WebsiteConstants.PHET_NO_REPLY_EMAIL_ADDRESS );
                             return EmailUtils.sendMessage( message );
                         }
-                        catch ( MessagingException e ) {
+                        catch( MessagingException e ) {
                             logger.warn( "message send error: ", e );
                             return false;
                         }

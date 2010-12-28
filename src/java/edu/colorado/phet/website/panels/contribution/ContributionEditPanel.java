@@ -230,7 +230,7 @@ public class ContributionEditPanel extends PhetPanel {
             uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
             add( uploadPanel );
 
-            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[] {
+            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[]{
                     ContributionFile.getFiletypes( ContributionEditPanel.this )
             } ) );
 
@@ -264,8 +264,8 @@ public class ContributionEditPanel extends PhetPanel {
 
             //stdK4A = new CheckBox( "stdK4A", new Model( creating ? Boolean.FALSE : new Boolean( contribution.isStandardK4A() ) ) ); add( stdK4A );
 
-            for ( String level : new String[] { "K4", "58", "912" } ) {
-                for ( String standard : new String[] { "A", "B", "C", "D", "E", "F", "G" } ) {
+            for ( String level : new String[]{"K4", "58", "912"} ) {
+                for ( String standard : new String[]{"A", "B", "C", "D", "E", "F", "G"} ) {
                     add( new CheckBox( "standard" + level + standard ) );
                 }
             }
@@ -279,7 +279,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { uploadPanel.getField() };
+                    return new FormComponent[]{uploadPanel.getField()};
                 }
 
                 public void validate( Form form ) {
@@ -303,7 +303,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent() };
+                    return new FormComponent[]{simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent()};
                 }
 
                 public void validate( Form form ) {
@@ -520,7 +520,7 @@ public class ContributionEditPanel extends PhetPanel {
                         try {
                             upload.writeTo( file );
                         }
-                        catch ( IOException e ) {
+                        catch( IOException e ) {
                             e.printStackTrace();
                             logger.warn( "upload failed", e );
                             return false;

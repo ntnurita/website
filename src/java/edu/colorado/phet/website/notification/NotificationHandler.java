@@ -187,7 +187,7 @@ public class NotificationHandler {
 
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "Email failure on attempting to notify of translation " + action, e );
             return false;
         }
@@ -242,7 +242,7 @@ public class NotificationHandler {
                 logger.info( "Sending automatic translation notification to " + user.getEmail() );
                 EmailUtils.sendMessage( message );
             }
-            catch ( MessagingException e ) {
+            catch( MessagingException e ) {
                 logger.warn( "Email failure on attempting to notify of translation creation to user " + user.getEmail(), e );
             }
         }
@@ -295,7 +295,7 @@ public class NotificationHandler {
 
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "Email failure on sending collaboration request", e );
             return false;
         }

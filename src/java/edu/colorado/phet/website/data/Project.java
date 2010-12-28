@@ -154,7 +154,7 @@ public class Project implements Serializable, IntId {
         try {
             FileUtils.copyRecursive( projectRoot, backupDir );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
             return false;
         }
@@ -434,15 +434,15 @@ public class Project implements Serializable, IntId {
                         session.save( lsim );
                     }
                 }
-                catch ( TransformerException e ) {
+                catch( TransformerException e ) {
                     e.printStackTrace();
                     return false;
                 }
-                catch ( ParserConfigurationException e ) {
+                catch( ParserConfigurationException e ) {
                     e.printStackTrace();
                     return false;
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
                     return false;
                 }
@@ -588,7 +588,7 @@ public class Project implements Serializable, IntId {
                     }
                 }
             }
-            catch ( Exception e ) {
+            catch( Exception e ) {
                 e.printStackTrace();
                 logger.warn( "Error matching XML and simulations", e );
                 appendWarning( builder, "Error matching XML and simulations" );

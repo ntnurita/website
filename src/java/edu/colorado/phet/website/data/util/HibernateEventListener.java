@@ -23,7 +23,7 @@ public class HibernateEventListener implements PostInsertEventListener, PostUpda
 
     public HibernateEventListener() {
         logger.info( "Creating HibernateEventListener" );
-        synchronized ( this ) {
+        synchronized( this ) {
             me = this;
         }
     }

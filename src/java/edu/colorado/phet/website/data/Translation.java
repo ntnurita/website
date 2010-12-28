@@ -27,7 +27,7 @@ public class Translation implements Serializable, IntId {
     private Set translatedStrings = new HashSet();
     private Set authorizedUsers = new HashSet();
 
-    public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[] {
+    public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[]{
             PhetWicketApplication.getDefaultLocale(),
             LocaleUtils.stringToLocale( "ar_SA" )
     };

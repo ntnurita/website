@@ -64,7 +64,7 @@ public class SearchUtils {
 
             reindex( app, localizer );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -81,7 +81,7 @@ public class SearchUtils {
                 directory.close();
             }
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -106,7 +106,7 @@ public class SearchUtils {
                 try {
                     searcher = new IndexSearcher( directory, true );
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
                 }
 
@@ -164,7 +164,7 @@ public class SearchUtils {
                             logger.debug( "doc: " + doc );
                         }
                     }
-                    catch ( IOException e ) {
+                    catch( IOException e ) {
                         e.printStackTrace();
                     }
                     return true;
@@ -174,7 +174,7 @@ public class SearchUtils {
             writer.optimize();
             writer.close();
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -186,7 +186,7 @@ public class SearchUtils {
             logger.info( "dropped " + dropped + " documents" );
             reader.close();
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -342,7 +342,7 @@ public class SearchUtils {
                             logger.debug( score + ": " + contribution.getTitle() + " " + doc.get( "contribution_title" ) );
                             ret.add( contribution );
                         }
-                        catch ( IOException e ) {
+                        catch( IOException e ) {
                             e.printStackTrace();
                         }
 
@@ -351,7 +351,7 @@ public class SearchUtils {
                 }
             } );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
         return ret;
@@ -404,7 +404,7 @@ public class SearchUtils {
                                 ret.add( lsim );
                             }
                         }
-                        catch ( IOException e ) {
+                        catch( IOException e ) {
                             e.printStackTrace();
                         }
 
@@ -413,7 +413,7 @@ public class SearchUtils {
                 }
             } );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
         }
 

@@ -107,7 +107,7 @@ public class SimSponsorPanel extends PhetPanel {
 
     public static Random random = new Random();
 
-    public static Sponsor[] ActiveSponsors = new Sponsor[] { HEWLETT_FOUNDATION, NSF, KSU, ODONNELL_FOUNDATION };
+    public static Sponsor[] ActiveSponsors = new Sponsor[]{HEWLETT_FOUNDATION, NSF, KSU, ODONNELL_FOUNDATION};
 
     public static Sponsor chooseRandomActiveSponsor() {
         return ActiveSponsors[random.nextInt( ActiveSponsors.length )];

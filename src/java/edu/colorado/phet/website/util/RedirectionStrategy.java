@@ -685,7 +685,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
             }
             return ret[0];
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.info( "bad number X", e );
             return NOT_FOUND;
         }
@@ -812,7 +812,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
             }
 
         }
-        catch ( NumberFormatException e ) {
+        catch( NumberFormatException e ) {
             return NOT_FOUND;
         }
 

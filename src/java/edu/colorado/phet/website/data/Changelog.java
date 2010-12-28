@@ -62,10 +62,10 @@ public class Changelog {
                 reader.close();
             }
         }
-        catch ( FileNotFoundException e ) {
+        catch( FileNotFoundException e ) {
             logger.error( e );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             logger.error( e );
         }
     }
@@ -85,7 +85,7 @@ public class Changelog {
                 reader.close();
             }
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             logger.error( e );
         }
     }
@@ -348,7 +348,7 @@ public class Changelog {
                 if ( !tokenizer.hasMoreTokens() ) { return; }
                 devVersion = Integer.parseInt( tokenizer.nextToken() );
             }
-            catch ( RuntimeException e ) {
+            catch( RuntimeException e ) {
                 //logger.warn( "changelog failure at parsing version " + str, e );
             }
         }
@@ -357,7 +357,7 @@ public class Changelog {
             try {
                 revision = Integer.parseInt( str.replace( "(", "" ).replace( ")", "" ) );
             }
-            catch ( RuntimeException e ) {
+            catch( RuntimeException e ) {
                 //logger.warn( "changelog failure at parsing revision " + str, e );
             }
         }
@@ -366,11 +366,11 @@ public class Changelog {
             try {
                 date = FORMAT_VERSION_TIMESTAMP.parse( str );
             }
-            catch ( ParseException e ) {
+            catch( ParseException e ) {
                 try {
                     date = FORMAT_VERSION_BACKUP_TIMESTAMP.parse( str );
                 }
-                catch ( ParseException e1 ) {
+                catch( ParseException e1 ) {
                     //e1.printStackTrace();
                     //logger.warn( "changelog failure at parsing date " + str );
                 }
@@ -415,7 +415,7 @@ public class Changelog {
                     if ( !tokenizer.hasMoreTokens() ) { return; }
                     token = tokenizer.nextToken();
                 }
-                catch ( ParseException e ) {
+                catch( ParseException e ) {
                 }
             }
 
