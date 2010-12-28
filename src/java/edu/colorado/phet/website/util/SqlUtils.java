@@ -2,7 +2,7 @@
  * Copyright 2010, University of Colorado
  */
 
-package edu.colorado.phet.website.data.transfer;
+package edu.colorado.phet.website.util;
 
 import java.io.IOException;
 import java.sql.*;
@@ -11,6 +11,9 @@ import javax.servlet.ServletContext;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Will keep around for reference and future usage, since we may need to directly connect with an SQL DB with this
+ */
 public class SqlUtils {
 
     private static final Logger logger = Logger.getLogger( SqlUtils.class.getName() );

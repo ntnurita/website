@@ -2,7 +2,7 @@
  * Copyright 2010, University of Colorado
  */
 
-package edu.colorado.phet.website.data.transfer;
+package edu.colorado.phet.website.util;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

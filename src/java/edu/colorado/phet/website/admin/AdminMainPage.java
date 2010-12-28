@@ -33,7 +33,6 @@ import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.TranslatedString;
-import edu.colorado.phet.website.data.transfer.TransferData;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.EmailUtils;
@@ -57,36 +56,6 @@ public class AdminMainPage extends AdminPage {
 
         add( new SetStringForm( "set-string-form" ) );
 
-        add( new Link( "debug-usercontrib" ) {
-            public void onClick() {
-                boolean success = TransferData.transferUsersContributions( getHibernateSession(), getServletContext() );
-                if ( success ) {
-                    logger.info( "transfer success" );
-                }
-                else {
-                    logger.error( "transfer failure" );
-                }
-            }
-        } );
-
-        add( new Link( "debug-guide" ) {
-            public void onClick() {
-                boolean success = TransferData.transferTeachersGuides( getHibernateSession(), getServletContext() );
-                if ( success ) {
-                    logger.info( "transfer success" );
-                }
-                else {
-                    logger.error( "transfer failure" );
-                }
-            }
-        } );
-
-        add( new Link( "debug-index" ) {
-            public void onClick() {
-                SearchUtils.reindex( PhetWicketApplication.get(), PhetLocalizer.get() );
-            }
-        } );
-
         add( new Link( "debug-email" ) {
             public void onClick() {
                 try {
@@ -97,7 +66,7 @@ public class AdminMainPage extends AdminPage {
                     message.addReplyTo( "phethelp@colorado.edu" );
                     EmailUtils.sendMessage( message );
                 }
-                catch ( MessagingException e ) {
+                catch( MessagingException e ) {
                     e.printStackTrace();
                 }
             }
@@ -117,7 +86,7 @@ public class AdminMainPage extends AdminPage {
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).signJar( jarFile );
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
                 }
             }
@@ -170,7 +139,7 @@ public class AdminMainPage extends AdminPage {
                 final List<PhetUser> users = new LinkedList<PhetUser>();
                 HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
                     public Void run( Session session ) {
-                        String[] emails = new String[] {
+                        String[] emails = new String[]{
                                 "olsonsjc@gmail.com"
                         };
                         for ( String email : emails ) {
