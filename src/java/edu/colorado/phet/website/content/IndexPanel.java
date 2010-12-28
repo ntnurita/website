@@ -43,7 +43,7 @@ public class IndexPanel extends PhetPanel {
         super( id, context );
 
         // TODO: link these image URLs from the constants area
-        add( new StaticImage( "ksu-logo", "/images/support/ECSME-combined-logo-small.jpg", null ) );
+        add( new StaticImage( "ksu-logo", "/images/support/ERCSME-combined-logo-small.png", null ) );
         //add( new StaticImage( "jila-logo", "/images/support/jila_logo_small.gif", null ) );
         add( new StaticImage( "nsf-logo", "/images/support/nsf-logo-small.gif", null ) );
         add( new StaticImage( "hewlett-logo", "/images/support/hewlett-logo-small.jpg", null ) );
