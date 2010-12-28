@@ -229,3 +229,7 @@ div.copyright {
 .feedback-errors span {
     color: red;
 }
+
+.translation-credits {
+    font-size: 11px;
+}
