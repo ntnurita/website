@@ -17,9 +17,11 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.AuthenticatedPage;
 import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.SocialBookmarkService;
@@ -54,6 +56,13 @@ public abstract class PhetMenuPage extends PhetPage {
                 return new SponsorsPanel( id, context );
             }
         }.instantiate( "sponsors-panel", getPageContext(), getPhetCycle() ) );
+
+        if ( !getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
+            add( new LocalizedText( "translation-credits", "translation.credits" ) );
+        }
+        else {
+            add( new InvisibleComponent( "translation-credits" ) );
+        }
 
         if ( DistributionHandler.displayTranslationLinksPanel( (PhetRequestCycle) getRequestCycle() ) ) {
             add( new TranslationLinksPanel( "translation-links", getPageContext() ) );

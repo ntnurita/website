@@ -10,6 +10,7 @@ public class CommonEntity extends TranslationEntity {
         addString( "language.name", "This will be the language name displayed to the user (translated into the native language)." );
         addString( "footer.someRightsReserved", "Copyright notice in the footer" );
         addString( "error.pageNotFound", "Displayed when a page is not found" );
+        addString( "translation.credits", "Please fill this in with whatever credits you want to show. This will be displayed above the language selections when your translation is being used." );
     }
 
     public String getDisplayName() {

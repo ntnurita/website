@@ -104,6 +104,13 @@ public class IndexPanel extends PhetPanel {
             add( new InvisibleComponent( "test-translation" ) );
         }
 
+        if ( !getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
+            add( new LocalizedText( "translation-credits", "translation.credits" ) );
+        }
+        else {
+            add( new InvisibleComponent( "translation-credits" ) );
+        }
+
         if ( DistributionHandler.displayTranslationLinksPanel( (PhetRequestCycle) getRequestCycle() ) ) {
             add( new TranslationLinksPanel( "translation-links", context ) );
         }

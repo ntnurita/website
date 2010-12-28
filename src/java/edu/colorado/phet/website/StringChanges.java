@@ -58,6 +58,8 @@ public class StringChanges {
         addString( session, "troubleshooting.main.q16.title", "Where does the name \"PhET\" come from?" );
         addString( session, "troubleshooting.main.q16.answer", "<p>Our project originally focused on physics sims, and was hence named the *Ph*ysics *E*ducation *T*echnology project, or *PhET*. When we branched into chemistry, biology, mathematics and other areas, we decided to keep the name *PhET*, but to no longer describe it as an acronym.</p>" );
 
+        addString( session, "translation.credits", "" );
+
         overwriteString( session, "newsletter.toFinishSubscribing", "To finish subscribing, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for subscribing. An email has been sent to {0}." );
         overwriteString( session, "newsletter.toFinishRegistering", "To finish creating your account, we've sent a confirmation email to {0}. In the Email, please click on the link or copy and paste it into a browser in order to confirm your email.", "Thank you for registering. An email has been sent to {0}." );
         overwriteString( session, "newsletter.troubleshooting", "If you don't receive the email momentarily, please make sure your email filter allows emails sent from {0}. For additional help, please email {1}.", "For help, please email {0}." );
