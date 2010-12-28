@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.util.links;
 
 import edu.colorado.phet.website.util.PageContext;

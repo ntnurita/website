@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.panels.contribution;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;

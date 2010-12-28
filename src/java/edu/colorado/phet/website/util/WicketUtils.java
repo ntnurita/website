@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.util;
 
 import org.apache.wicket.markup.html.list.ListItem;

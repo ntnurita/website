@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.translation.entities;
 
 public class MiscellaneousEntity extends TranslationEntity {

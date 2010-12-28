@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.test;
 
 //import org.postgresql.jdbc2.optional.PoolingDataSource;

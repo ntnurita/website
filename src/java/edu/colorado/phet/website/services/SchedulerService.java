@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.services;
 
 import it.sauronsoftware.cron4j.Scheduler;

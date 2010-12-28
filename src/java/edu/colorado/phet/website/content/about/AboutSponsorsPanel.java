@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.content.about;
 
 import org.apache.wicket.behavior.HeaderContributor;

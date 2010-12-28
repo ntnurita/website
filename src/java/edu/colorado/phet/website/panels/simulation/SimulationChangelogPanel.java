@@ -1,3 +1,7 @@
+/*
+ * Copyright 2010, University of Colorado
+ */
+
 package edu.colorado.phet.website.panels.simulation;
 
 import org.apache.log4j.Logger;
