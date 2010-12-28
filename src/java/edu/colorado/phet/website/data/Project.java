@@ -422,7 +422,7 @@ public class Project implements Serializable, IntId {
                         session.update( lsim );
                     }
                     for ( Simulation sim : createdSims ) {
-                        sim.setCreateTime( currentTime );
+                        //sim.setCreateTime( currentTime ); actually don't set creation time. we wait until the sim is made visible to do this
                         sim.setUpdateTime( currentTime );
                         session.save( sim );
                     }

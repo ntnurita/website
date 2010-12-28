@@ -92,13 +92,13 @@ public class AdminSimPage extends AdminPage {
 
             tx.commit();
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -490,7 +490,7 @@ public class AdminSimPage extends AdminPage {
 
             add( new AbstractFormValidator() {
                 public FormComponent<?>[] getDependentFormComponents() {
-                    return new FormComponent<?>[] { keyText, valueText };
+                    return new FormComponent<?>[]{keyText, valueText};
                 }
 
                 public void validate( Form<?> form ) {
@@ -742,7 +742,7 @@ public class AdminSimPage extends AdminPage {
                     }
                 }
             }
-            catch ( IOException e ) {
+            catch( IOException e ) {
                 e.printStackTrace();
             }
 
@@ -835,6 +835,12 @@ public class AdminSimPage extends AdminPage {
             HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
                     Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
+                    if ( !sim.isSimulationVisible() && val ) {
+                        // making the sim visible for the 1st time. set "creation" time if it is not already set
+                        if ( sim.getCreateTime() == null ) {
+                            sim.setCreateTime( new Date() );
+                        }
+                    }
                     sim.setSimulationVisible( val );
                     session.update( sim );
                     return true;
@@ -961,7 +967,7 @@ public class AdminSimPage extends AdminPage {
                             fup.writeTo( file );
                             guide.setSize( (int) file.length() );
                         }
-                        catch ( IOException e ) {
+                        catch( IOException e ) {
                             e.printStackTrace();
                             logger.warn( e );
                             return false;
