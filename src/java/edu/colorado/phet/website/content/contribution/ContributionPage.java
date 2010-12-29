@@ -43,7 +43,7 @@ public class ContributionPage extends PhetRegularPage {
         boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 contribution = (Contribution) session.createQuery( "select c from Contribution as c where c.id = :id" ).setInteger( "id", contributionId ).uniqueResult();
-                return true;
+                return contribution != null;
             }
         } );
 
