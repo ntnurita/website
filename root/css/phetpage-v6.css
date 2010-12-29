@@ -232,4 +232,8 @@ div.copyright {
 
 .translation-credits {
     font-size: 11px;
+    background-color: #ddd;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 2px;
 }
