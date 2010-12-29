@@ -43,7 +43,7 @@ public class TranslationMainPage extends TranslationPage {
                 List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
                 for ( Object o : trans ) {
                     Translation translation = (Translation) o;
-                    if ( user.isTeamMember() || translation.isUserAuthorized( user ) ) {
+                    if ( user.isTeamMember() || ( translation.isUserAuthorized( user ) && translation.isActive() ) ) {
                         translations.add( translation );
                     }
                 }

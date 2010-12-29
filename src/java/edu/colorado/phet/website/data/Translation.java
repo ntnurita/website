@@ -182,6 +182,23 @@ public class Translation implements Serializable, IntId {
     public Translation() {
     }
 
+    /**
+     * Creates a new non-visible active translation with the following properties
+     *
+     * @param locale Locale
+     * @param user   First user
+     * @param parent Optional parent translation. Pass null if no parent
+     */
+    public Translation( Locale locale, PhetUser user, Translation parent ) {
+        setLocale( locale );
+        addUser( user );
+        setParent( parent );
+
+        // defaults
+        setVisible( false );
+        setActive( true );
+    }
+
     /*---------------------------------------------------------------------------*
     * getters and setters
     *----------------------------------------------------------------------------*/

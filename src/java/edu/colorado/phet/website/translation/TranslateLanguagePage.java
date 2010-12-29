@@ -60,15 +60,22 @@ public class TranslateLanguagePage extends TranslationPage {
                         .setLocale( "locale", locale ).list();
                 for ( Object o : trans ) {
                     Translation translation = (Translation) o;
-                    // skip translations where team-members are the only ones with access (unless you are a team member)
-                    if ( !currentUser.isTeamMember() && translation.isVisible() ) {
-                        boolean nonAdminUser = false;
-                        for ( Object user : translation.getAuthorizedUsers() ) {
-                            if ( !( (PhetUser) user ).isTeamMember() ) {
-                                nonAdminUser = true;
+                    if ( !currentUser.isTeamMember() ) {
+                        // skip translations where team-members are the only ones with access (unless you are a team member)
+                        if ( translation.isVisible() ) {
+                            boolean nonAdminUser = false;
+                            for ( Object user : translation.getAuthorizedUsers() ) {
+                                if ( !( (PhetUser) user ).isTeamMember() ) {
+                                    nonAdminUser = true;
+                                }
+                            }
+                            if ( !nonAdminUser ) {
+                                continue;
                             }
                         }
-                        if ( !nonAdminUser ) {
+
+                        // don't show inactive ("deleted") translations to non-team-members
+                        if ( !translation.isActive() ) {
                             continue;
                         }
                     }
@@ -118,12 +125,9 @@ public class TranslateLanguagePage extends TranslationPage {
         protected void onSubmit() {
             Result<Translation> result = HibernateUtils.resultTransaction( getHibernateSession(), new Task<Translation>() {
                 public Translation run( Session session ) {
-                    Translation translation = new Translation();
-                    translation.setLocale( locale );
-                    translation.setVisible( false );
-
                     PhetUser user = (PhetUser) session.load( PhetUser.class, PhetSession.get().getUser().getId() );
-                    translation.addUser( user );
+
+                    Translation translation = new Translation( locale, user, null );
 
                     session.save( translation );
                     session.save( user );
@@ -188,16 +192,11 @@ public class TranslateLanguagePage extends TranslationPage {
 
             boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
-                    Translation newTranslation = new Translation();
-                    newTranslation.setParent( translation );
-                    newTranslation.setLocale( translation.getLocale() );
-                    newTranslation.setVisible( false );
-
                     PhetUser user = (PhetUser) session.load( PhetUser.class, PhetSession.get().getUser().getId() );
-                    newTranslation.addUser( user );
+                    Translation newTranslation = new Translation( translation.getLocale(), user, translation );
 
                     session.save( newTranslation );
-                    session.save( user );
+                    session.save( user ); // TODO this looks suspicious. update instead?
                     ret[0] = newTranslation;
 
                     Translation oldTranslation = (Translation) session.load( Translation.class, translation.getId() );
