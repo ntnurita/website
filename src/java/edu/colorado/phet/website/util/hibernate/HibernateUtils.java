@@ -228,6 +228,9 @@ public class HibernateUtils {
         }
         return buf.toString();
         */
+        if( chr.length() == 0 ) {
+            return "-";
+        }
         return chr;
     }
 
