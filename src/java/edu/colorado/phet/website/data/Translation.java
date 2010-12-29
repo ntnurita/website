@@ -24,8 +24,8 @@ public class Translation implements Serializable, IntId {
     private int id;
 
     private Locale locale;
-    private Set translatedStrings = new HashSet();
-    private Set authorizedUsers = new HashSet();
+    private Set translatedStrings = new HashSet(); // set of TranslatedString
+    private Set authorizedUsers = new HashSet(); // set of PhetUser
 
     public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[]{
             PhetWicketApplication.getDefaultLocale(),
@@ -43,6 +43,12 @@ public class Translation implements Serializable, IntId {
      * be locked for security reasons
      */
     private boolean locked;
+
+    /**
+     * Translations will be marked as "inactive" once the user has "deleted" it. They will still exist and can be made
+     * active again, similar to an undelete feature.
+     */
+    private boolean active;
 
     private Translation parent;
 
@@ -226,6 +232,14 @@ public class Translation implements Serializable, IntId {
 
     public void setLocked( boolean locked ) {
         this.locked = locked;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive( boolean active ) {
+        this.active = active;
     }
 
     public Translation getParent() {
