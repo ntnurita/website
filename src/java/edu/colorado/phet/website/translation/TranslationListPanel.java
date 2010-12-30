@@ -32,9 +32,23 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.Task;
 
 /**
  * Shows a list of website translations to the user, along with the ability to perform actions on them
+ * <p/>
+ * Has the following fields visible (many togglable if you are admin):
+ * id
+ * locale
+ * number of strings translated
+ * visibility: (visible, hidden, inactive), with possible option to toggle visibility (visible/hidden) or reactivate (if inactive)
+ * preview/view
+ * edit
+ * locked: toggle available
+ * submit
+ * delete / permanently delete: perm delete only works for inactive (IE "deleted") translations
+ * request to collaborate
  */
 public class TranslationListPanel extends PhetPanel {
 
@@ -92,9 +106,11 @@ public class TranslationListPanel extends PhetPanel {
             }
 
             final boolean visibleToggleShown = translation.allowToggleVisibility( user );
+            boolean reactivateShown = translation.allowReactivate( user );
             boolean editShown = translation.allowEdit( user );
             boolean submitShown = translation.allowSubmit( user );
-            boolean deleteShown = translation.allowDelete( user );
+            boolean deleteShown = translation.allowDeactivate( user );
+            boolean permanentDeleteShown = translation.allowPermanentDelete( user );
             boolean requestShown = translation.allowRequestToCollaborate( user );
 
             item.add( new Label( "id", String.valueOf( translation.getId() ) ) );
@@ -106,7 +122,7 @@ public class TranslationListPanel extends PhetPanel {
             }
             item.add( visibleLabel );
 
-            // TODO: add visibility switcher component
+            // TODO: (refactor, high) add visibility switcher component. Ahh how nice scala or clojure would be here
             if ( visibleToggleShown ) {
                 item.add( new Link( "visible-toggle" ) {
                     public void onClick() {
@@ -116,6 +132,18 @@ public class TranslationListPanel extends PhetPanel {
             }
             else {
                 item.add( new InvisibleComponent( "visible-toggle" ) );
+            }
+
+            if ( reactivateShown ) {
+                item.add( new Link( "reactivate" ) {
+                    @Override
+                    public void onClick() {
+                        reactivate( translation );
+                    }
+                } );
+            }
+            else {
+                item.add( new InvisibleComponent( "reactivate" ) );
             }
 
             PageContext newContext;
@@ -207,12 +235,23 @@ public class TranslationListPanel extends PhetPanel {
             if ( deleteShown ) {
                 item.add( new Link( "delete" ) {
                     public void onClick() {
-                        delete( translation );
+                        deactivate( translation );
                     }
                 } );
             }
             else {
                 item.add( new InvisibleComponent( "delete" ) );
+            }
+
+            if ( permanentDeleteShown ) {
+                item.add( new Link( "permanent-delete" ) {
+                    public void onClick() {
+                        permanentlyDelete( translation );
+                    }
+                } );
+            }
+            else {
+                item.add( new InvisibleComponent( "permanent-delete" ) );
             }
 
             if ( requestShown ) {
@@ -280,7 +319,39 @@ public class TranslationListPanel extends PhetPanel {
             }
         }
 
-        public void delete( final Translation translation ) {
+        public void reactivate( final Translation translation ) {
+            Result<Translation> result = HibernateUtils.resultCatchTransaction( getHibernateSession(), new Task<Translation>() {
+                public Translation run( Session session ) {
+                    Translation tr = (Translation) session.load( Translation.class, translation.getId() );
+                    tr.setActive( true );
+                    session.update( tr );
+                    return tr;
+                }
+            } );
+
+            // TODO: better way to push changes back to in-memory object?
+            if ( result.success ) {
+                translation.setActive( true );
+            }
+        }
+
+        public void deactivate( final Translation translation ) {
+            Result<Translation> result = HibernateUtils.resultCatchTransaction( getHibernateSession(), new Task<Translation>() {
+                public Translation run( Session session ) {
+                    Translation tr = (Translation) session.load( Translation.class, translation.getId() );
+                    tr.setActive( false );
+                    session.update( tr );
+                    return tr;
+                }
+            } );
+
+            // TODO: better way to push changes back to in-memory object?
+            if ( result.success ) {
+                translation.setActive( false );
+            }
+        }
+
+        public void permanentlyDelete( final Translation translation ) {
             final List<PhetUser> users = new LinkedList<PhetUser>();
             final Locale locale = translation.getLocale();
             final int id = translation.getId();
@@ -330,10 +401,20 @@ public class TranslationListPanel extends PhetPanel {
 
     public String getTranslationVisibilityString( Translation translation ) {
         if ( translation.isVisible() ) {
+            if ( !translation.isActive() ) {
+                logger.warn( "Translation visible and inactive: #" + translation.getId() );
+                return "visible(inactive)";
+            }
             return "visible";
         }
         else if ( translation.isPublished( getHibernateSession() ) ) {
+            if ( !translation.isActive() ) {
+                return "published(inactive)";
+            }
             return "published";
+        }
+        else if ( !translation.isActive() ) {
+            return "inactive";
         }
         else {
             return "hidden";

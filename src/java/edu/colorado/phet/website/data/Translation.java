@@ -18,6 +18,9 @@ import edu.colorado.phet.website.util.hibernate.Task;
 
 /**
  * A translation, which has a certain number of strings and authorized users.
+ *
+ * NOTE: "delete" is somewhat like moving an item to the trash. This is called "deactivating" it. It can be reactivated,
+ * or thus undeleted. Users will still see this as "delete", and then the translation will disappear from them.
  */
 public class Translation implements Serializable, IntId {
 
@@ -128,7 +131,7 @@ public class Translation implements Serializable, IntId {
     }
 
     public boolean allowToggleVisibility( PhetUser user ) {
-        return user.isTeamMember() && !isDefault();
+        return user.isTeamMember() && !isDefault() && isActive();
     }
 
     public boolean allowToggleLocking( PhetUser user ) {
@@ -140,11 +143,19 @@ public class Translation implements Serializable, IntId {
     }
 
     public boolean allowSubmit( PhetUser user ) {
-        return isUserAuthorized( user ) && !isVisible() && !isLocked();
+        return isUserAuthorized( user ) && !isVisible() && !isLocked() && !isActive();
     }
 
-    public boolean allowDelete( PhetUser user ) {
-        return !isVisible() && isUserAuthorized( user ) && ( ( user.isTeamMember() && !isDefault() ) || ( !isDefault() && !isLocked() ) );
+    public boolean allowDeactivate( PhetUser user ) {
+        return !isVisible() && isUserAuthorized( user ) && isActive() && ( ( user.isTeamMember() && !isDefault() ) || ( !isDefault() && !isLocked() ) );
+    }
+
+    public boolean allowReactivate( PhetUser user ) {
+        return isUserAuthorized( user ) && user.isTeamMember() && !isActive();
+    }
+
+    public boolean allowPermanentDelete( PhetUser user ) {
+        return !isVisible() && isUserAuthorized( user ) && user.isTeamMember() && !isDefault() && !isActive();
     }
 
     public boolean allowRequestToCollaborate( PhetUser user ) {

@@ -81,6 +81,9 @@
                 <wicket:enclosure child="visible-toggle">
                     (<a href="#" wicket:id="visible-toggle">toggle</a>)
                 </wicket:enclosure>
+                <wicket:enclosure child="reactivate">
+                    (<a href="#" wicket:id="reactivate">reactivate</a>)
+                </wicket:enclosure>
             </td>
             <td>
                 <a href="#" wicket:id="preview"><span wicket:id="type">preview</span></a>
@@ -98,7 +101,12 @@
                 <a wicket:id="submit-link" href="#">submit</a>
             </td>
             <td>
-                <a href="#" wicket:id="delete">delete</a>
+                <wicket:enclosure child="delete">
+                    <a href="#" wicket:id="delete">delete</a>
+                </wicket:enclosure>
+                <wicket:enclosure child="permanent-delete">
+                    <a href="#" wicket:id="permanent-delete">perm delete</a>
+                </wicket:enclosure>
             </td>
             <td>
                 <a href="#" wicket:id="request-to-collaborate">request to collaborate</a>
