@@ -216,7 +216,7 @@ public class HibernateUtils {
                 str = str.substring( ignoreWord.length() + 1 );
             }
         }
-        return str.substring( 0, 1 ).toUpperCase( locale );
+        return str.trim().substring( 0, 1 ).toUpperCase( locale );
     }
 
     public static String encodeCharacterId( String chr ) {
@@ -228,7 +228,7 @@ public class HibernateUtils {
         }
         return buf.toString();
         */
-        if( chr.length() == 0 ) {
+        if ( chr.trim().length() == 0 ) {
             return "-";
         }
         return chr;
