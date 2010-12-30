@@ -1,3 +1,4 @@
+Added two-level translation delete
 > Added the ability to sort columns on activity/contribution lists
 Added admin interface for subscribing a list of users
 Gratuitous textual change to attain the coveted <INSERT SOMETHING IN HEX> Git commit
