@@ -29,11 +29,11 @@ import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
-import edu.colorado.phet.website.util.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 /**
  * Shows a list of website translations to the user, along with the ability to perform actions on them
@@ -122,9 +122,40 @@ public class TranslationListPanel extends PhetPanel {
             }
             item.add( visibleLabel );
 
-            // TODO: (refactor, high) add visibility switcher component. Ahh how nice scala or clojure would be here
+            // TODO: decide on candidate
+            /*
+            Imagined scala:
+            item.add( "visible-toggle", id => SimpleLink( id ) { toggleVisibility( translation ) })
+             */
+//            item.add( WicketUtils.componentIf( visibleToggleShown, "visible-toggle", new IComponentFactory<Component>() {
+//                public Component create( String id ) {
+//                    return new Link( id ) {
+//                        @Override
+//                        public void onClick() {
+//                            toggleVisibility( translation );
+//                        }
+//                    };
+//                }
+//            } ) );
+//            item.add( WicketUtils.componentIf( visibleToggleShown, "visible-toggle", new Link( "visible-toggle" ) {
+//                public void onClick() {
+//                    toggleVisibility( translation );
+//                }
+//            } ) );
+//            item.add( new OptionComponent( "visible-toggle" ) {
+//                @Override
+//                public Component getComponent( String id ) {
+//                    return new Link( id ) {
+//                        @Override
+//                        public void onClick() {
+//                            toggleVisibility( translation );
+//                        }
+//                    };
+//                }
+//            }.ifTrue( visibleToggleShown ) );
             if ( visibleToggleShown ) {
                 item.add( new Link( "visible-toggle" ) {
+                    @Override
                     public void onClick() {
                         toggleVisibility( translation );
                     }
