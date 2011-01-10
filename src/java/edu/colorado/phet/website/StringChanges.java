@@ -25,6 +25,8 @@ public class StringChanges {
 
         addString( session, "sponsors.techsmith.desc", "For providing multiple licenses of Camtasia Studio " );
 
+        overwriteString( session, "sponsors.techsmith.desc", "For providing multiple licenses of Camtasia Studio ", "For providing licenses of Camtasia Studio " );
+
         session.close();
     }
 
