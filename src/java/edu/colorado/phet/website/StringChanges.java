@@ -27,6 +27,15 @@ public class StringChanges {
 
         overwriteString( session, "sponsors.techsmith.desc", "For providing multiple licenses of Camtasia Studio ", "For providing licenses of Camtasia Studio " );
 
+        overwriteString( session, "home.browseActivities", "Activities contributed by Teachers", "Browse Activities" );
+        overwriteString( session, "home.submitActivity", "Provide ideas you've used in class", "Contribute Activities" );
+        overwriteString( session, "home.workshops", "Workshops", "Workshops and Materials" );
+
+        addString( session, "home.about.otherSponsors", "Other Sponsors" );
+        addString( session, "home.about.featuredSponsor", "Featured Sponsor" );
+
+        // TODO: sunset home.contribute string
+
         session.close();
     }
 

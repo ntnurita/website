@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.StatelessLink;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -24,10 +25,7 @@ import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
-import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.panels.RotatorFallbackPanel;
-import edu.colorado.phet.website.panels.RotatorPanel;
-import edu.colorado.phet.website.panels.TranslationLinksPanel;
+import edu.colorado.phet.website.panels.*;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -81,7 +79,7 @@ public class IndexPanel extends PhetPanel {
 
         add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, getPhetCycle() ) );
 
-        add( TeacherIdeasPanel.getLinker().getLink( "contribute-link", context, getPhetCycle() ) );
+        //add( TeacherIdeasPanel.getLinker().getLink( "contribute-link", context, getPhetCycle() ) );
         add( DonatePanel.getLinker().getLink( "support-phet-link", context, getPhetCycle() ) );
         add( TranslationUtilityPanel.getLinker().getLink( "translate-sims-link", context, getPhetCycle() ) );
 
@@ -90,6 +88,13 @@ public class IndexPanel extends PhetPanel {
         add( AboutNewsPanel.getLinker().getLink( "about-news", context, getPhetCycle() ) );
         add( AboutContactPanel.getLinker().getLink( "about-contact", context, getPhetCycle() ) );
         add( AboutSponsorsPanel.getLinker().getLink( "about-sponsors", context, getPhetCycle() ) );
+        add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
+
+        final SimSponsorPanel.Sponsor sponsor = SimSponsorPanel.chooseRandomActiveSponsor();
+        add( new RawLink( "featured-sponsor", sponsor.getUrl() ) );
+        add( new RawLink( "featured-sponsor-logo-link", sponsor.getUrl() ) {{
+            add( new StaticImage( "logo", sponsor.getImageUrl(), sponsor.getImageAlt() ) );
+        }} );
 
         //add( CategoryPage.createLink( "browse-sims-link", context ) );
 
