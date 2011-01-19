@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.panels.simulation;
 
+import java.text.Collator;
 import java.util.*;
 
 import org.apache.wicket.behavior.HeaderContributor;
@@ -44,12 +45,7 @@ public class SimulationIndexPanel extends PhetPanel {
             }
         }
 
-        Collections.sort( letters, new Comparator<String>() {
-            public int compare( String a, String b ) {
-                return a.compareTo( b );
-            }
-        } );
-
+        Collections.sort( letters, Collator.getInstance( getLocale() ) );
 
         add( new ListView<String>( "sim-group", letters ) {
             protected void populateItem( ListItem<String> item ) {
