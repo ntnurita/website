@@ -38,6 +38,8 @@ public class SimulationPage extends PhetMenuPage {
     private String ogDescription; // the description
     private String ogImage; // the thumbnail (absolute URI)
 
+    private String metaDescription;
+
     public SimulationPage( PageParameters parameters ) {
         super( parameters );
 
@@ -78,6 +80,7 @@ public class SimulationPage extends PhetMenuPage {
 
         ogTitle = simulation.getTitle();
         ogDescription = getLocalizer().getString( simulation.getSimulation().getDescriptionKey(), this );
+        metaDescription = ogDescription;
         ogImage = "http://" + WebsiteConstants.WEB_SERVER + simulation.getSimulation().getThumbnailUrl();
 
         final LocalizedSimulation finalSim = simulation;
@@ -128,6 +131,9 @@ public class SimulationPage extends PhetMenuPage {
         }
         if ( key.equals( "style.ogImage" ) ) {
             return ogImage;
+        }
+        if( key.equals( "style.metaDescription" ) ) {
+            return metaDescription;
         }
         return super.getStyle( key );
     }
