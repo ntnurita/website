@@ -85,7 +85,7 @@ public abstract class PhetMenuPage extends PhetPage {
      */
     protected void verifySignedIn() {
         if ( initializedLocations ) {
-            AuthenticatedPage.checkSignedIn( navLocations );
+            AuthenticatedPage.checkSignedIn( navLocations, getPageContext() );
         }
         else {
             super.verifySignedIn();

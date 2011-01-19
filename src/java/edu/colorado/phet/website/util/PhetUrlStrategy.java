@@ -4,6 +4,8 @@
 
 package edu.colorado.phet.website.util;
 
+import java.util.Locale;
+
 import org.apache.log4j.Logger;
 import org.apache.wicket.IRequestTarget;
 import org.apache.wicket.PageParameters;
@@ -57,6 +59,15 @@ public class PhetUrlStrategy implements IRequestTargetUrlCodingStrategy {
         }
         Class toClass = mapper.getMappedClass( strippedPath, params );
         return new BookmarkablePageRequestTarget( toClass, params );
+    }
+
+    public static void setPageParamToStandard( PageParameters params, Locale locale, String path ) {
+        String localeString = LocaleUtils.localeToString( locale );
+        params.add( TranslationUrlStrategy.FULL_PATH, localeString + "/" + path );
+        params.add( TranslationUrlStrategy.PATH, path );
+        params.add( TranslationUrlStrategy.LOCALE_STRING, localeString );
+        params.add( TranslationUrlStrategy.PREFIX_STRING, "/" + localeString + "/" );
+        params.put( TranslationUrlStrategy.LOCALE, locale );
     }
 
     private String stripPath( String path ) {

@@ -23,6 +23,7 @@ import edu.colorado.phet.website.util.links.RawLinkable;
  */
 public class SignInPage extends PhetMenuPage {
 
+    public static final String SIGN_IN_PATH = "sign-in";
     private static final Logger logger = Logger.getLogger( SignInPage.class.getName() );
 
     public SignInPage( PageParameters parameters ) {
@@ -58,7 +59,7 @@ public class SignInPage extends PhetMenuPage {
                     if ( finalDestination.equals( "/en/" ) ) {
                         finalDestination = "/";
                     }
-                    return "sign-in?dest=" + URLEncoder.encode( finalDestination, "UTF-8" );
+                    return SIGN_IN_PATH + "?dest=" + URLEncoder.encode( finalDestination, "UTF-8" );
                 }
                 catch( UnsupportedEncodingException e ) {
                     e.printStackTrace();
@@ -74,7 +75,7 @@ public class SignInPage extends PhetMenuPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^sign-in$", SignInPage.class );
+        mapper.addMap( "^" + SIGN_IN_PATH + "$", SignInPage.class );
     }
 
 }

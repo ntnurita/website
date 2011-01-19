@@ -19,7 +19,7 @@ import edu.colorado.phet.website.util.links.RawLinkable;
 public class ChangePasswordPage extends PhetMenuPage {
     public ChangePasswordPage( PageParameters parameters ) {
         super( parameters );
-        AuthenticatedPage.checkSignedIn(); // require that a user is signed in here. this isn't for passwords that are forgotten
+        verifySignedIn(); // require that a user is signed in here. this isn't for passwords that are forgotten
         setTitle( getLocalizer().getString( "changePassword.title", this ) );
         add( new ChangePasswordPanel( "set-password-panel", getPageContext(), PhetSession.get().getUser(), true ) );
 

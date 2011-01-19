@@ -103,6 +103,21 @@ public abstract class PhetPage extends WebPage implements Stylable {
             addDebugLine( "prefix: " + prefix );
             addDebugLine( "session id: " + wicketSession.getId() );
 
+            /*
+            public static final String FULL_PATH = "fullPath";
+            public static final String PATH = "path";
+            public static final String LOCALE_STRING = "localeString";
+            public static final String PREFIX_STRING = "prefixString";
+            public static final String LOCALE = "locale";
+            public static final String VARIATION = "variation";
+             */
+            addDebugLine( "FULL_PATH: " + parameters.getString( TranslationUrlStrategy.FULL_PATH ) );
+            addDebugLine( "PATH: " + parameters.getString( TranslationUrlStrategy.PATH ) );
+            addDebugLine( "LOCALE_STRING: " + parameters.getString( TranslationUrlStrategy.LOCALE_STRING ) );
+            addDebugLine( "PREFIX_STRING: " + parameters.getString( TranslationUrlStrategy.PREFIX_STRING ) );
+            addDebugLine( "LOCALE: " + parameters.getString( TranslationUrlStrategy.LOCALE ) );
+            addDebugLine( "VARIATION: " + parameters.getString( TranslationUrlStrategy.VARIATION ) );
+
             if ( !parameters.keySet().isEmpty() ) {
                 StringBuilder builder = new StringBuilder( "<table>" );
                 for ( Object o : parameters.keySet() ) {
@@ -346,7 +361,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
      * If the user is not signed in, redirect them to the sign-in page.
      */
     protected void verifySignedIn() {
-        AuthenticatedPage.checkSignedIn();
+        AuthenticatedPage.checkSignedIn( getPageContext() );
     }
 
     /**
