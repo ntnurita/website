@@ -102,6 +102,7 @@ public class AdminUsersPage extends AdminPage {
         } );
 
         add( new SubscribeUsersForm( "subscribe-form" ) );
+        add( new UnsubscribeUsersForm( "unsubscribe-form" ) );
 
     }
 
@@ -136,6 +137,40 @@ public class AdminUsersPage extends AdminPage {
             for ( String email : emailText.split( "\n" ) ) {
                 NewsletterUtils.subscribeUserAndSendEmail( getPageContext(), getHibernateSession(), email.trim(), true );
             }
+        }
+    }
+
+    private class UnsubscribeUsersForm extends Form {
+        private TextArea<String> emailArea;
+
+        private UnsubscribeUsersForm( String id ) {
+            super( id );
+
+            add( emailArea = new TextArea<String>( "emails", new Model<String>( "" ) ) );
+        }
+
+        @Override
+        protected void onSubmit() {
+            final String emailText = emailArea.getModelObject();
+            logger.info( "Attempting to manually unsubscribe a list of users:\n" + emailText );
+            HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
+                public Void run( Session session ) {
+                    for ( String rawEmail : emailText.split( "\n" ) ) {
+                        String email = rawEmail.trim();
+                        List users = session.createQuery( "select u from PhetUser as u where u.email = :email" )
+                                .setString( "email", email ).list();
+                        if ( !users.isEmpty() ) {
+                            PhetUser user = (PhetUser) users.get( 0 );
+                            if ( user.isReceiveEmail() ) {
+                                logger.info( "manually unsubscribing " + user.getEmail() );
+                                user.setReceiveEmail( false );
+                                session.update( user );
+                            }
+                        }
+                    }
+                    return null;
+                }
+            } );
         }
     }
 }

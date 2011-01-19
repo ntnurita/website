@@ -54,7 +54,7 @@
             <input type="submit" name="submit" value="Delete user"/>
         </form>
 
-        <h2>Subscribe list of users</h2>
+        <h2><span style="color: #008800">Subscribe</span> list of users</h2>
 
         <p>
             Put email addresses on separate lines (without any commas or other separation).
@@ -64,6 +64,18 @@
         <form wicket:id="subscribe-form">
             <textarea rows="40" cols="50" name="emails" wicket:id="emails"></textarea>
             <input type="submit" name="submit" value="Subscribe users"/>
+        </form>
+
+        <h2><span style="color: #880000">Unsubscribe</span> list of users</h2>
+
+        <p>
+            Put email addresses on separate lines (without any commas or other separation).
+            This will not notify the users, as this should only be used for unsubscribing bounced (bad-email) users.
+        </p>
+
+        <form wicket:id="unsubscribe-form">
+            <textarea rows="20" cols="50" name="emails" wicket:id="emails"></textarea>
+            <input type="submit" name="submit" value="Unsubscribe users!"/>
         </form>
     </div>
 </wicket:extend>
