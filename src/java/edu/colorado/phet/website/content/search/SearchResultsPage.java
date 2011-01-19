@@ -63,4 +63,11 @@ public class SearchResultsPage extends PhetRegularPage {
         };
     }
 
+    @Override
+    public String getStyle( String key ) {
+        if ( key.equals( "style.metaRobots" ) ) {
+            return "noindex"; // possible to change for the future
+        }
+        return super.getStyle( key );
+    }
 }
