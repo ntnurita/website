@@ -11,6 +11,8 @@ public class EnglishEntity extends TranslationEntity {
     public EnglishEntity() {
         addString( "admin.keyword.create.duplicate" );
         addString( "admin.keyword.create.exists" );
+
+        addString( "home.meta", "Home (Index) page meta description" );
     }
 
     public String getDisplayName() {

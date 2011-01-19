@@ -311,7 +311,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
             } );
         }
 
-        if ( metaDescription == null ) {
+        if ( metaDescription == null || !getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
             add( new InvisibleComponent( "metaDescription" ) );
         }
         else {

@@ -34,6 +34,8 @@ public class StringChanges {
         addString( session, "home.about.otherSponsors", "Other Sponsors" );
         addString( session, "home.about.featuredSponsor", "Featured Sponsor" );
 
+        addString( session, "home.meta", "Free educational simulations covering a diverse topics designed by the University of Colorado available in various languages." );
+
         // TODO: sunset home.contribute string
 
         session.close();
