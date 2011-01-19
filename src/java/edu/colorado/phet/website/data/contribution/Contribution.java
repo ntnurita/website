@@ -5,10 +5,8 @@
 package edu.colorado.phet.website.data.contribution;
 
 import java.io.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.text.Collator;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -167,34 +165,37 @@ public class Contribution implements Serializable, DataListener, IntId {
     }
 
     /**
-     * Used to sort contributions for display
-     *
-     * @param other         The other contribution
-     * @param currentLocale The current locale to use for sorting.
-     * @return
+     * Sort a list of contributions
+     * @param contributions List of contributions
+     * @param locale The locale to use for sorting
      */
-    public int displayCompareTo( Contribution other, Locale currentLocale ) {
-        if ( other.getId() == getId() ) {
-            // check for equality
-            return 0;
-        }
-        if ( !getLocale().equals( other.getLocale() ) ) {
-            // sort by locale
-            if ( getLocale().equals( currentLocale ) ) {
-                return -1;
-            }
-            if ( other.getLocale().equals( currentLocale ) ) {
-                return 1;
-            }
-            return getLocale().getLanguage().compareTo( other.getLocale().getLanguage() );
-        }
-        if ( isGoldStar() != other.isGoldStar() ) {
-            // sort by gold star
-            return isGoldStar() ? -1 : 1;
-        }
+    public static void orderContributions( List<Contribution> contributions, final Locale locale ) {
+        final Comparator<Object> collator = Collator.getInstance( locale );
+        Collections.sort( contributions, new Comparator<Contribution>() {
+            public int compare( Contribution a, Contribution b ) {
+                if ( b.getId() == a.getId() ) {
+                    // check for equality
+                    return 0;
+                }
+                if ( !a.getLocale().equals( b.getLocale() ) ) {
+                    // sort by locale
+                    if ( a.getLocale().equals( locale ) ) {
+                        return -1;
+                    }
+                    if ( b.getLocale().equals( locale ) ) {
+                        return 1;
+                    }
+                    return collator.compare( a.getLocale().getDisplayLanguage( locale ), b.getLocale().getDisplayLanguage( locale ) );
+                }
+                if ( a.isGoldStar() != b.isGoldStar() ) {
+                    // sort by gold star
+                    return a.isGoldStar() ? -1 : 1;
+                }
 
-        // sort by creation date. newest first now
-        return -getDateCreated().compareTo( other.getDateCreated() );
+                // sort by creation date. newest first now
+                return -a.getDateCreated().compareTo( b.getDateCreated() );
+            }
+        } );
     }
 
     /**

@@ -87,11 +87,7 @@ public class ContributionBrowsePanel extends PhetPanel {
 
         final DateFormat format = DateFormat.getDateInstance( DateFormat.SHORT, getLocale() );
 
-        Collections.sort( contributions, new Comparator<Contribution>() {
-            public int compare( Contribution a, Contribution b ) {
-                return a.displayCompareTo( b, getLocale() );
-            }
-        } );
+        Contribution.orderContributions( contributions, getLocale() );
 
         logger.debug( System.currentTimeMillis() + " B" );
 

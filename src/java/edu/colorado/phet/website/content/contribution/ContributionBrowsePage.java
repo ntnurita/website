@@ -4,7 +4,9 @@
 
 package edu.colorado.phet.website.content.contribution;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -188,11 +190,7 @@ public class ContributionBrowsePage extends PhetRegularPage {
 
             logger.debug( "C" );
 
-            Collections.sort( finalContributions, new Comparator<Contribution>() {
-                public int compare( Contribution a, Contribution b ) {
-                    return a.displayCompareTo( b, getLocale() );
-                }
-            } );
+            Contribution.orderContributions( finalContributions, getLocale() );
 
             logger.debug( "D" );
 
