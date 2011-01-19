@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.panels.lists;
 
 import java.io.Serializable;
+import java.text.Collator;
 import java.util.Locale;
 
 import org.apache.wicket.Component;
@@ -45,6 +46,7 @@ public class CategoryOrderItem implements SortableListItem, Serializable {
     }
 
     public int compareTo( SortableListItem item, Locale locale ) {
-        return getDisplayValue().compareToIgnoreCase( item.getDisplayValue() );
+        return Collator.getInstance( locale ).compare( getDisplayValue(), item.getDisplayValue() );
+        //return getDisplayValue().compareToIgnoreCase( item.getDisplayValue() );
     }
 }

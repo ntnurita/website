@@ -187,7 +187,9 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
                 }
                 throw new RuntimeException( "item or getDisplayValue() null" );
             }
-            return getDisplayValue().compareToIgnoreCase( item.getDisplayValue() );
+            return ( new Integer( getId() ) ).compareTo( item.getId() );
+            //return Collator.getInstance( locale ).compare( getDisplayValue(), item.getDisplayValue() );
+            //return getDisplayValue().compareToIgnoreCase( item.getDisplayValue() );
         }
 
         public String getDisplayValue() {
