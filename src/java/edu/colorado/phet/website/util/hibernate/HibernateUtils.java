@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.util.hibernate;
 
+import java.text.Collator;
 import java.util.*;
 
 import org.apache.log4j.Logger;
@@ -244,6 +245,7 @@ public class HibernateUtils {
     public static void orderSimulations( List<LocalizedSimulation> list, final Locale locale ) {
         final HashMap<String, String> map = new HashMap<String, String>();
         final PhetLocalizer phetLocalizer = (PhetLocalizer) PhetWicketApplication.get().getResourceSettings().getLocalizer();
+        final Collator collator = Collator.getInstance( locale );
 
         for ( LocalizedSimulation sim : list ) {
             boolean correctLocale = locale.equals( sim.getLocale() );
@@ -281,7 +283,7 @@ public class HibernateUtils {
 
                     String localeA = StringUtils.getLocaleTitle( a.getLocale(), locale, phetLocalizer );
                     String localeB = StringUtils.getLocaleTitle( b.getLocale(), locale, phetLocalizer );
-                    return localeA.compareToIgnoreCase( localeB );
+                    return collator.compare( localeA, localeB );
                 }
 
                 String aGlobalTitle = map.get( a.getSimulation().getName() );
@@ -300,7 +302,7 @@ public class HibernateUtils {
                             bGlobalTitle = bGlobalTitle.substring( ignoreWord.length() + 1 );
                         }
                     }
-                    return aGlobalTitle.compareToIgnoreCase( bGlobalTitle );
+                    return collator.compare( aGlobalTitle, bGlobalTitle );
                 }
                 else if ( aGlobal ) {
                     return -1;
@@ -309,7 +311,7 @@ public class HibernateUtils {
                     return 1;
                 }
                 else {
-                    return a.getSimulation().getName().compareToIgnoreCase( b.getSimulation().getName() );
+                    return collator.compare( a.getSimulation().getName(), b.getSimulation().getName() );
                 }
             }
         } );

@@ -33,6 +33,7 @@ import edu.colorado.phet.website.data.contribution.Type;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.StringComparator;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -164,9 +165,10 @@ public class ContributionSearchPanel extends PhetPanel {
             names.put( locale, StringUtils.getLocaleTitle( locale, getLocale(), getPhetLocalizer() ) );
         }
 
-        Collections.sort( locales, new Comparator<Locale>() {
-            public int compare( Locale a, Locale b ) {
-                return names.get( a ).compareTo( names.get( b ) );
+        Collections.sort( locales, new StringComparator<Locale>() {
+            @Override
+            public String toString( Locale locale ) {
+                return names.get( locale );
             }
         } );
 
