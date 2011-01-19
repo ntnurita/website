@@ -29,6 +29,7 @@ import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.StringComparator;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -89,9 +90,10 @@ public class TranslationLocaleListPanel extends PhetPanel implements CacheableUr
             localeNames.put( locale, StringUtils.getLocaleTitle( locale, context.getLocale(), (PhetLocalizer) getLocalizer() ) );
         }
 
-        Collections.sort( locales, new Comparator<Locale>() {
-            public int compare( Locale a, Locale b ) {
-                return localeNames.get( a ).compareTo( localeNames.get( b ) );
+        Collections.sort( locales, new StringComparator<Locale>( getLocale() ) {
+            @Override
+            public String toString( Locale locale ) {
+                return localeNames.get( locale );
             }
         } );
 
