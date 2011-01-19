@@ -71,9 +71,9 @@ public class AboutMainPanel extends PhetPanel {
 
         final boolean isAdmin = PhetSession.get().isSignedIn() && PhetSession.get().getUser().isTeamMember();
 
-        add( new ListView( "person", members ) {
-            protected void populateItem( ListItem item ) {
-                PhetUser user = (PhetUser) item.getModel().getObject();
+        add( new ListView<PhetUser>( "person", members ) {
+            protected void populateItem( ListItem<PhetUser> item ) {
+                PhetUser user = item.getModelObject();
                 item.add( new Label( "name", user.getName() ) );
                 item.add( new Label( "title", user.getJobTitle() ) );
                 if ( isAdmin ) {
