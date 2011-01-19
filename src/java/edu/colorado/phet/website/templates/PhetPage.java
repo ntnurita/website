@@ -36,6 +36,7 @@ import edu.colorado.phet.website.panels.LogInOutPanel;
 import edu.colorado.phet.website.panels.SearchPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.translation.TranslationUrlStrategy;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -56,6 +57,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
     private String title = null; // initialize as null
     private RawLabel titleLabel;
     private StringBuilder debugText = new StringBuilder();
+    private String metaDescription;
 
     private Long initStart;
 
@@ -308,6 +310,23 @@ public abstract class PhetPage extends WebPage implements Stylable {
                 }
             } );
         }
+
+        if ( metaDescription == null ) {
+            add( new InvisibleComponent( "metaDescription" ) );
+        }
+        else {
+            add( new RawLabel( "metaDescription", "<meta name=\"description\" content=\"" + HtmlUtils.encodeForAttribute( metaDescription ) + "\"/>" ) {{
+                setRenderBodyOnly( true );
+            }} );
+        }
+    }
+
+    public void setMetaDescription( String desc ) {
+        metaDescription = desc;
+    }
+
+    public void setMetaDescriptionKey( String key ) {
+        metaDescription = getPhetLocalizer().getString( key, this );
     }
 
     public void addDebugLine( String str ) {

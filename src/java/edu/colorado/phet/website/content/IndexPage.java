@@ -22,6 +22,9 @@ public class IndexPage extends PhetPage {
 
         add( new IndexPanel( "index-panel", getPageContext() ) );
 
+        // TODO: localize
+        setMetaDescription( "Free educational simulations covering a diverse topics designed by the University of Colorado available in various languages." );
+
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
