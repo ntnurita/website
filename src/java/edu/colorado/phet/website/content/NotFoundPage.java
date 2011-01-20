@@ -27,7 +27,8 @@ public class NotFoundPage extends PhetMenuPage {
                 Linkers.getHelpLink( "PhET Website Page Not Found", getPageContext(), getPhetCycle() )
         } ) );
 
-        logger.info( "Not found: " + getWebRequestCycle().getWebRequest().getHttpServletRequest().getRequestURI() );
+        // lowered this to debug level since the actual 404 is picked up in PostWrapper and is redirected to a soft 404
+        logger.debug( "Not found: " + getWebRequestCycle().getWebRequest().getHttpServletRequest().getRequestURI() );
 
         hideSocialBookmarkButtons();
 

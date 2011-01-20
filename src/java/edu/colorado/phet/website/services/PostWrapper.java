@@ -37,7 +37,7 @@ public class PostWrapper extends HttpServletResponseWrapper {
 
     @Override
     public void sendError( int i, String s ) throws IOException {
-        logger.debug( "error: " + i + ": " + s );
+        logger.info( "error: " + i + ": " + s );
         if ( i == HttpURLConnection.HTTP_NOT_FOUND ) {
             notFound = true;
             notFoundMessage = s;
@@ -49,7 +49,7 @@ public class PostWrapper extends HttpServletResponseWrapper {
 
     @Override
     public void sendError( int i ) throws IOException {
-        logger.debug( "error: " + i );
+        logger.info( "error: " + i );
         if ( i == HttpURLConnection.HTTP_NOT_FOUND ) {
             notFound = true;
         }
