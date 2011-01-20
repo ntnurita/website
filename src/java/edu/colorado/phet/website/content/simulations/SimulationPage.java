@@ -26,6 +26,7 @@ import edu.colorado.phet.website.panels.simulation.SimulationMainPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
@@ -37,6 +38,7 @@ public class SimulationPage extends PhetMenuPage {
     private String ogTitle; // the title
     private String ogDescription; // the description
     private String ogImage; // the thumbnail (absolute URI)
+    private String ogUrl; // canonical URL
 
     public SimulationPage( PageParameters parameters ) {
         super( parameters );
@@ -80,6 +82,7 @@ public class SimulationPage extends PhetMenuPage {
         ogDescription = getLocalizer().getString( simulation.getSimulation().getDescriptionKey(), this );
         setMetaDescription( ogDescription );
         ogImage = "http://" + WebsiteConstants.WEB_SERVER + simulation.getSimulation().getThumbnailUrl();
+        ogUrl = StringUtils.makeUrlAbsolute( getLinker( simulation ).getDefaultRawUrl() );
 
         final LocalizedSimulation finalSim = simulation;
         PhetPanel simPanel = new SimplePanelCacheEntry( SimulationMainPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
@@ -129,6 +132,9 @@ public class SimulationPage extends PhetMenuPage {
         }
         if ( key.equals( "style.ogImage" ) ) {
             return ogImage;
+        }
+        if ( key.equals( "style.ogUrl" ) ) {
+            return ogUrl;
         }
         return super.getStyle( key );
     }

@@ -203,6 +203,23 @@ public class StringUtils {
         return buf.toString();
     }
 
+    /**
+     * This will turn URLs relative to the PhET server root into absolute urls, preserving the server name and protocol.
+     *
+     * @param url Will not turn truly relative URLs (ones without a leading /) to absolute URLs.
+     * @return Absolute URL if the above is met
+     */
+    public static String makeUrlAbsolute( String url ) {
+        String server = PhetRequestCycle.get().getServerName();
+        String scheme = PhetRequestCycle.get().getScheme(); // protocol
+        if ( url.startsWith( "/" ) ) {
+            return scheme + "://" + server + url;
+        }
+        else {
+            return url;
+        }
+    }
+
     private static class StatusTask implements HibernateTask {
         public int status;
         private final int translationId;

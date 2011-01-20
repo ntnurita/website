@@ -20,6 +20,7 @@ import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
@@ -40,7 +41,7 @@ public class NewsletterUtils {
     private static final String HIDDEN_STYLE = "style=\"font-size: 12px;color: #888888\"";
 
     public static String getUnsubscribeLink( PageContext context, String confirmationKey ) {
-        return EmailUtils.makeUrlAbsolute( UnsubscribeLandingPage.getLinker( confirmationKey ).getRawUrl( context, PhetRequestCycle.get() ) );
+        return StringUtils.makeUrlAbsolute( UnsubscribeLandingPage.getLinker( confirmationKey ).getRawUrl( context, PhetRequestCycle.get() ) );
     }
 
     public static String getUnsubscribeText( PageContext context, String confirmationKey ) {
@@ -50,7 +51,7 @@ public class NewsletterUtils {
     }
 
     public static boolean sendConfirmSubscriptionEmail( PageContext context, String emailAddress, String confirmationKey ) {
-        String confirmLink = EmailUtils.makeUrlAbsolute( ConfirmEmailLandingPage.getLinker( confirmationKey ).getRawUrl( context, PhetRequestCycle.get() ) );
+        String confirmLink = StringUtils.makeUrlAbsolute( ConfirmEmailLandingPage.getLinker( confirmationKey ).getRawUrl( context, PhetRequestCycle.get() ) );
 
         String subject = "Please Confirm Your PhET Subscription";
         String body = "<p>Thank you for subscribing to the PhET Newsletter!</p>" +
@@ -64,7 +65,7 @@ public class NewsletterUtils {
     }
 
     public static boolean sendConfirmRegisterEmail( PageContext context, String emailAddress, String confirmationKey, String destination ) {
-        String confirmLink = EmailUtils.makeUrlAbsolute( ConfirmEmailLandingPage.getLinker( confirmationKey, destination ).getRawUrl( context, PhetRequestCycle.get() ) );
+        String confirmLink = StringUtils.makeUrlAbsolute( ConfirmEmailLandingPage.getLinker( confirmationKey, destination ).getRawUrl( context, PhetRequestCycle.get() ) );
 
         String subject = "Please Confirm Your PhET Email Address";
         String body = "<p>Thank you for creating an account with PhET Interactive Simulations!</p>" +
@@ -89,8 +90,8 @@ public class NewsletterUtils {
     }
 
     public static boolean sendUserWelcomeEmail( PageContext context, PhetUser user ) {
-        String activityLink = EmailUtils.makeUrlAbsolute( ContributionCreatePage.getLinker().getRawUrl( context, PhetRequestCycle.get() ) );
-        String translationLink = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getRawUrl( context, PhetRequestCycle.get() ) );
+        String activityLink = StringUtils.makeUrlAbsolute( ContributionCreatePage.getLinker().getRawUrl( context, PhetRequestCycle.get() ) );
+        String translationLink = StringUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getRawUrl( context, PhetRequestCycle.get() ) );
 
         String subject = "Welcome to PhET";
         String body = "<p>Hello" + ( user.getName() == null || user.getName().length() == 0 ? "" : ", " + user.getName() ) + "!</p>" +

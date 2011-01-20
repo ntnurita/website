@@ -263,7 +263,7 @@ public class NotificationHandler {
     }
 
     public static boolean sendTranslationSubmittedNotification( int id, Locale locale, Collection<PhetUser> users ) {
-        String url = EmailUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
+        String url = StringUtils.makeUrlAbsolute( TranslationMainPage.getLinker().getDefaultRawUrl() );
         return sendInternalTranslationNotificationCore( "submitted", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
