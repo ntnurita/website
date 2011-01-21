@@ -54,10 +54,14 @@ public abstract class PhetPage extends WebPage implements Stylable {
     private String prefix;
     private String path;
     private String variation;
+
     private String title = null; // initialize as null
     private RawLabel titleLabel;
+
     private StringBuilder debugText = new StringBuilder();
+
     private String metaDescription;
+    private Component metaDescriptionLabel;
 
     private Long initStart;
 
@@ -311,13 +315,17 @@ public abstract class PhetPage extends WebPage implements Stylable {
             } );
         }
 
-        if ( metaDescription == null || !getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
-            add( new InvisibleComponent( "metaDescription" ) );
-        }
-        else {
-            add( new RawLabel( "metaDescription", "<meta name=\"description\" content=\"" + HtmlUtils.encodeForAttribute( metaDescription ) + "\"/>" ) {{
-                setRenderBodyOnly( true );
-            }} );
+        // add meta description if it does not already exist
+        if ( metaDescriptionLabel == null ) {
+            if ( metaDescription == null || !getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
+                metaDescriptionLabel = new InvisibleComponent( "metaDescription" );
+            }
+            else {
+                metaDescriptionLabel = new RawLabel( "metaDescription", "<meta name=\"description\" content=\"" + HtmlUtils.encodeForAttribute( metaDescription ) + "\"/>" ) {{
+                    setRenderBodyOnly( true );
+                }};
+            }
+            add( metaDescriptionLabel );
         }
     }
 
