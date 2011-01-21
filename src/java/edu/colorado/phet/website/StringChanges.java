@@ -36,6 +36,8 @@ public class StringChanges {
 
         addString( session, "home.meta", "Free educational simulations covering a diverse topics designed by the University of Colorado available in various languages." );
 
+        addString( session, "contribution.title", "{0}");
+
         // TODO: sunset home.contribute string
 
         session.close();

@@ -73,7 +73,10 @@ public class ContributionMainPanel extends PhetPanel {
         }
 
         // TODO: localize
-        title = "PhET contribution: " + HtmlUtils.encode( contribution.getTitle() );
+        title = StringUtils.messageFormat( getPhetLocalizer().getString( "contribution.title", this ), new Object[]{
+                HtmlUtils.encode( contribution.getTitle() )
+        } );
+        //title = "PhET contribution: " + HtmlUtils.encode( contribution.getTitle() );
 
         if ( contribution.isGoldStar() ) {
             // TODO: localize
@@ -91,9 +94,9 @@ public class ContributionMainPanel extends PhetPanel {
         }
         ContributionFile.orderFiles( files );
 
-        add( new ListView( "file", files ) {
-            protected void populateItem( ListItem item ) {
-                ContributionFile file = (ContributionFile) item.getModel().getObject();
+        add( new ListView<ContributionFile>( "file", files ) {
+            protected void populateItem( ListItem<ContributionFile> item ) {
+                ContributionFile file = item.getModelObject();
                 Link link = file.getLinker().getLink( "file-link", context, getPhetCycle() );
                 link.add( new Label( "file-name", file.getFilename() ) );
                 item.add( link );
