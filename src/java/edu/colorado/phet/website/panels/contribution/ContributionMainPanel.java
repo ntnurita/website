@@ -78,9 +78,6 @@ public class ContributionMainPanel extends PhetPanel {
         //title = "PhET contribution: " + HtmlUtils.encode( contribution.getTitle() );
 
         if ( contribution.isGoldStar() ) {
-            // TODO: localize
-            // TODO: link to legend?
-            // TODO: add title
             add( new StaticImage( "gold-star-contribution", Images.GOLD_STAR, getPhetLocalizer().getString( "tooltip.legend.goldStar", this ) ) );
         }
         else {
