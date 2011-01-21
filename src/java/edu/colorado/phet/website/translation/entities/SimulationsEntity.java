@@ -12,7 +12,13 @@ import java.util.List;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.panels.simulation.SimulationMainPanel;
+import edu.colorado.phet.website.translation.PhetPanelFactory;
+import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -42,6 +48,15 @@ public class SimulationsEntity extends TranslationEntity {
         for ( TranslatedString translatedString : strings ) {
             addString( translatedString.getKey() );
         }
+
+        addPreview( new PhetPanelFactory() {
+            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                final List<LocalizedSimulation> simulations = new LinkedList<LocalizedSimulation>();
+                HibernateUtils.addPreferredFullSimulationList( simulations, requestCycle.getHibernateSession(), context.getLocale() );
+                HibernateUtils.orderSimulations( simulations, context.getLocale() );
+                return new SimulationMainPanel( id, simulations.get( 0 ), context );
+            }
+        }, "1st simulation page with description and learning goals" );
     }
 
     public String getDisplayName() {
