@@ -72,6 +72,13 @@ public class TranslateEntityPanel extends PhetPanel {
             add( new ClassAppender( "preview-medium" ) );
         }
 
+        if ( entity.getDescription() != null ) {
+            add( new Label( "entity-description", entity.getDescription() ) );
+        }
+        else {
+            add( new InvisibleComponent( "entity-description" ) );
+        }
+
         ListView stringList = new ListView<TranslationEntityString>( "translation-string-list", entity.getStrings() ) {
             protected void populateItem( final ListItem<TranslationEntityString> item ) {
                 final TranslationEntityString tString = item.getModelObject();

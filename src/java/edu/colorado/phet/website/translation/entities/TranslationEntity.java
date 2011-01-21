@@ -17,7 +17,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 
 public abstract class TranslationEntity implements Serializable {
 
-    // TODO: add descriptions to many other entities and strings
+    private String description;
 
     private List<TranslationEntityString> strings = new LinkedList<TranslationEntityString>();
     private List<PhetPanelPreview> previews = new LinkedList<PhetPanelPreview>();
@@ -74,6 +74,14 @@ public abstract class TranslationEntity implements Serializable {
 
     public List<TranslationEntityString> getStrings() {
         return strings;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription( String description ) {
+        this.description = description;
     }
 
     private static List<TranslationEntity> cachedEntities = null;

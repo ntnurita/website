@@ -21,9 +21,9 @@ public class PreviewHolder extends PhetPanel {
 
         setOutputMarkupId( true );
 
-        add( new ListView( "sub-panels", entity.getPreviews() ) {
-            protected void populateItem( ListItem item ) {
-                PhetPanelPreview preview = (PhetPanelPreview) item.getModel().getObject();
+        add( new ListView<PhetPanelPreview>( "sub-panels", entity.getPreviews() ) {
+            protected void populateItem( ListItem<PhetPanelPreview> item ) {
+                PhetPanelPreview preview = item.getModelObject();
                 item.add( preview.getNewPanel( "holder-sub-panel", context, (PhetRequestCycle) getRequestCycle() ) );
                 item.add( new Label( "preview-number", String.valueOf( item.getIndex() + 1 ) ) );
                 item.add( new Label( "preview-name", preview.getName() ) );
