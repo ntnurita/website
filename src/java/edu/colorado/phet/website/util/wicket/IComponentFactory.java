@@ -4,6 +4,8 @@
 
 package edu.colorado.phet.website.util.wicket;
 
+import java.io.Serializable;
+
 import org.apache.wicket.Component;
 
 /**
@@ -11,6 +13,6 @@ import org.apache.wicket.Component;
  *
  * @param <T> Component class
  */
-public interface IComponentFactory<T extends Component> {
+public interface IComponentFactory<T extends Component> extends Serializable {
     public T create( String id );
 }
