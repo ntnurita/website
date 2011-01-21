@@ -72,7 +72,6 @@ public class ContributionMainPanel extends PhetPanel {
             add( new InvisibleComponent( "admin-contrib-panel" ) );
         }
 
-        // TODO: localize
         title = StringUtils.messageFormat( getPhetLocalizer().getString( "contribution.title", this ), new Object[]{
                 HtmlUtils.encode( contribution.getTitle() )
         } );
