@@ -203,9 +203,9 @@ public class ContributionMainPanel extends PhetPanel {
 
             final DateFormat dateFormat = DateFormat.getDateInstance( DateFormat.SHORT, getMyLocale() );
 
-            add( new ListView( "contribution-comment", comments ) {
-                protected void populateItem( ListItem item ) {
-                    final ContributionComment comment = (ContributionComment) item.getModel().getObject();
+            add( new ListView<ContributionComment>( "contribution-comment", comments ) {
+                protected void populateItem( ListItem<ContributionComment> item ) {
+                    final ContributionComment comment = item.getModelObject();
                     item.add( new Label( "text", comment.getText() ) );
                     item.add( new Label( "date", dateFormat.format( comment.getDateUpdated() ) ) );
                     item.add( new Label( "author", comment.getPhetUser().getName() ) );
@@ -236,17 +236,17 @@ public class ContributionMainPanel extends PhetPanel {
         // here we manually build up an HTML form so we can send it directly to our custom adding comment page
         WebMarkupContainer commentForm = new WebMarkupContainer( "add-comment-form" );
         add( commentForm );
-        commentForm.add( new AttributeAppender( "action", new Model( AddContributionCommentPage.getBaseLinker().getRawUrl( context, getPhetCycle() ) ), "" ) );
+        commentForm.add( new AttributeAppender( "action", new Model<String>( AddContributionCommentPage.getBaseLinker().getRawUrl( context, getPhetCycle() ) ), "" ) );
         Label commentContrib = new Label( "contrib-id-holder", "" );
         commentForm.add( commentContrib );
-        commentContrib.add( new AttributeAppender( "value", new Model( Integer.toString( contribution.getId() ) ), "" ) );
+        commentContrib.add( new AttributeAppender( "value", new Model<String>( Integer.toString( contribution.getId() ) ), "" ) );
 
         WebMarkupContainer nominateForm = new WebMarkupContainer( "nominate-form" );
         add( nominateForm );
-        nominateForm.add( new AttributeAppender( "action", new Model( NominateContributionPage.getBaseLinker().getRawUrl( context, getPhetCycle() ) ), "" ) );
+        nominateForm.add( new AttributeAppender( "action", new Model<String>( NominateContributionPage.getBaseLinker().getRawUrl( context, getPhetCycle() ) ), "" ) );
         Label commentContrib2 = new Label( "contrib-id-holder", "" );
         nominateForm.add( commentContrib2 );
-        commentContrib2.add( new AttributeAppender( "value", new Model( Integer.toString( contribution.getId() ) ), "" ) );
+        commentContrib2.add( new AttributeAppender( "value", new Model<String>( Integer.toString( contribution.getId() ) ), "" ) );
 
         add( new StaticImage( "gold-star-nominate", Images.GOLD_STAR, "Gold Star Contribution" ) );
         add( new LocalizedText( "contribution-nominate-text", "contribution.view.nominateText", new Object[]{
