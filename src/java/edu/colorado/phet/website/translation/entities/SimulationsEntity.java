@@ -19,7 +19,7 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 public class SimulationsEntity extends TranslationEntity {
 
     public SimulationsEntity() {
-        setDescription( "There is one 'description' string and one 'learning goals' string for each of our simulations.<br/>For the learning goals, please put each goal on a separate line, as they will be separated into a list." );
+        setDescription( "There is one 'description' string and one 'learning goals' string for each of our simulations.<br/>The simulations are ordered as they appear on the <a href=\"/en/simulations/index\" target=\"_blank\">\"All Sims\" page</a>.<br/>For the learning goals, please put each goal on a separate line, as they will be separated into a list." );
         final List<TranslatedString> strings = new LinkedList<TranslatedString>();
         HibernateUtils.wrapSession( new HibernateTask() {
             public boolean run( Session session ) {

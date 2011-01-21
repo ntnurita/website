@@ -55,8 +55,9 @@
             }
 
             .entity-description {
-                padding: 1em;
-                font-weight: bold;
+                padding: 0.5em;
+                margin: 0.5em;
+                border: 1px solid #aaa;
             }
 
             .preview-medium .translation-holder {
@@ -109,11 +110,16 @@
 
         <div class="strings">
             <div class="string-bumper"/>
-            <div class="entity-description" wicket:id="entity-description">
-                This is a description of the strings you are about to translate. It may be somewhat longer, and it may
-                even include such esoteric things as a line-break.<br/>
-                If you do encounter a line-break while reading this text, please do not regard it as overly suspicious.
-            </div>
+            <wicket:enclosure child="entity-description">
+                <div class="entity-description">
+                    <span style="font-weight: bold;">Please note:</span>
+                    <div wicket:id="entity-description">
+                        This is a description of the strings you are about to translate. It may be somewhat longer, and it may
+                        even include such esoteric things as a line-break.<br/>
+                        If you do encounter a line-break while reading this text, please do not regard it as overly suspicious.
+                    </div>
+                </div>
+            </wicket:enclosure>
             <div wicket:id="translation-string-list">
                 <span wicket:id="translation-string-key">language.dir</span>:
                 <wicket:enclosure child="translation-string-english">

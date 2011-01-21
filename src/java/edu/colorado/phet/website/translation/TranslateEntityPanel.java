@@ -29,6 +29,7 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedLabel;
+import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.test.TestTranslateString;
@@ -73,7 +74,7 @@ public class TranslateEntityPanel extends PhetPanel {
         }
 
         if ( entity.getDescription() != null ) {
-            add( new Label( "entity-description", entity.getDescription() ) );
+            add( new RawLabel( "entity-description", entity.getDescription() ) );
         }
         else {
             add( new InvisibleComponent( "entity-description" ) );
