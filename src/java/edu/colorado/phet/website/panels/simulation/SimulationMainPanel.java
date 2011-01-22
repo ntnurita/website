@@ -547,22 +547,34 @@ public class SimulationMainPanel extends PhetPanel {
     private List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {
         // TODO: optimization or somehow pre-calculate these values? this takes a lot of time to compute
 
+        final int SOFT_MAX_RELATED_SIMULATIONS = 3;
+
         final List<LocalizedSimulation> ret = new LinkedList<LocalizedSimulation>();
         HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public Void run( Session session ) {
                 final LocalizedSimulation sim = (LocalizedSimulation) session.load( LocalizedSimulation.class, simulation.getId() );
-                List<LocalizedSimulation> allSimsList = new LinkedList<LocalizedSimulation>();
-                HibernateUtils.addPreferredFullSimulationList( allSimsList, getHibernateSession(), getMyLocale() );
-                allSimsList.remove( sim );
-                for ( LocalizedSimulation lsim : allSimsList ) {
+                List<LocalizedSimulation> simPool = new LinkedList<LocalizedSimulation>();
+                HibernateUtils.addPreferredFullSimulationList( simPool, getHibernateSession(), getMyLocale() );
+                simPool.remove( sim ); // don't allow this simulation in
+
+                // add simulations from the same project in
+                for ( LocalizedSimulation lsim : simPool ) {
                     if ( lsim.getSimulation().getProject().getId() == sim.getSimulation().getProject().getId() && lsim.getId() != sim.getId() ) {
                         ret.add( lsim );
                     }
                 }
-                if ( ret.size() >= 3 ) {
+
+                // remove those from our pool
+                for ( LocalizedSimulation lsim : ret ) {
+                    simPool.remove( lsim );
+                }
+
+                if ( ret.size() >= SOFT_MAX_RELATED_SIMULATIONS ) {
                     return null;
                 }
-                Collections.sort( allSimsList, new Comparator<LocalizedSimulation>() {
+
+                // sort our pool by score
+                Collections.sort( simPool, new Comparator<LocalizedSimulation>() {
                     public int score( LocalizedSimulation lsim ) {
                         int count = 0;
 
@@ -598,9 +610,11 @@ public class SimulationMainPanel extends PhetPanel {
                         }
                     }
                 } );
-                while( ret.size() < 3 ) {
-                    ret.add( allSimsList.get( 0 ));
-                    allSimsList.remove( 0 );
+
+                // take sims from pool until we fill how many we want
+                while ( ret.size() < SOFT_MAX_RELATED_SIMULATIONS ) {
+                    ret.add( simPool.get( 0 ) );
+                    simPool.remove( 0 );
                 }
                 return null;
             }
