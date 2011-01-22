@@ -415,7 +415,8 @@ public class Changelog {
                     if ( !tokenizer.hasMoreTokens() ) { return; }
                     token = tokenizer.nextToken();
                 }
-                catch( ParseException e ) {
+                catch( Exception e ) {
+                    // just catching ParseException didn't work for the empty string
                 }
             }
 
