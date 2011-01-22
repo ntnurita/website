@@ -4,9 +4,7 @@
 
 package edu.colorado.phet.website.panels.simulation;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
@@ -50,9 +48,10 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 import static edu.colorado.phet.website.util.HtmlUtils.encode;
 
@@ -381,6 +380,12 @@ public class SimulationMainPanel extends PhetPanel {
         addCacheParameter( "title", title );
 
         /*---------------------------------------------------------------------------*
+        * related simulations
+        *----------------------------------------------------------------------------*/
+
+        add( new SimulationDisplayPanel( "related-simulations-panel", context, getRelatedSimulations( simulation ) ) );
+
+        /*---------------------------------------------------------------------------*
         * more info (design team, libraries, thanks, etc
         *----------------------------------------------------------------------------*/
 
@@ -537,6 +542,70 @@ public class SimulationMainPanel extends PhetPanel {
         add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
                 ContributionCreatePage.getLinker().getHref( context, getPhetCycle() )
         } ) );
+    }
+
+    private List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {
+        // TODO: optimization or somehow pre-calculate these values? this takes a lot of time to compute
+
+        final List<LocalizedSimulation> ret = new LinkedList<LocalizedSimulation>();
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+            public Void run( Session session ) {
+                final LocalizedSimulation sim = (LocalizedSimulation) session.load( LocalizedSimulation.class, simulation.getId() );
+                List<LocalizedSimulation> allSimsList = new LinkedList<LocalizedSimulation>();
+                HibernateUtils.addPreferredFullSimulationList( allSimsList, getHibernateSession(), getMyLocale() );
+                allSimsList.remove( sim );
+                for ( LocalizedSimulation lsim : allSimsList ) {
+                    if ( lsim.getSimulation().getProject().getId() == sim.getSimulation().getProject().getId() && lsim.getId() != sim.getId() ) {
+                        ret.add( lsim );
+                    }
+                }
+                if ( ret.size() >= 3 ) {
+                    return null;
+                }
+                Collections.sort( allSimsList, new Comparator<LocalizedSimulation>() {
+                    public int score( LocalizedSimulation lsim ) {
+                        int count = 0;
+
+                        // TODO: rank with popularity also?
+
+                        // add +1 for each keyword that they share
+                        for ( Object o : lsim.getSimulation().getKeywords() ) {
+                            if ( sim.getSimulation().getKeywords().contains( o ) ) {
+                                count += 1;
+                            }
+                        }
+
+                        // add +1 for each category that they share
+                        for ( Object o : lsim.getSimulation().getCategories() ) {
+                            if ( sim.getSimulation().getCategories().contains( o ) ) {
+                                count += 1;
+                            }
+                        }
+                        return count;
+                    }
+
+                    public int compare( LocalizedSimulation a, LocalizedSimulation b ) {
+                        int sa = score( a );
+                        int sb = score( b );
+                        if ( sa < sb ) {
+                            return 1;
+                        }
+                        else if ( sa == sb ) {
+                            return 0;
+                        }
+                        else {
+                            return -1;
+                        }
+                    }
+                } );
+                while( ret.size() < 3 ) {
+                    ret.add( allSimsList.get( 0 ));
+                    allSimsList.remove( 0 );
+                }
+                return null;
+            }
+        } );
+        return ret;
     }
 
     public String getTitle() {

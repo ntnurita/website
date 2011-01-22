@@ -46,6 +46,9 @@ public class StringChanges {
         overwriteString( session, "home.about.sponsors", "PhET is supported by", "Sponsors" );
         addString( session, "home.about.phetSupportedBy", "PhET is supported by..." );
 
+        addString( session, "simulationMainPanel.seeBelow.relatedSimulations", "Related Sims >>");
+        addString( session, "simulationMainPanel.relatedSimulations", "Related Simulations" );
+
         // TODO: sunset home.contribute string
         // TODO: sunset home.about.featuredSponsor
 
