@@ -267,8 +267,8 @@ public class NotificationHandler {
         return sendInternalTranslationNotificationCore( "submitted", "<p>This can be accessed at <a href=\"" + url + "\">" + url + "</a>.</p>", id, locale, users );
     }
 
-    public static boolean sendTranslationDeletedNotification( int id, Locale locale, Collection<PhetUser> users ) {
-        return sendInternalTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + PhetSession.get().getUser().getEmail() + "</p>", id, locale, users );
+    public static boolean sendTranslationDeletedNotification( int id, Locale locale, Collection<PhetUser> users, PhetUser deleter ) {
+        return sendInternalTranslationNotificationCore( "deleted", "<p>The translation was deleted by " + deleter.getEmail() + "</p>", id, locale, users );
     }
 
     public static boolean sendTranslationRequestForCollaboration( int id, Locale locale, List<PhetUser> users, PhetUser currentUser, String translatorMessageString ) {

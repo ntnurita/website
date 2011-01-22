@@ -381,6 +381,7 @@ public class TranslationListPanel extends PhetPanel {
                     return true;
                 }
             } );
+            final PhetUser user = PhetSession.get().getUser();
             if ( success ) {
                 if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                     ( new Thread() {
@@ -388,7 +389,7 @@ public class TranslationListPanel extends PhetPanel {
                         public void run() {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
-                                NotificationHandler.sendTranslationDeletedNotification( id, locale, users );
+                                NotificationHandler.sendTranslationDeletedNotification( id, locale, users, user );
                             }
                             finally {
                                 session.close();
