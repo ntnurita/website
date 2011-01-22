@@ -27,6 +27,7 @@ import edu.colorado.phet.website.util.links.RawLinkable;
 public class CategoryPage extends PhetRegularPage {
 
     private static final Logger logger = Logger.getLogger( CategoryPage.class.getName() );
+    private String canonicalUrl;
 
     public CategoryPage( final PageParameters parameters ) {
         super( parameters );
@@ -48,6 +49,16 @@ public class CategoryPage extends PhetRegularPage {
         }
 
         final boolean index = showIndex;
+        final String categories = parameters.containsKey( "categories" ) ? parameters.getString( "categories" ) : null;
+
+        // set canonical URL
+        if ( categories == null ) {
+            // no category, so we are listing all sims.
+            canonicalUrl = StringUtils.makeUrlAbsolute( getAllSimsLinker().getRawUrl( getPageContext(), getPhetCycle() ) );
+        }
+        else {
+            canonicalUrl = StringUtils.makeUrlAbsolute( getLinker( categories ).getRawUrl( getPageContext(), getPhetCycle() ) );
+        }
 
         // create a cacheable panel for the simulation list
         PhetPanel viewPanel = new SimplePanelCacheEntry( SimulationListViewPanel.class, this.getClass(), getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
@@ -55,7 +66,7 @@ public class CategoryPage extends PhetRegularPage {
                 return new SimulationListViewPanel(
                         id,
                         CategoryPage.this.getMyPath(),
-                        parameters.containsKey( "categories" ) ? parameters.getString( "categories" ) : null,
+                        categories,
                         index,
                         context
                 );
@@ -72,17 +83,52 @@ public class CategoryPage extends PhetRegularPage {
 
     }
 
+    @Override
+    public String getStyle( String key ) {
+        if ( key.equals( "style.canonical" ) ) {
+            return canonicalUrl;
+        }
+        return super.getStyle( key );
+    }
+
     public static void addToMapper( PhetUrlMapper mapper ) {
         // WARNING: don't change without also changing the old URL redirection
         mapper.addMap( "^simulations(/index)?$", CategoryPage.class, new String[]{"query-string"} );
         mapper.addMap( "^simulations/category/(.+?)(/index)?$", CategoryPage.class, new String[]{"categories", "query-string"} );
     }
 
-    public static RawLinkable getLinker() {
+    public static RawLinkable getDefaultLinker() {
         // WARNING: don't change without also changing the old URL redirection
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
                 return "simulations/category/" + Category.getDefaultCategoryKey();
+            }
+        };
+    }
+
+    public static RawLinkable getLinker( final Category category ) {
+        return new AbstractLinker() {
+            @Override
+            public String getSubUrl( PageContext context ) {
+                return "simulations/category/" + category.getCategoryPath();
+            }
+        };
+    }
+
+    public static RawLinkable getLinker( final String categories ) {
+        return new AbstractLinker() {
+            @Override
+            public String getSubUrl( PageContext context ) {
+                return "simulations/category/" + categories;
+            }
+        };
+    }
+
+    public static RawLinkable getAllSimsLinker() {
+        return new AbstractLinker() {
+            @Override
+            public String getSubUrl( PageContext context ) {
+                return "simulations/index";
             }
         };
     }

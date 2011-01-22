@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.*;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.markup.html.link.Link;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,7 +16,6 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.common.phetcommon.util.PhetLocales;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.panels.ChangePasswordSuccessPanel;
-import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.content.*;
 import edu.colorado.phet.website.content.about.*;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
@@ -41,11 +39,9 @@ import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.util.AbstractCategoryListener;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
 import edu.colorado.phet.website.translation.TranslationMainPage;
-import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.links.Linkable;
 
 /**
  * Initializes and handles the navigation locations (NavLocation)s. Builds from the database during startup, and then
@@ -84,7 +80,7 @@ public class NavMenu implements Serializable {
         NavLocation home = new NavLocation( null, "home", IndexPage.getLinker() );
         addMajorLocation( home );
 
-        simulations = new NavLocation( null, "simulations", CategoryPage.getLinker() );
+        simulations = new NavLocation( null, "simulations", CategoryPage.getDefaultLinker() );
         addMajorLocation( simulations );
 
         NavLocation forTeachers = new NavLocation( null, "teacherIdeas", TeacherIdeasPanel.getLinker() ) {{
@@ -126,7 +122,7 @@ public class NavMenu implements Serializable {
         NavLocation getPhet = new NavLocation( null, "get-phet", RunOurSimulationsPanel.getLinker() );
         addMajorLocation( getPhet );
 
-        NavLocation online = new NavLocation( getPhet, "get-phet.on-line", CategoryPage.getLinker() );
+        NavLocation online = new NavLocation( getPhet, "get-phet.on-line", CategoryPage.getDefaultLinker() );
         addLocation( online );
         getPhet.addChild( online );
 
@@ -195,7 +191,7 @@ public class NavMenu implements Serializable {
 
         // unconnected locations
 
-        NavLocation byKeyword = new NavLocation( null, "simulations.by-keyword", CategoryPage.getLinker() );
+        NavLocation byKeyword = new NavLocation( null, "simulations.by-keyword", CategoryPage.getDefaultLinker() );
         addLocation( byKeyword );
 
         NavLocation searchResults = new NavLocation( null, "search.results", SearchResultsPage.getLinker( null ) );
@@ -300,11 +296,7 @@ public class NavMenu implements Serializable {
     }
 
     private NavLocation createSimLocation( NavLocation parent, String name, final Category category ) {
-        return new NavLocation( parent, name, new Linkable() {
-            public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
-                return new RawLink( id, context.getPrefix() + "simulations/category/" + category.getCategoryPath() );
-            }
-        } );
+        return new NavLocation( parent, name, CategoryPage.getLinker( category ) );
     }
 
     public void buildCategoryMenu( NavLocation location, Category category ) {
@@ -316,11 +308,7 @@ public class NavMenu implements Serializable {
             buildCategoryMenu( subLocation, subCategory );
         }
         if ( category.isRoot() ) {
-            NavLocation allLocation = new NavLocation( location, "all", new Linkable() {
-                public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
-                    return new RawLink( id, context.getPrefix() + "simulations/index" );
-                }
-            } );
+            NavLocation allLocation = new NavLocation( location, "all", CategoryPage.getAllSimsLinker() );
             addLocation( allLocation );
             location.addChild( allLocation );
             locationsBelowCategories.add( allLocation );

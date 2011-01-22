@@ -20,12 +20,12 @@ public class TeacherIdeasPanel extends PhetPanel {
         super( id, context );
 
         add( new LocalizedText( "welcome", "teacherIdeas.welcome", new Object[]{
-                CategoryPage.getLinker().getHref( context, getPhetCycle() )
+                CategoryPage.getDefaultLinker().getHref( context, getPhetCycle() )
         } ) );
 
         add( new LocalizedText( "start", "teacherIdeas.start", new Object[]{
                 ContributionBrowsePage.getLinker().getHref( context, getPhetCycle() ),
-                CategoryPage.getLinker().getHref( context, getPhetCycle() )
+                CategoryPage.getDefaultLinker().getHref( context, getPhetCycle() )
         } ) );
 
         add( new LocalizedText( "contribute", "teacherIdeas.contribute", new Object[]{

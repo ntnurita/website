@@ -8,7 +8,6 @@ import java.util.Locale;
 
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.StatelessLink;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -70,10 +69,10 @@ public class IndexPanel extends PhetPanel {
                 ResearchPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        addWithId( CategoryPage.getLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
+        addWithId( CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
 
         add( RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() ) );
-        add( CategoryPage.getLinker().getLink( "on-line-link", context, getPhetCycle() ) );
+        add( CategoryPage.getDefaultLinker().getLink( "on-line-link", context, getPhetCycle() ) );
         add( FullInstallPanel.getLinker().getLink( "full-install-link", context, getPhetCycle() ) );
         add( OneAtATimePanel.getLinker().getLink( "one-at-a-time-link", context, getPhetCycle() ) );
 
