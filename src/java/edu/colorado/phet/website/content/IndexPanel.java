@@ -86,11 +86,13 @@ public class IndexPanel extends PhetPanel {
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );
         add( AboutNewsPanel.getLinker().getLink( "about-news", context, getPhetCycle() ) );
         add( AboutContactPanel.getLinker().getLink( "about-contact", context, getPhetCycle() ) );
-        add( AboutSponsorsPanel.getLinker().getLink( "about-sponsors", context, getPhetCycle() ) );
+        add( new LocalizedText( "other-sponsors", "home.about.alongWithOurSponsors", new Object[]{
+                AboutSponsorsPanel.getLinker().getHref( context, getPhetCycle() )
+        } ) );
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
 
         final SimSponsorPanel.Sponsor sponsor = SimSponsorPanel.chooseRandomActiveSponsor();
-        add( new RawLink( "featured-sponsor", sponsor.getUrl() ) );
+        //add( new RawLink( "featured-sponsor", sponsor.getUrl() ) );
         add( new RawLink( "featured-sponsor-logo-link", sponsor.getUrl() ) {{
             add( new StaticImage( "logo", sponsor.getImageUrl(), sponsor.getImageAlt() ) );
         }} );

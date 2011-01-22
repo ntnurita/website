@@ -32,13 +32,22 @@ public class StringChanges {
         overwriteString( session, "home.workshops", "Workshops", "Workshops and Materials" );
 
         addString( session, "home.about.otherSponsors", "Other Sponsors" );
+        //overwriteString( session, "home.about.otherSponsors", "Other Sponsors", "along with our <a {0}>other sponsors</a> and educators like you." );
+        overwriteString( session, "home.about.otherSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "Other Sponsors" );
+        addString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you.");
+
         addString( session, "home.about.featuredSponsor", "Featured Sponsor" );
 
         addString( session, "home.meta", "Free educational simulations covering a diverse topics designed by the University of Colorado available in various languages." );
 
-        addString( session, "contribution.title", "{0} - PhET Contribution");
+        addString( session, "contribution.title", "{0} - PhET Contribution" );
+
+        //overwriteString( session, "home.about.sponsors", "Sponsors", "PhET is supported by" );
+        overwriteString( session, "home.about.sponsors", "PhET is supported by", "Sponsors" );
+        addString( session, "home.about.phetSupportedBy", "PhET is supported by..." );
 
         // TODO: sunset home.contribute string
+        // TODO: sunset home.about.featuredSponsor
 
         session.close();
     }
