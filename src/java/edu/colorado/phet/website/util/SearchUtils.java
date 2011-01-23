@@ -99,15 +99,18 @@ public class SearchUtils {
         indexerThread = new Thread() {
             @Override
             public void run() {
-                logger.info( "starting indexing thread" );
-                addAllDocuments( app, localizer );
-                logger.info( "indexing complete" );
+                synchronized( SearchUtils.class ) {
+                    logger.info( "starting indexing thread" );
+                    addAllDocuments( app, localizer );
+                    logger.info( "indexing complete" );
 
-                try {
-                    searcher = new IndexSearcher( directory, true );
-                }
-                catch( IOException e ) {
-                    e.printStackTrace();
+                    try {
+                        searcher = new IndexSearcher( directory, true );
+
+                    }
+                    catch( IOException e ) {
+                        e.printStackTrace();
+                    }
                 }
 
                 onIndexingCompleted();
