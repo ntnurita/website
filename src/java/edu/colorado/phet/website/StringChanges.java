@@ -30,6 +30,7 @@ public class StringChanges {
         overwriteString( session, "home.browseActivities", "Activities contributed by Teachers", "Browse Activities" );
         overwriteString( session, "home.submitActivity", "Provide ideas you've used in class", "Contribute Activities" );
         overwriteString( session, "home.workshops", "Workshops", "Workshops and Materials" );
+        overwriteString( session, "home.workshops", "Workshops and Materials", "Workshops / Materials" );
 
         addString( session, "home.about.otherSponsors", "Other Sponsors" );
         //overwriteString( session, "home.about.otherSponsors", "Other Sponsors", "along with our <a {0}>other sponsors</a> and educators like you." );
