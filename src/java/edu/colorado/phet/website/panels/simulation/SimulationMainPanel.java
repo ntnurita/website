@@ -148,12 +148,15 @@ public class SimulationMainPanel extends PhetPanel {
             add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
-
+            Label visLabel = new Label( "tips-for-teachers-visible", "" );
+            visLabel.setRenderBodyOnly( true ); // don't make anything appear
+            add( visLabel );
             hasTeacherTips = true;
         }
         else {
             // make the teachers guide text (and whole section) invisible
             add( new InvisibleComponent( "guide-text" ) );
+            add( new InvisibleComponent( "tips-for-teachers-visible" ) );
 
             hasTeacherTips = false;
         }

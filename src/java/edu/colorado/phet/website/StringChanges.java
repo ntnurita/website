@@ -35,9 +35,9 @@ public class StringChanges {
         addString( session, "home.about.otherSponsors", "Other Sponsors" );
         //overwriteString( session, "home.about.otherSponsors", "Other Sponsors", "along with our <a {0}>other sponsors</a> and educators like you." );
         overwriteString( session, "home.about.otherSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "Other Sponsors" );
-        addString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you.");
-        overwriteString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "as well as our <a {0}>other sponsors</a> and educators like you.");
-        overwriteString( session, "home.about.alongWithOurSponsors", "as well as our <a {0}>other sponsors</a> and educators like you.", "and our <a {0}>other sponsors</a>, including educators like you.");
+        addString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you." );
+        overwriteString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "as well as our <a {0}>other sponsors</a> and educators like you." );
+        overwriteString( session, "home.about.alongWithOurSponsors", "as well as our <a {0}>other sponsors</a> and educators like you.", "and our <a {0}>other sponsors</a>, including educators like you." );
 
         addString( session, "home.about.featuredSponsor", "Featured Sponsor" );
 
@@ -48,9 +48,10 @@ public class StringChanges {
         //overwriteString( session, "home.about.sponsors", "Sponsors", "PhET is supported by" );
         overwriteString( session, "home.about.sponsors", "PhET is supported by", "Sponsors" );
         addString( session, "home.about.phetSupportedBy", "PhET is supported by..." );
-        overwriteString( session, "home.about.phetSupportedBy", "PhET is supported by...","PhET is supported by" );
+        overwriteString( session, "home.about.phetSupportedBy", "PhET is supported by...", "PhET is supported by" );
 
-        addString( session, "simulationMainPanel.seeBelow.relatedSimulations", "Related Sims >>");
+        addString( session, "simulationMainPanel.seeBelow.tipsForTeachers", "Tips for Teachers >>" );
+        addString( session, "simulationMainPanel.seeBelow.relatedSimulations", "Related Sims >>" );
         addString( session, "simulationMainPanel.relatedSimulations", "Related Simulations" );
 
         addString( session, "sponsors.hewlett.name", "The William and Flora Hewlett Foundation" );
@@ -59,6 +60,7 @@ public class StringChanges {
         addString( session, "sponsors.odonnell.name", "The O'Donnell Foundation" );
 
         addString( session, "home.troubleshooting", "Troubleshooting" );
+
 
         // TODO: sunset home.contribute string
         // TODO: sunset home.about.featuredSponsor

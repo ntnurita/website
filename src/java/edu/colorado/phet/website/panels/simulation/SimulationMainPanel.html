@@ -101,6 +101,14 @@
                             Content &gt;&gt;
                         </wicket:message>
                     </a></li>
+                    <wicket:enclosure child="tips-for-teachers-visible">
+                        <li><a href="#tips-for-teachers">
+                            <wicket:message key="simulationMainPanel.seeBelow.tipsForTeachers">
+                                Tips for Teachers &gt;&gt;
+                            </wicket:message>
+                        </a></li>
+                        <span wicket:id="tips-for-teachers-visible"></span>
+                    </wicket:enclosure>
                     <wicket:enclosure child="teacher-ideas-visible">
                         <li><a href="#teaching-ideas">
                             <wicket:message key="simulationMainPanel.seeBelow.teachingIdeas">
@@ -172,6 +180,8 @@
                     <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
                 </ul>
             </wicket:enclosure>
+
+            <a name="tips-for-teachers"></a>
 
             <wicket:enclosure child="guide-text">
                 <h2>
