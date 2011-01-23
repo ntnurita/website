@@ -109,9 +109,9 @@
                         </a></li>
                         <span wicket:id="teacher-ideas-visible"></span>
                     </wicket:enclosure>
-                    <li><a href="#software-requirements">
-                        <wicket:message key="simulationMainPanel.seeBelow.softwareRequirements">
-                            Software Requirements &gt;&gt;
+                    <li><a href="#related-simulations">
+                        <wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">
+                            Related Sims &gt;&gt;
                         </wicket:message>
                     </a></li>
                     <li><a href="#translated-versions">
@@ -119,9 +119,9 @@
                             Translated Versions &gt;&gt;
                         </wicket:message>
                     </a></li>
-                    <li><a href="#related-simulations">
-                        <wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">
-                            Related Sims &gt;&gt;
+                    <li><a href="#software-requirements">
+                        <wicket:message key="simulationMainPanel.seeBelow.softwareRequirements">
+                            Software Requirements &gt;&gt;
                         </wicket:message>
                     </a></li>
                     <li><a href="#credits">
@@ -131,16 +131,6 @@
                     </a></li>
                 </ul>
             </div>
-
-            <wicket:enclosure child="guide-text">
-                <h2>
-                    <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
-                </h2>
-                <div wicket:id="guide-text">
-                    The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
-                    team.
-                </div>
-            </wicket:enclosure>
 
             <a name="content"></a>
 
@@ -183,6 +173,16 @@
                 </ul>
             </wicket:enclosure>
 
+            <wicket:enclosure child="guide-text">
+                <h2>
+                    <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
+                </h2>
+                <div wicket:id="guide-text">
+                    The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
+                    team.
+                </div>
+            </wicket:enclosure>
+
             <a name="teaching-ideas"></a>
 
             <h2>
@@ -198,36 +198,13 @@
             <p style="text-align: center;" wicket:id="submit-a">You can <a href="#">submit your own ideas and
                 activities</a></p>
 
+            <a name="related-simulations"></a>
+
             <h2>
-                <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
+                <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
             </h2>
 
-            <a name="software-requirements"></a>
-
-            <table class="system-requirements-table">
-                <tr>
-                    <th>Windows</th>
-                    <th>Macintosh</th>
-                    <th>Linux</th>
-                </tr>
-                <tr>
-                    <td>
-                        Microsoft Windows
-                        <br/>
-                        XP/Vista/7
-                        <br/>
-                        <span wicket:id="windows-req">Sun Java 1.5.0_15 or later</span>
-                    </td>
-                    <td>
-                        OS 10.4 or later
-                        <br/>
-                        <span wicket:id="mac-req">Apple Java 1.5.0_19 or later</span>
-                    </td>
-                    <td>
-                        <span wicket:id="linux-req">Sun Java 1.5.0_15 or later</span>
-                    </td>
-                </tr>
-            </table>
+            <div wicket:id="related-simulations-panel" style="margin: 0; padding: 0; margin-bottom: -15px;"></div>
 
             <a name="translated-versions"></a>
 
@@ -281,13 +258,36 @@
                 </table>
             </wicket:enclosure>
 
-            <a name="related-simulations"></a>
+            <a name="software-requirements"></a>
 
             <h2>
-                <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
+                <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
             </h2>
 
-            <div wicket:id="related-simulations-panel"></div>
+            <table class="system-requirements-table">
+                <tr>
+                    <th>Windows</th>
+                    <th>Macintosh</th>
+                    <th>Linux</th>
+                </tr>
+                <tr>
+                    <td>
+                        Microsoft Windows
+                        <br/>
+                        XP/Vista/7
+                        <br/>
+                        <span wicket:id="windows-req">Sun Java 1.5.0_15 or later</span>
+                    </td>
+                    <td>
+                        OS 10.4 or later
+                        <br/>
+                        <span wicket:id="mac-req">Apple Java 1.5.0_19 or later</span>
+                    </td>
+                    <td>
+                        <span wicket:id="linux-req">Sun Java 1.5.0_15 or later</span>
+                    </td>
+                </tr>
+            </table>
 
             <a name="credits"></a>
 
