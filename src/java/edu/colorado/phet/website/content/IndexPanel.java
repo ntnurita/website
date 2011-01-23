@@ -92,7 +92,12 @@ public class IndexPanel extends PhetPanel {
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
 
         final SimSponsorPanel.Sponsor sponsor = SimSponsorPanel.chooseRandomActiveSponsor();
-        //add( new RawLink( "featured-sponsor", sponsor.getUrl() ) );
+        if ( sponsor.showNameOnHomepage() ) {
+            add( new LocalizedText( "featured-sponsor-name", sponsor.getNameKey() ) );
+        }
+        else {
+            add( new InvisibleComponent( "featured-sponsor-name" ) );
+        }
         add( new RawLink( "featured-sponsor-logo-link", sponsor.getUrl() ) {{
             add( new StaticImage( "logo", sponsor.getImageUrl(), sponsor.getImageAlt() ) );
         }} );

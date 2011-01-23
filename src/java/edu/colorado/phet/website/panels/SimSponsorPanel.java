@@ -28,11 +28,17 @@ public class SimSponsorPanel extends PhetPanel {
     }
 
     public static abstract class Sponsor {
+        public abstract String getNameKey();
+
         public abstract String getUrl();
 
         public abstract String getImageUrl();
 
         public abstract String getImageAlt();
+
+        public boolean showNameOnHomepage() {
+            return true;
+        }
 
         public boolean needsArticle() {
             return true;
@@ -40,6 +46,11 @@ public class SimSponsorPanel extends PhetPanel {
     }
 
     public static Sponsor HEWLETT_FOUNDATION = new Sponsor() {
+        @Override
+        public String getNameKey() {
+            return "sponsors.hewlett.name";
+        }
+
         public String getUrl() {
             return "http://www.hewlett.org/";
         }
@@ -53,12 +64,22 @@ public class SimSponsorPanel extends PhetPanel {
         }
 
         @Override
+        public boolean showNameOnHomepage() {
+            return false;
+        }
+
+        @Override
         public boolean needsArticle() {
             return false;
         }
     };
 
     public static Sponsor NSF = new Sponsor() {
+        @Override
+        public String getNameKey() {
+            return "sponsors.nsf.name";
+        }
+
         public String getUrl() {
             return "http://www.nsf.gov/";
         }
@@ -73,6 +94,11 @@ public class SimSponsorPanel extends PhetPanel {
     };
 
     public static Sponsor KSU = new Sponsor() {
+        @Override
+        public String getNameKey() {
+            return "sponsors.ksu.name";
+        }
+
         public String getUrl() {
             return "http://www.ksu.edu.sa/";
         }
@@ -92,6 +118,11 @@ public class SimSponsorPanel extends PhetPanel {
     };
 
     public static Sponsor ODONNELL_FOUNDATION = new Sponsor() {
+        @Override
+        public String getNameKey() {
+            return "sponsors.odonnell.name";
+        }
+
         public String getUrl() {
             return "http://www.odf.org/";
         }
