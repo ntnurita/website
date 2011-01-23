@@ -15,7 +15,7 @@ public class SearchPanel extends PhetPanel {
         super( id, context );
 
         WebMarkupContainerWithAssociatedMarkup form = new WebMarkupContainerWithAssociatedMarkup( "search-form" );
-        form.add( new AttributeAppender( "action", true, new Model( context.getPrefix() + "search" ), " " ) );
+        form.add( new AttributeAppender( "action", true, new Model<String>( context.getPrefix() + "search" ), " " ) );
         add( form );
     }
 }
