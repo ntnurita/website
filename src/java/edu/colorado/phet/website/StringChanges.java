@@ -57,6 +57,8 @@ public class StringChanges {
         addString( session, "sponsors.ksu.name", "ERCSME at King Saud University" );
         addString( session, "sponsors.odonnell.name", "The O'Donnell Foundation" );
 
+        addString( session, "home.troubleshooting", "Troubleshooting" );
+
         // TODO: sunset home.contribute string
         // TODO: sunset home.about.featuredSponsor
 
