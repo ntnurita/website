@@ -16,7 +16,9 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
@@ -45,6 +47,7 @@ public class SearchUtils {
     private static IndexSearcher searcher = null;
     private static IndexWriter writer = null;
     private static Thread indexerThread = null;
+    private static QueryParser englishSimParser = null;
 
     private static boolean indexing = false;
 
@@ -106,7 +109,17 @@ public class SearchUtils {
 
                     try {
                         searcher = new IndexSearcher( directory, true );
-
+                        long a = System.currentTimeMillis();
+                        englishSimParser = new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+                                "sim_name",
+                                "sim_en_title",
+                                "sim_en_description",
+                                "sim_en_goals",
+                                "sim_en_keywords",
+                                "sim_en_topics",
+                                "sim_en_categories"
+                        }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
+                        logger.debug( "parser construction: " + ( System.currentTimeMillis() - a ) );
                     }
                     catch( IOException e ) {
                         e.printStackTrace();
@@ -194,10 +207,43 @@ public class SearchUtils {
         }
     }
 
+    private static QueryParser createEnglishParser() {
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+                "sim_name",
+                "sim_en_title",
+                "sim_en_description",
+                "sim_en_goals",
+                "sim_en_keywords",
+                "sim_en_topics",
+                "sim_en_categories"
+        }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
+    }
+
+    private static QueryParser createParser( Locale locale ) {
+        String localeString = LocaleUtils.localeToString( locale );
+        // TODO: possibly add boosts to
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+                "sim_name",
+                "sim_en_title",
+                "sim_en_description",
+                "sim_en_goals",
+                "sim_en_keywords",
+                "sim_en_topics",
+                "sim_en_categories",
+                "sim_" + localeString + "_title",
+                "sim_" + localeString + "_description",
+                "sim_" + localeString + "_goals",
+                "sim_" + localeString + "_keywords",
+                "sim_" + localeString + "_topics",
+                "sim_" + localeString + "_categories"
+        }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
+    }
+
     public static Document contributionToDocument( Session session, Contribution contribution, PhetWicketApplication app, PhetLocalizer localizer ) {
 
         Document doc = new Document();
         doc.add( new Field( "droppable", "true", Field.Store.NO, Field.Index.NOT_ANALYZED ) );
+        doc.add( new Field( "type", "contribution", Field.Store.YES, Field.Index.NOT_ANALYZED ) );
         doc.add( new Field( "contribution_id", String.valueOf( contribution.getId() ), Field.Store.YES, Field.Index.NOT_ANALYZED ) );
         if ( contribution.getTitle() != null ) {
             doc.add( new Field( "contribution_title", contribution.getTitle(), Field.Store.YES, Field.Index.ANALYZED ) );
@@ -239,6 +285,7 @@ public class SearchUtils {
     public static Document simulationToDocument( Session session, Simulation sim, PhetWicketApplication app, PhetLocalizer localizer ) {
         Document doc = new Document();
         doc.add( new Field( "droppable", "true", Field.Store.NO, Field.Index.NOT_ANALYZED ) );
+        doc.add( new Field( "type", "simulation", Field.Store.YES, Field.Index.NOT_ANALYZED ) );
         doc.add( new Field( "sim_id", String.valueOf( sim.getId() ), Field.Store.YES, Field.Index.NOT_ANALYZED ) );
         Field nameField = new Field( "sim_name", sim.getName(), Field.Store.YES, Field.Index.NOT_ANALYZED );
         nameField.setBoost( 0.3f );
@@ -360,36 +407,16 @@ public class SearchUtils {
         return ret;
     }
 
-    public static List<LocalizedSimulation> simulationSearch( Session session, String queryString, final Locale locale ) {
+    private static synchronized Query parseEnglishSimQuery( String queryString ) throws ParseException {
+        return englishSimParser.parse( queryString );
+    }
+
+    private static List<LocalizedSimulation> queryToSimulations( Session session, Query query, final Locale locale ) {
         final List<LocalizedSimulation> ret = new LinkedList<LocalizedSimulation>();
 
         final IndexSearcher isearcher = getSearcher();
 
         try {
-            StringTokenizer tokenizer = new StringTokenizer( queryString );
-            BooleanQuery query = new BooleanQuery();
-
-            String localeString = LocaleUtils.localeToString( locale );
-
-            while ( tokenizer.hasMoreTokens() ) {
-                String term = tokenizer.nextToken();
-                addBoostedTermQuery( query, "sim_name", term, 1.0f );
-                addBoostedTermQuery( query, "sim_en_title", term, 1.0f );
-                addBoostedTermQuery( query, "sim_en_description", term, 1.0f );
-                addBoostedTermQuery( query, "sim_en_goals", term, 1.0f );
-                addBoostedTermQuery( query, "sim_en_keywords", term, 1.0f );
-                addBoostedTermQuery( query, "sim_en_topics", term, 1.0f );
-                addBoostedTermQuery( query, "sim_en_categories", term, 1.0f );
-                if ( !localeString.equals( "en" ) ) {
-                    addBoostedTermQuery( query, "sim_" + localeString + "_title", term, 4.0f );
-                    addBoostedTermQuery( query, "sim_" + localeString + "_description", term, 4.0f );
-                    addBoostedTermQuery( query, "sim_" + localeString + "_goals", term, 4.0f );
-                    addBoostedTermQuery( query, "sim_" + localeString + "_keywords", term, 4.0f );
-                    addBoostedTermQuery( query, "sim_" + localeString + "_topics", term, 4.0f );
-                    addBoostedTermQuery( query, "sim_" + localeString + "_categories", term, 4.0f );
-                }
-            }
-
             logger.debug( "query: " + query );
 
             final ScoreDoc[] hits = isearcher.search( query, null, 1000 ).scoreDocs;
@@ -410,17 +437,38 @@ public class SearchUtils {
                         catch( IOException e ) {
                             e.printStackTrace();
                         }
-
                     }
                     return true;
                 }
             } );
         }
         catch( IOException e ) {
-            e.printStackTrace();
+            throw new RuntimeException( "Sim search fail", e );
         }
 
         return ret;
+    }
+
+    public static List<LocalizedSimulation> englishSimulationSearch( Session session, String queryString, final Locale locale ) {
+        try {
+            Query query = parseEnglishSimQuery( queryString );
+            return queryToSimulations( session, query, locale );
+        }
+        catch( ParseException e ) {
+            logger.debug( "english search parse exception", e );
+            return new LinkedList<LocalizedSimulation>();
+        }
+    }
+
+    public static List<LocalizedSimulation> simulationSearch( Session session, String queryString, final Locale locale ) {
+        try {
+            Query query = createParser( locale ).parse( queryString );
+            return queryToSimulations( session, query, locale );
+        }
+        catch( ParseException e ) {
+            logger.debug( "search parse exception", e );
+            return new LinkedList<LocalizedSimulation>();
+        }
     }
 
     public static void main( String[] args ) throws IOException, ParseException {
