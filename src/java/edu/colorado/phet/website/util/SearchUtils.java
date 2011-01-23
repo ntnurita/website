@@ -19,7 +19,9 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.*;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -48,6 +50,7 @@ public class SearchUtils {
     private static IndexWriter writer = null;
     private static Thread indexerThread = null;
     private static QueryParser englishSimParser = null;
+    private static QueryParser englishContributionParser = null;
 
     private static boolean indexing = false;
 
@@ -110,15 +113,8 @@ public class SearchUtils {
                     try {
                         searcher = new IndexSearcher( directory, true );
                         long a = System.currentTimeMillis();
-                        englishSimParser = new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
-                                "sim_name",
-                                "sim_en_title",
-                                "sim_en_description",
-                                "sim_en_goals",
-                                "sim_en_keywords",
-                                "sim_en_topics",
-                                "sim_en_categories"
-                        }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
+                        englishSimParser = createEnglishSimParser();
+                        englishContributionParser = createEnglishContributionParser();
                         logger.debug( "parser construction: " + ( System.currentTimeMillis() - a ) );
                     }
                     catch( IOException e ) {
@@ -207,7 +203,7 @@ public class SearchUtils {
         }
     }
 
-    private static QueryParser createEnglishParser() {
+    private static QueryParser createEnglishSimParser() {
         return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
                 "sim_name",
                 "sim_en_title",
@@ -219,7 +215,7 @@ public class SearchUtils {
         }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
     }
 
-    private static QueryParser createParser( Locale locale ) {
+    private static QueryParser createSimParser( Locale locale ) {
         String localeString = LocaleUtils.localeToString( locale );
         // TODO: possibly add boosts to
         return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
@@ -236,6 +232,31 @@ public class SearchUtils {
                 "sim_" + localeString + "_keywords",
                 "sim_" + localeString + "_topics",
                 "sim_" + localeString + "_categories"
+        }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
+    }
+
+    private static QueryParser createEnglishContributionParser() {
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+                "contribution_title",
+                "contribution_authors",
+                "contribution_organization",
+                "contribution_keywords",
+                "contribution_description",
+                "contribution_locale",
+                "contribution_en_sims"
+        }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
+    }
+
+    private static QueryParser createContributionParser( Locale locale ) {
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+                "contribution_title",
+                "contribution_authors",
+                "contribution_organization",
+                "contribution_keywords",
+                "contribution_description",
+                "contribution_locale",
+                "contribution_en_sims",
+                "contribution_" + LocaleUtils.localeToString( locale ) + "_sims"
         }, new StandardAnalyzer( Version.LUCENE_CURRENT ) );
     }
 
@@ -350,34 +371,19 @@ public class SearchUtils {
         return doc;
     }
 
-    private static void addBoostedTermQuery( BooleanQuery query, String field, String term, float boost ) {
-        TermQuery tquery = new TermQuery( new Term( field, term ) );
-        tquery.setBoost( boost );
-        query.add( tquery, BooleanClause.Occur.SHOULD );
+    private static synchronized Query parseEnglishContributionQuery( String queryString ) throws ParseException {
+        return englishContributionParser.parse( queryString );
     }
 
-    public static List<Contribution> contributionSearch( Session session, String queryString, final Locale locale ) {
+    private static synchronized Query parseEnglishSimQuery( String queryString ) throws ParseException {
+        return englishSimParser.parse( queryString );
+    }
+
+    private static List<Contribution> queryToContributions( Session session, Query query ) {
         final List<Contribution> ret = new LinkedList<Contribution>();
         final IndexSearcher isearcher = getSearcher();
 
         try {
-            StringTokenizer tokenizer = new StringTokenizer( queryString );
-            BooleanQuery query = new BooleanQuery();
-
-            while ( tokenizer.hasMoreTokens() ) {
-                String term = tokenizer.nextToken();
-                addBoostedTermQuery( query, "contribution_title", term, 1.0f );
-                addBoostedTermQuery( query, "contribution_authors", term, 1.0f );
-                addBoostedTermQuery( query, "contribution_organization", term, 1.0f );
-                addBoostedTermQuery( query, "contribution_keywords", term, 1.0f );
-                addBoostedTermQuery( query, "contribution_description", term, 1.0f );
-                addBoostedTermQuery( query, "contribution_locale", term, 1.0f );
-                addBoostedTermQuery( query, "contribution_en_sims", term, 0.3f );
-                if ( !locale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
-                    addBoostedTermQuery( query, "contribution_" + LocaleUtils.localeToString( locale ) + "_sims", term, 0.5f );
-                }
-            }
-
             logger.debug( "query: " + query );
 
             final ScoreDoc[] hits = isearcher.search( query, null, 1000 ).scoreDocs;
@@ -405,10 +411,6 @@ public class SearchUtils {
             e.printStackTrace();
         }
         return ret;
-    }
-
-    private static synchronized Query parseEnglishSimQuery( String queryString ) throws ParseException {
-        return englishSimParser.parse( queryString );
     }
 
     private static List<LocalizedSimulation> queryToSimulations( Session session, Query query, final Locale locale ) {
@@ -449,10 +451,10 @@ public class SearchUtils {
         return ret;
     }
 
-    public static List<LocalizedSimulation> englishSimulationSearch( Session session, String queryString, final Locale locale ) {
+    public static List<LocalizedSimulation> englishSimulationSearch( Session session, String queryString ) {
         try {
             Query query = parseEnglishSimQuery( queryString );
-            return queryToSimulations( session, query, locale );
+            return queryToSimulations( session, query, PhetWicketApplication.getDefaultLocale() );
         }
         catch( ParseException e ) {
             logger.debug( "english search parse exception", e );
@@ -461,13 +463,41 @@ public class SearchUtils {
     }
 
     public static List<LocalizedSimulation> simulationSearch( Session session, String queryString, final Locale locale ) {
+        if ( locale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
+            return englishSimulationSearch( session, queryString );
+        }
         try {
-            Query query = createParser( locale ).parse( queryString );
+            Query query = createSimParser( locale ).parse( queryString );
             return queryToSimulations( session, query, locale );
         }
         catch( ParseException e ) {
             logger.debug( "search parse exception", e );
             return new LinkedList<LocalizedSimulation>();
+        }
+    }
+
+    public static List<Contribution> englishContributionSearch( Session session, String queryString ) {
+        try {
+            Query query = parseEnglishContributionQuery( queryString );
+            return queryToContributions( session, query );
+        }
+        catch( ParseException e ) {
+            logger.debug( "english search parse exception", e );
+            return new LinkedList<Contribution>();
+        }
+    }
+
+    public static List<Contribution> contributionSearch( Session session, String queryString, final Locale locale ) {
+        if ( locale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
+            return englishContributionSearch( session, queryString );
+        }
+        try {
+            Query query = createContributionParser( locale ).parse( queryString );
+            return queryToContributions( session, query );
+        }
+        catch( ParseException e ) {
+            logger.debug( "search parse exception", e );
+            return new LinkedList<Contribution>();
         }
     }
 

@@ -11,7 +11,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.VisListView;
@@ -34,12 +33,7 @@ public class SearchResultsPanel extends PhetPanel {
         List<Contribution> contributions = new LinkedList<Contribution>();
 
         if ( query != null ) {
-            if ( getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
-                lsims = SearchUtils.englishSimulationSearch( getHibernateSession(), query.toLowerCase( getLocale() ), context.getLocale() );
-            }
-            else {
-                lsims = SearchUtils.simulationSearch( getHibernateSession(), query.toLowerCase( getLocale() ), context.getLocale() );
-            }
+            lsims = SearchUtils.simulationSearch( getHibernateSession(), query.toLowerCase( getLocale() ), context.getLocale() );
             contributions = SearchUtils.contributionSearch( getHibernateSession(), query.toLowerCase( getLocale() ), context.getLocale() );
         }
 
