@@ -148,15 +148,15 @@ public class SimulationMainPanel extends PhetPanel {
             add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
-            Label visLabel = new Label( "tips-for-teachers-visible", "" );
-            visLabel.setRenderBodyOnly( true ); // don't make anything appear
-            add( visLabel );
+//            Label visLabel = new Label( "tips-for-teachers-visible", "" );
+//            visLabel.setRenderBodyOnly( true ); // don't make anything appear
+//            add( visLabel );
             hasTeacherTips = true;
         }
         else {
             // make the teachers guide text (and whole section) invisible
             add( new InvisibleComponent( "guide-text" ) );
-            add( new InvisibleComponent( "tips-for-teachers-visible" ) );
+//            add( new InvisibleComponent( "tips-for-teachers-visible" ) );
 
             hasTeacherTips = false;
         }
@@ -192,13 +192,13 @@ public class SimulationMainPanel extends PhetPanel {
                 }
             } );
             add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
-            Label visLabel = new Label( "teacher-ideas-visible", "" );
-            visLabel.setRenderBodyOnly( true ); // don't make anything appear
-            add( visLabel );
+//            Label visLabel = new Label( "teacher-ideas-visible", "" );
+//            visLabel.setRenderBodyOnly( true ); // don't make anything appear
+//            add( visLabel );
         }
         else {
             add( new InvisibleComponent( "contributions-panel" ) );
-            add( new InvisibleComponent( "teacher-ideas-visible" ) );
+//            add( new InvisibleComponent( "teacher-ideas-visible" ) );
         }
 
         /*---------------------------------------------------------------------------*

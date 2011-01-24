@@ -61,6 +61,8 @@ public class StringChanges {
 
         addString( session, "home.troubleshooting", "Troubleshooting" );
 
+        addString( session, "simulationMainPanel.teachingResources", "Teaching Resources" );
+
 
         // TODO: sunset home.contribute string
         // TODO: sunset home.about.featuredSponsor
