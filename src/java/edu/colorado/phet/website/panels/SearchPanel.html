@@ -12,7 +12,7 @@
 <body>
 
 <wicket:panel>
-    <form method="get" wicket:id="search-form">
+    <form method="get" wicket:id="search-form" autocomplete="off">
         <div>
             <label for="search-text-id">
                 <wicket:message key="search.search">Search</wicket:message>
@@ -22,11 +22,18 @@
                    class="always-enabled" id="search-text-id"/>
             <input type="submit" value="Go" wicket:message="title:search.clickSearch,value:search.go"
                    title="Click here to search the PhET website"
+                   autocomplete="off"
                    class="always-enabled" id="search-submit-id"/>
         </div>
     </form>
     <script type="text/javascript">
-        $("#search-text-id").autocomplete("/autocomplete");
+        function selectItem( li ) {
+            alert( 'boo' );
+            $('#search-form').submit();
+        }
+        $("#search-text-id").autocomplete("/autocomplete", {
+            onItemSelect:selectItem
+        });
     </script>
 </wicket:panel>
 
