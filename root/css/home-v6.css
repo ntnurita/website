@@ -207,7 +207,10 @@ div.practices dl dt a {
 }
 
 div.practices dl.last dt a {
-    background: url(../images/white-arrow-right2-green.png) no-repeat 2px 5px;
+    /*background: url(../images/white-arrow-right2-green.png) no-repeat 2px 5px;*/
+    background: none;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 div.rtl div.practices dl dt a {

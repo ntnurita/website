@@ -48,7 +48,8 @@ public class StringChanges {
         //overwriteString( session, "home.about.sponsors", "Sponsors", "PhET is supported by" );
         overwriteString( session, "home.about.sponsors", "PhET is supported by", "Sponsors" );
         addString( session, "home.about.phetSupportedBy", "PhET is supported by..." );
-        overwriteString( session, "home.about.phetSupportedBy", "PhET is supported by...", "PhET is supported by" );
+//        overwriteString( session, "home.about.phetSupportedBy", "PhET is supported by...", "PhET is supported by" );
+        overwriteString( session, "home.about.phetSupportedBy", "PhET is supported by", "PhET is supported by..." );
 
         addString( session, "simulationMainPanel.seeBelow.tipsForTeachers", "Tips for Teachers >>" );
         addString( session, "simulationMainPanel.seeBelow.relatedSimulations", "Related Sims >>" );
@@ -62,6 +63,8 @@ public class StringChanges {
         addString( session, "home.troubleshooting", "Troubleshooting" );
 
         addString( session, "simulationMainPanel.teachingResources", "Teaching Resources" );
+
+        addString( session, "home.donate", "Donate" );
 
 
         // TODO: sunset home.contribute string
