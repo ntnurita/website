@@ -132,6 +132,12 @@ div.rtl .simulation-main-image-panel {
     padding: 0;
 }
 
+.teachers-tips-holder {
+    margin: 0 20px;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
 .keyword {
     display: inline;
     margin: 0;
