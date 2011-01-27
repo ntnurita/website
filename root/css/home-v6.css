@@ -190,17 +190,18 @@ div.rtl div.practices dl.last dd {
 }
 
 div.practices dl dt {
-    height: 41px; /* 32 */
-    background-color: #59629d;
+    height: 32px; /* 32 */
+    /*background-color: #59629d;*/
     /*background-color: #4d5585;*/
-    /*background-color: #3f4b9a;*/
+    background-color: #3f4b9a;
     padding-left: 5px;
     margin-bottom: 1em;
 }
 
 div.practices dl.last dt {
     /*background-color: #4a9a3f;*/
-    background-color: #599651;
+    background-color: #43873a;
+    /*background-color: #599651;*/
     text-align: center;
 }
 
@@ -208,11 +209,11 @@ div.practices dl dt a {
     background: url(../images/white-arrow-right2.png) no-repeat 2px 5px;
     padding-left: 9px;
     font-size: 13px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: white;
     text-decoration: none;
     position: relative;
-    top: 13px; /* 8 */
+    top: 8px; /* 8 */
 }
 
 div.practices dl.last dt a {
