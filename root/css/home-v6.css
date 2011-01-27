@@ -200,6 +200,7 @@ div.practices dl dt a {
     background: url(../images/white-arrow-right2.png) no-repeat 2px 5px;
     padding-left: 9px;
     font-size: 13px;
+    font-weight: bold;
     color: white;
     text-decoration: none;
     position: relative;
