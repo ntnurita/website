@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
     <wicket:head>
-        <script type="text/javascript" wicket:id="javascript-locale"></script>
+        <script type="text/javascript" wicket:id="javascript-search"></script>
     </wicket:head>
 </head>
 <body>
@@ -32,17 +32,16 @@
     <script type="text/javascript">
         //<![CDATA[
         function selectItem( li ) {
-            //$( '#search-form' ).css( "background-color", "red" );
-            //$( '#search-form' ).submit();
             window.location = li.data[1];
+        }
+        function htmlEncode( value ) {
+            return $( '<div/>' ).text( value ).html();
         }
         function render( value, data ) {
             if ( data[0] == 'sim' ) {
-                return value + " <span style=\"color: #666;\">(simulation)</span>";
+                return " <span style=\"color: #666;\">" + phetSimulationString.replace( /\{0\}/g, "<span style='color: #000;'>" + htmlEncode( value ) + "</span>" ) + "</span>";
             }
-            return value;
-            //return value + " <span style=\"color: #666;\">(simulation)</span>";
-            //return data[0];
+            return htmlEncode( value );
         }
         $( "#search-text-id" ).autocomplete( {
                                                  url:"/autocomplete",

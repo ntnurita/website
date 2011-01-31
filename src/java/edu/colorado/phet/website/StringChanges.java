@@ -66,6 +66,8 @@ public class StringChanges {
 
         addString( session, "home.donate", "Donate" );
 
+        addString( session, "search.autocomplete.simulation", "{0} (simulation)" );
+
 
         // TODO: sunset home.contribute string
         // TODO: sunset home.about.featuredSponsor
