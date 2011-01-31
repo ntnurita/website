@@ -71,7 +71,7 @@ class StringTrieNode {
     }
 
     public boolean isLeaf() {
-        return string != null && children == null;
+        return children == null;
     }
 
     public StringTrieNode getChild( char character ) {
@@ -85,7 +85,7 @@ class StringTrieNode {
         if ( string != null ) {
             strings.add( string );
         }
-        else {
+        if ( children != null ) {
             for ( StringTrieNode node : children.values() ) {
                 node.addChildStringsToList( strings );
             }
@@ -103,12 +103,13 @@ class StringTrieNode {
             string = str;
             return;
         }
-        if ( isLeaf() ) {
-            // if the string to add is a duplicate of our existing string, bail
-            if ( str.equals( string ) ) {
-                return;
-            }
 
+        // if the string to add is a duplicate of our existing string, bail
+        if ( str.equals( string ) ) {
+            return;
+        }
+
+        if ( isLeaf() ) {
             // we are a leaf. convert to a branch
             String other = string;
             convertToBranch();
@@ -119,16 +120,22 @@ class StringTrieNode {
         }
         else {
             // not a leaf node
-            StringTrieNode possibleChild = getChild( str.charAt( depth ) );
-            if ( possibleChild != null ) {
-                // follow the path
-                possibleChild.addString( str );
+            if ( str.length() == depth ) {
+                // we are adding a shorter version of existing strings
+                string = str;
             }
             else {
-                // create a new node
-                StringTrieNode child = new StringTrieNode( depth + 1 );
-                child.string = str;
-                children.put( str.charAt( depth ), child );
+                StringTrieNode possibleChild = getChild( str.charAt( depth ) );
+                if ( possibleChild != null ) {
+                    // follow the path
+                    possibleChild.addString( str );
+                }
+                else {
+                    // create a new node
+                    StringTrieNode child = new StringTrieNode( depth + 1 );
+                    child.string = str;
+                    children.put( str.charAt( depth ), child );
+                }
             }
         }
     }
@@ -142,13 +149,16 @@ class StringTrieNode {
         }
         String padding = "";
         for ( int i = 0; i < depth; i++ ) {
-            padding += " ";
+            padding += ".   ";
         }
         if ( isLeaf() ) {
             return padding + string + "\n";
         }
         else {
             String ret = "";
+            if ( string != null ) {
+                ret += padding + "* (" + string + ")\n";
+            }
             for ( Character character : children.keySet() ) {
                 ret += padding + character + "\n";
                 ret += children.get( character ).toString();

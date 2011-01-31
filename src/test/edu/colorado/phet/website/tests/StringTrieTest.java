@@ -14,32 +14,38 @@ public class StringTrieTest {
     @Test
     public void testStringTrie1() {
         StringTrie trie = new StringTrie();
-        System.out.println( "---\n" + trie );
-        trie.add( "this is a test" );
-        System.out.println( "---\n" + trie );
-        trie.add( "focus" );
-        System.out.println( "---\n" + trie );
-        trie.add( "this is not a test" );
-        System.out.println( "---\n" + trie );
-        trie.add( "this is a test" );
-        System.out.println( "---\n" + trie );
-        trie.add( "this was a test" );
-        System.out.println( "---\n" + trie );
-        trie.add( "partial 1" );
-        System.out.println( "---\n" + trie );
-        trie.add( "partial" );
-        System.out.println( "---\n" + trie );
-        trie.add( "partial 2" );
-        System.out.println( "---\n" + trie );
+        System.out.println( "---\n" + trie + "\n---" );
+        for ( String str : new String[]{
+                "this is a test",
+                "focus",
+                "this is not a test",
+                "this is a test", // duplicate
+                "this was a test",
+                "this is",
+                "this",
+                "th",
+                "than"
+        } ) {
+            System.out.println( "adding " + str );
+            trie.add( str );
+            System.out.println( "---\n" + trie + "\n---" );
+        }
 
-        assertEquals( trie.getStartingWith( "this" ).size(), 3 );
-        assertEquals( trie.getStartingWith( "this is" ).size(), 2 );
+        System.out.flush();
+
+        for ( String str : trie.getStartingWith( "this" ) ) {
+            System.out.println( "::" + str );
+        }
+
+        assertEquals( trie.getStartingWith( "this" ).size(), 5 );
+        assertEquals( trie.getStartingWith( "this is" ).size(), 3 );
         assertEquals( trie.getStartingWith( "bark" ).size(), 0 );
         assertEquals( trie.getStartingWith( "this is a" ).size(), 1 );
         assertEquals( trie.getStartingWith( "fo" ).size(), 1 );
         assertEquals( trie.getStartingWith( "focus" ).size(), 1 );
         assertEquals( trie.getStartingWith( "focused" ).size(), 0 );
         assertEquals( trie.getStartingWith( "folly" ).size(), 0 );
-        assertEquals( trie.getStartingWith( "" ).size(), 7 );
+        assertEquals( trie.getStartingWith( "" ).size(), 8 );
+        assertEquals( trie.getStartingWith( "th" ).size(), 7 );
     }
 }
