@@ -74,7 +74,6 @@ public class ContributionBrowsePanel extends PhetPanel {
 
         // add our necessary resources for column sortability.
         // NOTE: order matters!
-        add( JavascriptPackageResource.getHeaderContribution( JS.JQUERY ) );
         add( JavascriptPackageResource.getHeaderContribution( JS.CONTRIBUTION_BROWSE ) );
 
         newContributions = new LinkedList<Contribution>();
