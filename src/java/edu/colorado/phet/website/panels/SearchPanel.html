@@ -30,22 +30,26 @@
         </div>
     </form>
     <script type="text/javascript">
-//<![CDATA[
+        //<![CDATA[
         function selectItem( li ) {
-            $( '#search-form' ).submit();
+            //$( '#search-form' ).css( "background-color", "red" );
+            //$( '#search-form' ).submit();
+            window.location = li.data[1];
         }
         function render( value, data ) {
-            return value + " <span style=\"color: #666;\">(simulation)</span>";
+            return value;
+            //return value + " <span style=\"color: #666;\">(simulation)</span>";
+            //return data[0];
         }
         $( "#search-text-id" ).autocomplete( {
                                                  url:"/autocomplete",
                                                  extraParams:{
                                                      l:phetLocale
                                                  },
-                                                 onItemSelect:selectItem
-//                                                 ,showResult:render
+                                                 onItemSelect:selectItem,
+                                                 showResult:render
                                              } );
-//]]>
+        //]]>
     </script>
 </wicket:panel>
 

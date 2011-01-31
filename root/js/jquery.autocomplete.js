@@ -162,9 +162,12 @@
 				case 9: // tab
 				case 13: // return
 					if (self.active_) {
-						e.preventDefault();
-						self.selectCurrent();
-						return false;
+                        if( self.selectCurrent() ) {
+						    e.preventDefault();
+                            return false;
+                        }
+						//self.selectCurrent();
+						return true;
 					}
 				break;
 
@@ -581,6 +584,7 @@
 		} else {
 			this.finish();
 		}
+        return $item.length > 0;
 	};
 
 	$.Autocompleter.prototype.selectItem = function($li) {

@@ -18,9 +18,11 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.SimulationCache;
 import edu.colorado.phet.website.components.RawBodyLabel;
+import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.util.DataTrie;
+import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
-import edu.colorado.phet.website.util.StringTrie;
 
 /**
  * Handles autocompletion of search requests
@@ -29,7 +31,7 @@ public class Autocomplete extends WebPage {
 
     private static final Logger logger = Logger.getLogger( Autocomplete.class.getName() );
 
-    private static final HashMap<Locale, StringTrie> simulationNameTries = new HashMap<Locale, StringTrie>();
+    private static final HashMap<Locale, DataTrie<LocalizedSimulation>> simulationNameTries = new HashMap<Locale, DataTrie<LocalizedSimulation>>();
 
     public Autocomplete( PageParameters parameters ) {
         super( parameters );
@@ -42,11 +44,13 @@ public class Autocomplete extends WebPage {
         }
         logger.debug( query );
 
-        StringTrie trie = getStringTrie( PhetRequestCycle.get().getHibernateSession(), locale );
-        List<String> matches = trie.getStartingWith( query );
+        DataTrie<LocalizedSimulation> trie = getStringTrie( PhetRequestCycle.get().getHibernateSession(), locale );
+        List<LocalizedSimulation> matches = trie.getStartingWith( query );
         StringBuilder buf = new StringBuilder();
-        for ( String match : matches ) {
-            buf.append( match ).append( "\n" );
+        PageContext pageContext = new PageContext( PageContext.getStandardPrefix( locale ), "autocomplete", locale );
+        for ( LocalizedSimulation match : matches ) {
+            String url = SimulationPage.getLinker( match ).getRawUrl( pageContext, PhetRequestCycle.get() );
+            buf.append( match.getTitle() ).append( "|sim|" ).append( url ).append( "\n" );
         }
 
         add( new RawBodyLabel( "response", buf.toString() ) );
@@ -56,18 +60,23 @@ public class Autocomplete extends WebPage {
         simulationNameTries.clear();
     }
 
-    private static synchronized StringTrie getStringTrie( Session session, Locale locale ) {
-        StringTrie stringTrie = simulationNameTries.get( locale );
-        if ( stringTrie == null ) {
-            stringTrie = new StringTrie( locale );
+    private static synchronized DataTrie<LocalizedSimulation> getStringTrie( Session session, Locale locale ) {
+        DataTrie<LocalizedSimulation> trie = simulationNameTries.get( locale );
+        if ( trie == null ) {
+            trie = new DataTrie<LocalizedSimulation>( locale ) {
+                @Override
+                protected String toString( LocalizedSimulation simulation ) {
+                    return simulation.getTitle();
+                }
+            };
             List<LocalizedSimulation> sims = new LinkedList<LocalizedSimulation>();
             SimulationCache.addSortedLocalizedSimulations( sims, session, locale );
             // TODO: add sorting?
             for ( LocalizedSimulation lsim : sims ) {
-                stringTrie.add( lsim.getTitle() );
+                trie.add( lsim );
             }
-            simulationNameTries.put( locale, stringTrie );
+            simulationNameTries.put( locale, trie );
         }
-        return stringTrie;
+        return trie;
     }
 }
