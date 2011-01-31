@@ -249,6 +249,7 @@ div.copyright {
     border: 1px solid #666;
     background-color: #fff;
     overflow: hidden;
+    z-index: 1000;
 }
 
 .acResults ul {
