@@ -504,7 +504,7 @@
 
 		this.dom.$results.html($ul).show();
 		extraWidth = this.dom.$results.outerWidth() - this.dom.$results.width();
-		this.dom.$results.width(this.dom.$elem.outerWidth() - extraWidth);
+        this.dom.$results.width($('#search-form').outerWidth() - extraWidth);
 		$('li', this.dom.$results).hover(
 			function() { self.focusItem(this); },
 			function() { /* void */ }

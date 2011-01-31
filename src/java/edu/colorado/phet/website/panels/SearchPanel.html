@@ -17,13 +17,13 @@
 <wicket:panel>
     <form method="get" wicket:id="search-form" autocomplete="off" id="search-form">
         <div>
-            <label for="search-text-id">
+            <label for="search-text-id" style="display: none;">
                 <wicket:message key="search.search">Search</wicket:message>
             </label>
             <input type="text" size="15" name="q" wicket:message="title:search.enterText"
                    title="Enter the text to search for"
                    class="always-enabled" id="search-text-id"/>
-            <input type="submit" value="Go" wicket:message="title:search.clickSearch,value:search.go"
+            <input type="submit" value="Go" wicket:message="title:search.clickSearch,value:search.search"
                    title="Click here to search the PhET website"
                    autocomplete="off"
                    class="always-enabled" id="search-submit-id"/>
@@ -37,6 +37,9 @@
             window.location = li.data[1];
         }
         function render( value, data ) {
+            if ( data[0] == 'sim' ) {
+                return value + " <span style=\"color: #666;\">(simulation)</span>";
+            }
             return value;
             //return value + " <span style=\"color: #666;\">(simulation)</span>";
             //return data[0];
