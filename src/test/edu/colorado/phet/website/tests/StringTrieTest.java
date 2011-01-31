@@ -25,6 +25,12 @@ public class StringTrieTest {
         System.out.println( "---\n" + trie );
         trie.add( "this was a test" );
         System.out.println( "---\n" + trie );
+        trie.add( "partial 1" );
+        System.out.println( "---\n" + trie );
+        trie.add( "partial" );
+        System.out.println( "---\n" + trie );
+        trie.add( "partial 2" );
+        System.out.println( "---\n" + trie );
 
         assertEquals( trie.getStartingWith( "this" ).size(), 3 );
         assertEquals( trie.getStartingWith( "this is" ).size(), 2 );
@@ -34,6 +40,6 @@ public class StringTrieTest {
         assertEquals( trie.getStartingWith( "focus" ).size(), 1 );
         assertEquals( trie.getStartingWith( "focused" ).size(), 0 );
         assertEquals( trie.getStartingWith( "folly" ).size(), 0 );
-        assertEquals( trie.getStartingWith( "" ).size(), 4 );
+        assertEquals( trie.getStartingWith( "" ).size(), 7 );
     }
 }

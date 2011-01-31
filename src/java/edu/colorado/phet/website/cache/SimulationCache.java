@@ -20,6 +20,7 @@ import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
+import edu.colorado.phet.website.services.Autocomplete;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 /**
@@ -58,6 +59,8 @@ public class SimulationCache {
         logger.debug( "SimulationCache INVALIDATED" );
         preferredSims = new HashMap<Locale, Map<Integer, Integer>>();
         fullSortedLocalizedMap = new HashMap<Locale, List<Integer>>();
+
+        Autocomplete.invalidate();
     }
 
     /**
