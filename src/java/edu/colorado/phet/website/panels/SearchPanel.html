@@ -8,6 +8,9 @@
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
+    <wicket:head>
+        <script type="text/javascript" wicket:id="javascript-locale"></script>
+    </wicket:head>
 </head>
 <body>
 
@@ -32,6 +35,9 @@
         }
         $( "#search-text-id" ).autocomplete( {
                                                  url:"/autocomplete",
+                                                 extraParams:{
+                                                     l:phetLocale
+                                                 },
                                                  onItemSelect:selectItem
                                                  // TODO: add extraParams object with l:.... for locale
                                              } );
