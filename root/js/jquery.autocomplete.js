@@ -279,7 +279,9 @@
 				this.active_ = true;
 				this.lastProcessedValue_ = value;
 				this.fetchData(value);
-			}
+			} else if( value.length == 0 ) {
+                this.finish();
+            }
 		}
 	};
 
