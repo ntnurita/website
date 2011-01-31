@@ -30,8 +30,12 @@
         </div>
     </form>
     <script type="text/javascript">
+//<![CDATA[
         function selectItem( li ) {
             $( '#search-form' ).submit();
+        }
+        function render( value, data ) {
+            return value + " <span style=\"color: #666;\">(simulation)</span>";
         }
         $( "#search-text-id" ).autocomplete( {
                                                  url:"/autocomplete",
@@ -39,8 +43,9 @@
                                                      l:phetLocale
                                                  },
                                                  onItemSelect:selectItem
-                                                 // TODO: add extraParams object with l:.... for locale
+//                                                 ,showResult:render
                                              } );
+//]]>
     </script>
 </wicket:panel>
 
