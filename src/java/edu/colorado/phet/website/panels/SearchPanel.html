@@ -12,7 +12,7 @@
 <body>
 
 <wicket:panel>
-    <form method="get" wicket:id="search-form" autocomplete="off">
+    <form method="get" wicket:id="search-form" autocomplete="off" id="search-form">
         <div>
             <label for="search-text-id">
                 <wicket:message key="search.search">Search</wicket:message>
@@ -28,12 +28,12 @@
     </form>
     <script type="text/javascript">
         function selectItem( li ) {
-            alert( 'boo' );
-            $('#search-form').submit();
+            $( '#search-form' ).submit();
         }
-        $("#search-text-id").autocomplete("/autocomplete", {
-            onItemSelect:selectItem
-        });
+        $( "#search-text-id" ).autocomplete( {
+                                                 url:"/autocomplete",
+                                                 onItemSelect:selectItem
+                                             } );
     </script>
 </wicket:panel>
 
