@@ -271,7 +271,7 @@ div.copyright {
 }
 
 .acLoading {
-    background: url('indicator.gif') right center no-repeat;
+    background: url('/images/icons/indicator.gif') right center no-repeat;
 }
 
 .acSelect {

@@ -59,7 +59,7 @@ public class Autocomplete extends WebPage {
     private static synchronized StringTrie getStringTrie( Session session, Locale locale ) {
         StringTrie stringTrie = simulationNameTries.get( locale );
         if ( stringTrie == null ) {
-            stringTrie = new StringTrie();
+            stringTrie = new StringTrie( locale );
             List<LocalizedSimulation> sims = new LinkedList<LocalizedSimulation>();
             SimulationCache.addSortedLocalizedSimulations( sims, session, locale );
             // TODO: add sorting?
