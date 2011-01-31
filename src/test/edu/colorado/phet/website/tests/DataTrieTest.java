@@ -7,14 +7,19 @@ package edu.colorado.phet.website.tests;
 import org.junit.Test;
 
 import edu.colorado.phet.website.PhetWicketApplication;
-import edu.colorado.phet.website.util.StringTrie;
+import edu.colorado.phet.website.util.DataTrie;
 
 import static org.junit.Assert.assertEquals;
 
-public class StringTrieTest {
+public class DataTrieTest {
     @Test
     public void testStringTrie1() {
-        StringTrie trie = new StringTrie( PhetWicketApplication.getDefaultLocale() );
+        DataTrie<TestData> trie = new DataTrie<TestData>( PhetWicketApplication.getDefaultLocale() ) {
+            @Override
+            protected String toString( TestData data ) {
+                return data.getStr();
+            }
+        };
         System.out.println( "---\n" + trie + "\n---" );
         for ( String str : new String[]{
                 "This is a test",
@@ -28,14 +33,14 @@ public class StringTrieTest {
                 "than"
         } ) {
             System.out.println( "adding " + str );
-            trie.add( str );
+            trie.add( new TestData( str ) );
             System.out.println( "---\n" + trie + "\n---" );
         }
 
         System.out.flush();
 
-        for ( String str : trie.getStartingWith( "this" ) ) {
-            System.out.println( "::" + str );
+        for ( TestData ob : trie.getStartingWith( "this" ) ) {
+            System.out.println( "::" + ob.getStr() );
         }
 
         assertEquals( trie.getStartingWith( "this" ).size(), 5 );
@@ -48,5 +53,17 @@ public class StringTrieTest {
         assertEquals( trie.getStartingWith( "folly" ).size(), 0 );
         assertEquals( trie.getStartingWith( "" ).size(), 8 );
         assertEquals( trie.getStartingWith( "th" ).size(), 7 );
+    }
+}
+
+class TestData {
+    private String str;
+
+    TestData( String str ) {
+        this.str = str;
+    }
+
+    public String getStr() {
+        return str;
     }
 }
