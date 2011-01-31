@@ -272,7 +272,9 @@ div.copyright {
 }
 
 .acLoading {
-    background: url('/images/icons/indicator.gif') right center no-repeat;
+    background-image: url('/images/icons/indicator.gif');
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
 .acSelect {
