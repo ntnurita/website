@@ -23,7 +23,7 @@ public class CacheTestPanel extends PhetPanel {
         super( id, context );
         //logger.debug( "*(after) public CacheTestPanel( String id, PageContext context )" );
 
-        add( HeaderContributor.forCss( CSS.WARNING ) );
+        //add( HeaderContributor.forCss( CSS.WARNING ) );
 
         add( new Label( "locale", getLocale().toString() ) );
     }
