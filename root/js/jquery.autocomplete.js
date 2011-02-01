@@ -1,4 +1,4 @@
-/**
+/*!
  * jquery.autocomplete.js
  * Copyright (c) Dylan Verheul <dylan.verheul@gmail.com>
  * MIT license
