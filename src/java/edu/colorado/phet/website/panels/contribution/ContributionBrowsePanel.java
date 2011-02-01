@@ -70,7 +70,7 @@ public class ContributionBrowsePanel extends PhetPanel {
 
         logger.debug( System.currentTimeMillis() + " start" );
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
         // add our necessary resources for column sortability.
         // NOTE: order matters!

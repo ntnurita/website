@@ -18,7 +18,7 @@ public class RunOurSimulationsPanel extends PhetPanel {
     public RunOurSimulationsPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.RUN_OUR_SIMULATIONS ) );
+        //add( HeaderContributor.forCss( CSS.RUN_OUR_SIMULATIONS ) );
 
         add( CategoryPage.getDefaultLinker().getLink( "online-link", context, getPhetCycle() ) );
         add( FullInstallPanel.getLinker().getLink( "install-link", context, getPhetCycle() ) );

@@ -64,7 +64,7 @@ public class SimulationIndexPanel extends PhetPanel {
             }
         } );
 
-        add( HeaderContributor.forCss( CSS.SIMULATION_INDEX ) );
+        //add( HeaderContributor.forCss( CSS.SIMULATION_INDEX ) );
 
     }
 

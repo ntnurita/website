@@ -53,7 +53,7 @@ public class NavBreadCrumbs extends PhetPanel {
             };
             add( listView );
 
-            add( HeaderContributor.forCss( CSS.NAV_BREADCRUMBS ) );
+            //add( HeaderContributor.forCss( CSS.NAV_BREADCRUMBS ) );
         }
     }
 }

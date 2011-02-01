@@ -18,7 +18,7 @@ public class AboutSponsorsPanel extends PhetPanel {
     public AboutSponsorsPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.SPONSORS ) );
+        //add( HeaderContributor.forCss( CSS.SPONSORS ) );
     }
 
     public static String getKey() {

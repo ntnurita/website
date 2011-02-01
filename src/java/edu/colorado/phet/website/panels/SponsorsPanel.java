@@ -20,7 +20,7 @@ public class SponsorsPanel extends PhetPanel {
     public SponsorsPanel( String id, final PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.SPONSORS ) );
+        //add( HeaderContributor.forCss( CSS.SPONSORS ) );
 
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-link", context, getPhetCycle() ) );
 

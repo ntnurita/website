@@ -21,7 +21,7 @@ public class TroubleshootingJavascriptPanel extends PhetPanel {
     public TroubleshootingJavascriptPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
+        //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
 
         add( new LocalizedText( "troubleshooting-javascript-notJava", "troubleshooting.javascript.notJava", new Object[]{
                 TroubleshootingJavaPanel.getLinker().getHref( context, getPhetCycle() )

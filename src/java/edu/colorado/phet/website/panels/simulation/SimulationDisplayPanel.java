@@ -65,7 +65,7 @@ public class SimulationDisplayPanel extends PhetPanel {
         gridView.setColumns( 3 );
         add( gridView );
 
-        add( HeaderContributor.forCss( CSS.CATEGORY_PAGE ) );
+        //add( HeaderContributor.forCss( CSS.CATEGORY_PAGE ) );
 
     }
 

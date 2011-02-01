@@ -8,11 +8,11 @@ div.rtl #side-panel {
     width: 240px;
 }
 
-div.ltr #main-content {
+div.ltr #main-content.main-menu-content {
     margin-left: 240px;
 }
 
-div.rtl #main-content {
+div.rtl #main-content.main-menu-content {
     margin-right: 240px;
 }
 

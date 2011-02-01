@@ -38,7 +38,7 @@ public class AdminContributionPanel extends PhetPanel {
 
         setOutputMarkupId( true );
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
         updateModels( contribution.isApproved(), contribution.isGoldStar() );
 

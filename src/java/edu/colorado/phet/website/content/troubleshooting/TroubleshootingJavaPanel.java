@@ -20,7 +20,7 @@ public class TroubleshootingJavaPanel extends PhetPanel {
     public TroubleshootingJavaPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
+        //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
 
 
         add( new LocalizedText( "intro", "troubleshooting.java.intro", new Object[]{

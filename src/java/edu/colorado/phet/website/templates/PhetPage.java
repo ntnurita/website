@@ -146,7 +146,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
             link.add( new StaticImage( "page-header-logo-image", Images.PHET_LOGO, null ) );
             add( new StaticImage( "page-header-title-image", Images.LOGO_TITLE, null ) );
 
-            add( HeaderContributor.forCss( CSS.PHET_PAGE ) );
+            //add( HeaderContributor.forCss( CSS.PHET_PAGE ) );
 
             switch( DistributionHandler.getSearchBoxVisibility( getPhetCycle() ) ) {
                 case NONE:

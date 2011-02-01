@@ -46,7 +46,7 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
     public TranslationListPanel( String id, final PageContext context, final Locale locale ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.TRANSLATED_SIMS ) );
+        //add( HeaderContributor.forCss( CSS.TRANSLATED_SIMS ) );
 
         final List<LocalizedSimulation> localizedSimulations = new LinkedList<LocalizedSimulation>();
         final List<LocalizedSimulation> untranslatedSimulations = new LinkedList<LocalizedSimulation>();

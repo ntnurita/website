@@ -70,7 +70,7 @@ public class SimulationMainPanel extends PhetPanel {
 
         add( new Label( "simulation-main-title", simulation.getTitle() ) );
 
-        add( HeaderContributor.forCss( CSS.SIMULATION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.SIMULATION_MAIN ) );
 
         if ( simulation.getLocale().equals( context.getLocale() ) ) {
             add( new InvisibleComponent( "untranslated-sim-text" ) );

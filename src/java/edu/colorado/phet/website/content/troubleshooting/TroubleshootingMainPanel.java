@@ -82,7 +82,7 @@ public class TroubleshootingMainPanel extends PhetPanel {
 
         add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
 
-        add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
+        //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
 
     }
 

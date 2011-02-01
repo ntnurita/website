@@ -58,7 +58,7 @@ public class ContributionSearchPanel extends PhetPanel {
 
         final LinkedList<LocalizedSimulation> simulations = new LinkedList<LocalizedSimulation>();
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_BROWSE ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_BROWSE ) );
 
         logger.debug( "A" );
 

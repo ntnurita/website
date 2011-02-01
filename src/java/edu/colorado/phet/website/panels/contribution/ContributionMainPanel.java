@@ -61,7 +61,7 @@ public class ContributionMainPanel extends PhetPanel {
 
         add( new Label( "contribution-title", contribution.getTitle() ) );
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
         final PhetUser user = PhetSession.get().getUser();
 

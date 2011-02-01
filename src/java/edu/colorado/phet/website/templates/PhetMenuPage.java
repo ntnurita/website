@@ -70,7 +70,7 @@ public abstract class PhetMenuPage extends PhetPage {
         else {
             add( new InvisibleComponent( "translation-links" ) );
         }
-        add( HeaderContributor.forCss( CSS.MENU_PAGE ) );
+        //add( HeaderContributor.forCss( CSS.MENU_PAGE ) );
 
         add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
 

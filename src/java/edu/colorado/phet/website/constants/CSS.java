@@ -28,5 +28,4 @@ public class CSS {
     public static final String TRANSLATED_SIMS = "/css/translated-sims-v3.css";
     public static final String TRANSLATION_LINKS = "/css/translation-links-v1.css";
     public static final String TROUBLESHOOTING = "/css/troubleshooting-v1.css";
-    public static final String WARNING = "/css/warning-v1.css";
 }

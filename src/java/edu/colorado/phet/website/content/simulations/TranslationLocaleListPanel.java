@@ -51,7 +51,7 @@ public class TranslationLocaleListPanel extends PhetPanel implements CacheableUr
 
         // TODO: remove unnecessary steps
 
-        add( HeaderContributor.forCss( CSS.TRANSLATED_SIMS ) );
+        //add( HeaderContributor.forCss( CSS.TRANSLATED_SIMS ) );
 
         final List<LocalizedSimulation> localizedSimulations = new LinkedList<LocalizedSimulation>();
         final Map<Locale, List<LocalizedSimulation>> localeMap = new HashMap<Locale, List<LocalizedSimulation>>();

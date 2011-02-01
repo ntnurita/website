@@ -88,7 +88,7 @@ public class ContributionEditPanel extends PhetPanel {
 
         this.context = context;
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
         contribution = preContribution;
 

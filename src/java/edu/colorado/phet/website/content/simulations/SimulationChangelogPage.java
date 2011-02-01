@@ -43,7 +43,7 @@ public class SimulationChangelogPage extends PhetMenuPage {
     public SimulationChangelogPage( PageParameters parameters ) {
         super( parameters );
 
-        add( HeaderContributor.forCss( CSS.SIMULATION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.SIMULATION_MAIN ) );
 
         String flavorName = parameters.getString( "simulation" );
 

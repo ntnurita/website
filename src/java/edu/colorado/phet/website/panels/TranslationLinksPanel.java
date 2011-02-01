@@ -72,6 +72,6 @@ public class TranslationLinksPanel extends PhetPanel {
         };
         add( listView );
 
-        add( HeaderContributor.forCss( CSS.TRANSLATION_LINKS ) );
+        //add( HeaderContributor.forCss( CSS.TRANSLATION_LINKS ) );
     }
 }

@@ -147,7 +147,7 @@ public class IndexPanel extends PhetPanel {
             add( TeacherIdeasPanel.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
         }
 
-        add( HeaderContributor.forCss( CSS.HOME ) );
+        //add( HeaderContributor.forCss( CSS.HOME ) );
 
         //Link miniLink = CategoryPage.createLink( "mini-screenshot-link", context );
         //add( miniLink );

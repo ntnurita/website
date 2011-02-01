@@ -16,7 +16,7 @@ public class ContributionGuidelinesPanel extends PhetPanel {
     public ContributionGuidelinesPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
     }
 

@@ -29,7 +29,7 @@ public class ContributionManagePanel extends PhetPanel {
     public ContributionManagePanel( String id, final PageContext context ) {
         super( id, context );
 
-        add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
 
         myContributions = new LinkedList<Contribution>();
         unapprovedContributions = new LinkedList<Contribution>();

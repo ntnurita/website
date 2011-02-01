@@ -86,6 +86,6 @@ public class NavMenuList extends PhetPanel {
             }
         } );
 
-        add( HeaderContributor.forCss( CSS.NAV_MENU ) );
+        //add( HeaderContributor.forCss( CSS.NAV_MENU ) );
     }
 }
