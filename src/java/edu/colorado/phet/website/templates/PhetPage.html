@@ -13,14 +13,16 @@
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
-    <link rel="stylesheet" type="text/css" href="/css/phet-v3-min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/phet-v3-min.css"/>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <!--[if IE 6]>
     <link rel="stylesheet" type="text/css" href="/css/ie6fix-v3.css"/>
-    <script defer type="text/javascript" src="/js/pngfix.js"></script>
     <![endif]-->
     <!--[if IE 7]>
     <link rel="stylesheet" type="text/css" href="/css/ie7fix-v2.css"/>
+    <![endif]-->
+    <!--[if lt IE 7]>
+    <script defer type="text/javascript" src="pngfix.js"></script>
     <![endif]-->
     <!--[if IE]>
     <link rel="stylesheet" type="text/css" href="/css/ie-v1.css"/>
@@ -46,15 +48,15 @@
         <div id="page-header-logo">
             <a href="PhetPage.html#" wicket:id="page-header-home-link">
                 <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"
-                     alt="PhET Logo"
-                     title="Go to the PhET home page"
-                     class="header-logo-image"/>
+                     alt="PhET Logo" title="Go to the PhET home page" class="header-logo-image"
+                     width="242" height="127"/>
             </a>
         </div>
         <div id="page-header-title">
             <img wicket:id="page-header-title-image" src="../../../../../../../root/images/logo-title.jpg"
                  alt="Physics Education Technology - University of Colorado, Boulder"
-                 title="Physics Education Technology - University of Colorado, Boulder"/>
+                 title="Physics Education Technology - University of Colorado, Boulder"
+                 width="400" height="83"/>
         </div>
         <div id="page-header-search" wicket:id="search-panel">
             <form action="/en/search" method="get">
