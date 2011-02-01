@@ -14,7 +14,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.Session;
 import org.apache.wicket.behavior.AbstractHeaderContributor;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
@@ -26,7 +25,6 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.*;
 import edu.colorado.phet.website.components.*;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
@@ -49,6 +47,12 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
  * For now, all direct subclasses should call addTitle exactly once
  */
 public abstract class PhetPage extends WebPage implements Stylable {
+
+    /*
+    Google Analytics changes: based on http://code.google.com/apis/analytics/docs/tracking/asyncUsageGuide.html
+    We are now using the asynchronous method for loading GA. Under "One Push, Multiple Commands", it shows the example
+    for hitting multiple trackers, which we also need to do. Also using setDomainName as before
+     */
 
     private Locale myLocale;
     private String prefix;

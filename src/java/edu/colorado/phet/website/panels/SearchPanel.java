@@ -5,13 +5,11 @@
 package edu.colorado.phet.website.panels;
 
 import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainerWithAssociatedMarkup;
 import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.components.RawLabel;
-import edu.colorado.phet.website.constants.JS;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
@@ -20,7 +18,9 @@ public class SearchPanel extends PhetPanel {
     public SearchPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( JavascriptPackageResource.getHeaderContribution( JS.JQUERY_AUTOCOMPLETE ) );
+        // NOTE: Search JS will be loaded asynchronously
+
+        //add( JavascriptPackageResource.getHeaderContribution( JS.JQUERY_AUTOCOMPLETE ) );
 
         // store the locale so we can pick it up easily from JavaScript
         String jsPhetLocale = "var phetLocale = \"" + LocaleUtils.localeToString( getMyLocale() ) + "\";";

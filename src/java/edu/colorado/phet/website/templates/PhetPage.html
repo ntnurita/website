@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
     <link rel="stylesheet" type="text/css" href="/css/phet-v3-min.css"/>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>-->
     <!--[if IE 6]>
     <link rel="stylesheet" type="text/css" href="/css/ie6fix-v3.css"/>
     <![endif]-->
@@ -29,6 +29,33 @@
     <![endif]-->
     <span wicket:id="debug-page-class"></span>
     <span wicket:id="debug-page-host"></span>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push( ['_setAccount', 'UA-5033201-1'] );
+        _gaq.push( ['_setDomainName', 'phet.colorado.edu'] );
+        _gaq.push( ['_trackPageview'] );
+        _gaq.push( ['b._setAccount', 'UA-5033010-1'] );
+        _gaq.push( ['b._setDomainName', 'phet.colorado.edu'] );
+        _gaq.push( ['b._trackPageview'] );
+
+        (function() {
+            var ga = document.createElement( 'script' );
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName( 'script' )[0];
+            s.parentNode.insertBefore( ga, s );
+        })();
+
+        (function() {
+            var phetJS = document.createElement( 'script' );
+            phetJS.type = 'text/javascript';
+            phetJS.async = true;
+            phetJS.src = '/js/phet-v3-min.js';
+            var s = document.getElementsByTagName( 'script' )[0];
+            s.parentNode.insertBefore( phetJS, s );
+        })();
+    </script>
 </head>
 <body wicket:message="dir:language.dir,class:language.dir,id:style.body.id">
 <div id="skipNav">
@@ -77,23 +104,22 @@
         Child element goes here
     </wicket:child>
 </div>
+<!--<script type="text/javascript">-->
+    <!--var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");-->
+    <!--document.write( unescape( "%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E" ) );-->
+<!--</script>-->
+<!--<script type="text/javascript" src="/js/autoTracking_phet.js" wicket:id="autotracking"></script>-->
+<!--<script type="text/javascript">-->
+    <!--var benchmarkTracker = _gat._getTracker( "UA-5033201-1" );-->
+    <!--benchmarkTracker._setDomainName( 'phet.colorado.edu' );-->
+    <!--benchmarkTracker._initData();-->
+    <!--benchmarkTracker._trackPageview();-->
 
-<script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write( unescape( "%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E" ) );
-</script>
-<script type="text/javascript" src="/js/autoTracking_phet.js" wicket:id="autotracking"></script>
-<script type="text/javascript">
-    var benchmarkTracker = _gat._getTracker( "UA-5033201-1" );
-    benchmarkTracker._setDomainName( 'phet.colorado.edu' );
-    benchmarkTracker._initData();
-    benchmarkTracker._trackPageview();
-
-    var overallTracker = _gat._getTracker( "UA-5033010-1" );
-    overallTracker._setDomainName( 'phet.colorado.edu' );
-    overallTracker._initData();
-    overallTracker._trackPageview();
-</script>
+    <!--var overallTracker = _gat._getTracker( "UA-5033010-1" );-->
+    <!--overallTracker._setDomainName( 'phet.colorado.edu' );-->
+    <!--overallTracker._initData();-->
+    <!--overallTracker._trackPageview();-->
+<!--</script>-->
 </body>
 </html>
 

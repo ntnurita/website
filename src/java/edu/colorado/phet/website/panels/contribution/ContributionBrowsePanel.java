@@ -5,12 +5,12 @@
 package edu.colorado.phet.website.panels.contribution;
 
 import java.text.DateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.behavior.HeaderContributor;
-import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -22,9 +22,7 @@ import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.constants.JS;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -35,8 +33,8 @@ import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 public class ContributionBrowsePanel extends PhetPanel {
 
@@ -74,7 +72,7 @@ public class ContributionBrowsePanel extends PhetPanel {
 
         // add our necessary resources for column sortability.
         // NOTE: order matters!
-        add( JavascriptPackageResource.getHeaderContribution( JS.CONTRIBUTION_BROWSE ) );
+        //add( JavascriptPackageResource.getHeaderContribution( JS.CONTRIBUTION_BROWSE ) );
 
         newContributions = new LinkedList<Contribution>();
 
