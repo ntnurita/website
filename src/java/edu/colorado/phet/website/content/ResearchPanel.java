@@ -41,9 +41,6 @@ public class ResearchPanel extends PhetPanel {
         add( new LocalizedText( "research-interest-exploration", "research.interest.exploration" ) );
         add( new LocalizedText( "research-interest-homework", "research.interest.homework" ) );
         add( new LocalizedText( "research-interest-chemistry", "research.interest.chemistry" ) );
-
-        add( HeaderContributor.forCss( CSS.RESEARCH ) );
-
     }
 
     public static String getKey() {

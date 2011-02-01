@@ -21,7 +21,6 @@ public class CSS {
     public static final String NAV_BREADCRUMBS = "/css/nav-breadcrumbs-v1.css";
     public static final String NAV_MENU = "/css/navmenu-v3.css";
     public static final String PHET_PAGE = "/css/phetpage-v7.css";
-    public static final String RESEARCH = "/css/research-v1.css";
     public static final String RUN_OUR_SIMULATIONS = "/css/run-our-simulations-v1.css";
     public static final String SIMULATION_INDEX = "/css/simulation-index-v1.css";
     public static final String SIMULATION_MAIN = "/css/simulation-main-v3.css";
