@@ -5,7 +5,7 @@
        title="Share this on Facebook">
 
         <img src="/files/icons/social/16/facebook.png" alt="Share this on Facebook"
-             style="border: none;"/>
+             style="border: none;" width="16" height="16"/>
     </a>
 </div>
 <div class="social-sub-div">
@@ -13,7 +13,7 @@
        style="padding: 0; margin: 0; text-decoration: none;" target="_blank"
        title="Share this on Twitter">
         <img src="/files/icons/social/16/twitter.png" alt="Share this on Twitter"
-             style="border: none;"/>
+             style="border: none;" width="16" height="16"/>
     </a>
 </div>
 <div class="social-sub-div">
@@ -21,7 +21,7 @@
        style="padding: 0; margin: 0; text-decoration: none;" target="_blank"
        title="Share this on Stumble Upon">
         <img src="/files/icons/social/16/stumbleupon.png"
-             alt="Share this on Stumble Upon" style="border: none;"/>
+             alt="Share this on Stumble Upon" style="border: none;" width="16" height="16"/>
 
     </a>
 </div>
@@ -30,7 +30,7 @@
        style="padding: 0; margin: 0; text-decoration: none;" target="_blank"
        title="Share this on Digg">
         <img src="/files/icons/social/16/digg.png" alt="Share this on Digg"
-             style="border: none;"/>
+             style="border: none;" width="16" height="16"/>
     </a>
 </div>
 <div class="social-sub-div">
@@ -38,7 +38,7 @@
        style="padding: 0; margin: 0; text-decoration: none;" target="_blank"
        title="Share this on Reddit">
         <img src="/files/icons/social/16/reddit.png" alt="Share this on Reddit"
-             style="border: none;"/>
+             style="border: none;" width="16" height="16"/>
     </a>
 
 </div>
@@ -47,7 +47,7 @@
        style="padding: 0; margin: 0; text-decoration: none;" target="_blank"
        title="Share this on Delicious">
         <img src="/files/icons/social/16/delicious.png" alt="Share this on Delicious"
-             style="border: none;"/>
+             style="border: none;" width="16" height="16"/>
     </a>
 </div>
 <?php } ?>
