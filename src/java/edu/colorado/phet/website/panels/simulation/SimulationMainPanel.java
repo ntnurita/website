@@ -8,7 +8,6 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -28,7 +27,6 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.borders.SmallOrangeButtonBorder;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.*;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
@@ -43,6 +41,7 @@ import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.SimSponsorPanel;
+import edu.colorado.phet.website.panels.Sponsor;
 import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
@@ -536,7 +535,7 @@ public class SimulationMainPanel extends PhetPanel {
 
         if ( DistributionHandler.showSimSponsor( getPhetCycle() ) ) {
             // this gets cached, so it will stay the same for the sim (but will be different for different sims)
-            add( new SimSponsorPanel( "pearson-sponsor", context, SimSponsorPanel.chooseRandomActiveSponsor() ) );
+            add( new SimSponsorPanel( "pearson-sponsor", context, Sponsor.chooseRandomActiveSponsor() ) );
         }
         else {
             add( new InvisibleComponent( "pearson-sponsor" ) );

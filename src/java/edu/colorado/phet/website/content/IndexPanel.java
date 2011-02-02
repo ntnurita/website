@@ -6,7 +6,6 @@ package edu.colorado.phet.website.content;
 
 import java.util.Locale;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.DistributionHandler;
@@ -15,7 +14,6 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.content.about.*;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
@@ -93,7 +91,7 @@ public class IndexPanel extends PhetPanel {
         } ) );
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
 
-        final SimSponsorPanel.Sponsor sponsor = SimSponsorPanel.chooseRandomActiveSponsor();
+        final Sponsor sponsor = Sponsor.chooseRandomActiveSponsor();
         if ( sponsor.showNameOnHomepage() ) {
             add( new LocalizedText( "featured-sponsor-name", sponsor.getNameKey() ) );
         }
