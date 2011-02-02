@@ -11,8 +11,8 @@ import edu.colorado.phet.website.constants.Images;
 public class Sponsor {
 
     private String nameKey;
-    private String url;
-    private String imageUrl;
+    private String url; // null if there is no URL
+    private String imageUrl; // null if there is no logo
     private String imageAlt;
     private boolean nameOnHomepage;
     private boolean needsArticle;
@@ -52,8 +52,8 @@ public class Sponsor {
 
     public static Sponsor HEWLETT_FOUNDATION = new Sponsor(
             "sponsors.hewlett.name",
+            "http://www.hewlett.org/",
             Images.LOGO_HEWLETT,
-            "Hewlett Foundation logo",
             "Hewlett Foundation Logo",
             false,
             false );
@@ -81,6 +81,14 @@ public class Sponsor {
             "O'Donnell Foundation logo",
             true,
             true );
+
+    public static Sponsor MORTENSON_FOUNDATION = new Sponsor(
+            "sponsors.mortenson.name",
+            null,
+            null,
+            null,
+            true,
+            false );
 
     public static Random random = new Random();
     public static Sponsor[] ActiveSponsors = new Sponsor[]{HEWLETT_FOUNDATION, NSF, KSU, ODONNELL_FOUNDATION};

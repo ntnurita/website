@@ -40,7 +40,6 @@ public class IndexPanel extends PhetPanel {
 
         // TODO: link these image URLs from the constants area
         add( new StaticImage( "ksu-logo", "/images/support/ERCSME-combined-logo-small.png", null ) );
-        //add( new StaticImage( "jila-logo", "/images/support/jila_logo_small.gif", null ) );
         add( new StaticImage( "nsf-logo", "/images/support/nsf-logo-small.gif", null ) );
         add( new StaticImage( "hewlett-logo", "/images/support/hewlett-logo-small.jpg", null ) );
 
@@ -50,10 +49,6 @@ public class IndexPanel extends PhetPanel {
         else {
             add( new InvisibleComponent( "odf-and" ) );
         }
-
-//        add( new StaticImage( "facebook-like", "/images/icons/social/facebook-like.gif", null));
-//        add( new StaticImage( "facebook-image", "/images/icons/social/facebook.png", null));
-//        add( new StaticImage( "twitter-image", "/images/icons/social/twitter.png", null));
 
         add( new LocalizedText( "facebook-text", "home.facebookText", new Object[]{
                 "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\"/>"
@@ -78,7 +73,6 @@ public class IndexPanel extends PhetPanel {
 
         add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, getPhetCycle() ) );
 
-        //add( TeacherIdeasPanel.getLinker().getLink( "contribute-link", context, getPhetCycle() ) );
         add( DonatePanel.getLinker().getLink( "support-phet-link", context, getPhetCycle() ) );
         add( TranslationUtilityPanel.getLinker().getLink( "translate-sims-link", context, getPhetCycle() ) );
 
@@ -91,22 +85,7 @@ public class IndexPanel extends PhetPanel {
         } ) );
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
 
-        final Sponsor sponsor = Sponsor.chooseRandomActiveSponsor();
-        if ( sponsor.showNameOnHomepage() ) {
-            add( new LocalizedText( "featured-sponsor-name", sponsor.getNameKey() ) );
-        }
-        else {
-            add( new InvisibleComponent( "featured-sponsor-name" ) );
-        }
-        add( new RawLink( "featured-sponsor-logo-link", sponsor.getUrl() ) {{
-            add( new StaticImage( "logo", sponsor.getImageUrl(), sponsor.getImageAlt() ) );
-        }} );
-
-        //add( CategoryPage.createLink( "browse-sims-link", context ) );
-
-        //add( CategoryPage.createLink( "below-simulations-link", context ) );
-
-        //add( AboutMainPanel.getLinker().getLink( "home-about-phet-link", context, getPhetCycle() ) );
+        add( new FeaturedSponsorPanel( "featured-sponsor-panel", context ) );
 
         if ( context.getLocale().equals( PhetWicketApplication.getDefaultLocale() ) && DistributionHandler.displayTranslationEditLink( (PhetRequestCycle) getRequestCycle() ) ) {
             add( TranslationMainPage.getLinker().getLink( "test-translation", context, getPhetCycle() ) );
@@ -144,12 +123,6 @@ public class IndexPanel extends PhetPanel {
             }
             add( TeacherIdeasPanel.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
         }
-
-        //add( HeaderContributor.forCss( CSS.HOME ) );
-
-        //Link miniLink = CategoryPage.createLink( "mini-screenshot-link", context );
-        //add( miniLink );
-        //miniLink.add( new StaticImage( "mini-screenshot", "/images/geometric-optics-screenshot.png", null ) );
 
         if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
             add( new RotatorFallbackPanel( "rotator-panel", context ) );
