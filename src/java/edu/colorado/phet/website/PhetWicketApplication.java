@@ -83,6 +83,17 @@ public class PhetWicketApplication extends WebApplication {
     private static final Logger logger = Logger.getLogger( PhetWicketApplication.class.getName() );
 
     /**
+     * We have a list of data server DNS names that are essentially aliases to phetsims. These should be used when a
+     * large number of separate files need to be downloaded (like sim thumbnails) for speed increases.
+     */
+    public static final String[] DATA_SERVERS = new String[]{
+            "phet-data1.colorado.edu",
+            "phet-data2.colorado.edu",
+            "phet-data3.colorado.edu",
+            "phet-data4.colorado.edu"
+    };
+
+    /**
      * Wicket likes to hardwire the home page in
      *
      * @return The home page class

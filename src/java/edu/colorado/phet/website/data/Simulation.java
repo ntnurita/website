@@ -87,7 +87,11 @@ public class Simulation implements Serializable, IntId {
         return getBestLocalizedSimulation( LocaleUtils.stringToLocale( "en" ) );
     }
 
+    /**
+     * @return A relative URL for the thumbnail
+     */
     public String getThumbnailUrl() {
+        // NOTE: this is relied upon to be relative!
         return "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.jpg";
     }
 

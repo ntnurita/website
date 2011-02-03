@@ -7,7 +7,6 @@ package edu.colorado.phet.website.panels.simulation;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
@@ -15,8 +14,8 @@ import org.apache.wicket.markup.repeater.data.GridView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.StaticImage;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -26,6 +25,9 @@ import edu.colorado.phet.website.util.StringUtils;
 
 import static edu.colorado.phet.website.util.HtmlUtils.encode;
 
+/**
+ * Displays a grid of simulation thumbnails, which can be clicked on to go to the simulation page
+ */
 public class SimulationDisplayPanel extends PhetPanel {
 
     public SimulationDisplayPanel( String id, final PageContext context, List<LocalizedSimulation> simulations ) {
@@ -33,6 +35,9 @@ public class SimulationDisplayPanel extends PhetPanel {
 
         SimulationDataProvider simData = new SimulationDataProvider( simulations );
         GridView gridView = new GridView<LocalizedSimulation>( "rows", simData ) {
+
+            private int dataServerIndex = 0;
+
             @Override
             protected void populateEmptyItem( Item item ) {
                 item.setVisible( false );
@@ -55,7 +60,13 @@ public class SimulationDisplayPanel extends PhetPanel {
                     e.printStackTrace();
                     alt = "Screenshot of the simulation";
                 }
-                link.add( new StaticImage( "thumbnail", simulation.getSimulation().getThumbnailUrl(), alt ) {{
+
+                // rotate among the data servers
+                String dataServer = PhetWicketApplication.DATA_SERVERS[dataServerIndex];
+                dataServerIndex = ( dataServerIndex + 1 ) % PhetWicketApplication.DATA_SERVERS.length;
+                String dataServerPrefix = "http://" + dataServer;
+
+                link.add( new StaticImage( "thumbnail", dataServerPrefix + simulation.getSimulation().getThumbnailUrl(), alt ) {{
                     setOutputMarkupId( true );
                     setMarkupId( "simulation-display-thumbnail-" + simulation.getSimulation().getName() );
                 }} );
