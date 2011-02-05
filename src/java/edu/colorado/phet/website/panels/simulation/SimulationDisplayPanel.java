@@ -36,8 +36,6 @@ public class SimulationDisplayPanel extends PhetPanel {
         SimulationDataProvider simData = new SimulationDataProvider( simulations );
         GridView gridView = new GridView<LocalizedSimulation>( "rows", simData ) {
 
-            private int dataServerIndex = 0;
-
             @Override
             protected void populateEmptyItem( Item item ) {
                 item.setVisible( false );
@@ -62,8 +60,8 @@ public class SimulationDisplayPanel extends PhetPanel {
                 }
 
                 // rotate among the data servers
+                int dataServerIndex = simulation.getId() % PhetWicketApplication.DATA_SERVERS.length;
                 String dataServer = PhetWicketApplication.DATA_SERVERS[dataServerIndex];
-                dataServerIndex = ( dataServerIndex + 1 ) % PhetWicketApplication.DATA_SERVERS.length;
                 String dataServerPrefix = "http://" + dataServer;
 
                 link.add( new StaticImage( "thumbnail", dataServerPrefix + simulation.getSimulation().getThumbnailUrl(), alt ) {{
