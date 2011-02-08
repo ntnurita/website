@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLink;
-import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
@@ -20,14 +19,14 @@ public class FeaturedSponsorPanel extends PhetPanel {
         super( id, context );
 
         final Sponsor sponsor = Sponsor.chooseRandomActiveSponsor();
-        if ( sponsor.showNameOnHomepage() ) {
+        if ( sponsor.getLogoNeedsSubtitle() ) {
             add( new Label( "featured-sponsor-name", sponsor.getFullName() ) );
         }
         else {
             add( new InvisibleComponent( "featured-sponsor-name" ) );
         }
         add( new RawLink( "featured-sponsor-logo-link", sponsor.getUrl() ) {{
-            add( new StaticImage( "logo", sponsor.getImageUrl(), sponsor.getImageAlt() ) );
+            add( sponsor.createLogoComponent( "logo" ) );
         }} );
 
         addDependency( new EventDependency() {
