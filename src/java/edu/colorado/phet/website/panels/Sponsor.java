@@ -10,15 +10,15 @@ import edu.colorado.phet.website.constants.Images;
 
 public class Sponsor {
 
-    private String nameKey;
+    private String fullName;
     private String url; // null if there is no URL
     private String imageUrl; // null if there is no logo
     private String imageAlt;
     private boolean nameOnHomepage;
     private boolean needsArticle;
 
-    public Sponsor( String nameKey, String url, String imageUrl, String imageAlt, boolean nameOnHomepage, boolean needsArticle ) {
-        this.nameKey = nameKey;
+    public Sponsor( String fullName, String url, String imageUrl, String imageAlt, boolean nameOnHomepage, boolean needsArticle, double homeWeight, double simWeight ) {
+        this.fullName = fullName;
         this.url = url;
         this.imageUrl = imageUrl;
         this.imageAlt = imageAlt;
@@ -26,8 +26,8 @@ public class Sponsor {
         this.needsArticle = needsArticle;
     }
 
-    public String getNameKey() {
-        return nameKey;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getUrl() {
@@ -51,44 +51,44 @@ public class Sponsor {
     }
 
     public static Sponsor HEWLETT_FOUNDATION = new Sponsor(
-            "sponsors.hewlett.name",
+            "The William and Flora Hewlett Foundation",
             "http://www.hewlett.org/",
             Images.LOGO_HEWLETT,
             "Hewlett Foundation Logo",
             false,
-            false );
+            false, 0, 2 );
 
     public static Sponsor NSF = new Sponsor(
-            "sponsors.nsf.name",
+            "The National Science Foundation",
             "http://www.nsf.gov/",
             Images.LOGO_NSF,
             "NSF logo",
             true,
-            true );
+            true, 0, 2 );
 
     public static Sponsor KSU = new Sponsor(
-            "sponsors.ksu.name",
+            "ERCSME at King Saud University",
             "http://www.ksu.edu.sa/",
             Images.LOGO_ECSME,
             "The King Saud (ESCME) Logo",
             true,
-            false );
+            false, 0, 2 );
 
     public static Sponsor ODONNELL_FOUNDATION = new Sponsor(
-            "sponsors.odonnell.name",
+            "The O'Donnell Foundation",
             "http://www.odf.org/",
             Images.LOGO_ODONNELL_LARGE,
             "O'Donnell Foundation logo",
             true,
-            true );
+            true, 0, 2 );
 
     public static Sponsor MORTENSON_FOUNDATION = new Sponsor(
-            "sponsors.mortenson.name",
+            "The Mortenson Family Foundation",
             null,
             null,
             null,
             true,
-            false );
+            false, 2, 2 );
 
     public static Random random = new Random();
     public static Sponsor[] ActiveSponsors = new Sponsor[]{HEWLETT_FOUNDATION, NSF, KSU, ODONNELL_FOUNDATION};

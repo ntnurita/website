@@ -4,9 +4,10 @@
 
 package edu.colorado.phet.website.panels;
 
+import org.apache.wicket.markup.html.basic.Label;
+
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
-import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.data.TranslatedString;
@@ -20,7 +21,7 @@ public class FeaturedSponsorPanel extends PhetPanel {
 
         final Sponsor sponsor = Sponsor.chooseRandomActiveSponsor();
         if ( sponsor.showNameOnHomepage() ) {
-            add( new LocalizedText( "featured-sponsor-name", sponsor.getNameKey() ) );
+            add( new Label( "featured-sponsor-name", sponsor.getFullName() ) );
         }
         else {
             add( new InvisibleComponent( "featured-sponsor-name" ) );

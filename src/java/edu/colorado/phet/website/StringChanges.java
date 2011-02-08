@@ -55,10 +55,10 @@ public class StringChanges {
         addString( session, "simulationMainPanel.seeBelow.relatedSimulations", "Related Sims >>" );
         addString( session, "simulationMainPanel.relatedSimulations", "Related Simulations" );
 
-        addString( session, "sponsors.hewlett.name", "The William and Flora Hewlett Foundation" );
-        addString( session, "sponsors.nsf.name", "The National Science Foundation" );
-        addString( session, "sponsors.ksu.name", "ERCSME at King Saud University" );
-        addString( session, "sponsors.odonnell.name", "The O'Donnell Foundation" );
+//        addString( session, "sponsors.hewlett.name", "The William and Flora Hewlett Foundation" );
+//        addString( session, "sponsors.nsf.name", "The National Science Foundation" );
+//        addString( session, "sponsors.ksu.name", "ERCSME at King Saud University" );
+//        addString( session, "sponsors.odonnell.name", "The O'Donnell Foundation" );
 
         addString( session, "home.troubleshooting", "Troubleshooting" );
 
@@ -68,7 +68,7 @@ public class StringChanges {
 
         addString( session, "search.autocomplete.simulation", "{0} (simulation)" );
 
-        addString( session, "sponsors.mortenson.name", "The Mortenson Family Foundation" );
+//        addString( session, "sponsors.mortenson.name", "The Mortenson Family Foundation" );
 
 
         // TODO: sunset home.contribute string
