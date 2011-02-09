@@ -30,11 +30,13 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.runOnline" );
         addString( "simulationMainPanel.tipsForTeachers" );
         addString( "simulationMainPanel.teachersGuide" );
+        addString( "simulationMainPanel.teachingResources" );
         addString( "simulationMainPanel.topics" );
         addString( "simulationMainPanel.mainTopics" );
         addString( "simulationMainPanel.keywords" );
         addString( "simulationMainPanel.teachingIdeas" );
         addString( "simulationMainPanel.submitActivities" );
+        addString( "simulationMainPanel.relatedSimulations" );
         addString( "simulationMainPanel.softwareRequirements" );
         addString( "simulationMainPanel.sampleLearningGoals" );
         addString( "simulationMainPanel.credits" );
@@ -48,7 +50,9 @@ public class SimulationMainEntity extends TranslationEntity {
 
         addString( "simulationMainPanel.seeBelow" );
         addString( "simulationMainPanel.seeBelow.content" );
+        addString( "simulationMainPanel.seeBelow.tipsForTeachers" );
         addString( "simulationMainPanel.seeBelow.teachingIdeas" );
+        addString( "simulationMainPanel.seeBelow.relatedSimulations" );
         addString( "simulationMainPanel.seeBelow.softwareRequirements" );
         addString( "simulationMainPanel.seeBelow.translatedVersions" );
         addString( "simulationMainPanel.seeBelow.credits" );

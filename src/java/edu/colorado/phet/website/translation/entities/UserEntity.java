@@ -67,6 +67,7 @@ public class UserEntity extends TranslationEntity {
 
         addString( "nav.changePasswordSuccess" );
         addString( "changePasswordSuccess.title" );
+        addString( "changePasswordSuccess.message" );
         addString( "changePassword.validation.newPasswordBlank" );
         addString( "changePassword.submit" );
         addString( "changePassword.currentPassword" );
@@ -86,6 +87,9 @@ public class UserEntity extends TranslationEntity {
         addString( "resetPasswordRequest.emailBody" );
         addString( "resetPasswordRequest.emailSubject" );
         addString( "resetPasswordRequestSuccess.message" );
+
+        addString( "resetPasswordRequestSuccess.title" );
+        addString( "resetPasswordCallback.title" );
 
         addPreview( new PhetPanelFactory() {
             public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {

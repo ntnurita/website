@@ -19,13 +19,15 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.twitterText", "{0} will be replaced with a small Twitter icon" );
         addString( "home.blogText" );
         addString( "home.subscribeToNewsletter" );
+
         addString( "home.runOurSims" );
         addString( "home.onLine" );
+        addString( "home.troubleshooting" );
         addString( "home.fullInstallation" );
         addString( "home.oneAtATime" );
         addString( "home.teacherIdeasAndActivities" );
         addString( "home.browseActivities" );
-        addString( "home.contribute" );
+        addString( "home.donate" );
         addString( "home.workshops" );
         addString( "home.submitActivity" );
         addString( "home.supportPhet" );

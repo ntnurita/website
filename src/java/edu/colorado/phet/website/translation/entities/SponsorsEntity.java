@@ -36,6 +36,7 @@ public class SponsorsEntity extends TranslationEntity {
         addString( "sponsors.bitrock.desc" );
         addString( "sponsors.royalinteractive.desc" );
         addString( "sponsors.dynamicalSystems.desc" );
+        addString( "sponsors.techsmith.desc" );
 
         addString( "sponsors.sim.supportedBy" );
         addString( "sponsors.sim.andEducators" );

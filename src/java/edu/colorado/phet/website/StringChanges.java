@@ -66,17 +66,24 @@ public class StringChanges {
 
         addString( session, "search.autocomplete.simulation", "{0} (simulation)" );
 
+        addString( session, "changePasswordSuccess.message", "Your password has been successfully changed." );
+
 //        addString( session, "sponsors.mortenson.name", "The Mortenson Family Foundation" );
 
         deleteString( session, "home.about.featuredSponsor" );
         deleteString( session, "home.about.otherSponsor" );
+        deleteString( session, "sponsors.mortenson.name" );
+        deleteString( session, "sponsors.odonnell.name" );
+        deleteString( session, "sponsors.ksu.name" );
+        deleteString( session, "sponsors.nsf.name" );
+        deleteString( session, "sponsors.hewlett.name" );
+        deleteString( session, "home.about.otherSponsors" );
+        deleteString( session, "home.contribute" );
 
         addString( session, "sponsors.sim.supportedBy", "PhET is supported by" );
         addString( session, "sponsors.sim.supportedByThe", "PhET is supported by the" );
         addString( session, "sponsors.sim.andEducators", "and educators like you." );
         addString( session, "sponsors.sim.thanks", "Thanks!" );
-
-        // TODO: sunset home.contribute string
 
         session.close();
     }
