@@ -120,9 +120,41 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor JILA = new LogoSponsor(
             "JILA",
             "http://jila.colorado.edu/",
-            "/images/support/jila_logo_medium.gif", "padding: 4px;" ) {{
+            "/images/support/jila_logo_medium.gif", "padding: 4px;" ) {{ // we need extra padding for the JILA logo
         setHomeWeight( 5 );
         setSimWeight( 2 );
+    }};
+
+    public static Sponsor TECH_SMITH = new LogoSponsor(
+            "TechSmith",
+            "http://www.techsmith.com/",
+            "/images/support/techsmith.png" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
+    public static Sponsor BITROCK = new LogoSponsor(
+            "BitRock",
+            "http://bitrock.com/",
+            "/images/support/bitrock-small.png" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
+    public static Sponsor JET_BRAINS = new LogoSponsor(
+            "JetBrains",
+            "http://www.jetbrains.com/",
+            "/images/support/jetbrains.gif" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
+    public static Sponsor EJ_TECHNOLOGIES = new LogoSponsor(
+            "ej-technologies",
+            "http://www.ej-technologies.com/",
+            "/images/support/ej-small.png", "padding: 4px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
     }};
 
     public static Random random = new Random();
@@ -132,7 +164,11 @@ public abstract class Sponsor implements Serializable {
             KSU,
             ODONNELL_FOUNDATION,
             MORTENSON_FOUNDATION,
-            JILA
+            JILA,
+            TECH_SMITH,
+            BITROCK,
+            JET_BRAINS,
+            EJ_TECHNOLOGIES
     };
 
     /**
