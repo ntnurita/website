@@ -37,6 +37,10 @@ public class SponsorsEntity extends TranslationEntity {
         addString( "sponsors.royalinteractive.desc" );
         addString( "sponsors.dynamicalSystems.desc" );
 
+        addString( "sponsors.sim.supportedBy" );
+        addString( "sponsors.sim.andEducators" );
+        addString( "sponsors.sim.thanks" );
+
         addPreview( new PhetPanelFactory() {
             public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
                 return new SponsorsPanel( id, context );

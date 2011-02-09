@@ -12,6 +12,8 @@ public class EnglishEntity extends TranslationEntity {
         addString( "admin.keyword.create.duplicate" );
         addString( "admin.keyword.create.exists" );
 
+        addString( "sponsors.sim.supportedByThe" );
+
         addString( "home.meta", "Home (Index) page meta description" );
     }
 

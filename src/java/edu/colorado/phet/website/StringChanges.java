@@ -71,6 +71,10 @@ public class StringChanges {
         deleteString( session, "home.about.featuredSponsor" );
         deleteString( session, "home.about.otherSponsor" );
 
+        addString( session, "sponsors.sim.supportedBy", "PhET is supported by" );
+        addString( session, "sponsors.sim.supportedByThe", "PhET is supported by the" );
+        addString( session, "sponsors.sim.andEducators", "and educators like you." );
+        addString( session, "sponsors.sim.thanks", "Thanks!" );
 
         // TODO: sunset home.contribute string
 

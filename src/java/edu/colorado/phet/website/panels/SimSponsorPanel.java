@@ -6,6 +6,8 @@ package edu.colorado.phet.website.panels;
 
 import org.apache.wicket.markup.html.basic.Label;
 
+import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.util.PageContext;
 
 public class SimSponsorPanel extends PhetPanel {
@@ -19,9 +21,13 @@ public class SimSponsorPanel extends PhetPanel {
         add( Sponsor.createSponsorLogoPanel( "sim-sponsor-panel", sponsor, context, "padding-top: 5px; border: none;" ) );
 
         // TODO: i18n
-        add( new Label( "before-text", "PhET is supported by" + ( sponsor.getNeedsArticle() ? " the" : "" ) ) );
-        add( new Label( "after-text", "and educators like you." ) );
-        add( new Label( "thanks", "Thanks!" ) );
+        if ( getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && sponsor.getNeedsArticle() ) {
+            add( new LocalizedText( "before-text", "sponsors.sim.supportedByThe" ) );
+        } else {
+            add( new LocalizedText( "before-text", "sponsors.sim.supportedBy" ) );
+        }
+        add( new LocalizedText( "after-text", "sponsors.sim.andEducators" ) );
+        add( new LocalizedText( "thanks", "sponsors.sim.thanks" ) );
     }
 
 }
