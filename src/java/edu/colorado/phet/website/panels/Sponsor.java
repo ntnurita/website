@@ -4,14 +4,22 @@
 
 package edu.colorado.phet.website.panels;
 
+import java.io.Serializable;
 import java.util.Random;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
+import org.apache.wicket.model.Model;
 
+import edu.colorado.phet.website.components.LinkImageWrapper;
+import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.util.HtmlUtils;
+import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.links.RawLinker;
 
-public abstract class Sponsor {
+public abstract class Sponsor implements Serializable {
 
     private String fullName;
     private String url; // null if there is no URL
@@ -22,7 +30,7 @@ public abstract class Sponsor {
     private double homeWeight = 0;
     private double simWeight = 0;
 
-    protected abstract Component createLogoComponent( String id );
+    protected abstract Component createLogoComponent( String id, String style );
 
     public Sponsor( String fullName, String url ) {
         this.fullName = fullName;
@@ -34,6 +42,7 @@ public abstract class Sponsor {
     }
 
     public String getUrl() {
+        // TODO: add linker!
         return url;
     }
 
@@ -92,28 +101,69 @@ public abstract class Sponsor {
         setLogoNeedsSubtitle( true );
     }};
 
-    public static Sponsor ODONNELL_FOUNDATION = new LogoSponsor(
+    public static Sponsor ODONNELL_FOUNDATION = new TextSponsor(
             "The O'Donnell Foundation",
             "http://www.odf.org/",
-            Images.LOGO_ODONNELL_LARGE ) {{
+            "The O'Donnell Foundation", "font-size: 14px; padding: 0.3em 0; color: #000;" ) {{
         setSimWeight( 2 );
     }};
 
-    public static Sponsor MORTENSON_FOUNDATION = new LogoSponsor(
+    public static Sponsor MORTENSON_FOUNDATION = new TextSponsor(
             "The Mortenson Family Foundation",
             null,
-            null ) {{
+            "The Mortenson Family Foundation", "font-size: 14px; padding: 0.3em 0; color: #000;" ) {{
         setHomeWeight( 2 );
         setSimWeight( 2 );
     }};
 
     public static Random random = new Random();
-    public static Sponsor[] ActiveSponsors = new Sponsor[]{HEWLETT_FOUNDATION, NSF, KSU, ODONNELL_FOUNDATION};
+    public static Sponsor[] ActiveSponsors = new Sponsor[]{
+            HEWLETT_FOUNDATION,
+            NSF,
+            KSU,
+            ODONNELL_FOUNDATION,
+            MORTENSON_FOUNDATION
+    };
 
-    public static Sponsor chooseRandomActiveSponsor() {
-        return ActiveSponsors[random.nextInt( ActiveSponsors.length )];
+    /**
+     * @return Pick a random home sponsor by weight
+     */
+    public static Sponsor chooseRandomHomeSponsor() {
+        double total = 0;
+        for ( Sponsor sponsor : ActiveSponsors ) {
+            total += sponsor.getHomeWeight();
+        }
+        double r = random.nextDouble() * total;
+        for ( Sponsor sponsor : ActiveSponsors ) {
+            r -= sponsor.getHomeWeight();
+            if ( r <= 0 ) {
+                return sponsor;
+            }
+        }
+        throw new RuntimeException( "Failure with randomly picking a home sponsor" );
     }
 
+    /**
+     * @return Pick a random sim sponsor by weight
+     */
+    public static Sponsor chooseRandomSimSponsor() {
+        double total = 0;
+        for ( Sponsor sponsor : ActiveSponsors ) {
+            total += sponsor.getSimWeight();
+        }
+        double r = random.nextDouble() * total; // r < total
+        for ( Sponsor sponsor : ActiveSponsors ) {
+            r -= sponsor.getSimWeight();
+            if ( r <= 0 ) {
+                return sponsor;
+            }
+        }
+        throw new RuntimeException( "Failure with randomly picking a home sponsor" );
+    }
+
+    /**
+     * Used for sponsors who have a logo
+     */
     public static class LogoSponsor extends Sponsor {
         private String imageUrl;
 
@@ -123,8 +173,50 @@ public abstract class Sponsor {
         }
 
         @Override
-        protected Component createLogoComponent( String id ) {
-            return new StaticImage( id, imageUrl, getFullName() + " logo" );
+        protected Component createLogoComponent( String id, String style ) {
+            StaticImage image = new StaticImage( id, imageUrl, getFullName() + " logo" );
+            image.add( new AttributeModifier( "style", true, new Model<String>( style ) ) );
+            return image;
+        }
+    }
+
+    /**
+     * Used for sponsors who do not have a logo. Only text.
+     */
+    public static class TextSponsor extends Sponsor {
+        private String text;
+        private String textStyle;
+
+        public TextSponsor( String fullName, String url, String text, String textStyle ) {
+            super( fullName, url );
+            this.text = text;
+            this.textStyle = textStyle;
+        }
+
+        @Override
+        protected Component createLogoComponent( String id, String style ) {
+            RawLabel label = new RawLabel( id, "<span>" + HtmlUtils.encode( text ) + "</span>" );
+            String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + textStyle;
+            label.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
+            return label;
+        }
+    }
+
+    public static Component createSponsorLogoPanel( String id, final Sponsor sponsor, final PageContext context, final String style ) {
+        if ( sponsor.getUrl() != null ) {
+            return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
+                {
+                    getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
+                }
+
+                @Override
+                public Component createChild( String id ) {
+                    return sponsor.createLogoComponent( id, style );
+                }
+            };
+        }
+        else {
+            return sponsor.createLogoComponent( id, style );
         }
     }
 }

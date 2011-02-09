@@ -535,7 +535,7 @@ public class SimulationMainPanel extends PhetPanel {
 
         if ( DistributionHandler.showSimSponsor( getPhetCycle() ) ) {
             // this gets cached, so it will stay the same for the sim (but will be different for different sims)
-            add( new SimSponsorPanel( "pearson-sponsor", context, Sponsor.chooseRandomActiveSponsor() ) );
+            add( new SimSponsorPanel( "pearson-sponsor", context, Sponsor.chooseRandomSimSponsor() ) );
         }
         else {
             add( new InvisibleComponent( "pearson-sponsor" ) );
