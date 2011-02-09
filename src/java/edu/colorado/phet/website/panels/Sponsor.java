@@ -12,6 +12,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.components.LinkImageWrapper;
+import edu.colorado.phet.website.components.LinkWrapper;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
@@ -104,15 +105,23 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor ODONNELL_FOUNDATION = new TextSponsor(
             "The O'Donnell Foundation",
             "http://www.odf.org/",
-            "The O'Donnell Foundation", "font-size: 14px; padding: 0.3em 0; color: #000;" ) {{
+            "The O'Donnell Foundation", "font-size: 14px; padding: 0.3em 0; color: #000; text-decoration: none;" ) {{
         setSimWeight( 2 );
     }};
 
     public static Sponsor MORTENSON_FOUNDATION = new TextSponsor(
             "The Mortenson Family Foundation",
             null,
-            "The Mortenson Family Foundation", "font-size: 14px; padding: 0.3em 0; color: #000;" ) {{
+            "The Mortenson Family Foundation", "font-size: 14px; padding: 0.3em 0; color: #000; text-decoration: none;" ) {{
         setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
+    public static Sponsor JILA = new LogoSponsor(
+            "JILA",
+            "http://jila.colorado.edu/",
+            "/images/support/jila_logo_medium.gif", "padding: 4px;" ) {{
+        setHomeWeight( 5 );
         setSimWeight( 2 );
     }};
 
@@ -122,7 +131,8 @@ public abstract class Sponsor implements Serializable {
             NSF,
             KSU,
             ODONNELL_FOUNDATION,
-            MORTENSON_FOUNDATION
+            MORTENSON_FOUNDATION,
+            JILA
     };
 
     /**
@@ -166,16 +176,23 @@ public abstract class Sponsor implements Serializable {
      */
     public static class LogoSponsor extends Sponsor {
         private String imageUrl;
+        private String imageStyle = "";
 
         public LogoSponsor( String fullName, String url, String imageUrl ) {
             super( fullName, url );
             this.imageUrl = imageUrl;
         }
 
+        public LogoSponsor( String fullName, String url, String imageUrl, String style ) {
+            this( fullName, url, imageUrl );
+            this.imageStyle = style;
+        }
+
         @Override
         protected Component createLogoComponent( String id, String style ) {
             StaticImage image = new StaticImage( id, imageUrl, getFullName() + " logo" );
-            image.add( new AttributeModifier( "style", true, new Model<String>( style ) ) );
+            String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + imageStyle;
+            image.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
             return image;
         }
     }
@@ -204,16 +221,30 @@ public abstract class Sponsor implements Serializable {
 
     public static Component createSponsorLogoPanel( String id, final Sponsor sponsor, final PageContext context, final String style ) {
         if ( sponsor.getUrl() != null ) {
-            return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
-                {
-                    getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
-                }
+            if ( sponsor instanceof LogoSponsor ) {
+                return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
+                    {
+                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
+                    }
 
-                @Override
-                public Component createChild( String id ) {
-                    return sponsor.createLogoComponent( id, style );
-                }
-            };
+                    @Override
+                    public Component createChild( String id ) {
+                        return sponsor.createLogoComponent( id, style );
+                    }
+                };
+            }
+            else {
+                return new LinkWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
+                    {
+                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
+                    }
+
+                    @Override
+                    public Component createChild( String id ) {
+                        return sponsor.createLogoComponent( id, style );
+                    }
+                };
+            }
         }
         else {
             return sponsor.createLogoComponent( id, style );
