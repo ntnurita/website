@@ -32,14 +32,12 @@ public class StringChanges {
         overwriteString( session, "home.workshops", "Workshops", "Workshops and Materials" );
         overwriteString( session, "home.workshops", "Workshops and Materials", "Workshops / Materials" );
 
-        addString( session, "home.about.otherSponsors", "Other Sponsors" );
+//        addString( session, "home.about.otherSponsors", "Other Sponsors" );
         //overwriteString( session, "home.about.otherSponsors", "Other Sponsors", "along with our <a {0}>other sponsors</a> and educators like you." );
-        overwriteString( session, "home.about.otherSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "Other Sponsors" );
+//        overwriteString( session, "home.about.otherSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "Other Sponsors" );
         addString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you." );
         overwriteString( session, "home.about.alongWithOurSponsors", "along with our <a {0}>other sponsors</a> and educators like you.", "as well as our <a {0}>other sponsors</a> and educators like you." );
         overwriteString( session, "home.about.alongWithOurSponsors", "as well as our <a {0}>other sponsors</a> and educators like you.", "and our <a {0}>other sponsors</a>, including educators like you." );
-
-        addString( session, "home.about.featuredSponsor", "Featured Sponsor" );
 
         addString( session, "home.meta", "Free educational simulations covering a diverse topics designed by the University of Colorado available in various languages." );
 
@@ -70,9 +68,11 @@ public class StringChanges {
 
 //        addString( session, "sponsors.mortenson.name", "The Mortenson Family Foundation" );
 
+        deleteString( session, "home.about.featuredSponsor" );
+        deleteString( session, "home.about.otherSponsor" );
+
 
         // TODO: sunset home.contribute string
-        // TODO: sunset home.about.featuredSponsor
 
         session.close();
     }

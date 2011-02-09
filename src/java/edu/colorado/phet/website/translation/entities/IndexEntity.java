@@ -40,8 +40,8 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.about.news" );
         addString( "home.about.contact" );
         addString( "home.about.sponsors" );
-        addString( "home.about.featuredSponsor" );
-        addString( "home.about.otherSponsors" );
+        addString( "home.about.phetSupportedBy" );
+        addString( "home.about.alongWithOurSponsors" );
 
         addPreview( new PhetPanelFactory() {
             public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
