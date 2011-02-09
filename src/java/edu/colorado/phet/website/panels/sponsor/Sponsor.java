@@ -2,7 +2,7 @@
  * Copyright 2011, University of Colorado
  */
 
-package edu.colorado.phet.website.panels;
+package edu.colorado.phet.website.panels.sponsor;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -20,6 +20,9 @@ import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.links.RawLinker;
 
+/**
+ * Represents one of our sponsors, and has a way of creating a logo
+ */
 public abstract class Sponsor implements Serializable {
 
     private String fullName;

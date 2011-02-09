@@ -2,7 +2,7 @@
  * Copyright 2011, University of Colorado
  */
 
-package edu.colorado.phet.website.panels;
+package edu.colorado.phet.website.panels.sponsor;
 
 import org.apache.wicket.markup.html.basic.Label;
 
@@ -11,8 +11,12 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
+import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 
+/**
+ * Shows a sponsor highlight on the home page
+ */
 public class FeaturedSponsorPanel extends PhetPanel {
     public static final String HOME_SPONSOR_STYLE = "border: 1px solid #aaa; background-color: #fff;";
 

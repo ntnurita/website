@@ -24,6 +24,7 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPane
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.panels.*;
+import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
