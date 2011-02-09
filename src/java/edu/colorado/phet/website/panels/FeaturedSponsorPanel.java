@@ -14,6 +14,8 @@ import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.util.PageContext;
 
 public class FeaturedSponsorPanel extends PhetPanel {
+    public static final String HOME_SPONSOR_STYLE = "border: 1px solid #aaa; background-color: #fff;";
+
     public FeaturedSponsorPanel( String id, final PageContext context ) {
         super( id, context );
 
@@ -25,8 +27,7 @@ public class FeaturedSponsorPanel extends PhetPanel {
             add( new InvisibleComponent( "featured-sponsor-name" ) );
         }
 
-        final String imageStyle = "border: 1px solid #aaa; background-color: #fff;";
-        add( Sponsor.createSponsorLogoPanel( "featured-sponsor-panel", sponsor, context, imageStyle ) );
+        add( Sponsor.createSponsorLogoPanel( "featured-sponsor-panel", sponsor, context, HOME_SPONSOR_STYLE ) );
 
         addDependency( new EventDependency() {
 
