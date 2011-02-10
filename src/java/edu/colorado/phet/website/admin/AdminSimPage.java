@@ -11,6 +11,7 @@ import java.io.StringReader;
 import java.util.*;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
 import org.apache.wicket.markup.html.basic.Label;
@@ -35,6 +36,8 @@ import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.data.*;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
+import edu.colorado.phet.website.panels.lists.OrderList;
+import edu.colorado.phet.website.panels.lists.SimOrderItem;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -46,6 +49,9 @@ public class AdminSimPage extends AdminPage {
     private Simulation simulation = null;
     private List<LocalizedSimulation> localizedSimulations;
     private FeedbackPanel createKeywordfeedback;
+
+    private List<SimOrderItem> relatedSimItems = new LinkedList<SimOrderItem>();
+    private List<SimOrderItem> otherSimItems = new LinkedList<SimOrderItem>();
 
     private static final Logger logger = Logger.getLogger( AdminSimPage.class.getName() );
 
@@ -92,6 +98,17 @@ public class AdminSimPage extends AdminPage {
                     .setEntity( "sim", simulation ).list();
             for ( Object o : tguides ) {
                 guides.add( (TeachersGuide) o );
+            }
+
+            // get related and all other simulations for use with the related simulations area
+            for ( Object o : simulation.getRelatedSimulations() ) {
+                Simulation related = (Simulation) o;
+                relatedSimItems.add( new SimOrderItem( related, related.getEnglishSimulation().getTitle() ) );
+            }
+            List others = session.createQuery( "select s from Simulation as s where s.id != :id" ).setInteger( "id", simulation.getId() ).list();
+            for ( Object o : others ) {
+                Simulation other = (Simulation) o;
+                otherSimItems.add( new SimOrderItem( other, other.getEnglishSimulation().getTitle() ) );
             }
 
             tx.commit();
@@ -175,6 +192,8 @@ public class AdminSimPage extends AdminPage {
         else {
             add( new InvisibleComponent( "guide-link" ) );
         }
+
+        add( new RelatedSimulationsList( "related-simulations", simulation, relatedSimItems, otherSimItems ) );
 
         add( new FileUploadForm( "upload-guide-form" ) );
 
@@ -992,6 +1011,67 @@ public class AdminSimPage extends AdminPage {
                     setResponsePage( AdminSimsPage.class );
                 }
             }
+        }
+    }
+
+    private class RelatedSimulationsList extends OrderList<SimOrderItem> {
+        private int simId;
+
+        public RelatedSimulationsList( String id, Simulation simulation, List<SimOrderItem> items, List<SimOrderItem> allItems ) {
+            super( id, AdminSimPage.this.getPageContext(), items, allItems );
+            simId = simulation.getId();
+        }
+
+        public boolean onItemAdd( final SimOrderItem item ) {
+            for ( SimOrderItem curItem : getItems() ) {
+                if ( curItem.getId() == item.getId() ) {
+                    return false;
+                }
+            }
+            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                public boolean run( Session session ) {
+                    Simulation sim = (Simulation) session.load( Simulation.class, simId );
+                    Simulation relatedSim = (Simulation) session.load( Simulation.class, item.getId() );
+                    sim.getRelatedSimulations().add( relatedSim );
+                    session.update( sim );
+//                    session.update( relatedSim );
+                    return true;
+                }
+            } );
+            logger.info( "add: #" + item.getId() + " success: " + success );
+            return success;
+        }
+
+        public boolean onItemRemove( final SimOrderItem item, int index ) {
+            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                public boolean run( Session session ) {
+                    Simulation sim = (Simulation) session.load( Simulation.class, simId );
+                    Simulation relatedSim = (Simulation) session.load( Simulation.class, item.getId() );
+                    sim.getRelatedSimulations().remove( relatedSim );
+                    session.update( sim );
+//                    session.update( relatedSim );
+                    return true;
+                }
+            } );
+            logger.info( "remove: #" + item.getId() + " at " + index + " success: " + success );
+            return success;
+        }
+
+        public boolean onItemSwap( SimOrderItem a, SimOrderItem b, final int aIndex, final int bIndex ) {
+            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                public boolean run( Session session ) {
+                    Simulation sim = (Simulation) session.load( Simulation.class, simId );
+                    Collections.swap( sim.getRelatedSimulations(), aIndex, bIndex );
+                    session.update( sim );
+                    return true;
+                }
+            } );
+            logger.info( "swap: #" + a.getId() + ", " + b.getId() + " at " + aIndex + ", " + bIndex + " success: " + success );
+            return success;
+        }
+
+        public Component getHeaderComponent( String id ) {
+            return new Label( id, "Simulations" );
         }
     }
 }

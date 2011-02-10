@@ -48,9 +48,9 @@ public abstract class OrderList<Item extends OrderListItem> extends PhetPanel {
 
         form.add( getHeaderComponent( "header-component" ) );
 
-        form.add( new ListView( "items", items ) {
-            protected void populateItem( final ListItem listItem ) {
-                final Item item = (Item) listItem.getModel().getObject();
+        form.add( new ListView<Item>( "items", items ) {
+            protected void populateItem( final ListItem<Item> listItem ) {
+                final Item item = listItem.getModelObject();
                 listItem.add( item.getDisplayComponent( "item-component" ) );
                 listItem.add( new Link( "remove" ) {
                     public void onClick() {
@@ -146,5 +146,13 @@ public abstract class OrderList<Item extends OrderListItem> extends PhetPanel {
                 }
             } );
         }
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public List<Item> getAllItems() {
+        return allItems;
     }
 }
