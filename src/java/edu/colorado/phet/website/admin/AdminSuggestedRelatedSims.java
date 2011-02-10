@@ -17,8 +17,13 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.data.Category;
+import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Task;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
@@ -44,6 +49,9 @@ public class AdminSuggestedRelatedSims extends AdminPage {
                 Score score = item.getModelObject();
                 item.add( new Label( "sim", score.lsim.getTitle() ) );
                 item.add( new Label( "score", String.valueOf( score.score ) ) );
+                item.add( new RawLabel( "notes", score.notes ) );
+                item.add( new RawLabel( "keywords", score.keywords ) );
+                item.add( new RawLabel( "categories", score.categories ) );
             }
         } );
 
@@ -52,10 +60,16 @@ public class AdminSuggestedRelatedSims extends AdminPage {
     public static class Score implements Serializable {
         public LocalizedSimulation lsim;
         public int score;
+        public String notes;
+        public String keywords;
+        public String categories;
 
-        public Score( LocalizedSimulation lsim, int score ) {
+        public Score( LocalizedSimulation lsim, int score, String notes, String keywords, String categories ) {
             this.lsim = lsim;
             this.score = score;
+            this.notes = notes;
+            this.keywords = keywords;
+            this.categories = categories;
         }
     }
 
@@ -64,19 +78,28 @@ public class AdminSuggestedRelatedSims extends AdminPage {
         HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             private LocalizedSimulation sim;
 
-            private int score( LocalizedSimulation lsim ) {
+            private Score score( LocalizedSimulation lsim ) {
                 int count = 0;
+
+                String notes = "";
+                String keywords = "";
+                String categories = "";
 
                 // TODO: rank with popularity also?
 
                 if ( lsim.getSimulation().getProject().getId() == sim.getSimulation().getProject().getId() ) {
                     count += 5;
+                    notes += "same project";
                 }
 
                 // add +1 for each keyword that they share
                 for ( Object o : lsim.getSimulation().getKeywords() ) {
                     if ( sim.getSimulation().getKeywords().contains( o ) ) {
                         count += 1;
+                        if ( keywords.length() > 0 ) {
+                            keywords += ", ";
+                        }
+                        keywords += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Keyword) o ).getLocalizationKey(), PhetWicketApplication.getDefaultLocale() );
                     }
                 }
 
@@ -84,9 +107,13 @@ public class AdminSuggestedRelatedSims extends AdminPage {
                 for ( Object o : lsim.getSimulation().getCategories() ) {
                     if ( sim.getSimulation().getCategories().contains( o ) ) {
                         count += 1;
+                        if ( categories.length() > 0 ) {
+                            categories += ", ";
+                        }
+                        categories += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Category) o ).getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey(), PhetWicketApplication.getDefaultLocale() );
                     }
                 }
-                return count;
+                return new Score( lsim, count, notes, keywords, categories );
             }
 
             public Void run( Session session ) {
@@ -96,7 +123,7 @@ public class AdminSuggestedRelatedSims extends AdminPage {
                 simPool.remove( sim ); // don't allow this simulation in
 
                 for ( LocalizedSimulation lsim : simPool ) {
-                    ret.add( new Score( lsim, score( lsim ) ) );
+                    ret.add( score( lsim ) );
                 }
 
                 Collections.sort( ret, new Comparator<Score>() {

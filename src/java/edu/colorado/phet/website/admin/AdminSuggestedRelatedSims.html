@@ -18,14 +18,20 @@
 <wicket:extend>
     <h2 wicket:id="suggest">Suggested "Related Sims" for ...</h2>
 
-    <table>
+    <table cellpadding="5">
         <tr>
             <th>Simulation</th>
             <th>Score</th>
+            <th>Notes</th>
+            <th>Shared Keywords</th>
+            <th>Shared Categories</th>
         </tr>
         <tr wicket:id="simulation">
             <td wicket:id="sim"></td>
             <td wicket:id="score"></td>
+            <td wicket:id="notes"></td>
+            <td wicket:id="keywords"></td>
+            <td wicket:id="categories"></td>
         </tr>
     </table>
 </wicket:extend>
