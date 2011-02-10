@@ -106,9 +106,14 @@ public class AdminSimPage extends AdminPage {
                 relatedSimItems.add( new SimOrderItem( related, related.getEnglishSimulation().getTitle() ) );
             }
             List others = session.createQuery( "select s from Simulation as s where s.id != :id" ).setInteger( "id", simulation.getId() ).list();
-            for ( Object o : others ) {
-                Simulation other = (Simulation) o;
-                otherSimItems.add( new SimOrderItem( other, other.getEnglishSimulation().getTitle() ) );
+            List<LocalizedSimulation> lothers = new LinkedList<LocalizedSimulation>();
+            for ( Object other : others ) {
+                lothers.add( ( (Simulation) other ).getEnglishSimulation() );
+            }
+            HibernateUtils.orderSimulations( lothers, PhetWicketApplication.getDefaultLocale() );
+            for ( Object o : lothers ) {
+                LocalizedSimulation other = (LocalizedSimulation) o;
+                otherSimItems.add( new SimOrderItem( other.getSimulation(), other.getTitle() ) );
             }
 
             tx.commit();
@@ -193,6 +198,12 @@ public class AdminSimPage extends AdminPage {
             add( new InvisibleComponent( "guide-link" ) );
         }
 
+        add( new Link( "suggested-related" ) {
+            @Override
+            public void onClick() {
+                setResponsePage( new AdminSuggestedRelatedSims( new PageParameters(), simulation ) );
+            }
+        } );
         add( new RelatedSimulationsList( "related-simulations", simulation, relatedSimItems, otherSimItems ) );
 
         add( new FileUploadForm( "upload-guide-form" ) );
