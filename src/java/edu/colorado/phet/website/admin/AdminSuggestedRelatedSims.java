@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.admin;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -48,7 +49,7 @@ public class AdminSuggestedRelatedSims extends AdminPage {
 
     }
 
-    public static class Score {
+    public static class Score implements Serializable {
         public LocalizedSimulation lsim;
         public int score;
 
