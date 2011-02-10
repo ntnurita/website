@@ -24,6 +24,8 @@ public class Simulation implements Serializable, IntId {
     private List topics = new LinkedList();
     private List keywords = new LinkedList();
 
+    private List relatedSimulations = new LinkedList();
+
     private String designTeam;
     private String libraries;
     private String thanksTo;
@@ -195,6 +197,14 @@ public class Simulation implements Serializable, IntId {
 
     public void setTopics( List topics ) {
         this.topics = topics;
+    }
+
+    public List getRelatedSimulations() {
+        return relatedSimulations;
+    }
+
+    public void setRelatedSimulations( List relatedSimulations ) {
+        this.relatedSimulations = relatedSimulations;
     }
 
     public String getDesignTeam() {

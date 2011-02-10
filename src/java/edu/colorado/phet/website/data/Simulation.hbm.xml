@@ -39,6 +39,11 @@
             <key column="simulation_id"/>
             <many-to-many class="edu.colorado.phet.website.data.contribution.Contribution" column="contribution_id"/>
         </set>
+        <list name="relatedSimulations" table="related_sims">
+            <key column="simulation_id"/>
+            <list-index column="idx"/>
+            <many-to-many class="edu.colorado.phet.website.data.Simulation" column="related_id"/>
+        </list>
         <property name="oldId"/>
         <property name="createTime" type="timestamp"/>
         <property name="updateTime" type="timestamp"/>
