@@ -35,7 +35,7 @@ public class Linkers {
     // TODO: refactor front page to use these linkers
     public static final RawLinkable FACEBOOK_PAGE = new RawLinker( "http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall" );
     public static final RawLinkable TWITTER_PAGE = new RawLinker( "http://twitter.com/PhETSims" );
-    public static final RawLinkable BLOG = new RawLinker( "http://phet.colorado.edu/blog/" );
+    public static final RawLinkable BLOG = new RawLinker( "/blog/" );
 
     /*---------------------------------------------------------------------------*
     * installers
