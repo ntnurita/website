@@ -121,6 +121,7 @@ public class ChangePasswordPanel extends PhetPanel {
                     PhetUser user = (PhetUser) session.load( PhetUser.class, userToChange.getId() );
                     savedUser[0] = user;
                     user.setPassword( newPasswordTextField.getModelObject() );
+                    user.setConfirmed( true );
                     session.update( user );
                     return true;
                 }
