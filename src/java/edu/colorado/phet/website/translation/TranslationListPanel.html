@@ -53,12 +53,20 @@
 <body>
 
 <wicket:panel>
+    <wicket:enclosure child="sort-by-id">
+        <p style="text-align: right;">
+            <a href="#" wicket:id="sort-by-id">Sort by id</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="#" wicket:id="sort-by-locale">Sort by locale</a>
+        </p>
+    </wicket:enclosure>
     <table class="translation-table">
         <tr class="head">
             <td>Id</td>
             <td style="text-align: left;">Locale</td>
             <td>Strings</td>
             <td>Visibility</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -111,6 +119,7 @@
             <td>
                 <a href="#" wicket:id="request-to-collaborate">request to collaborate</a>
             </td>
+            <td><span wicket:id="emails"></span></td>
         </tr>
     </table>
 </wicket:panel>

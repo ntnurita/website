@@ -22,12 +22,14 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -73,6 +75,9 @@ public class TranslationListPanel extends PhetPanel {
                     // TODO: we're taking 100ms hit on this, likely to get much bigger
                     sizes.put( translation, ( (Long) session.createQuery( "select count(*) from TranslatedString as ts where ts.translation = :translation" )
                             .setEntity( "translation", translation ).iterate().next() ).intValue() );
+
+                    // load this into memory
+                    translation.getAuthorizedUsers();
                 }
                 return true;
             }
@@ -83,6 +88,33 @@ public class TranslationListPanel extends PhetPanel {
         }
 
         add( new TranslationListView( "translation-list", sizes ) );
+
+        if ( PhetSession.get().getUser().isTeamMember() ) {
+            add( new Link( "sort-by-id" ) {
+                @Override
+                public void onClick() {
+                    Collections.sort( translations, new Comparator<Translation>() {
+                        public int compare( Translation a, Translation b ) {
+                            return new Integer( a.getId() ).compareTo( b.getId() );
+                        }
+                    } );
+                }
+            } );
+            add( new Link( "sort-by-locale" ) {
+                @Override
+                public void onClick() {
+                    Collections.sort( translations, new Comparator<Translation>() {
+                        public int compare( Translation a, Translation b ) {
+                            return LocaleUtils.localeToString( a.getLocale() ).compareTo( LocaleUtils.localeToString( b.getLocale() ) );
+                        }
+                    } );
+                }
+            } );
+        }
+        else {
+            add( new InvisibleComponent( "sort-by-id" ) );
+            add( new InvisibleComponent( "sort-by-locale" ) );
+        }
 
     }
 
@@ -114,6 +146,7 @@ public class TranslationListPanel extends PhetPanel {
             boolean deleteShown = translation.allowDeactivate( user );
             boolean permanentDeleteShown = translation.allowPermanentDelete( user );
             boolean requestShown = translation.allowRequestToCollaborate( user );
+            boolean emailsShown = user.isTeamMember();
 
             item.add( new Label( "id", String.valueOf( translation.getId() ) ) );
             item.add( new Label( "locale", phetLocales.getName( translation.getLocale() ) + " (" + LocaleUtils.localeToString( translation.getLocale() ) + ")" ) );
@@ -267,6 +300,21 @@ public class TranslationListPanel extends PhetPanel {
             }
             else {
                 item.add( new InvisibleComponent( "request-to-collaborate" ) );
+            }
+
+            if ( emailsShown ) {
+                String emails = "";
+                for ( Object o : translation.getAuthorizedUsers() ) {
+                    PhetUser translator = (PhetUser) o;
+                    if ( emails.length() > 0 ) {
+                        emails += "<br/>";
+                    }
+                    emails += HtmlUtils.encode( translator.getEmail() );
+                }
+                item.add( new RawLabel( "emails", emails ) );
+            }
+            else {
+                item.add( new InvisibleComponent( "emails" ) );
             }
 
             WicketUtils.highlightListItem( item );
