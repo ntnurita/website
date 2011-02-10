@@ -124,7 +124,7 @@ public abstract class Sponsor implements Serializable {
             "JILA",
             "http://jila.colorado.edu/",
             "/images/support/jila_logo_medium.gif", "padding: 4px;" ) {{ // we need extra padding for the JILA logo
-        setHomeWeight( 5 );
+        setHomeWeight( 3 );
         setSimWeight( 2 );
     }};
 
