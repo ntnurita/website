@@ -40,9 +40,9 @@ public abstract class JustOrderList<Item extends OrderListItem> extends PhetPane
 
         form.add( getHeaderComponent( "header-component" ) );
 
-        form.add( new ListView( "items", items ) {
-            protected void populateItem( final ListItem listItem ) {
-                final Item item = (Item) listItem.getModel().getObject();
+        form.add( new ListView<Item>( "items", items ) {
+            protected void populateItem( final ListItem<Item> listItem ) {
+                final Item item = listItem.getModelObject();
                 listItem.add( item.getDisplayComponent( "item-component" ) );
                 if ( listItem.getIndex() != 0 ) {
                     listItem.add( new Link( "move-up" ) {
