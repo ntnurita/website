@@ -40,9 +40,9 @@ import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
-import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
@@ -385,7 +385,15 @@ public class SimulationMainPanel extends PhetPanel {
         * related simulations
         *----------------------------------------------------------------------------*/
 
-        add( new SimulationDisplayPanel( "related-simulations-panel", context, getRelatedSimulations( simulation ) ) );
+        List<LocalizedSimulation> relatedSimulations = getRelatedSimulations( simulation );
+        if ( relatedSimulations.isEmpty() ) {
+            add( new InvisibleComponent( "related-simulations-panel" ) );
+            add( new InvisibleComponent( "related-simulations-visible" ) );
+        }
+        else {
+            add( new SimulationDisplayPanel( "related-simulations-panel", context, relatedSimulations ) );
+            add( new RawBodyLabel( "related-simulations-visible", "" ) ); // visible but shows nothing, so the related simulations "see below" shows up
+        }
 
         /*---------------------------------------------------------------------------*
         * more info (design team, libraries, thanks, etc
@@ -546,7 +554,22 @@ public class SimulationMainPanel extends PhetPanel {
         } ) );
     }
 
-    private List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {
+    public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {
+        final List<LocalizedSimulation> ret = new LinkedList<LocalizedSimulation>();
+        HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
+            public Void run( Session session ) {
+                LocalizedSimulation lsim = (LocalizedSimulation) session.load( LocalizedSimulation.class, simulation.getId() );
+                for ( Object o : lsim.getSimulation().getRelatedSimulations() ) {
+                    Simulation related = (Simulation) o;
+                    ret.add( related.getBestLocalizedSimulation( getMyLocale() ) );
+                }
+                return null;
+            }
+        } );
+        return ret;
+    }
+
+    public List<LocalizedSimulation> getSuggestedRelatedSimulations( final LocalizedSimulation simulation ) {
         // TODO: optimization or somehow pre-calculate these values? this takes a lot of time to compute
 
         final int SOFT_MAX_RELATED_SIMULATIONS = 3;

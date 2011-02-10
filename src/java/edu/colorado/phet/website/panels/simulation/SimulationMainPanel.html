@@ -87,41 +87,20 @@
                 </td>
             </tr>
         </table>
-
-
         <div>
-
             <div class="see-below">
                 <h3>
                     <wicket:message key="simulationMainPanel.seeBelow">See Below</wicket:message>
                 </h3>
                 <ul class="see-below-links">
-                    <!--<li><a href="#content">-->
-                    <!--<wicket:message key="simulationMainPanel.seeBelow.content">-->
-                    <!--Content &gt;&gt;-->
-                    <!--</wicket:message>-->
-                    <!--</a></li>-->
-                    <!--<wicket:enclosure child="tips-for-teachers-visible">-->
-                    <!--<li><a href="#tips-for-teachers">-->
-                    <!--<wicket:message key="simulationMainPanel.seeBelow.tipsForTeachers">-->
-                    <!--Tips for Teachers &gt;&gt;-->
-                    <!--</wicket:message>-->
-                    <!--</a></li>-->
-                    <!--<span wicket:id="tips-for-teachers-visible"></span>-->
-                    <!--</wicket:enclosure>-->
-                    <!--<wicket:enclosure child="teacher-ideas-visible">-->
-                    <!--<li><a href="#teaching-ideas">-->
-                    <!--<wicket:message key="simulationMainPanel.seeBelow.teachingIdeas">-->
-                    <!--Teaching Ideas &gt;&gt;-->
-                    <!--</wicket:message>-->
-                    <!--</a></li>-->
-                    <!--<span wicket:id="teacher-ideas-visible"></span>-->
-                    <!--</wicket:enclosure>-->
-                    <li><a href="#related-simulations">
-                        <wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">
-                            Related Sims &gt;&gt;
-                        </wicket:message>
-                    </a></li>
+                    <wicket:enclosure child="related-simulations-visible">
+                        <li><a href="#related-simulations">
+                            <wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">
+                                Related Sims &gt;&gt;
+                            </wicket:message>
+                        </a></li>
+                        <span wicket:id="related-simulations-visible"></span>
+                    </wicket:enclosure>
                     <li><a href="#translated-versions">
                         <wicket:message key="simulationMainPanel.seeBelow.translatedVersions">
                             Translated Versions &gt;&gt;
@@ -139,9 +118,7 @@
                     </a></li>
                 </ul>
             </div>
-
-            <!--<a name="content"></a>-->
-
+            <a name="content"></a><a name="teaching-resources"></a>
             <h2 wicket:message="id:style.simulation-main-panel-content-header-clear">
                 <wicket:message key="simulationMainPanel.teachingResources">Teaching Resources</wicket:message>
             </h2>
@@ -210,13 +187,14 @@
             <p style="text-align: center;" wicket:id="submit-a">You can <a href="#">submit your own ideas and
                 activities</a></p>
 
-            <a name="related-simulations"></a>
+            <wicket:enclosure child="related-simulations-panel">
+                <a name="related-simulations"></a>
 
-            <h2>
-                <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
-            </h2>
-
-            <div wicket:id="related-simulations-panel" style="margin: 0; padding: 0; margin-bottom: -15px;"></div>
+                <h2>
+                    <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
+                </h2>
+                <div wicket:id="related-simulations-panel" style="margin: 0; padding: 0; margin-bottom: -15px;"></div>
+            </wicket:enclosure>
 
             <a name="translated-versions"></a>
 
