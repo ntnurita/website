@@ -85,6 +85,8 @@ public class StringChanges {
         addString( session, "sponsors.sim.andEducators", "and educators like you." );
         addString( session, "sponsors.sim.thanks", "Thanks!" );
 
+        addString( session, "sponsors.silver", "Silver Level Contributors ($5k - $10k)");
+
         session.close();
     }
 

@@ -24,6 +24,7 @@ public class SponsorsEntity extends TranslationEntity {
         addString( "sponsors.financialSupport" );
         addString( "sponsors.platinum" );
         addString( "sponsors.gold" );
+        addString( "sponsors.silver" );
         addString( "sponsors.bronze" );
         addString( "sponsors.technicalSupport" );
         addString( "sponsors.piccolo.desc" );
