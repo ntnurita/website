@@ -15,6 +15,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.RawBodyLabel;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.util.PageContext;
@@ -32,6 +35,13 @@ public class RotatorPanel extends PhetPanel {
 
     public RotatorPanel( String id, PageContext context ) {
         super( id, context );
+
+        if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
+            add( new InvisibleComponent( "load-swfobject" ) );
+        }
+        else {
+            add( new RawBodyLabel( "load-swfobject", "<script type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script><script type=\"text/javascript\">swfobject.registerObject( \"rotator-id\", \"9.0.0\" );</script>"));
+        }
 
         final List<Entry> featured = new LinkedList<Entry>();
 
