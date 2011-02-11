@@ -14,7 +14,7 @@ import org.apache.wicket.markup.repeater.data.GridView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -60,8 +60,9 @@ public class SimulationDisplayPanel extends PhetPanel {
                 }
 
                 // rotate among the data servers
-                int dataServerIndex = simulation.getId() % PhetWicketApplication.DATA_SERVERS.length;
-                String dataServer = PhetWicketApplication.DATA_SERVERS[dataServerIndex];
+                String[] dataServers = DistributionHandler.getDistributionServers( getPhetCycle() );
+                int dataServerIndex = simulation.getId() % dataServers.length;
+                String dataServer = dataServers[dataServerIndex];
                 String dataServerPrefix = "http://" + dataServer;
 
                 link.add( new StaticImage( "thumbnail", dataServerPrefix + simulation.getSimulation().getThumbnailUrl(), alt ) {{

@@ -262,4 +262,13 @@ public class DistributionHandler {
         }
     }
 
+    public static String[] getDistributionServers( PhetRequestCycle cycle ) {
+        if ( cycle.isInstaller() ) {
+            return new String[]{PhetWicketApplication.get().getWebsiteProperties().getWebHostname()};
+        }
+        else {
+            return PhetWicketApplication.DATA_SERVERS;
+        }
+    }
+
 }
