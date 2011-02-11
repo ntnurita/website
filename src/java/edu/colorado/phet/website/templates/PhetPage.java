@@ -16,6 +16,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.behavior.AbstractHeaderContributor;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -206,6 +207,13 @@ public abstract class PhetPage extends WebPage implements Stylable {
             add( new InvisibleComponent( "autotracking" ) ); // disable autotracking
         }
         add( new RawBodyLabel( "debug-page-host", "<!-- host " + getPhetCycle().getWebRequest().getHttpServletRequest().getServerName() + " -->" ) );
+
+        if ( DistributionHandler.getSearchBoxVisibility( getPhetCycle() ) != DistributionHandler.SearchBoxVisibility.NORMAL ) {
+            add( new InvisibleComponent( "js" ) );
+        }
+        else {
+            add( new WebMarkupContainer( "js" ) );
+        }
     }
 
     public Locale getMyLocale() {
