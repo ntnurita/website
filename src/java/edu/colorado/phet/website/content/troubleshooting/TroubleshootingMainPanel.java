@@ -80,6 +80,8 @@ public class TroubleshootingMainPanel extends PhetPanel {
 
         add( new LocalizedText( "troubleshooting-main-q16-answer", "troubleshooting.main.q16.answer" ) );
 
+        add( new LocalizedText( "troubleshooting-main-q17-answer", "troubleshooting.main.q17.answer" ) );
+
         add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
 
         //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );

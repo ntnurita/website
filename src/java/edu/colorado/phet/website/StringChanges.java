@@ -87,6 +87,9 @@ public class StringChanges {
 
         addString( session, "sponsors.silver", "Silver Level Contributors ($5k - $10k)");
 
+        addString( session,"troubleshooting.main.q17.title","How can I maximize PhET simulations in a browser?" );
+        addString( session,"troubleshooting.main.q17.answer","<p>Most browsers have an option to switch into a fullscreen mode. Below are instructions for the most common browsers:</p> <ul> <li>Internet Explorer (all versions): Press F11</li> <li>Firefox: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li> <li>Google Chrome: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li> <li>Safari: Fullscreen support with 3rd-party plugins (Mac, Windows)</li> <li>Opera: Press F11 (Windows, Linux)</li> </ul>" );
+
         session.close();
     }
 
