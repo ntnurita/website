@@ -4,11 +4,8 @@
 
 package edu.colorado.phet.website.content.troubleshooting;
 
-import org.apache.wicket.behavior.HeaderContributor;
-
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.content.ForTranslatorsPanel;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
@@ -19,6 +16,9 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
+/**
+ * General troubleshooting panel
+ */
 public class TroubleshootingMainPanel extends PhetPanel {
     public TroubleshootingMainPanel( String id, PageContext context ) {
         super( id, context );
@@ -81,12 +81,10 @@ public class TroubleshootingMainPanel extends PhetPanel {
         add( new LocalizedText( "troubleshooting-main-q16-answer", "troubleshooting.main.q16.answer" ) );
 
         add( new LocalizedText( "troubleshooting-main-q17-answer", "troubleshooting.main.q17.answer" ) );
-        
+
         add( new LocalizedText( "troubleshooting-main-q18-answer", "troubleshooting.main.q18.answer" ) );
 
         add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
-
-        //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
 
     }
 
