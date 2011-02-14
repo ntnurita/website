@@ -85,10 +85,13 @@ public class StringChanges {
         addString( session, "sponsors.sim.andEducators", "and educators like you." );
         addString( session, "sponsors.sim.thanks", "Thanks!" );
 
-        addString( session, "sponsors.silver", "Silver Level Contributors ($5k - $10k)");
+        addString( session, "sponsors.silver", "Silver Level Contributors ($5k - $10k)" );
 
-        addString( session,"troubleshooting.main.q17.title","How can I maximize PhET simulations in a browser?" );
-        addString( session,"troubleshooting.main.q17.answer","<p>Most browsers have an option to switch into a fullscreen mode. Below are instructions for the most common browsers:</p> <ul> <li>Internet Explorer (all versions): Press F11</li> <li>Firefox: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li> <li>Google Chrome: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li> <li>Safari: Fullscreen support with 3rd-party plugins (Mac, Windows)</li> <li>Opera: Press F11 (Windows, Linux)</li> </ul>" );
+        addString( session, "troubleshooting.main.q17.title", "How can I maximize PhET simulations in a browser?" );
+        addString( session, "troubleshooting.main.q17.answer", "<p>Most browsers have an option to switch into a fullscreen mode. Below are instructions for the most common browsers:</p> <ul> <li>Internet Explorer (all versions): Press F11</li> <li>Firefox: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li> <li>Google Chrome: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li> <li>Safari: Fullscreen support with 3rd-party plugins (Mac, Windows)</li> <li>Opera: Press F11 (Windows, Linux)</li> </ul>" );
+
+        addString( session, "troubleshooting.main.q18.title", "Why do some foreign language characters show up as empty boxes?" );
+        addString( session, "troubleshooting.main.q18.answer", "<p>Some characters from non-English languages will show up as empty squares when the proper fonts are not installed. Below are instructions to install additional language support for various operating systems:</p> <ul> <li>Windows 2000 / XP: <a href=\"http://support.microsoft.com/kb/177561\">http://support.microsoft.com/kb/177561</a></li> <li>Windows Vista: <a href=\"http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files\">http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files</a></li> <li>Windows 7: <a href=\"http://support.microsoft.com/kb/972813\">http://support.microsoft.com/kb/972813</a></li> <li>OS X: <a href=\"http://support.apple.com/kb/DL1123?viewlocale=en_US\">http://support.apple.com/kb/DL1123?viewlocale=en_US</a></li> </ul>" );
 
         session.close();
     }
