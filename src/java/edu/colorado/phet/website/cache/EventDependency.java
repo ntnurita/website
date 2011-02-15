@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostDeleteEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
@@ -142,6 +143,10 @@ public abstract class EventDependency {
                     public void onDelete( Object object, PostDeleteEvent event ) {
                         invalidate();
                     }
+
+                    public void onCollectionUpdate( Object object, PostCollectionUpdateEvent event ) {
+                        invalidate();
+                    }
                 };
             }
         }
@@ -159,6 +164,10 @@ public abstract class EventDependency {
             }
 
             public void onDelete( TranslatedString object, PostDeleteEvent event ) {
+                process( object, event.getSession() );
+            }
+
+            public void onCollectionUpdate( TranslatedString object, PostCollectionUpdateEvent event ) {
                 process( object, event.getSession() );
             }
 

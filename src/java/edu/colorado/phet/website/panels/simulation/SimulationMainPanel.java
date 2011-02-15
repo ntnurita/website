@@ -18,6 +18,7 @@ import org.apache.wicket.model.StringResourceModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostDeleteEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
@@ -511,6 +512,14 @@ public class SimulationMainPanel extends PhetPanel {
 
                     @Override
                     public void onUpdate( Object object, PostUpdateEvent event ) {
+                        TeachersGuide guide = (TeachersGuide) object;
+                        if ( guide.getSimulation().getId() == simulation.getSimulation().getId() ) {
+                            invalidate();
+                        }
+                    }
+
+                    @Override
+                    public void onCollectionUpdate( Object object, PostCollectionUpdateEvent event ) {
                         TeachersGuide guide = (TeachersGuide) object;
                         if ( guide.getSimulation().getId() == simulation.getSimulation().getId() ) {
                             invalidate();

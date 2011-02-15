@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.data.util;
 
+import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostDeleteEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
@@ -22,4 +23,6 @@ public interface IChangeListener<E> {
     public void onUpdate( E object, PostUpdateEvent event );
 
     public void onDelete( E object, PostDeleteEvent event );
+
+    public void onCollectionUpdate( E object, PostCollectionUpdateEvent event );
 }

@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.event.*;
 import org.hibernate.persister.entity.EntityPersister;
 
-public class HibernateEventListener implements PostInsertEventListener, PostUpdateEventListener, PostDeleteEventListener {
+public class HibernateEventListener implements PostInsertEventListener, PostUpdateEventListener, PostDeleteEventListener, PostCollectionUpdateEventListener {
 
     private static final Logger logger = Logger.getLogger( HibernateEventListener.class.getName() );
 
@@ -132,5 +132,18 @@ public class HibernateEventListener implements PostInsertEventListener, PostUpda
 
     public static synchronized HibernateEventListener get() {
         return me;
+    }
+
+    public void onPostUpdateCollection( PostCollectionUpdateEvent event ) {
+        Object entity = event.getAffectedOwnerOrNull();
+        Class eClass = entity.getClass();
+        List<IChangeListener> listeners = listenermap.get( eClass );
+        logger.debug( "post-collection-update on " + eClass.getSimpleName() + ", notifying " + ( listeners == null ? 0 : listeners.size() ) );
+        if ( listeners != null ) {
+            List<IChangeListener> copy = new LinkedList<IChangeListener>( listeners );
+            for ( IChangeListener listener : copy ) {
+                listener.onCollectionUpdate( entity, event );
+            }
+        }
     }
 }

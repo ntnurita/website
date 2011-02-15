@@ -11,6 +11,7 @@ import javax.mail.MessagingException;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
 
@@ -74,6 +75,11 @@ public class NotificationHandler {
 
             @Override
             public void onUpdate( Object object, PostUpdateEvent event ) {
+                NotificationEventType.onUpdatedContribution( (Contribution) object );
+            }
+
+            @Override
+            public void onCollectionUpdate( Object object, PostCollectionUpdateEvent event ) {
                 NotificationEventType.onUpdatedContribution( (Contribution) object );
             }
         } );

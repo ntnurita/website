@@ -7,13 +7,11 @@ package edu.colorado.phet.website.content.simulations;
 import java.util.*;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
-import org.hibernate.event.PostUpdateEvent;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -21,13 +19,11 @@ import edu.colorado.phet.website.cache.CacheableUrlStaticPanel;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.content.TranslationUtilityPanel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
-import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -35,9 +31,9 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 public class TranslationListPanel extends PhetPanel implements CacheableUrlStaticPanel {
 
@@ -155,20 +151,12 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
         // TODO: update dependencies to narrow
         addDependency( new EventDependency() {
 
-            private IChangeListener projectListener;
             private IChangeListener stringListener;
 
             @Override
             protected void addListeners() {
-                projectListener = new AbstractChangeListener() {
-                    public void onUpdate( Object object, PostUpdateEvent event ) {
-                        if ( HibernateEventListener.getSafeHasChanged( event, "visible" ) ) {
-                            invalidate();
-                        }
-                    }
-                };
                 stringListener = createTranslationChangeInvalidator( context.getLocale() );
-                HibernateEventListener.addListener( Project.class, projectListener );
+                HibernateEventListener.addListener( Project.class, getAnyChangeInvalidator() );
                 HibernateEventListener.addListener( TranslatedString.class, stringListener );
                 HibernateEventListener.addListener( Simulation.class, getAnyChangeInvalidator() );
                 HibernateEventListener.addListener( LocalizedSimulation.class, getAnyChangeInvalidator() );
@@ -176,7 +164,7 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
 
             @Override
             protected void removeListeners() {
-                HibernateEventListener.removeListener( Project.class, projectListener );
+                HibernateEventListener.removeListener( Project.class, getAnyChangeInvalidator() );
                 HibernateEventListener.removeListener( TranslatedString.class, stringListener );
                 HibernateEventListener.removeListener( Simulation.class, getAnyChangeInvalidator() );
                 HibernateEventListener.removeListener( LocalizedSimulation.class, getAnyChangeInvalidator() );

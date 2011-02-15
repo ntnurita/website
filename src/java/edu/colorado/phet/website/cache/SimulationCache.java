@@ -11,6 +11,7 @@ import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostDeleteEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
@@ -46,6 +47,11 @@ public class SimulationCache {
 
             @Override
             public void onDelete( Object object, PostDeleteEvent event ) {
+                invalidate();
+            }
+
+            @Override
+            public void onCollectionUpdate( Object object, PostCollectionUpdateEvent event ) {
                 invalidate();
             }
         };

@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.data.util;
 
+import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostDeleteEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
@@ -26,6 +27,10 @@ public abstract class AbstractChangeListener implements IChangeListener {
     }
 
     public void onDelete( Object object, PostDeleteEvent event ) {
+
+    }
+
+    public void onCollectionUpdate( Object object, PostCollectionUpdateEvent event ) {
 
     }
 }

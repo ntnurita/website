@@ -74,6 +74,9 @@
         <event type="post-delete">
             <listener class="edu.colorado.phet.website.data.util.HibernateEventListener"/>
         </event>
+        <event type="post-collection-update">
+            <listener class="edu.colorado.phet.website.data.util.HibernateEventListener"/>
+        </event>
 
     </session-factory>
 
