@@ -73,12 +73,14 @@ div.rtl .simulation-main-image-panel {
     float: right;
     clear: both;
     margin-top: 4px;
+    padding-top: 0.3em;
 }
 
 .sim-kb {
     float: left;
-    clear: left;
+    /*clear: left;*/
     margin-top: 4px;
+    padding: 0.3em;
 }
 
 .sim-button {
@@ -106,6 +108,26 @@ div.rtl .simulation-main-image-panel {
     border: 1px solid #005577;
     border-right-color: #99ffff;
     border-bottom-color: #99ffff;
+}
+
+.sim-embed {
+    float: left;
+    clear: left;
+    font-weight: normal;
+    background-color: #b3e7ff;
+    border: 1px solid #ccffff;
+    border-right-color: #7895a1;
+    border-bottom-color: #7895a1;
+}
+
+.sim-embed:hover {
+    background-color: #99cdff;
+}
+
+.sim-embed:active {
+    border: 1px solid #7895a1;
+    border-right-color: #ccffff;
+    border-bottom-color: #ccffff;
 }
 
 .sim-run-now {

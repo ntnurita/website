@@ -261,6 +261,10 @@ public class SimulationMainPanel extends PhetPanel {
         }
         add( new RawLink( "run-offline-link", simulation.getDownloadUrl() ) );
 
+        add( new RawLink( "embed-link", "#" ) {{
+            add( new AttributeModifier( "onclick", true, new Model<String>( "alert('boo');" ) ) );
+        }} );
+
         /*---------------------------------------------------------------------------*
         * keywords / topics
         *----------------------------------------------------------------------------*/

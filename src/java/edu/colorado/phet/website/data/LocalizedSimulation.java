@@ -11,6 +11,7 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.util.HtmlUtils;
+import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class LocalizedSimulation implements Serializable, IntId {
@@ -57,6 +58,31 @@ public class LocalizedSimulation implements Serializable, IntId {
             throw new RuntimeException( "Handle more than java and flash" );
         }
         return str;
+    }
+
+    public String getClickToLaunchSnippet( String launchText ) {
+        WebImage screenshot = getSimulation().getImage();
+        int width = screenshot.getWidth(); // probably 300
+        int height = screenshot.getHeight();
+        int subWidth = screenshot.getWidth() * 2 / 3; // probably 200
+        int subHeight = 80;
+        int subTop = ( height - subHeight ) / 2;
+        int subLeft = ( width - subWidth ) / 2;
+        return "<div style=\"position: relative; width: " + width + "px; height: " + height + "px;\"><a href=\"http://phet.colorado.edu"
+               + getRunUrl() + "\" style=\"text-decoration: none;\"><img src=\"http://phet.colorado.edu" + screenshot.getSrc()
+               + "\" alt=\"" + getTitle() + "\" style=\"border: none;\" width=\"" + width + "\" height=\"" + height
+               + "\"/><div style=\"position: absolute; width: " + subWidth + "px; height: " + subHeight + "px; left: "
+               + subLeft + "px; top: " + subTop + "px; background-color: #FFF; opacity: 0.6; filter: alpha(opacity = 60);\"></div><table style=\"position: absolute; width: "
+               + subWidth + "px; height: " + subHeight + "px; left: " + subLeft + "px; top: " + subTop + "px;\"><tr><td style=\"text-align: center; color: #000; font-size: 24px; font-family: Arial,sans-serif;\">" + launchText + "</td></tr></table></a></div>";
+    }
+
+    public String getDirectEmbeddingSnippet() {
+        if ( getSimulation().getProject().isFlash() ) {
+            return "<iframe src=\"http://phet.colorado.edu" + getRunUrl() + "\" width=\"600\" height=\"450\"></iframe>";
+        }
+        else {
+            return null;
+        }
     }
 
     public String getLocaleString() {
