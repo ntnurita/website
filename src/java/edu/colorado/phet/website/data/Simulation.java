@@ -10,6 +10,7 @@ import java.util.*;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.data.util.IntId;
+import edu.colorado.phet.website.util.WebImage;
 
 public class Simulation implements Serializable, IntId {
     private int id;
@@ -99,6 +100,14 @@ public class Simulation implements Serializable, IntId {
 
     public String getImageUrl() {
         return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+    }
+
+    public WebImage getThumbnail() {
+        return WebImage.get( getThumbnailUrl(), false );
+    }
+
+    public WebImage getImage() {
+        return WebImage.get( getImageUrl(), false );
     }
 
     public int detectSimKilobytes( File docRoot ) {

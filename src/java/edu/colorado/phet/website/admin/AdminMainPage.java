@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -175,10 +176,26 @@ public class AdminMainPage extends AdminPage {
         add( new Link( "debug-imagesize" ) {
             @Override
             public void onClick() {
-                File imageFile = new File( PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot(), "sims/build-an-atom/build-an-atom-screenshot.png" );
-                logger.info( ImageUtils.getImageFileDimension( imageFile ) );
-                InputStream stream = getServletContext().getResourceAsStream( "/images/arrow-down.gif" );
-                logger.info( ImageUtils.getImageStreamDimension( stream ) );
+                HashMap<String, String> map = new HashMap<String, String>();
+                for ( int i = 0; i < 200; i++ ) {
+                    map.put( String.valueOf( new Integer( i ).hashCode() ), String.valueOf( i ) + " value" );
+                }
+                logger.info( "X" );
+                for ( int i = 0; i < 200; i++ ) {
+                    map.get( String.valueOf( new Integer( i ).hashCode() ) );
+                }
+                logger.info( "A" );
+                for ( int i = 0; i < 200; i++ ) {
+                    File imageFile = new File( PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot(), "sims/build-an-atom/build-an-atom-screenshot.png" );
+                    ImageUtils.getImageFileDimension( imageFile );
+                }
+                logger.info( "B" );
+                for ( int i = 0; i < 200; i++ ) {
+                    InputStream stream = getServletContext().getResourceAsStream( "/images/arrow-down.gif" );
+                    ImageUtils.getImageStreamDimension( stream );
+                }
+                logger.info( "C" );
+
             }
         } );
 

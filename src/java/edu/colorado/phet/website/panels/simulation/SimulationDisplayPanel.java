@@ -7,6 +7,7 @@ package edu.colorado.phet.website.panels.simulation;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
@@ -29,6 +30,8 @@ import static edu.colorado.phet.website.util.HtmlUtils.encode;
  * Displays a grid of simulation thumbnails, which can be clicked on to go to the simulation page
  */
 public class SimulationDisplayPanel extends PhetPanel {
+
+    private static final Logger logger = Logger.getLogger( SimulationDisplayPanel.class.getName() );
 
     public SimulationDisplayPanel( String id, final PageContext context, List<LocalizedSimulation> simulations ) {
         super( id, context );
@@ -62,12 +65,12 @@ public class SimulationDisplayPanel extends PhetPanel {
                 // rotate among the data servers
                 String[] dataServers = DistributionHandler.getDistributionServers( getPhetCycle() );
                 int dataServerIndex = simulation.getId() % dataServers.length;
-                String dataServer = dataServers[dataServerIndex];
-                String dataServerPrefix = "http://" + dataServer;
+                final String dataServer = dataServers[dataServerIndex];
 
-                link.add( new StaticImage( "thumbnail", dataServerPrefix + simulation.getSimulation().getThumbnailUrl(), alt ) {{
+                link.add( new StaticImage( "thumbnail", simulation.getSimulation().getThumbnail(), alt ) {{
                     setOutputMarkupId( true );
                     setMarkupId( "simulation-display-thumbnail-" + simulation.getSimulation().getName() );
+                    setDataServer( dataServer );
                 }} );
                 item.add( link );
             }

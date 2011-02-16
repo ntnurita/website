@@ -4,7 +4,9 @@
 
 package edu.colorado.phet.website.panels.simulation;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
@@ -14,7 +16,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.model.StringResourceModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -80,8 +81,9 @@ public class SimulationMainPanel extends PhetPanel {
         }
 
         RawLink link = new RawLink( "simulation-main-link-run-main", simulation.getRunUrl() );
-        // TODO: localize
-        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImageUrl(), null, new StringResourceModel( "simulationMainPanel.screenshot.alt", this, null, new String[]{encode( simulation.getTitle() )} ) ) );
+        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
+                encode( simulation.getTitle() )
+        } ) ) );
         add( link );
 
         //add( new Label( "simulation-main-description", simulation.getDescription() ) );

@@ -4,9 +4,12 @@
 
 package edu.colorado.phet.website.components;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebComponent;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+
+import edu.colorado.phet.website.util.WebImage;
 
 /**
  * Handles an image with src and alt attributes. wicket:id should be placed upon the img tag itself, and then
@@ -16,7 +19,7 @@ public class StaticImage extends WebComponent {
 
     private String url = null;
     private String alt = null;
-    private IModel altModel = null;
+    private String dataServerPrefix = "";
 
     /**
      * Create an image with a standard URL for a src attribute.
@@ -32,18 +35,28 @@ public class StaticImage extends WebComponent {
     }
 
     /**
-     * Create an image with a model for an alt attribute.
+     * Create an image with a standard URL that also includes image dimensions
      *
-     * @param id       The Wicket ID for the image
-     * @param src      The src attribute (URL)
-     * @param alt      Should be null. Exists to differentiate between overloaded constructors
-     * @param altModel The alt model. Will be converted to a string for accessibility
+     * @param id    The Wicket ID for the image
+     * @param image WebImage
+     * @param alt   The alt text for accessibility
      */
-    public StaticImage( String id, String src, String alt, IModel altModel ) {
+    public StaticImage( String id, WebImage image, String alt ) {
         super( id );
-        this.url = src;
+        this.url = image.getSrc();
         this.alt = alt;
-        this.altModel = altModel;
+
+        // TODO: possibly use tag.put below?
+        add( new AttributeModifier( "width", true, new Model<String>( String.valueOf( image.getWidth() ) ) ) );
+        add( new AttributeModifier( "height", true, new Model<String>( String.valueOf( image.getHeight() ) ) ) );
+    }
+
+    public void setDataServer( String dataServer ) {
+        dataServerPrefix = "http://" + dataServer;
+    }
+
+    public String getUrl() {
+        return dataServerPrefix + url;
     }
 
     /*---------------------------------------------------------------------------*
@@ -53,12 +66,9 @@ public class StaticImage extends WebComponent {
     protected void onComponentTag( ComponentTag tag ) {
         checkComponentTag( tag, "img" );
         super.onComponentTag( tag );
-        tag.put( "src", url );
+        tag.put( "src", getUrl() );
         if ( alt != null ) {
             tag.put( "alt", alt );
-        }
-        if ( altModel != null ) {
-            tag.put( "alt", altModel.getObject().toString() );
         }
     }
 
