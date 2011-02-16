@@ -6,6 +6,7 @@ package edu.colorado.phet.website.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,6 +28,7 @@ import org.hibernate.Session;
 import edu.colorado.phet.buildtools.BuildLocalProperties;
 import edu.colorado.phet.buildtools.util.FileUtils;
 import edu.colorado.phet.buildtools.util.PhetJarSigner;
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.constants.WebsiteConstants;
@@ -35,6 +37,7 @@ import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.EmailUtils;
+import edu.colorado.phet.website.util.ImageUtils;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -169,6 +172,16 @@ public class AdminMainPage extends AdminPage {
             }
         } );
 
+        add( new Link( "debug-imagesize" ) {
+            @Override
+            public void onClick() {
+                File imageFile = new File( PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot(), "sims/build-an-atom/build-an-atom-screenshot.png" );
+                logger.info( ImageUtils.getImageFileDimension( imageFile ) );
+                InputStream stream = getServletContext().getResourceAsStream( "/images/arrow-down.gif" );
+                logger.info( ImageUtils.getImageStreamDimension( stream ) );
+            }
+        } );
+
         add( new RawLabel( "logTest", new Model<String>( logTest ) ) );
     }
 
@@ -180,8 +193,8 @@ public class AdminMainPage extends AdminPage {
         public SetStringForm( final String id ) {
             super( id );
 
-            add( keyText = new StringTextField( "key", new PropertyModel( properties, "key" ) ) );
-            add( valueText = new StringTextField( "value", new PropertyModel( properties, "value" ) ) );
+            add( keyText = new StringTextField( "key", new PropertyModel<String>( properties, "key" ) ) );
+            add( valueText = new StringTextField( "value", new PropertyModel<String>( properties, "value" ) ) );
 
             // don't turn <'s and other characters into HTML/XML entities!!!
             valueText.setEscapeModelStrings( false );
