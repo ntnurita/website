@@ -69,9 +69,23 @@
                         <span class="sim-kb" wicket:id="simulationMainPanel.kilobytes">308 kB</span>
                         <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
                             <div style="position: absolute; background-color: #fff; border: 1px solid #666; width: 500px;">
-                                <div style="text-align: right; width: 100%;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;" style="padding: 0.2em;">close</a></div>
+                                <div style="text-align: right; width: 100%; position: absolute;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;" style="padding: 0.2em;">close</a></div>
                                 <div style="padding: 0 1em 1em;">
-                                    <textarea rows="3" cols="50" id="embeddable-text">This is some Text</textarea>
+                                    <wicket:enclosure child="direct-embed-text">
+                                        <p style="font-weight: bold; font-size: 14px;">Embed a running copy of this simulation</p>
+                                        <textarea rows="3" cols="50" id="embeddable-text" wicket:id="direct-embed-text">This is some Text</textarea>
+                                        <p>
+                                            Put this HTML on a page and a running copy of this simulation will appear.
+                                            You can change the width and height of the embedded simulation by changing the
+                                            "width" and "height" attributes in the HTML.
+                                        </p>
+                                    </wicket:enclosure>
+                                    <p style="font-weight: bold; font-size: 14px;">Embed an image that will launch the simulation when clicked</p>
+                                    <textarea rows="3" cols="50" wicket:id="indirect-embed-text">This is some Text</textarea>
+                                    <p>
+                                        Put this HTML on a page and it will display a screenshot with the words
+                                        "Click Here to Launch".
+                                    </p>
                                 </div>
                             </div>
                         </div>

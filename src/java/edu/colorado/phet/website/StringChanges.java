@@ -94,6 +94,7 @@ public class StringChanges {
         addString( session, "troubleshooting.main.q18.answer", "<p>Some characters from non-English languages will show up as empty squares when the proper fonts are not installed. Below are instructions to install additional language support for various operating systems:</p> <ul> <li>Windows 2000 / XP: <a href=\"http://support.microsoft.com/kb/177561\">http://support.microsoft.com/kb/177561</a></li> <li>Windows Vista: <a href=\"http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files\">http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files</a></li> <li>Windows 7: <a href=\"http://support.microsoft.com/kb/972813\">http://support.microsoft.com/kb/972813</a></li> <li>OS X: <a href=\"http://support.apple.com/kb/DL1123?viewlocale=en_US\">http://support.apple.com/kb/DL1123?viewlocale=en_US</a></li> </ul>" );
 
         addString( session, "simulationMainPanel.embed", "Embed" );
+        addString( session, "embed.clickToLaunch", "Click Here to Launch" );
 
         session.close();
     }

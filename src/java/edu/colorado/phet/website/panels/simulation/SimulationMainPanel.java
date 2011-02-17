@@ -261,8 +261,20 @@ public class SimulationMainPanel extends PhetPanel {
         }
         add( new RawLink( "run-offline-link", simulation.getDownloadUrl() ) );
 
-        add( new RawLink( "embed-link", "#" ) {{
-            add( new AttributeModifier( "onclick", true, new Model<String>( "alert('boo');" ) ) );
+        final String directEmbedText = simulation.getDirectEmbeddingSnippet();
+        String indirectEmbedText = simulation.getClickToLaunchSnippet( getPhetLocalizer().getString( "embed.clickToLaunch", this ) );
+        if ( directEmbedText != null ) {
+            add( new RawLabel( "direct-embed-text", directEmbedText ) );
+        }
+        else {
+            add( new InvisibleComponent( "direct-embed-text" ) );
+        }
+        add( new RawLabel( "indirect-embed-text", indirectEmbedText ) {{
+            if ( directEmbedText == null ) {
+                // if we can't directly embed, set our markup ID so that this text is automatically selected
+                setMarkupId( "embeddable-text" );
+                setOutputMarkupId( true );
+            }
         }} );
 
         /*---------------------------------------------------------------------------*

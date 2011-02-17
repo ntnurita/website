@@ -69,7 +69,8 @@ public class LocalizedSimulation implements Serializable, IntId {
         int subTop = ( height - subHeight ) / 2;
         int subLeft = ( width - subWidth ) / 2;
         return "<div style=\"position: relative; width: " + width + "px; height: " + height + "px;\"><a href=\"http://phet.colorado.edu"
-               + getRunUrl() + "\" style=\"text-decoration: none;\"><img src=\"http://phet.colorado.edu" + screenshot.getSrc()
+               + getRunUrl() + "\" style=\"text-decoration: none;\"" + ( getSimulation().getProject().isFlash() ? " target=\"_blank\"" : "" )
+               + "><img src=\"http://phet.colorado.edu" + screenshot.getSrc()
                + "\" alt=\"" + getTitle() + "\" style=\"border: none;\" width=\"" + width + "\" height=\"" + height
                + "\"/><div style=\"position: absolute; width: " + subWidth + "px; height: " + subHeight + "px; left: "
                + subLeft + "px; top: " + subTop + "px; background-color: #FFF; opacity: 0.6; filter: alpha(opacity = 60);\"></div><table style=\"position: absolute; width: "
