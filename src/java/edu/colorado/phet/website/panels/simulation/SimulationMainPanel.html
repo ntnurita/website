@@ -63,10 +63,18 @@
                             <wicket:message key="simulationMainPanel.runOnline">Run Now!</wicket:message>
                         </a>
                         <span class="sim-version" wicket:id="simulationMainPanel.version">Version: 2.0</span>
-                        <a class="sim-embed sim-button" href="#" wicket:id="embed-link">
+                        <a class="sim-embed sim-button" href="#" onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
                             <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
                         </a>
                         <span class="sim-kb" wicket:id="simulationMainPanel.kilobytes">308 kB</span>
+                        <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
+                            <div style="position: absolute; background-color: #fff; border: 1px solid #666; width: 500px;">
+                                <div style="text-align: right; width: 100%;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;" style="padding: 0.2em;">close</a></div>
+                                <div style="padding: 0 1em 1em;">
+                                    <textarea rows="3" cols="50" id="embeddable-text">This is some Text</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </td>
                 <td class="simulation-main-description">
