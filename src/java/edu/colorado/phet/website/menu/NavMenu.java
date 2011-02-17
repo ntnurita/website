@@ -28,10 +28,7 @@ import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.troubleshooting.*;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
@@ -148,6 +145,9 @@ public class NavMenu implements Serializable {
         NavLocation troubleshootingJavascript = new NavLocation( troubleshooting, "troubleshooting.javascript", TroubleshootingJavascriptPanel.getLinker() );
         addLocation( troubleshootingJavascript );
         troubleshooting.addChild( troubleshootingJavascript );
+
+        NavLocation faq = new NavLocation( null, "faqs", FAQPanel.getLinker() );
+        addMajorLocation( faq );
 
         NavLocation forTranslators = new NavLocation( null, "forTranslators", ForTranslatorsPanel.getLinker() );
         addMajorLocation( forTranslators );

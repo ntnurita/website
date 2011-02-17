@@ -19,6 +19,7 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "troubleshooting.main.flash" );
         addString( "troubleshooting.main.javascript" );
         addString( "troubleshooting.main.faqs" );
+        addString( "troubleshooting.main.commonIssues" );
         addString( "troubleshooting.top" );
         addString( "troubleshooting.main.q1.title" );
         addString( "troubleshooting.main.q1.answer" );
@@ -50,6 +51,10 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "troubleshooting.main.q15.answer" );
         addString( "troubleshooting.main.q16.title" );
         addString( "troubleshooting.main.q16.answer" );
+        addString( "troubleshooting.main.q17.title" );
+        addString( "troubleshooting.main.q17.answer" );
+        addString( "troubleshooting.main.q18.title" );
+        addString( "troubleshooting.main.q18.answer" );
         addString( "troubleshooting.main.licensingRequirements" );
         addPreview( new PhetPanelFactory() {
             public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {

@@ -54,6 +54,7 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.troubleshooting.java" );
         addString( "nav.troubleshooting.flash" );
         addString( "nav.troubleshooting.javascript" );
+        addString( "nav.faqs" );
         addString( "nav.donate" );
         addString( "nav.research" );
         addString( "nav.forTranslators" );

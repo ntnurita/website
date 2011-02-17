@@ -43,10 +43,7 @@ import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.*;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.troubleshooting.*;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
@@ -132,6 +129,7 @@ public class PhetWicketApplication extends WebApplication {
         // are not needed for each visual page.
         // NOTE: do this before adding StaticPage into the mapper. Checked, and violation will result in a fatal error. 
         StaticPage.addPanel( TroubleshootingMainPanel.class );
+        StaticPage.addPanel( FAQPanel.class );
         StaticPage.addPanel( AboutMainPanel.class );
         StaticPage.addPanel( WorkshopsPanel.class );
         StaticPage.addPanel( RunOurSimulationsPanel.class );

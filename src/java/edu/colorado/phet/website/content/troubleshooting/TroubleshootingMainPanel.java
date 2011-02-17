@@ -36,17 +36,11 @@ public class TroubleshootingMainPanel extends PhetPanel {
                 TroubleshootingJavaPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q2-answer", "troubleshooting.main.q2.answer", new Object[]{
-                FullInstallPanel.getLinker().getHref( context, getPhetCycle() )
-        } ) );
-
         add( new LocalizedText( "troubleshooting-main-q4-answer", "troubleshooting.main.q4.answer" ) );
 
         add( new LocalizedText( "troubleshooting-main-q5-answer", "troubleshooting.main.q5.answer", new Object[]{
                 Linkers.getHelpLink( "Flash Simulations", context, getPhetCycle() )
         } ) );
-
-        add( new LocalizedText( "troubleshooting-main-q6-answer", "troubleshooting.main.q6.answer" ) );
 
         add( new LocalizedText( "troubleshooting-main-q7-answer", "troubleshooting.main.q7.answer", new Object[]{
                 Linkers.getHelpLink( "Windows 2000 Issues", context, getPhetCycle() )
@@ -58,10 +52,6 @@ public class TroubleshootingMainPanel extends PhetPanel {
 
         add( new LocalizedText( "troubleshooting-main-q9-answer", "troubleshooting.main.q9.answer", new Object[]{
                 Linkers.getHelpLink( "Sound Issues", context, getPhetCycle() )
-        } ) );
-
-        add( new LocalizedText( "troubleshooting-main-q10-answer", "troubleshooting.main.q10.answer", new Object[]{
-                ForTranslatorsPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q11-answer", "troubleshooting.main.q11.answer", new Object[]{
@@ -76,15 +66,7 @@ public class TroubleshootingMainPanel extends PhetPanel {
                 "<a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221\">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221</a>"
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q15-answer", "troubleshooting.main.q15.answer" ) );
-
-        add( new LocalizedText( "troubleshooting-main-q16-answer", "troubleshooting.main.q16.answer" ) );
-
-        add( new LocalizedText( "troubleshooting-main-q17-answer", "troubleshooting.main.q17.answer" ) );
-
         add( new LocalizedText( "troubleshooting-main-q18-answer", "troubleshooting.main.q18.answer" ) );
-
-        add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
 
     }
 

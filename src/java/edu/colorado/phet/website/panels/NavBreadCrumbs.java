@@ -42,18 +42,16 @@ public class NavBreadCrumbs extends PhetPanel {
             baseLink.add( new RawLabel( "base-label", new ResourceModel( base.getLocalizationKey() ) ) );
             add( baseLink );
 
-            ListView listView = new ListView( "more-crumbs", locations ) {
+            ListView listView = new ListView<NavLocation>( "more-crumbs", locations ) {
 
-                protected void populateItem( ListItem item ) {
-                    NavLocation location = (NavLocation) item.getModel().getObject();
+                protected void populateItem( ListItem<NavLocation> item ) {
+                    NavLocation location = item.getModelObject();
                     Link link = location.getLink( "crumb-link", context, getPhetCycle() );
                     link.add( new RawLabel( "crumb-label", new ResourceModel( location.getLocalizationKey() ) ) );
                     item.add( link );
                 }
             };
             add( listView );
-
-            //add( HeaderContributor.forCss( CSS.NAV_BREADCRUMBS ) );
         }
     }
 }
