@@ -9,6 +9,7 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.model.Model;
 
+import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.WebImage;
 
 /**
@@ -23,11 +24,14 @@ public class StaticImage extends WebComponent {
 
     /**
      * Create an image with a standard URL for a src attribute.
+     * <p/>
+     * NOTE: use the WebImage or ImageHandle varieties for better image size support
      *
      * @param id  The Wicket ID for the image
      * @param src The src attribute (URL)
      * @param alt The alt text for accessibility
      */
+    @Deprecated
     public StaticImage( String id, String src, String alt ) {
         super( id );
         this.url = src;
@@ -49,6 +53,10 @@ public class StaticImage extends WebComponent {
         // TODO: possibly use tag.put below?
         add( new AttributeModifier( "width", true, new Model<String>( String.valueOf( image.getWidth() ) ) ) );
         add( new AttributeModifier( "height", true, new Model<String>( String.valueOf( image.getHeight() ) ) ) );
+    }
+
+    public StaticImage( String id, ImageHandle imageHandle, String alt ) {
+        this( id, WebImage.get( imageHandle ), alt );
     }
 
     public void setDataServer( String dataServer ) {

@@ -4,36 +4,42 @@
 
 package edu.colorado.phet.website.constants;
 
+import edu.colorado.phet.website.util.ImageHandle;
+
 /**
  * All (hopefully all) dynamically inserted images. Does NOT include background images used in CSS
  */
 public class Images {
-    public static final String PHET_LOGO = "/images/phet-logo.gif";
-    public static final String LOGO_TITLE = "/images/logo-title.jpg";
+    public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo.gif", true );
+    public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
 
-    public static final String TRANSLATION_UTILITY_SMALL = "/images/screenshots/translation-utility-small.png";
+    public static final ImageHandle TRANSLATION_UTILITY_SMALL = new ImageHandle( "/images/screenshots/translation-utility-small.png", true );
 
-    public static final String GUIDANCE_RECOMMENDED = "/images/ratings/guidance-recommended.png";
-    public static final String UNDER_CONSTRUCTION = "/images/ratings/under-construction.png";
-    public static final String CLASSROOM_TESTED = "/images/ratings/classroom-tested.png";
+    public static final ImageHandle GUIDANCE_RECOMMENDED = new ImageHandle( "/images/ratings/guidance-recommended.png", true );
+    public static final ImageHandle UNDER_CONSTRUCTION = new ImageHandle( "/images/ratings/under-construction.png", true );
+    public static final ImageHandle CLASSROOM_TESTED = new ImageHandle( "/images/ratings/classroom-tested.png", true );
 
-    public static final String GUIDANCE_RECOMMENDED_SMALL = "/images/ratings/guidance-recommended-small.png";
-    public static final String UNDER_CONSTRUCTION_SMALL = "/images/ratings/under-construction-small.png";
-    public static final String CLASSROOM_TESTED_SMALL = "/images/ratings/classroom-tested-small.png";
+    public static final ImageHandle GUIDANCE_RECOMMENDED_SMALL = new ImageHandle( "/images/ratings/guidance-recommended-small.png", true );
+    public static final ImageHandle UNDER_CONSTRUCTION_SMALL = new ImageHandle( "/images/ratings/under-construction-small.png", true );
+    public static final ImageHandle CLASSROOM_TESTED_SMALL = new ImageHandle( "/images/ratings/classroom-tested-small.png", true );
 
-    public static final String NEWSLETTER_SUMMER_09 = "/images/phet_newsletter_summer_09_thumbnail.png";
-    public static final String NEWSLETTER_SUMMER_10 = "/images/phet_newsletter_summer_10_thumbnail.png";
+    public static final ImageHandle NEWSLETTER_SUMMER_10 = new ImageHandle( "/images/phet_newsletter_summer_10_thumbnail.png", true );
 
-    public static final String PEARSON_LOGO = "/images/support/pearson.png";
+    public static final ImageHandle PHET_LOGO_ICON_SMALL = new ImageHandle( "/images/contributions/phet-logo-icon-small.jpg", true );
+    public static final ImageHandle GOLD_STAR_SMALL = new ImageHandle( "/images/contributions/gold-star-small.jpg", true );
+    public static final ImageHandle GOLD_STAR = new ImageHandle( "/images/contributions/gold-star.jpg", true );
+    public static final ImageHandle GOLD_STAR_LARGE = new ImageHandle( "/images/contributions/gold-star-large.jpg", true );
+    public static final ImageHandle CHECK_MARK = new ImageHandle( "/images/checkmark.gif", true );
 
-    public static final String PHET_LOGO_ICON_SMALL = "/images/contributions/phet-logo-icon-small.jpg";
-    public static final String GOLD_STAR_SMALL = "/images/contributions/gold-star-small.jpg";
-    public static final String GOLD_STAR = "/images/contributions/gold-star.jpg";
-    public static final String GOLD_STAR_LARGE = "/images/contributions/gold-star-large.jpg";
-
-    public static final String LOGO_HEWLETT = "/images/support/hewlett-logo.jpg";
-    public static final String LOGO_NSF = "/images/support/nsf-logo.gif";
-    public static final String LOGO_ECSME = "/images/support/ERCSME-combined-logo-regular.png";
-    public static final String LOGO_ODONNELL = "/images/support/odf-combined-130.png";
-    public static final String LOGO_ODONNELL_LARGE = "/images/support/odf-160.png";
+    public static final ImageHandle LOGO_HEWLETT = new ImageHandle( "/images/support/hewlett-logo.jpg", true );
+    public static final ImageHandle LOGO_HEWLETT_SMALL = new ImageHandle( "/images/support/hewlett-logo-small.jpg", true );
+    public static final ImageHandle LOGO_NSF = new ImageHandle( "/images/support/nsf-logo.gif", true );
+    public static final ImageHandle LOGO_NSF_SMALL = new ImageHandle( "/images/support/nsf-logo-small.gif", true );
+    public static final ImageHandle LOGO_ECSME = new ImageHandle( "/images/support/ERCSME-combined-logo-regular.png", true );
+    public static final ImageHandle LOGO_ERCSME_SMALL = new ImageHandle( "/images/support/ERCSME-combined-logo-small.png", true );
+    public static final ImageHandle LOGO_JILA = new ImageHandle( "/images/support/jila_logo_medium.gif", true );
+    public static final ImageHandle LOGO_TECHSMITH = new ImageHandle( "/images/support/techsmith.png", true );
+    public static final ImageHandle LOGO_BITROCK = new ImageHandle( "/images/support/bitrock-small.png", true );
+    public static final ImageHandle LOGO_JETBRAINS = new ImageHandle( "/images/support/jetbrains.gif", true );
+    public static final ImageHandle LOGO_EJTECHNOLOGIES = new ImageHandle( "/images/support/ej-small.png", true );
 }

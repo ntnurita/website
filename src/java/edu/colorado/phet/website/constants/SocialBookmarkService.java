@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.links.RawLinker;
 
 /**
@@ -45,6 +46,10 @@ public abstract class SocialBookmarkService implements Serializable {
         catch( UnsupportedEncodingException e ) {
             throw new RuntimeException( e );
         }
+    }
+
+    public ImageHandle getIconHandle() {
+        return new ImageHandle( getIconPath(), true );
     }
 
     public static String doubleEncode( String str ) throws UnsupportedEncodingException {

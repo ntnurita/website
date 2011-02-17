@@ -38,6 +38,7 @@ import edu.colorado.phet.website.translation.TranslationUrlStrategy;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -148,8 +149,8 @@ public abstract class PhetPage extends WebPage implements Stylable {
             }
             add( link );
             // TODO: localize alt attributes
-            link.add( new StaticImage( "page-header-logo-image", Images.PHET_LOGO, null ) );
-            add( new StaticImage( "page-header-title-image", Images.LOGO_TITLE, null ) );
+            link.add( new StaticImage( "page-header-logo-image", WebImage.get( Images.PHET_LOGO ), null ) );
+            add( new StaticImage( "page-header-title-image", WebImage.get( Images.LOGO_TITLE ), null ) );
 
             //add( HeaderContributor.forCss( CSS.PHET_PAGE ) );
 

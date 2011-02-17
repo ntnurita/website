@@ -17,7 +17,9 @@ import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.util.HtmlUtils;
+import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.links.RawLinker;
 
 /**
@@ -123,7 +125,7 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor JILA = new LogoSponsor(
             "JILA",
             "http://jila.colorado.edu/",
-            "/images/support/jila_logo_medium.gif", "padding: 4px;" ) {{ // we need extra padding for the JILA logo
+            Images.LOGO_JILA, "padding: 4px;" ) {{ // we need extra padding for the JILA logo
         setHomeWeight( 3 );
         setSimWeight( 2 );
     }};
@@ -131,7 +133,7 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor TECH_SMITH = new LogoSponsor(
             "TechSmith",
             "http://www.techsmith.com/",
-            "/images/support/techsmith.png" ) {{
+            Images.LOGO_TECHSMITH ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
     }};
@@ -139,7 +141,7 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor BITROCK = new LogoSponsor(
             "BitRock",
             "http://bitrock.com/",
-            "/images/support/bitrock-small.png" ) {{
+            Images.LOGO_BITROCK ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
     }};
@@ -147,7 +149,7 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor JET_BRAINS = new LogoSponsor(
             "JetBrains",
             "http://www.jetbrains.com/",
-            "/images/support/jetbrains.gif" ) {{
+            Images.LOGO_JETBRAINS ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
     }};
@@ -155,7 +157,7 @@ public abstract class Sponsor implements Serializable {
     public static Sponsor EJ_TECHNOLOGIES = new LogoSponsor(
             "ej-technologies",
             "http://www.ej-technologies.com/",
-            "/images/support/ej-small.png", "padding: 4px;" ) {{
+            Images.LOGO_EJTECHNOLOGIES, "padding: 4px;" ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
     }};
@@ -214,22 +216,22 @@ public abstract class Sponsor implements Serializable {
      * Used for sponsors who have a logo
      */
     public static class LogoSponsor extends Sponsor {
-        private String imageUrl;
+        private ImageHandle imageHandle;
         private String imageStyle = "";
 
-        public LogoSponsor( String fullName, String url, String imageUrl ) {
+        public LogoSponsor( String fullName, String url, ImageHandle imageHandle ) {
             super( fullName, url );
-            this.imageUrl = imageUrl;
+            this.imageHandle = imageHandle;
         }
 
-        public LogoSponsor( String fullName, String url, String imageUrl, String style ) {
-            this( fullName, url, imageUrl );
+        public LogoSponsor( String fullName, String url, ImageHandle imageHandle, String style ) {
+            this( fullName, url, imageHandle );
             this.imageStyle = style;
         }
 
         @Override
         protected Component createLogoComponent( String id, String style ) {
-            StaticImage image = new StaticImage( id, imageUrl, getFullName() + " logo" );
+            StaticImage image = new StaticImage( id, WebImage.get( imageHandle ), getFullName() + " logo" );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + imageStyle;
             image.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
             return image;

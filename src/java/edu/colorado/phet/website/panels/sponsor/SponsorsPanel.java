@@ -13,6 +13,7 @@ import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.WebImage;
 
 /**
  * The sponsor panel that is seen on the left side under the left navigation.
@@ -23,9 +24,9 @@ public class SponsorsPanel extends PhetPanel {
 
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-link", context, getPhetCycle() ) );
 
-        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT, "The Hewlett Logo" ) );
-        add( new StaticImage( "nsf-logo", Images.LOGO_NSF, "The NSF Logo" ) );
-        add( new StaticImage( "ecsme-logo", Images.LOGO_ECSME, "The King Saud (ESCME) Logo" ) );
+        add( new StaticImage( "hewlett-logo", WebImage.get( Images.LOGO_HEWLETT ), "The Hewlett Logo" ) );
+        add( new StaticImage( "nsf-logo", WebImage.get( Images.LOGO_NSF ), "The NSF Logo" ) );
+        add( new StaticImage( "ecsme-logo", WebImage.get( Images.LOGO_ECSME ), "The King Saud (ESCME) Logo" ) );
 
         addDependency( new EventDependency() {
 

@@ -14,6 +14,7 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
+import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.about.*;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
@@ -23,7 +24,10 @@ import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
-import edu.colorado.phet.website.panels.*;
+import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.panels.RotatorFallbackPanel;
+import edu.colorado.phet.website.panels.RotatorPanel;
+import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.PageContext;
@@ -39,10 +43,9 @@ public class IndexPanel extends PhetPanel {
     public IndexPanel( String id, PageContext context ) {
         super( id, context );
 
-        // TODO: link these image URLs from the constants area
-        add( new StaticImage( "ksu-logo", "/images/support/ERCSME-combined-logo-small.png", null ) );
-        add( new StaticImage( "nsf-logo", "/images/support/nsf-logo-small.gif", null ) );
-        add( new StaticImage( "hewlett-logo", "/images/support/hewlett-logo-small.jpg", null ) );
+        add( new StaticImage( "ksu-logo", Images.LOGO_ERCSME_SMALL, null ) );
+        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
+        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
 
         if ( getMyLocale().equals( new Locale( "en" ) ) ) {
             add( new Label( "odf-and", "and the" ) );

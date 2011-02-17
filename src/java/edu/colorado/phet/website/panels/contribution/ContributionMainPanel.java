@@ -258,7 +258,7 @@ public class ContributionMainPanel extends PhetPanel {
     private void handleCheck( String id, boolean value ) {
         if ( value ) {
             // TODO: localize / add alt
-            add( new StaticImage( id, "/images/checkmark.gif", "Standard supported" ) );
+            add( new StaticImage( id, Images.CHECK_MARK, "Standard supported" ) );
         }
         else {
             add( new InvisibleComponent( id ) );

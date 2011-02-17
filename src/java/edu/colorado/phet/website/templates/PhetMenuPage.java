@@ -27,8 +27,8 @@ import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.SideNavMenu;
-import edu.colorado.phet.website.panels.sponsor.SponsorsPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
+import edu.colorado.phet.website.panels.sponsor.SponsorsPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 
@@ -178,7 +178,7 @@ public abstract class PhetMenuPage extends PhetPage {
                         Link link = mark.getLinker( getFullPath(), getSocialBookmarkTitle() ).getLink( "link", getPageContext(), getPhetCycle() );
                         link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
                         item.add( link );
-                        link.add( new StaticImage( "icon", mark.getIconPath(), null ) ); // for now, don't replace the alt attribute
+                        link.add( new StaticImage( "icon", mark.getIconHandle(), null ) ); // for now, don't replace the alt attribute
                     }
                 } );
             }
