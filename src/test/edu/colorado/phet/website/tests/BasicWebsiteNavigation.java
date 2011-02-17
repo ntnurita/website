@@ -187,6 +187,8 @@ public class BasicWebsiteNavigation extends SeleneseTestCase {
         loadWithoutError();
         selenium.click( "//a[@id='nav-location-nav-troubleshooting-javascript']/span" );
         loadWithoutError();
+        selenium.click( "//a[@id='nav-location-nav-faqs']/span" );
+        loadWithoutError();
         selenium.click( "//a[@id='nav-location-nav-forTranslators']/span" );
         loadWithoutError();
         selenium.click( "//a[@id='nav-location-nav-forTranslators-translationUtility']/span" );
