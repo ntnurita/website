@@ -23,6 +23,11 @@ public class CacheUtils {
         clearTranslatedStringCache();
         clearPanelCache();
         clearSimulationCache();
+        clearImageCache();
+    }
+
+    private static void clearImageCache() {
+        ImageCache.invalidate();
     }
 
     /**
