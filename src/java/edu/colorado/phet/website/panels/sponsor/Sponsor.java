@@ -265,7 +265,8 @@ public abstract class Sponsor implements Serializable {
             if ( sponsor instanceof LogoSponsor ) {
                 return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
                     {
-                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
+                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) )
+                                .add( new AttributeModifier( "rel", true, new Model<String>( "nofollow" ) ) );
                     }
 
                     @Override
@@ -277,7 +278,8 @@ public abstract class Sponsor implements Serializable {
             else {
                 return new LinkWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
                     {
-                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
+                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) )
+                                .add( new AttributeModifier( "rel", true, new Model<String>( "nofollow" ) ) );
                     }
 
                     @Override
