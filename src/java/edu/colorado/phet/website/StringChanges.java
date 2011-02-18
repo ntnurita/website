@@ -95,13 +95,7 @@ public class StringChanges {
 
         addString( session, "simulationMainPanel.embed", "Embed" );
         addString( session, "embed.clickToLaunch", "Click Here to Launch" );
-
-        deleteString( session, "nav.faq" );
-        addString( session, "nav.faqs", "Frequently Asked Questions" );
-        addString( session, "faqs.title", "Frequently Asked Questions about PhET simulations" );
-        addString( session, "troubleshooting.main.commonIssues", "Common Troubleshooting Issues" );
-        addString( session, "home.faqs", "Frequently Asked Questions" );
-        overwriteString( session, "home.faqs", "Frequently Asked Questions", "FAQs" );
+        overwriteString( session, "embed.clickToLaunch", "Click Here to Launch", "Click to Run" );
 
         session.close();
     }
