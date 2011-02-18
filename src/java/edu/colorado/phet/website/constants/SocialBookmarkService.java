@@ -23,6 +23,12 @@ public abstract class SocialBookmarkService implements Serializable {
      */
     public abstract String getIconPath();
 
+    public String getSpritePath() {
+        return "/images/icons/social-sprite.png";
+    }
+
+    public abstract int getSpriteOffset();
+
     /**
      * Get the URL to use for bookmarking.
      *
@@ -63,6 +69,11 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
+        public int getSpriteOffset() {
+            return 0;
+        }
+
+        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return "http://www.facebook.com/sharer.php?u=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&t=" + URLEncoder.encode( title, "UTF-8" );
         }
@@ -77,6 +88,11 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getIconPath() {
             return "/images/icons/social/16/twitter.png";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+            return 16;
         }
 
         @Override
@@ -97,6 +113,11 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
+        public int getSpriteOffset() {
+            return 32;
+        }
+
+        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return "http://www.stumbleupon.com/submit?url=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&title=" + URLEncoder.encode( title, "UTF-8" );
         }
@@ -111,6 +132,11 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getIconPath() {
             return "/images/icons/social/16/digg.png";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+            return 48;
         }
 
         @Override
@@ -131,6 +157,11 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
+        public int getSpriteOffset() {
+            return 64;
+        }
+
+        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return "http://www.reddit.com/login?dest=%2Fsubmit%3Furl%3Dhttp%3A%2F%2Fhttp%253A%252F%252Fphet.colorado.edu" + doubleEncode( relativeUrl ) + "%26title%3D" + doubleEncode( title );
         }
@@ -145,6 +176,11 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getIconPath() {
             return "/images/icons/social/16/delicious.png";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+            return 80;
         }
 
         @Override
