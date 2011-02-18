@@ -59,6 +59,14 @@ public class SimulationMainEntity extends TranslationEntity {
 
         addString( "simulationMainPanel.supportPhetButton" );
 
+        addString( "simulationMainPanel.embed" );
+        addString( "embed.direct.title" );
+        addString( "embed.direct.instructions" );
+        addString( "embed.indirect.title" );
+        addString( "embed.indirect.instructions" );
+        addString( "embed.close" );
+        addString( "embed.clickToLaunch", "This text is shown over an embedded screenshot" );
+
         addString( "simulationDisplay.indexView" );
         addString( "simulationDisplay.thumbnailView" );
 

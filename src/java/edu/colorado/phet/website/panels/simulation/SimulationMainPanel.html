@@ -69,21 +69,33 @@
                         <span class="sim-kb" wicket:id="simulationMainPanel.kilobytes">308 kB</span>
                         <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
                             <div style="position: absolute; background-color: #fff; border: 1px solid #666; width: 500px;">
-                                <div style="text-align: right; width: 100%; position: absolute;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;" style="padding: 0.2em;">close</a></div>
+                                <div style="text-align: right; width: 100%; position: absolute;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;" style="padding: 0.2em;"><wicket:message key="embed.close">close</wicket:message></a></div>
                                 <div style="padding: 0 1em 1em;">
                                     <wicket:enclosure child="direct-embed-text">
-                                        <p style="font-weight: bold; font-size: 14px;">Embed a running copy of this simulation</p>
+                                        <p style="font-weight: bold; font-size: 14px;">
+                                            <wicket:message key="embed.direct.title">
+                                                Embed a running copy of this simulation
+                                            </wicket:message>
+                                        </p>
                                         <textarea rows="3" cols="50" id="embeddable-text" wicket:id="direct-embed-text">This is some Text</textarea>
                                         <p>
-                                            Use this HTML to embed a running copy of this simulation.
-                                            You can change the width and height of the embedded simulation by changing the
-                                            "width" and "height" attributes in the HTML.
+                                            <wicket:message key="embed.direct.instructions">
+                                                Use this HTML to embed a running copy of this simulation.
+                                                You can change the width and height of the embedded simulation by
+                                                changing the "width" and "height" attributes in the HTML.
+                                            </wicket:message>
                                         </p>
                                     </wicket:enclosure>
-                                    <p style="font-weight: bold; font-size: 14px;">Embed an image that will launch the simulation when clicked</p>
+                                    <p style="font-weight: bold; font-size: 14px;">
+                                        <wicket:message key="embed.indirect.title">
+                                            Embed an image that will launch the simulation when clicked
+                                        </wicket:message>
+                                    </p>
                                     <textarea rows="3" cols="50" wicket:id="indirect-embed-text">This is some Text</textarea>
                                     <p>
-                                        Use this HTML code to display a screenshot with the words "Click to Run"
+                                        <wicket:message key="embed.indirect.instructions">
+                                            Use this HTML code to display a screenshot with the words "Click to Run".
+                                        </wicket:message>
                                     </p>
                                 </div>
                             </div>

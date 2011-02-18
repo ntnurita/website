@@ -41,6 +41,7 @@ public class TitlesEntity extends TranslationEntity {
         addString( "forTranslators.translationUtility.title" );
         addString( "forTranslators.website.title" );
         addString( "contribution.search.title" );
+        addString( "faqs.title" );
         addPreview( new PhetPanelFactory() {
             public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
                 return new TitlePreviewPanel( id, context );

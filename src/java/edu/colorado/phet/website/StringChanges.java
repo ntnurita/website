@@ -97,6 +97,12 @@ public class StringChanges {
         addString( session, "embed.clickToLaunch", "Click Here to Launch" );
         overwriteString( session, "embed.clickToLaunch", "Click Here to Launch", "Click to Run" );
 
+        addString( session, "embed.direct.title", "Embed a running copy of this simulation" );
+        addString( session, "embed.direct.instructions", "Use this HTML to embed a running copy of this simulation. You can change the width and height of the embedded simulation by changing the \"width\" and \"height\" attributes in the HTML." );
+        addString( session, "embed.indirect.title", "Embed an image that will launch the simulation when clicked" );
+        addString( session, "embed.indirect.instructions", "Use this HTML code to display a screenshot with the words \"Click to Run\"." );
+        addString( session, "embed.close", "close" );
+
         session.close();
     }
 
