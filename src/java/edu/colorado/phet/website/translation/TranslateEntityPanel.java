@@ -118,6 +118,9 @@ public class TranslateEntityPanel extends PhetPanel {
                         super.onSubmit( target );
                         int status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
                         String value = model.getObject();
+                        if ( value == null ) {
+                            value = ""; // check in case they put in a blank string
+                        }
                         if ( !stringHasXSS( value ) ) {
                             StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
                             if ( status == StringUtils.STRING_OUT_OF_DATE ) {
