@@ -9,6 +9,7 @@ import java.util.*;
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.link.PopupSettings;
@@ -112,8 +113,8 @@ public class TranslationListPanel extends PhetPanel {
             } );
         }
         else {
-            add( new InvisibleComponent( "sort-by-id" ) );
-            add( new InvisibleComponent( "sort-by-locale" ) );
+            add( new WebMarkupContainer( "sort-by-id" ) );
+            add( new WebMarkupContainer( "sort-by-locale" ) );
         }
 
     }
