@@ -111,6 +111,9 @@ public class StringChanges {
         overwriteString( session, "home.faqs", "Frequently Asked Questions", "FAQs" );
         overwriteString( session, "nav.faqs", "Frequently Asked Questions", "FAQs" );
 
+        addString( session, "faq.embedding.title", "How do I embed PhET simulations?" );
+        addString( session, "faq.embedding.answer", "<p>Click the 'Embed' button under the simulation you would like to embed. This will bring up a text box of html code that you can copy and paste in order to embed the sim. Flash sims may be directly embedded or linked via an image to launch the sim. Java sims may only be linked via an image to launch the sim.</p>" );
+
         session.close();
     }
 

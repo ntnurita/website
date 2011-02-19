@@ -39,6 +39,8 @@ public class FAQPanel extends PhetPanel {
 
         add( new LocalizedText( "troubleshooting-main-q17-answer", "troubleshooting.main.q17.answer" ) );
 
+        add( new LocalizedText( "faq-embedding-answer", "faq.embedding.answer" ) );
+
         add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
 
     }

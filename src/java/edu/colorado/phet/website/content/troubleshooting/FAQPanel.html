@@ -62,6 +62,12 @@
                     </wicket:message>
                 </a></li>
 
+                <li class="faq"><a href="#embedding">
+                    <wicket:message key="faq.embedding.title">
+                        How do I embed PhET simulations?
+                    </wicket:message>
+                </a></li>
+
                 <li class="faq"><a href="#" wicket:id="licensing-link">
                     <wicket:message key="troubleshooting.main.licensingRequirements">
                         What are Licensing requirements?
@@ -256,6 +262,24 @@
                 <li>Safari: Fullscreen support with 3rd-party plugins (Mac, Windows)</li>
                 <li>Opera: Press F11 (Windows, Linux)</li>
             </ul>
+        </div>
+
+        <p class="to-top">
+            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
+            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+        </p>
+
+        <h3 id="embedding">
+            <wicket:message key="faq.embedding.title">
+                How do I embed PhET simulations?
+            </wicket:message>
+        </h3>
+        <div wicket:id="faq-embedding-answer">
+            <p>
+                Click the 'Embed' button under the simulation you would like to embed. This will bring up a text box of
+                html code that you can copy and paste in order to embed the sim. Flash sims may be directly embedded or
+                linked via an image to launch the sim. Java sims may only be linked via an image to launch the sim.
+            </p>
         </div>
 
         <p class="to-top">
