@@ -424,6 +424,26 @@ JkUnMount /blog/* worker1
         <p>We also need to specify an absolute URL for the location of the download root for outside sources</p>
         <pre>&lt;Parameter name="phet-download-location" value="http://localhost/files" override="true" /&gt;</pre>
 
+        <p>A path to the jar utility:</p>
+        <pre>&lt;Parameter name=&quot;path-to-jar-utility&quot; value=&quot;/usr/bin/jar&quot; override=&quot;true&quot;/&gt;</pre>
+
+        <p>A path to the sim staging area:</p>
+        <pre>&lt;Parameter name=&quot;sim-staging-area&quot; value=&quot;/var/phet/staging/sims&quot; override=&quot;true&quot;/&gt;</pre>
+
+        <p>
+            If this server needs to send out email at all, copy the mail-host, mail-user and mail-password from another
+            configuration file.
+        </p>
+
+        <p>A path to the newsletter configuration file should be included if it will be sending out a newsletter:</p>
+        <pre>&lt;Parameter name=&quot;newsletter-file&quot; value=&quot;/home/phet/newsletter.properties&quot; /&gt;</pre>
+
+        <p>HTTPS support should be noted. If "yes", logins will use https.</p>
+        <pre>&lt;Parameter name=&quot;https-available&quot; value=&quot;no&quot; /&gt;</pre>
+
+        <p>The publicly visible hostname (e.g. "phet.colorado.edu" or "localhost") should be given:</p>
+        <pre>&lt;Parameter name=&quot;web-hostname&quot; value=&quot;phet.colorado.edu&quot; /&gt;</pre>
+
         <p>
             Additionally, the temp dir (usually $CATALINA_HOME$/temp) should definitely be writable by the Tomcat
             daemon, since
