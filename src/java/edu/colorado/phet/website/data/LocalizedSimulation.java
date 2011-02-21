@@ -79,7 +79,7 @@ public class LocalizedSimulation implements Serializable, IntId {
 
     public String getDirectEmbeddingSnippet() {
         if ( getSimulation().getProject().isFlash() ) {
-            return "<iframe src=\"http://phet.colorado.edu" + getRunUrl() + "\" width=\"600\" height=\"450\"></iframe>";
+            return "<iframe src=\"http://phet.colorado.edu" + getRunUrl() + "\" width=\"800\" height=\"600\"></iframe>";
         }
         else {
             return null;
