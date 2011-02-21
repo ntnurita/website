@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.ImageCache;
 
@@ -17,6 +19,8 @@ import edu.colorado.phet.website.cache.ImageCache;
  */
 public class WebImage implements Serializable {
     // TODO: consider alt keys? or alt text?
+
+    private static final Logger logger = Logger.getLogger( ImageUtils.class.getName() );
 
     private final String src; //
     private final Dimension dimension; // image dimensions
@@ -54,7 +58,14 @@ public class WebImage implements Serializable {
         else {
             String strippedSrc = src.startsWith( "/" ) ? src.substring( 1 ) : src; // strip leading slash if necessary
             File imageFile = new File( PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot(), strippedSrc );
-            dimension = ImageUtils.getImageFileDimension( imageFile );
+            Dimension imageDimension = null;
+            try {
+                imageDimension = ImageUtils.getImageFileDimension( imageFile );
+            }
+            catch( RuntimeException e ) {
+                logger.warn( "Image dimension problem", e );
+            }
+            dimension = imageDimension;
         }
     }
 
@@ -68,6 +79,10 @@ public class WebImage implements Serializable {
 
     public boolean isInWar() {
         return inWar;
+    }
+
+    public boolean hasDimension() {
+        return dimension != null;
     }
 
     public int getWidth() {

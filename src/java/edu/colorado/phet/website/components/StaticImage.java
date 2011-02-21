@@ -51,8 +51,10 @@ public class StaticImage extends WebComponent {
         this.alt = alt;
 
         // TODO: possibly use tag.put below?
-        add( new AttributeModifier( "width", true, new Model<String>( String.valueOf( image.getWidth() ) ) ) );
-        add( new AttributeModifier( "height", true, new Model<String>( String.valueOf( image.getHeight() ) ) ) );
+        if ( image.hasDimension() ) {
+            add( new AttributeModifier( "width", true, new Model<String>( String.valueOf( image.getWidth() ) ) ) );
+            add( new AttributeModifier( "height", true, new Model<String>( String.valueOf( image.getHeight() ) ) ) );
+        }
     }
 
     public StaticImage( String id, ImageHandle imageHandle, String alt ) {
