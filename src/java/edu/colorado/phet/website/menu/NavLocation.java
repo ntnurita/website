@@ -32,6 +32,11 @@ public class NavLocation implements Serializable {
     private String key;
 
     /**
+     * Whether to use the navigation string (nav.$key) as the breadcrumb string
+     */
+    private boolean useNavigationStringForBreadcrumb = true;
+
+    /**
      * List of children (shown when this navigation item is selected)
      */
     private List<NavLocation> children = new LinkedList<NavLocation>();
@@ -68,6 +73,15 @@ public class NavLocation implements Serializable {
         }
         else {
             return "nav." + getKey();
+        }
+    }
+
+    public String getBreadcrumbLocalizationKey() {
+        if ( useNavigationStringForBreadcrumb ) {
+            return getLocalizationKey();
+        }
+        else {
+            return "nav.breadcrumb." + getKey();
         }
     }
 
@@ -165,6 +179,10 @@ public class NavLocation implements Serializable {
 
     public void setHidden( boolean hidden ) {
         this.hidden = hidden;
+    }
+
+    public void setUseNavigationStringForBreadcrumb( boolean useNavigationStringForBreadcrumb ) {
+        this.useNavigationStringForBreadcrumb = useNavigationStringForBreadcrumb;
     }
 
     public void organizeSimulationLocations() {

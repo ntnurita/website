@@ -7,17 +7,17 @@ package edu.colorado.phet.website.panels;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.ResourceModel;
 
-import edu.colorado.phet.website.components.RawLabel;
-import edu.colorado.phet.website.constants.CSS;
+import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.util.PageContext;
 
+/**
+ * Displays breadcrumb navigation on the top of the content area
+ */
 public class NavBreadCrumbs extends PhetPanel {
     public NavBreadCrumbs( String id, final PageContext context, NavLocation location ) {
         super( id, context );
@@ -39,15 +39,14 @@ public class NavBreadCrumbs extends PhetPanel {
         }
         else {
             Link baseLink = base.getLink( "base-link", context, getPhetCycle() );
-            baseLink.add( new RawLabel( "base-label", new ResourceModel( base.getLocalizationKey() ) ) );
+            baseLink.add( new LocalizedText( "base-label", base.getBreadcrumbLocalizationKey() ) );
             add( baseLink );
 
             ListView listView = new ListView<NavLocation>( "more-crumbs", locations ) {
-
                 protected void populateItem( ListItem<NavLocation> item ) {
                     NavLocation location = item.getModelObject();
                     Link link = location.getLink( "crumb-link", context, getPhetCycle() );
-                    link.add( new RawLabel( "crumb-label", new ResourceModel( location.getLocalizationKey() ) ) );
+                    link.add( new LocalizedText( "crumb-label", location.getBreadcrumbLocalizationKey() ) );
                     item.add( link );
                 }
             };

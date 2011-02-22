@@ -117,6 +117,8 @@ public class StringChanges {
         addString( session, "sponsors.youQuestion", "You?" );
         addString( session, "sponsors.youSubtitle", "(support PhET today and help STEM education worldwide.)" );
 
+        addString( session, "nav.breadcrumb.faqs", "Frequently Asked Questions" );
+
         session.close();
     }
 

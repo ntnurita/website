@@ -147,6 +147,7 @@ public class NavMenu implements Serializable {
         troubleshooting.addChild( troubleshootingJavascript );
 
         NavLocation faq = new NavLocation( null, "faqs", FAQPanel.getLinker() );
+        faq.setUseNavigationStringForBreadcrumb( false ); // use nav.breadcrumb.faqs for breadcrumbs
         addMajorLocation( faq );
 
         NavLocation forTranslators = new NavLocation( null, "forTranslators", ForTranslatorsPanel.getLinker() );
