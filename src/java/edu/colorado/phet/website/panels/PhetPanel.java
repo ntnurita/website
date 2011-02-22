@@ -248,6 +248,10 @@ public class PhetPanel extends Panel implements Stylable {
      * @return A list of all of the dependencies specified in all child PhetPanels.
      */
     public List<EventDependency> getDependencies() {
+        if ( dependencies == null ) {
+            // our dependencies are detached. just bail.
+            return new LinkedList<EventDependency>();
+        }
         List<EventDependency> ret = new LinkedList<EventDependency>( dependencies );
         Iterator iter = iterator();
         while ( iter.hasNext() ) {

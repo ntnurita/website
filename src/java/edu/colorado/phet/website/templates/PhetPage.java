@@ -13,9 +13,6 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.Session;
-import org.apache.wicket.behavior.AbstractHeaderContributor;
-import org.apache.wicket.markup.html.IHeaderContributor;
-import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -41,6 +38,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 /**
  * This is a page that generally has the PhET header (logo, search, sign off, etc), but can be instantiated without
@@ -302,30 +300,19 @@ public abstract class PhetPage extends WebPage implements Stylable {
 
         // add a debug panel in that shows us some info
         if ( PhetWicketApplication.get().isDevelopment() ) {
-            add( new AbstractHeaderContributor() {
-                @Override
-                public IHeaderContributor[] getHeaderContributors() {
-                    return new IHeaderContributor[]{
-                            new IHeaderContributor() {
-                                public void renderHead( IHeaderResponse response ) {
-                                    response.renderString( "<script type=\"text/javascript\">addEventListener( 'load', function() {\n" +
-                                                           "            var div = document.createElement( 'div' );\n" +
-                                                           "            div.style.position = \"fixed\";\n" +
-                                                           "            div.style.right = \"0\";\n" +
-                                                           "            div.style.bottom = \"0\";\n" +
-                                                           "            div.style.border = \"1px solid #888\";\n" +
-                                                           "            div.style.padding = \"0.3em\";\n" +
-                                                           "            div.style.background = \"#fff\";\n" +
-                                                           "            div.style.maxWidth = \"300px\";\n" +
-                                                           "            div.id = \"phet-page-debug\";\n" +
-                                                           "            div.innerHTML = \"" + debugText.toString() + "\";\n" +
-                                                           "            document.body.appendChild( div );\n" +
-                                                           "        }, false );</script>" );
-                                }
-                            }
-                    };
-                }
-            } );
+            add( WicketUtils.createStringHeaderContributor( "<script type=\"text/javascript\">addEventListener( 'load', function() {\n" +
+                                                            "            var div = document.createElement( 'div' );\n" +
+                                                            "            div.style.position = \"fixed\";\n" +
+                                                            "            div.style.right = \"0\";\n" +
+                                                            "            div.style.bottom = \"0\";\n" +
+                                                            "            div.style.border = \"1px solid #888\";\n" +
+                                                            "            div.style.padding = \"0.3em\";\n" +
+                                                            "            div.style.background = \"#fff\";\n" +
+                                                            "            div.style.maxWidth = \"300px\";\n" +
+                                                            "            div.id = \"phet-page-debug\";\n" +
+                                                            "            div.innerHTML = \"" + debugText.toString() + "\";\n" +
+                                                            "            document.body.appendChild( div );\n" +
+                                                            "        }, false );</script>" ) );
         }
 
         // add meta description if it does not already exist

@@ -8,6 +8,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.wicket.*;
+import org.apache.wicket.behavior.AbstractHeaderContributor;
+import org.apache.wicket.markup.html.IHeaderContributor;
+import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.protocol.http.*;
 import org.apache.wicket.protocol.http.request.WebErrorCodeResponseTarget;
@@ -51,7 +54,7 @@ public class WicketUtils {
 
     public static String renderPage( Class<? extends Page> pageClass, PageParameters pageParameters ) {
         //get the servlet context
-        WebApplication application = (WebApplication) WebApplication.get();
+        WebApplication application = WebApplication.get();
 
         ServletContext context = application.getServletContext();
 
@@ -84,7 +87,7 @@ public class WicketUtils {
 
 //			log.warn("Response after request: "+webResponse.toString());
 
-            if ( requestCycle.wasHandled() == false ) {
+            if ( !requestCycle.wasHandled() ) {
                 requestCycle.setRequestTarget( new WebErrorCodeResponseTarget(
                         HttpServletResponse.SC_NOT_FOUND ) );
             }
@@ -98,6 +101,14 @@ public class WicketUtils {
         return webResponse.toString();
     }
 
+    /**
+     * Render a component into a string by replacing the donor component with it temporarily and using a fake response
+     * TODO: analyze the consequences of rendering these within a cachable panel render. possible bad things!
+     *
+     * @param parentDonorComponent The component to (temporarily) replace
+     * @param component            The component to render in to a string
+     * @return A rendered form of the component
+     */
     public static String renderToString( final Component parentDonorComponent, final Component component ) {
         if ( !component.getId().equals( parentDonorComponent.getId() ) ) {
             throw new IllegalStateException( "Component will try to substitute parentDonorComponent to render. Donor and string render Component id's must be equal." );
@@ -129,6 +140,27 @@ public class WicketUtils {
         }
 
         return stringResponse.toString();
+    }
+
+    /**
+     * Adds a raw string into the header
+     *
+     * @param str String to add
+     * @return HeaderContributor to add
+     */
+    public static AbstractHeaderContributor createStringHeaderContributor( final String str ) {
+        return new AbstractHeaderContributor() {
+            @Override
+            public IHeaderContributor[] getHeaderContributors() {
+                return new IHeaderContributor[]{
+                        new IHeaderContributor() {
+                            public void renderHead( IHeaderResponse response ) {
+                                response.renderString( str );
+                            }
+                        }
+                };
+            }
+        };
     }
 
 }

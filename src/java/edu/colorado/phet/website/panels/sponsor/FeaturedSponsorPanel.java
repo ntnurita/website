@@ -5,6 +5,8 @@
 package edu.colorado.phet.website.panels.sponsor;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
+import org.apache.wicket.behavior.AbstractHeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.cache.EventDependency;
@@ -28,7 +30,9 @@ public class FeaturedSponsorPanel extends PhetPanel {
 
     private static final Logger logger = Logger.getLogger( FeaturedSponsorPanel.class.getName() );
     private PageContext context;
-    private boolean visible = true;
+    private boolean visible = true; // visibility tag. when we need to duplicate this component and re-render to get renderings for each panel, the duplicates will have visible = false
+
+    private AbstractHeaderContributor header;
 
     public FeaturedSponsorPanel( String id, final Sponsor sponsor, final PageContext context ) {
         super( id, context );
@@ -45,7 +49,6 @@ public class FeaturedSponsorPanel extends PhetPanel {
         add( Sponsor.createSponsorLogoPanel( "featured-sponsor-panel", sponsor, context, HOME_SPONSOR_STYLE ) );
 
         addDependency( new EventDependency() {
-
             private IChangeListener stringListener;
 
             @Override
@@ -71,7 +74,7 @@ public class FeaturedSponsorPanel extends PhetPanel {
     protected void onBeforeRender() {
         super.onBeforeRender();
 
-        if ( visible ) {
+        if ( visible && header == null ) {
             StringBuilder builder = new StringBuilder();
             double totalWeight = 0;
             for ( Sponsor sponsor : Sponsor.getHomeSponsors() ) {
@@ -84,7 +87,8 @@ public class FeaturedSponsorPanel extends PhetPanel {
             }
             // if someone gets an X S S attack through here, they've done their research.
             String listing = "<script type=\"text/javascript\">\n/* <![CDATA[ */\nvar phetHomeSponsors = {totalWeight:" + totalWeight + ",sponsors:[" + builder.toString() + "]};\n/* ]]> */\n</script>";
-            add( new RawBodyLabel( "script", listing ) );
+            header = WicketUtils.createStringHeaderContributor( listing );
+            add( header );
         }
     }
 }
