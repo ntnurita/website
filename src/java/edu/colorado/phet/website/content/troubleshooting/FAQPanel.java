@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.content.troubleshooting;
 
+import edu.colorado.phet.website.cache.InstallerCache;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.content.ForTranslatorsPanel;
@@ -24,7 +25,10 @@ public class FAQPanel extends PhetPanel {
         add( TroubleshootingMainPanel.getLinker().getLink( "troubleshooting-link", context, getPhetCycle() ) );
 
         add( new LocalizedText( "troubleshooting-main-q2-answer", "troubleshooting.main.q2.answer", new Object[]{
-                FullInstallPanel.getLinker().getHref( context, getPhetCycle() )
+                FullInstallPanel.getLinker().getHref( context, getPhetCycle() ),
+                InstallerCache.getWinSize() / 1000000,
+                InstallerCache.getMacSize() / 1000000,
+                InstallerCache.getLinuxSize() / 1000000
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q6-answer", "troubleshooting.main.q6.answer" ) );
