@@ -15,8 +15,10 @@
     <div style="margin: 0 auto; text-align: center; font-size: 10px; color: #666666;">
         <span wicket:id="before-text">PhET is supported by</span>
         <div wicket:id="sim-sponsor-panel"></div>
-        <span wicket:id="after-text">and educators like you.</span>
-        <br/>
+        <wicket:enclosure child="after-text">
+            <span wicket:id="after-text">and educators like you.</span>
+            <br/>
+        </wicket:enclosure>
         <span wicket:id="thanks">Thanks!</span>
     </div>
 </wicket:panel>

@@ -168,7 +168,7 @@ public abstract class Sponsor implements Serializable {
             "you",
             null ) {{
         setHomeWeight( 3 );
-        setSimWeight( 0 );
+        setSimWeight( 3 );
     }};
 
     public static Random random = new Random();

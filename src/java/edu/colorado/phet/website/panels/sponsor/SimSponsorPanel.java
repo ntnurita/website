@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.behavior.AbstractHeaderContributor;
 
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
@@ -42,7 +43,12 @@ public class SimSponsorPanel extends PhetPanel {
         else {
             add( new LocalizedText( "before-text", "sponsors.sim.supportedBy" ) );
         }
-        add( new LocalizedText( "after-text", "sponsors.sim.andEducators" ) );
+        if ( sponsor instanceof Sponsor.YouSponsor ) {
+            add( new InvisibleComponent( "after-text" ) ); // hide that part when we have the You sponsor!
+        }
+        else {
+            add( new LocalizedText( "after-text", "sponsors.sim.andEducators" ) );
+        }
         add( new LocalizedText( "thanks", "sponsors.sim.thanks" ) );
     }
 
