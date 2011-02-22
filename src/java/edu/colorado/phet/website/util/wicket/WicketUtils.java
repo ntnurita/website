@@ -4,8 +4,17 @@
 
 package edu.colorado.phet.website.util.wicket;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.wicket.Component;
+import org.apache.wicket.Page;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.protocol.http.*;
+import org.apache.wicket.protocol.http.request.WebErrorCodeResponseTarget;
+import org.apache.wicket.protocol.http.servlet.ServletWebRequest;
+import org.apache.wicket.request.target.component.BookmarkablePageRequestTarget;
 
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.util.ClassAppender;
@@ -39,5 +48,54 @@ public class WicketUtils {
 
     public static Component componentIf( boolean visible, String id, Component component ) {
         return ( visible ? component : new InvisibleComponent( id ) );
+    }
+
+    public static String renderPage( Class<? extends Page> pageClass, PageParameters pageParameters ) {
+        //get the servlet context
+        WebApplication application = (WebApplication) WebApplication.get();
+
+        ServletContext context = application.getServletContext();
+
+        //fake a request/response cycle
+        MockHttpSession servletSession = new MockHttpSession( context );
+        servletSession.setTemporary( true );
+
+        MockHttpServletRequest servletRequest = new MockHttpServletRequest(
+                application, servletSession, context );
+        MockHttpServletResponse servletResponse = new MockHttpServletResponse(
+                servletRequest );
+
+        //initialize request and response
+        servletRequest.initialize();
+        servletResponse.initialize();
+
+        WebRequest webRequest = new ServletWebRequest( servletRequest );
+
+        BufferedWebResponse webResponse = new BufferedWebResponse( servletResponse );
+        webResponse.setAjax( true );
+
+        WebRequestCycle requestCycle = new WebRequestCycle(
+                application, webRequest, webResponse );
+
+        requestCycle.setRequestTarget( new BookmarkablePageRequestTarget( pageClass, pageParameters ) );
+
+        try {
+            //requestCycle.request();
+            requestCycle.getProcessor().respond( requestCycle );
+
+//			log.warn("Response after request: "+webResponse.toString());
+
+            if ( requestCycle.wasHandled() == false ) {
+                requestCycle.setRequestTarget( new WebErrorCodeResponseTarget(
+                        HttpServletResponse.SC_NOT_FOUND ) );
+            }
+            requestCycle.detach();
+
+        }
+        finally {
+            requestCycle.getResponse().close();
+        }
+
+        return webResponse.toString();
     }
 }
