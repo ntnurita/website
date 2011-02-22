@@ -36,7 +36,7 @@ public abstract class Sponsor implements Serializable {
     private double homeWeight = 0;
     private double simWeight = 0;
 
-    protected abstract Component createLogoComponent( String id, String style );
+    protected abstract Component createLogoComponent( String id, String style, PageContext context );
 
     public Sponsor( String fullName, String url ) {
         this.fullName = fullName;
@@ -162,6 +162,13 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor YOU = new YouSponsor(
+            "you",
+            null ) {{
+        setHomeWeight( 3 );
+        setSimWeight( 0 );
+    }};
+
     public static Random random = new Random();
     public static Sponsor[] ActiveSponsors = new Sponsor[]{
             HEWLETT_FOUNDATION,
@@ -173,7 +180,8 @@ public abstract class Sponsor implements Serializable {
             TECH_SMITH,
             BITROCK,
             JET_BRAINS,
-            EJ_TECHNOLOGIES
+            EJ_TECHNOLOGIES,
+            YOU
     };
 
     /**
@@ -230,7 +238,7 @@ public abstract class Sponsor implements Serializable {
         }
 
         @Override
-        protected Component createLogoComponent( String id, String style ) {
+        protected Component createLogoComponent( String id, String style, PageContext context ) {
             StaticImage image = new StaticImage( id, WebImage.get( imageHandle ), getFullName() + " logo" );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + imageStyle;
             image.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
@@ -252,11 +260,26 @@ public abstract class Sponsor implements Serializable {
         }
 
         @Override
-        protected Component createLogoComponent( String id, String style ) {
+        protected Component createLogoComponent( String id, String style, PageContext context ) {
             RawLabel label = new RawLabel( id, "<span>" + HtmlUtils.encode( text ) + "</span>" );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + textStyle;
             label.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
             return label;
+        }
+    }
+
+    public static class YouSponsor extends Sponsor {
+        public YouSponsor( String fullName, String url ) {
+            super( fullName, url );
+            // NOTE: change the url manually on the sponsor panel!
+        }
+
+        @Override
+        protected Component createLogoComponent( String id, String style, PageContext context ) {
+            YouSponsorPanel panel = new YouSponsorPanel( id, context );
+            String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + "border: none;background-color: transparent;";
+            panel.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
+            return panel;
         }
     }
 
@@ -271,7 +294,7 @@ public abstract class Sponsor implements Serializable {
 
                     @Override
                     public Component createChild( String id ) {
-                        return sponsor.createLogoComponent( id, style );
+                        return sponsor.createLogoComponent( id, style, context );
                     }
                 };
             }
@@ -284,13 +307,13 @@ public abstract class Sponsor implements Serializable {
 
                     @Override
                     public Component createChild( String id ) {
-                        return sponsor.createLogoComponent( id, style );
+                        return sponsor.createLogoComponent( id, style, context );
                     }
                 };
             }
         }
         else {
-            return sponsor.createLogoComponent( id, style );
+            return sponsor.createLogoComponent( id, style, context );
         }
     }
 }

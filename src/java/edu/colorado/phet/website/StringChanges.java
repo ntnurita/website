@@ -114,6 +114,9 @@ public class StringChanges {
         addString( session, "faq.embedding.title", "How do I embed PhET simulations?" );
         addString( session, "faq.embedding.answer", "<p>Click the 'Embed' button under the simulation you would like to embed. This will bring up a text box of html code that you can copy and paste in order to embed the sim. Flash sims may be directly embedded or linked via an image to launch the sim. Java sims may only be linked via an image to launch the sim.</p>" );
 
+        addString( session, "sponsors.youQuestion", "You?" );
+        addString( session, "sponsors.youSubtitle", "(support PhET today and help STEM education worldwide.)" );
+
         session.close();
     }
 
