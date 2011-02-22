@@ -40,7 +40,7 @@ public class RotatorPanel extends PhetPanel {
             add( new InvisibleComponent( "load-swfobject" ) );
         }
         else {
-            add( new RawBodyLabel( "load-swfobject", "<script type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js\"></script><script type=\"text/javascript\">swfobject.registerObject( \"rotator-id\", \"9.0.0\" );</script>"));
+            add( new RawBodyLabel( "load-swfobject", "<script type=\"text/javascript\" src=\"/js/swfobject.js\"></script><script type=\"text/javascript\">swfobject.registerObject( \"rotator-id\", \"9.0.0\" );</script>"));
         }
 
         final List<Entry> featured = new LinkedList<Entry>();
