@@ -5,6 +5,8 @@
 package edu.colorado.phet.website.panels.sponsor;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.wicket.AttributeModifier;
@@ -183,6 +185,32 @@ public abstract class Sponsor implements Serializable {
             EJ_TECHNOLOGIES,
             YOU
     };
+
+    /**
+     * @return All sponsors with non-zero home weight
+     */
+    public static List<Sponsor> getHomeSponsors() {
+        List<Sponsor> ret = new LinkedList<Sponsor>();
+        for ( Sponsor sponsor : ActiveSponsors ) {
+            if ( sponsor.getHomeWeight() > 0 ) {
+                ret.add( sponsor );
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * @return All sponsors with non-zero sim weight
+     */
+    public static List<Sponsor> getSimSponsors() {
+        List<Sponsor> ret = new LinkedList<Sponsor>();
+        for ( Sponsor sponsor : ActiveSponsors ) {
+            if ( sponsor.getSimWeight() > 0 ) {
+                ret.add( sponsor );
+            }
+        }
+        return ret;
+    }
 
     /**
      * @return Pick a random home sponsor by weight

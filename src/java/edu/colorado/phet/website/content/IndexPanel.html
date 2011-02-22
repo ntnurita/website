@@ -230,8 +230,28 @@
                         <wicket:message key="home.about.phetSupportedBy">PhET is supported by...</wicket:message>
                     </a>
                 </dt>
-                <dd style="text-align: center; padding: 10px;" wicket:id="featured-sponsor-panel">
-                </dd>
+                <dd style="text-align: center; padding: 10px; display: none;" id="featured-sponsor-spot"></dd>
+                <script>
+                    //<![CDATA[
+                    (function() {
+                        var r = Math.random() * phetHomeSponsors.totalWeight;
+                        var i;
+                        for( i=0;i<=phetHomeSponsors.sponsors.length;i++) {
+                            r -= phetHomeSponsors.sponsors[i].weight;
+                            if( r <= 0 ) {
+                                break;
+                            }
+                        }
+                        var html = phetHomeSponsors.sponsors[i].html;
+                        var ddToReplace = document.getElementById( 'featured-sponsor-spot' );
+                        ddToReplace.innerHTML = html;
+                        ddToReplace.style.display = "block";
+                    })();
+                    //]]>
+                </script>
+                <noscript>
+                    <dd style="text-align: center; padding: 10px;" wicket:id="featured-sponsor-panel"></dd>
+                </noscript>
                 <dd style="text-align: center;">
                     <span wicket:id="other-sponsors"></span>
                 </dd>

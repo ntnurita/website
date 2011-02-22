@@ -7,14 +7,13 @@ package edu.colorado.phet.website.util.wicket;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.Page;
-import org.apache.wicket.PageParameters;
+import org.apache.wicket.*;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.protocol.http.*;
 import org.apache.wicket.protocol.http.request.WebErrorCodeResponseTarget;
 import org.apache.wicket.protocol.http.servlet.ServletWebRequest;
 import org.apache.wicket.request.target.component.BookmarkablePageRequestTarget;
+import org.apache.wicket.response.StringResponse;
 
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.util.ClassAppender;
@@ -98,4 +97,38 @@ public class WicketUtils {
 
         return webResponse.toString();
     }
+
+    public static String renderToString( final Component parentDonorComponent, final Component component ) {
+        if ( !component.getId().equals( parentDonorComponent.getId() ) ) {
+            throw new IllegalStateException( "Component will try to substitute parentDonorComponent to render. Donor and string render Component id's must be equal." );
+        }
+
+        final Response originalResponse = RequestCycle.get().getResponse();
+        StringResponse stringResponse = new StringResponse();
+        RequestCycle.get().setResponse( stringResponse );
+        MarkupContainer parentComponent = parentDonorComponent.getParent();
+        parentComponent.remove( parentDonorComponent );
+
+        try {
+            parentComponent.add( component );
+
+            try {
+                component.prepareForRender();
+                component.renderComponent();
+            }
+            catch( RuntimeException e ) {
+                component.afterRender();
+                throw e;
+            }
+        }
+        finally {
+            // Restore original component
+            parentComponent.replace( parentDonorComponent );
+            // Restore original response
+            RequestCycle.get().setResponse( originalResponse );
+        }
+
+        return stringResponse.toString();
+    }
+
 }

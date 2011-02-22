@@ -30,6 +30,7 @@ import edu.colorado.phet.website.panels.RotatorFallbackPanel;
 import edu.colorado.phet.website.panels.RotatorPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
+import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -91,7 +92,7 @@ public class IndexPanel extends PhetPanel {
         } ) );
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
 
-        add( new FeaturedSponsorPanel( "featured-sponsor-panel", context ) );
+        add( new FeaturedSponsorPanel( "featured-sponsor-panel", Sponsor.chooseRandomHomeSponsor(), context ) );
 
         if ( context.getLocale().equals( PhetWicketApplication.getDefaultLocale() ) && DistributionHandler.displayTranslationEditLink( (PhetRequestCycle) getRequestCycle() ) ) {
             add( TranslationMainPage.getLinker().getLink( "test-translation", context, getPhetCycle() ) );
