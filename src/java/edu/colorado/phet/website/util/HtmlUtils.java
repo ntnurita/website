@@ -35,7 +35,7 @@ public class HtmlUtils {
                     buf.append( "&quot;" );
                     break;
                 case '\'':
-                    buf.append( "&apos;" );
+                    buf.append( "&#39;" ); // apostrophe, but changed so that innerHTML in IE will properly be unescaped! see http://stackoverflow.com/questions/3611468/how-to-fix-innerhtml-on-ie-not-rendering-entities-with-html5-doctype
                     break;
                 default:
                     buf.append( c );
