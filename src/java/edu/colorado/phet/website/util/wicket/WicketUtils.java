@@ -87,6 +87,7 @@ public class WicketUtils {
 
 //			log.warn("Response after request: "+webResponse.toString());
 
+
             if ( !requestCycle.wasHandled() ) {
                 requestCycle.setRequestTarget( new WebErrorCodeResponseTarget(
                         HttpServletResponse.SC_NOT_FOUND ) );

@@ -172,6 +172,8 @@ public abstract class Sponsor implements Serializable {
     }};
 
     public static Random random = new Random();
+
+    // NOTE: on adding a sponsor, do we need to update the installer to rip the image?
     public static Sponsor[] ActiveSponsors = new Sponsor[]{
             HEWLETT_FOUNDATION,
             NSF,
