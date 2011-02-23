@@ -85,9 +85,9 @@ public class PhetWicketApplication extends WebApplication {
      */
     public static final String[] DATA_SERVERS = new String[]{
             "phet-data1.colorado.edu",
-            "phet-data2.colorado.edu",
-            "phet-data3.colorado.edu",
-            "phet-data4.colorado.edu"
+            "phet-data2.colorado.edu"
+//            "phet-data3.colorado.edu", // use these later if we determine that it helps performance. DNS was hitting us too hard
+//            "phet-data4.colorado.edu"
     };
 
     /**
