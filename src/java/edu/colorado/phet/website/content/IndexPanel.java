@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
@@ -24,6 +25,12 @@ import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.troubleshooting.FAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
+import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.data.util.HibernateEventListener;
+import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.RotatorFallbackPanel;
@@ -42,7 +49,7 @@ public class IndexPanel extends PhetPanel {
 
     public static final String PLAY_SIMS_ID = "play-sims";
 
-    public IndexPanel( String id, PageContext context ) {
+    public IndexPanel( String id, final PageContext context ) {
         super( id, context );
 
         add( new StaticImage( "ksu-logo", Images.LOGO_ERCSME_SMALL, null ) );
@@ -139,6 +146,27 @@ public class IndexPanel extends PhetPanel {
         }
 
         add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
+
+        addDependency( new EventDependency() {
+            private IChangeListener stringListener;
+
+            @Override
+            protected void addListeners() {
+                stringListener = createTranslationChangeInvalidator( context.getLocale() );
+                HibernateEventListener.addListener( Project.class, getAnyChangeInvalidator() );
+                HibernateEventListener.addListener( TranslatedString.class, stringListener );
+                HibernateEventListener.addListener( Simulation.class, getAnyChangeInvalidator() );
+                HibernateEventListener.addListener( LocalizedSimulation.class, getAnyChangeInvalidator() );
+            }
+
+            @Override
+            protected void removeListeners() {
+                HibernateEventListener.removeListener( Project.class, getAnyChangeInvalidator() );
+                HibernateEventListener.removeListener( TranslatedString.class, stringListener );
+                HibernateEventListener.removeListener( Simulation.class, getAnyChangeInvalidator() );
+                HibernateEventListener.removeListener( LocalizedSimulation.class, getAnyChangeInvalidator() );
+            }
+        } );
     }
 
 }

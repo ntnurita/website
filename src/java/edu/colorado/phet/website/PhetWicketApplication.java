@@ -432,6 +432,24 @@ public class PhetWicketApplication extends WebApplication {
         return defaultLocale;
     }
 
+    // TODO: separate out translation parts into another area?
+    private List<TranslationChangeListener> translationChangeListeners = new LinkedList<TranslationChangeListener>();
+
+    public synchronized void addTranslationChangeListener( TranslationChangeListener listener ) {
+        translationChangeListeners.add( listener );
+    }
+
+    public synchronized void removeTranslationChangeListener( TranslationChangeListener listener ) {
+        translationChangeListeners.remove( listener );
+    }
+
+    private synchronized void notifyTranslationChangeListeners() {
+        // make a copy before for modification during traversal avoidance
+        for ( TranslationChangeListener listener : new LinkedList<TranslationChangeListener>( translationChangeListeners ) ) {
+            listener.onChange();
+        }
+    }
+
     public synchronized void addTranslation( Translation translation ) {
         String localeString = LocaleUtils.localeToString( translation.getLocale() );
         logger.info( "Adding translation for " + localeString );
@@ -439,6 +457,8 @@ public class PhetWicketApplication extends WebApplication {
         translations.add( translation );
         mount( new PhetUrlStrategy( localeString, mapper ) );
         sortTranslations();
+
+        notifyTranslationChangeListeners();
     }
 
     public synchronized void removeTranslation( Translation translation ) {
@@ -457,6 +477,8 @@ public class PhetWicketApplication extends WebApplication {
         }
         unmount( localeString );
         sortTranslations();
+
+        notifyTranslationChangeListeners();
     }
 
     @Override
@@ -507,6 +529,10 @@ public class PhetWicketApplication extends WebApplication {
 
     public boolean isTestingServer() {
         return websiteProperties.getWebHostname().equals( getTestingServerName() );
+    }
+
+    public static interface TranslationChangeListener {
+        public void onChange();
     }
 
 }

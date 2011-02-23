@@ -7,7 +7,10 @@ package edu.colorado.phet.website.content;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.Link;
 
+import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.components.RawLink;
+import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.panels.simulation.SimulationMainPanel;
 import edu.colorado.phet.website.templates.PhetPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -20,7 +23,12 @@ public class IndexPage extends PhetPage {
 
         setTitle( getLocalizer().getString( "home.title", this ) );
 
-        add( new IndexPanel( "index-panel", getPageContext() ) );
+        add( new SimplePanelCacheEntry( SimulationMainPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
+            public PhetPanel constructPanel( String id, PageContext context ) {
+                return new IndexPanel( id, context );
+            }
+        }.instantiate( "index-panel", getPageContext(), getPhetCycle() ) );
+        //add( new IndexPanel( "index-panel", getPageContext() ) );
 
         // TODO: localize
         setMetaDescriptionKey( "home.meta" );

@@ -16,9 +16,16 @@ import org.apache.wicket.model.ResourceModel;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.LocalizedLabel;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.constants.CSS;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
+import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.data.util.HibernateEventListener;
+import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
@@ -71,6 +78,23 @@ public class TranslationLinksPanel extends PhetPanel {
             }
         };
         add( listView );
+
+        addDependency( new EventDependency() {
+            private IChangeListener stringListener;
+
+            @Override
+            protected void addListeners() {
+                stringListener = createTranslationChangeInvalidator( context.getLocale() );
+                HibernateEventListener.addListener( TranslatedString.class, stringListener );
+                PhetWicketApplication.get().addTranslationChangeListener( getTranslationChangeInvalidator() );
+            }
+
+            @Override
+            protected void removeListeners() {
+                HibernateEventListener.removeListener( TranslatedString.class, stringListener );
+                PhetWicketApplication.get().removeTranslationChangeListener( getTranslationChangeInvalidator() );
+            }
+        } );
 
         //add( HeaderContributor.forCss( CSS.TRANSLATION_LINKS ) );
     }

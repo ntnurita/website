@@ -13,6 +13,7 @@ import org.hibernate.event.PostDeleteEvent;
 import org.hibernate.event.PostInsertEvent;
 import org.hibernate.event.PostUpdateEvent;
 
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.IChangeListener;
 
@@ -48,6 +49,8 @@ public abstract class EventDependency {
      * For convenience, hold a spot for an instance of the change listener that will invalidate for ANY changes
      */
     private IChangeListener anyChangeListener;
+
+    private PhetWicketApplication.TranslationChangeListener translationChangeListener;
 
     private static final Logger logger = Logger.getLogger( EventDependency.class.getName() );
 
@@ -151,6 +154,22 @@ public abstract class EventDependency {
             }
         }
         return anyChangeListener;
+    }
+
+    /**
+     * @return A convenience listener that will invalidate the cache when the visible translation list is changed.
+     */
+    protected final PhetWicketApplication.TranslationChangeListener getTranslationChangeInvalidator() {
+        synchronized( this ) {
+            if ( translationChangeListener == null ) {
+                translationChangeListener = new PhetWicketApplication.TranslationChangeListener() {
+                    public void onChange() {
+                        invalidate();
+                    }
+                };
+            }
+        }
+        return translationChangeListener;
     }
 
     protected final IChangeListener<TranslatedString> createTranslationChangeInvalidator( final Locale locale ) {
