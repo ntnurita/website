@@ -6,9 +6,9 @@ package edu.colorado.phet.website.content.troubleshooting;
 
 import edu.colorado.phet.website.cache.InstallerCache;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.content.ForTranslatorsPanel;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
+import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
@@ -44,6 +44,10 @@ public class FAQPanel extends PhetPanel {
         add( new LocalizedText( "troubleshooting-main-q17-answer", "troubleshooting.main.q17.answer" ) );
 
         add( new LocalizedText( "faq-embedding-answer", "faq.embedding.answer" ) );
+
+        add( new LocalizedText( "faq-sourceCode-answer", "faq.sourceCode.answer", new Object[]{
+                AboutSourceCodePanel.getLinker().getHref( context, getPhetCycle() )
+        } ) );
 
         add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
 
