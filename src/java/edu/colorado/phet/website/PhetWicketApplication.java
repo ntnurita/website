@@ -189,6 +189,7 @@ public class PhetWicketApplication extends WebApplication {
         InitialSubscribePage.addToMapper( mapper );
         ConfirmEmailLandingPage.addToMapper( mapper );
         UnsubscribeLandingPage.addToMapper( mapper );
+        SponsorListPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );
