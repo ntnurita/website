@@ -49,7 +49,9 @@ public class FAQPanel extends PhetPanel {
                 AboutSourceCodePanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( AboutLicensingPanel.getLinker().getLink( "licensing-link", context, getPhetCycle() ) );
+        add( new LocalizedText( "faq-licensing-answer", "faq.licensing.answer", new Object[]{
+                AboutLicensingPanel.getLinker().getHref( context, getPhetCycle() )
+        } ) );
 
     }
 

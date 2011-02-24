@@ -115,6 +115,7 @@ public class StringChanges {
         addString( session, "faq.embedding.answer", "<p>Click the 'Embed' button under the simulation you would like to embed. This will bring up a text box of html code that you can copy and paste in order to embed the sim. Flash sims may be directly embedded or linked via an image to launch the sim. Java sims may only be linked via an image to launch the sim.</p>" );
         addString( session, "faq.sourceCode.title", "Is the source code available?" );
         addString( session, "faq.sourceCode.answer", "Yes, our source code is freely available.  Instructions to download it are on our <a {0}>Source Code page</a>." );
+        addString( session, "faq.licensing.answer", "Information about our licensing requirements can be found on our <a {0}>Licensing page</a>.");
 
         addString( session, "sponsors.youQuestion", "You?" );
         addString( session, "sponsors.youSubtitle", "(support PhET today and help STEM education worldwide.)" );
