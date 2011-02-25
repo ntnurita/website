@@ -230,28 +230,38 @@
                         <wicket:message key="home.about.phetSupportedBy">PhET is supported by...</wicket:message>
                     </a>
                 </dt>
-                <dd style="text-align: center; padding: 0 10px 5px; min-height: 70px; display: none;" id="featured-sponsor-spot"></dd>
-                <script type="text/javascript">
-                    //<![CDATA[
-                    (function() {
-                        var r = Math.random() * phetHomeSponsors.totalWeight;
-                        var i;
-                        for ( i = 0; i <= phetHomeSponsors.sponsors.length; i++ ) {
-                            r -= phetHomeSponsors.sponsors[i].weight;
-                            if ( r <= 0 ) {
-                                break;
-                            }
-                        }
-                        var html = phetHomeSponsors.sponsors[i].html;
-                        var ddToReplace = document.getElementById( 'featured-sponsor-spot' );
-                        ddToReplace.innerHTML = html;
-                        ddToReplace.style.display = "block";
-                    })();
-                    //]]>
-                </script>
-                <noscript>
-                    <dd style="text-align: center; padding: 0 10px 5px; min-height: 70px;" wicket:id="featured-sponsor-panel"></dd>
-                </noscript>
+                <dd style="padding: 0 10px 5px; min-height: 70px;" id="featured-sponsor-dd">
+                    <!-- here we use a table with invisible elements with a specific height to mimic the min-height for a table -->
+                    <table cellpadding="0" cellspacing="0" style="margin: 0; padding: 0; width: 100%; height: 100%;">
+                        <tr>
+                            <td style="margin: 0; padding: 0;"><div style="height: 70px; width: 0;"></div></td>
+                            <td style="margin: 0; padding: 0; text-align: center; vertical-align:middle;">
+                                <div id="featured-sponsor-spot" style="display: none;"></div>
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    (function() {
+                                        var r = Math.random() * phetHomeSponsors.totalWeight;
+                                        var i;
+                                        for ( i = 0; i <= phetHomeSponsors.sponsors.length; i++ ) {
+                                            r -= phetHomeSponsors.sponsors[i].weight;
+                                            if ( r <= 0 ) {
+                                                break;
+                                            }
+                                        }
+                                        var html = phetHomeSponsors.sponsors[i].html;
+                                        document.getElementById( 'featured-sponsor-spot' ).innerHTML = html;
+                                        document.getElementById( 'featured-sponsor-spot' ).style.display = "block";
+                                    })();
+                                    //]]>
+                                </script>
+                                <noscript>
+                                    <div wicket:id="featured-sponsor-panel"></div>
+                                </noscript>
+                            </td>
+                            <td style="margin: 0; padding: 0;"><div style="height: 70px; width: 0;"></div></td>
+                        </tr>
+                    </table>
+                </dd>
                 <dd style="text-align: center;">
                     <span wicket:id="other-sponsors"></span>
                 </dd>
