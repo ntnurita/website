@@ -46,7 +46,7 @@ public class FeaturedSponsorPanel extends PhetPanel {
             add( new InvisibleComponent( "featured-sponsor-name" ) );
         }
 
-        add( Sponsor.createSponsorLogoPanel( "featured-sponsor-panel", sponsor, context, HOME_SPONSOR_STYLE ) );
+        add( Sponsor.createSponsorLogoPanel( "featured-sponsor-panel", sponsor, context, HOME_SPONSOR_STYLE, Sponsor.SponsorContext.HOME ) );
 
         addDependency( new EventDependency() {
             private IChangeListener stringListener;

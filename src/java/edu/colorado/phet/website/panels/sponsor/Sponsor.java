@@ -38,7 +38,7 @@ public abstract class Sponsor implements Serializable {
     private double homeWeight = 0;
     private double simWeight = 0;
 
-    protected abstract Component createLogoComponent( String id, String style, PageContext context );
+    protected abstract Component createLogoComponent( String id, String style, PageContext context, SponsorContext sponsorContext );
 
     public Sponsor( String fullName, String url ) {
         this.fullName = fullName;
@@ -268,7 +268,7 @@ public abstract class Sponsor implements Serializable {
         }
 
         @Override
-        protected Component createLogoComponent( String id, String style, PageContext context ) {
+        protected Component createLogoComponent( String id, String style, PageContext context, SponsorContext sponsorContext ) {
             StaticImage image = new StaticImage( id, WebImage.get( imageHandle ), getFullName() + " logo" );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + imageStyle;
             image.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
@@ -290,7 +290,7 @@ public abstract class Sponsor implements Serializable {
         }
 
         @Override
-        protected Component createLogoComponent( String id, String style, PageContext context ) {
+        protected Component createLogoComponent( String id, String style, PageContext context, SponsorContext sponsorContext ) {
             RawLabel label = new RawLabel( id, "<span>" + HtmlUtils.encode( text ) + "</span>" );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + textStyle;
             label.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
@@ -305,15 +305,15 @@ public abstract class Sponsor implements Serializable {
         }
 
         @Override
-        protected Component createLogoComponent( String id, String style, PageContext context ) {
-            YouSponsorPanel panel = new YouSponsorPanel( id, context );
+        protected Component createLogoComponent( String id, String style, PageContext context, SponsorContext sponsorContext ) {
+            YouSponsorPanel panel = new YouSponsorPanel( id, context, sponsorContext );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + "border: none;background-color: transparent;";
             panel.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
             return panel;
         }
     }
 
-    public static Component createSponsorLogoPanel( String id, final Sponsor sponsor, final PageContext context, final String style ) {
+    public static Component createSponsorLogoPanel( String id, final Sponsor sponsor, final PageContext context, final String style, final SponsorContext sponsorContext ) {
         if ( sponsor.getUrl() != null ) {
             if ( sponsor instanceof LogoSponsor ) {
                 return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
@@ -324,7 +324,7 @@ public abstract class Sponsor implements Serializable {
 
                     @Override
                     public Component createChild( String id ) {
-                        return sponsor.createLogoComponent( id, style, context );
+                        return sponsor.createLogoComponent( id, style, context, sponsorContext );
                     }
                 };
             }
@@ -337,13 +337,18 @@ public abstract class Sponsor implements Serializable {
 
                     @Override
                     public Component createChild( String id ) {
-                        return sponsor.createLogoComponent( id, style, context );
+                        return sponsor.createLogoComponent( id, style, context, sponsorContext );
                     }
                 };
             }
         }
         else {
-            return sponsor.createLogoComponent( id, style, context );
+            return sponsor.createLogoComponent( id, style, context, sponsorContext );
         }
+    }
+
+    public static enum SponsorContext {
+        HOME,
+        SIM
     }
 }

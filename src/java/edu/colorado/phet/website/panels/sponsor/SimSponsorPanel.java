@@ -35,7 +35,7 @@ public class SimSponsorPanel extends PhetPanel {
 
         this.context = context;
 
-        add( Sponsor.createSponsorLogoPanel( "sim-sponsor-panel", sponsor, context, SIM_SPONSOR_STYLE ) );
+        add( Sponsor.createSponsorLogoPanel( "sim-sponsor-panel", sponsor, context, SIM_SPONSOR_STYLE, Sponsor.SponsorContext.SIM ) );
 
         if ( getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && sponsor.getNeedsArticle() ) {
             add( new LocalizedText( "before-text", "sponsors.sim.supportedByThe" ) );
