@@ -35,6 +35,9 @@ import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 
+/**
+ * Shows a list of all translated and untranslated simulations for a particular locale
+ */
 public class TranslationListPanel extends PhetPanel implements CacheableUrlStaticPanel {
 
     private static final Logger logger = Logger.getLogger( TranslationListPanel.class.getName() );
