@@ -110,7 +110,7 @@ public abstract class EventDependency {
             removeListeners();
         }
         else {
-            throw new RuntimeException( "attempted to deregister entry while inactive: " + entry );
+            logger.debug( "attempted to deregister entry while inactive: " + entry ); // not exception anymore, since we may have multiple deregister paths
         }
     }
 
