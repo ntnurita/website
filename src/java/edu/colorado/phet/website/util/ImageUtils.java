@@ -36,6 +36,9 @@ public class ImageUtils {
         catch( IOException e ) {
             logger.warn( "image file dimension failure for " + imageFile.getAbsolutePath(), e );
         }
+        catch( IllegalArgumentException e ) {
+            logger.warn( "image file dimension failure (argument) for " + imageFile.getAbsolutePath(), e );
+        }
         return null; // unknown
     }
 
