@@ -92,4 +92,9 @@ public class PageContext implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "PageContext{" + LocaleUtils.localeToString( locale ) + "," + getPrefix() + "," + getPath() + "}";
+    }
 }

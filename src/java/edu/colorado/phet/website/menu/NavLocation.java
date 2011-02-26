@@ -162,6 +162,10 @@ public class NavLocation implements Serializable {
     }
 
     public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
+        if( linker == null ) {
+            // this must be detached. this is error-worthy
+            logger.error( "NavLocation linker == null on getLink. key=" + key + ", id=" + id + ", context=" + context );
+        }
         return linker.getLink( id, context, cycle );
     }
 
