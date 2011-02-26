@@ -117,7 +117,11 @@ public class Category implements Serializable, IntId {
     public static Category getCategoryFromPath( Session session, String categoriesString ) {
         Category category;
         logger.debug( "categoriesString = " + categoriesString );
-        String[] categories = categoriesString.split( "/" );
+
+        // strip off the trailing slash if it exists
+        String strippedCategoriesString = (categoriesString.endsWith( "/" ) ? categoriesString.substring( 0, categoriesString.length() - 1 ) : categoriesString);
+
+        String[] categories = strippedCategoriesString.split( "/" );
         int categoryIndex = categories.length - 1;
         if ( categories[categoryIndex].equals( "" ) ) {
             categoryIndex--;
@@ -125,14 +129,14 @@ public class Category implements Serializable, IntId {
         String categoryName = categories[categoryIndex];
         category = HibernateUtils.getCategoryByName( session, categoryName );
         if ( category == null ) {
-            logger.warn( "WARNING: attempt to access category " + categoriesString + " resulted in failure" );
+            logger.warn( "WARNING: attempt to access category " + strippedCategoriesString + " resulted in failure" );
             return category;
         }
 
         logger.debug( "category path: " + category.getCategoryPath() );
 
-        if ( !category.getCategoryPath().equals( categoriesString ) ) {
-            throw new RuntimeException( "category path doesn't match category strings: " + category.getCategoryPath() + " != " + categoriesString );
+        if ( !category.getCategoryPath().equals( strippedCategoriesString ) ) {
+            throw new RuntimeException( "category path doesn't match category strings: " + category.getCategoryPath() + " != " + strippedCategoriesString );
         }
         return category;
     }
