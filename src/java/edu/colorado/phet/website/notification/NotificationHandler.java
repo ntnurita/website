@@ -202,8 +202,8 @@ public class NotificationHandler {
     /**
      * Send an email to all translators who are editors of a translation with the same locale
      */
-    public static void sendCreationNotificationToTranslators( Session session, final Translation translation, final PhetUser owner ) {
-        if ( !DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
+    public static void sendCreationNotificationToTranslators( Session session, final Translation translation, final PhetUser owner, PhetRequestCycle cycle ) {
+        if ( !DistributionHandler.allowNotificationEmails( cycle ) ) {
             logger.info( "not sending translation email because we are not on the production server" );
             return; // fail out gracefully if we are not allowed to send notification emails
         }

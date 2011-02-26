@@ -145,6 +145,7 @@ public class TranslateLanguagePage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( locale ) );
 
                 final PhetUser user = PhetSession.get().getUser();
+                final PhetRequestCycle cycle = PhetRequestCycle.get();
 
                 if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                     ( new Thread() {
@@ -153,7 +154,7 @@ public class TranslateLanguagePage extends TranslationPage {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
                                 NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, user );
-                                NotificationHandler.sendCreationNotificationToTranslators( session, translation, user );
+                                NotificationHandler.sendCreationNotificationToTranslators( session, translation, user, cycle );
                             }
                             finally {
                                 session.close();
@@ -227,6 +228,7 @@ public class TranslateLanguagePage extends TranslationPage {
                 params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( ret[0].getLocale() ) );
 
                 final PhetUser user = PhetSession.get().getUser();
+                final PhetRequestCycle cycle = PhetRequestCycle.get();
 
                 if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
                     ( new Thread() {
@@ -235,7 +237,7 @@ public class TranslateLanguagePage extends TranslationPage {
                             Session session = HibernateUtils.getInstance().openSession();
                             try {
                                 NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), user, translation.getId() );
-                                NotificationHandler.sendCreationNotificationToTranslators( session, ret[0], user );
+                                NotificationHandler.sendCreationNotificationToTranslators( session, ret[0], user, cycle );
                             }
                             finally {
                                 session.close();
