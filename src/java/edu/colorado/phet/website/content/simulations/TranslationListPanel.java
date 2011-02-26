@@ -134,6 +134,7 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
             add( new InvisibleComponent( "untranslated-list" ) );
         }
         else {
+            HibernateUtils.orderSimulations( untranslatedSimulations, getMyLocale() );
             add( new ListView<LocalizedSimulation>( "untranslated-list", untranslatedSimulations ) {
                 protected void populateItem( ListItem<LocalizedSimulation> item ) {
                     LocalizedSimulation lsim = item.getModelObject();
