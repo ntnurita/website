@@ -323,4 +323,13 @@ public class PhetUser implements Serializable, IntId {
     public void setReceiveWebsiteNotifications( boolean receiveWebsiteNotifications ) {
         this.receiveWebsiteNotifications = receiveWebsiteNotifications;
     }
+
+	 /*_/|
+	 =0-0=
+	 \'I'|
+	 |<|,,\_
+	 |[>,,/,\
+	 |[|,\_,,)
+	 ((J(=_*/
+
 }
