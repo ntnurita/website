@@ -142,7 +142,9 @@ public class AdminMainPage extends AdminPage {
                 HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
                     public Void run( Session session ) {
                         String[] emails = new String[]{
-                                "olsonsjc@gmail.com"
+                                "olsonsjc@gmail.com",
+                                "jonkaler@live.com",
+                                "kalequack@yahoo.com"
                         };
                         for ( String email : emails ) {
                             PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", email ).uniqueResult();
