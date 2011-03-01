@@ -146,8 +146,8 @@ public class AdminMainPage extends AdminPage {
                                 "jonkaler@live.com",
                                 "kalequack@yahoo.com",
                                 "katherine.perkins@colorado.edu",
-                                "Kathryn.Dessau@colorado.edu",
-                                "Reids@colorado.edu"
+                                "Kathryn.Dessau@colorado.edu"
+                                "reids@colorado.edu"
                         };
                         for ( String email : emails ) {
                             PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", email ).uniqueResult();
