@@ -189,4 +189,26 @@ public class NewsletterUtils {
             return new Result<PhetUser>( false, userResult.value, null ); // send failure
         }
     }
+
+    /**
+     * Subscribe a user without sending email
+     * <p/>
+     * If the user does not exist, a newsletter-only account is added.
+     *
+     * @param context      Page context
+     * @param session      Hibernate session
+     * @param emailAddress User email address
+     * @param automated    If automated, subscribing users who have checked "Do not receive email" will not be overridden
+     * @return Result. Check result.success for success. If successful, will contain a user reference of result.value
+     */
+    public static Result<PhetUser> subscribeUserWithoutEmail( PageContext context, Session session, final String emailAddress, boolean automated ) {
+        Result<PhetUser> userResult = subscribeUser( session, emailAddress, automated );
+        if ( !userResult.success ) {
+            // hibernate failed (or some more internal error)
+            logger.error( "Subscribe action failed for" + emailAddress );
+            return new Result<PhetUser>( false, userResult.value, null ); // send failure
+        }
+    }
+
+
 }

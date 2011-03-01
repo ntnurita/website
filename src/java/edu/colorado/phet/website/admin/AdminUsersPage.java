@@ -135,7 +135,7 @@ public class AdminUsersPage extends AdminPage {
             String emailText = emailArea.getModelObject();
             logger.info( "Attempting to subscribe a list of users:\n" + emailText );
             for ( String email : emailText.split( "\n" ) ) {
-                NewsletterUtils.subscribeUserAndSendEmail( getPageContext(), getHibernateSession(), email.trim(), true );
+                NewsletterUtils.subscribeUserWithoutEmail( getPageContext(), getHibernateSession(), email.trim(), true );
             }
         }
     }
