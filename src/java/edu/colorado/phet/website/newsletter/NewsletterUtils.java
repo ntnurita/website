@@ -208,6 +208,7 @@ public class NewsletterUtils {
             logger.error( "Subscribe action failed for" + emailAddress );
             return new Result<PhetUser>( false, userResult.value, null ); // send failure
         }
+        return userResult;
     }
 
 
