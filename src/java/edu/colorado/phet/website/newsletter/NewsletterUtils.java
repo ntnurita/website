@@ -147,12 +147,18 @@ public class NewsletterUtils {
                     }
                     user.setConfirmationKey( PhetUser.generateConfirmationKey() );
                     user.setReceiveEmail( true );
+                    if ( automated ) {
+                        user.setConfirmed( true );
+                    }
                     session.update( user );
                 }
                 else {
                     // brand new, create a newsletter-only and unconfirmed user
                     user = new PhetUser( emailAddress, true );
                     user.setReceiveEmail( true );
+                    if ( automated ) {
+                        user.setConfirmed( true );
+                    }
                     session.save( user );
                 }
                 return user;
