@@ -62,7 +62,7 @@ public class LocalizedText extends WebComponent {
                 body = StringUtils.messageFormat( body, args, getLocale() );
             }
             catch( RuntimeException e ) {
-                logger.warn( "message-format error" );
+                logger.warn( "message-format error with locale:" + getLocale() + ",variation:" + getVariation(), e );
                 body = "*error*";
             }
         }
