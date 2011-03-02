@@ -24,6 +24,7 @@ public class Images {
     public static final ImageHandle CLASSROOM_TESTED_SMALL = new ImageHandle( "/images/ratings/classroom-tested-small.png", true );
 
     public static final ImageHandle NEWSLETTER_SUMMER_10 = new ImageHandle( "/images/phet_newsletter_summer_10_thumbnail.png", true );
+    public static final ImageHandle NEWSLETTER_MARCH_11 = new ImageHandle( "/images/phet_newsletter_march_11_thumbnail.png", true );
 
     public static final ImageHandle PHET_LOGO_ICON_SMALL = new ImageHandle( "/images/contributions/phet-logo-icon-small.jpg", true );
     public static final ImageHandle GOLD_STAR_SMALL = new ImageHandle( "/images/contributions/gold-star-small.jpg", true );
