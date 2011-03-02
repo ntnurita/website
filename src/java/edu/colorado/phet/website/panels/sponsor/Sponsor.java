@@ -18,10 +18,7 @@ import edu.colorado.phet.website.components.LinkWrapper;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.util.HtmlUtils;
-import edu.colorado.phet.website.util.ImageHandle;
-import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.WebImage;
+import edu.colorado.phet.website.util.*;
 import edu.colorado.phet.website.util.links.RawLinker;
 
 /**
@@ -318,7 +315,7 @@ public abstract class Sponsor implements Serializable {
             if ( sponsor instanceof LogoSponsor ) {
                 return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
                     {
-                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) )
+                        getLink().add( new ClassAppender( "external" ) )
                                 .add( new AttributeModifier( "rel", true, new Model<String>( "nofollow" ) ) );
                     }
 
@@ -331,7 +328,7 @@ public abstract class Sponsor implements Serializable {
             else {
                 return new LinkWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
                     {
-                        getLink().add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) )
+                        getLink().add( new ClassAppender( "external" ) )
                                 .add( new AttributeModifier( "rel", true, new Model<String>( "nofollow" ) ) );
                     }
 

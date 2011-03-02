@@ -15,7 +15,7 @@
 <body>
 
 <wicket:panel>
-    <form method="get" wicket:id="search-form" autocomplete="off" id="search-form">
+    <form method="get" wicket:id="search-form" id="search-form" class="autocompleteOff">
         <div>
             <label for="search-text-id" style="display: none;">
                 <wicket:message key="search.search">Search</wicket:message>
@@ -25,8 +25,7 @@
                    class="always-enabled" id="search-text-id"/>
             <input type="submit" value="Go" wicket:message="title:search.clickSearch,value:search.search"
                    title="Click here to search the PhET website"
-                   autocomplete="off"
-                   class="always-enabled" id="search-submit-id"/>
+                   class="always-enabled autocompleteOff" id="search-submit-id"/>
         </div>
     </form>
 </wicket:panel>

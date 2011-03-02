@@ -106,7 +106,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
         Session wicketSession = getSession();
         wicketSession.setLocale( myLocale );
 
-        if ( PhetWicketApplication.get().isDevelopment() ) {
+        if ( showDebugText() ) {
             addDebugLine( "class: " + this.getClass().getSimpleName() );
             addDebugLine( "locale: " + LocaleUtils.localeToString( myLocale ) );
             addDebugLine( "path: " + path );
@@ -286,6 +286,11 @@ public abstract class PhetPage extends WebPage implements Stylable {
         return ( (PhetWicketApplication) getApplication() ).getMenu();
     }
 
+    public boolean showDebugText() {
+        //return PhetWicketApplication.get().isDevelopment();
+        return false;
+    }
+
     private Long renderStart;
 
     @Override
@@ -299,7 +304,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
         addDebugLine( "page stateless: <span style='color: #" + ( isPageStateless() ? "00ff00" : "ff0000" ) + "'>" + isPageStateless() + "</span>" );
 
         // add a debug panel in that shows us some info
-        if ( PhetWicketApplication.get().isDevelopment() ) {
+        if ( showDebugText() ) {
             add( WicketUtils.createStringHeaderContributor( "<script type=\"text/javascript\">addEventListener( 'load', function() {\n" +
                                                             "            var div = document.createElement( 'div' );\n" +
                                                             "            div.style.position = \"fixed\";\n" +
@@ -338,7 +343,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
     }
 
     public void addDebugLine( String str ) {
-        if ( PhetWicketApplication.get().isDevelopment() ) {
+        if ( showDebugText() ) {
             debugText.append( str ).append( "<br/>" );
         }
     }

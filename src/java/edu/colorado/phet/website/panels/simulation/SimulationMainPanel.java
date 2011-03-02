@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -46,6 +44,7 @@ import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.translation.PhetLocalizer;
+import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
@@ -257,7 +256,7 @@ public class SimulationMainPanel extends PhetPanel {
         add( runOnlineLink );
         if ( simulation.getSimulation().getProject().isFlash() ) {
             // make Flash links open in a new window / tab
-            runOnlineLink.add( new AttributeModifier( "target", true, new Model<String>( "_blank" ) ) );
+            runOnlineLink.add( new ClassAppender( "external" ) );
         }
         add( new RawLink( "run-offline-link", simulation.getDownloadUrl() ) );
 

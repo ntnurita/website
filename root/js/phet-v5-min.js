@@ -203,3 +203,11 @@ return false};phet.sortContributionsByType=function(){phet.sortContributionsByTa
 }else{phet.currentSort.className=a;phet.currentSort.reverse=false}};phet.addContributionSeparator=function(b){var a=document.createElement("tr");var c=document.createElement("td");c.innerHTML="<br/>"+b;c.setAttribute("style",ContributionSectionStyle);c.setAttribute("colspan",""+phet.colspan());a.appendChild(c);phet.getTable().appendChild(a);phet.separators.push(a)};phet.colspan=function(){return $("#ct-table-header").children().length};phet.getAllLevels=function(){return $("#ct-table").attr("rel").split("|")[0].split(",")
 };phet.getAllTypes=function(){return $("#ct-table").attr("rel").split("|")[1].split(",")};function selectItem(a){window.location=a.data[1]}function htmlEncode(a){return $("<div/>").text(a).html()}function render(b,a){if(a[0]=="sim"){return' <span style="color: #666;">'+phetSimulationString.replace(/\{0\}/g,"<span style='color: #000;'>"+htmlEncode(b)+"</span>")+"</span>"}return htmlEncode(b)}$(document).ready(function(){$("#search-text-id").autocomplete({url:"/autocomplete",extraParams:{l:phetLocale},delay:250,onItemSelect:selectItem,showResult:render})
 });
+$( document ).ready( function() {
+    $( 'a[rel*=external]' ).each( function() {
+        $( this ).attr( 'target', '_blank' );
+    } );
+    $( '.autocompleteOff' ).each( function() {
+        $( this ).attr( 'autocomplete', 'off' );
+    } );
+} );
