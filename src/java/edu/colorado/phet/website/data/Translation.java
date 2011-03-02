@@ -143,7 +143,7 @@ public class Translation implements Serializable, IntId {
     }
 
     public boolean allowSubmit( PhetUser user ) {
-        return isUserAuthorized( user ) && !isVisible() && !isLocked() && !isActive();
+        return isUserAuthorized( user ) && !isVisible() && !isLocked() && isActive();
     }
 
     public boolean allowDeactivate( PhetUser user ) {

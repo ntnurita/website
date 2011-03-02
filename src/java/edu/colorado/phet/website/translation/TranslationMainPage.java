@@ -50,9 +50,8 @@ public class TranslationMainPage extends TranslationPage {
                 return null;
             }
         } );
-        TranslationListPanel translationList = new TranslationListPanel( "translation-list-panel", getPageContext(), translations );
 
-        add( translationList );
+        add( new TranslationListPanel( "translation-list-panel", getPageContext(), translations ) );
 
         add( new PickLanguageForm( "pick-language-form" ) );
     }
