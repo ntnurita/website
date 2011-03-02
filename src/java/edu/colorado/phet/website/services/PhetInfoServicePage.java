@@ -81,8 +81,11 @@ public class PhetInfoServicePage extends WebPage {
         }
         catch( TransformerException e ) {
             logger.info( "transform exception " + e.getMessage() );
-            logger.info( "on data: " + rawData );
-            e.printStackTrace();
+            if ( rawData.trim().length() > 0 ) {
+                // only print stacktrace on non-empty data
+                logger.info( "on data: " + rawData );
+                e.printStackTrace();
+            }
             overallSuccess = false;
         }
         catch( ParserConfigurationException e ) {
