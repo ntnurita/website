@@ -263,12 +263,12 @@ public class SimulationMainPanel extends PhetPanel {
         final String directEmbedText = simulation.getDirectEmbeddingSnippet();
         String indirectEmbedText = simulation.getClickToLaunchSnippet( getPhetLocalizer().getString( "embed.clickToLaunch", this ) );
         if ( directEmbedText != null ) {
-            add( new RawLabel( "direct-embed-text", directEmbedText ) );
+            add( new Label( "direct-embed-text", directEmbedText ) );
         }
         else {
             add( new InvisibleComponent( "direct-embed-text" ) );
         }
-        add( new RawLabel( "indirect-embed-text", indirectEmbedText ) {{
+        add( new Label( "indirect-embed-text", indirectEmbedText ) {{
             if ( directEmbedText == null ) {
                 // if we can't directly embed, set our markup ID so that this text is automatically selected
                 setMarkupId( "embeddable-text" );
