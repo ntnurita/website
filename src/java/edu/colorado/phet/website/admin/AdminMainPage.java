@@ -155,10 +155,36 @@ public class AdminMainPage extends AdminPage {
                         for ( Object o : list ) {
                             PhetUser user = (PhetUser) o;
                             if ( user.isConfirmed() && user.isReceiveEmail() ) {
+                                users.add( user );
+                            }
+                        }
+
+                        for ( PhetUser user : users ) {
+                            // if user doesn't have a good confirmation key for unsubscribing, generate one
+                            if ( user.getConfirmationKey() == null ) {
+                                user.setConfirmationKey( PhetUser.generateConfirmationKey() );
+                                session.update( user );
+                            }
+                        }
+                        return null;
+                    }
+                } );
+                new NewsletterSender().sendNewsletters( users );
+            }
+        } );
+
+        add( new Link( "debug-newsletter2" ) {
+            // this is a temporary hack to send the newsletter to all the people with null names.
+            @Override
+            public void onClick() {
+                final List<PhetUser> users = new LinkedList<PhetUser>();
+                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
+                    public Void run( Session session ) {
+                        List list = session.createQuery( "select u from PhetUser as u" ).list();
+                        for ( Object o : list ) {
+                            PhetUser user = (PhetUser) o;
+                            if ( user.isConfirmed() && user.isReceiveEmail() ) {
                                 if ( user.getName() == null ) {
-                                    logger.warn( "name null for user with email: " + user.getEmail() );
-                                }
-                                else {
                                     users.add( user );
                                 }
                             }
@@ -177,6 +203,7 @@ public class AdminMainPage extends AdminPage {
                 new NewsletterSender().sendNewsletters( users );
             }
         } );
+
 
         add( new Link( "debug-imagesize" ) {
             @Override
