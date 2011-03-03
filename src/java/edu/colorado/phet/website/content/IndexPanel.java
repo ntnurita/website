@@ -6,6 +6,7 @@ package edu.colorado.phet.website.content;
 
 import java.util.Locale;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 
@@ -42,6 +43,8 @@ import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.wicket.IComponentFactory;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 /**
  * The panel which represents the main content portion of the home (index) page
@@ -80,9 +83,23 @@ public class IndexPanel extends PhetPanel {
         addWithId( CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
 
         add( RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() ) );
-        add( CategoryPage.getDefaultLinker().getLink( "on-line-link", context, getPhetCycle() ) );
-        add( FullInstallPanel.getLinker().getLink( "full-install-link", context, getPhetCycle() ) );
-        add( OneAtATimePanel.getLinker().getLink( "one-at-a-time-link", context, getPhetCycle() ) );
+
+        add( WicketUtils.componentIf( !getPhetCycle().isOfflineInstaller(), "on-line-link", new IComponentFactory<Component>() {
+            public Component create( String id ) {
+                return CategoryPage.getDefaultLinker().getLink( id, context, getPhetCycle() );
+            }
+        } ) );
+        add( WicketUtils.componentIf( !getPhetCycle().isOfflineInstaller(), "full-install-link", new IComponentFactory<Component>() {
+            public Component create( String id ) {
+                return FullInstallPanel.getLinker().getLink( id, context, getPhetCycle() );
+            }
+        } ) );
+        add( WicketUtils.componentIf( !getPhetCycle().isOfflineInstaller(), "one-at-a-time-link", new IComponentFactory<Component>() {
+            public Component create( String id ) {
+                return OneAtATimePanel.getLinker().getLink( id, context, getPhetCycle() );
+            }
+        } ) );
+
         add( TroubleshootingMainPanel.getLinker().getLink( "troubleshooting-link", context, getPhetCycle() ) );
         add( FAQPanel.getLinker().getLink( "faqs-link", context, getPhetCycle() ) );
 

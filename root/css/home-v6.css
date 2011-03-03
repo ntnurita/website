@@ -303,22 +303,6 @@ div.practices dd a:hover {
     text-decoration: underline;
 }
 
-body#offline-installer-body div.practices dl.get-phet-links {
-    display: none;
-}
-
-body#offline-installer-body div.practices dl {
-    width: 247px;
-}
-
-body#offline-installer-body div.rtl div.practices dl {
-    width: 247px;
-}
-
-body#offline-installer-body div.practices dl.last {
-    width: 248px;
-}
-
 .index-social-image {
     vertical-align: middle;
     border: none;

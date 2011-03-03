@@ -111,27 +111,33 @@
             <dl class="get-phet-links">
                 <dt>
                     <a href="#" wicket:id="run-our-sims-link">
-                        <wicket:message key="home.runOurSims">Run our Simulations</wicket:message>
+                        <wicket:message key="home.runOurSims">How to Run Simulations</wicket:message>
                     </a>
                 </dt>
-                <dd>
-                    <a href="#" wicket:id="on-line-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.onLine">On Line</wicket:message>
-                    </a>
-                </dd>
-                <dd>
-                    <a href="#" wicket:id="full-install-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.fullInstallation">Full Installation</wicket:message>
-                    </a>
-                </dd>
-                <dd>
-                    <a href="#" wicket:id="one-at-a-time-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.oneAtATime">One at a Time</wicket:message>
-                    </a>
-                </dd>
+                <wicket:enclosure child="on-line-link">
+                    <dd>
+                        <a href="#" wicket:id="on-line-link">
+                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                            <wicket:message key="home.onLine">On Line</wicket:message>
+                        </a>
+                    </dd>
+                </wicket:enclosure>
+                <wicket:enclosure child="full-install-link">
+                    <dd>
+                        <a href="#" wicket:id="full-install-link">
+                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                            <wicket:message key="home.fullInstallation">Full Installation</wicket:message>
+                        </a>
+                    </dd>
+                </wicket:enclosure>
+                <wicket:enclosure child="one-at-a-time-link">
+                    <dd>
+                        <a href="#" wicket:id="one-at-a-time-link">
+                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                            <wicket:message key="home.oneAtATime">One at a Time</wicket:message>
+                        </a>
+                    </dd>
+                </wicket:enclosure>
                 <dd style="margin-top: 1em;">
                     <a href="#" wicket:id="troubleshooting-link">
                         <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
