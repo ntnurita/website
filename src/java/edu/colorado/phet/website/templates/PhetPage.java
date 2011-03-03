@@ -387,7 +387,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
             }
         }
         if ( key.equals( "style.lang" ) ) {
-            return getMyLocale().getLanguage();
+            return getMyLocale().getLanguage(); // note: this adds the attribute for xml:lang. see JIRA WICKET-1229 for the reason that the colons work
         }
         return "";
     }
