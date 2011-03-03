@@ -78,7 +78,7 @@ public class NewsletterSender {
         // sort all of them
         Collections.sort( users, new Comparator<PhetUser>() {
             public int compare( PhetUser a, PhetUser b ) {
-                return a.getName().compareTo( b.getName() );
+                return a.getEmail().compareTo( b.getEmail() );
             }
         } );
         synchronized( lock ) {
