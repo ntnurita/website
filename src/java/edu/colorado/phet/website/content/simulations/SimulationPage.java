@@ -74,7 +74,7 @@ public class SimulationPage extends PhetMenuPage {
             }
         }
 
-        if ( simulation == null ) {
+        if ( simulation == null || !simulation.getSimulation().isVisible() ) {
             throw new RestartResponseAtInterceptPageException( NotFoundPage.class );
         }
 
