@@ -261,6 +261,13 @@ public class SimulationMainPanel extends PhetPanel {
         }
         add( new RawLink( "run-offline-link", simulation.getDownloadUrl() ) );
 
+        if ( getPhetCycle().isInstaller() ) {
+            add( new InvisibleComponent( "embed-button" ) );
+        }
+        else {
+            add( new WebMarkupContainer( "embed-button" ) );
+        }
+
         final String directEmbedText = simulation.getDirectEmbeddingSnippet();
         String indirectEmbedText = simulation.getClickToLaunchSnippet( getPhetLocalizer().getString( "embed.clickToLaunch", this ) );
         if ( directEmbedText != null ) {
