@@ -155,7 +155,12 @@ public class AdminMainPage extends AdminPage {
                         for ( Object o : list ) {
                             PhetUser user = (PhetUser) o;
                             if ( user.isConfirmed() && user.isReceiveEmail() ) {
-                                users.add( user );
+                                if ( user.getName() == null ) {
+                                    logger.warn( "name null for user with email: " + user.getEmail() );
+                                }
+                                else {
+                                    users.add( user );
+                                }
                             }
                         }
 
