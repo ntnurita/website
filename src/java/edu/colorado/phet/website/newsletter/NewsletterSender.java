@@ -106,7 +106,7 @@ public class NewsletterSender {
             String link = NewsletterUtils.getUnsubscribeLink( PageContext.getNewDefaultContext(), user.getConfirmationKey() );
             String body = rawBody;
             body = FileUtils.replaceAll( body, "@UNSUBSCRIBE@", link );
-            body = FileUtils.replaceAll( body, "@NAME@", user.getName() );
+            body = FileUtils.replaceAll( body, "@NAME@", user.getName() == null ? "you" : user.getName() );
             String textBody = rawText;
             textBody = FileUtils.replaceAll( textBody, "@UNSUBSCRIBE@", link );
             textBody = FileUtils.replaceAll( textBody, "@NAME@", user.getName() == null ? "you" : user.getName() );
