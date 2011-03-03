@@ -122,6 +122,7 @@ public class TranslateEntityPanel extends PhetPanel {
                             value = ""; // check in case they put in a blank string
                         }
                         if ( !stringHasXSS( value ) ) {
+                            logger.info( "user " + PhetSession.get().getUser().getEmail() + " setting string " + tString.getKey() + " on translation #" + translationId );
                             StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
                             if ( status == StringUtils.STRING_OUT_OF_DATE ) {
                                 Map<Integer, Integer> map = entity.getOutOfDateMap();

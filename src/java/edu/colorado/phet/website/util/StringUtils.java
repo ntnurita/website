@@ -322,7 +322,6 @@ public class StringUtils {
     }
 
     public static boolean setString( Session session, String key, String value, int translationId ) {
-        // TODO: log which user changed this? go to locations.
         logger.info( "Request to set string with key=" + key + " and value=" + value );
         if ( value == null ) {
             return false;
