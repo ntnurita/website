@@ -386,6 +386,9 @@ public abstract class PhetPage extends WebPage implements Stylable {
                 return "other-body";
             }
         }
+        if ( key.equals( "style.lang" ) ) {
+            return getMyLocale().getLanguage();
+        }
         return "";
     }
 
