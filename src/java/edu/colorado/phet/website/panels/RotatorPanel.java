@@ -65,7 +65,7 @@ public class RotatorPanel extends PhetPanel {
         appendParameter( "offlineInstaller", String.valueOf( getPhetCycle().isOfflineInstaller() ) );
         appendParameter( "next", getPhetLocalizer().getString( "home.rotator.next", this ) );
         appendParameter( "previous", getPhetLocalizer().getString( "home.rotator.previous", this ) );
-        appendParameter( "startIndex", String.valueOf( random.nextInt( featured.size() ) ) );
+        appendParameter( "startIndex", String.valueOf( random.nextInt( featured.size() ) ) ); // possibly deprecate the startIndex parameter. being ignored on the Flash side
         int idx = 1;
         for ( Entry entry : featured ) {
             LocalizedSimulation lsim = entry.getLocalizedSimulation();

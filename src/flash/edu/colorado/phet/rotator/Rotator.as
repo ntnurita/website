@@ -82,6 +82,7 @@ public class Rotator extends MovieClip {
         var li : LoaderInfo = this.root.loaderInfo;
 
         // if starting index is non-zero, set it up
+        // NOTE: we are actually setting the startIdx lower as a random index. this is ignored!!!!
         if ( li.parameters.startIndex != null && li.parameters.startIndex != undefined ) {
             startIdx = Number(li.parameters.startIndex);
             idx = startIdx;
@@ -101,6 +102,8 @@ public class Rotator extends MovieClip {
         }
         else {
             quantity = Number(li.parameters.quantity);
+            startIdx = Math.floor( (Math.random() * quantity) );
+            idx = startIdx;
             for ( var i : Number = 1; i <= quantity; i++ ) {
                 // pull parameters from flashvars for each preview
                 var title : String = li.parameters["title" + String(i)];
