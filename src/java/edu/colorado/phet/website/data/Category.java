@@ -136,7 +136,8 @@ public class Category implements Serializable, IntId {
         logger.debug( "category path: " + category.getCategoryPath() );
 
         if ( !category.getCategoryPath().equals( strippedCategoriesString ) ) {
-            throw new RuntimeException( "category path doesn't match category strings: " + category.getCategoryPath() + " != " + strippedCategoriesString );
+            logger.warn( "category path doesn't match category strings: " + category.getCategoryPath() + " != " + strippedCategoriesString );
+            return null;
         }
         return category;
     }
