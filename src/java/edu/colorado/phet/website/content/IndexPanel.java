@@ -6,6 +6,7 @@ package edu.colorado.phet.website.content;
 
 import java.util.Locale;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.DistributionHandler;
@@ -100,6 +101,13 @@ public class IndexPanel extends PhetPanel {
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );
 
         add( new FeaturedSponsorPanel( "featured-sponsor-panel", Sponsor.chooseRandomHomeSponsor(), context ) );
+
+        if ( getPhetCycle().isInstaller() ) {
+            add( new WebMarkupContainer( "featured-sponsor-installer-js" ) );
+        }
+        else {
+            add( new InvisibleComponent( "featured-sponsor-installer-js" ) );
+        }
 
         if ( context.getLocale().equals( PhetWicketApplication.getDefaultLocale() ) && DistributionHandler.displayTranslationEditLink( (PhetRequestCycle) getRequestCycle() ) ) {
             add( TranslationMainPage.getLinker().getLink( "test-translation", context, getPhetCycle() ) );

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -573,6 +574,13 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "pearson-sponsor" ) );
+        }
+
+        if ( getPhetCycle().isInstaller() ) {
+            add( new WebMarkupContainer( "sim-sponsor-installer-js" ) );
+        }
+        else {
+            add( new InvisibleComponent( "sim-sponsor-installer-js" ) );
         }
 
         add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{

@@ -254,6 +254,10 @@
                                     })();
                                     //]]>
                                 </script>
+                                <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
+                                    // NOTE: only works for root-based home pages!
+                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace(/\/images/g,"images");
+                                </script>
                                 <noscript>
                                     <div wicket:id="featured-sponsor-panel"></div>
                                 </noscript>

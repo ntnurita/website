@@ -148,6 +148,10 @@
                         })();
                         //]]>
                     </script>
+                    <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
+                                    // NOTE: only works for root-based home pages!
+                                    document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace(/\/images/g,"../../images");
+                                </script>
                     <noscript>
                         <div wicket:id="pearson-sponsor" style="padding-top: 10px;"></div>
                     </noscript>
