@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.IRequestTarget;
+import org.apache.wicket.protocol.http.request.WebErrorCodeResponseTarget;
 import org.apache.wicket.request.RequestParameters;
 import org.apache.wicket.request.target.basic.RedirectRequestTarget;
 import org.apache.wicket.request.target.coding.IRequestTargetUrlCodingStrategy;
@@ -993,7 +994,13 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
 
         String redirect = checkRedirect( path, requestParameters.getParameters() );
         if ( redirect != null ) {
-            return new PermanentRedirectRequestTarget( redirect );
+            if ( redirect.equals( NOT_FOUND ) ) {
+                // egad! this was issuing 301 redirections! BAD!
+                return new WebErrorCodeResponseTarget( 404 );
+            }
+            else {
+                return new PermanentRedirectRequestTarget( redirect );
+            }
         }
 
         logger.error( "Did not find path: " + requestPath );
