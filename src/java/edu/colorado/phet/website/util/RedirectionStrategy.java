@@ -106,6 +106,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
     private static final String OLD_TRANSLATION_UTIL = "/phet-dist/translation-utility/";
 
     private static final String NOT_FOUND = "/error/404";
+    private static final String DEFAULT_CATEGORY = "/en/simulations/category/" + Category.getDefaultCategoryKey();
 
     // TODO: map all of these paths so if they are changed, the redirections are changed with them
 
@@ -147,8 +148,8 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         map.put( "/random-thumbnail.php", "/images/mass-spring-lab-animated-screenshot.gif" );
         map.put( "/research/", "/en/research" );
         map.put( "/research/index.php", "/en/research" );
-        map.put( "/simulations", "/en/simulations/category/" + Category.getDefaultCategoryKey() );
-        map.put( "/simulations/", "/en/simulations/category/" + Category.getDefaultCategoryKey() );
+        map.put( "/simulations", DEFAULT_CATEGORY );
+        map.put( "/simulations/", DEFAULT_CATEGORY );
         map.put( "/simulations/cck/cck-ac.jnlp", "/sims/circuit-construction-kit/circuit-construction-kit-dc_en.jnlp" );
         map.put( "/simulations/faraday/faraday.jnlp", "/sims/faraday/faraday_en.jnlp" );
         map.put( "/simulations/stringwave/stringWave.swf", "/sims/wave-on-a-string/wave-on-a-string_en.html" );
@@ -594,6 +595,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
                 return ret;
             }
         }
+        logger.debug( "redirect: not in 'map'" );
         if ( path.length() == 3 ) {
             // redirect "/ar" to "/ar/" and others, to avoid those error pages
             return path + "/";
@@ -738,7 +740,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
     private static String redirectSimulations( Map parameters ) {
         String prefix = "/en/simulation/";
         if ( parameters.get( "sim" ) == null ) {
-            return NOT_FOUND;
+            return DEFAULT_CATEGORY; // if there is nothing, just take people to the category page!
         }
         String sim = ( (String[]) parameters.get( "sim" ) )[0];
         String newsim = simMap.get( sim );
@@ -748,6 +750,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         if ( newsim != null ) {
             return prefix + newsim;
         }
+        logger.info( "missing sim redirect for sim:" + sim );
 
         return NOT_FOUND;
     }
@@ -991,11 +994,12 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
     public IRequestTarget decode( RequestParameters requestParameters ) {
         String requestPath = requestParameters.getPath();
         String path = morphPath( requestPath );
-
+        logger.debug( "redirect decode path: " + path );
         String redirect = checkRedirect( path, requestParameters.getParameters() );
         if ( redirect != null ) {
             if ( redirect.equals( NOT_FOUND ) ) {
                 // egad! this was issuing 301 redirections! BAD!
+                logger.debug( "redirection returns 404" );
                 return new WebErrorCodeResponseTarget( 404 );
             }
             else {
