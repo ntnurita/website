@@ -9,6 +9,7 @@ import java.util.Locale;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -82,7 +83,9 @@ public class IndexPanel extends PhetPanel {
 
         addWithId( CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
 
-        add( RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() ) );
+        Link runOurSimsLink = RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() );
+        runOurSimsLink.add( new LocalizedText( "run-our-sims-label", getPhetCycle().isOfflineInstaller() ? "home.help" : "home.runOurSims" ) );
+        add( runOurSimsLink );
 
         add( WicketUtils.componentIf( !getPhetCycle().isOfflineInstaller(), "on-line-link", new IComponentFactory<Component>() {
             public Component create( String id ) {

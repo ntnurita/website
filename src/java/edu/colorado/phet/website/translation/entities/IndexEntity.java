@@ -21,6 +21,7 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.subscribeToNewsletter" );
 
         addString( "home.runOurSims" );
+        addString( "home.help" );
         addString( "home.onLine" );
         addString( "home.troubleshooting" );
         addString( "home.faqs" );
