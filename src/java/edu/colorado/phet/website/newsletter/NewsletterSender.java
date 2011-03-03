@@ -109,7 +109,7 @@ public class NewsletterSender {
             body = FileUtils.replaceAll( body, "@NAME@", user.getName() );
             String textBody = rawText;
             textBody = FileUtils.replaceAll( textBody, "@UNSUBSCRIBE@", link );
-            textBody = FileUtils.replaceAll( textBody, "@NAME@", user.getName() );
+            textBody = FileUtils.replaceAll( textBody, "@NAME@", user.getName() == null ? "you" : user.getName() );
             message.setBody( body );
             message.setPlainTextAlternative( textBody );
             message.addRecipient( user.getEmail().trim() );
