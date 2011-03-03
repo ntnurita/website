@@ -595,7 +595,10 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         }
         if ( path.length() == 3 ) {
             // redirect "/ar" to "/ar/" and others, to avoid those error pages
-            // TODO: add support for this for locales w/ country code
+            return path + "/";
+        }
+        if ( path.length() == 6 && !path.substring( 1 ).contains( "/" ) && path.charAt( 3 ) == '_' ) {
+            // redirect "/ar_SA" to "/ar_SA/" and others, to avoid those error pages (404s)
             return path + "/";
         }
         if ( path.startsWith( VIEW_CONTRIBUTION ) ) {
@@ -1067,6 +1070,11 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         }
 
         if ( path.length() == 2 && path.indexOf( "." ) == -1 ) {
+            // catches "ar" or other language-only locales
+            return true;
+        }
+        if ( path.length() == 5 && !path.contains( "." ) && !path.contains( "/" ) && path.charAt( 2 ) == '_' ) {
+            // catches "ar_SA" and other locales with country codes
             return true;
         }
 
