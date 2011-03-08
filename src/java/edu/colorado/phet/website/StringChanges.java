@@ -24,6 +24,7 @@ public class StringChanges {
         Session session = HibernateUtils.getInstance().openSession();
 
         addString( session, "home.help", "Help" );
+        addString( session, "faq.header", "For troubleshooting problems, please visit our <a {0}>Troubleshooting page</a>." );
 
         session.close();
     }

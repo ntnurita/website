@@ -22,7 +22,9 @@ public class FAQPanel extends PhetPanel {
     public FAQPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( TroubleshootingMainPanel.getLinker().getLink( "troubleshooting-link", context, getPhetCycle() ) );
+        add( new LocalizedText( "faq-header", "faq.header", new Object[]{
+                TroubleshootingMainPanel.getLinker().getHref( context, getPhetCycle() )
+        }));
 
         add( new LocalizedText( "troubleshooting-main-q2-answer", "troubleshooting.main.q2.answer", new Object[]{
                 FullInstallPanel.getLinker().getHref( context, getPhetCycle() ),
