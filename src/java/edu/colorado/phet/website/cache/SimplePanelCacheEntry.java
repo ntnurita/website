@@ -59,7 +59,7 @@ public abstract class SimplePanelCacheEntry extends AbstractPanelCacheEntry impl
      * @param cycle         The request cycle
      */
     public SimplePanelCacheEntry( Class panelClass, Class parentClass, Locale locale, String parentCacheId, PhetRequestCycle cycle ) {
-        super( panelClass, parentClass, locale, parentCacheId + "_" + DistributionHandler.getDistributionCacheKey( cycle ) );
+        super( panelClass, parentClass, locale, parentCacheId + "_" + DistributionHandler.getDistributionCacheKey( cycle ) + "_" + ( PhetRequestCycle.get().getHttpServletRequest().isSecure() ? "https" : "http" ) );
     }
 
     public final PhetPanel fabricate( String id, PageContext context ) {
