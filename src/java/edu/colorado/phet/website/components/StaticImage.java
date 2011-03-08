@@ -62,7 +62,7 @@ public class StaticImage extends WebComponent {
     }
 
     public void setDataServer( String dataServer ) {
-        dataServerPrefix = "http://" + dataServer;
+        dataServerPrefix = "//" + dataServer;
     }
 
     public String getUrl() {
