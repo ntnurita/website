@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.util.ImageHandle;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.WebImage;
 
 /**
@@ -62,7 +63,10 @@ public class StaticImage extends WebComponent {
     }
 
     public void setDataServer( String dataServer ) {
-        dataServerPrefix = "//" + dataServer;
+        // only use the data servers for unsecured connections, since we don't have HTTPS certs for those domain names
+        if ( !PhetRequestCycle.get().getHttpServletRequest().isSecure() ) {
+            dataServerPrefix = "http://" + dataServer;
+        }
     }
 
     public String getUrl() {
