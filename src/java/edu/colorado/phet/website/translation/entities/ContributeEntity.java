@@ -100,6 +100,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.manage.list.actions" );
         addString( "contribution.manage.list.edit" );
         addString( "contribution.manage.list.delete" );
+        addString( "contribution.manage.list.confirmDelete" );
 
         addString( "list.add" );
         addString( "list.empty" );

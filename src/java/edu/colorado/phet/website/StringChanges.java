@@ -34,6 +34,7 @@ public class StringChanges {
         addString( session, "contribution.manage.list.actions", "Actions" );
         addString( session, "contribution.manage.list.edit", "edit" );
         addString( session, "contribution.manage.list.delete", "delete" );
+        addString( session, "contribution.manage.list.confirmDelete", "Are you sure you want to permanently delete this activity?" );
 
         session.close();
     }

@@ -6,6 +6,7 @@ package edu.colorado.phet.website.panels.contribution;
 
 import java.util.List;
 
+import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -18,6 +19,7 @@ import edu.colorado.phet.website.content.contribution.ContributionManagePage;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -46,6 +48,11 @@ public class ContributionManageListPanel extends PhetPanel {
                 item.add( new Label( "contribution-authors", contribution.getAuthors() ) );
                 item.add( ContributionEditPage.getLinker( contribution ).getLink( "edit-link", context, getPhetCycle() ) );
                 item.add( new Link( "delete-link" ) {
+                    {
+                        String confirmDeleteMessage = getPhetLocalizer().getString( "contribution.manage.list.confirmDelete", ContributionManageListPanel.this );
+                        add( new SimpleAttributeModifier( "onclick", "if(!confirm('" + HtmlUtils.encodeForAttribute( confirmDeleteMessage ) + "')) return false;" ) );
+                    }
+
                     @Override
                     public void onClick() {
                         boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
