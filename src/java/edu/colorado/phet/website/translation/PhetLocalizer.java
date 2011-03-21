@@ -31,6 +31,8 @@ import edu.colorado.phet.website.util.StringUtils;
  */
 public class PhetLocalizer extends Localizer {
 
+    public static final String DROP_DOWN_CHOICE_NULL_KEY = "dropdown.null";
+
     private static final String UNTRANSLATED_VALUE = "<!-- untranslated value -->";
 
     private static final Logger logger = Logger.getLogger( PhetLocalizer.class.getName() );
@@ -390,6 +392,14 @@ public class PhetLocalizer extends Localizer {
 
         // untranslated for this translation, return null
         return null;
+    }
+
+    @Override
+    public String getStringIgnoreSettings( String key, Component component, IModel<?> model, String defaultValue ) {
+        if( key.equals( DROP_DOWN_CHOICE_NULL_KEY )) {
+            return getString( key, component, model, defaultValue );
+        }
+        return super.getStringIgnoreSettings( key, component, model, defaultValue );
     }
 
     private String getErrorString( String key ) {

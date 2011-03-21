@@ -26,6 +26,8 @@ public class StringChanges {
         addString( session, "home.help", "Help" );
         addString( session, "faq.header", "For troubleshooting problems, please visit our <a {0}>Troubleshooting page</a>." );
 
+        addString( session, "dropdown.null", "Choose One" );
+
         session.close();
     }
 

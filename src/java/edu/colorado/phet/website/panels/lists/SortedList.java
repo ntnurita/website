@@ -23,6 +23,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.PageContext;
 
 /**
@@ -135,6 +136,11 @@ public abstract class SortedList<Item extends SortableListItem> extends PhetPane
     }
 
     public class ItemDropDownChoice extends DropDownChoice {
+        @Override
+        protected String getNullKey() {
+            return PhetLocalizer.DROP_DOWN_CHOICE_NULL_KEY;
+        }
+
         public ItemDropDownChoice( String id, List<Item> allKeywords ) {
             super( id, new Model(), allKeywords, new IChoiceRenderer() {
                 public Object getDisplayValue( Object object ) {
@@ -155,6 +161,7 @@ public abstract class SortedList<Item extends SortableListItem> extends PhetPane
                     }
                 }
             } );
+
         }
     }
 
