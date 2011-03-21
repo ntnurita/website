@@ -14,9 +14,15 @@
 <wicket:panel>
     <div wicket:message="dir:language.dir">
         <tr>
-            <th>Title</th>
-            <th>Authors</th>
-            <th colspan="2">Actions</th>
+            <th>
+                <wicket:message key="contribution.manage.list.title">Title</wicket:message>
+            </th>
+            <th>
+                <wicket:message key="contribution.manage.list.authors">Authors</wicket:message>
+            </th>
+            <th colspan="2">
+                <wicket:message key="contribution.manage.list.actions">Actions</wicket:message>
+            </th>
         </tr>
         <tr wicket:id="contributions">
             <td>
@@ -26,10 +32,18 @@
             </td>
             <td wicket:id="contribution-authors"></td>
             <td style="text-align: center;">
-                <a href="#" wicket:id="edit-link">edit</a>
+                <a href="#" wicket:id="edit-link">
+                    <wicket:message key="contribution.manage.list.edit">
+                        edit
+                    </wicket:message>
+                </a>
             </td>
             <td style="text-align: center;">
-                <a href="#" wicket:id="delete-link">delete</a>
+                <a href="#" wicket:id="delete-link">
+                    <wicket:message key="contribution.manage.list.delete">
+                        delete
+                    </wicket:message>
+                </a>
             </td>
         </tr>
     </div>

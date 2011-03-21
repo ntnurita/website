@@ -28,6 +28,13 @@ public class StringChanges {
 
         addString( session, "dropdown.null", "Choose One" );
 
+        addString( session, "contribution.manage.myContributions", "My Contributions" );
+        addString( session, "contribution.manage.list.title", "Title" );
+        addString( session, "contribution.manage.list.authors", "Authors" );
+        addString( session, "contribution.manage.list.actions", "Actions" );
+        addString( session, "contribution.manage.list.edit", "edit" );
+        addString( session, "contribution.manage.list.delete", "delete" );
+
         session.close();
     }
 
