@@ -188,9 +188,9 @@ public class EmailUtils {
             }
             message.setSubject( subject );
 
-            BodyPart messageBodyPart = new MimeBodyPart();
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
 
-            messageBodyPart.setContent( body, "text/html; charset=ISO-8859-1" );
+            messageBodyPart.setText( body, "UTF-8", "html" );
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart( messageBodyPart );
