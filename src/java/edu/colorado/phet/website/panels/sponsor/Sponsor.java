@@ -161,6 +161,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor IDAHO_DIGITAL_LEARNING = new LogoSponsor(
+            "idaho-digital-learning",
+            "http://www.idahodigitallearning.org/",
+            Images.LOGO_IDAHO_DIGITAL_LEARNING, "padding: 8px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -182,6 +190,7 @@ public abstract class Sponsor implements Serializable {
             BITROCK,
             JET_BRAINS,
             EJ_TECHNOLOGIES,
+            IDAHO_DIGITAL_LEARNING,
             YOU
     };
 

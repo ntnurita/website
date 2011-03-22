@@ -43,6 +43,7 @@ public class Images {
     public static final ImageHandle LOGO_BITROCK = new ImageHandle( "/images/support/bitrock-small.png", true );
     public static final ImageHandle LOGO_JETBRAINS = new ImageHandle( "/images/support/jetbrains.gif", true );
     public static final ImageHandle LOGO_EJTECHNOLOGIES = new ImageHandle( "/images/support/ej-small.png", true );
+    public static final ImageHandle LOGO_IDAHO_DIGITAL_LEARNING = new ImageHandle( "/images/support/idaho-digital-learning-logo.png", true );
 
     public static final ImageHandle BY_LEVEL_ELEMENTARY_SCHOOL = new ImageHandle( "/images/by-level/elementary-school.png", true );
     public static final ImageHandle BY_LEVEL_MIDDLE_SCHOOL = new ImageHandle( "/images/by-level/middle-school.png", true );
