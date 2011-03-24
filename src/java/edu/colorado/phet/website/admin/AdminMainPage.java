@@ -94,6 +94,20 @@ public class AdminMainPage extends AdminPage {
             }
         } );
 
+        add( new Link( "debug-pack" ) {
+            public void onClick() {
+                File tmpDir = new File( System.getProperty( "java.io.tmpdir" ) );
+                try {
+                    FileUtils.copyToDir( new File( "/data/web/htdocs/phetsims/sims/test-project/sim2_zh_TW.jar" ), tmpDir );
+                    File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
+                    ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).packAndSignJar( jarFile );
+                }
+                catch( IOException e ) {
+                    e.printStackTrace();
+                }
+            }
+        } );
+
         add( new Link( "debug-ticks" ) {
             public void onClick() {
                 HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
