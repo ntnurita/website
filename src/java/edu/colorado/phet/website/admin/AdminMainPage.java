@@ -84,7 +84,8 @@ public class AdminMainPage extends AdminPage {
             public void onClick() {
                 File tmpDir = new File( System.getProperty( "java.io.tmpdir" ) );
                 try {
-                    FileUtils.copyToDir( new File( "/data/web/htdocs/phetsims/sims/test-project/sim2_zh_TW.jar" ), tmpDir );
+                    File source = new File( PhetWicketApplication.get().getSimulationsRoot(), "test-project/sim2_zh_TW.jar" );
+                    FileUtils.copyToDir( source, tmpDir );
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).signJar( jarFile );
                 }
@@ -98,7 +99,8 @@ public class AdminMainPage extends AdminPage {
             public void onClick() {
                 File tmpDir = new File( System.getProperty( "java.io.tmpdir" ) );
                 try {
-                    FileUtils.copyToDir( new File( "/data/web/htdocs/phetsims/sims/test-project/sim2_zh_TW.jar" ), tmpDir );
+                    File source = new File( PhetWicketApplication.get().getSimulationsRoot(), "test-project/sim2_zh_TW.jar" );
+                    FileUtils.copyToDir( source, tmpDir );
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).packAndSignJar( jarFile );
                 }
