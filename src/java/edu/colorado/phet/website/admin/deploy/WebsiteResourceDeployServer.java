@@ -148,7 +148,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
             pokeJARs();
 
             logger.info( "Signing JARs" );
-            signJARs();
+            signAndPackJARs();
 
             if ( generateJARs ) {
                 logger.info( "Generating offline JARs" );
@@ -335,7 +335,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
         }
     }
 
-    private void signJARs() {
+    private void signAndPackJARs() {
         for ( String projectName : projectNames ) {
             logger.info( "  processing " + projectName );
 
@@ -347,7 +347,13 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
             } );
 
             for ( File jarFile : jarFiles ) {
-                signJAR( jarFile );
+                if ( jarFile.getName().endsWith( "_all.jar" ) ) {
+                    // only pack our _all.jars
+                    packAndSignJAR( jarFile );
+                }
+                else {
+                    signJAR( jarFile );
+                }
             }
         }
     }
@@ -355,6 +361,11 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
     private void signJAR( File jarFile ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
         phetJarSigner.signJar( jarFile );
+    }
+
+    private void packAndSignJAR( File jarFile ) {
+        PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
+        phetJarSigner.packAndSignJar( jarFile );
     }
 
     private void generateOfflineJARs() throws IOException, InterruptedException {
