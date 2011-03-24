@@ -139,10 +139,15 @@ public class WebsiteTranslationDeployPublisher {
             }
         }
         FileUtils.copyToDir( getAllJAR( translationDir, project ), new File( sims, project ) );
+        FileUtils.copyToDir( getPackedAllJAR( translationDir, project ), new File( sims, project ) );
     }
 
     private File getAllJAR( File translationDir, String project ) {
         return new File( translationDir, project + "_all.jar" );
+    }
+
+    private File getPackedAllJAR( File translationDir, String project ) {
+        return new File( translationDir, project + "_all.jar.pack.gz" );
     }
 
     //generate new JNLPs in sims directory

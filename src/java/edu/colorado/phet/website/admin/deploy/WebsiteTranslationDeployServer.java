@@ -75,8 +75,8 @@ public class WebsiteTranslationDeployServer {
         logger.info( "Updating sim JAR" );
         updateSimJAR( translationDir, project );
 
-        logger.info( "Signing JAR" );
-        signJAR( translationDir, project );
+        logger.info( "Signing and Packing JAR" );
+        packAndSignJAR( translationDir, project );
 //        createTestJNLPFiles( translationDir, project );//todo: implement optional JNLP test
 
         logger.info( "Creating offline JARs" );
@@ -283,9 +283,9 @@ public class WebsiteTranslationDeployServer {
         new JARGenerator().generateOfflineJARs( getLocalCopyOfAllJAR( translationDir, project ), jarCommand, buildLocalProperties );
     }
 
-    private void signJAR( File translationDir, String project ) {
+    private void packAndSignJAR( File translationDir, String project ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.signJar( getLocalCopyOfAllJAR( translationDir, project ) );
+        phetJarSigner.packAndSignJar( getLocalCopyOfAllJAR( translationDir, project ) );
     }
 
     private File getLocalCopyOfAllJAR( File translationDir, String project ) {
