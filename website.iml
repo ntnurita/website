@@ -35,7 +35,7 @@
     <orderEntry type="module-library">
       <library name="PhET Website Dependency JAR">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../website-deps-46946.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../website-deps-50059.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
