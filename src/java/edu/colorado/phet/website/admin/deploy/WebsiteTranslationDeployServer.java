@@ -54,7 +54,7 @@ public class WebsiteTranslationDeployServer {
             integrateFlashTranslations( translationDir, o );
         }
 
-        runStringCommand( "chmod -R g+w " + translationDir.getCanonicalPath() );
+        runStringCommand( "chmod -R g+w " + translationDir.getCanonicalPath() ); // TODO: if figaro chowns this while we run, this fails
     }
 
     public static Logger getLogger() {
