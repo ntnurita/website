@@ -48,6 +48,9 @@ public class WebsiteResourceDeployPublisher implements IProguardKeepClass {
 
             File liveSimDir = new File( liveSimsDir, projectName );
 
+            // remove our packed JARs from the deployed directories so we don't serve stale content
+            removeProjectPackedJar( projectName );
+
             for ( File testFile : dir.listFiles() ) {
                 if ( ResourceDeployUtils.ignoreTestFile( testFile ) ) {
                     logger.info( "Ignoring: " + testFile.getCanonicalPath() );
@@ -63,6 +66,14 @@ public class WebsiteResourceDeployPublisher implements IProguardKeepClass {
 
     public List<String> getDeployedProjectNames() {
         return deployedProjectNames;
+    }
+
+    private void removeProjectPackedJar( String project ) throws IOException {
+        File packedJarFile = WebsiteTranslationDeployPublisher.getPackedAllJAR( new File( liveSimsDir, project ), project );
+        if ( packedJarFile.exists() ) {
+            logger.info( "removing packed JAR file for project " + project );
+            packedJarFile.delete();
+        }
     }
 
 }

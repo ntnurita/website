@@ -35,17 +35,28 @@ public class WebsiteTranslationDeployPublisher {
     }
 
     public void publishTranslations( File translationDir ) throws IOException {
+
+        /*---------------------------------------------------------------------------*
+        * java projects
+        *----------------------------------------------------------------------------*/
         ArrayList<String> javaProjectNameList = WebsiteTranslationDeployServer.getJavaProjectNameList( translationDir );
         for ( String project : javaProjectNameList ) {
             logger.info( "backing up " + project );
             Project.backupProject( docRoot, project );
             String[] locales = WebsiteTranslationDeployServer.getJavaTranslatedLocales( translationDir, project );
 
+            // remove packed JAR files since our process does not guarantee it will be produced (does not halt on failure).
+            // we don't want to serve a stale pack200 JAR!
+            removeProjectPackedJar( project );
+
             copyToSimsDir( translationDir, project, locales );
             generateJNLPs( translationDir, project, locales );
 
         }
 
+        /*---------------------------------------------------------------------------*
+        * flash projects
+        *----------------------------------------------------------------------------*/
         ArrayList<String> flashProjectNameList = WebsiteTranslationDeployServer.getFlashProjectNameList( translationDir );
         for ( String project : flashProjectNameList ) {
             if ( project.equals( "common" ) ) {
@@ -127,6 +138,14 @@ public class WebsiteTranslationDeployPublisher {
         }
     }
 
+    private void removeProjectPackedJar( String project ) throws IOException {
+        File packedJarFile = getPackedAllJAR( new File( sims, project ), project );
+        if ( packedJarFile.exists() ) {
+            logger.info( "removing packed JAR file for project " + project );
+            packedJarFile.delete();
+        }
+    }
+
     /**
      * copy new translated JARs and project_all.jar to the sims directory
      */
@@ -152,7 +171,7 @@ public class WebsiteTranslationDeployPublisher {
         return new File( translationDir, project + "_all.jar" );
     }
 
-    private File getPackedAllJAR( File translationDir, String project ) {
+    public static File getPackedAllJAR( File translationDir, String project ) {
         return new File( translationDir, project + "_all.jar.pack.gz" );
     }
 
