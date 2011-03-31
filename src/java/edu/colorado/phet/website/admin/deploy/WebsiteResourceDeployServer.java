@@ -377,6 +377,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
             File[] jarFiles = testSimDir.listFiles();
 
             for ( File jarFile : jarFiles ) {
+                logger.info( "generating offline JARs for jar: " + jarFile.getAbsolutePath() );
                 generator.generateOfflineJARs( jarFile, jarCommand, BuildLocalProperties.getInstance() );
             }
         }
