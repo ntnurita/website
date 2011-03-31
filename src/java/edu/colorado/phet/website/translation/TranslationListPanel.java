@@ -37,6 +37,7 @@ import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
+import edu.colorado.phet.website.util.wicket.ConfirmLinkBehavior;
 import edu.colorado.phet.website.util.wicket.IComponentFactory;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 
@@ -269,6 +270,10 @@ public class TranslationListPanel extends PhetPanel {
 
             if ( deleteShown ) {
                 item.add( new Link( "delete" ) {
+                    {
+                        add( new ConfirmLinkBehavior( "Are you sure you want to permanently delete this website translation?" ) );
+                    }
+
                     public void onClick() {
                         deactivate( translation );
                     }

@@ -25,6 +25,9 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
+/**
+ * The main "website translation" page. Contains a list of translations that a user has access to, plus instructions.
+ */
 public class TranslationMainPage extends TranslationPage {
 
     private static final Logger logger = Logger.getLogger( TranslationMainPage.class.getName() );

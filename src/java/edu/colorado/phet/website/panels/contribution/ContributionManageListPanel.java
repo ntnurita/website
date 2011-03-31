@@ -6,7 +6,6 @@ package edu.colorado.phet.website.panels.contribution;
 
 import java.util.List;
 
-import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -19,10 +18,10 @@ import edu.colorado.phet.website.content.contribution.ContributionManagePage;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.wicket.ConfirmLinkBehavior;
 
 /**
  * Shows a list of contributions, their authors, and a list of actions that can be taken
@@ -50,7 +49,7 @@ public class ContributionManageListPanel extends PhetPanel {
                 item.add( new Link( "delete-link" ) {
                     {
                         String confirmDeleteMessage = getPhetLocalizer().getString( "contribution.manage.list.confirmDelete", ContributionManageListPanel.this );
-                        add( new SimpleAttributeModifier( "onclick", "if(!confirm('" + HtmlUtils.encodeForAttribute( confirmDeleteMessage ) + "')) return false;" ) );
+                        add( new ConfirmLinkBehavior( confirmDeleteMessage ) );
                     }
 
                     @Override
