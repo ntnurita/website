@@ -38,7 +38,10 @@
           <root url="jar://$MODULE_DIR$/../../website-deps-50059.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../svn/trunk/build-tools/src" />
+          <root url="file://$MODULE_DIR$/../../svn/trunk/simulations-java/common/phetcommon/src" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
