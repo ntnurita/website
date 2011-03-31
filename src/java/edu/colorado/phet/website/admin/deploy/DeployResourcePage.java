@@ -181,7 +181,7 @@ public class DeployResourcePage extends AdminPage {
 
             projectsMap.put( resourceTmpDir, runner.getExistingProjects() );
 
-            runner.process( new File( docRoot, "sims" ) );
+            boolean success = runner.process( new File( docRoot, "sims" ) );
 
 //                Session session = HibernateUtils.getInstance().openSession();
 //                for ( String projectName : runner.getExistingProjects() ) {
@@ -189,8 +189,10 @@ public class DeployResourcePage extends AdminPage {
 //                }
 //                session.close();
 
-            FileUtils.writeString( new File( resourceTmpDir, "finished.txt" ), "finished at " + new Date() );
-            return true;
+            if ( success ) {
+                FileUtils.writeString( new File( resourceTmpDir, "finished.txt" ), "finished at " + new Date() );
+            }
+            return success;
         }
 
         @Override
