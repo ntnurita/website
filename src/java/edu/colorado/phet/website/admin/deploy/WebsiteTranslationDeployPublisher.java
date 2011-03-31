@@ -139,7 +139,13 @@ public class WebsiteTranslationDeployPublisher {
             }
         }
         FileUtils.copyToDir( getAllJAR( translationDir, project ), new File( sims, project ) );
-        FileUtils.copyToDir( getPackedAllJAR( translationDir, project ), new File( sims, project ) );
+        File packedAllJAR = getPackedAllJAR( translationDir, project );
+        if ( packedAllJAR.exists() ) {
+            FileUtils.copyToDir( packedAllJAR, new File( sims, project ) );
+        }
+        else {
+            logger.warn( "packed _all.jar not found: " + packedAllJAR.getAbsolutePath() );
+        }
     }
 
     private File getAllJAR( File translationDir, String project ) {
