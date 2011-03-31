@@ -370,11 +370,16 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
 
     private void generateOfflineJARs() throws IOException, InterruptedException {
         JARGenerator generator = new JARGenerator();
-        for ( String sim : projectNames ) {
-            logger.info( "  processing " + sim );
+        for ( String projectName : projectNames ) {
+            logger.info( "  processing " + projectName );
 
-            File testSimDir = new File( testDir, sim );
-            File[] jarFiles = testSimDir.listFiles();
+            File testSimDir = new File( testDir, projectName );
+            File[] jarFiles = testSimDir.listFiles( new FilenameFilter() {
+                public boolean accept( File dir, String name ) {
+                    // only accept JARs!
+                    return name.endsWith( ".jar" );
+                }
+            } );
 
             for ( File jarFile : jarFiles ) {
                 logger.info( "generating offline JARs for jar: " + jarFile.getAbsolutePath() );
