@@ -20,6 +20,31 @@
 # Put in a quarter and...
 RewriteEngine on
 
+###
+# BEGIN pack200-gzip config
+###
+
+AddType application/x-java-archive .jar
+AddType application/x-java-jnlp-file .jnlp
+
+<Files *.jar.pack.gz>
+ AddEncoding pack200-gzip .jar
+ RemoveEncoding .gz
+</Files>
+
+RewriteCond %{HTTP:Accept-Encoding} pack200-gzip
+RewriteCond %{REQUEST_FILENAME}.pack.gz -f
+RewriteRule ^(.*\.jar)$ $1.pack.gz [NC,L]
+
+RewriteCond %{HTTP:Accept-Encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^(.*\.jar)$ $1.gz [NC,L]
+
+
+###
+# END
+###
+
 # Base directory that the rules direct to
 
 # This should be relative to the DOCUMENT_ROOT, which means /sims on
