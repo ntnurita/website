@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
     </wicket:remove>
 </head>
-<body>
+<body style="width: 525px;">
 
 <wicket:panel>
     <div wicket:message="dir:language.dir" class="about-source-code standard-content">
@@ -18,26 +18,103 @@
             </wicket:message>
         </h2>
 
-        <p wicket:id="source-code-location">The source code for all PhET simulations is hosted at
-            <a href="https://phet.unfuddle.com/projects/9404/repositories/23262/browse/head/trunk">Unfuddle</a> (login
-            with username: guest and password: guest). The latest version can always be found there. To checkout the
-            source code, you will need a Subversion client such as
-            <a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> (Windows-only) or
-            <a href="http://www.syntevo.com/smartsvn/download.jsp">SmartSVN</a> (all platforms), or a command-line
-            client. To checkout the source code for all of PhET's Java simulations using a command-line client, use the
-            following command:</p>
+        <!--<p wicket:id="source-code-location">The source code for all PhET simulations is hosted at-->
+        <!--<a href="https://phet.unfuddle.com/projects/9404/repositories/23262/browse/head/trunk">Unfuddle</a> (login-->
+        <!--with username: guest and password: guest). The latest version can always be found there. To checkout the-->
+        <!--source code, you will need a Subversion client such as-->
+        <!--<a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> (Windows-only) or-->
+        <!--<a href="http://www.syntevo.com/smartsvn/download.jsp">SmartSVN</a> (all platforms), or a command-line-->
+        <!--client. To checkout the source code for all of PhET's Java simulations using a command-line client, use the-->
+        <!--following command:</p>-->
 
-        <p style="background-color: #ddddff; margin-left: 3em; margin-right: 3em; padding-left: 0.5em; padding-right: 0.5em;">
-            svn checkout https://phet.unfuddle.com/svn/phet_svn/trunk/simulations-java simulations-java
-            --username guest --password guest
-        </p>
+        <!--<p style="background-color: #ddddff; margin-left: 3em; margin-right: 3em; padding-left: 0.5em; padding-right: 0.5em;">-->
+        <!--svn checkout https://phet.unfuddle.com/svn/phet_svn/trunk/simulations-java simulations-java-->
+        <!----username guest --password guest-->
+        <!--</p>-->
+
+        <!--<p>-->
+        <!--<wicket:message key="about.source-code.flash-simulations">-->
+        <!--To checkout the source code for all of PhET's Flash simulations, replace "simulations-java" with-->
+        <!--"simulations-flash" in the above command.-->
+        <!--</wicket:message>-->
+        <!--</p>-->
+
+        <h3>
+            To browse PhET source code online
+        </h3>
+
+        <ol>
+            <li>Visit the URL <a href="https://phet.unfuddle.com/a#/repositories/23262/browse?path=/trunk">https://phet.unfuddle.com/a#/repositories/23262/browse?path=/trunk</a>
+            </li>
+            <li>Enter username=guest and password=guest</li>
+        </ol>
+
+        <h3>Navigating our source code</h3>
 
         <p>
-            <wicket:message key="about.source-code.flash-simulations">
-                To checkout the source code for all of PhET's Flash simulations, replace "simulations-java" with
-                "simulations-flash" in the above command.
-            </wicket:message>
+            Everything is under the folder "trunk", and trunk/README.txt describes its folder structure. Simulations
+            can be found under these folders:
         </p>
+
+        <ul>
+            <li>Java simulations: trunk/simulations-java/simulations</li>
+            <li>Flash simulations: trunk/simulations-flash/simulations</li>
+            <li>Flex simulations: trunk/simulations-flex/simulations</li>
+        </ul>
+
+        <p>
+            PhET simulations are organized into projects, each of which can contain one or more related simulations. For
+            example, the "nuclear-physics" project contains 4 simulations, including "Alpha Decay" and "Radioactive
+            Dating Game".
+        </p>
+
+        <h3>
+            To checkout PhET's source code repository using a command-line client
+        </h3>
+
+        <p>
+            Use the following command:
+        </p>
+
+        <pre class="source-code">svn checkout https://phet.unfuddle.com/svn/phet_svn/trunk trunk --username guest --password guest</pre>
+
+        <p>
+            This will put all files in a folder named "trunk" -- it will take a while, so please be patient.
+        </p>
+
+        <h3>
+            To build and run PhET simulations using the <em>PhET Build GUI</em>
+        </h3>
+
+        <p>
+            Check out our source code with the instructions above, and then run one of these two scripts depending on
+            your operating system:
+        </p>
+
+        <dl>
+            <dt>Windows:</dt>
+            <dd>trunk/build-tools/build.bat</dd>
+            <dt>Mac, Linux:</dt>
+            <dd>trunk/build-tools/build.sh</dd>
+        </dl>
+
+        <h3>Using the <em>PhET Build GUI</em></h3>
+
+        <p style="text-align: center;">
+            <img src="/images/screenshots/phet-build-gui.png" alt="PhET Build GUI screenshot"/>
+        </p>
+
+        <ol>
+            <li>For building Flash/Flex simulations, please download <a
+                    href="/templates/build-local.properties">build-local.properties</a> to
+                trunk/build-tools/build-local.properties, and replace relevant paths with your own.
+            </li>
+            <li>Browse through and select the project (listed on the left) that contains the simulation you are looking
+                for.
+            </li>
+            <li>Select the simulation and/or locale</li>
+            <li>Press "Test". Be patient, since it can take several minutes to compile and launch the simulation.</li>
+        </ol>
 
     </div>
 </wicket:panel>
