@@ -23,9 +23,9 @@ import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.data.contribution.ContributionLevel;
 import edu.colorado.phet.website.data.contribution.ContributionSubject;
-import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.RawCSV;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
@@ -63,12 +63,12 @@ public class NCInformationPage extends WebPage {
                                 csv.addColumnValue( english.getTitle() );
                                 break;
                             case DESCRIPTION:
-                                csv.addColumnValue( lookup( session, simulation.getDescriptionKey() ) );
+                                csv.addColumnValue( StringUtils.lookup( session, simulation.getDescriptionKey() ) );
                                 break;
                             case KEYWORDS:
                                 csv.addColumnValue( generalMap( simulation.getKeywords(), new Stringifier<Keyword>() {
                                     public String stringify( Keyword keyword ) {
-                                        return lookup( session, keyword.getLocalizationKey() );
+                                        return StringUtils.lookup( session, keyword.getLocalizationKey() );
                                     }
                                 } ) );
                                 break;
@@ -83,7 +83,7 @@ public class NCInformationPage extends WebPage {
                                                 ) {
                                             return null;
                                         }
-                                        return lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
+                                        return StringUtils.lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
                                     }
                                 } ) );
                                 break;
@@ -99,7 +99,7 @@ public class NCInformationPage extends WebPage {
                                                 || category.getName().equals( "high-school" )
                                                 || category.getName().equals( "university" )
                                                 ) {
-                                            return lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
+                                            return StringUtils.lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
                                         }
                                         return null;
                                     }
@@ -157,7 +157,7 @@ public class NCInformationPage extends WebPage {
                             case SUBJECT:
                                 csv.addColumnValue( generalMap( contribution.getSubjects(), new Stringifier<ContributionSubject>() {
                                     public String stringify( ContributionSubject cSubject ) {
-                                        return lookup( session, cSubject.getSubject().getTranslationKey() );
+                                        return StringUtils.lookup( session, cSubject.getSubject().getTranslationKey() );
                                     }
                                 } ) );
                                 break;
@@ -167,7 +167,7 @@ public class NCInformationPage extends WebPage {
                             case EDUCATION_LEVEL:
                                 csv.addColumnValue( generalMap( contribution.getLevels(), new Stringifier<ContributionLevel>() {
                                     public String stringify( ContributionLevel level ) {
-                                        return lookup( session, level.getLevel().getTranslationKey() );
+                                        return StringUtils.lookup( session, level.getLevel().getTranslationKey() );
                                     }
                                 } ) );
                                 break;
@@ -199,10 +199,6 @@ public class NCInformationPage extends WebPage {
         }} );
 
         getResponse().setContentType( "text/csv" );
-    }
-
-    private String lookup( Session session, String key ) {
-        return PhetLocalizer.get().getDefaultString( session, key, "", true ).replace( "&#039;", "'" ).replace( "&quot;", "\"" ).replace( "&amp;", "&" ).replace( "&lt;", "<" ).replace( "&gt;", ">" );
     }
 
     private <T> String generalMap( Collection collection, Stringifier<T> stringifier ) {

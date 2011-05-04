@@ -220,6 +220,17 @@ public class StringUtils {
         }
     }
 
+    /**
+     * Looks up an English string from a translation key and a session, and unescapes common characters
+     *
+     * @param session Session
+     * @param key     Translation key
+     * @return English default string
+     */
+    public static String lookup( Session session, String key ) {
+        return PhetLocalizer.get().getDefaultString( session, key, "", true ).replace( "&#039;", "'" ).replace( "&quot;", "\"" ).replace( "&amp;", "&" ).replace( "&lt;", "<" ).replace( "&gt;", ">" );
+    }
+
     private static class StatusTask implements HibernateTask {
         public int status;
         private final int translationId;
