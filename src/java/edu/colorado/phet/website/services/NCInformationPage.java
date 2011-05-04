@@ -12,7 +12,6 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
@@ -76,14 +75,14 @@ public class NCInformationPage extends WebPage {
                                 csv.addColumnValue( generalMap( simulation.getCategories(), new Stringifier<Category>() {
                                     public String stringify( Category category ) {
                                         if (
-                                                category.getName().equals( "elementary-school" )
-                                                || category.getName().equals( "middle-school" )
-                                                || category.getName().equals( "high-school" )
-                                                || category.getName().equals( "university" )
+                                                category.getName().equals( Category.ELEMENTARY_SCHOOL )
+                                                || category.getName().equals( Category.MIDDLE_SCHOOL )
+                                                || category.getName().equals( Category.HIGH_SCHOOL )
+                                                || category.getName().equals( Category.UNIVERSITY )
                                                 ) {
                                             return null;
                                         }
-                                        return StringUtils.lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
+                                        return StringUtils.lookup( session, category.getLocalizationKey() );
                                     }
                                 } ) );
                                 break;
@@ -94,12 +93,12 @@ public class NCInformationPage extends WebPage {
                                 csv.addColumnValue( generalMap( simulation.getCategories(), new Stringifier<Category>() {
                                     public String stringify( Category category ) {
                                         if (
-                                                category.getName().equals( "elementary-school" )
-                                                || category.getName().equals( "middle-school" )
-                                                || category.getName().equals( "high-school" )
-                                                || category.getName().equals( "university" )
+                                                category.getName().equals( Category.ELEMENTARY_SCHOOL )
+                                                || category.getName().equals( Category.MIDDLE_SCHOOL )
+                                                || category.getName().equals( Category.HIGH_SCHOOL )
+                                                || category.getName().equals( Category.UNIVERSITY )
                                                 ) {
-                                            return StringUtils.lookup( session, category.getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey() );
+                                            return StringUtils.lookup( session, category.getLocalizationKey() );
                                         }
                                         return null;
                                     }

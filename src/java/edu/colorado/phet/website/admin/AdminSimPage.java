@@ -290,7 +290,7 @@ public class AdminSimPage extends AdminPage {
             add( new ListView<Category>( "categories", myCategories ) {
                 protected void populateItem( ListItem<Category> item ) {
                     final Category category = item.getModelObject();
-                    item.add( new Label( "category-english", new ResourceModel( category.getNavLocation( getNavMenu() ).getLocalizationKey() ) ) );
+                    item.add( new Label( "category-english", new ResourceModel( category.getLocalizationKey() ) ) );
                     item.add( new Link( "category-remove" ) {
                         public void onClick() {
                             boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
@@ -373,7 +373,7 @@ public class AdminSimPage extends AdminPage {
             public CategoryDropDownChoice( String id, List<Category> allCategories ) {
                 super( id, new Model(), allCategories, new IChoiceRenderer() {
                     public Object getDisplayValue( Object object ) {
-                        return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( ( (Category) object ).getNavLocation( getNavMenu() ).getLocalizationKey(), AdminSimPage.this );
+                        return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( ( (Category) object ).getLocalizationKey(), AdminSimPage.this );
                     }
 
                     public String getIdValue( Object object, int index ) {

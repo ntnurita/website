@@ -138,6 +138,34 @@ public class Simulation implements Serializable, IntId {
         return getType() == 1;
     }
 
+    public GradeLevel getMinGradeLevel() {
+        GradeLevel result = GradeLevel.getHighestGradeLevel();
+        for ( Object o : categories ) {
+            Category category = (Category) o;
+            if ( category.isGradeLevelCategory() ) {
+                GradeLevel level = GradeLevel.getGradeLevelFromCategory( category );
+                if ( level.compareTo( result ) < 0 ) {
+                    result = level;
+                }
+            }
+        }
+        return result;
+    }
+
+    public GradeLevel getMaxGradeLevel() {
+        GradeLevel result = GradeLevel.getLowestGradeLevel();
+        for ( Object o : categories ) {
+            Category category = (Category) o;
+            if ( category.isGradeLevelCategory() ) {
+                GradeLevel level = GradeLevel.getGradeLevelFromCategory( category );
+                if ( level.compareTo( result ) > 0 ) {
+                    result = level;
+                }
+            }
+        }
+        return result;
+    }
+
     // getters and setters
 
     public int getId() {

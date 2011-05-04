@@ -156,7 +156,7 @@ public class AdminCategoryPage extends AdminPage {
             add( new Label( "category-title", "Root" ) );
         }
         else {
-            add( new LocalizedText( "category-title", category.getNavLocation( getNavMenu() ).getLocalizationKey() ) );
+            add( new LocalizedText( "category-title", category.getLocalizationKey() ) );
         }
 
         items = new LinkedList<SimOrderItem>();
@@ -173,7 +173,7 @@ public class AdminCategoryPage extends AdminPage {
         final List<CategoryOrderItem> catItems = new LinkedList<CategoryOrderItem>();
 
         for ( Category cat : categories ) {
-            catItems.add( new CategoryOrderItem( cat, StringUtils.getDefaultStringDirect( getHibernateSession(), cat.getNavLocation( getNavMenu() ).getLocalizationKey() ) ) );
+            catItems.add( new CategoryOrderItem( cat, StringUtils.getDefaultStringDirect( getHibernateSession(), cat.getLocalizationKey() ) ) );
         }
 
         add( new JustOrderList<CategoryOrderItem>( "categories", getPageContext(), catItems ) {

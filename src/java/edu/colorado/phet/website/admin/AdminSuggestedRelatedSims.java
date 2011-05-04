@@ -110,7 +110,7 @@ public class AdminSuggestedRelatedSims extends AdminPage {
                         if ( categories.length() > 0 ) {
                             categories += ", ";
                         }
-                        categories += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Category) o ).getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey(), PhetWicketApplication.getDefaultLocale() );
+                        categories += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Category) o ).getLocalizationKey(), PhetWicketApplication.getDefaultLocale() );
                     }
                 }
                 return new Score( lsim, count, notes, keywords, categories );

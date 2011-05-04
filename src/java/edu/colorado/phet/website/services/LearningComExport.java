@@ -11,6 +11,8 @@ import org.apache.wicket.markup.html.WebPage;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.data.Category;
+import edu.colorado.phet.website.data.GradeLevel;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -65,13 +67,26 @@ public class LearningComExport extends WebPage {
                     if ( !simulation.isVisible() ) {
                         continue;
                     }
-                    csv.addColumnValue( simulation.getName() );
+                    csv.addColumnValue( simulation.getEnglishSimulation().getTitle() ); // simulation name
 
-                    csv.addColumnValue( "" );// TODO: product high grade
-                    csv.addColumnValue( "" );// TODO: product low grade
+                    Set<String> mainCategories = new HashSet<String>();
+                    Set<String> parentCategories = new HashSet<String>();
 
-                    csv.addColumnValue( "" );// TODO: sequence title
-                    csv.addColumnValue( "" );// TODO: unit title
+                    for ( Object o : simulation.getCategories() ) {
+                        Category category = (Category) o;
+                        if ( !category.isGradeLevelCategory() ) {
+                            mainCategories.add( StringUtils.lookup( session, category.getLocalizationKey() ) );
+                            if ( !category.getParent().isRoot() ) {
+                                parentCategories.add( StringUtils.lookup( session, category.getParent().getLocalizationKey() ) );
+                            }
+                        }
+                    }
+
+                    csv.addColumnValue( getHighGradeLevelString( simulation.getMaxGradeLevel() ) );// high grade level
+                    csv.addColumnValue( getLowGradeLevelString( simulation.getMinGradeLevel() ) );// low grade level
+
+                    csv.addColumnValue( joinDelimited( parentCategories ) ); // sequence title
+                    csv.addColumnValue( joinDelimited( mainCategories ) ); // unit title
 
                     csv.addColumnValue( StringUtils.makeUrlAbsolute( simulation.getThumbnailUrl() ) ); // thumbnail url
                     csv.addColumnValue( StringUtils.lookup( session, simulation.getDescriptionKey() ) ); // English desc
@@ -110,6 +125,36 @@ public class LearningComExport extends WebPage {
         }} );
 
         getResponse().setContentType( "text/csv" );
+    }
+
+    private String getHighGradeLevelString( GradeLevel level ) {
+        switch( level ) {
+            case ELEMENTARY_SCHOOL:
+                return "5";
+            case MIDDLE_SCHOOL:
+                return "8";
+            case HIGH_SCHOOL:
+                return "12";
+            case UNIVERSITY:
+                return "U";
+            default:
+                return "?";
+        }
+    }
+
+    private String getLowGradeLevelString( GradeLevel level ) {
+        switch( level ) {
+            case ELEMENTARY_SCHOOL:
+                return "4";
+            case MIDDLE_SCHOOL:
+                return "6";
+            case HIGH_SCHOOL:
+                return "9";
+            case UNIVERSITY:
+                return "U";
+            default:
+                return "?";
+        }
     }
 
     private static String joinDelimited( Collection<String> strings ) {

@@ -5,12 +5,15 @@
 package edu.colorado.phet.website.data;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.menu.NavMenu;
@@ -61,6 +64,22 @@ public class Category implements Serializable, IntId {
      * Parent category (root category will have this be null)
      */
     private Category parent;
+
+    /*---------------------------------------------------------------------------*
+    * grade-level category names
+    *----------------------------------------------------------------------------*/
+
+    public static final String ELEMENTARY_SCHOOL = "elementary-school";
+    public static final String MIDDLE_SCHOOL = "middle-school";
+    public static final String HIGH_SCHOOL = "high-school";
+    public static final String UNIVERSITY = "university";
+
+    private static final Set<String> GRADE_LEVEL_CATEGORY_NAMES = new HashSet<String>() {{
+        add( ELEMENTARY_SCHOOL );
+        add( MIDDLE_SCHOOL );
+        add( HIGH_SCHOOL );
+        add( UNIVERSITY );
+    }};
 
     private static final Logger logger = Logger.getLogger( Category.class.getName() );
 
@@ -119,7 +138,7 @@ public class Category implements Serializable, IntId {
         logger.debug( "categoriesString = " + categoriesString );
 
         // strip off the trailing slash if it exists
-        String strippedCategoriesString = (categoriesString.endsWith( "/" ) ? categoriesString.substring( 0, categoriesString.length() - 1 ) : categoriesString);
+        String strippedCategoriesString = ( categoriesString.endsWith( "/" ) ? categoriesString.substring( 0, categoriesString.length() - 1 ) : categoriesString );
 
         String[] categories = strippedCategoriesString.split( "/" );
         int categoryIndex = categories.length - 1;
@@ -148,7 +167,18 @@ public class Category implements Serializable, IntId {
     }
 
     public NavLocation getNavLocation( NavMenu menu ) {
+        // TODO: check and see whether we ever use a different menu!
+
+        // TODO: check this usage and compare it for getLocalizationKey usages
         return menu.getLocationByKey( getName() );
+    }
+
+    public String getLocalizationKey() {
+        return getNavLocation( PhetWicketApplication.get().getMenu() ).getLocalizationKey();
+    }
+
+    public String getBreadcrumbLocalizationKey() {
+        return getNavLocation( PhetWicketApplication.get().getMenu() ).getBreadcrumbLocalizationKey();
     }
 
     /**
@@ -188,6 +218,13 @@ public class Category implements Serializable, IntId {
         else {
             return getParent().getBaseName();
         }
+    }
+
+    /**
+     * @return Whether this category also represents a grade-level category (Elementary school, etc.)
+     */
+    public boolean isGradeLevelCategory() {
+        return GRADE_LEVEL_CATEGORY_NAMES.contains( getName() );
     }
 
     @Override

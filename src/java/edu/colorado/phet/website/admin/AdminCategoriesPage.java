@@ -64,7 +64,7 @@ public class AdminCategoriesPage extends AdminPage {
                     titleComponent = new Label( "title", "Root" );
                 }
                 else {
-                    titleComponent = new LocalizedText( "title", category.getNavLocation( getNavMenu() ).getLocalizationKey() );
+                    titleComponent = new LocalizedText( "title", category.getLocalizationKey() );
                 }
 
                 Link categoryLink = new Link( "category-link" ) {
@@ -178,7 +178,7 @@ public class AdminCategoriesPage extends AdminPage {
                             return "Root";
                         }
                         else {
-                            return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( cat.getNavLocation( getNavMenu() ).getLocalizationKey(), AdminCategoriesPage.this );
+                            return PhetWicketApplication.get().getResourceSettings().getLocalizer().getString( cat.getLocalizationKey(), AdminCategoriesPage.this );
                         }
                     }
 
