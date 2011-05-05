@@ -9,12 +9,21 @@
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/java/hibernate.cfg.xml" />
       </configuration>
     </facet>
+    <facet type="scala" name="Scala">
+      <configuration>
+        <option name="compilerLibraryLevel" value="Global" />
+        <option name="compilerLibraryName" value="scala-compiler-2.8.1" />
+        <option name="explainTypeErrors" value="true" />
+        <option name="maximumHeapSize" value="1024" />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scala" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/contrib/jquery-autocomplete" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -35,13 +44,10 @@
     <orderEntry type="module-library">
       <library name="PhET Website Dependency JAR">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../website-deps-50059.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../website-deps-46946.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../../svn/trunk/build-tools/src" />
-          <root url="file://$MODULE_DIR$/../../svn/trunk/simulations-java/common/phetcommon/src" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -171,6 +177,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="scala-library-2.8.1" level="application" />
   </component>
 </module>
 
