@@ -20,8 +20,27 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.p4", "The text surrounded with <a {0}> and </a> will be linked to the main PhET site, and the text surrounded with <a {1}> and </a> will be linked to a page about Java technical support, and text surrounded with <a {2}> and </a> will be linked to a page about Flash technical support." );
 
         addString( "about.source-code.header" );
-        addString( "about.source-code.location" );
-        addString( "about.source-code.flash-simulations" );
+        addString( "about.source-code.browseOnline.header" );
+        addString( "about.source-code.browseOnline.visitUrlStep", "{0} will be replaced by a link to our source code" );
+        addString( "about.source-code.browseOnline.loginStep", "{0} will be replaced by the guest username, and {1} will be replaced by the guest password" );
+        addString( "about.source-code.navigating.header" );
+        addString( "about.source-code.navigating.structureReadme" );
+        addString( "about.source-code.navigating.javaSims" );
+        addString( "about.source-code.navigating.flashSims" );
+        addString( "about.source-code.navigating.flexSims" );
+        addString( "about.source-code.navigating.projectOrganization" );
+        addString( "about.source-code.checkout.header" );
+        addString( "about.source-code.checkout.useTheFollowing" );
+        addString( "about.source-code.checkout.result" );
+        addString( "about.source-code.buildAndRun.header" );
+        addString( "about.source-code.buildAndRun.instructions" );
+        addString( "about.source-code.buildAndRun.windows" );
+        addString( "about.source-code.buildAndRun.macLinux" );
+        addString( "about.source-code.usingPBG.header" );
+        addString( "about.source-code.usingPBG.flashFlex" );
+        addString( "about.source-code.usingPBG.browseProjects" );
+        addString( "about.source-code.usingPBG.selectSimulationLocale" );
+        addString( "about.source-code.usingPBG.pressTest" );
 
         addString( "about.legend.header" );
         addString( "about.legend.guidance-recommended" );

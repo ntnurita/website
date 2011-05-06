@@ -16,7 +16,26 @@ public class AboutSourceCodePanel extends PhetPanel {
     public AboutSourceCodePanel( String id, PageContext context ) {
         super( id, context );
 
-        // TODO: deprecate the strings about.source-code.location, about.source-code.flash-simulations
+        add( new LocalizedText( "browseOnline-visitUrlStep", "about.source-code.browseOnline.visitUrlStep", new Object[]{
+                "<a href=\"https://phet.unfuddle.com/a#/repositories/23262/browse?path=/trunk\">https://phet.unfuddle.com/a#/repositories/23262/browse?path=/trunk</a>"
+        } ) );
+
+        add( new LocalizedText( "browseOnline-loginStep", "about.source-code.browseOnline.loginStep", new Object[]{
+                "guest", // username
+                "guest"
+        } ) );
+
+        add( new LocalizedText( "checkout-header", "about.source-code.checkout.header", new Object[]{
+                "href=\"http://subversion.apache.org/\""
+        } ) );
+
+        add( new LocalizedText( "build-and-run", "about.source-code.buildAndRun.header" ) );
+
+        add( new LocalizedText( "using-pbg", "about.source-code.usingPBG.header" ) );
+
+        add( new LocalizedText( "pbg-building-flash-flex", "about.source-code.usingPBG.flashFlex", new Object[]{
+                "<a href=\"/templates/build-local.properties\">build-local.properties</a>"
+        } ) );
 
 //        add( new LocalizedText( "source-code-location", "about.source-code.location", new Object[]{
 //                "href=\"https://phet.unfuddle.com/projects/9404/repositories/23262/browse/head/trunk\"",

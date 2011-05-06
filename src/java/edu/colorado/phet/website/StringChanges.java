@@ -23,18 +23,30 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
-        addString( session, "home.help", "Help" );
-        addString( session, "faq.header", "For troubleshooting problems, please visit our <a {0}>Troubleshooting page</a>." );
+        deleteString( session, "about.source-code.location" );
+        deleteString( session, "about.source-code.flash-simulations" );
 
-        addString( session, "dropdown.null", "Choose One" );
-
-        addString( session, "contribution.manage.myContributions", "My Contributions" );
-        addString( session, "contribution.manage.list.title", "Title" );
-        addString( session, "contribution.manage.list.authors", "Authors" );
-        addString( session, "contribution.manage.list.actions", "Actions" );
-        addString( session, "contribution.manage.list.edit", "edit" );
-        addString( session, "contribution.manage.list.delete", "delete" );
-        addString( session, "contribution.manage.list.confirmDelete", "Are you sure you want to permanently delete this activity?" );
+        addString( session, "about.source-code.browseOnline.header", "To browse PhET source code online" );
+        addString( session, "about.source-code.browseOnline.visitUrlStep", "Visit the URL {0}" );
+        addString( session, "about.source-code.browseOnline.loginStep", "Enter username={0} and password={1}" );
+        addString( session, "about.source-code.navigating.header", "Navigating our source code" );
+        addString( session, "about.source-code.navigating.structureReadme", "README.txt describes the main folder structure. Simulations can be found under these folders:" );
+        addString( session, "about.source-code.navigating.javaSims", "Java simulations: simulations-java/simulations" );
+        addString( session, "about.source-code.navigating.flashSims", "Flash simulations: simulations-flash/simulations" );
+        addString( session, "about.source-code.navigating.flexSims", "Flex simulations: simulations-flex/simulations" );
+        addString( session, "about.source-code.navigating.projectOrganization", "PhET simulations are organized into projects, each of which can contain one or more related simulations. For example, the \"nuclear-physics\" project contains 4 simulations, including \"Alpha Decay\" and \"Radioactive Dating Game\"." );
+        addString( session, "about.source-code.checkout.header", "To checkout PhET's source code repository using <a {0}>Subversion</a> on the command-line" );
+        addString( session, "about.source-code.checkout.useTheFollowing", "Use the following command:" );
+        addString( session, "about.source-code.checkout.result", "This will put all files in a folder named \"trunk\" -- it will take a while, so please be patient." );
+        addString( session, "about.source-code.buildAndRun.header", "To build and run PhET simulations using the <em>PhET Build GUI</em>" );
+        addString( session, "about.source-code.buildAndRun.instructions", "Check out our source code with the instructions above, and then run one of these two scripts depending on your operating system:" );
+        addString( session, "about.source-code.buildAndRun.windows", "Windows:" );
+        addString( session, "about.source-code.buildAndRun.macLinux", "Mac, Linux:" );
+        addString( session, "about.source-code.usingPBG.header", "Using the <em>PhET Build GUI</em>" );
+        addString( session, "about.source-code.usingPBG.flashFlex", "For building Flash/Flex simulations, please download {0} to trunk/build-tools/build-local.properties, and replace relevant paths with your own." );
+        addString( session, "about.source-code.usingPBG.browseProjects", "Browse through and select the project (listed on the left) that contains the simulation you are looking for." );
+        addString( session, "about.source-code.usingPBG.selectSimulationLocale", "Select the simulation and/or locale" );
+        addString( session, "about.source-code.usingPBG.pressTest", "Press \"Test\". Be patient, since it can take several minutes to compile and launch the simulation." );
 
         session.close();
     }
