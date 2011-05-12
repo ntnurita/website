@@ -177,6 +177,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor LEARNING_COM = new LogoSponsor(
+            "Learning.com",
+            "http://www.learning.com/",
+            Images.LOGO_LEARNING_COM, "padding: 5px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -200,6 +208,7 @@ public abstract class Sponsor implements Serializable {
             EJ_TECHNOLOGIES,
             IDAHO_DIGITAL_LEARNING,
             COMPASS_LEARNING,
+            LEARNING_COM,
             YOU
     };
 
