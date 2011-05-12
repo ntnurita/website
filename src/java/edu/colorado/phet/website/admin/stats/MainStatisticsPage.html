@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title wicket:id="page-title">[PREVIEW] DocPage</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+            .admin-panel {
+                padding: 10px;
+            }
+        </style>
+    </wicket:head>
+</head>
+<body wicket:message="dir:language.dir">
+
+<wicket:extend>
+    <div class="admin-panel">
+        <h2>Statistics</h2>
+
+        <p wicket:id="sim-count">Total visible simulations: #</p>
+        <p wicket:id="activity-count">Total activities: #</p>
+        <p wicket:id="phet-activity-count">Total activities: #</p>
+        <p wicket:id="total-sim-languages">Number of languages that sims are translated into: #</p>
+        <p wicket:id="total-sim-translations">Number of sim translations (including English): #</p>
+    </div>
+</wicket:extend>
+
+</body>
+</html>
+
