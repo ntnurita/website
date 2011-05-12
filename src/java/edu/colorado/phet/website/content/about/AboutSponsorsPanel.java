@@ -4,10 +4,7 @@
 
 package edu.colorado.phet.website.content.about;
 
-import org.apache.wicket.behavior.HeaderContributor;
-
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -17,8 +14,6 @@ import edu.colorado.phet.website.util.links.RawLinkable;
 public class AboutSponsorsPanel extends PhetPanel {
     public AboutSponsorsPanel( String id, PageContext context ) {
         super( id, context );
-
-        //add( HeaderContributor.forCss( CSS.SPONSORS ) );
     }
 
     public static String getKey() {

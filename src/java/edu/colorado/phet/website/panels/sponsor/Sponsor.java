@@ -162,9 +162,17 @@ public abstract class Sponsor implements Serializable {
     }};
 
     public static Sponsor IDAHO_DIGITAL_LEARNING = new LogoSponsor(
-            "idaho-digital-learning",
+            "Idaho Digital Learning",
             "http://www.idahodigitallearning.org/",
             Images.LOGO_IDAHO_DIGITAL_LEARNING, "padding: 8px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
+    public static Sponsor COMPASS_LEARNING = new LogoSponsor(
+            "CompassLearning",
+            "http://www.compasslearning.com/",
+            Images.LOGO_COMPASS_LEARNING, "padding: 5px;" ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
     }};
@@ -191,6 +199,7 @@ public abstract class Sponsor implements Serializable {
             JET_BRAINS,
             EJ_TECHNOLOGIES,
             IDAHO_DIGITAL_LEARNING,
+            COMPASS_LEARNING,
             YOU
     };
 
