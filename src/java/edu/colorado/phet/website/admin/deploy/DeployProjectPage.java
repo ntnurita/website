@@ -12,7 +12,7 @@ import org.apache.wicket.PageParameters;
 
 import edu.colorado.phet.buildtools.BuildLocalProperties;
 import edu.colorado.phet.buildtools.JARGenerator;
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.WebsiteProperties;
 import edu.colorado.phet.website.data.Project;

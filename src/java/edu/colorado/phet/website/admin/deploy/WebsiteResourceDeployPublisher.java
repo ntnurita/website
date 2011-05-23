@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import edu.colorado.phet.buildtools.resource.ResourceDeployUtils;
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.IProguardKeepClass;
 import edu.colorado.phet.website.data.Project;
 

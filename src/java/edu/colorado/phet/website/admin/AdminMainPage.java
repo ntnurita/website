@@ -27,7 +27,7 @@ import org.apache.wicket.util.value.ValueMap;
 import org.hibernate.Session;
 
 import edu.colorado.phet.buildtools.BuildLocalProperties;
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.buildtools.util.PhetJarSigner;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;

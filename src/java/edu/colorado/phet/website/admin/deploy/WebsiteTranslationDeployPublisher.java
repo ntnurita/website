@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 import org.apache.log4j.Logger;
 
 import edu.colorado.phet.buildtools.JARGenerator;
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.website.data.Project;
 
 /**

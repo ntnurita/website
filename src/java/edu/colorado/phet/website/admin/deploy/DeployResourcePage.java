@@ -13,7 +13,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.admin.AdminPage;
 import edu.colorado.phet.website.components.RawLabel;

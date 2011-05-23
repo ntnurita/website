@@ -22,7 +22,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.buildtools.util.ProjectPropertiesFile;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;

@@ -17,7 +17,7 @@ import javax.mail.MessagingException;
 
 import org.apache.log4j.Logger;
 
-import edu.colorado.phet.buildtools.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.util.EmailUtils;
