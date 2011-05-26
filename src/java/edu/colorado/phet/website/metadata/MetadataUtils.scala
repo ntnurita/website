@@ -16,6 +16,7 @@ import xml.Node
  * Utilities for metadata in general, and construction of the master format
  */
 object MetadataUtils {
+
   def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss")
 
   /**
