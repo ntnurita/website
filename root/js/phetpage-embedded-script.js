@@ -2,6 +2,7 @@ var _gaq = _gaq || [];
 _gaq.push( ['_setAccount', 'UA-5033201-1'] );
 _gaq.push( ['_setDomainName', 'phet.colorado.edu'] );
 _gaq.push( ['_trackPageview'] );
+_gaq.push( ['_trackPageLoadTime'] );
 _gaq.push( ['b._setAccount', 'UA-5033010-1'] );
 _gaq.push( ['b._setDomainName', 'phet.colorado.edu'] );
 _gaq.push( ['b._trackPageview'] );
