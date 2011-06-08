@@ -72,7 +72,7 @@ object MetadataUtils {
     // TODO: keyword/topics/controlled vocab/categories  --- check encoding
 
     val xml =
-    <phet:simulation>
+    <simulation>
       <project id={project.getId.toString} name={project.getName}/>
       <simulation id={sim.getId.toString} name={sim.getName}/>
       <technology type={project.getType.toString}/>
@@ -89,7 +89,7 @@ object MetadataUtils {
       <maxGradeLevel>{sim.getMaxGradeLevel}</maxGradeLevel>
       <createTime>{convertDate(sim.getCreateTime)}</createTime>
       <updateTime>{convertDate(sim.getUpdateTime)}</updateTime>
-    </phet:simulation>
+    </simulation>
 
     xml.toString
   }
