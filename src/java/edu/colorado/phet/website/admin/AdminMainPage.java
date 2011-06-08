@@ -35,6 +35,7 @@ import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.metadata.MetadataUtils;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.EmailUtils;
@@ -265,6 +266,13 @@ public class AdminMainPage extends AdminPage {
                 }
                 logger.info( "C" );
 
+            }
+        } );
+
+        add( new Link( "debug-writemetadata" ) {
+            @Override
+            public void onClick() {
+                MetadataUtils.writeSimulations();
             }
         } );
 

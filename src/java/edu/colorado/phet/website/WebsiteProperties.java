@@ -27,6 +27,7 @@ public class WebsiteProperties {
     public static final String HTTPS_AVAILABLE = "https-available";
 
     public static final String WEB_HOSTNAME = "web-hostname";
+    public static final String SIMULATION_METADATA = "simulation-metadata";
 
     public WebsiteProperties( ServletContext servletContext ) {
         this.servletContext = servletContext;
@@ -79,6 +80,10 @@ public class WebsiteProperties {
 
     public String getWebHostname() {
         return getParameter( WEB_HOSTNAME );
+    }
+
+    public File getSimulationMetadataDir() {
+        return new File( getParameter( SIMULATION_METADATA ) );
     }
 
     /**

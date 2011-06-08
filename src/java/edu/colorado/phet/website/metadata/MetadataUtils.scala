@@ -11,6 +11,9 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils.stringToLocale
 import edu.colorado.phet.website.util.PhetRequestCycle
 import edu.colorado.phet.website.util.StringUtils.makeUrlAbsolute
 import xml.Node
+import edu.colorado.phet.website.util.ScalaHibernateUtils._
+import edu.colorado.phet.common.phetcommon.util.FileUtils
+import java.io.File
 
 /**
  * Utilities for metadata in general, and construction of the master format
@@ -18,6 +21,21 @@ import xml.Node
 object MetadataUtils {
 
   def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss")
+
+  val MasterFormatName = "phet-simulation";
+
+  def writeSimulations() {
+    wrapTransaction(session => {
+      val simulations = session.createQuery("select s from Simulation as s").list.map(_.asInstanceOf[Simulation])
+
+      val metadataDir = PhetWicketApplication.get().getWebsiteProperties.getSimulationMetadataDir
+
+      for ( sim <- simulations.filter(_.isVisible) ) {
+        val metadataString: String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + MetadataUtils.simulationToMasterFormat(sim)
+        FileUtils.writeString(new File(metadataDir, sim.getName + ".xml"), metadataString)
+      }
+    })
+  }
 
   /**
    * Returns an XML fragment that represents a simulation in our internal "master" metadata format.
