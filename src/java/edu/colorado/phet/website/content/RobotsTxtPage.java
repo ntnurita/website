@@ -23,7 +23,7 @@ public class RobotsTxtPage extends WebPage {
         String response;
 
         if ( server.equals( PhetWicketApplication.getProductionServerName() ) ) {
-            response = "User-agent: *\nDisallow:";
+            response = "User-agent: *\nDisallow: /en/unsubscribe";
         }
         else {
             response = "User-agent: *\nDisallow: /";
