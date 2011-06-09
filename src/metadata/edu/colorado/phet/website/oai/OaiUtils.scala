@@ -1,5 +1,5 @@
 package edu.colorado.phet.website.oai
 
 object OaiUtils {
-  val MasterFormatName = "phet_simulation_master"
+  val MasterFormatName = "phet-simulation"
 }
