@@ -58,7 +58,6 @@ object MetadataUtils {
     // turn a string key into a list of string elements (translated into each website translation, but only presented if is a unique translation)
     def translateToList(key: String): Seq[Node] = {
       val englishString = translate(key, English)
-      println(englishString)
       for ( locale <- webLocales;
             translatedString = translate(key, locale)
             if ( locale == English || translatedString != englishString ) ) // TODO ignore duplicates of English

@@ -7,7 +7,7 @@ import org.dlese.dpc.xml.XMLFormatConverter
  * Converts our master format simulation data to Dublin Core XML
  */
 class DublinCoreConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1307592638000L
+  def lastModified(p1: ServletContext) = 1307600537000L
 
   def getFromFormat = OaiUtils.MasterFormatName
 
