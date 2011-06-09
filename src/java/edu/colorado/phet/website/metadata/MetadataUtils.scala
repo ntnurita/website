@@ -14,6 +14,7 @@ import xml.Node
 import edu.colorado.phet.website.util.ScalaHibernateUtils._
 import edu.colorado.phet.common.phetcommon.util.FileUtils
 import java.io.File
+import edu.colorado.phet.website.content.simulations.SimulationPage
 
 /**
  * Utilities for metadata in general, and construction of the master format
@@ -89,6 +90,7 @@ object MetadataUtils {
       <maxGradeLevel>{sim.getMaxGradeLevel}</maxGradeLevel>
       <createTime>{convertDate(sim.getCreateTime)}</createTime>
       <updateTime>{convertDate(sim.getUpdateTime)}</updateTime>
+      <simPageLink>{makeUrlAbsolute(SimulationPage.getLinker(sim).getDefaultRawUrl)}</simPageLink>
     </simulation>
 
     xml.toString

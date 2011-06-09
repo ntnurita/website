@@ -8,12 +8,11 @@ import xml.{NodeSeq, XML}
 class SimulationRecord(str: String) {
   val xml = XML.loadString(str)
 
-  println("filtered: " + ( ( xml \ "title" ) \ "string" ).filter(node => ( node \ "@locale" ).text == "en"))
-  println("english title: " + englishString(xml \ "title"))
+  def englishTitle = englishString(xml \ "title")
 
-  // TODO: implement
+  def englishDescrption = englishString(xml \ "description")
 
-  def englishTitle = "Fake Title"
+  def simPageLink = ( xml \ "simPageLink" ).text
 
   def englishString(node: NodeSeq): String = ( node \ "string" ).filter(node => ( node \ "@locale" ).text == "en").text
 }

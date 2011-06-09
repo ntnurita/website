@@ -19,13 +19,19 @@ class DublinCoreConverter extends XMLFormatConverter {
 
     // TODO: complete this
 
+    // TODO: identifier
+    // TODO: type
+    // TODO: format
+    // TODO: rights?
+    // TODO: subject
+    // TODO: language
+
     <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-      <dc:identifier>fix-identifier</dc:identifier>
+      <dc:identifier>{record.simPageLink}</dc:identifier>
       <dc:title>{record.englishTitle}</dc:title>
-      <dc:description>This page includes the encyclopedia entries for elliptic integrals both complete and incomplete.</dc:description>
-      <dc:publisher>Wolfram Research, Inc.</dc:publisher>
-      <dc:rights>Copyright © 1998-2009 Wolfram Research, Inc.</dc:rights>
-      <dc:identifier>hdl:2200/20090818165922890T</dc:identifier>
+      <dc:description>{record.englishDescrption}</dc:description>
+      <dc:publisher>PhET Interactive Simulations</dc:publisher>
+      <dc:rights>© 2011 University of Colorado</dc:rights>
       <dc:type>Image/Image Set</dc:type>
       <dc:type>Audio/Visual</dc:type>
       <dc:type>Text</dc:type>
