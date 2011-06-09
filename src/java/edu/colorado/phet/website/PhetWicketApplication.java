@@ -76,7 +76,7 @@ public class PhetWicketApplication extends WebApplication {
     private static PhetWicketApplication instance = null;
 
     // TODO: flesh out and improve thread-safeness of translations part
-    private List<Translation> translations = new LinkedList<Translation>();
+    private List<Translation> translations = new LinkedList<Translation>(); // NOTE: seems to be NON-ENGLISH translations TODO make this include English, and handle correctly
 
     private static final Logger logger = Logger.getLogger( PhetWicketApplication.class.getName() );
 

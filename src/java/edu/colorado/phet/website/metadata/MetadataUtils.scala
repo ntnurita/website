@@ -50,7 +50,7 @@ object MetadataUtils {
     val English = PhetWicketApplication.getDefaultLocale // TODO: put this renaming somewhere else, since it is globally useful
 
     // list of all website translation locales (NOT sim translation locales)
-    val webLocales = PhetWicketApplication.get().getTranslationLocaleStrings.map(str => stringToLocale(str))
+    val webLocales = English :: PhetWicketApplication.get().getTranslationLocaleStrings.map(str => stringToLocale(str)).toList
 
     // translate a string with a locale
     def translate(key: String, locale: Locale): String = PhetLocalizer.get().getBestString(PhetRequestCycle.get().getHibernateSession, key, locale)
@@ -58,9 +58,10 @@ object MetadataUtils {
     // turn a string key into a list of string elements (translated into each website translation, but only presented if is a unique translation)
     def translateToList(key: String): Seq[Node] = {
       val englishString = translate(key, English)
+      println(englishString)
       for ( locale <- webLocales;
             translatedString = translate(key, locale)
-            if ( translatedString != englishString || locale == English ) ) // ignore duplicates of English
+            if ( locale == English || translatedString != englishString ) ) // TODO ignore duplicates of English
       yield { <string locale={localeToString(locale)}>{translatedString}</string> }
     }
 
