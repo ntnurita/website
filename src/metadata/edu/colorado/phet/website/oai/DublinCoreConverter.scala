@@ -17,8 +17,6 @@ class DublinCoreConverter extends XMLFormatConverter {
 
     val record = new SimulationRecord(masterXML)
 
-    // TODO: complete this
-
     // TODO: dc:subject (can we include keyword information?)
 
     // note: no dc:date element is used currently, as there would be no unambiguous meaning to this
