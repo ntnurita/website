@@ -7,7 +7,7 @@ import org.dlese.dpc.xml.XMLFormatConverter
  * Converts our master format simulation data to Dublin Core XML
  */
 class DublinCoreConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1307600537000L
+  def lastModified(p1: ServletContext) = 1307942973000L
 
   def getFromFormat = OaiUtils.MasterFormatName
 
@@ -19,10 +19,9 @@ class DublinCoreConverter extends XMLFormatConverter {
 
     // TODO: complete this
 
-    // TODO: dc:subject
-    // TODO: language (s)? I saw an example with multiple descriptions, later ones with xml:lang="" set
-    // TODO: date? see W3CDTF format
+    // TODO: dc:subject (can we include keyword information?)
 
+    // note: no dc:date element is used currently, as there would be no unambiguous meaning to this
     // type uses InteractiveResource from http://dublincore.org/documents/dcmi-type-vocabulary/, and also "Simulation" as our general type
     // languages encoded in RFC 4646
 
@@ -39,6 +38,8 @@ class DublinCoreConverter extends XMLFormatConverter {
       <dc:type>Simulation</dc:type>
       {record.mimeTypes.map(mimeType => <dc:format>{mimeType}</dc:format>)}
       {record.languages.map(language => <dc:language>{language}</dc:language>)}
+      {record.translatedTitles.filter(str=>str.language != "en").map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
+      {record.translatedDescriptions.filter(str=>str.language != "en").map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
     </oai_dc:dc>.toString
   }
 }

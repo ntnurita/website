@@ -5,7 +5,6 @@ import edu.colorado.phet.website.data.{Simulation, LocalizedSimulation}
 import scala.collection.JavaConversions._
 import java.util.{Locale, Date}
 import edu.colorado.phet.website.PhetWicketApplication
-import edu.colorado.phet.common.phetcommon.util.LocaleUtils.localeToString
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils.stringToLocale
 import edu.colorado.phet.website.util.PhetRequestCycle
 import edu.colorado.phet.website.util.StringUtils.makeUrlAbsolute
@@ -13,7 +12,8 @@ import xml.Node
 import edu.colorado.phet.website.util.ScalaHibernateUtils._
 import java.io.File
 import edu.colorado.phet.website.content.simulations.SimulationPage
-import edu.colorado.phet.common.phetcommon.util.{LocaleUtils, FileUtils}
+import edu.colorado.phet.common.phetcommon.util.FileUtils
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils.localeTo4646String
 import java.text.SimpleDateFormat
 
 /**
@@ -59,12 +59,12 @@ object MetadataUtils {
       for ( locale <- webLocales;
             translatedString = translate(key, locale)
             if ( locale == English || translatedString != englishString ) ) // TODO ignore duplicates of English
-      yield { <string locale={localeToString(locale)}>{translatedString}</string> }
+      yield { <string locale={localeTo4646String(locale)}>{translatedString}</string> }
     }
 
     def convertDate(date: Date): String = if ( date == null ) "" else dateFormat.format(date)
 
-    val titles = lsims.map(lsim => <string locale={lsim.getLocaleString}>{lsim.getTitle}</string>)
+    val titles = lsims.map(lsim => <string locale={localeTo4646String(lsim.getLocale)}>{lsim.getTitle}</string>)
     val descriptions = translateToList(sim.getDescriptionKey)
     val learningGoals = translateToList(sim.getLearningGoalsKey)
 
@@ -89,7 +89,7 @@ object MetadataUtils {
       <createTime>{convertDate(sim.getCreateTime)}</createTime>
       <updateTime>{convertDate(sim.getUpdateTime)}</updateTime>
       <simPageLink>{makeUrlAbsolute(SimulationPage.getLinker(sim).getDefaultRawUrl)}</simPageLink>
-      <languages>{lsims.map(lsim => <language>{LocaleUtils.localeTo4646String(lsim.getLocale)}</language>)}</languages>
+      <languages>{lsims.map(lsim => <language>{localeTo4646String(lsim.getLocale)}</language>)}</languages>
     </simulation>
 
     xml.toString

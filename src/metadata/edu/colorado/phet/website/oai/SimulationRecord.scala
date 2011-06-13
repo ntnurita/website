@@ -9,13 +9,24 @@ import collection.mutable.ListBuffer
 class SimulationRecord(str: String) {
   val xml = XML.loadString(str)
 
+  /*---------------------------------------------------------------------------*
+  * titles
+  *----------------------------------------------------------------------------*/
   def englishTitle = englishString(xml \ "title")
 
+  def translatedTitles: Seq[LanguageString] = allStrings(xml \ "title")
+
+  /*---------------------------------------------------------------------------*
+  * descriptions
+  *----------------------------------------------------------------------------*/
   def englishDescrption = englishString(xml \ "description")
 
-  def simPageLink = ( xml \ "simPageLink" ).text
+  def translatedDescriptions: Seq[LanguageString] = allStrings(xml \ "description")
 
-  def englishString(node: NodeSeq): String = ( node \ "string" ).filter(node => ( node \ "@locale" ).text == "en").text
+  /*---------------------------------------------------------------------------*
+  * URLs
+  *----------------------------------------------------------------------------*/
+  def simPageLink = ( xml \ "simPageLink" ).text
 
   /*---------------------------------------------------------------------------*
   * technology
@@ -39,4 +50,18 @@ class SimulationRecord(str: String) {
   }
 
   def languages: Seq[String] = ( xml \\ "language" ).map(_.text)
+
+  /*---------------------------------------------------------------------------*
+  * implementation
+  *----------------------------------------------------------------------------*/
+
+  /**
+   * Given a node with contained "string" elements, return the text within the English "string" element
+   */
+  def englishString(node: NodeSeq): String = ( node \ "string" ).filter(node => ( node \ "@locale" ).text == "en").text
+
+  /**
+   * Given a node with contained "string" elements, return the text within all "string" elements
+   */
+  def allStrings(node: NodeSeq): Seq[LanguageString] = ( node \ "string" ).map(str => new LanguageString(( str \ "@locale" ).text, str.text))
 }
