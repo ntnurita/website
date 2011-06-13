@@ -19,31 +19,26 @@ class DublinCoreConverter extends XMLFormatConverter {
 
     // TODO: complete this
 
-    // TODO: identifier
-    // TODO: type
-    // TODO: format
-    // TODO: rights?
-    // TODO: subject
-    // TODO: language
+    // TODO: dc:subject
+    // TODO: language (s)? I saw an example with multiple descriptions, later ones with xml:lang="" set
+    // TODO: date? see W3CDTF format
+
+    // type uses InteractiveResource from http://dublincore.org/documents/dcmi-type-vocabulary/, and also "Simulation" as our general type
+    // languages encoded in RFC 4646
 
     <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
       <dc:identifier>{record.simPageLink}</dc:identifier>
       <dc:title>{record.englishTitle}</dc:title>
       <dc:description>{record.englishDescrption}</dc:description>
+      <dc:creator>PhET Interactive Simulations</dc:creator>
       <dc:publisher>PhET Interactive Simulations</dc:publisher>
+      <dc:rights>Free access / usage by everyone</dc:rights>
+      <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
       <dc:rights>© 2011 University of Colorado</dc:rights>
-      <dc:type>Image/Image Set</dc:type>
-      <dc:type>Audio/Visual</dc:type>
-      <dc:type>Text</dc:type>
-      <dc:type>Reference Material</dc:type>
-      <dc:type>Glossary/Index</dc:type>
-      <dc:type>Nonfiction Reference</dc:type>
-      <dc:type>Movie/Animation</dc:type>
-      <dc:type>Graph</dc:type>
-      <dc:format>text</dc:format>
-      <dc:rights>Free access</dc:rights>
-      <dc:subject>Mathematics</dc:subject>
-      <dc:language>English</dc:language>
+      <dc:type>InteractiveResource</dc:type>
+      <dc:type>Simulation</dc:type>
+      {record.mimeTypes.map(mimeType => <dc:format>{mimeType}</dc:format>)}
+      {record.languages.map(language => <dc:language>{language}</dc:language>)}
     </oai_dc:dc>.toString
   }
 }

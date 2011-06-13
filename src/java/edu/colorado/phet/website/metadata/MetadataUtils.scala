@@ -1,7 +1,6 @@
 package edu.colorado.phet.website.metadata
 
 import edu.colorado.phet.website.translation.PhetLocalizer
-import java.text.SimpleDateFormat
 import edu.colorado.phet.website.data.{Simulation, LocalizedSimulation}
 import scala.collection.JavaConversions._
 import java.util.{Locale, Date}
@@ -12,18 +11,17 @@ import edu.colorado.phet.website.util.PhetRequestCycle
 import edu.colorado.phet.website.util.StringUtils.makeUrlAbsolute
 import xml.Node
 import edu.colorado.phet.website.util.ScalaHibernateUtils._
-import edu.colorado.phet.common.phetcommon.util.FileUtils
 import java.io.File
 import edu.colorado.phet.website.content.simulations.SimulationPage
+import edu.colorado.phet.common.phetcommon.util.{LocaleUtils, FileUtils}
+import java.text.SimpleDateFormat
 
 /**
  * Utilities for metadata in general, and construction of the master format
  */
 object MetadataUtils {
 
-  def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss")
-
-  val MasterFormatName = "phet-simulation";
+  def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss") // NOTE: also used in OaiUtils
 
   def writeSimulations() {
     wrapTransaction(session => {
@@ -91,6 +89,7 @@ object MetadataUtils {
       <createTime>{convertDate(sim.getCreateTime)}</createTime>
       <updateTime>{convertDate(sim.getUpdateTime)}</updateTime>
       <simPageLink>{makeUrlAbsolute(SimulationPage.getLinker(sim).getDefaultRawUrl)}</simPageLink>
+      <languages>{lsims.map(lsim => <language>{LocaleUtils.localeTo4646String(lsim.getLocale)}</language>)}</languages>
     </simulation>
 
     xml.toString
