@@ -29,6 +29,8 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.source-code.navigating.flashSims" );
         addString( "about.source-code.navigating.flexSims" );
         addString( "about.source-code.navigating.projectOrganization" );
+        addString( "about.source-code.prerequisites.header" );
+        addString( "about.source-code.prerequisites.requirements" );
         addString( "about.source-code.checkout.header" );
         addString( "about.source-code.checkout.useTheFollowing" );
         addString( "about.source-code.checkout.result" );
@@ -98,34 +100,34 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.news.updates" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new AboutMainPanel( id, context );
-            }
-        }, "About (main)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new AboutMainPanel( id, context );
+                        }
+                    }, "About (main)" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new AboutSourceCodePanel( id, context );
-            }
-        }, "About (source code)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new AboutSourceCodePanel( id, context );
+                        }
+                    }, "About (source code)" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new AboutLegendPanel( id, context );
-            }
-        }, "About (legend)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new AboutLegendPanel( id, context );
+                        }
+                    }, "About (legend)" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new AboutContactPanel( id, context );
-            }
-        }, "About (contact)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new AboutContactPanel( id, context );
+                        }
+                    }, "About (contact)" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new AboutLicensingPanel( id, context );
-            }
-        }, "About (licensing)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new AboutLicensingPanel( id, context );
+                        }
+                    }, "About (licensing)" );
     }
 
     public String getDisplayName() {
