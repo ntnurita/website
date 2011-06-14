@@ -19,6 +19,7 @@ public class InstallerCache {
     private static long macSize;
     private static long linuxSize;
     private static long cdSize;
+    private static long dvdSize;
 
     private static final Logger logger = Logger.getLogger( InstallerCache.class.getName() );
 
@@ -54,6 +55,10 @@ public class InstallerCache {
         return cdSize;
     }
 
+    public static synchronized long getDvdSize() {
+        return dvdSize;
+    }
+
     /*---------------------------------------------------------------------------*
     * setters
     *----------------------------------------------------------------------------*/
@@ -72,20 +77,31 @@ public class InstallerCache {
         updateFilesizes();
     }
 
+    public static synchronized void invalidate() {
+        updateFilesizes();
+    }
+
     /*---------------------------------------------------------------------------*
     * implementation
     *----------------------------------------------------------------------------*/
 
     private static void updateFilesizes() {
-        File docRoot = PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot();
-        File winFile = new File( docRoot, FullInstallPanel.WINDOWS_INSTALLER_LOCATION.substring( 1 ) );
-        File macFile = new File( docRoot, FullInstallPanel.MAC_INSTALLER_LOCATION.substring( 1 ) );
-        File linuxFile = new File( docRoot, FullInstallPanel.LINUX_INSTALLER_LOCATION.substring( 1 ) );
-        File cdFile = new File( docRoot, FullInstallPanel.CD_INSTALLER_LOCATION.substring( 1 ) );
+        try {
+            File docRoot = PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot();
+            File winFile = new File( docRoot, FullInstallPanel.WINDOWS_INSTALLER_LOCATION.substring( 1 ) );
+            File macFile = new File( docRoot, FullInstallPanel.MAC_INSTALLER_LOCATION.substring( 1 ) );
+            File linuxFile = new File( docRoot, FullInstallPanel.LINUX_INSTALLER_LOCATION.substring( 1 ) );
+            File cdFile = new File( docRoot, FullInstallPanel.CD_INSTALLER_LOCATION.substring( 1 ) );
+            File dvdFile = new File( docRoot, FullInstallPanel.DVD_INSTALLER_LOCATION.substring( 1 ) );
 
-        winSize = winFile.length();
-        macSize = macFile.length();
-        linuxSize = linuxFile.length();
-        cdSize = cdFile.length();
+            winSize = winFile.length();
+            macSize = macFile.length();
+            linuxSize = linuxFile.length();
+            cdSize = cdFile.length();
+            dvdSize = dvdFile.length();
+        }
+        catch ( Exception e ) {
+            logger.error( "Installer filesize failure", e );
+        }
     }
 }

@@ -46,6 +46,7 @@ public class Linkers {
     public static final RawLinkable MAC_INSTALLER = new RawLinker( "/installer/PhET-Installer_osx.zip" );
     public static final RawLinkable LINUX_INSTALLER = new RawLinker( "/installer/PhET-Installer_linux.bin" );
     public static final RawLinkable CD_INSTALLER = new RawLinker( "/installer/PhET-Installer_cdrom.zip" );
+    public static final RawLinkable DVD_INSTALLER = new RawLinker( "/installer/PhET-Installer_dvdrom.zip" );
 
 
     /*---------------------------------------------------------------------------*

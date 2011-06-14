@@ -24,6 +24,7 @@ public class CacheUtils {
         clearPanelCache();
         clearSimulationCache();
         clearImageCache();
+        clearInstallerCache();
     }
 
     private static void clearImageCache() {
@@ -68,5 +69,12 @@ public class CacheUtils {
     public static void clearSimulationCache() {
         logger.info( "clearing the simulation cache" );
         SimulationCache.invalidate();
+    }
+
+    /**
+     * Re-read information about the installer state
+     */
+    public static void clearInstallerCache() {
+        InstallerCache.invalidate();
     }
 }

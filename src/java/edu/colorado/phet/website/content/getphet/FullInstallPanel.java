@@ -24,6 +24,7 @@ public class FullInstallPanel extends PhetPanel {
     public static final String MAC_INSTALLER_LOCATION = "/installer/PhET-Installer_osx.zip";
     public static final String LINUX_INSTALLER_LOCATION = "/installer/PhET-Installer_linux.bin";
     public static final String CD_INSTALLER_LOCATION = "/installer/PhET-Installer_cdrom.zip";
+    public static final String DVD_INSTALLER_LOCATION = "/installer/PhET-Installer_dvdrom.zip";
 
     public FullInstallPanel( String id, PageContext context ) {
         super( id, context );
@@ -53,7 +54,9 @@ public class FullInstallPanel extends PhetPanel {
 
         add( new LocalizedText( "step1", "get-phet.full-install.creatingInstallationCD.step1", new Object[]{
                 Linkers.CD_INSTALLER.getHref( context, getPhetCycle() ),
-                InstallerCache.getCdSize() / 1000000
+                InstallerCache.getCdSize() / 1000000,
+                Linkers.DVD_INSTALLER.getHref( context, getPhetCycle() ),
+                InstallerCache.getDvdSize() / 1000000
         } ) );
 
         add( new LocalizedText( "updatedFrequently", "get-phet.full-install.updatedFrequently", new Object[]{
