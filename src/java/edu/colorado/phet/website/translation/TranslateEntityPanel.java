@@ -170,7 +170,7 @@ public class TranslateEntityPanel extends PhetPanel {
 
                     item.add( new AjaxLink( "translate-auto" ) {
                         public void onClick( AjaxRequestTarget target ) {
-                            String value = TestTranslateString.translate( (String) model.getObject(), "en", testLocale.getLanguage() );
+                            String value = TestTranslateString.translate( model.getObject(), "en", testLocale.getLanguage() );
                             int status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
                             if ( value != null ) {
                                 StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
