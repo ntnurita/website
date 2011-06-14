@@ -7,7 +7,7 @@ import org.dlese.dpc.xml.XMLFormatConverter
  * Converts our master format simulation data to Dublin Core XML
  */
 class DublinCoreConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1307942973000L
+  def lastModified(p1: ServletContext) = 1308030299000L
 
   def getFromFormat = OaiUtils.MasterFormatName
 
@@ -23,10 +23,14 @@ class DublinCoreConverter extends XMLFormatConverter {
     // type uses InteractiveResource from http://dublincore.org/documents/dcmi-type-vocabulary/, and also "Simulation" as our general type
     // languages encoded in RFC 4646
 
-    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-      <dc:identifier>{record.simPageLink}</dc:identifier>
-      <dc:title>{record.englishTitle}</dc:title>
-      <dc:description>{record.englishDescrption}</dc:description>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:dc="http://purl.org/dc/elements/1.1/"
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:identifier xsi:type="dcterms:URI">{record.simPageLink}</dc:identifier>
+      <dc:title xml:lang="en">{record.englishTitle}</dc:title>
+      <dc:description xml:lang="en">{record.englishDescrption}</dc:description>
       <dc:creator>PhET Interactive Simulations</dc:creator>
       <dc:publisher>PhET Interactive Simulations</dc:publisher>
       <dc:rights>Free access / usage by everyone</dc:rights>
