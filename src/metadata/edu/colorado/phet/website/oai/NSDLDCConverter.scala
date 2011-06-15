@@ -28,8 +28,6 @@ class NSDLDCConverter extends XMLFormatConverter {
     // TODO: access rights (NSDL specific)
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 
-    // TODO: ieee things and below. start with IEEE stuff
-
     // TODO: consider Instructional Method parameter
     // TODO: consider Abstract
 
@@ -56,6 +54,9 @@ class NSDLDCConverter extends XMLFormatConverter {
       <dct:modified xsi:type="dct:W3CDTF">{record.timeUpdated}</dct:modified>
       {record.mimeTypes.map(mimeType => <dc:format>{mimeType}</dc:format>)}
       <dct:hasVersion>{record.versionString}</dct:hasVersion>
+      <ieee:interactivityType><ieee:source>LOMv1.0</ieee:source><ieee:source>active</ieee:source></ieee:interactivityType>
+      <ieee:interactivityLevel><ieee:source>LOMv1.0</ieee:source><ieee:source>very high</ieee:source></ieee:interactivityLevel>
+      <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
     </nsdl_dc:nsdl_dc>.toString
   }
 }
