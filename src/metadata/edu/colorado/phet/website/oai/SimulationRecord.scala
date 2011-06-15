@@ -49,6 +49,10 @@ class SimulationRecord(str: String) {
     result += "text/html" // the main sim page with resources / etc
   }
 
+  def englishSoftwareRequirements: String = if ( isJava ) "Sun Java 1.5.0_15 or later" else "Adobe Flash 9 or later"
+
+  def kilobytes = Integer.parseInt(( xml \ "filesize" \ "kilobytes" ).text)
+
   /*---------------------------------------------------------------------------*
   * dates
   *----------------------------------------------------------------------------*/

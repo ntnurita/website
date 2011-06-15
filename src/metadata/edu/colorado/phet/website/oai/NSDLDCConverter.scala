@@ -34,9 +34,11 @@ class NSDLDCConverter extends XMLFormatConverter {
     // TODO: consider Abstract
 
     <nsdl_dc:nsdl_dc schemaVersion="1.02.020"
+                     xmlns:nsdl_dc="http://ns.nsdl.org/nsdl_dc_v1.02/"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xmlns:dc="http://purl.org/dc/elements/1.1/"
                      xmlns:dct="http://purl.org/dc/terms/"
+                     xmlns:ieee="http://ltsc.ieee.org/xsd/LOM"
                      xsi:schemaLocation="http://ns.nsdl.org/nsdl_dc_v1.02/ http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc_v1.02.xsd">
       <dc:identifier xsi:type="dct:URI">{record.simPageLink}</dc:identifier>
       <dc:title xml:lang="en">{record.englishTitle}</dc:title>

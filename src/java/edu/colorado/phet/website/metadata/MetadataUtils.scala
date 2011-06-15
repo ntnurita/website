@@ -23,6 +23,8 @@ object MetadataUtils {
 
   def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss") // NOTE: also used in OaiUtils
 
+  def convertNewlinesToPipes(str: String): String = str.replace("<br/>", "|")
+
   def writeSimulations() {
     wrapTransaction(session => {
       val simulations = session.createQuery("select s from Simulation as s").list.map(_.asInstanceOf[Simulation])
@@ -77,7 +79,7 @@ object MetadataUtils {
       <technology type={project.getType.toString}/>
       <version major={project.getVersionMajor.toString} minor={project.getVersionMinor.toString} revision={project.getVersionRevision.toString} timestamp={project.getVersionTimestamp.toString}/>
       <filesize kilobytes={sim.getKilobytes.toString}/>
-      <credits designTeam={sim.getDesignTeam} libraries={sim.getLibraries} thanksTo={sim.getThanksTo}/>
+      <credits designTeam={convertNewlinesToPipes(sim.getDesignTeam)} libraries={convertNewlinesToPipes(sim.getLibraries)} thanksTo={convertNewlinesToPipes(sim.getThanksTo)}/>
       <flags underConstruction={sim.isUnderConstruction.toString} guidanceRecommended={sim.isGuidanceRecommended.toString} classroomTested={sim.isClassroomTested.toString}/>
       <title>{titles}</title>
       <description>{descriptions}</description>
