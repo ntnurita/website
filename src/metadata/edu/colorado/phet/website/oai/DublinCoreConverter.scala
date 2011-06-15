@@ -5,6 +5,8 @@ import org.dlese.dpc.xml.XMLFormatConverter
 
 /**
  * Converts our master format simulation data to Dublin Core XML
+ *
+ * TODO: integrate DC parts of NSDL_DC and others into here?
  */
 class DublinCoreConverter extends XMLFormatConverter {
   def lastModified(p1: ServletContext) = 1308030299000L

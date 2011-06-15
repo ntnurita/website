@@ -49,7 +49,32 @@ class SimulationRecord(str: String) {
     result += "text/html" // the main sim page with resources / etc
   }
 
+  /*---------------------------------------------------------------------------*
+  * dates
+  *----------------------------------------------------------------------------*/
+
+  def timeCreated = ( xml \ "createTime" ).text // W3CDTF
+  def timeUpdated = ( xml \ "updateTime" ).text // W3CDTF
+
+  /*---------------------------------------------------------------------------*
+  * languages (translations)
+  *----------------------------------------------------------------------------*/
+
   def languages: Seq[String] = ( xml \\ "language" ).map(_.text)
+
+  /*---------------------------------------------------------------------------*
+  * versioning
+  *----------------------------------------------------------------------------*/
+
+  def majorVersion = ( xml \ "version" \ "@major" ).text
+
+  def minorVersion = ( xml \ "version" \ "@minor" ).text
+
+  def revisionVersion = ( xml \ "version" \ "@revision" ).text
+
+  def timestampVersion = ( xml \ "version" \ "@timestamp" ).text
+
+  def versionString = majorVersion + "." + minorVersion + ( if ( minorVersion.length() < 2 ) "0" else "" )
 
   /*---------------------------------------------------------------------------*
   * implementation
