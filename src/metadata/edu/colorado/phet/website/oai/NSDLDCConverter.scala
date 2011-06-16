@@ -20,7 +20,7 @@ class NSDLDCConverter extends XMLFormatConverter {
 
     val record = new SimulationRecord(masterXML)
 
-    // TODO: subject (one each, repeat as needed)
+    // TODO: subject (for categories)
     // TODO: education level
     // TODO: audience
     // TODO: type. DCMI maybe has <dc:type>InteractiveResource</dc:type>
@@ -57,6 +57,7 @@ class NSDLDCConverter extends XMLFormatConverter {
       <ieee:interactivityType><ieee:source>LOMv1.0</ieee:source><ieee:source>active</ieee:source></ieee:interactivityType>
       <ieee:interactivityLevel><ieee:source>LOMv1.0</ieee:source><ieee:source>very high</ieee:source></ieee:interactivityLevel>
       <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
+      {record.translatedTerms.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
     </nsdl_dc:nsdl_dc>.toString
   }
 }
