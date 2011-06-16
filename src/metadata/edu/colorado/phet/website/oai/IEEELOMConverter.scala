@@ -31,8 +31,6 @@ end:vcard
      */
     // NOTE: do we need LOM 3 (meta-metadata)
 
-    // TODO: investigate lack of date / time information here?
-
     <ieee:lom xmlns:ieee="http://ltsc.ieee.org/xsd/LOM"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
