@@ -32,7 +32,9 @@ end:vcard
 
     // TODO: investigate lack of date / time information here?
 
-    <ieee:lom xmlns:ieee="http://ltsc.ieee.org/xsd/LOM">
+    <ieee:lom xmlns:ieee="http://ltsc.ieee.org/xsd/LOM"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
       <ieee:general>
         <ieee:identifier>
           <ieee:catalog>URI</ieee:catalog>
