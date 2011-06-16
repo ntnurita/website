@@ -12,16 +12,25 @@ class SimulationRecord(str: String) {
   /*---------------------------------------------------------------------------*
   * titles
   *----------------------------------------------------------------------------*/
-  def englishTitle = englishString(xml \ "title")
+  def englishTitle: String = englishString(xml \ "title")
 
   def translatedTitles: Seq[LanguageString] = allStrings(xml \ "title")
 
   /*---------------------------------------------------------------------------*
   * descriptions
   *----------------------------------------------------------------------------*/
-  def englishDescrption = englishString(xml \ "description")
+  def englishDescrption: String = englishString(xml \ "description")
 
   def translatedDescriptions: Seq[LanguageString] = allStrings(xml \ "description")
+
+  /*---------------------------------------------------------------------------*
+  * terms (keywords / topics combined)
+  *----------------------------------------------------------------------------*/
+  def englishTerms: Seq[String] = filteredTerms.map(node => englishString(node))
+
+  def translatedTerms: Seq[Seq[LanguageString]] = filteredTerms.map(node => allStrings(node)) // list of keywords (each with a list of translations)
+
+  private def filteredTerms = ( xml \\ "keyword" ).distinct // remove duplicates
 
   /*---------------------------------------------------------------------------*
   * URLs

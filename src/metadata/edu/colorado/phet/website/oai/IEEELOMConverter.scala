@@ -34,7 +34,7 @@ email;internet:olsonsjc@gmail.com
 version:2.1
 end:vcard
      */
-    // TODO: LOM 3 (meta-metadata)
+    // NOTE: do we need LOM 3 (meta-metadata)
 
     // TODO: investigate lack of date / time information here?
 
@@ -49,7 +49,7 @@ end:vcard
         <ieee:title>{convertLangString(record.translatedTitles)}</ieee:title>
         {record.languages.map(language => <ieee:language>{language}</ieee:language>)}
         <ieee:description>{convertLangString(record.translatedDescriptions)}</ieee:description>
-        <!-- TODO: LOM 1.5 keywords, each is LangString -->
+        {record.translatedTerms.map(term => <ieee:keyword>{convertLangString(term)}</ieee:keyword>)}
         <ieee:structure>
           <ieee:source>LOMv1.0</ieee:source>
           <ieee:value>atomic</ieee:value>
