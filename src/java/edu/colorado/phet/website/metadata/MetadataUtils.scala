@@ -73,7 +73,8 @@ object MetadataUtils {
     // TODO: keyword/topics/controlled vocab/categories  --- check encoding
 
     val xml =
-    <simulation>
+    <simulation xmlns="http://phet.colorado.edu/xsd/phet-simulation/"
+                xsi:schemaLocation="http://phet.colorado.edu/xsd/phet-simulation/ http://phet.colorado.edu/files/schema/phet-simulation-1.0.xsd">
       <project id={project.getId.toString} name={project.getName}/>
       <simulation id={sim.getId.toString} name={sim.getName}/>
       <technology type={project.getType.toString}/>
