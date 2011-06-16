@@ -1,7 +1,6 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
-import org.dlese.dpc.xml.XMLFormatConverter
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
@@ -9,17 +8,10 @@ import org.dlese.dpc.xml.XMLFormatConverter
  * metadata guide for the format: http://nsdl.org/collection/metadata-guide.php
  * example: http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc1_v1.02.xml
  */
-class NSDLDCConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1308198694000L
-
-  def getFromFormat = OaiUtils.MasterFormatName
-
+class NSDLDCConverter extends PhetFormatConverter {
   def getToFormat = "nsdl_dc"
 
-  def convertXML(masterXML: String, servletContext: ServletContext): String = {
-
-    val record = new SimulationRecord(masterXML)
-
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
     // TODO: subject (for categories)
     // TODO: education level
     // TODO: audience
@@ -40,9 +32,9 @@ class NSDLDCConverter extends XMLFormatConverter {
                      xsi:schemaLocation="http://ns.nsdl.org/nsdl_dc_v1.02/ http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc_v1.02.xsd">
       <dc:identifier xsi:type="dct:URI">{record.simPageLink}</dc:identifier>
       <dc:title xml:lang="en">{record.englishTitle}</dc:title>
-      {record.translatedTitles.filter(str=>str.language != "en").map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
+      {record.translatedTitles.filter(str => str.language != "en").map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
       <dc:description xml:lang="en">{record.englishDescrption}</dc:description>
-      {record.translatedDescriptions.filter(str=>str.language != "en").map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
+      {record.translatedDescriptions.filter(str => str.language != "en").map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
       <dc:rights>Free access / usage by everyone</dc:rights>
       <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
       <dc:rights>© 2011 University of Colorado</dc:rights>

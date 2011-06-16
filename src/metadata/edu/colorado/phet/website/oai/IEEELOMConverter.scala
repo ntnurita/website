@@ -1,7 +1,6 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
-import org.dlese.dpc.xml.XMLFormatConverter
 import xml.{Unparsed, Node, NodeSeq}
 
 /**
@@ -10,11 +9,7 @@ import xml.{Unparsed, Node, NodeSeq}
  * metadata format spec: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
  * XML binding spec: http://ltsc.ieee.org/wg12/files/IEEE_1484_12_03_d8_submitted.pdf
  */
-class IEEELOMConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1308198694000L
-
-  def getFromFormat = OaiUtils.MasterFormatName
-
+class IEEELOMConverter extends PhetFormatConverter {
   def getToFormat = "lom"
 
   /**
@@ -22,9 +17,7 @@ class IEEELOMConverter extends XMLFormatConverter {
    */
   def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <ieee:string xml:lang={str.language}>{str.string}</ieee:string>)
 
-  def convertXML(masterXML: String, servletContext: ServletContext): String = {
-
-    val record = new SimulationRecord(masterXML)
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
 
     def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 

@@ -1,7 +1,6 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
-import org.dlese.dpc.xml.XMLFormatConverter
 
 /**
  * Converts our master format simulation data to Dublin Core XML
@@ -10,17 +9,10 @@ import org.dlese.dpc.xml.XMLFormatConverter
  *
  * TODO: integrate DC parts of NSDL_DC and others into here?
  */
-class DublinCoreConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1308198694000L
-
-  def getFromFormat = OaiUtils.MasterFormatName
-
+class DublinCoreConverter extends PhetFormatConverter {
   def getToFormat = "oai_dc"
 
-  def convertXML(masterXML: String, servletContext: ServletContext): String = {
-
-    val record = new SimulationRecord(masterXML)
-
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
     // TODO: dc:subject (for categories)
 
     // note: no dc:date element is used currently, as there would be no unambiguous meaning to this
