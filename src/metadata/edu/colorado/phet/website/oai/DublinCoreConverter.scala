@@ -19,7 +19,7 @@ class DublinCoreConverter extends XMLFormatConverter {
 
     val record = new SimulationRecord(masterXML)
 
-    // TODO: dc:subject (can we include keyword information?)
+    // TODO: dc:subject (for categories)
 
     // note: no dc:date element is used currently, as there would be no unambiguous meaning to this
     // type uses InteractiveResource from http://dublincore.org/documents/dcmi-type-vocabulary/, and also "Simulation" as our general type
@@ -44,8 +44,9 @@ class DublinCoreConverter extends XMLFormatConverter {
       <dc:type>Simulation</dc:type>
       {record.mimeTypes.map(mimeType => <dc:format>{mimeType}</dc:format>)}
       {record.languages.map(language => <dc:language>{language}</dc:language>)}
-      {record.translatedTitles.filter(str=>str.language != "en").map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
-      {record.translatedDescriptions.filter(str=>str.language != "en").map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
+      {record.translatedTitles.filter(str => str.language != "en").map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
+      {record.translatedDescriptions.filter(str => str.language != "en").map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
+      {record.translatedTerms.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
     </oai_dc:dc>.toString
   }
 }
