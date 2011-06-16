@@ -2,7 +2,7 @@ package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
 import org.dlese.dpc.xml.XMLFormatConverter
-import xml.NodeSeq
+import xml.{Unparsed, Node, NodeSeq}
 
 /**
  * Converts our master format simulation data to IEEE LOM
@@ -25,6 +25,8 @@ class IEEELOMConverter extends XMLFormatConverter {
   def convertXML(masterXML: String, servletContext: ServletContext): String = {
 
     val record = new SimulationRecord(masterXML)
+
+    def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
     /*
 begin:vcard
@@ -77,7 +79,13 @@ ORG:PhET Interactive Simulations
 VERSION:3.0
 END:VCARD]]></ieee:entity>
         </ieee:contribute>
-        <!-- TODO: author / library / thanks contributions -->
+        {record.authors.map(author => <ieee:contribute>
+          <ieee:role>
+            <ieee:source>LOMv1.0</ieee:source>
+            <ieee:value>author</ieee:value>
+          </ieee:role>
+          <ieee:entity>{vCardFromName(author)}</ieee:entity>
+        </ieee:contribute>)}
       </ieee:lifeCycle>
       <ieee:technical>
         {record.mimeTypes.map(mimeType => <ieee:format>{mimeType}</ieee:format>)}
