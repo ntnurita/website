@@ -10,7 +10,7 @@ import org.dlese.dpc.xml.XMLFormatConverter
  * example: http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc1_v1.02.xml
  */
 class NSDLDCConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1308030299000L
+  def lastModified(p1: ServletContext) = 1308198694000L
 
   def getFromFormat = OaiUtils.MasterFormatName
 

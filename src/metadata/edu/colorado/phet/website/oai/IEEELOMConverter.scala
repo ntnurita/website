@@ -11,7 +11,7 @@ import xml.{Unparsed, Node, NodeSeq}
  * XML binding spec: http://ltsc.ieee.org/wg12/files/IEEE_1484_12_03_d8_submitted.pdf
  */
 class IEEELOMConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1308030299000L
+  def lastModified(p1: ServletContext) = 1308198694000L
 
   def getFromFormat = OaiUtils.MasterFormatName
 

@@ -11,7 +11,7 @@ import org.dlese.dpc.xml.XMLFormatConverter
  * TODO: integrate DC parts of NSDL_DC and others into here?
  */
 class DublinCoreConverter extends XMLFormatConverter {
-  def lastModified(p1: ServletContext) = 1308185302000L
+  def lastModified(p1: ServletContext) = 1308198694000L
 
   def getFromFormat = OaiUtils.MasterFormatName
 
