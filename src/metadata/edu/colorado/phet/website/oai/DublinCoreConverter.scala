@@ -27,8 +27,6 @@ class DublinCoreConverter extends XMLFormatConverter {
     // type uses InteractiveResource from http://dublincore.org/documents/dcmi-type-vocabulary/, and also "Simulation" as our general type
     // languages encoded in RFC 4646
 
-    // TODO: add in team credits in more dc:creator fields? (and add this to NSDL_DC)
-
     <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xmlns:dc="http://purl.org/dc/elements/1.1/"
