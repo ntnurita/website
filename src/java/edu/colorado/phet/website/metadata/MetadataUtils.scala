@@ -70,8 +70,6 @@ object MetadataUtils {
     val descriptions = translateToList(sim.getDescriptionKey)
     val learningGoals = translateToList(sim.getLearningGoalsKey)
 
-    // TODO: keyword/topics/controlled vocab/categories  --- check encoding
-
     val xml =
     <simulation xmlns="http://phet.colorado.edu/xsd/phet-simulation/"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
