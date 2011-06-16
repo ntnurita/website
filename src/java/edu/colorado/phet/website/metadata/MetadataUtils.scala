@@ -1,7 +1,6 @@
 package edu.colorado.phet.website.metadata
 
 import edu.colorado.phet.website.translation.PhetLocalizer
-import edu.colorado.phet.website.data.{Simulation, LocalizedSimulation}
 import scala.collection.JavaConversions._
 import java.util.{Locale, Date}
 import edu.colorado.phet.website.PhetWicketApplication
@@ -15,6 +14,7 @@ import edu.colorado.phet.website.content.simulations.SimulationPage
 import edu.colorado.phet.common.phetcommon.util.FileUtils
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils.localeTo4646String
 import java.text.SimpleDateFormat
+import edu.colorado.phet.website.data.{Category, Keyword, Simulation, LocalizedSimulation}
 
 /**
  * Utilities for metadata in general, and construction of the master format
@@ -94,6 +94,9 @@ object MetadataUtils {
       <updateTime>{convertDate(sim.getUpdateTime)}</updateTime>
       <simPageLink>{makeUrlAbsoluteProduction(SimulationPage.getLinker(sim).getDefaultRawUrl)}</simPageLink>
       <languages>{lsims.map(lsim => <language>{localeTo4646String(lsim.getLocale)}</language>)}</languages>
+      <keywords>{sim.getKeywords.map(keyword => <keyword>{translateToList(keyword.asInstanceOf[Keyword].getLocalizationKey)}</keyword>)}</keywords>
+      <topics>{sim.getTopics.map(keyword => <keyword>{translateToList(keyword.asInstanceOf[Keyword].getLocalizationKey)}</keyword>)}</topics>
+      <categories>{sim.getCategories.map(keyword => <category>{translateToList(keyword.asInstanceOf[Category].getLocalizationKey)}</category>)}</categories>
     </simulation>
 
     xml.toString
