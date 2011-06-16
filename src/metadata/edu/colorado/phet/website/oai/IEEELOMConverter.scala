@@ -15,7 +15,7 @@ class IEEELOMConverter extends PhetFormatConverter {
   /**
    * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
    */
-  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <ieee:string xml:lang={str.language}>{str.string}</ieee:string>)
+  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <ieee:string language={str.language}>{str.string}</ieee:string>)
 
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
 
@@ -55,7 +55,7 @@ end:vcard
         </ieee:aggregationLevel>
       </ieee:general>
       <ieee:lifeCycle>
-        <ieee:version><ieee:string xml:lang="en">{record.versionString}</ieee:string></ieee:version>
+        <ieee:version><ieee:string language="en">{record.versionString}</ieee:string></ieee:version>
         <ieee:status>
           <ieee:source>LOMv1.0</ieee:source>
           <ieee:value>final</ieee:value>
@@ -85,10 +85,10 @@ END:VCARD]]></ieee:entity>
         <ieee:size>{( record.kilobytes * 1000 ).toString}</ieee:size>
         <ieee:location xsi:type="URI">{record.simPageLink}</ieee:location>
         <ieee:installationRemarks>
-          <ieee:string xml:lang="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</ieee:string>
+          <ieee:string language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</ieee:string>
         </ieee:installationRemarks>
         <ieee:otherPlatformRequirements>
-          <ieee:string xml:lang="en">{record.englishSoftwareRequirements}</ieee:string>
+          <ieee:string language="en">{record.englishSoftwareRequirements}</ieee:string>
         </ieee:otherPlatformRequirements>
       </ieee:technical>
       <ieee:educational>
@@ -103,11 +103,11 @@ END:VCARD]]></ieee:entity>
         <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:source>higher education</ieee:source></ieee:context>
         <ieee:typicalAgeRange>
           <!-- TODO typicalAgeRange -->
-          <ieee:string xml:lang="en">7-</ieee:string>
+          <ieee:string language="en">7-</ieee:string>
         </ieee:typicalAgeRange>
         <ieee:difficulty><ieee:source>LOMv1.0</ieee:source><ieee:source><!-- TODO very easy / easy / medium / difficult / very difficult --></ieee:source></ieee:difficulty>
         <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
-        <ieee:description><ieee:string xml:lang="en"><!-- TODO comments on how this learning object is to be used. URL? --></ieee:string></ieee:description>
+        <ieee:description><ieee:string language="en"><!-- TODO comments on how this learning object is to be used. URL? --></ieee:string></ieee:description>
         {record.languages.map(language => <ieee:language>{language}</ieee:language>)}
       </ieee:educational>
       <ieee:rights>
@@ -115,7 +115,7 @@ END:VCARD]]></ieee:entity>
 
         <!-- TODO what about copyright and other restrictions? -->
         <ieee:copyrightAndOtherRestrictions><ieee:source>LOMv1.0</ieee:source><ieee:source>no</ieee:source></ieee:copyrightAndOtherRestrictions>
-        <ieee:description><ieee:string xml:lang="en"><!-- TODO description of rights, etc--></ieee:string></ieee:description>
+        <ieee:description><ieee:string language="en"><!-- TODO description of rights, etc--></ieee:string></ieee:description>
       </ieee:rights>
       <ieee:relation>
         <!-- TODO: LOM 7 Relation related to other sims / etc? -->
