@@ -133,7 +133,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Logging" level="project" />
     <orderEntry type="module" module-name="phet" />
     <orderEntry type="module-library">
       <library>
