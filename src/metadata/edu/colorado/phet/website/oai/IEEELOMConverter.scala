@@ -81,7 +81,7 @@ END:VCARD]]></ieee:entity>
       <ieee:technical>
         {record.mimeTypes.map(mimeType => <ieee:format>{mimeType}</ieee:format>)}
         <ieee:size>{( record.kilobytes * 1000 ).toString}</ieee:size>
-        <ieee:location xsi:type="URI">{record.simPageLink}</ieee:location>
+        <ieee:location>{record.simPageLink}</ieee:location>
         <ieee:installationRemarks>
           <ieee:string language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</ieee:string>
         </ieee:installationRemarks>
