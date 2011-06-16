@@ -23,7 +23,7 @@ object MetadataUtils {
 
   def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss") // NOTE: also used in OaiUtils
 
-  def convertNewlinesToPipes(str: String): String = str.replace("<br/>", "|")
+  def convertNewlinesToPipes(str: String): String = if ( str == null ) "" else str.replace("<br/>", "|")
 
   def writeSimulations() {
     wrapTransaction(session => {
@@ -74,6 +74,7 @@ object MetadataUtils {
 
     val xml =
     <simulation xmlns="http://phet.colorado.edu/xsd/phet-simulation/"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://phet.colorado.edu/xsd/phet-simulation/ http://phet.colorado.edu/files/schema/phet-simulation-1.0.xsd">
       <project id={project.getId.toString} name={project.getName}/>
       <simulation id={sim.getId.toString} name={sim.getName}/>
