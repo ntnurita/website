@@ -32,7 +32,7 @@ class DublinCoreConverter extends XMLFormatConverter {
                xmlns:dc="http://purl.org/dc/elements/1.1/"
                xmlns:dcterms="http://purl.org/dc/terms/"
                xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-      <dc:identifier xsi:type="dcterms:URI">{record.simPageLink}</dc:identifier>
+      <dc:identifier>{record.simPageLink}</dc:identifier>
       <dc:title xml:lang="en">{record.englishTitle}</dc:title>
       <dc:description xml:lang="en">{record.englishDescrption}</dc:description>
       <dc:creator>PhET Interactive Simulations</dc:creator>
