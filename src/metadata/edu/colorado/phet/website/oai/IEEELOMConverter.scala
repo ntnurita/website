@@ -2,6 +2,7 @@ package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
 import org.dlese.dpc.xml.XMLFormatConverter
+import xml.NodeSeq
 
 /**
  * Converts our master format simulation data to IEEE LOM
@@ -15,6 +16,11 @@ class IEEELOMConverter extends XMLFormatConverter {
   def getFromFormat = OaiUtils.MasterFormatName
 
   def getToFormat = "lom"
+
+  /**
+   * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
+   */
+  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <ieee:string xml:lang={str.language}>{str.string}</ieee:string>)
 
   def convertXML(masterXML: String, servletContext: ServletContext): String = {
 
@@ -40,9 +46,9 @@ end:vcard
           <ieee:catalog>URI</ieee:catalog>
           <ieee:entry>{record.simPageLink}</ieee:entry>
         </ieee:identifier>
-        <ieee:title>{record.translatedTitles.map(str => <ieee:string xml:lang={str.language}>{str.string}</ieee:string>)}</ieee:title>
+        <ieee:title>{convertLangString(record.translatedTitles)}</ieee:title>
         {record.languages.map(language => <ieee:language>{language}</ieee:language>)}
-        <ieee:description>{record.translatedDescriptions.map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}</ieee:description>
+        <ieee:description>{convertLangString(record.translatedDescriptions)}</ieee:description>
         <!-- TODO: LOM 1.5 keywords, each is LangString -->
         <ieee:structure>
           <ieee:source>LOMv1.0</ieee:source>
@@ -75,7 +81,7 @@ END:VCARD]]></ieee:entity>
       </ieee:lifeCycle>
       <ieee:technical>
         {record.mimeTypes.map(mimeType => <ieee:format>{mimeType}</ieee:format>)}
-        <ieee:size>{(record.kilobytes * 1000).toString}</ieee:size>
+        <ieee:size>{( record.kilobytes * 1000 ).toString}</ieee:size>
         <ieee:location xsi:type="URI">{record.simPageLink}</ieee:location>
         <ieee:installationRemarks>
           <ieee:string xml:lang="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</ieee:string>
