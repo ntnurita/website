@@ -6,6 +6,8 @@ import org.dlese.dpc.xml.XMLFormatConverter
 /**
  * Converts our master format simulation data to Dublin Core XML
  *
+ * Core elements: http://dublincore.org/documents/usageguide/elements.shtml
+ *
  * TODO: integrate DC parts of NSDL_DC and others into here?
  */
 class DublinCoreConverter extends XMLFormatConverter {
@@ -35,8 +37,9 @@ class DublinCoreConverter extends XMLFormatConverter {
       <dc:identifier>{record.simPageLink}</dc:identifier>
       <dc:title xml:lang="en">{record.englishTitle}</dc:title>
       <dc:description xml:lang="en">{record.englishDescrption}</dc:description>
-      <dc:creator>PhET Interactive Simulations</dc:creator>
       <dc:publisher>PhET Interactive Simulations</dc:publisher>
+      <dc:creator>PhET Interactive Simulations</dc:creator>
+      {record.authors.map(author => <dc:creator>{author}</dc:creator>)}
       <dc:rights>Free access / usage by everyone</dc:rights>
       <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
       <dc:rights>© 2011 University of Colorado</dc:rights>

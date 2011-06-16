@@ -90,6 +90,20 @@ class SimulationRecord(str: String) {
   def versionString = majorVersion + "." + minorVersion + ( if ( minorVersion.length() < 2 ) "0" else "" )
 
   /*---------------------------------------------------------------------------*
+  * credits
+  *----------------------------------------------------------------------------*/
+
+  /**
+   * Strips off things from the designTeam that aren't parts of names
+   */
+  def authors: Seq[String] = ( xml \ "credits" \ "@designTeam" ).text.split("|").map(str => {
+    val AuthorRegex(prefix, name, role) = str
+    name
+  })
+
+  private val AuthorRegex = """^(.*: *)?([^:\(]+)( *\(.*)?$""".r
+
+  /*---------------------------------------------------------------------------*
   * implementation
   *----------------------------------------------------------------------------*/
 

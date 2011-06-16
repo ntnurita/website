@@ -46,8 +46,9 @@ class NSDLDCConverter extends XMLFormatConverter {
       <dc:rights>Free access / usage by everyone</dc:rights>
       <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
       <dc:rights>© 2011 University of Colorado</dc:rights>
-      <dc:creator>PhET Interactive Simulations</dc:creator>
       <dc:publisher>PhET Interactive Simulations</dc:publisher>
+      <dc:creator>PhET Interactive Simulations</dc:creator>
+      {record.authors.map(author => <dc:creator>{author}</dc:creator>)}
       {record.languages.map(language => <dc:language>{language}</dc:language>)}
       <dc:date xsi:type="dct:W3CDTF">{record.timeCreated}</dc:date>
       <dct:created xsi:type="dct:W3CDTF">{record.timeCreated}</dct:created>
