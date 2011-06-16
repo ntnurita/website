@@ -96,8 +96,7 @@ class SimulationRecord(str: String) {
   /**
    * Strips off things from the designTeam that aren't parts of names
    */
-  def authors: Seq[String] = ( xml \ "credits" \ "@designTeam" ).text.split("|").map(str => {
-    println("---" + str + "---")
+  def authors: Seq[String] = ( xml \ "credits" \ "@designTeam" ).text.split('|').map(str => {
     val AuthorRegex(prefix, name, role) = str
     name
   })
