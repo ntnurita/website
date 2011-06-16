@@ -60,7 +60,7 @@ class SimulationRecord(str: String) {
 
   def englishSoftwareRequirements: String = if ( isJava ) "Sun Java 1.5.0_15 or later" else "Adobe Flash 9 or later"
 
-  def kilobytes = Integer.parseInt(( xml \ "filesize" \ "kilobytes" ).text)
+  def kilobytes = Integer.parseInt(( xml \ "filesize" \ "@kilobytes" ).text)
 
   /*---------------------------------------------------------------------------*
   * dates
