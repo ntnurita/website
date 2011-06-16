@@ -84,8 +84,7 @@ public class StringUtils {
         TranslatedString string = getTranslatedString( session, key, locale );
         if ( string == null ) {
             return null;
-        }
-        else {
+        } else {
             return string.getValue();
         }
     }
@@ -103,8 +102,7 @@ public class StringUtils {
                 .setLocale( "locale", locale ).setString( "key", key ).list();
         if ( list.isEmpty() ) {
             return null;
-        }
-        else {
+        } else {
             if ( list.size() != 1 ) {
                 logger.warn( "strings for key " + key + ", locale " + locale + " have " + list.size() + " options" );
             }
@@ -151,8 +149,7 @@ public class StringUtils {
         TranslatedString string = getTranslatedString( session, key, translationId );
         if ( string == null ) {
             return null;
-        }
-        else {
+        } else {
             return string.getValue();
         }
     }
@@ -170,8 +167,7 @@ public class StringUtils {
                 .setInteger( "id", translationId ).setString( "key", key ).list();
         if ( list.isEmpty() ) {
             return null;
-        }
-        else {
+        } else {
             if ( list.size() != 1 ) {
                 logger.warn( "strings for key " + key + ", translationId " + translationId + " have " + list.size() + " options" );
             }
@@ -195,12 +191,25 @@ public class StringUtils {
         for ( char c : chars ) {
             if ( Character.isLetterOrDigit( c ) ) {
                 buf.append( c );
-            }
-            else {
+            } else {
                 buf.append( "_" );
             }
         }
         return buf.toString();
+    }
+
+    /**
+     * Similar to makeUrlAbsolute, but just uses HTTP and phet.colorado.edu. Detects with a leading slash (/)
+     *
+     * @param url Relative url
+     * @return Absolute URL
+     */
+    public static String makeUrlAbsoluteProduction( String url ) {
+        if ( url.startsWith( "/" ) ) {
+            return "http://phet.colorado.edu" + url;
+        } else {
+            return url;
+        }
     }
 
     /**
@@ -214,8 +223,7 @@ public class StringUtils {
         String scheme = PhetRequestCycle.get().getScheme(); // protocol
         if ( url.startsWith( "/" ) ) {
             return scheme + "://" + server + url;
-        }
-        else {
+        } else {
             return url;
         }
     }
@@ -249,8 +257,7 @@ public class StringUtils {
                     .setInteger( "id", translationId ).setString( "key", key ).uniqueResult();
             if ( string != null ) {
                 status = STRING_TRANSLATED;
-            }
-            else {
+            } else {
                 return true;
             }
             TranslatedString englishString = (TranslatedString) session.createQuery(
@@ -303,8 +310,7 @@ public class StringUtils {
                 tString.initializeNewString( translation, key, value );
                 session.save( tString );
                 session.update( translation );
-            }
-            else {
+            } else {
                 tString.setValue( value );
                 tString.setUpdatedAt( new Date() );
 
@@ -316,13 +322,13 @@ public class StringUtils {
 
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -359,8 +365,7 @@ public class StringUtils {
                 tString.initializeNewString( translation, key, value );
                 session.save( tString );
                 session.update( translation );
-            }
-            else {
+            } else {
                 tString.setValue( value );
                 tString.setUpdatedAt( new Date() );
 
@@ -372,13 +377,13 @@ public class StringUtils {
 
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -403,8 +408,7 @@ public class StringUtils {
                     ret.append( str.charAt( i + 1 ) );
                     ret.append( '\'' );
                     i += 2;
-                }
-                else {
+                } else {
                     ret.append( '\'' );
                 }
             }

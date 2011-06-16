@@ -7,7 +7,7 @@ import java.util.{Locale, Date}
 import edu.colorado.phet.website.PhetWicketApplication
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils.stringToLocale
 import edu.colorado.phet.website.util.PhetRequestCycle
-import edu.colorado.phet.website.util.StringUtils.makeUrlAbsolute
+import edu.colorado.phet.website.util.StringUtils.makeUrlAbsoluteProduction
 import xml.Node
 import edu.colorado.phet.website.util.ScalaHibernateUtils._
 import java.io.File
@@ -86,13 +86,13 @@ object MetadataUtils {
       <title>{titles}</title>
       <description>{descriptions}</description>
       <learningGoals>{learningGoals}</learningGoals>
-      <thumbnail>{makeUrlAbsolute(sim.getThumbnailUrl)}</thumbnail>
-      <screenshot>{makeUrlAbsolute(sim.getImageUrl)}</screenshot>
+      <thumbnail>{makeUrlAbsoluteProduction(sim.getThumbnailUrl)}</thumbnail>
+      <screenshot>{makeUrlAbsoluteProduction(sim.getImageUrl)}</screenshot>
       <minGradeLevel>{sim.getMinGradeLevel}</minGradeLevel>
       <maxGradeLevel>{sim.getMaxGradeLevel}</maxGradeLevel>
       <createTime>{convertDate(sim.getCreateTime)}</createTime>
       <updateTime>{convertDate(sim.getUpdateTime)}</updateTime>
-      <simPageLink>{makeUrlAbsolute(SimulationPage.getLinker(sim).getDefaultRawUrl)}</simPageLink>
+      <simPageLink>{makeUrlAbsoluteProduction(SimulationPage.getLinker(sim).getDefaultRawUrl)}</simPageLink>
       <languages>{lsims.map(lsim => <language>{localeTo4646String(lsim.getLocale)}</language>)}</languages>
     </simulation>
 
