@@ -1,6 +1,8 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
+import xml.Comment
+import edu.colorado.phet.website.oai.OaiUtils.formatDateIso8601
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
@@ -52,11 +54,12 @@ class NSDLDCConverter extends PhetFormatConverter {
       {record.languages.map(language => <dc:language>{language}</dc:language>)}
 
       <!-- Creation date (when the sim was first deployed to our production site) -->
-      <dc:date xsi:type="dct:W3CDTF">{record.timeCreated}</dc:date>
-      <dct:created xsi:type="dct:W3CDTF">{record.timeCreated}</dct:created>
+
+      {if ( record.hasTimeCreated ) <dc:date xsi:type="dct:W3CDTF">{formatDateIso8601(record.dateCreated)}</dc:date> else new Comment("no creation date found")}
+      {if ( record.hasTimeCreated ) <dct:created xsi:type="dct:W3CDTF">{formatDateIso8601(record.dateCreated)}</dct:created> else new Comment("no creation date found")}
 
       <!-- Modification date (includes changes of translations, actual simulation modifications, etc.) -->
-      <dct:modified xsi:type="dct:W3CDTF">{record.timeUpdated}</dct:modified>
+      {if ( record.hasTimeUpdated ) <dct:modified xsi:type="dct:W3CDTF">{formatDateIso8601(record.dateUpdated)}</dct:modified> else new Comment("no modification date found")}
 
       <!-- Mime types used -->
       {record.mimeTypes.map(mimeType => <dc:format>{mimeType}</dc:format>)}

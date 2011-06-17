@@ -2,6 +2,7 @@ package edu.colorado.phet.website.oai
 
 import xml.{NodeSeq, XML}
 import collection.mutable.ListBuffer
+import java.util.Date
 
 /**
  * Represents a simulation record from the master data
@@ -66,8 +67,13 @@ class SimulationRecord(str: String) {
   * dates
   *----------------------------------------------------------------------------*/
 
-  def timeCreated = ( xml \ "createTime" ).text // W3CDTF
-  def timeUpdated = ( xml \ "updateTime" ).text // W3CDTF
+  def hasTimeCreated = ( xml \ "createTime" ).text.length() > 0
+
+  def hasTimeUpdated = ( xml \ "updateTime" ).text.length() > 0
+
+  def dateCreated: Date = OaiUtils.dateFormat.parse(( xml \ "createTime" ).text)
+
+  def dateUpdated: Date = OaiUtils.dateFormat.parse(( xml \ "updateTime" ).text)
 
   /*---------------------------------------------------------------------------*
   * languages (translations)
