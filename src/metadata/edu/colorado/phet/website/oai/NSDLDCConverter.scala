@@ -29,7 +29,7 @@ class NSDLDCConverter extends PhetFormatConverter {
                      xmlns:dct="http://purl.org/dc/terms/"
                      xmlns:ieee="http://ltsc.ieee.org/xsd/LOM"
                      xsi:schemaLocation="http://ns.nsdl.org/nsdl_dc_v1.02/ http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc_v1.02.xsd">
-      <!-- -->
+
       <!-- Unique identifier for the sim (the sim URI) -->
       <dc:identifier xsi:type="dct:URI">{record.simPageLink}</dc:identifier>
 
