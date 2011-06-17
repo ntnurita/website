@@ -18,9 +18,6 @@ class NSDLDCConverter extends PhetFormatConverter {
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 
-    // TODO: consider Instructional Method parameter
-    // TODO: consider Abstract
-
     <nsdl_dc:nsdl_dc schemaVersion="1.02.020"
                      xmlns:nsdl_dc="http://ns.nsdl.org/nsdl_dc_v1.02/"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
