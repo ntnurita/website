@@ -34,13 +34,10 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dc:identifier xsi:type="dct:URI">{record.simPageLink}</dc:identifier>
 
       <!-- English title -->
-      <dc:title xml:lang="en">{record.englishTitle}</dc:title>
-      <!-- TODO: change the order of translated strings so English is first and we can get rid of this exception-->
-      {record.translatedTitles.filter(str => str.language != "en").map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
+      {record.translatedTitles.map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
 
       <!-- Descriptions -->
-      <dc:description xml:lang="en">{record.englishDescrption}</dc:description>
-      {record.translatedDescriptions.filter(str => str.language != "en").map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
+      {record.translatedDescriptions.map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
 
       <!-- Rights -->
       <dc:rights>Free access / usage by everyone</dc:rights>
