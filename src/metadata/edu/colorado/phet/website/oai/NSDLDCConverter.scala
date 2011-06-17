@@ -25,7 +25,7 @@ class NSDLDCConverter extends PhetFormatConverter {
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xmlns:dc="http://purl.org/dc/elements/1.1/"
                      xmlns:dct="http://purl.org/dc/terms/"
-                     xmlns:ieee="http://ltsc.ieee.org/xsd/LOM"
+                     xmlns:ieee="http://www.ieee.org/xsd/LOMv1p0"
                      xsi:schemaLocation="http://ns.nsdl.org/nsdl_dc_v1.02/ http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc_v1.02.xsd">
 
       <!-- Unique identifier for the sim (the sim URI) -->
@@ -68,8 +68,8 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dct:hasVersion>{record.versionString}</dct:hasVersion>
 
       <!-- Interaction information-->
-      <ieee:interactivityType><ieee:source>LOMv1.0</ieee:source><ieee:source>active</ieee:source></ieee:interactivityType>
-      <ieee:interactivityLevel><ieee:source>LOMv1.0</ieee:source><ieee:source>very high</ieee:source></ieee:interactivityLevel>
+      <ieee:interactivityType>active</ieee:interactivityType>
+      <ieee:interactivityLevel>very high</ieee:interactivityLevel>
       <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
 
       <!-- Keywords -->
