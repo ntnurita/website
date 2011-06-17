@@ -16,7 +16,6 @@ class NSDLDCConverter extends PhetFormatConverter {
     // TODO: education level
     // TODO: type. DCMI maybe has <dc:type>InteractiveResource</dc:type>
     // TODO: verify that rights section is ok for now
-    // TODO: access rights (NSDL specific)
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 
     // TODO: consider Instructional Method parameter
@@ -43,6 +42,9 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dc:rights>Free access / usage by everyone</dc:rights>
       <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
       <dc:rights>© 2011 University of Colorado</dc:rights>
+
+      <!-- Access rights -->
+      <dct:accessRights xsi:type="nsdl_dc:NSDLAccess">Free access</dct:accessRights>
 
       <!-- Credits -->
       <dc:publisher>PhET Interactive Simulations</dc:publisher>
