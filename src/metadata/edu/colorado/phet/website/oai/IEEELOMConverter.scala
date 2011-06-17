@@ -90,29 +90,29 @@ END:VCARD]]></ieee:entity>
         </ieee:otherPlatformRequirements>
       </ieee:technical>
       <ieee:educational>
-        <ieee:interactivityType><ieee:source>LOMv1.0</ieee:source><ieee:source>active</ieee:source></ieee:interactivityType>
-        <ieee:learningResourceType><ieee:source>LOMv1.0</ieee:source><ieee:source>simulation</ieee:source></ieee:learningResourceType>
+        <ieee:interactivityType><ieee:source>LOMv1.0</ieee:source><ieee:value>active</ieee:value></ieee:interactivityType>
+        <ieee:learningResourceType><ieee:source>LOMv1.0</ieee:source><ieee:value>simulation</ieee:value></ieee:learningResourceType>
         <ieee:learningResourceType><ieee:source>DCMIType</ieee:source><ieee:value>InteractiveResource</ieee:value></ieee:learningResourceType>
-        <ieee:interactivityLevel><ieee:source>LOMv1.0</ieee:source><ieee:source>very high</ieee:source></ieee:interactivityLevel>
-        <ieee:semanticDensity><ieee:source>LOMv1.0</ieee:source><ieee:source>very high</ieee:source></ieee:semanticDensity>
-        <ieee:intendedEndUserRole><ieee:source>LOMv1.0</ieee:source><ieee:source>teacher</ieee:source></ieee:intendedEndUserRole>
-        <ieee:intendedEndUserRole><ieee:source>LOMv1.0</ieee:source><ieee:source>learner</ieee:source></ieee:intendedEndUserRole>
-        <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:source>school</ieee:source></ieee:context>
-        <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:source>higher education</ieee:source></ieee:context>
+        <ieee:interactivityLevel><ieee:source>LOMv1.0</ieee:source><ieee:value>very high</ieee:value></ieee:interactivityLevel>
+        <ieee:semanticDensity><ieee:source>LOMv1.0</ieee:source><ieee:value>very high</ieee:value></ieee:semanticDensity>
+        <ieee:intendedEndUserRole><ieee:source>LOMv1.0</ieee:source><ieee:value>teacher</ieee:value></ieee:intendedEndUserRole>
+        <ieee:intendedEndUserRole><ieee:source>LOMv1.0</ieee:source><ieee:value>learner</ieee:value></ieee:intendedEndUserRole>
+        <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:value>school</ieee:value></ieee:context>
+        <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:value>higher education</ieee:value></ieee:context>
         <ieee:typicalAgeRange>
           <!-- TODO typicalAgeRange -->
           <ieee:string language="en">7-</ieee:string>
         </ieee:typicalAgeRange>
-        <ieee:difficulty><ieee:source>LOMv1.0</ieee:source><ieee:source><!-- TODO very easy / easy / medium / difficult / very difficult --></ieee:source></ieee:difficulty>
+        <ieee:difficulty><ieee:source>LOMv1.0</ieee:source><ieee:value><!-- TODO very easy / easy / medium / difficult / very difficult --></ieee:value></ieee:difficulty>
         <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
         <ieee:description><ieee:string language="en"><!-- TODO comments on how this learning object is to be used. URL? --></ieee:string></ieee:description>
         {record.languages.map(language => <ieee:language>{language}</ieee:language>)}
       </ieee:educational>
       <ieee:rights>
-        <ieee:cost><ieee:source>LOMv1.0</ieee:source><ieee:source>no</ieee:source></ieee:cost>
+        <ieee:cost><ieee:source>LOMv1.0</ieee:source><ieee:value>no</ieee:value></ieee:cost>
 
         <!-- TODO what about copyright and other restrictions? -->
-        <ieee:copyrightAndOtherRestrictions><ieee:source>LOMv1.0</ieee:source><ieee:source>no</ieee:source></ieee:copyrightAndOtherRestrictions>
+        <ieee:copyrightAndOtherRestrictions><ieee:source>LOMv1.0</ieee:source><ieee:value>no</ieee:value></ieee:copyrightAndOtherRestrictions>
         <ieee:description><ieee:string language="en"><!-- TODO description of rights, etc--></ieee:string></ieee:description>
       </ieee:rights>
       <ieee:relation>
