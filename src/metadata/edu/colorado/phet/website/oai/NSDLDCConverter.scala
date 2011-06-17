@@ -80,6 +80,6 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">Learner</dct:audience>
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">Educator</dct:audience>
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">General Public</dct:audience>
-    </nsdl_dc:nsdl_dc>.toString
+    </nsdl_dc:nsdl_dc>.toString()
   }
 }

@@ -44,13 +44,21 @@ object MetadataUtils {
   def simulationToMasterFormat(sim: Simulation): String = {
     val project = sim.getProject
 
-    // list of localized simulations
-    val lsims = sim.getLocalizedSimulations.map(_.asInstanceOf[LocalizedSimulation]).toList.sortBy(_.getLocaleString)
-
     val English = PhetWicketApplication.getDefaultLocale // TODO: put this renaming somewhere else, since it is globally useful
 
+    def localeSort(a: Locale, b: Locale): Boolean = {
+      (a, b) match {
+        case (English, _) => true
+        case (_, English) => false
+        case _ => a.toString.compareToIgnoreCase(b.toString) < 0
+      }
+    }
+
+    // list of localized simulations TODO: add RichSimulation so we can get rid of casts like these
+    val lsims: List[LocalizedSimulation] = sim.getLocalizedSimulations.map(_.asInstanceOf[LocalizedSimulation]).toList.sortWith((a,b) => localeSort(a.getLocale,b.getLocale))
+
     // list of all website translation locales (NOT sim translation locales)
-    val webLocales = English :: PhetWicketApplication.get().getTranslationLocaleStrings.map(str => stringToLocale(str)).toList
+    val webLocales = English :: PhetWicketApplication.get().getTranslationLocaleStrings.map(str => stringToLocale(str)).toList.sortWith(localeSort)
 
     // translate a string with a locale
     def translate(key: String, locale: Locale): String = PhetLocalizer.get().getBestString(PhetRequestCycle.get().getHibernateSession, key, locale)
