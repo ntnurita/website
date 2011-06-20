@@ -1,8 +1,8 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
-import xml.Comment
 import edu.colorado.phet.website.oai.OaiUtils.formatDateIso8601
+import xml.{NodeSeq, Comment}
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
@@ -13,7 +13,7 @@ import edu.colorado.phet.website.oai.OaiUtils.formatDateIso8601
 class NSDLDCConverter extends PhetFormatConverter {
   def getToFormat = "nsdl_dc"
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq = {
     // TODO: subject (for categories)
     // TODO: education level
     // TODO: type. DCMI maybe has <dc:type>InteractiveResource</dc:type>
@@ -79,6 +79,6 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">Learner</dct:audience>
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">Educator</dct:audience>
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">General Public</dct:audience>
-    </nsdl_dc:nsdl_dc>.toString()
+    </nsdl_dc:nsdl_dc>
   }
 }

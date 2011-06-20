@@ -2,6 +2,7 @@ package edu.colorado.phet.website.oai
 
 import org.dlese.dpc.xml.XMLFormatConverter
 import javax.servlet.ServletContext
+import xml.NodeSeq
 
 /**
  * Handles things that are common between our format converters from the master format
@@ -11,11 +12,11 @@ abstract class PhetFormatConverter extends XMLFormatConverter {
 
   def getFromFormat = OaiUtils.MasterFormatName
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq
 
   def convertXML(masterXML: String, servletContext: ServletContext): String = {
     try {
-      convertRecord(new SimulationRecord(masterXML), servletContext)
+      convertRecord(new SimulationRecord(masterXML), servletContext).toString()
     }
     catch {
       case e: Exception => {

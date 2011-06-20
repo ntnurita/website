@@ -1,6 +1,7 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
+import xml.NodeSeq
 
 /**
  * Metadata conversion to the IMS LODE ILOX metadata format
@@ -13,7 +14,7 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
 
   // TODO: better way of embedding LOM?
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq = {
     return <work xmlns="http://www.imsglobal.org/xsd/imsloilox_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.imsglobal.org/xsd/imsloilox_v1p0 http://www.imsglobal.org/xsd/imsloilox_v1p0.xsd">
     <identifier>
@@ -1820,6 +1821,6 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
             </item>
         </manifestation>
     </expression>
-</work>.toString()
+</work>
   }
 }

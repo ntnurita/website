@@ -17,7 +17,7 @@ class IEEELOMConverter extends PhetFormatConverter {
    */
   def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq = {
 
     def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
@@ -119,6 +119,6 @@ END:VCARD]]></entity>
       </relation>
       <!-- TODO: LOM 8 annotations? (like other people's comments in our metadata) -->
       <!-- TODO: LOM 9 classification (s) -->
-    </lom>.toString()
+    </lom>
   }
 }
