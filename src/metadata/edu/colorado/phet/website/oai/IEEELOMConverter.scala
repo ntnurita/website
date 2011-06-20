@@ -15,7 +15,7 @@ class IEEELOMConverter extends PhetFormatConverter {
   /**
    * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
    */
-  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <ieee:string language={str.language}>{str.string}</ieee:string>)
+  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
 
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): String = {
 
@@ -31,95 +31,94 @@ end:vcard
      */
     // NOTE: do we need LOM 3 (meta-metadata)
 
-    <ieee:lom xmlns:ieee="http://ltsc.ieee.org/xsd/LOM"
+    <lom xmlns="http://ltsc.ieee.org/xsd/LOM"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
-      <ieee:general>
-        <ieee:identifier>
-          <ieee:catalog>phet.colorado.edu</ieee:catalog>
-          <ieee:entry>{record.simPageLink}</ieee:entry>
-        </ieee:identifier>
-        <ieee:title>{convertLangString(record.translatedTitles)}</ieee:title>
-        {record.languages.map(language => <ieee:language>{language}</ieee:language>)}
-        <ieee:description>{convertLangString(record.translatedDescriptions)}</ieee:description>
-        {record.translatedTerms.map(term => <ieee:keyword>{convertLangString(term)}</ieee:keyword>)}
-        <ieee:structure>
-          <ieee:source>LOMv1.0</ieee:source>
-          <ieee:value>atomic</ieee:value>
-        </ieee:structure>
-        <ieee:aggregationLevel>
-          <ieee:source>LOMv1.0</ieee:source>
-          <ieee:value>1</ieee:value>
-        </ieee:aggregationLevel>
-      </ieee:general>
-      <ieee:lifeCycle>
-        <ieee:version><ieee:string language="en">{record.versionString}</ieee:string></ieee:version>
-        <ieee:status>
-          <ieee:source>LOMv1.0</ieee:source>
-          <ieee:value>final</ieee:value>
-        </ieee:status>
-        <ieee:contribute>
-          <ieee:role>
-            <ieee:source>LOMv1.0</ieee:source>
-            <ieee:value>publisher</ieee:value>
-          </ieee:role>
-          <ieee:entity><![CDATA[BEGIN:VCARD
+      <general>
+        <identifier>
+          <catalog>phet.colorado.edu</catalog>
+          <entry>{record.simPageLink}</entry>
+        </identifier>
+        <title>{convertLangString(record.translatedTitles)}</title>
+        {record.languages.map(language => <language>{language}</language>)}
+        <description>{convertLangString(record.translatedDescriptions)}</description>
+        {record.translatedTerms.map(term => <keyword>{convertLangString(term)}</keyword>)}
+        <structure>
+          <source>LOMv1.0</source>
+          <value>atomic</value>
+        </structure>
+        <aggregationLevel>
+          <source>LOMv1.0</source>
+          <value>1</value>
+        </aggregationLevel>
+      </general>
+      <lifeCycle>
+        <version><string language="en">{record.versionString}</string></version>
+        <status>
+          <source>LOMv1.0</source>
+          <value>final</value>
+        </status>
+        <contribute>
+          <role>
+            <source>LOMv1.0</source>
+            <value>publisher</value>
+          </role>
+          <entity><![CDATA[BEGIN:VCARD
 FN:PhET Interactive Simulations
 N:;;PhET Interactive Simulations
 ORG:PhET Interactive Simulations
 VERSION:3.0
-END:VCARD]]></ieee:entity>
-        </ieee:contribute>
-        {record.authors.map(author => <ieee:contribute>
-          <ieee:role>
-            <ieee:source>LOMv1.0</ieee:source>
-            <ieee:value>author</ieee:value>
-          </ieee:role>
-          <ieee:entity>{vCardFromName(author)}</ieee:entity>
-        </ieee:contribute>)}
-      </ieee:lifeCycle>
-      <ieee:technical>
-        {record.mimeTypes.map(mimeType => <ieee:format>{mimeType}</ieee:format>)}
-        <ieee:size>{( record.kilobytes * 1000 ).toString}</ieee:size>
-        <ieee:location>{record.simPageLink}</ieee:location>
-        <ieee:installationRemarks>
-          <ieee:string language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</ieee:string>
-        </ieee:installationRemarks>
-        <ieee:otherPlatformRequirements>
-          <ieee:string language="en">{record.englishSoftwareRequirements}</ieee:string>
-        </ieee:otherPlatformRequirements>
-      </ieee:technical>
-      <ieee:educational>
-        <ieee:interactivityType><ieee:source>LOMv1.0</ieee:source><ieee:value>active</ieee:value></ieee:interactivityType>
-        <ieee:learningResourceType><ieee:source>LOMv1.0</ieee:source><ieee:value>simulation</ieee:value></ieee:learningResourceType>
-        <ieee:learningResourceType><ieee:source>DCMIType</ieee:source><ieee:value>InteractiveResource</ieee:value></ieee:learningResourceType>
-        <ieee:interactivityLevel><ieee:source>LOMv1.0</ieee:source><ieee:value>very high</ieee:value></ieee:interactivityLevel>
-        <ieee:semanticDensity><ieee:source>LOMv1.0</ieee:source><ieee:value>very high</ieee:value></ieee:semanticDensity>
-        <ieee:intendedEndUserRole><ieee:source>LOMv1.0</ieee:source><ieee:value>teacher</ieee:value></ieee:intendedEndUserRole>
-        <ieee:intendedEndUserRole><ieee:source>LOMv1.0</ieee:source><ieee:value>learner</ieee:value></ieee:intendedEndUserRole>
-        <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:value>school</ieee:value></ieee:context>
-        <ieee:context><ieee:source>LOMv1.0</ieee:source><ieee:value>higher education</ieee:value></ieee:context>
-        <ieee:typicalAgeRange>
+END:VCARD]]></entity>
+        </contribute>
+        {record.authors.map(author => <contribute>
+          <role>
+            <source>LOMv1.0</source>
+            <value>author</value>
+          </role>
+          <entity>{vCardFromName(author)}</entity>
+        </contribute>)}
+      </lifeCycle>
+      <technical>
+        {record.mimeTypes.map(mimeType => <format>{mimeType}</format>)}
+        <size>{( record.kilobytes * 1000 ).toString}</size>
+        <location>{record.simPageLink}</location>
+        <installationRemarks>
+          <string language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</string>
+        </installationRemarks>
+        <otherPlatformRequirements>
+          <string language="en">{record.englishSoftwareRequirements}</string>
+        </otherPlatformRequirements>
+      </technical>
+      <educational>
+        <interactivityType><source>LOMv1.0</source><value>active</value></interactivityType>
+        <learningResourceType><source>LOMv1.0</source><value>simulation</value></learningResourceType>
+        <interactivityLevel><source>LOMv1.0</source><value>very high</value></interactivityLevel>
+        <semanticDensity><source>LOMv1.0</source><value>very high</value></semanticDensity>
+        <intendedEndUserRole><source>LOMv1.0</source><value>teacher</value></intendedEndUserRole>
+        <intendedEndUserRole><source>LOMv1.0</source><value>learner</value></intendedEndUserRole>
+        <context><source>LOMv1.0</source><value>school</value></context>
+        <context><source>LOMv1.0</source><value>higher education</value></context>
+        <typicalAgeRange>
           <!-- TODO typicalAgeRange -->
-          <ieee:string language="en">7-</ieee:string>
-        </ieee:typicalAgeRange>
-        <ieee:difficulty><ieee:source>LOMv1.0</ieee:source><ieee:value><!-- TODO very easy / easy / medium / difficult / very difficult --></ieee:value></ieee:difficulty>
-        <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
-        <ieee:description><ieee:string language="en"><!-- TODO comments on how this learning object is to be used. URL? --></ieee:string></ieee:description>
-        {record.languages.map(language => <ieee:language>{language}</ieee:language>)}
-      </ieee:educational>
-      <ieee:rights>
-        <ieee:cost><ieee:source>LOMv1.0</ieee:source><ieee:value>no</ieee:value></ieee:cost>
+          <string language="en">7-</string>
+        </typicalAgeRange>
+        <difficulty><source>LOMv1.0</source><value><!-- TODO very easy / easy / medium / difficult / very difficult --></value></difficulty>
+        <typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></typicalLearningTime>
+        <description><string language="en"><!-- TODO comments on how this learning object is to be used. URL? --></string></description>
+        {record.languages.map(language => <language>{language}</language>)}
+      </educational>
+      <rights>
+        <cost><source>LOMv1.0</source><value>no</value></cost>
 
         <!-- TODO what about copyright and other restrictions? -->
-        <ieee:copyrightAndOtherRestrictions><ieee:source>LOMv1.0</ieee:source><ieee:value>no</ieee:value></ieee:copyrightAndOtherRestrictions>
-        <ieee:description><ieee:string language="en"><!-- TODO description of rights, etc--></ieee:string></ieee:description>
-      </ieee:rights>
-      <ieee:relation>
+        <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>no</value></copyrightAndOtherRestrictions>
+        <description><string language="en"><!-- TODO description of rights, etc--></string></description>
+      </rights>
+      <relation>
         <!-- TODO: LOM 7 Relation related to other sims / etc? -->
-      </ieee:relation>
+      </relation>
       <!-- TODO: LOM 8 annotations? (like other people's comments in our metadata) -->
       <!-- TODO: LOM 9 classification (s) -->
-    </ieee:lom>.toString
+    </lom>.toString()
   }
 }
