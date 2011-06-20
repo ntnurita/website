@@ -36,7 +36,7 @@ end:vcard
               xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
       <ieee:general>
         <ieee:identifier>
-          <ieee:catalog>URI</ieee:catalog>
+          <ieee:catalog>phet.colorado.edu</ieee:catalog>
           <ieee:entry>{record.simPageLink}</ieee:entry>
         </ieee:identifier>
         <ieee:title>{convertLangString(record.translatedTitles)}</ieee:title>
