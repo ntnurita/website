@@ -12,6 +12,10 @@ abstract class PhetFormatConverter extends XMLFormatConverter {
 
   def getFromFormat = OaiUtils.MasterFormatName
 
+  /**
+   * Actually convert the SimulationRecord into XML. We return NodeSeq so that we can embed output from one converter into
+   * that of another.
+   */
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq
 
   def convertXML(masterXML: String, servletContext: ServletContext): String = {
