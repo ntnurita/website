@@ -6,6 +6,7 @@ import javax.servlet.ServletContext
  * Metadata conversion to the IMS LODE ILOX metadata format
  *
  * spec: http://lreforschools.eun.org/c/document_library/get_file?p_l_id=10970&folderId=12073&name=DLFE-1.pdf
+ * thesaurus: http://demo.lexaurus.net/demo/linkeddata/LRE/LRE-0001/revision/4/attachment
  */
 class IMSLODEILOXConverter extends PhetFormatConverter {
   def getToFormat = "ims_lode_ilox" // TODO: what is the metadataPrefix ?
