@@ -10,7 +10,7 @@ import xml.Node
  * thesaurus: http://demo.lexaurus.net/demo/linkeddata/LRE/LRE-0001/revision/4/attachment
  */
 class IMSLODEILOXConverter extends PhetFormatConverter {
-  def getToFormat = "ims_lode_ilox" // TODO: what is the metadataPrefix ?
+  def getToFormat = "oai_ilox"
 
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
     val runNowManifestation = if ( record.isJava ) "jnlp" else "experience"
