@@ -34,15 +34,26 @@ end:vcard
     <lom xmlns="http://ltsc.ieee.org/xsd/LOM"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+      <!-- LOM 1 General -->
       <general>
+        <!-- identifier -->
         <identifier>
           <catalog>phet.colorado.edu</catalog>
           <entry>{record.simPageLink}</entry>
         </identifier>
+
+        <!-- title -->
         <title>{convertLangString(record.translatedTitles)}</title>
+
+        <!-- languages -->
         {record.languages.map(language => <language>{language}</language>)}
+
+        <!-- description -->
         <description>{convertLangString(record.translatedDescriptions)}</description>
+
+        <!-- keywords -->
         {record.translatedTerms.map(term => <keyword>{convertLangString(term)}</keyword>)}
+
         <structure>
           <source>LOMv1.0</source>
           <value>atomic</value>
@@ -52,12 +63,19 @@ end:vcard
           <value>1</value>
         </aggregationLevel>
       </general>
+
+      <!-- LOM 2 Lifecycle -->
       <lifeCycle>
+
+        <!-- simulation version -->
         <version><string language="en">{record.versionString}</string></version>
+
         <status>
           <source>LOMv1.0</source>
           <value>final</value>
         </status>
+
+        <!-- PhET -->
         <contribute>
           <role>
             <source>LOMv1.0</source>
@@ -70,6 +88,8 @@ ORG:PhET Interactive Simulations
 VERSION:3.0
 END:VCARD]]></entity>
         </contribute>
+
+        <!-- other contributors -->
         {record.authors.map(author => <contribute>
           <role>
             <source>LOMv1.0</source>
@@ -78,6 +98,10 @@ END:VCARD]]></entity>
           <entity>{vCardFromName(author)}</entity>
         </contribute>)}
       </lifeCycle>
+
+      <!-- TODO consider LOM 3 Meta-Metadata -->
+
+      <!-- LOM 4 Technical -->
       <technical>
         {record.mimeTypes.map(mimeType => <format>{mimeType}</format>)}
         <size>{( record.kilobytes * 1000 ).toString}</size>
@@ -89,34 +113,65 @@ END:VCARD]]></entity>
           <string language="en">{record.englishSoftwareRequirements}</string>
         </otherPlatformRequirements>
       </technical>
+
+      <!-- LOM 5 Educational -->
       <educational>
+        <!-- interactivity type -->
         <interactivityType><source>LOMv1.0</source><value>active</value></interactivityType>
+
+        <!-- learning resource type -->
         <learningResourceType><source>LOMv1.0</source><value>simulation</value></learningResourceType>
+        <learningResourceType><source>LRE.learningResourceTypeValues</source><value>simulation</value></learningResourceType>
+        <learningResourceType><source>DCMIType</source><value>InteractiveResource</value></learningResourceType>
+
+        <!-- interactivity level -->
         <interactivityLevel><source>LOMv1.0</source><value>very high</value></interactivityLevel>
+
+        <!-- semantic density -->
         <semanticDensity><source>LOMv1.0</source><value>very high</value></semanticDensity>
+
+        <!-- intended user roles -->
         <intendedEndUserRole><source>LOMv1.0</source><value>teacher</value></intendedEndUserRole>
+        <intendedEndUserRole><source>LRE.intendedEndUserRoleValues</source><value>teacher</value></intendedEndUserRole>
         <intendedEndUserRole><source>LOMv1.0</source><value>learner</value></intendedEndUserRole>
+        <intendedEndUserRole><source>LRE.intendedEndUserRoleValues</source><value>learner</value></intendedEndUserRole>
+
+        <!-- contexts -->
         <context><source>LOMv1.0</source><value>school</value></context>
         <context><source>LOMv1.0</source><value>higher education</value></context>
-        <typicalAgeRange>
-          <!-- TODO typicalAgeRange -->
-          <string language="en">7-</string>
-        </typicalAgeRange>
-        <difficulty><source>LOMv1.0</source><value><!-- TODO very easy / easy / medium / difficult / very difficult --></value></difficulty>
-        <typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></typicalLearningTime>
-        <description><string language="en"><!-- TODO comments on how this learning object is to be used. URL? --></string></description>
+        <context><source>LRE.contextValues</source><value>compulsory education</value></context>
+
+        <!-- TODO typical age range. set to European Schoolnet value -->
+        <typicalAgeRange><string language="x-t-lre">12-20</string></typicalAgeRange>
+
+        <!-- TODO difficulty: very easy / easy / medium / difficult / very difficult -->
+        <difficulty><source>LOMv1.0</source><value>medium</value></difficulty>
+
+        <!-- TODO Duration type, like PT1H30M or PT1M45S-->
+        <!-- <typicalLearningTime></typicalLearningTime> -->
+
+        <!-- TODO comments on how this learning object is to be used. URL? -->
+        <!-- <description><string language="en"></string></description> -->
+
+        <!-- languages (again, see above in LOM 1 General) -->
         {record.languages.map(language => <language>{language}</language>)}
       </educational>
+
+      <!-- LOM 6 Rights -->
       <rights>
         <cost><source>LOMv1.0</source><value>no</value></cost>
+        <cost><source>costValues</source><value>no</value></cost><!-- cost for IMS LODE ILOX -->
 
         <!-- TODO what about copyright and other restrictions? -->
         <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>no</value></copyrightAndOtherRestrictions>
         <description><string language="en"><!-- TODO description of rights, etc--></string></description>
       </rights>
+
+      <!-- LOM 7 Relation -->
       <relation>
-        <!-- TODO: LOM 7 Relation related to other sims / etc? -->
+        <!-- TODO: LOM 7 Relation related to other sims, or their teacher guides? -->
       </relation>
+
       <!-- TODO: LOM 8 annotations? (like other people's comments in our metadata) -->
       <!-- TODO: LOM 9 classification (s) -->
     </lom>
