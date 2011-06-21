@@ -31,7 +31,7 @@ class NSDLDCConverter extends PhetFormatConverter {
       <!-- Unique identifier for the sim (the sim URI) -->
       <dc:identifier xsi:type="dct:URI">{record.simPageLink}</dc:identifier>
 
-      <!-- English title -->
+      <!-- Titles -->
       {record.translatedTitles.map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
 
       <!-- Descriptions -->
