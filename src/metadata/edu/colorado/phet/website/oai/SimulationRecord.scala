@@ -37,6 +37,8 @@ class SimulationRecord(str: String) {
 
   private def filteredTerms = ( xml \\ "keyword" ).distinct // remove duplicates
 
+  def translatedCategories: Seq[Seq[LanguageString]] = (xml \ "categories" \ "category").map(node => allStrings(node))
+
   /*---------------------------------------------------------------------------*
   * URLs
   *----------------------------------------------------------------------------*/
