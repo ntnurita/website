@@ -161,6 +161,9 @@ END:VCARD]]></entity>
         <context><source>LOMv1.0</source><value>school</value></context>
         <context><source>LOMv1.0</source><value>higher education</value></context>
         <context><source>LRE.contextValues</source><value>compulsory education</value></context>
+        <!-- TODO: only show higher education context when its level is noted -->
+        <context><source>LRE.contextValues</source><value>higher education</value></context>
+        <context><source>LRE.contextValues</source><value>distance education</value></context>
 
         <!-- TODO typical age range. set to European Schoolnet value -->
         <typicalAgeRange><string language="x-t-lre">12-20</string></typicalAgeRange>
@@ -183,10 +186,12 @@ END:VCARD]]></entity>
         <cost><source>LOMv1.0</source><value>no</value></cost>
         <cost><source>costValues</source><value>no</value></cost><!-- cost for IMS LODE ILOX -->
 
-        <!-- TODO what about copyright and other restrictions? -->
         <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>yes</value></copyrightAndOtherRestrictions>
-        <description><string language="en"><!-- TODO description of rights, etc--></string></description>
-        <description><string language="x-t-cc-url">http://creativecommons.org/licenses/by/3.0/us/</string></description>
+        <description>
+          <string language="x-t-cc-url">http://creativecommons.org/licenses/by/3.0/us/</string>
+          <string language="x-t-rights-url">http://creativecommons.org/licenses/GPL/2.0/</string>
+          <!-- TODO description of rights, etc in all applicable languages (make it translatable ) -->
+        </description>
       </rights>
 
       <!-- LOM 7 Relation -->
