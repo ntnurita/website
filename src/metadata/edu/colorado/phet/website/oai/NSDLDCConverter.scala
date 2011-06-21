@@ -54,7 +54,6 @@ class NSDLDCConverter extends PhetFormatConverter {
       {record.languages.map(language => <dc:language>{language}</dc:language>)}
 
       <!-- Creation date (when the sim was first deployed to our production site) -->
-
       {if ( record.hasTimeCreated ) <dc:date xsi:type="dct:W3CDTF">{formatDateIso8601(record.dateCreated)}</dc:date> else new Comment("no creation date found")}
       {if ( record.hasTimeCreated ) <dct:created xsi:type="dct:W3CDTF">{formatDateIso8601(record.dateCreated)}</dct:created> else new Comment("no creation date found")}
 
@@ -74,6 +73,9 @@ class NSDLDCConverter extends PhetFormatConverter {
 
       <!-- Keywords -->
       {record.translatedTerms.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
+
+      <!-- subjects from our "categories" -->
+      {record.translatedCategories.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
 
       <!-- Recommended Audiences -->
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">Learner</dct:audience>
