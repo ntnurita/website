@@ -131,7 +131,7 @@ class SimulationRecord(str: String) {
   * implementation
   *----------------------------------------------------------------------------*/
 
-  def simulationBase = "http://phet.colorado.edu/sims/" + record.projectName + "/" + record.simulationName
+  def simulationBase = "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName
 
   /**
    * Given a node with contained "string" elements, return the text within the English "string" element
