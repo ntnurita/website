@@ -65,6 +65,9 @@ public class Category implements Serializable, IntId {
      */
     private Category parent;
 
+    public static final String BY_LEVEL_CATEGORY_NAME = "by-level";
+    public static final String NEW_CATEGORY_NAME = "new";
+
     /*---------------------------------------------------------------------------*
     * grade-level category names
     *----------------------------------------------------------------------------*/
@@ -220,7 +223,7 @@ public class Category implements Serializable, IntId {
      * @return Whether this category represents what type of educational content is available (not age level)
      */
     public boolean isContentCategory() {
-        return !isGradeLevelCategory() && !getName().equals( "by-level" );
+        return !isGradeLevelCategory() && !getName().equals( Category.BY_LEVEL_CATEGORY_NAME ) && !getName().equals( Category.NEW_CATEGORY_NAME );
     }
 
     /**

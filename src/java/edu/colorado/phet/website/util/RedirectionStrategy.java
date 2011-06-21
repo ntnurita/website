@@ -261,7 +261,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         categoryMap.put( "Math_", "math" );
         categoryMap.put( "Tools", "math/tools" );
         categoryMap.put( "Applications", "math/applications" );
-        categoryMap.put( "All_Sims_by_Grade_Level_", "by-level" );
+        categoryMap.put( "All_Sims_by_Grade_Level_", Category.BY_LEVEL_CATEGORY_NAME );
         categoryMap.put( "Elementary_School", "by-level/elementary-school" );
         categoryMap.put( "Middle_School_", "by-level/middle-school" );
         categoryMap.put( "High_School_", "by-level/high-school" );
