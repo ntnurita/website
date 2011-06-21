@@ -13,6 +13,6 @@ object OaiUtils {
 
   def formatDateIso8601(date: Date) = iso8601DateFormat.format(date)
 
-  //  val commonTimestamp = 1308202238000L; // used so we can update all converters at once
-  val commonTimestamp = System.currentTimeMillis(); // TODO: remove this, since it always regenerates
+    val commonTimestamp = 1308678761000L; // used so we can update all converters at once
+//  val commonTimestamp = System.currentTimeMillis(); // TODO: remove this, since it always regenerates
 }
