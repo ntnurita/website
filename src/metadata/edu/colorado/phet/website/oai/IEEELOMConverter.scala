@@ -22,6 +22,27 @@ class IEEELOMConverter extends PhetFormatConverter {
     def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
     /*
+    Physics classification example (LRE-0001)
+                <classification>
+                    <purpose>
+                        <source>purposeValues</source>
+                        <value>discipline</value>
+                    </purpose>
+                    <taxonPath>
+                        <source>
+                            <string language="x-none">LRE-0001</string>
+                        </source>
+                        <taxon>
+                            <id>978</id>
+                            <entry>
+                                <string language="en">physics</string>
+                            </entry>
+                        </taxon>
+                    </taxonPath>
+                </classification>
+     */
+
+    /*
 begin:vcard
 fn:Jonathan Olson
 n:Olson;Jonathan
@@ -165,6 +186,7 @@ END:VCARD]]></entity>
         <!-- TODO what about copyright and other restrictions? -->
         <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>no</value></copyrightAndOtherRestrictions>
         <description><string language="en"><!-- TODO description of rights, etc--></string></description>
+        <description><string language="x-t-cc-url">http://creativecommons.org/licenses/by/3.0/us/</string></description>
       </rights>
 
       <!-- LOM 7 Relation -->
