@@ -10,6 +10,10 @@ import java.util.Date
 class SimulationRecord(str: String) {
   val xml = XML.loadString(str)
 
+  def projectName: String = ( xml \ "project" \ "@name" ).text
+
+  def simulationName: String = ( xml \ "simulation" \ "@name" ).text
+
   /*---------------------------------------------------------------------------*
   * titles
   *----------------------------------------------------------------------------*/
@@ -37,6 +41,20 @@ class SimulationRecord(str: String) {
   * URLs
   *----------------------------------------------------------------------------*/
   def simPageLink = ( xml \ "simPageLink" ).text
+
+  def thumbnailLink = "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName + "-thumbnail.jpg"
+
+  def screenshotLink = "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName + "-screenshot.png"
+
+  def runNowUrl(language: String): String = {
+    if ( isJava ) {
+      simulationBase + "_" + language + ".jnlp"
+    } else {
+      simulationBase + "_" + language + ".html"
+    }
+  }
+
+  def downloadUrl(language: String): String = simulationBase + "_" + language + ".jar"
 
   /*---------------------------------------------------------------------------*
   * technology
@@ -112,6 +130,8 @@ class SimulationRecord(str: String) {
   /*---------------------------------------------------------------------------*
   * implementation
   *----------------------------------------------------------------------------*/
+
+  def simulationBase = "http://phet.colorado.edu/sims/" + record.projectName + "/" + record.simulationName
 
   /**
    * Given a node with contained "string" elements, return the text within the English "string" element

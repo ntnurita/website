@@ -78,6 +78,8 @@ object MetadataUtils {
     val descriptions = translateToList(sim.getDescriptionKey)
     val learningGoals = translateToList(sim.getLearningGoalsKey)
 
+    // TODO: include activities guide link if available?
+
     val xml =
     <simulation xmlns="http://phet.colorado.edu/xsd/phet-simulation/"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
