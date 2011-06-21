@@ -125,7 +125,7 @@ class SimulationRecord(str: String) {
   def authors: Seq[String] = ( xml \ "credits" \ "@designTeam" ).text.split('|').map(str => {
     val AuthorRegex(prefix, name, role) = str
     name
-  })
+  }).distinct
 
   private val AuthorRegex = """^(.*: *)?([^:\(]+)( +\(.*)?$""".r
 
