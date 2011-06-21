@@ -144,7 +144,7 @@ public class Simulation implements Serializable, IntId {
             Category category = (Category) o;
             if ( category.isGradeLevelCategory() ) {
                 GradeLevel level = GradeLevel.getGradeLevelFromCategory( category );
-                if ( level.compareTo( result ) < 0 ) {
+                if ( GradeLevel.isLowerGradeLevel( level, result ) ) {
                     result = level;
                 }
             }
@@ -158,7 +158,7 @@ public class Simulation implements Serializable, IntId {
             Category category = (Category) o;
             if ( category.isGradeLevelCategory() ) {
                 GradeLevel level = GradeLevel.getGradeLevelFromCategory( category );
-                if ( level.compareTo( result ) > 0 ) {
+                if ( GradeLevel.isLowerGradeLevel( result, level ) ) {
                     result = level;
                 }
             }
