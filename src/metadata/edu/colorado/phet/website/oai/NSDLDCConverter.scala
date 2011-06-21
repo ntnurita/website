@@ -16,7 +16,6 @@ class NSDLDCConverter extends PhetFormatConverter {
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
     // TODO: subject (for categories)
     // TODO: education level
-    // TODO: type. DCMI maybe has <dc:type>InteractiveResource</dc:type>
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 
@@ -36,6 +35,12 @@ class NSDLDCConverter extends PhetFormatConverter {
 
       <!-- Descriptions -->
       {record.translatedDescriptions.map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
+
+      <!-- Types -->
+      <dc:type xsi:type="dct:DCMIType">InteractiveResource</dc:type>
+      <dc:type xsi:type="nsdl_dc:NSDLType">Instructional Material</dc:type>
+      <dc:type xsi:type="nsdl_dc:NSDLType">Simulation</dc:type>
+      <dc:type xsi:type="nsdl_dc:NSDLType">Activity</dc:type> <!-- activities are available on the simulation web page -->
 
       <!-- Rights -->
       <dc:rights>Free access / usage by everyone</dc:rights>
