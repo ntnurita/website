@@ -54,7 +54,7 @@ end:vcard
 
     <lom xmlns="http://ltsc.ieee.org/xsd/LOM"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+              xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lomLoose.xsd">
       <!-- LOM 1 General -->
       <general>
         <!-- identifier -->
@@ -184,7 +184,6 @@ END:VCARD]]></entity>
       <!-- LOM 6 Rights -->
       <rights>
         <cost><source>LOMv1.0</source><value>no</value></cost>
-        <cost><source>costValues</source><value>no</value></cost><!-- cost for IMS LODE ILOX -->
 
         <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>yes</value></copyrightAndOtherRestrictions>
         <description>
