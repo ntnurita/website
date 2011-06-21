@@ -2,7 +2,7 @@ package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
 import edu.colorado.phet.website.oai.OaiUtils.formatDateIso8601
-import xml.{NodeSeq, Comment}
+import xml.{Node, Comment}
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
@@ -13,7 +13,7 @@ import xml.{NodeSeq, Comment}
 class NSDLDCConverter extends PhetFormatConverter {
   def getToFormat = "nsdl_dc"
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq = {
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
     // TODO: subject (for categories)
     // TODO: education level
     // TODO: type. DCMI maybe has <dc:type>InteractiveResource</dc:type>

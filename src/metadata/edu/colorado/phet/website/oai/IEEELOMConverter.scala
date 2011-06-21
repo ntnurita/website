@@ -17,7 +17,7 @@ class IEEELOMConverter extends PhetFormatConverter {
    */
   def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq = {
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
 
     def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 

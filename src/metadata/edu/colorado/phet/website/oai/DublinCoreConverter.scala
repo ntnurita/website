@@ -1,7 +1,7 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
-import xml.NodeSeq
+import xml.Node
 
 /**
  * Converts our master format simulation data to Dublin Core XML
@@ -13,7 +13,7 @@ import xml.NodeSeq
 class DublinCoreConverter extends PhetFormatConverter {
   def getToFormat = "oai_dc"
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): NodeSeq = {
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
     // TODO: dc:subject (for categories)
 
     // note: no dc:date element is used currently, as there would be no unambiguous meaning to this
