@@ -221,6 +221,13 @@ public class Category implements Serializable, IntId {
     }
 
     /**
+     * @return Whether this category represents what type of educational content is available (not age level)
+     */
+    public boolean isContentCategory() {
+        return !isGradeLevelCategory() && !getName().equals( "by-level" );
+    }
+
+    /**
      * @return Whether this category also represents a grade-level category (Elementary school, etc.)
      */
     public boolean isGradeLevelCategory() {

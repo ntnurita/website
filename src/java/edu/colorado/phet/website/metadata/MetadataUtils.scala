@@ -55,7 +55,7 @@ object MetadataUtils {
     }
 
     // list of localized simulations TODO: add RichSimulation so we can get rid of casts like these
-    val lsims: List[LocalizedSimulation] = sim.getLocalizedSimulations.map(_.asInstanceOf[LocalizedSimulation]).toList.sortWith((a,b) => localeSort(a.getLocale,b.getLocale))
+    val lsims: List[LocalizedSimulation] = sim.getLocalizedSimulations.map(_.asInstanceOf[LocalizedSimulation]).toList.sortWith((a, b) => localeSort(a.getLocale, b.getLocale))
 
     // list of all website translation locales (NOT sim translation locales)
     val webLocales = English :: PhetWicketApplication.get().getTranslationLocaleStrings.map(str => stringToLocale(str)).toList.sortWith(localeSort)
@@ -104,9 +104,9 @@ object MetadataUtils {
       <languages>{lsims.map(lsim => <language>{localeTo4646String(lsim.getLocale)}</language>)}</languages>
       <keywords>{sim.getKeywords.map(keyword => <keyword>{translateToList(keyword.asInstanceOf[Keyword].getLocalizationKey)}</keyword>)}</keywords>
       <topics>{sim.getTopics.map(keyword => <keyword>{translateToList(keyword.asInstanceOf[Keyword].getLocalizationKey)}</keyword>)}</topics>
-      <categories>{sim.getCategories.map(keyword => <category>{translateToList(keyword.asInstanceOf[Category].getLocalizationKey)}</category>)}</categories>
+      <categories>{sim.getCategories.filter(category => category.asInstanceOf[Category].isContentCategory).map(category => <category>{translateToList(category.asInstanceOf[Category].getLocalizationKey)}</category>)}</categories>
     </simulation>
 
-    xml.toString
+    xml.toString()
   }
 }
