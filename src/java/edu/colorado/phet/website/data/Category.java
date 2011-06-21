@@ -92,12 +92,10 @@ public class Category implements Serializable, IntId {
         if ( parent == null ) {
             auto = true;
             root = true;
-        }
-        else if ( parent.isRoot() ) {
+        } else if ( parent.isRoot() ) {
             auto = true;
             root = false;
-        }
-        else {
+        } else {
             auto = false;
             root = false;
         }
@@ -189,11 +187,9 @@ public class Category implements Serializable, IntId {
     public String getCategoryPath() {
         if ( isRoot() ) {
             return "";
-        }
-        else if ( getParent().isRoot() ) {
+        } else if ( getParent().isRoot() ) {
             return getName();
-        }
-        else {
+        } else {
             return getParent().getCategoryPath() + "/" + getName();
         }
     }
@@ -201,8 +197,7 @@ public class Category implements Serializable, IntId {
     public int getDepth() {
         if ( isRoot() ) {
             return 0;
-        }
-        else {
+        } else {
             return getParent().getDepth() + 1;
         }
     }
@@ -214,13 +209,14 @@ public class Category implements Serializable, IntId {
         if ( getParent().isRoot() ) {
             logger.warn( "My parent is root, I am " + getName() );
             return getName();
-        }
-        else {
+        } else {
             return getParent().getBaseName();
         }
     }
 
     /**
+     * Use for filtering in metadata (is this a "subject" category?)
+     *
      * @return Whether this category represents what type of educational content is available (not age level)
      */
     public boolean isContentCategory() {
