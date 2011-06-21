@@ -184,7 +184,7 @@ END:VCARD]]></entity>
         <cost><source>costValues</source><value>no</value></cost><!-- cost for IMS LODE ILOX -->
 
         <!-- TODO what about copyright and other restrictions? -->
-        <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>no</value></copyrightAndOtherRestrictions>
+        <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>yes</value></copyrightAndOtherRestrictions>
         <description><string language="en"><!-- TODO description of rights, etc--></string></description>
         <description><string language="x-t-cc-url">http://creativecommons.org/licenses/by/3.0/us/</string></description>
       </rights>
