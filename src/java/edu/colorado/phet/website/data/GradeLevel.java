@@ -8,6 +8,11 @@ package edu.colorado.phet.website.data;
  * An abstract "grade level". Currenly best modeled by a larger category, and not by individual year-long grades
  */
 public enum GradeLevel {
+
+    /*
+     * NOTE: literal names are used in the metadata portion of the website. if these are modified, the
+     * metadata section will also need modification
+     */
     ELEMENTARY_SCHOOL( 1, 5, 5, 11 ),
     MIDDLE_SCHOOL( 6, 8, 11, 14 ),
     HIGH_SCHOOL( 8, 12, 14, 18 ),
