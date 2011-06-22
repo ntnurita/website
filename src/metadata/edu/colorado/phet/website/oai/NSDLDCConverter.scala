@@ -15,8 +15,6 @@ class NSDLDCConverter extends PhetFormatConverter {
   def getToFormat = "nsdl_dc"
 
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
-    // TODO: subject (for categories)
-    // TODO: education level
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 
