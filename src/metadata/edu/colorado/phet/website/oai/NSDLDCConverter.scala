@@ -3,6 +3,7 @@ package edu.colorado.phet.website.oai
 import javax.servlet.ServletContext
 import edu.colorado.phet.website.oai.OaiUtils.formatDateIso8601
 import xml.{Node, Comment}
+import edu.colorado.phet.website.data.GradeLevel
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
@@ -18,6 +19,16 @@ class NSDLDCConverter extends PhetFormatConverter {
     // TODO: education level
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
+
+    // TODO: add science literacy maps links: like <dct:conformsTo>SMS-BMK-0141</dct:conformsTo>
+
+    // map grade levels to NSDL specific vocabulary. see http://nsdl.org/collection/educationLevel.php
+    def gradeLevelMap(level: GradeLevel): String = level match {
+      case GradeLevel.ELEMENTARY_SCHOOL => "Elementary School"
+      case GradeLevel.MIDDLE_SCHOOL => "Middle School"
+      case GradeLevel.HIGH_SCHOOL => "High School"
+      case GradeLevel.UNIVERSITY => "Higher Education"
+    }
 
     <nsdl_dc:nsdl_dc schemaVersion="1.02.020"
                      xmlns:nsdl_dc="http://ns.nsdl.org/nsdl_dc_v1.02/"
@@ -75,6 +86,9 @@ class NSDLDCConverter extends PhetFormatConverter {
       <ieee:interactivityType>active</ieee:interactivityType>
       <ieee:interactivityLevel>very high</ieee:interactivityLevel>
       <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
+
+      <!-- Educational Level -->
+      {record.gradeLevels.map(level => <dct:educationLevel xsi:type="nsdl_dc:NSDLEdLevel">{gradeLevelMap(level)}</dct:educationLevel>)}
 
       <!-- Keywords -->
       {record.translatedTerms.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}

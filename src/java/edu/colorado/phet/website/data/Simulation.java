@@ -139,6 +139,11 @@ public class Simulation implements Serializable, IntId {
     }
 
     public GradeLevel getMinGradeLevel() {
+        // if we have no grade level information, include everything
+        if ( categories.isEmpty() ) {
+            return GradeLevel.getLowestGradeLevel();
+        }
+
         GradeLevel result = GradeLevel.getHighestGradeLevel();
         for ( Object o : categories ) {
             Category category = (Category) o;
@@ -153,6 +158,10 @@ public class Simulation implements Serializable, IntId {
     }
 
     public GradeLevel getMaxGradeLevel() {
+        // if we have no grade level information, include everything
+        if ( categories.isEmpty() ) {
+            return GradeLevel.getHighestGradeLevel();
+        }
         GradeLevel result = GradeLevel.getLowestGradeLevel();
         for ( Object o : categories ) {
             Category category = (Category) o;

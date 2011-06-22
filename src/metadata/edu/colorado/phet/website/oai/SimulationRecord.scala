@@ -3,6 +3,7 @@ package edu.colorado.phet.website.oai
 import xml.{NodeSeq, XML}
 import collection.mutable.ListBuffer
 import java.util.Date
+import edu.colorado.phet.website.data.GradeLevel
 
 /**
  * Represents a simulation record from the master data
@@ -37,7 +38,7 @@ class SimulationRecord(str: String) {
 
   private def filteredTerms = ( xml \\ "keyword" ).distinct // remove duplicates
 
-  def translatedCategories: Seq[Seq[LanguageString]] = (xml \ "categories" \ "category").map(node => allStrings(node))
+  def translatedCategories: Seq[Seq[LanguageString]] = ( xml \ "categories" \ "category" ).map(node => allStrings(node))
 
   /*---------------------------------------------------------------------------*
   * URLs
@@ -51,7 +52,8 @@ class SimulationRecord(str: String) {
   def runNowUrl(language: String): String = {
     if ( isJava ) {
       simulationBase + "_" + language + ".jnlp"
-    } else {
+    }
+    else {
       simulationBase + "_" + language + ".html"
     }
   }
@@ -128,6 +130,19 @@ class SimulationRecord(str: String) {
   }).distinct
 
   private val AuthorRegex = """^(.*: *)?([^:\(]+)( +\(.*)?$""".r
+
+  /*---------------------------------------------------------------------------*
+  * grade levels
+  *----------------------------------------------------------------------------*/
+
+  def minGradeLevel = GradeLevel.valueOf(( xml \ "minGradeLevel" ).text)
+
+  def maxGradeLevel = GradeLevel.valueOf(( xml \ "maxGradeLevel" ).text)
+
+  def gradeLevels = GradeLevel.values().filter(level => {
+    !GradeLevel.isLowerGradeLevel(level, minGradeLevel) && // enforce "no lower than minimum grade level"
+    !GradeLevel.isLowerGradeLevel(maxGradeLevel, level) // enforce "no higher than maximum grade level"
+  })
 
   /*---------------------------------------------------------------------------*
   * implementation
