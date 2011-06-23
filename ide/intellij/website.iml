@@ -22,6 +22,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/test" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src/metadata" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -132,8 +133,60 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Logging" level="project" />
     <orderEntry type="module" module-name="phet" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/joai_v3.1.1/DLESETools.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/log4j/log4j-1.2.16.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/log4j/log4j-1.2.16-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/jul-to-slf4j-1.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/jul-to-slf4j-1.6.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-log4j12-1.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-log4j12-1.6.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-api-1.6.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-api-1.6.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
 

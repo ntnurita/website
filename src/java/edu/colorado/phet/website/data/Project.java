@@ -35,7 +35,7 @@ import edu.colorado.phet.website.util.links.RawLinker;
 
 public class Project implements Serializable, IntId {
 
-    public static final int TYPE_JAVA = 0;
+    public static final int TYPE_JAVA = 0; // NOTE: update metadata code if you add another type
     public static final int TYPE_FLASH = 1;
 
     private int id;

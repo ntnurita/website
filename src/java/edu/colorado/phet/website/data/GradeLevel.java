@@ -9,11 +9,50 @@ package edu.colorado.phet.website.data;
  */
 public enum GradeLevel {
 
-    // NOTE: keep the same order! The natural ordering is used in grade-level comparison
-    ELEMENTARY_SCHOOL,
-    MIDDLE_SCHOOL,
-    HIGH_SCHOOL,
-    UNIVERSITY;
+    /*
+     * NOTE: literal names are used in the metadata portion of the website. if these are modified, the
+     * metadata section will also need modification
+     */
+    ELEMENTARY_SCHOOL( 1, 5, 5, 11 ),
+    MIDDLE_SCHOOL( 6, 8, 11, 14 ),
+    HIGH_SCHOOL( 8, 12, 14, 18 ),
+    UNIVERSITY( 13, 16, 18, 23 );
+
+    private final int lowGradeNumber; // lowest grade level in GradeLevel. see http://nsdl.org/collection/educationLevel.php
+    private final int highGradeNumber; // highest grade level in GradeLevel. see http://nsdl.org/collection/educationLevel.php
+    private final int lowAge; // lowest developmental age for this GradeLevel. see https://secure.wikimedia.org/wikipedia/en/wiki/Education_in_the_United_States#School_grades
+    private final int highAge; // highest developmental age for this GradeLevel. see https://secure.wikimedia.org/wikipedia/en/wiki/Education_in_the_United_States#School_grades
+
+    GradeLevel( int lowGradeNumber, int highGradeNumber, int lowAge, int highAge ) {
+        this.lowGradeNumber = lowGradeNumber;
+        this.highGradeNumber = highGradeNumber;
+        this.lowAge = lowAge;
+        this.highAge = highAge;
+    }
+
+    /*---------------------------------------------------------------------------*
+    * instance methods
+    *----------------------------------------------------------------------------*/
+
+    public int getLowGradeNumber() {
+        return lowGradeNumber;
+    }
+
+    public int getHighGradeNumber() {
+        return highGradeNumber;
+    }
+
+    public int getLowAge() {
+        return lowAge;
+    }
+
+    public int getHighAge() {
+        return highAge;
+    }
+
+    /*---------------------------------------------------------------------------*
+    * static methods
+    *----------------------------------------------------------------------------*/
 
     public static GradeLevel getLowestGradeLevel() {
         return ELEMENTARY_SCHOOL;
@@ -21,6 +60,15 @@ public enum GradeLevel {
 
     public static GradeLevel getHighestGradeLevel() {
         return UNIVERSITY;
+    }
+
+    /**
+     * @param a Grade level A
+     * @param b Grade level B
+     * @return Whether A is a lower (younger) grade level
+     */
+    public static boolean isLowerGradeLevel( GradeLevel a, GradeLevel b ) {
+        return a.lowGradeNumber < b.lowGradeNumber;
     }
 
     /**

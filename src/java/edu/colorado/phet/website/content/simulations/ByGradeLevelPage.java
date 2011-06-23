@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.model.StringResourceModel;
 
+import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
@@ -25,7 +26,7 @@ public class ByGradeLevelPage extends PhetRegularPage {
 
         add( new ByGradeLevelPanel( "by-grade-level-panel", getPageContext() ) );
 
-        NavLocation location = getNavMenu().getLocationByKey( "by-level" );
+        NavLocation location = getNavMenu().getLocationByKey( Category.BY_LEVEL_CATEGORY_NAME );
 
         initializeLocation( location );
         setTitle( StringUtils.messageFormat( getLocalizer().getString( "simulationDisplay.title", this ), new Object[]{

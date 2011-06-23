@@ -35,8 +35,6 @@ import edu.colorado.phet.website.admin.doc.TranslationDocPage;
 import edu.colorado.phet.website.authentication.*;
 import edu.colorado.phet.website.authentication.panels.ChangePasswordSuccessPanel;
 import edu.colorado.phet.website.cache.InstallerCache;
-import edu.colorado.phet.website.comparison.JavaTest;
-import edu.colorado.phet.website.comparison.ScalaTest;
 import edu.colorado.phet.website.content.*;
 import edu.colorado.phet.website.content.about.*;
 import edu.colorado.phet.website.content.contribution.*;
@@ -51,6 +49,7 @@ import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
+import edu.colorado.phet.website.metadata.MetadataDump;
 import edu.colorado.phet.website.newsletter.ConfirmEmailLandingPage;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
@@ -77,7 +76,7 @@ public class PhetWicketApplication extends WebApplication {
     private static PhetWicketApplication instance = null;
 
     // TODO: flesh out and improve thread-safeness of translations part
-    private List<Translation> translations = new LinkedList<Translation>();
+    private List<Translation> translations = new LinkedList<Translation>(); // NOTE: seems to be NON-ENGLISH translations TODO make this include English, and handle correctly
 
     private static final Logger logger = Logger.getLogger( PhetWicketApplication.class.getName() );
 
@@ -226,8 +225,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
-        mountBookmarkablePage( "scala-test.txt", ScalaTest.class );
-        mountBookmarkablePage( "java-test.txt", JavaTest.class );
+        mountBookmarkablePage( "metadata-dump.xml", MetadataDump.class );
 
         // FOR XSS TESTING
         //mountBookmarkablePage( "xsstest", PreventXSSTest.class );

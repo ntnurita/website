@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://phet.colorado.edu/xsd/phet-simulation/" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- Schema created by Intellij. Used by our "master" metadata format so that we can generate other metadata formats -->
+  <xs:element name="simulation" type="simulationType"/>
+  <xs:complexType name="languagesType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="language" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stringType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="locale" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="filesizeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="kilobytes"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="learningGoalsType">
+    <xs:sequence>
+      <xs:element type="stringType" name="string" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="technologyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="type"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="creditsType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="designTeam"/>
+        <xs:attribute type="xs:string" name="thanksTo"/>
+        <xs:attribute type="xs:string" name="libraries"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="titleType">
+    <xs:sequence>
+      <xs:element type="stringType" name="string" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="simulationType" mixed="true">
+    <xs:sequence>
+      <xs:element type="projectType" name="project" minOccurs="0"/>
+      <xs:element type="simulationType" name="simulation" minOccurs="0"/>
+      <xs:element type="technologyType" name="technology" minOccurs="0"/>
+      <xs:element type="versionType" name="version" minOccurs="0"/>
+      <xs:element type="filesizeType" name="filesize" minOccurs="0"/>
+      <xs:element type="creditsType" name="credits" minOccurs="0"/>
+      <xs:element type="flagsType" name="flags" minOccurs="0"/>
+      <xs:element type="titleType" name="title" minOccurs="0"/>
+      <xs:element type="descriptionType" name="description" minOccurs="0"/>
+      <xs:element type="learningGoalsType" name="learningGoals" minOccurs="0"/>
+      <xs:element type="xs:string" name="thumbnail" minOccurs="0"/>
+      <xs:element type="xs:string" name="screenshot" minOccurs="0"/>
+      <xs:element type="xs:string" name="minGradeLevel" minOccurs="0"/>
+      <xs:element type="xs:string" name="maxGradeLevel" minOccurs="0"/>
+      <xs:element type="xs:string" name="createTime" minOccurs="0"/>
+      <xs:element type="xs:string" name="updateTime" minOccurs="0"/>
+      <xs:element type="xs:string" name="simPageLink" minOccurs="0"/>
+      <xs:element type="languagesType" name="languages" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" use="optional"/>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="descriptionType">
+    <xs:sequence>
+      <xs:element type="stringType" name="string" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="projectType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="name"/>
+        <xs:attribute type="xs:string" name="id"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="versionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="revision"/>
+        <xs:attribute type="xs:string" name="major"/>
+        <xs:attribute type="xs:string" name="minor"/>
+        <xs:attribute type="xs:string" name="timestamp"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="flagsType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="underConstruction"/>
+        <xs:attribute type="xs:string" name="classroomTested"/>
+        <xs:attribute type="xs:string" name="guidanceRecommended"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
