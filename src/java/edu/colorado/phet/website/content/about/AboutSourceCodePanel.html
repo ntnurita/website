@@ -73,10 +73,21 @@
 
         <p>
             <wicket:message key="about.source-code.prerequisites.requirements">
-                For building simulations from source, a Java JDK version 5 or higher is required. To build Flash simulations, Flash CS4 or
-                higher is also required. To build Flex simulations, Flex 3.4 (or a higher 3.x version) is required.
+                The following software is required to build PhET simulations from source code:
             </wicket:message>
         </p>
+
+        <ul>
+            <li>
+                <wicket:message key="about.source-code.prerequisites.java">Java simulations: Java JDK 5+</wicket:message>
+            </li>
+            <li>
+                <wicket:message key="about.source-code.prerequisites.flash">Flash simulations: Java JDK 5+ and Flash CS4+</wicket:message>
+            </li>
+            <li>
+                <wicket:message key="about.source-code.prerequisites.flex">Flex simulations: Java JDK 5+ and Flex 3 (3.4 or later)</wicket:message>
+            </li>
+        </ul>
 
         <h3 wicket:id="checkout-header">
             To checkout PhET's source code repository using <a href="http://subversion.apache.org/">Subversion</a> on

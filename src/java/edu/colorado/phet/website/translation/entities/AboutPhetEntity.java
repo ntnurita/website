@@ -31,6 +31,9 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.source-code.navigating.projectOrganization" );
         addString( "about.source-code.prerequisites.header" );
         addString( "about.source-code.prerequisites.requirements" );
+        addString( "about.source-code.prerequisites.java" );
+        addString( "about.source-code.prerequisites.flash" );
+        addString( "about.source-code.prerequisites.flex" );
         addString( "about.source-code.checkout.header" );
         addString( "about.source-code.checkout.useTheFollowing" );
         addString( "about.source-code.checkout.result" );

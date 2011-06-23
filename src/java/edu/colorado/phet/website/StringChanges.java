@@ -26,7 +26,10 @@ public class StringChanges {
         overwriteString( session, "get-phet.full-install.creatingInstallationCD.step1", "Download the <a {0}>PhET CD-ROM Distribution archive</a> onto your computer ({1} MB).", "Download the PhET Distribution archive onto your computer:<ul><li><a {0}>CD without teaching activities</a> ({1} MB)</li><li><a {2}>DVD with English teaching activities</a> ({3} MB)</li></ul>" );
 
         addString( session, "about.source-code.prerequisites.header", "Software Prerequisites" );
-        addString( session, "about.source-code.prerequisites.requirements", "For building simulations from source, a Java JDK version 5 or higher is required. To build Flash simulations, Flash CS4 or higher is also required. To build Flex simulations, Flex 3.4 (or a higher 3.x version) is required." );
+        addString( session, "about.source-code.prerequisites.requirements", "The following software is required to build PhET simulations from source code:" );
+        addString( session, "about.source-code.prerequisites.java", "Java simulations: Java JDK 5+" );
+        addString( session, "about.source-code.prerequisites.flash", "Flash simulations: Java JDK 5+ and Flash CS4+" );
+        addString( session, "about.source-code.prerequisites.flex", "Flex simulations: Java JDK 5+ and Flex 3 (3.4 or later)" );
 
         session.close();
     }
