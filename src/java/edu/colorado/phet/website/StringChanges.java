@@ -35,6 +35,9 @@ public class StringChanges {
         addString( session, "about.source-code.prerequisites.flash", "Flash simulations: Java JDK 5+ and Flash CS4+" );
         addString( session, "about.source-code.prerequisites.flex", "Flex simulations: Java JDK 5+ and Flex 3 (3.4 or later)" );
 
+        addString( session, "faq.mobileDevices.title", "Can PhET simulations be used on my tablet/iPad/Android devices?" );
+        addString( session, "faq.mobileDevices.answer", "<p>At this time tablet/iPad/Android devices platforms do not fully support Java or Flash, which is required to run PhET simulations.</p><ul><li>iPads lack full support of Java and Flash so our sims currently cannot run on the interface. Our sims also aren't developed for touch devices and the mobile devices usually perform very poorly when running our simulations due to lack of processing power.</li><li>Android devices cannot run full Java programs like PhET sims, just Android Java programs. Flash sims have poor performance and user input response.</li></ul><p>In addition to the lack of support for required platforms, porting PhET sims to iPad/ tablet devices is not simply a matter of rewriting the code in another language. PhET sims are designed for devices with a mouse and keyboard. There are certain things that are awkward with a touch screen (like typing, especially when the virtual keyboard covers what you want to look at), right clicking...and some things that are impossible, such as hovering over objects.</p><p>If your school district is considering the purchase of iPads or tablet devices, please understand that PhET simulations will either not function or perform poorly. We recommend laptops or netbooks for using our simulations using our <a {0}>system requirements</a>.</p>" );
+
         session.close();
     }
 
@@ -56,7 +59,8 @@ public class StringChanges {
         if ( result == null ) {
             logger.warn( "Auto-setting English string with key=" + key + " value=" + newValue );
             StringUtils.setEnglishString( session, key, newValue );
-        } else {
+        }
+        else {
             if ( result.equals( oldValue ) ) {
                 logger.warn( "Auto-setting English string with key=" + key + " value=" + newValue + " over old value " + oldValue );
                 StringUtils.setEnglishString( session, key, newValue );
