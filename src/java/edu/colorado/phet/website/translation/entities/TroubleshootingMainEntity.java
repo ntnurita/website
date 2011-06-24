@@ -62,6 +62,10 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "faq.sourceCode.title" );
         addString( "faq.sourceCode.answer" );
         addString( "faq.licensing.answer" );
+
+        addString( "faq.mobileDevices.title" );
+        addString( "faq.mobileDevices.answer" );
+
         addString( "nav.breadcrumb.faqs" );
         addString( "troubleshooting.main.licensingRequirements" );
         addPreview( new PhetPanelFactory() {
