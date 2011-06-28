@@ -21,6 +21,35 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
         <catalog>phet.colorado.edu</catalog>
         <entry>{record.simPageLink}</entry>
       </identifier>
+      <!-- TODO: licensing needs to be included data about simulations -->
+      <description>
+        <facet><vocabularyID>LRE.workDescriptionFacetValues</vocabularyID><value>license</value></facet>
+        <metadata><schema>http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights</schema>
+          <lom xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights
+               http://www.imsglobal.org/profile/lode/lodev1p0/lodev1p0_ilox_any_rights_lom_v1p0.xsd"
+               xmlns="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights">
+            <rights>
+              <cost><source>costValues</source><value>no</value></cost>
+              <copyrightAndOtherRestrictions><source>copyrightAndOtherRestrictionsValues</source><value>yes</value></copyrightAndOtherRestrictions>
+              <description><string language="x-t-rights-url">http://creativecommons.org/licenses/GPL/2.0/</string></description>
+            </rights>
+          </lom>
+        </metadata>
+      </description>
+      <description>
+        <facet><vocabularyID>LRE.workDescriptionFacetValues</vocabularyID><value>license</value></facet>
+        <metadata><schema>http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights</schema>
+          <lom xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights
+               http://www.imsglobal.org/profile/lode/lodev1p0/lodev1p0_ilox_any_rights_lom_v1p0.xsd"
+               xmlns="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights">
+            <rights>
+              <cost><source>costValues</source><value>no</value></cost>
+              <copyrightAndOtherRestrictions><source>copyrightAndOtherRestrictionsValues</source><value>yes</value></copyrightAndOtherRestrictions>
+              <description><string language="x-t-rights-url">http://creativecommons.org/licenses/by/3.0/us/</string></description>
+            </rights>
+          </lom>
+        </metadata>
+      </description>
       <description>
         <facet>
           <vocabularyID>LRE.workDescriptionFacetValues</vocabularyID>
@@ -28,8 +57,110 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
         </facet>
         <metadata>
           <schema>http://ltsc.ieee.org/xsd/LOM</schema>
-          <!-- include our entire IEEE LOM metadata inside here -->
-          {new IEEELOMConverter().convertRecord(record, servletContext)}
+          <lom xmlns="http://ltsc.ieee.org/xsd/LOM"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lomLoose.xsd">
+            <!-- LOM 1 General -->
+            <general>
+              <!-- identifier -->
+              <identifier>
+                <catalog>phet.colorado.edu</catalog>
+                <entry>{record.simPageLink}</entry>
+              </identifier>
+
+              <!-- title -->
+              <title>{convertLangString(record.translatedTitles)}</title>
+
+              <!-- languages -->
+              {record.languages.map(language => <language>{language}</language>)}
+
+              <!-- description -->
+              <description>{convertLangString(record.translatedDescriptions)}</description>
+
+              <!-- keywords -->
+              {record.translatedTerms.map(term => <keyword>{convertLangString(term)}</keyword>)}
+
+              <structure>
+                <source>LOMv1.0</source>
+                <value>atomic</value>
+              </structure>
+              <aggregationLevel>
+                <source>LOMv1.0</source>
+                <value>1</value>
+              </aggregationLevel>
+            </general>
+
+            <!-- LOM 2 Lifecycle -->
+            <lifeCycle>
+
+              <!-- simulation version -->
+              <version><string language="en">{record.versionString}</string></version>
+
+              <status>
+                <source>LOMv1.0</source>
+                <value>final</value>
+              </status>
+
+              <!-- PhET -->
+              <contribute>
+                <role>
+                  <source>LOMv1.0</source>
+                  <value>publisher</value>
+                </role>
+                <entity><![CDATA[BEGIN:VCARD
+      FN:PhET Interactive Simulations
+      N:;;PhET Interactive Simulations
+      ORG:PhET Interactive Simulations
+      VERSION:3.0
+      END:VCARD]]></entity>
+              </contribute>
+
+              <!-- other contributors -->
+              {record.authors.map(author => <contribute>
+                <role>
+                  <source>LOMv1.0</source>
+                  <value>author</value>
+                </role>
+                <entity>{vCardFromName(author)}</entity>
+              </contribute>)}
+            </lifeCycle>
+
+            <!-- TODO consider LOM 3 Meta-Metadata -->
+
+            <!-- LOM 4 Technical -->
+            <technical>
+              {record.mimeTypes.map(mimeType => <format>{mimeType}</format>)}
+              <size>{( record.kilobytes * 1000 ).toString}</size>
+              <location>{record.simPageLink}</location>
+              <installationRemarks>
+                <string language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</string>
+              </installationRemarks>
+              <otherPlatformRequirements>
+                <string language="en">{record.englishSoftwareRequirements}</string>
+              </otherPlatformRequirements>
+            </technical>
+
+            <!-- LOM 5 Educational -->
+            <educational>
+              <!-- learning resource type -->
+              <learningResourceType><source>LRE.learningResourceTypeValues</source><value>simulation</value></learningResourceType>
+
+              <!-- intended user roles -->
+              <intendedEndUserRole><source>LRE.intendedEndUserRoleValues</source><value>teacher</value></intendedEndUserRole>
+              <intendedEndUserRole><source>LRE.intendedEndUserRoleValues</source><value>learner</value></intendedEndUserRole>
+
+              <!-- contexts -->
+              <context><source>LRE.contextValues</source><value>compulsory education</value></context>
+              <context><source>LRE.contextValues</source><value>higher education</value></context>
+              <context><source>LRE.contextValues</source><value>distance education</value></context>
+
+              <!-- TODO typical age range. set to European Schoolnet value -->
+              <typicalAgeRange><string language="x-t-lre">12-20</string></typicalAgeRange>
+
+              <!-- languages (again, see above in LOM 1 General) -->
+              {record.languages.map(language => <language>{language}</language>)}
+            </educational>
+          </lom>
         </metadata>
       </description>
 

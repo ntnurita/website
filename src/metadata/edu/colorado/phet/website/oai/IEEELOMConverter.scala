@@ -17,9 +17,9 @@ class IEEELOMConverter extends PhetFormatConverter {
    */
   def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
+  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
-    def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
+  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
 
     /*
     Physics classification example (LRE-0001)
@@ -41,16 +41,6 @@ class IEEELOMConverter extends PhetFormatConverter {
                     </taxonPath>
                 </classification>
      */
-
-    /*
-begin:vcard
-fn:Jonathan Olson
-n:Olson;Jonathan
-email;internet:olsonsjc@gmail.com
-version:2.1
-end:vcard
-     */
-    // NOTE: do we need LOM 3 (meta-metadata)
 
     <lom xmlns="http://ltsc.ieee.org/xsd/LOM"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -142,7 +132,6 @@ END:VCARD]]></entity>
 
         <!-- learning resource type -->
         <learningResourceType><source>LOMv1.0</source><value>simulation</value></learningResourceType>
-        <learningResourceType><source>LRE.learningResourceTypeValues</source><value>simulation</value></learningResourceType>
         <learningResourceType><source>DCMIType</source><value>InteractiveResource</value></learningResourceType>
 
         <!-- interactivity level -->
@@ -153,29 +142,17 @@ END:VCARD]]></entity>
 
         <!-- intended user roles -->
         <intendedEndUserRole><source>LOMv1.0</source><value>teacher</value></intendedEndUserRole>
-        <intendedEndUserRole><source>LRE.intendedEndUserRoleValues</source><value>teacher</value></intendedEndUserRole>
         <intendedEndUserRole><source>LOMv1.0</source><value>learner</value></intendedEndUserRole>
-        <intendedEndUserRole><source>LRE.intendedEndUserRoleValues</source><value>learner</value></intendedEndUserRole>
 
         <!-- contexts -->
         <context><source>LOMv1.0</source><value>school</value></context>
         <context><source>LOMv1.0</source><value>higher education</value></context>
-        <context><source>LRE.contextValues</source><value>compulsory education</value></context>
-        <!-- TODO: only show higher education context when its level is noted -->
-        <context><source>LRE.contextValues</source><value>higher education</value></context>
-        <context><source>LRE.contextValues</source><value>distance education</value></context>
 
         <!-- TODO typical age range. set to European Schoolnet value -->
         <typicalAgeRange><string language="x-t-lre">12-20</string></typicalAgeRange>
 
         <!-- TODO difficulty: very easy / easy / medium / difficult / very difficult -->
         <difficulty><source>LOMv1.0</source><value>medium</value></difficulty>
-
-        <!-- TODO Duration type, like PT1H30M or PT1M45S-->
-        <!-- <typicalLearningTime></typicalLearningTime> -->
-
-        <!-- TODO comments on how this learning object is to be used. URL? -->
-        <!-- <description><string language="en"></string></description> -->
 
         <!-- languages (again, see above in LOM 1 General) -->
         {record.languages.map(language => <language>{language}</language>)}
@@ -187,6 +164,7 @@ END:VCARD]]></entity>
 
         <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>yes</value></copyrightAndOtherRestrictions>
         <description>
+          <!-- TODO rights of particular simulations -->
           <string language="x-t-cc-url">http://creativecommons.org/licenses/by/3.0/us/</string>
           <string language="x-t-rights-url">http://creativecommons.org/licenses/GPL/2.0/</string>
           <!-- TODO description of rights, etc in all applicable languages (make it translatable ) -->
