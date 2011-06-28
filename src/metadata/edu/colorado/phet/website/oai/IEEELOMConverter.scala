@@ -1,7 +1,8 @@
 package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
-import xml.{Unparsed, Node, NodeSeq}
+import xml.Node
+import edu.colorado.phet.website.oai.OaiUtils.convertLangString
 
 /**
  * Converts our master format simulation data to IEEE LOM
@@ -11,13 +12,6 @@ import xml.{Unparsed, Node, NodeSeq}
  */
 class IEEELOMConverter extends PhetFormatConverter {
   def getToFormat = "lom"
-
-  /**
-   * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
-   */
-  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
-
-  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
 
@@ -106,7 +100,7 @@ END:VCARD]]></entity>
             <source>LOMv1.0</source>
             <value>author</value>
           </role>
-          <entity>{vCardFromName(author)}</entity>
+          <entity>{OaiUtils.vCardFromName(author)}</entity>
         </contribute>)}
       </lifeCycle>
 
@@ -148,11 +142,10 @@ END:VCARD]]></entity>
         <context><source>LOMv1.0</source><value>school</value></context>
         <context><source>LOMv1.0</source><value>higher education</value></context>
 
-        <!-- TODO typical age range. set to European Schoolnet value -->
-        <typicalAgeRange><string language="x-t-lre">12-20</string></typicalAgeRange>
+        <typicalAgeRange><string language="x-t-lre">{record.minGradeLevel.getLowAge + "-" + record.maxGradeLevel.getHighAge}</string></typicalAgeRange>
 
         <!-- TODO difficulty: very easy / easy / medium / difficult / very difficult -->
-        <difficulty><source>LOMv1.0</source><value>medium</value></difficulty>
+        <!--<difficulty><source>LOMv1.0</source><value>medium</value></difficulty>-->
 
         <!-- languages (again, see above in LOM 1 General) -->
         {record.languages.map(language => <language>{language}</language>)}

@@ -83,7 +83,6 @@ class NSDLDCConverter extends PhetFormatConverter {
       <!-- Interaction information-->
       <ieee:interactivityType>active</ieee:interactivityType>
       <ieee:interactivityLevel>very high</ieee:interactivityLevel>
-      <ieee:typicalLearningTime><!-- TODO Duration type, like PT1H30M or PT1M45S--></ieee:typicalLearningTime>
 
       <!-- Educational Level -->
       {record.gradeLevels.map(level => <dct:educationLevel xsi:type="nsdl_dc:NSDLEdLevel">{gradeLevelMap(level)}</dct:educationLevel>)}

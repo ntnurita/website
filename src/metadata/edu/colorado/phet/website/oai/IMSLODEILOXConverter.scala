@@ -2,6 +2,7 @@ package edu.colorado.phet.website.oai
 
 import javax.servlet.ServletContext
 import xml.Node
+import edu.colorado.phet.website.oai.OaiUtils.convertLangString
 
 /**
  * Metadata conversion to the IMS LODE ILOX metadata format
@@ -121,11 +122,9 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
                   <source>LOMv1.0</source>
                   <value>author</value>
                 </role>
-                <entity>{vCardFromName(author)}</entity>
+                <entity>{OaiUtils.vCardFromName(author)}</entity>
               </contribute>)}
             </lifeCycle>
-
-            <!-- TODO consider LOM 3 Meta-Metadata -->
 
             <!-- LOM 4 Technical -->
             <technical>
@@ -154,8 +153,7 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
               <context><source>LRE.contextValues</source><value>higher education</value></context>
               <context><source>LRE.contextValues</source><value>distance education</value></context>
 
-              <!-- TODO typical age range. set to European Schoolnet value -->
-              <typicalAgeRange><string language="x-t-lre">12-20</string></typicalAgeRange>
+              <typicalAgeRange><string language="x-t-lre">{record.minGradeLevel.getLowAge + "-" + record.maxGradeLevel.getHighAge}</string></typicalAgeRange>
 
               <!-- languages (again, see above in LOM 1 General) -->
               {record.languages.map(language => <language>{language}</language>)}
