@@ -189,6 +189,7 @@
     </orderEntry>
     <orderEntry type="module" module-name="phetcommon" />
     <orderEntry type="module" module-name="build-tools" />
+    <orderEntry type="module" module-name="flash-launcher" />
   </component>
 </module>
 
