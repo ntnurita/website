@@ -188,6 +188,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="phetcommon" />
+    <orderEntry type="module" module-name="build-tools" />
   </component>
 </module>
 
