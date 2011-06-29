@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.util.WebImage;
 
@@ -35,6 +36,7 @@ public class Simulation implements Serializable, IntId {
     private boolean guidanceRecommended;
     private boolean classroomTested;
     private boolean simulationVisible;
+    private boolean hasCreativeCommonsAttributionLicense;
 
     /**
      * What the simulation ID was on the old PHP site. Kept for redirections, etc.
@@ -311,6 +313,36 @@ public class Simulation implements Serializable, IntId {
 
     public boolean isVisible() {
         return isSimulationVisible() && project.isVisible();
+    }
+
+    /**
+     * @return Whether this simulation is covered by the CC-BY 3.0 license. See Linkers.CC_BY_3
+     */
+    public boolean isHasCreativeCommonsAttributionLicense() {
+        return hasCreativeCommonsAttributionLicense;
+    }
+
+    public void setHasCreativeCommonsAttributionLicense( boolean hasCreativeCommonsAttributionLicense ) {
+        this.hasCreativeCommonsAttributionLicense = hasCreativeCommonsAttributionLicense;
+    }
+
+    public boolean isHasGPL2License() {
+        // currently all sims are licensed under GPL 2.0
+        return true;
+    }
+
+    /**
+     * @return List of license URLs that this simulation is covered by
+     */
+    public List<String> getLicenseURLs() {
+        List<String> result = new ArrayList<String>();
+        if ( isHasCreativeCommonsAttributionLicense() ) {
+            result.add( Linkers.CC_BY_3.getDefaultRawUrl() );
+        }
+        if ( isHasGPL2License() ) {
+            result.add( Linkers.CC_GPL_2.getDefaultRawUrl() );
+        }
+        return result;
     }
 
     public Set getContributions() {

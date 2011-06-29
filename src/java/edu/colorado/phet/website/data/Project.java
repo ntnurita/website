@@ -22,8 +22,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.buildtools.util.ProjectPropertiesFile;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;
 import edu.colorado.phet.website.StringChanges;
@@ -154,7 +154,7 @@ public class Project implements Serializable, IntId {
         try {
             FileUtils.copyRecursive( projectRoot, backupDir );
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
             return false;
         }
@@ -333,6 +333,7 @@ public class Project implements Serializable, IntId {
                                 simulation.setGuidanceRecommended( false );
                                 simulation.setClassroomTested( false );
                                 simulation.setSimulationVisible( false );
+                                simulation.setHasCreativeCommonsAttributionLicense( true ); // new sims should generally have this set
                                 createdSims.add( simulation );
                                 simulationCache.put( simName, simulation );
                                 englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
@@ -434,15 +435,15 @@ public class Project implements Serializable, IntId {
                         session.save( lsim );
                     }
                 }
-                catch( TransformerException e ) {
+                catch ( TransformerException e ) {
                     e.printStackTrace();
                     return false;
                 }
-                catch( ParserConfigurationException e ) {
+                catch ( ParserConfigurationException e ) {
                     e.printStackTrace();
                     return false;
                 }
-                catch( IOException e ) {
+                catch ( IOException e ) {
                     e.printStackTrace();
                     return false;
                 }
@@ -588,7 +589,7 @@ public class Project implements Serializable, IntId {
                     }
                 }
             }
-            catch( Exception e ) {
+            catch ( Exception e ) {
                 e.printStackTrace();
                 logger.warn( "Error matching XML and simulations", e );
                 appendWarning( builder, "Error matching XML and simulations" );

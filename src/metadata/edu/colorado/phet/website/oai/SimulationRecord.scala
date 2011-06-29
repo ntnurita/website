@@ -131,6 +131,8 @@ class SimulationRecord(str: String) {
 
   private val AuthorRegex = """^(.*: *)?([^:\(]+)( +\(.*)?$""".r
 
+  def licenseURLs: Seq[String] = ( xml \ "licenses" \ "license" ).map(elem => ( elem \ "url" ).text)
+
   /*---------------------------------------------------------------------------*
   * grade levels
   *----------------------------------------------------------------------------*/

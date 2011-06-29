@@ -22,8 +22,9 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
         <catalog>phet.colorado.edu</catalog>
         <entry>{record.simPageLink}</entry>
       </identifier>
-      <!-- TODO: licensing needs to be included data about simulations -->
-      <description>
+
+      <!-- all licenses that the simulation is covered by -->
+      {record.licenseURLs.map(licenseURL => <description>
         <facet><vocabularyID>LRE.workDescriptionFacetValues</vocabularyID><value>license</value></facet>
         <metadata><schema>http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights</schema>
           <lom xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights
@@ -32,25 +33,13 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
             <rights>
               <cost><source>costValues</source><value>no</value></cost>
               <copyrightAndOtherRestrictions><source>copyrightAndOtherRestrictionsValues</source><value>yes</value></copyrightAndOtherRestrictions>
-              <description><string language="x-t-rights-url">http://creativecommons.org/licenses/GPL/2.0/</string></description>
+              <description><string language="x-t-rights-url">{licenseURL}</string></description>
             </rights>
           </lom>
         </metadata>
-      </description>
-      <description>
-        <facet><vocabularyID>LRE.workDescriptionFacetValues</vocabularyID><value>license</value></facet>
-        <metadata><schema>http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights</schema>
-          <lom xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights
-               http://www.imsglobal.org/profile/lode/lodev1p0/lodev1p0_ilox_any_rights_lom_v1p0.xsd"
-               xmlns="http://ltsc.ieee.org/xsd/LOM/imslode/ilox/any/rights">
-            <rights>
-              <cost><source>costValues</source><value>no</value></cost>
-              <copyrightAndOtherRestrictions><source>copyrightAndOtherRestrictionsValues</source><value>yes</value></copyrightAndOtherRestrictions>
-              <description><string language="x-t-rights-url">http://creativecommons.org/licenses/by/3.0/us/</string></description>
-            </rights>
-          </lom>
-        </metadata>
-      </description>
+      </description>)}
+
+      <!-- main simulation information -->
       <description>
         <facet>
           <vocabularyID>LRE.workDescriptionFacetValues</vocabularyID>
