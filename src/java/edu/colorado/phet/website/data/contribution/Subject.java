@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.data.contribution;
 
 public enum Subject {
+    // NOTE: never change these names. they are referenced in the database
     ASTRONOMY( "astronomy" ),
     BIOLOGY( "biology" ),
     CHEMISTRY( "chemistry" ),

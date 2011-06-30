@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.data.contribution;
 
 public enum Type {
+    // NOTE: never change these names. they are referenced in the database
     LAB( "lab" ),
     HOMEWORK( "homework" ),
     CONCEPT_QUESTIONS( "conceptQuestions" ),

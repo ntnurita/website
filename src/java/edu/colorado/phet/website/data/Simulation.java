@@ -6,7 +6,13 @@ package edu.colorado.phet.website.data;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.constants.Linkers;
@@ -43,8 +49,11 @@ public class Simulation implements Serializable, IntId {
      */
     private int oldId;
 
-    private Date createTime;
-    private Date updateTime;
+    private Date createTime; // when simulation was uploaded initially to the server
+    private Date updateTime; // whenever something about the simulation object is updated. doesn't mean the sim itself changed, but possibly metadata
+
+    private GradeLevel lowGradeLevel; // typical low-end grade level for usage
+    private GradeLevel highGradeLevel; // typical high-end grade level for usage
 
     public static final String DEFAULT_DESCRIPTION = "Description coming soon";
     public static final String DEFAULT_LEARNING_GOALS = "Learning goals coming soon";
@@ -141,38 +150,43 @@ public class Simulation implements Serializable, IntId {
     }
 
     public GradeLevel getMinGradeLevel() {
-        // if we have no grade level information, include everything
-        if ( categories.isEmpty() ) {
-            return GradeLevel.getLowestGradeLevel();
-        }
-
+        boolean foundGradeLevelCategory = false;
         GradeLevel result = GradeLevel.getHighestGradeLevel();
         for ( Object o : categories ) {
             Category category = (Category) o;
             if ( category.isGradeLevelCategory() ) {
+                foundGradeLevelCategory = true;
                 GradeLevel level = GradeLevel.getGradeLevelFromCategory( category );
                 if ( GradeLevel.isLowerGradeLevel( level, result ) ) {
                     result = level;
                 }
             }
         }
+
+        // if we have no grade level information, include everything
+        if ( !foundGradeLevelCategory ) {
+            return GradeLevel.getLowestGradeLevel();
+        }
         return result;
     }
 
     public GradeLevel getMaxGradeLevel() {
-        // if we have no grade level information, include everything
-        if ( categories.isEmpty() ) {
-            return GradeLevel.getHighestGradeLevel();
-        }
+        boolean foundGradeLevelCategory = false;
         GradeLevel result = GradeLevel.getLowestGradeLevel();
         for ( Object o : categories ) {
             Category category = (Category) o;
             if ( category.isGradeLevelCategory() ) {
+                foundGradeLevelCategory = true;
                 GradeLevel level = GradeLevel.getGradeLevelFromCategory( category );
                 if ( GradeLevel.isLowerGradeLevel( result, level ) ) {
                     result = level;
                 }
             }
+        }
+
+        // if we have no grade level information, include everything
+        if ( !foundGradeLevelCategory ) {
+            return GradeLevel.getHighestGradeLevel();
         }
         return result;
     }
@@ -375,5 +389,21 @@ public class Simulation implements Serializable, IntId {
 
     public void setUpdateTime( Date updateTime ) {
         this.updateTime = updateTime;
+    }
+
+    public GradeLevel getLowGradeLevel() {
+        return lowGradeLevel == null ? GradeLevel.getLowestGradeLevel() : lowGradeLevel;
+    }
+
+    public void setLowGradeLevel( GradeLevel lowGradeLevel ) {
+        this.lowGradeLevel = lowGradeLevel;
+    }
+
+    public GradeLevel getHighGradeLevel() {
+        return highGradeLevel == null ? GradeLevel.getHighestGradeLevel() : highGradeLevel;
+    }
+
+    public void setHighGradeLevel( GradeLevel highGradeLevel ) {
+        this.highGradeLevel = highGradeLevel;
     }
 }

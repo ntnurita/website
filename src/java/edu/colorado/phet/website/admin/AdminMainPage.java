@@ -27,13 +27,14 @@ import org.apache.wicket.util.value.ValueMap;
 import org.hibernate.Session;
 
 import edu.colorado.phet.buildtools.BuildLocalProperties;
-import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.buildtools.util.PhetJarSigner;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
+import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.metadata.MetadataUtils;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
@@ -69,7 +70,7 @@ public class AdminMainPage extends AdminPage {
                     message.addReplyTo( "phethelp@colorado.edu" );
                     EmailUtils.sendMessage( message );
                 }
-                catch( MessagingException e ) {
+                catch ( MessagingException e ) {
                     e.printStackTrace();
                 }
             }
@@ -90,7 +91,7 @@ public class AdminMainPage extends AdminPage {
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).signJar( jarFile );
                 }
-                catch( IOException e ) {
+                catch ( IOException e ) {
                     e.printStackTrace();
                 }
             }
@@ -105,7 +106,7 @@ public class AdminMainPage extends AdminPage {
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).packAndSignJar( jarFile );
                 }
-                catch( IOException e ) {
+                catch ( IOException e ) {
                     e.printStackTrace();
                 }
             }
@@ -218,7 +219,7 @@ public class AdminMainPage extends AdminPage {
                 final List<PhetUser> users = new LinkedList<PhetUser>();
                 HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
                     public Void run( Session session ) {
-                        String[] emails = new String[]{
+                        String[] emails = new String[] {
                                 "olsonsjc@gmail.com"
                         };
                         for ( String email : emails ) {
@@ -273,6 +274,24 @@ public class AdminMainPage extends AdminPage {
             @Override
             public void onClick() {
                 MetadataUtils.writeSimulations();
+            }
+        } );
+
+        add( new Link( "debug-gradelevelcategories" ) {
+            @Override
+            public void onClick() {
+                HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+                    public Void run( Session session ) {
+                        List sims = session.createQuery( "select s from Simulation as s" ).list();
+                        for ( Object o : sims ) {
+                            Simulation sim = (Simulation) o;
+                            sim.setLowGradeLevel( sim.getMinGradeLevel() );
+                            sim.setHighGradeLevel( sim.getMaxGradeLevel() );
+                            session.update( sim );
+                        }
+                        return null;
+                    }
+                } );
             }
         } );
 

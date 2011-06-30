@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.data.contribution;
 
 public enum Level {
+    // NOTE: never change these names. they are referenced in the database
     K_5( "k5" ),
     MIDDLE_SCHOOL( "middleSchool" ),
     HIGH_SCHOOL( "highSchool" ),
