@@ -18,8 +18,6 @@ class NSDLDCConverter extends PhetFormatConverter {
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 
-    // TODO: add science literacy maps links: like <dct:conformsTo>SMS-BMK-0141</dct:conformsTo>
-
     // map grade levels to NSDL specific vocabulary. see http://nsdl.org/collection/educationLevel.php
     def gradeLevelMap(level: GradeLevel): String = level match {
       case GradeLevel.ELEMENTARY_SCHOOL => "Elementary School"
@@ -92,6 +90,8 @@ class NSDLDCConverter extends PhetFormatConverter {
 
       <!-- subjects from our "categories" -->
       {record.translatedCategories.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
+
+      {record.NSDLScienceLiteracyMapKeys.map(key => <dct:conformsTo>{key}</dct:conformsTo>)}
 
       <!-- Recommended Audiences -->
       <dct:audience xsi:type="nsdl_dc:NSDLAudience">Learner</dct:audience>

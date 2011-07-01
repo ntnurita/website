@@ -41,6 +41,12 @@ class SimulationRecord(str: String) {
   def translatedCategories: Seq[Seq[LanguageString]] = ( xml \ "categories" \ "category" ).map(node => allStrings(node))
 
   /*---------------------------------------------------------------------------*
+  * NSDL Science Literacy Maps
+  *----------------------------------------------------------------------------*/
+
+  def NSDLScienceLiteracyMapKeys: Seq[String] = Nil // TODO: implement, keys like SMS-BMK-0141 or SMS-MAP-1357
+
+  /*---------------------------------------------------------------------------*
   * URLs
   *----------------------------------------------------------------------------*/
   def simPageLink = ( xml \ "simPageLink" ).text
