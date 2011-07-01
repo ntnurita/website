@@ -144,7 +144,7 @@ END:VCARD]]></entity>
 
         <typicalAgeRange><string language="x-t-lre">{record.minGradeLevel.getLowAge + "-" + record.maxGradeLevel.getHighAge}</string></typicalAgeRange>
 
-        <!-- TODO difficulty: very easy / easy / medium / difficult / very difficult -->
+        <!-- OPTION difficulty: very easy / easy / medium / difficult / very difficult -->
         <!--<difficulty><source>LOMv1.0</source><value>medium</value></difficulty>-->
 
         <!-- languages (again, see above in LOM 1 General) -->
