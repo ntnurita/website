@@ -15,7 +15,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
-import edu.colorado.phet.website.constants.Linkers;
+import edu.colorado.phet.website.constants.Licenses;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.util.WebImage;
 
@@ -351,10 +351,10 @@ public class Simulation implements Serializable, IntId {
     public List<String> getLicenseURLs() {
         List<String> result = new ArrayList<String>();
         if ( isHasCreativeCommonsAttributionLicense() ) {
-            result.add( Linkers.CC_BY_3.getDefaultRawUrl() );
+            result.add( Licenses.CC_BY_3 );
         }
         if ( isHasGPL2License() ) {
-            result.add( Linkers.CC_GPL_2.getDefaultRawUrl() );
+            result.add( Licenses.CC_GPL_2 );
         }
         return result;
     }

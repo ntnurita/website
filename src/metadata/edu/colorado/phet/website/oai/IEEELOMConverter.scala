@@ -3,6 +3,7 @@ package edu.colorado.phet.website.oai
 import javax.servlet.ServletContext
 import xml.Node
 import edu.colorado.phet.website.oai.OaiUtils.convertLangString
+import edu.colorado.phet.website.constants.Licenses
 
 /**
  * Converts our master format simulation data to IEEE LOM
@@ -157,9 +158,10 @@ END:VCARD]]></entity>
 
         <copyrightAndOtherRestrictions><source>LOMv1.0</source><value>yes</value></copyrightAndOtherRestrictions>
         <description>
-          <!-- TODO rights of particular simulations -->
-          <string language="x-t-cc-url">http://creativecommons.org/licenses/by/3.0/us/</string>
-          <string language="x-t-rights-url">http://creativecommons.org/licenses/GPL/2.0/</string>
+          {record.licenseURLs.map(licenseURL => licenseURL match {
+          case Licenses.CC_BY_3 => <string language="x-t-cc-url">{Licenses.CC_BY_3}</string>
+          case Licenses.CC_GPL_2 => <string language="x-t-rights-url">{Licenses.CC_GPL_2}</string>
+        })}
           <!-- TODO description of rights, etc in all applicable languages (make it translatable ) -->
         </description>
       </rights>

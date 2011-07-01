@@ -74,6 +74,4 @@ public class Linkers {
     *----------------------------------------------------------------------------*/
 
     public static final RawLinkable SOFTWARE_AGREEMENT = new RawLinker( "/about/software-agreement_v7.htm" );
-    public static final RawLinkable CC_BY_3 = new RawLinker( "http://creativecommons.org/licenses/by/3.0/us/" );
-    public static final RawLinkable CC_GPL_2 = new RawLinker( "http://creativecommons.org/licenses/GPL/2.0/" );
 }
