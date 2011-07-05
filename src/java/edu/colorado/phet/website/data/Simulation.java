@@ -25,15 +25,15 @@ public class Simulation implements Serializable, IntId {
     private Project project;
 
     private int kilobytes;
-    private Set localizedSimulations = new HashSet();
-    private Set categories = new HashSet();
-    private Set contributions = new HashSet();
-    private Set scienceLiteracyMapKeys = new HashSet();
+    private Set localizedSimulations = new HashSet(); // type LocalizedSimulation
+    private Set categories = new HashSet(); // type Category
+    private Set contributions = new HashSet(); // type Contributuion. user-contributed activities
+    private Set scienceLiteracyMapKeys = new HashSet(); // type String. keys for the NSDL science literacy maps
 
-    private List topics = new LinkedList();
-    private List keywords = new LinkedList();
+    private List topics = new LinkedList(); // type Keyword
+    private List keywords = new LinkedList(); // type Keyword
 
-    private List relatedSimulations = new LinkedList();
+    private List relatedSimulations = new LinkedList(); // type Simulation
 
     private String designTeam;
     private String libraries;
