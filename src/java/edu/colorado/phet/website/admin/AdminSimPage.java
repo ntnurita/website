@@ -8,14 +8,26 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
@@ -31,10 +43,16 @@ import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.admin.sim.NSDLScienceLiteracyMapPanel;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
-import edu.colorado.phet.website.data.*;
+import edu.colorado.phet.website.data.Category;
+import edu.colorado.phet.website.data.Keyword;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.TeachersGuide;
+import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
 import edu.colorado.phet.website.panels.lists.OrderList;
 import edu.colorado.phet.website.panels.lists.SimOrderItem;
@@ -116,15 +134,18 @@ public class AdminSimPage extends AdminPage {
                 otherSimItems.add( new SimOrderItem( other.getSimulation(), other.getTitle() ) );
             }
 
+            // defeat lazy-loading for NSDL map keys
+            simulation.getScienceLiteracyMapKeys();
+
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -150,6 +171,8 @@ public class AdminSimPage extends AdminPage {
         add( createKeywordfeedback );
 
         add( new EditKeywordForm( "edit-keyword", allKeywords ) );
+
+        add( new NSDLScienceLiteracyMapPanel( "nsdl-holder", getPageContext(), simulation ) );
 
         add( new DesignTeamForm( "design-team" ) );
         add( new LibrariesForm( "libraries" ) );
@@ -524,7 +547,7 @@ public class AdminSimPage extends AdminPage {
 
             add( new AbstractFormValidator() {
                 public FormComponent<?>[] getDependentFormComponents() {
-                    return new FormComponent<?>[]{keyText, valueText};
+                    return new FormComponent<?>[] { keyText, valueText };
                 }
 
                 public void validate( Form<?> form ) {
@@ -776,7 +799,7 @@ public class AdminSimPage extends AdminPage {
                     }
                 }
             }
-            catch( IOException e ) {
+            catch ( IOException e ) {
                 e.printStackTrace();
             }
 
@@ -1001,7 +1024,7 @@ public class AdminSimPage extends AdminPage {
                             fup.writeTo( file );
                             guide.setSize( (int) file.length() );
                         }
-                        catch( IOException e ) {
+                        catch ( IOException e ) {
                             e.printStackTrace();
                             logger.warn( e );
                             return false;

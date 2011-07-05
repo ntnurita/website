@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title>[PREVIEW] NSDLScienceLiteracyMapPanel</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+</head>
+<body>
+
+<wicket:panel>
+    <h3>NSDL Science Literacy Maps</h3>
+
+    <p>
+        To add our simulation to the NSDL Science Literacy maps, it will require browsing through the maps and finding keys like
+        "SMS-MAP-0048" or "SMS-BMK-0027". Please start at <a href="http://strandmaps.nsdl.org/">http://strandmaps.nsdl.org/</a>,
+        select the relevant categories on the left, and browse until you find a map. The URL and page of a map will look like
+        <a href="http://strandmaps.nsdl.org/?id=SMS-MAP-1232">http://strandmaps.nsdl.org/?id=SMS-MAP-1232</a>, and you can deduce the
+        key "SMS-MAP-1232" from the URL. Enter in all relevant map keys.
+    </p>
+
+    <p>
+        Additionally, please browse within the maps themselves by clicking on the nodes (called "benchmarks"). If a benchmark is related
+        to the simulation, click on it and look near the top of the pop-up box for something like 12D/M1 (ID: SMS-BMK-0830). The key
+        "SMS-BMK-0830" should be pulled from this information at the end of the description. Adding these bookmark keys will presumably
+        put relevant PhET simulations under the "Other Resources" or "Top Picks" for that benchmark.
+    </p>
+
+    <form wicket:id="nsdl-form">
+        <table class="admin">
+            <tr>
+                <th>keys</th>
+                <th/>
+            </tr>
+            <tr wicket:id="keys">
+                <td><a href="#" wicket:id="key-link"><span wicket:id="key-name">SMS-BMK-0027</span></a></td>
+                <td><a href="#" wicket:id="key-remove">remove</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" wicket:id="nsdl-key"/>
+                </td>
+                <td>
+                    <input type="submit" name="submit" value="add key" wicket:id="ajax-button"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</wicket:panel>
+
+</body>
+</html>
+
