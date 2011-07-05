@@ -18,14 +18,25 @@
         <property name="hasCreativeCommonsAttributionLicense"/>
         <property name="simulationVisible" column="visible"/>
         <many-to-one name="project" class="edu.colorado.phet.website.data.Project" not-null="true" lazy="false"/>
+
+        <!-- translated versions of this simulation. store this information in the LocalizedSimulation instances -->
         <set name="localizedSimulations" inverse="true">
             <key column="simulation"/>
             <one-to-many class="edu.colorado.phet.website.data.LocalizedSimulation"/>
         </set>
+
+        <!-- mapping categories to simulations. we need to create an extra table for this information -->
         <set name="categories" inverse="true" table="category_mapping">
             <key column="simulation_id"/>
             <many-to-many class="edu.colorado.phet.website.data.Category" column="category_id"/>
         </set>
+
+        <!-- NSDL science literacy map keys. using raw collection -->
+        <set name="scienceLiteracyMapKeys" table="nsdl_key_mapping">
+            <key column="simulation_id"/>
+            <element column="nsdl_key" type="string"/>
+        </set>
+
         <list name="topics" table="topics_mapping">
             <key column="simulation_id"/>
             <list-index column="idx"/>
