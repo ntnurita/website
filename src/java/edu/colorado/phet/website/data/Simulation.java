@@ -28,6 +28,7 @@ public class Simulation implements Serializable, IntId {
     private Set localizedSimulations = new HashSet();
     private Set categories = new HashSet();
     private Set contributions = new HashSet();
+    private Set scienceLiteracyMapKeys = new HashSet();
 
     private List topics = new LinkedList();
     private List keywords = new LinkedList();
@@ -235,6 +236,14 @@ public class Simulation implements Serializable, IntId {
 
     public void setCategories( Set categories ) {
         this.categories = categories;
+    }
+
+    public Set getScienceLiteracyMapKeys() {
+        return scienceLiteracyMapKeys;
+    }
+
+    public void setScienceLiteracyMapKeys( Set scienceLiteracyMapKeys ) {
+        this.scienceLiteracyMapKeys = scienceLiteracyMapKeys;
     }
 
     public List getKeywords() {
