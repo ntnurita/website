@@ -20,7 +20,7 @@ class IEEELOMConverter extends PhetFormatConverter {
     Physics classification example (LRE-0001)
                 <classification>
                     <purpose>
-                        <source>purposeValues</source>
+                        <source>LOMv1.0</source>
                         <value>discipline</value>
                     </purpose>
                     <taxonPath>
@@ -35,6 +35,37 @@ class IEEELOMConverter extends PhetFormatConverter {
                         </taxon>
                     </taxonPath>
                 </classification>
+
+
+  <classification>
+    <purpose>
+      <source>LOMv1.0</source>
+      <value>discipline</value>
+    </purpose>
+    <taxonPath>
+      <source>
+        <string language="none">learndirect</string>
+      </source>
+      <taxon>
+        <id>FC.4</id>
+        <entry>
+          <string language="none">English Literature</string>
+        </entry>
+      </taxon>
+    </taxonPath>
+    <taxonPath>
+      <source>
+        <string language="none">JACS</string>
+      </source>
+      <taxon>
+        <id>Q320</id>
+        <entry>
+          <string language="none">English Literature</string>
+        </entry>
+      </taxon>
+    </taxonPath>
+  </classification>
+
      */
 
     <lom xmlns="http://ltsc.ieee.org/xsd/LOM"
