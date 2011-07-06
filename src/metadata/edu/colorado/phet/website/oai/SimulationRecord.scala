@@ -44,7 +44,16 @@ class SimulationRecord(str: String) {
   * NSDL Science Literacy Maps (keys like SMS-BMK-0141 or SMS-MAP-1357)
   *----------------------------------------------------------------------------*/
 
-  def NSDLScienceLiteracyMapKeys: Seq[String] = (xml \ "scienceLiteracyMaps" \ "mapKey").map(_.text)
+  def NSDLScienceLiteracyMapKeys: Seq[String] = ( xml \ "scienceLiteracyMaps" \ "mapKey" ).map(_.text)
+
+  /*---------------------------------------------------------------------------*
+  * LRE-0001 classification terms
+  *----------------------------------------------------------------------------*/
+
+  /**
+   * returns a list of LRE-0001 terms, in the (id, english) variant
+   */
+  def lreTerms: Seq[(String, String)] = ( xml \ "classification" \ "lre0001" \ "term" ).map(term => (( term \ "@id" ).text, ( term \ "@english" ).text))
 
   /*---------------------------------------------------------------------------*
   * URLs

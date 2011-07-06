@@ -203,7 +203,26 @@ END:VCARD]]></entity>
       </relation>
 
       <!-- TODO: LOM 8 annotations? (like other people's comments in our metadata) -->
-      <!-- TODO: LOM 9 classification (s) -->
+
+      <!-- LRE 9 Classification -->
+      <!-- LRE terms -->
+      {record.lreTerms.map(term => <classification>
+                    <purpose>
+                        <source>LOMv1.0</source>
+                        <value>discipline</value>
+                    </purpose>
+                    <taxonPath>
+                        <source>
+                            <string language="x-none">LRE-0001</string>
+                        </source>
+                        <taxon>
+                            <id>{term._1}</id>
+                            <entry>
+                                <string language="en">{term._2}</string>
+                            </entry>
+                        </taxon>
+                    </taxonPath>
+                </classification>)}
     </lom>
   }
 }

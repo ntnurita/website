@@ -107,6 +107,9 @@ object MetadataUtils {
       <categories>{sim.getCategories.filter(category => category.asInstanceOf[Category].isContentCategory).map(category => <category>{translateToList(category.asInstanceOf[Category].getLocalizationKey)}</category>)}</categories>
       <licenses>{sim.getLicenseURLs.map(licenseURL => <license><url>{licenseURL}</url></license>)}</licenses>
       <scienceLiteracyMaps>{sim.getScienceLiteracyMapKeys.map(mapKey => <mapKey>{mapKey}</mapKey>)}</scienceLiteracyMaps>
+      <classification>
+        <lre0001>{sim.getLRETerms.map(term => <term id={term.id} english={term.englishCaption}/>)}</lre0001>
+      </classification>
     </simulation>
 
     xml.toString()
