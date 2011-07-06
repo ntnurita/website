@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title>[PREVIEW] LRETermPanel</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+</head>
+<body>
+
+<wicket:panel>
+    <h3>LRE-0001 Controlled Vocabulary (Categories)</h3>
+
+    <p>
+        Please select all of the relevant categories below!
+    </p>
+
+    <form wicket:id="lre-form">
+        <table class="admin">
+            <tr>
+                <th>keys</th>
+                <th/>
+            </tr>
+            <tr wicket:id="terms">
+                <td wicket:id="term"></td>
+                <td><a href="#" wicket:id="remove">remove</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <select wicket:id="available-terms">
+                        <option>This is an option</option>
+                        <option>Another option</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" name="submit" value="add term" wicket:id="ajax-button"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</wicket:panel>
+
+</body>
+</html>
+

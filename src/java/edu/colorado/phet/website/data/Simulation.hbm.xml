@@ -37,6 +37,12 @@
             <element column="nsdl_key" type="string"/>
         </set>
 
+        <!-- LRE-0001 terms. using raw collection -->
+        <set name="lreTermIDs" table="lre_id_mapping">
+            <key column="simulation_id"/>
+            <element column="lre_id" type="string"/>
+        </set>
+
         <list name="topics" table="topics_mapping">
             <key column="simulation_id"/>
             <list-index column="idx"/>

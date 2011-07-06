@@ -43,6 +43,7 @@ import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.admin.sim.LRETermPanel;
 import edu.colorado.phet.website.admin.sim.NSDLScienceLiteracyMapPanel;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
@@ -173,6 +174,7 @@ public class AdminSimPage extends AdminPage {
         add( new EditKeywordForm( "edit-keyword", allKeywords ) );
 
         add( new NSDLScienceLiteracyMapPanel( "nsdl-holder", getPageContext(), simulation ) );
+        add( new LRETermPanel( "lre-holder", getPageContext(), simulation ) );
 
         add( new DesignTeamForm( "design-team" ) );
         add( new LibrariesForm( "libraries" ) );

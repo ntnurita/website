@@ -17,6 +17,7 @@ import java.util.Set;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.constants.Licenses;
 import edu.colorado.phet.website.data.util.IntId;
+import edu.colorado.phet.website.metadata.LRETerm;
 import edu.colorado.phet.website.util.WebImage;
 
 public class Simulation implements Serializable, IntId {
@@ -29,6 +30,7 @@ public class Simulation implements Serializable, IntId {
     private Set categories = new HashSet(); // type Category
     private Set contributions = new HashSet(); // type Contributuion. user-contributed activities
     private Set scienceLiteracyMapKeys = new HashSet(); // type String. keys for the NSDL science literacy maps
+    private Set lreTermIDs = new HashSet(); // type String. IDs of the LRE-0001 metadata terms related to this simulation
 
     private List topics = new LinkedList(); // type Keyword
     private List keywords = new LinkedList(); // type Keyword
@@ -192,6 +194,27 @@ public class Simulation implements Serializable, IntId {
         return result;
     }
 
+    /**
+     * @return LRETerm instances that refer to related LRE-0001 terms that relate to this simulation
+     */
+    public Set<LRETerm> getLRETerms() {
+        // need to pull this from the stored IDs
+        Set ids = getLreTermIDs();
+        Set<LRETerm> result = new HashSet<LRETerm>();
+        for ( Object o : ids ) {
+            result.add( LRETerm.getTermFromId( (String) o ) );
+        }
+        return result;
+    }
+
+    public void addLRETerm( LRETerm term ) {
+        getLreTermIDs().add( term.id );
+    }
+
+    public void removeLRETerm( LRETerm term ) {
+        getLreTermIDs().remove( term.id );
+    }
+
     // getters and setters
 
     public int getId() {
@@ -244,6 +267,14 @@ public class Simulation implements Serializable, IntId {
 
     public void setScienceLiteracyMapKeys( Set scienceLiteracyMapKeys ) {
         this.scienceLiteracyMapKeys = scienceLiteracyMapKeys;
+    }
+
+    public Set getLreTermIDs() {
+        return lreTermIDs;
+    }
+
+    public void setLreTermIDs( Set lreTermIDs ) {
+        this.lreTermIDs = lreTermIDs;
     }
 
     public List getKeywords() {
