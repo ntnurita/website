@@ -91,6 +91,10 @@ class NSDLDCConverter extends PhetFormatConverter {
       <!-- subjects from our "categories" -->
       {record.translatedCategories.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
 
+      <!-- subjects from our LRE vocabulary -->
+      {record.lreTerms.map(term => <dc:subject xml:lang="en">{term._2}</dc:subject>)}
+
+      <!-- NSDL Science Literacy Maps information -->
       {record.NSDLScienceLiteracyMapKeys.map(key => <dct:conformsTo>{key}</dct:conformsTo>)}
 
       <!-- Recommended Audiences -->
