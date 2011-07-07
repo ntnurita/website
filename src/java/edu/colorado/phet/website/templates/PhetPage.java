@@ -21,8 +21,17 @@ import org.apache.wicket.markup.html.link.Link;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
-import edu.colorado.phet.website.authentication.*;
-import edu.colorado.phet.website.components.*;
+import edu.colorado.phet.website.authentication.AuthenticatedPage;
+import edu.colorado.phet.website.authentication.EditProfilePage;
+import edu.colorado.phet.website.authentication.PhetSession;
+import edu.colorado.phet.website.authentication.RegisterPage;
+import edu.colorado.phet.website.authentication.SignInPage;
+import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.components.RawBodyLabel;
+import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.components.RawLink;
+import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
@@ -138,6 +147,14 @@ public abstract class PhetPage extends WebPage implements Stylable {
             }
         }
 
+        // if we are using the offline installer, add a reference for JS (asynchronous loading won't work here)
+        if ( PhetRequestCycle.get().isOfflineInstaller() ) {
+            add( new Label( "installer-javascript-reference", "" ) );
+        }
+        else {
+            add( new InvisibleComponent( "installer-javascript-reference" ) );
+        }
+
         // visual display
         if ( addTemplateBindings ) {
             // TODO: refactor static images to a single location, so paths / names can be quickly changed
@@ -157,7 +174,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
                     add( new InvisibleComponent( "search-panel" ) );
                     break;
                 case OFFLINE_INSTALLER:
-                    add( new LocalizedText( "search-panel", "installer.mostUpToDate", new Object[]{
+                    add( new LocalizedText( "search-panel", "installer.mostUpToDate", new Object[] {
                             new Date(),
                             FullInstallPanel.getLinker().getHref( getPageContext(), getPhetCycle() )
                     } ) );

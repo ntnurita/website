@@ -11,14 +11,17 @@ function render( value, data ) {
     return htmlEncode( value );
 }
 
-$( document ).ready( function() {
-    $( "#search-text-id" ).autocomplete( {
-                                             url:"/autocomplete",
-                                             extraParams:{
-                                                 l:phetLocale
-                                             },
-                                             delay:250,
-                                             onItemSelect:selectItem,
-                                             showResult:render
-                                         } );
-} );
+// if there is no phetLocale, we won't run this part. there must not be a search box, like in the offline installer
+if ( typeof phetLocale != 'undefined' ) {
+    $( document ).ready( function() {
+        $( "#search-text-id" ).autocomplete( {
+                                                 url:"/autocomplete",
+                                                 extraParams:{
+                                                     l:phetLocale
+                                                 },
+                                                 delay:250,
+                                                 onItemSelect:selectItem,
+                                                 showResult:render
+                                             } );
+    } );
+}
