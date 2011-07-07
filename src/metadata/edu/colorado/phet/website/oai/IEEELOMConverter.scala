@@ -193,7 +193,7 @@ END:VCARD]]></entity>
           case Licenses.CC_BY_3 => <string language="x-t-cc-url">{Licenses.CC_BY_3}</string>
           case Licenses.CC_GPL_2 => <string language="x-t-rights-url">{Licenses.CC_GPL_2}</string>
         })}
-          <!-- TODO description of rights, etc in all applicable languages (make it translatable ) -->
+          {convertLangString(record.rights)}
         </description>
       </rights>
 

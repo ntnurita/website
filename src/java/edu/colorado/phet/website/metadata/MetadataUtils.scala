@@ -110,7 +110,7 @@ object MetadataUtils {
       <classification>
         <lre0001>{sim.getLRETerms.map(term => <term id={term.id} english={term.englishCaption}/>)}</lre0001>
       </classification>
-      <rights>{translateToList("metadata.rights")}</rights>
+      <rights>{if ( sim.isHasCreativeCommonsAttributionLicense ) translateToList("metadata.rights") else translateToList("metadata.rightsGplOnly")}</rights>
     </simulation>
 
     xml.toString()

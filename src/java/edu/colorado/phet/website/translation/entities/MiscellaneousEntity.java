@@ -15,6 +15,7 @@ public class MiscellaneousEntity extends TranslationEntity {
         addString( "changelog.header" );
         addString( "changelog.raw" );
         addString( "metadata.rights" );
+        addString( "metadata.rightsGplOnly" );
         addString( PhetLocalizer.DROP_DOWN_CHOICE_NULL_KEY, "Text shown on drop-down boxes when one choice needs to be selected" );
     }
 

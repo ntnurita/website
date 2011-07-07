@@ -32,9 +32,7 @@ class DublinCoreConverter extends PhetFormatConverter {
       {record.authors.map(author => <dc:creator>{author}</dc:creator>)}
 
       <!-- rights -->
-      <dc:rights>Free access / usage by everyone</dc:rights>
-      <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
-      <dc:rights>© 2011 University of Colorado</dc:rights>
+      <dc:rights>{record.englishRights}</dc:rights>
 
       <!-- types -->
       <dc:type>InteractiveResource</dc:type>

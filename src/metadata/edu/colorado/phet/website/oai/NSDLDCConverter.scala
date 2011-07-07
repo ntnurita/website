@@ -50,9 +50,7 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dc:type xsi:type="nsdl_dc:NSDLType">Activity</dc:type> <!-- activities are available on the simulation web page -->
 
       <!-- Rights -->
-      <dc:rights>Free access / usage by everyone</dc:rights>
-      <dc:rights>More licensing information available at http://phet.colorado.edu/en/about/licensing</dc:rights>
-      <dc:rights>© 2011 University of Colorado</dc:rights>
+      <dc:rights>{record.englishRights}</dc:rights>
 
       <!-- Access rights -->
       <dct:accessRights xsi:type="nsdl_dc:NSDLAccess">Free access</dct:accessRights>
