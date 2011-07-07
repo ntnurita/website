@@ -110,6 +110,7 @@ object MetadataUtils {
       <classification>
         <lre0001>{sim.getLRETerms.map(term => <term id={term.id} english={term.englishCaption}/>)}</lre0001>
       </classification>
+      <rights>{translateToList("metadata.rights")}</rights>
     </simulation>
 
     xml.toString()
