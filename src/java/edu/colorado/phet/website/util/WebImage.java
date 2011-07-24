@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.ImageCache;
 
+import com.sun.jndi.toolkit.url.UrlUtil;
+
 /**
  * Immutable image data class
  */
@@ -56,8 +58,7 @@ public class WebImage implements Serializable {
             dimension = ImageUtils.getImageStreamDimension( stream );
         }
         else {
-            String strippedSrc = src.startsWith( "/" ) ? src.substring( 1 ) : src; // strip leading slash if necessary
-            File imageFile = new File( PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot(), strippedSrc );
+            File imageFile = UrlUtils.getDocrootFile( src );
             Dimension imageDimension = null;
             try {
                 imageDimension = ImageUtils.getImageFileDimension( imageFile );

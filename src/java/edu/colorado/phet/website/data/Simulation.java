@@ -18,6 +18,7 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.constants.Licenses;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.metadata.LRETerm;
+import edu.colorado.phet.website.util.UrlUtils;
 import edu.colorado.phet.website.util.WebImage;
 
 public class Simulation implements Serializable, IntId {
@@ -109,7 +110,18 @@ public class Simulation implements Serializable, IntId {
      */
     public String getThumbnailUrl() {
         // NOTE: this is relied upon to be relative!
-        return "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.jpg";
+
+        // improved-quality PNG version of the thumbnail
+        String pngUrl = "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.png";
+
+        // old JPEG low-quality thumbnail. TODO: (performance) remove this and the below check on file existence AFTER ALL .png thumbnails are in place
+        String jpgUrl = "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.jpg";
+        if ( UrlUtils.getDocrootFile( pngUrl ).exists() ) {
+            return pngUrl;
+        }
+        else {
+            return jpgUrl;
+        }
     }
 
     public String getImageUrl() {
