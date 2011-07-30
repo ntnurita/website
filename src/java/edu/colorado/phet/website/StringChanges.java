@@ -25,6 +25,7 @@ public class StringChanges {
 
         addString( session, "metadata.rights", "© 2011 University of Colorado. This simulation is available for free under either a Creative Commons Attribution license (http://creativecommons.org/licenses/by/3.0/us/) or the GNU General Public License (http://creativecommons.org/licenses/GPL/2.0/). Donations welcome and encouraged (http://phet.colorado.edu/en/donate)." );
         addString( session, "metadata.rightsGplOnly", "© 2011 University of Colorado. This simulation is available for free under the GNU General Public License (http://creativecommons.org/licenses/GPL/2.0/). Donations welcome and encouraged (http://phet.colorado.edu/en/donate)." );
+        addString( session, "sponsors.jprofiler.desc", "For providing licenses of JProfiler" );
 
         session.close();
     }
