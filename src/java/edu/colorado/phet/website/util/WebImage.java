@@ -14,8 +14,6 @@ import org.apache.log4j.Logger;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.ImageCache;
 
-import com.sun.jndi.toolkit.url.UrlUtil;
-
 /**
  * Immutable image data class
  */
@@ -55,7 +53,7 @@ public class WebImage implements Serializable {
 
         if ( inWar ) {
             InputStream stream = PhetWicketApplication.get().getServletContext().getResourceAsStream( src );
-            dimension = ImageUtils.getImageStreamDimension( stream );
+            dimension = ImageUtils.getImageStreamDimension( stream, src );
         }
         else {
             File imageFile = UrlUtils.getDocrootFile( src );
@@ -63,7 +61,7 @@ public class WebImage implements Serializable {
             try {
                 imageDimension = ImageUtils.getImageFileDimension( imageFile );
             }
-            catch( RuntimeException e ) {
+            catch ( RuntimeException e ) {
                 logger.warn( "Image dimension problem", e );
             }
             dimension = imageDimension;

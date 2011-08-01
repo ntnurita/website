@@ -38,31 +38,36 @@ public class ImageUtils {
                 in.close();
             }
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             logger.warn( "image file dimension failure for " + imageFile.getAbsolutePath(), e );
         }
-        catch( IllegalArgumentException e ) {
+        catch ( IllegalArgumentException e ) {
             logger.warn( "image file dimension failure (argument) for " + imageFile.getAbsolutePath(), e );
         }
         return null; // unknown
     }
 
-    public static Dimension getImageStreamDimension( InputStream inputStream ) {
+    public static Dimension getImageStreamDimension( InputStream inputStream, String imageName ) {
         // TODO: remove duplication once we know what works
         try {
             ImageInputStream in = ImageIO.createImageInputStream( inputStream );
-            Iterator<ImageReader> iter = ImageIO.getImageReaders( in );
-            while ( iter.hasNext() ) {
-                ImageReader reader = iter.next();
-                reader.setInput( in );
-                int width = reader.getWidth( 0 );
-                int height = reader.getHeight( 0 );
-                reader.dispose();
-                return new Dimension( width, height );
+            try {
+                Iterator<ImageReader> iter = ImageIO.getImageReaders( in );
+                while ( iter.hasNext() ) {
+                    ImageReader reader = iter.next();
+                    reader.setInput( in );
+                    int width = reader.getWidth( 0 );
+                    int height = reader.getHeight( 0 );
+                    reader.dispose();
+                    return new Dimension( width, height );
+                }
+            }
+            finally {
+                in.close();
             }
         }
-        catch( IOException e ) {
-            logger.warn( "image file dimension failure for stream", e );
+        catch ( IOException e ) {
+            logger.warn( "image file dimension failure for stream for " + imageName, e );
         }
         return null; // unknown
     }

@@ -262,8 +262,9 @@ public class AdminMainPage extends AdminPage {
                 }
                 logger.info( "B" );
                 for ( int i = 0; i < 200; i++ ) {
-                    InputStream stream = getServletContext().getResourceAsStream( "/images/arrow-down.gif" );
-                    ImageUtils.getImageStreamDimension( stream );
+                    String downArrow = "/images/arrow-down.gif";
+                    InputStream stream = getServletContext().getResourceAsStream( downArrow );
+                    ImageUtils.getImageStreamDimension( stream, downArrow );
                 }
                 logger.info( "C" );
 
