@@ -116,12 +116,12 @@ public class Simulation implements Serializable, IntId {
 
         // old JPEG low-quality thumbnail. TODO: (performance) remove this and the below check on file existence AFTER ALL .png thumbnails are in place
         String jpgUrl = "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.jpg";
-        if ( UrlUtils.getDocrootFile( pngUrl ).exists() ) {
-            return pngUrl;
-        }
-        else {
+//        if ( UrlUtils.getDocrootFile( pngUrl ).exists() ) {
+//            return pngUrl;
+//        }
+//        else {
             return jpgUrl;
-        }
+//        }
     }
 
     public String getImageUrl() {
