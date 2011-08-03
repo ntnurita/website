@@ -27,6 +27,11 @@ object OaiUtils {
    */
   def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
 
-  val commonTimestamp = 1308678761000L; // used so we can update all converters at once
+  /**
+   * Find and return the English translation from a list of LanguageStrings
+   */
+  def englishString(lang: Seq[LanguageString]): String = lang.find(_.language == "en").get.string
+
+  val commonTimestamp = 1312240182000L; // used so we can update all converters at once
   //  val commonTimestamp = System.currentTimeMillis(); // TODO: remove this, since it always regenerates
 }

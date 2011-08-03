@@ -38,10 +38,10 @@ class NSDLDCConverter extends PhetFormatConverter {
       <dc:identifier xsi:type="dct:URI">{record.simPageLink}</dc:identifier>
 
       <!-- Titles -->
-      {record.translatedTitles.map(str => <dc:title xml:lang={str.language}>{str.string}</dc:title>)}
+      <dc:title xml:lang="en">{record.englishTitle}</dc:title>
 
       <!-- Descriptions -->
-      {record.translatedDescriptions.map(str => <dc:description xml:lang={str.language}>{str.string}</dc:description>)}
+      <dc:description xml:lang="en">{record.englishDescrption}</dc:description>
 
       <!-- Types -->
       <dc:type xsi:type="dct:DCMIType">InteractiveResource</dc:type>
@@ -84,10 +84,10 @@ class NSDLDCConverter extends PhetFormatConverter {
       {record.gradeLevels.map(level => <dct:educationLevel xsi:type="nsdl_dc:NSDLEdLevel">{gradeLevelMap(level)}</dct:educationLevel>)}
 
       <!-- Keywords -->
-      {record.translatedTerms.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
+      {record.translatedTerms.map(term => <dc:subject xml:lang="en">{OaiUtils.englishString(term)}</dc:subject>)}
 
       <!-- subjects from our "categories" -->
-      {record.translatedCategories.map(term => term.map(str => <dc:subject xml:lang={str.language}>{str.string}</dc:subject>))}
+      {record.translatedCategories.map(term => <dc:subject xml:lang="en">{OaiUtils.englishString(term)}</dc:subject>)}
 
       <!-- subjects from our LRE vocabulary -->
       {record.lreTerms.map(term => <dc:subject xml:lang="en">{term._2}</dc:subject>)}
