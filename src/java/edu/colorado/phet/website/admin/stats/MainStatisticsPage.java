@@ -4,7 +4,11 @@
 
 package edu.colorado.phet.website.admin.stats;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -20,7 +24,7 @@ import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * A page that shows some elementary statistics about the website, simulations, activities and translations.
- *
+ * <p/>
  * In general, if I'm asked about a statistic and I can compute it on this page, I'll probably add it here so I won't
  * need to compute it more.
  */
@@ -63,6 +67,10 @@ public class MainStatisticsPage extends AdminPage {
                 add( new Label( "phet-activity-count", "PhET activities: " + phetContributionsCount ) );
                 add( new Label( "total-sim-languages", "Number of languages (including English) that sims are translated into: " + usedSimulationLocales.size() ) );
                 add( new Label( "total-sim-translations", "Number of sim translations (including English): " + localizedSimulations.size() ) );
+
+                add( new Label( "total-users", "Number of users: " + session.createQuery( "select count(*) from PhetUser" ).uniqueResult() ) );
+                add( new Label( "subscribed-users", "Users subscribed to receive our newsletter: " + session.createQuery( "select count(*) from PhetUser as u where u.receiveEmail = true" ).uniqueResult() ) );
+                add( new Label( "newsletter-only-users", "Users with newsletter-only accounts: " + session.createQuery( "select count(*) from PhetUser as u where u.newsletterOnlyAccount = true" ).uniqueResult() ) );
 
                 return null;
             }
