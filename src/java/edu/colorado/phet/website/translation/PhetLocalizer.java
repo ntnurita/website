@@ -206,7 +206,9 @@ public class PhetLocalizer extends Localizer {
             }
             logger.warn( "missed style: " + key + " with component of " + component, new RuntimeException() );
         }
-        key = mapStrings( key, component, model, defaultValue, checkDefault );
+
+        // see if we need to rename the key for convenience
+        key = premapKey( key, component, model, defaultValue, checkDefault );
 
         String lookup = null;
         Integer translationId = null;
@@ -227,7 +229,7 @@ public class PhetLocalizer extends Localizer {
 
         if ( lookup != null ) {
             // our string was found, so return it.
-            return lookup;
+            return postmapValue( key, lookup );
         }
 
         // at this point, we know it is not in the first translation we looked at
@@ -235,10 +237,10 @@ public class PhetLocalizer extends Localizer {
         if ( !checkDefault && defaultValue != null ) {
             // return either null or the default value, since we won't check the default language
             logger.debug( "Shortcut default value on " + key + ": " + defaultValue );
-            return defaultValue;
+            return postmapValue( key, defaultValue );
         }
 
-        return getDefaultString( null, key, defaultValue, false );
+        return postmapValue( key, getDefaultString( null, key, defaultValue, false ) );
     }
 
     /**
@@ -251,7 +253,7 @@ public class PhetLocalizer extends Localizer {
      * @param checkDefault Whether to check defaults
      * @return The new string key
      */
-    private String mapStrings( String key, Component component, IModel model, String defaultValue, boolean checkDefault ) {
+    private String premapKey( String key, Component component, IModel model, String defaultValue, boolean checkDefault ) {
         //TODO: move the logic into the respective panels.
         if ( key.endsWith( "Required" ) && component.findParent( ContributionEditPanel.class ) != null ) {
             if ( key.equals( "authors.Required" ) ) {
@@ -277,6 +279,27 @@ public class PhetLocalizer extends Localizer {
             return "newsletter.validation.email.Required";
         }
         return key;
+    }
+
+    /**
+     * See if we need to override any returned string results
+     *
+     * @param key    Key used to lookup result
+     * @param result The to-be-returned result
+     * @return A string (most likely result, unless it is overridden)
+     */
+    private String postmapValue( String key, String result ) {
+        // don't override any null results
+        if ( result == null ) {
+            return result;
+        }
+
+        // override language.dir if it is not specified correctly!
+        if ( key.equals( "language.dir" ) && !result.equals( "ltr" ) && !result.equals( "rtl" ) ) {
+            return "ltr";
+        }
+
+        return result;
     }
 
     private Stylable closestStylableComponent( Component component ) {
@@ -396,7 +419,7 @@ public class PhetLocalizer extends Localizer {
 
     @Override
     public String getStringIgnoreSettings( String key, Component component, IModel<?> model, String defaultValue ) {
-        if( key.equals( DROP_DOWN_CHOICE_NULL_KEY )) {
+        if ( key.equals( DROP_DOWN_CHOICE_NULL_KEY ) ) {
             return getString( key, component, model, defaultValue );
         }
         return super.getStringIgnoreSettings( key, component, model, defaultValue );

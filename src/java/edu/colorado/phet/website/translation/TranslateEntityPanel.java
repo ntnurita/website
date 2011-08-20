@@ -121,7 +121,7 @@ public class TranslateEntityPanel extends PhetPanel {
                         if ( value == null ) {
                             value = ""; // check in case they put in a blank string
                         }
-                        if ( !stringHasXSS( value ) ) {
+                        if ( allowStringChange( tString.getKey(), value ) ) {
                             logger.info( "user " + PhetSession.get().getUser().getEmail() + " setting string " + tString.getKey() + " on translation #" + translationId );
                             StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
                             if ( status == StringUtils.STRING_OUT_OF_DATE ) {
@@ -204,6 +204,16 @@ public class TranslateEntityPanel extends PhetPanel {
         add( stringList );
     }
 
+    public static boolean allowStringChange( String key, String value ) {
+        if ( stringHasXSS( value ) ) {
+            return false;
+        }
+        if ( key.equals( "language.dir" ) && !value.equals( "ltr" ) && !value.equals( "rtl" ) ) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean isStringUpToDate( final String key ) {
         boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
@@ -221,8 +231,8 @@ public class TranslateEntityPanel extends PhetPanel {
         return success;
     }
 
-    private static final String[] allowedTags = new String[]{"p", "strong", "em", "br", "ul", "ol", "li", "a", "span", "table", "tbody", "thead", "tr", "td"};
-    private static final String[] blacklistedStrings = new String[]{"<scr" + "ipt", "<SC" + "RIPT", "<fo" + "rm", "<FO" + "RM", "expres" + "sion(", "docu" + "ment.coo" + "kie"};
+    private static final String[] allowedTags = new String[] { "p", "strong", "em", "br", "ul", "ol", "li", "a", "span", "table", "tbody", "thead", "tr", "td" };
+    private static final String[] blacklistedStrings = new String[] { "<scr" + "ipt", "<SC" + "RIPT", "<fo" + "rm", "<FO" + "RM", "expres" + "sion(", "docu" + "ment.coo" + "kie" };
 
     public static boolean stringHasXSS( String str ) {
         for ( String blacklistedString : blacklistedStrings ) {
@@ -247,13 +257,13 @@ public class TranslateEntityPanel extends PhetPanel {
 
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
