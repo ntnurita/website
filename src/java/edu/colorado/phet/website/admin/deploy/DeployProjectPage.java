@@ -39,16 +39,17 @@ public class DeployProjectPage extends PhetPage {
             String host = getPhetCycle().getWebRequest().getHttpServletRequest().getRemoteHost();
             String localhost = getPhetCycle().getWebRequest().getHttpServletRequest().getServerName();
 
-            logger.debug( "addr: " + addr );
-            logger.debug( "host: " + host );
-            logger.debug( "localhost: " + localhost );
+            logger.info( "addr: " + addr );
+            logger.info( "host: " + host );
+            logger.info( "localhost: " + localhost );
 
             if ( getPhetCycle().isLocalRequest() ) {
-                logger.debug( "starting deployment" );
+                logger.info( "starting deployment" );
                 deploy( parameters );
                 setTitle( "Project Deployment OK" );
             }
             else {
+                logger.info( "project deployment not local!" );
                 setTitle( "Was not local request" );
             }
         }
