@@ -5,7 +5,12 @@
 package edu.colorado.phet.website.menu;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -16,8 +21,21 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.common.phetcommon.util.PhetLocales;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.panels.ChangePasswordSuccessPanel;
-import edu.colorado.phet.website.content.*;
-import edu.colorado.phet.website.content.about.*;
+import edu.colorado.phet.website.content.ClassroomUsePanel;
+import edu.colorado.phet.website.content.DonatePanel;
+import edu.colorado.phet.website.content.ForTranslatorsPanel;
+import edu.colorado.phet.website.content.IndexPage;
+import edu.colorado.phet.website.content.ResearchPanel;
+import edu.colorado.phet.website.content.StayConnectedPanel;
+import edu.colorado.phet.website.content.TeacherIdeasPanel;
+import edu.colorado.phet.website.content.TranslationUtilityPanel;
+import edu.colorado.phet.website.content.about.AboutContactPanel;
+import edu.colorado.phet.website.content.about.AboutLegendPanel;
+import edu.colorado.phet.website.content.about.AboutLicensingPanel;
+import edu.colorado.phet.website.content.about.AboutMainPanel;
+import edu.colorado.phet.website.content.about.AboutNewsPanel;
+import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
+import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPanel;
@@ -28,13 +46,18 @@ import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
-import edu.colorado.phet.website.content.troubleshooting.*;
+import edu.colorado.phet.website.content.troubleshooting.FAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.util.AbstractCategoryListener;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
+import edu.colorado.phet.website.test.FaqTestPage;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -207,6 +230,9 @@ public class NavMenu implements Serializable {
         NavLocation changePasswordSuccess = new NavLocation( null, "changePasswordSuccess", ChangePasswordSuccessPanel.getLinker() );
         addLocation( changePasswordSuccess );
 
+        NavLocation testFAQ = new NavLocation( null, "sim-faq-test", FaqTestPage.getLinker() );
+        addLocation( testFAQ );
+
         Session session = HibernateUtils.getInstance().openSession();
         Transaction tx = null;
         try {
@@ -217,13 +243,13 @@ public class NavMenu implements Serializable {
 
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;

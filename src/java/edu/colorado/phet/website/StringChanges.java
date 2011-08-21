@@ -27,6 +27,9 @@ public class StringChanges {
         addString( session, "metadata.rightsGplOnly", "© 2011 University of Colorado. This simulation is available for free under the GNU General Public License (http://creativecommons.org/licenses/GPL/2.0/). Donations welcome and encouraged (http://phet.colorado.edu/en/donate)." );
         addString( session, "sponsors.jprofiler.desc", "For providing licenses of JProfiler" );
 
+        addString( session, "sim-faq-test.title", "Test Sim FAQ" );
+        addString( session, "nav.sim-faq-test", "Test Sim FAQ" );
+
         session.close();
     }
 

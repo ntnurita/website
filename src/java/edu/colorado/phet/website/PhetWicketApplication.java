@@ -120,6 +120,7 @@ import edu.colorado.phet.website.services.SchedulerService;
 import edu.colorado.phet.website.services.SimJarRedirectPage;
 import edu.colorado.phet.website.services.StringGetter;
 import edu.colorado.phet.website.templates.StaticPage;
+import edu.colorado.phet.website.test.FaqTestPage;
 import edu.colorado.phet.website.test.NestedFormTest;
 import edu.colorado.phet.website.test.PublicChangelogTest;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -224,6 +225,7 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( UgandaWorkshopPhotosPanel.class );
         StaticPage.addPanel( ChangePasswordSuccessPanel.class );
         StaticPage.addPanel( StayConnectedPanel.class );
+        StaticPage.addPanel( FaqTestPage.class );
 
         // create a url mapper, and add the page classes to it
         mapper = new PhetUrlMapper();

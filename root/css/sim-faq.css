@@ -1,0 +1,18 @@
+/* Copyright 2002-2011, University of Colorado */
+
+/* CSS related to Simulation FAQs */
+
+.simFaqQuestion {
+    color: blue;
+    text-decoration: underline;
+}
+
+.simFaqAnswer {
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.simFaqItem {
+    margin-bottom: 15px;
+}
