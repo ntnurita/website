@@ -20,17 +20,29 @@
 
 <wicket:extend>
     <div class="admin-panel">
-        <h2>Statistics</h2>
+        <h2>General Statistics</h2>
 
         <p wicket:id="sim-count">Total visible simulations: #</p>
+
         <p wicket:id="activity-count">Total activities: #</p>
+
         <p wicket:id="phet-activity-count">Total activities: #</p>
+
         <p wicket:id="total-sim-languages">Number of languages that sims are translated into: #</p>
+
         <p wicket:id="total-sim-translations">Number of sim translations (including English): #</p>
         <br/>
+
         <p wicket:id="total-users">Number of users: #</p>
+
         <p wicket:id="subscribed-users">Users subscribed to receive our newsletter: #</p>
+
         <p wicket:id="newsletter-only-users">Users with newsletter-only accounts: #</p>
+
+        <h2>Other statistics</h2>
+        <wicket:link>
+            <p><a href="FacebookStatisticsPage.html">Facebook Statistics Page</a> (takes a minute to load)</p>
+        </wicket:link>
     </div>
 </wicket:extend>
 

@@ -1,0 +1,78 @@
+<!-- Copyright 2002-2011, University of Colorado -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title wicket:id="page-title">[PREVIEW] Facebook Statistics Page</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+            .admin-panel {
+                padding: 10px;
+            }
+        </style>
+    </wicket:head>
+</head>
+<body wicket:message="dir:language.dir">
+
+<wicket:extend>
+    <div class="admin-panel">
+        <h2>Facebook Statistics</h2>
+
+        Counts how many times people have shared the page (in English). This happens either by clicking our
+        Facebook button on the sim page, or by taking the URL and sharing it in Facebook.
+
+        <h3>Pages</h3>
+
+        <table>
+            <tr>
+                <td>Page</td>
+                <td># Facebook shares</td>
+            </tr>
+            <tr>
+                <td>Home page</td>
+                <td wicket:id="home-page"></td>
+            </tr>
+            <tr>
+                <td>New Sims page</td>
+                <td wicket:id="new-sims-page"></td>
+            </tr>
+        </table>
+
+        <h3>Simulations</h3>
+
+        <table>
+            <tr>
+                <td>Sim name</td>
+                <td># Facebook shares</td>
+            </tr>
+            <tr wicket:id="sim-stats">
+                <td wicket:id="name"></td>
+                <td wicket:id="shares"></td>
+            </tr>
+        </table>
+
+        <h3>Languages</h3>
+
+        Share counts for non-English pages
+
+        <table>
+            <tr>
+                <td>Language</td>
+                <td># Facebook shares of homepage</td>
+            </tr>
+            <tr wicket:id="language-stats">
+                <td wicket:id="name"></td>
+                <td wicket:id="shares"></td>
+            </tr>
+        </table>
+    </div>
+</wicket:extend>
+
+</body>
+</html>
+
