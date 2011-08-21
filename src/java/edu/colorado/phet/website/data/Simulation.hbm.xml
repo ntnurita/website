@@ -83,5 +83,8 @@
                 <param name="type">12</param>
             </type>
         </property>
+
+        <!-- Reference to the FAQ list. Allow it to be null -->
+        <many-to-one name="faqList" class="edu.colorado.phet.website.data.faq.FAQList"/>
     </class>
 </hibernate-mapping>

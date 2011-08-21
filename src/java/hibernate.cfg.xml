@@ -59,6 +59,9 @@
         <mapping resource="edu/colorado/phet/website/data/contribution/ContributionFlag.hbm.xml"/>
         <mapping resource="edu/colorado/phet/website/data/contribution/ContributionNomination.hbm.xml"/>
 
+        <mapping resource="edu/colorado/phet/website/data/faq/FAQItem.hbm.xml"/>
+        <mapping resource="edu/colorado/phet/website/data/faq/FAQList.hbm.xml"/>
+
         <mapping resource="edu/colorado/phet/website/data/NotificationEvent.hbm.xml"/>
 
         <collection-cache collection="edu.colorado.phet.website.data.Project.simulations" usage="nonstrict-read-write"/>

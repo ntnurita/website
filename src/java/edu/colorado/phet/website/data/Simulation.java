@@ -16,6 +16,7 @@ import java.util.Set;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.constants.Licenses;
+import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.metadata.LRETerm;
 import edu.colorado.phet.website.util.UrlUtils;
@@ -37,6 +38,8 @@ public class Simulation implements Serializable, IntId {
     private List keywords = new LinkedList(); // type Keyword
 
     private List relatedSimulations = new LinkedList(); // type Simulation
+
+    private FAQList faqList; // FAQs, if available
 
     private String designTeam;
     private String libraries;
@@ -457,5 +460,13 @@ public class Simulation implements Serializable, IntId {
 
     public void setHighGradeLevel( GradeLevel highGradeLevel ) {
         this.highGradeLevel = highGradeLevel;
+    }
+
+    public FAQList getFaqList() {
+        return faqList;
+    }
+
+    public void setFaqList( FAQList faqList ) {
+        this.faqList = faqList;
     }
 }
