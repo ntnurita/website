@@ -4,7 +4,7 @@
 
 package edu.colorado.phet.website.translation.entities;
 
-import edu.colorado.phet.website.content.troubleshooting.FAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
@@ -75,7 +75,7 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         }, "Troubleshooting (main)" );
         addPreview( new PhetPanelFactory() {
             public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new FAQPanel( id, context );
+                return new GeneralFAQPanel( id, context );
             }
         }, "FAQs" );
     }

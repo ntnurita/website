@@ -95,7 +95,7 @@ import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
-import edu.colorado.phet.website.content.troubleshooting.FAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
@@ -199,7 +199,7 @@ public class PhetWicketApplication extends WebApplication {
         // are not needed for each visual page.
         // NOTE: do this before adding StaticPage into the mapper. Checked, and violation will result in a fatal error. 
         StaticPage.addPanel( TroubleshootingMainPanel.class );
-        StaticPage.addPanel( FAQPanel.class );
+        StaticPage.addPanel( GeneralFAQPanel.class );
         StaticPage.addPanel( AboutMainPanel.class );
         StaticPage.addPanel( WorkshopsPanel.class );
         StaticPage.addPanel( RunOurSimulationsPanel.class );

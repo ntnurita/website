@@ -46,7 +46,7 @@ import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
-import edu.colorado.phet.website.content.troubleshooting.FAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
@@ -169,7 +169,7 @@ public class NavMenu implements Serializable {
         addLocation( troubleshootingJavascript );
         troubleshooting.addChild( troubleshootingJavascript );
 
-        NavLocation faq = new NavLocation( null, "faqs", FAQPanel.getLinker() );
+        NavLocation faq = new NavLocation( null, "faqs", GeneralFAQPanel.getLinker() );
         faq.setUseNavigationStringForBreadcrumb( false ); // use nav.breadcrumb.faqs for breadcrumbs
         addMajorLocation( faq );
 

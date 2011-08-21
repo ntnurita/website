@@ -18,8 +18,8 @@ import edu.colorado.phet.website.util.links.RawLinkable;
 /**
  * General troubleshooting panel
  */
-public class FAQPanel extends PhetPanel {
-    public FAQPanel( String id, PageContext context ) {
+public class GeneralFAQPanel extends PhetPanel {
+    public GeneralFAQPanel( String id, PageContext context ) {
         super( id, context );
 
         // TODO: heavily simplify the "to-top" and other clunky items here.

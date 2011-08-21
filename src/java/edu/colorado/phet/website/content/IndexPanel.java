@@ -25,7 +25,7 @@ import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
-import edu.colorado.phet.website.content.troubleshooting.FAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -104,7 +104,7 @@ public class IndexPanel extends PhetPanel {
         } ) );
 
         add( TroubleshootingMainPanel.getLinker().getLink( "troubleshooting-link", context, getPhetCycle() ) );
-        add( FAQPanel.getLinker().getLink( "faqs-link", context, getPhetCycle() ) );
+        add( GeneralFAQPanel.getLinker().getLink( "faqs-link", context, getPhetCycle() ) );
 
         add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, getPhetCycle() ) );
 
