@@ -2,6 +2,7 @@
 package edu.colorado.phet.website.data.faq;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.colorado.phet.website.data.util.IntId;
@@ -18,7 +19,7 @@ public class FAQList implements Serializable, IntId {
     private String name;
 
     // list of items, in order
-    private List faqItems;
+    private List faqItems = new ArrayList(  );
 
     public FAQList() {
     }

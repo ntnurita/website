@@ -1,0 +1,51 @@
+<!-- Copyright 2002-2011, University of Colorado -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title wicket:id="page-title">[PREVIEW] AdminFAQsPage</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+
+        </style>
+    </wicket:head>
+</head>
+<body wicket:message="dir:language.dir">
+
+<wicket:extend>
+    <div>
+        <h2>Manually create a new FAQ</h2>
+
+        <form wicket:id="create-faq-form">
+            <p>
+                Please do not put spaces or special characters in FAQ names. For simulation FAQs, it would be nice to have
+                the name be the name of the simulation ("build-a-molecule" for example), but it is not necessary.
+            </p>
+            Name: <input wicket:id="name" type="text" value=""/>
+            <input type="submit" value="create"/>
+        </form>
+
+        <h2>FAQ pages to view / modify</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr wicket:id="faq-list">
+                <td wicket:id="name"></td>
+                <td><a wicket:id="edit-link">edit</a></td>
+                <td><a wicket:id="preview-link">preview</a></td>
+            </tr>
+        </table>
+    </div>
+</wicket:extend>
+
+</body>
+</html>
+
