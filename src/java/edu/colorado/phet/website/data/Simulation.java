@@ -50,6 +50,7 @@ public class Simulation implements Serializable, IntId {
     private boolean classroomTested;
     private boolean simulationVisible;
     private boolean hasCreativeCommonsAttributionLicense;
+    private boolean faqVisible;
 
     /**
      * What the simulation ID was on the old PHP site. Kept for redirections, etc.
@@ -468,5 +469,13 @@ public class Simulation implements Serializable, IntId {
 
     public void setFaqList( FAQList faqList ) {
         this.faqList = faqList;
+    }
+
+    public boolean isFaqVisible() {
+        return faqVisible;
+    }
+
+    public void setFaqVisible( boolean faqVisible ) {
+        this.faqVisible = faqVisible;
     }
 }

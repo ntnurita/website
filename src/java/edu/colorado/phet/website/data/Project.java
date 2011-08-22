@@ -26,8 +26,8 @@ import edu.colorado.phet.buildtools.util.ProjectPropertiesFile;
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;
-import edu.colorado.phet.website.StringChanges;
 import edu.colorado.phet.website.data.util.IntId;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.links.RawLinkable;
@@ -334,6 +334,9 @@ public class Project implements Serializable, IntId {
                                 simulation.setClassroomTested( false );
                                 simulation.setSimulationVisible( false );
                                 simulation.setHasCreativeCommonsAttributionLicense( true ); // new sims should generally have this set
+                                simulation.setFaqVisible( false );
+                                simulation.setLowGradeLevel( GradeLevel.ELEMENTARY_SCHOOL );
+                                simulation.setHighGradeLevel( GradeLevel.UNIVERSITY );
                                 createdSims.add( simulation );
                                 simulationCache.put( simName, simulation );
                                 englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
@@ -454,7 +457,7 @@ public class Project implements Serializable, IntId {
         if ( success ) {
             // add in English strings for simulations, but ONLY IF THEY DO NOT EXIST!
             for ( String key : englishStringsToAdd.keySet() ) {
-                StringChanges.addString( session, key, englishStringsToAdd.get( key ) );
+                StringUtils.addString( session, key, englishStringsToAdd.get( key ) );
             }
         }
     }

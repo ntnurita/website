@@ -16,6 +16,7 @@
         <property name="guidanceRecommended"/>
         <property name="classroomTested"/>
         <property name="hasCreativeCommonsAttributionLicense"/>
+        <property name="faqVisible"/> <!-- Need to non-nullify. see https://hibernate.onjira.com/browse/HHH-4341 -->
         <property name="simulationVisible" column="visible"/>
         <many-to-one name="project" class="edu.colorado.phet.website.data.Project" not-null="true" lazy="false"/>
 

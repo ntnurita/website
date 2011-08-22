@@ -248,6 +248,85 @@ public class StringUtils {
         return PhetLocalizer.get().getDefaultString( session, key, "", true ).replace( "&#039;", "'" ).replace( "&quot;", "\"" ).replace( "&amp;", "&" ).replace( "&lt;", "<" ).replace( "&gt;", ">" );
     }
 
+    /*---------------------------------------------------------------------------*
+    * string changes
+    *----------------------------------------------------------------------------*/
+
+    /**
+     * Add a string to our database
+     *
+     * @param session      Hibernate session
+     * @param key          Translation key
+     * @param englishValue Initial English value
+     */
+    public static void addString( Session session, String key, String englishValue ) {
+        String result = getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+        if ( result == null ) {
+            logger.warn( "Auto-setting English string with key=" + key + " value=" + englishValue );
+            setEnglishString( session, key, englishValue );
+        }
+    }
+
+    /**
+     * Overwrite an English string in the database, but only if we know the previous value.
+     * This extra check allows us to specify string changes in code (see StringChanges), so that if we decide to change the value
+     * to something else and then run the old overwriteString call, it will NOT overwrite the new (different) value.
+     *
+     * @param session         Hibernate session
+     * @param key             Translation key
+     * @param oldEnglishValue Hopefully current English value. If not, we will do nothing
+     * @param newEnglishValue New English value
+     */
+    public static void overwriteString( Session session, String key, String oldEnglishValue, String newEnglishValue ) {
+        String result = getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+        if ( result == null ) {
+            logger.warn( "Auto-setting English string with key=" + key + " value=" + newEnglishValue );
+            setEnglishString( session, key, newEnglishValue );
+        }
+        else {
+            if ( result.equals( oldEnglishValue ) ) {
+                logger.warn( "Auto-setting English string with key=" + key + " value=" + newEnglishValue + " over old value " + oldEnglishValue );
+                setEnglishString( session, key, newEnglishValue );
+            }
+        }
+    }
+
+    /**
+     * Delete all translatable strings with a specific key
+     *
+     * @param session Hibernate session
+     * @param key     Translation key
+     * @return Success
+     */
+    public static boolean deleteString( Session session, final String key ) {
+        // TODO: consider using session.getTransaction().isActive() to detect whether we are in a transaction or not
+        return HibernateUtils.wrapTransaction( session, new HibernateTask() {
+            public boolean run( Session session ) {
+                deleteStringWithinTransaction( session, key );
+                return true;
+            }
+        } );
+    }
+
+    /**
+     * Delete all translatable strings with a specific key, inside of a transaction
+     *
+     * @param session Hibernate session
+     * @param key     Translation key
+     */
+    public static void deleteStringWithinTransaction( Session session, final String key ) {
+        String result = getStringDirectWithinTransaction( session, key, PhetWicketApplication.getDefaultLocale() );
+        if ( result != null ) {
+            logger.warn( "Deleting strings with key=" + key + ". English value=" + result );
+            List strings = session.createQuery( "select ts from TranslatedString as ts where ts.key = :key" ).setString( "key", key ).list();
+            for ( Object string : strings ) {
+                TranslatedString str = (TranslatedString) string;
+                str.getTranslation().removeString( str );
+                session.delete( str );
+            }
+        }
+    }
+
     private static class StatusTask implements HibernateTask {
         public int status;
         private final int translationId;

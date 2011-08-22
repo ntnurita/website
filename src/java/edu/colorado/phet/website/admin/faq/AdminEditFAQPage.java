@@ -220,6 +220,15 @@ public class AdminEditFAQPage extends AdminPage {
                 FAQList aList = (FAQList) session.load( FAQList.class, list.getId() );
                 FAQItem anItem = (FAQItem) session.load( FAQItem.class, item.getId() );
 
+                // clean up the deleted strings
+                if ( anItem.isQuestion() ) {
+                    StringUtils.deleteStringWithinTransaction( session, anItem.getQuestionKey() );
+                    StringUtils.deleteStringWithinTransaction( session, anItem.getAnswerKey() );
+                }
+                else {
+                    StringUtils.deleteStringWithinTransaction( session, anItem.getHeaderKey() );
+                }
+
                 // beware of https://hibernate.onjira.com/browse/HHH-1268
                 aList.getFaqItems().remove( index );
                 session.delete( anItem );
