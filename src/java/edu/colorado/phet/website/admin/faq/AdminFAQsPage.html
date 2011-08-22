@@ -19,17 +19,6 @@
 
 <wicket:extend>
     <div>
-        <h2>Manually create a new FAQ</h2>
-
-        <form wicket:id="create-faq-form">
-            <p>
-                Please do not put spaces or special characters in FAQ names. For simulation FAQs, it would be nice to have
-                the name be the name of the simulation ("build-a-molecule" for example), but it is not necessary.
-            </p>
-            Name: <input wicket:id="name" type="text" value=""/>
-            <input type="submit" value="create"/>
-        </form>
-
         <h2>FAQ pages to view / modify</h2>
         <table>
             <tr>
@@ -43,6 +32,17 @@
                 <td><a wicket:id="preview-link">preview</a></td>
             </tr>
         </table>
+
+        <h2>Manually create a new FAQ</h2>
+
+        <form wicket:id="create-faq-form">
+            <p>
+                Please do not use this for simulation FAQs. For simulations, go to the simulation's admin page
+                (Administration => simulations, select your simulation) instead, as there is a FAQ section there.
+            </p>
+            Name: <input wicket:id="name" type="text" value=""/>
+            <input type="submit" value="create"/>
+        </form>
     </div>
 </wicket:extend>
 
