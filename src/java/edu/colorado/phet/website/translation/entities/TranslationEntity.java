@@ -5,7 +5,12 @@
 package edu.colorado.phet.website.translation.entities;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -102,43 +107,52 @@ public abstract class TranslationEntity implements Serializable {
         return ret;
     }
 
+    public static synchronized void clearCache() {
+        cachedEntities = null;
+    }
+
     /**
      * @return The list (in order) of the entities that should be shown in the translation area
      */
     public static synchronized List<TranslationEntity> getTranslationEntities() {
         if ( cachedEntities == null ) {
-            cachedEnglishEntity = new EnglishEntity();
-            cachedEntities = new LinkedList<TranslationEntity>();
-            cachedEntities.add( new CommonEntity() );
-            cachedEntities.add( new IndexEntity() );
-            cachedEntities.add( new NavigationEntity() );
-            cachedEntities.add( new SimulationMainEntity() );
-            cachedEntities.add( new TranslatedSimsEntity() );
-            cachedEntities.add( new WorkshopsEntity() );
-            cachedEntities.add( new SponsorsEntity() );
-            cachedEntities.add( new RunSimulationsEntity() );
-            cachedEntities.add( new FullInstallEntity() );
-            cachedEntities.add( new DonateEntity() );
-            cachedEntities.add( new ResearchEntity() );
-            cachedEntities.add( new TroubleshootingMainEntity() );
-            cachedEntities.add( new TroubleshootingJavaEntity() );
-            cachedEntities.add( new TroubleshootingFlashEntity() );
-            cachedEntities.add( new TroubleshootingJavascriptEntity() );
-            cachedEntities.add( new KeywordsEntity() );
-            cachedEntities.add( new ContributeEntity() );
-            cachedEntities.add( new ForTeachersEntity() );
-            cachedEntities.add( new AboutPhetEntity() );
-            cachedEntities.add( new TitlesEntity() );
-            cachedEntities.add( new LanguagesEntity() );
-            cachedEntities.add( new SimulationsEntity() );
-            cachedEntities.add( new SearchEntity() );
-            cachedEntities.add( new UserEntity() );
-            cachedEntities.add( new ErrorEntity() );
-            cachedEntities.add( new TranslationUtilityEntity() );
-            cachedEntities.add( new SocialEntity() );
-            cachedEntities.add( new NewsletterEntity() );
-            cachedEntities.add( new MiscellaneousEntity() );
+            refreshCachedEntries();
         }
-        return new LinkedList<TranslationEntity>( cachedEntities ); // this is cached, so we return a defensive copy
+        return new ArrayList<TranslationEntity>( cachedEntities ); // this is cached, so we return a defensive copy
+    }
+
+    private static synchronized void refreshCachedEntries() {
+        cachedEnglishEntity = new EnglishEntity();
+        cachedEntities = new ArrayList<TranslationEntity>();
+        cachedEntities.add( new CommonEntity() );
+        cachedEntities.add( new IndexEntity() );
+        cachedEntities.add( new NavigationEntity() );
+        cachedEntities.add( new SimulationMainEntity() );
+        cachedEntities.add( new TranslatedSimsEntity() );
+        cachedEntities.add( new WorkshopsEntity() );
+        cachedEntities.add( new SponsorsEntity() );
+        cachedEntities.add( new RunSimulationsEntity() );
+        cachedEntities.add( new FullInstallEntity() );
+        cachedEntities.add( new DonateEntity() );
+        cachedEntities.add( new ResearchEntity() );
+        cachedEntities.add( new TroubleshootingMainEntity() );
+        cachedEntities.add( new TroubleshootingJavaEntity() );
+        cachedEntities.add( new TroubleshootingFlashEntity() );
+        cachedEntities.add( new TroubleshootingJavascriptEntity() );
+        cachedEntities.add( new KeywordsEntity() );
+        cachedEntities.add( new ContributeEntity() );
+        cachedEntities.add( new ForTeachersEntity() );
+        cachedEntities.add( new AboutPhetEntity() );
+        cachedEntities.add( new TitlesEntity() );
+        cachedEntities.add( new LanguagesEntity() );
+        cachedEntities.add( new SimulationsEntity() );
+        cachedEntities.add( new SimulationFAQsEntitiy() );
+        cachedEntities.add( new SearchEntity() );
+        cachedEntities.add( new UserEntity() );
+        cachedEntities.add( new ErrorEntity() );
+        cachedEntities.add( new TranslationUtilityEntity() );
+        cachedEntities.add( new SocialEntity() );
+        cachedEntities.add( new NewsletterEntity() );
+        cachedEntities.add( new MiscellaneousEntity() );
     }
 }

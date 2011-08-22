@@ -9,6 +9,7 @@ import org.hibernate.Cache;
 import org.hibernate.SessionFactory;
 
 import edu.colorado.phet.website.translation.PhetLocalizer;
+import edu.colorado.phet.website.translation.entities.TranslationEntity;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class CacheUtils {
@@ -21,6 +22,7 @@ public class CacheUtils {
     public static void clearAllCaches() {
         clearSecondLevelCache();
         clearTranslatedStringCache();
+        clearTranslationEntityCache();
         clearPanelCache();
         clearSimulationCache();
         clearImageCache();
@@ -53,6 +55,14 @@ public class CacheUtils {
     public static void clearTranslatedStringCache() {
         logger.info( "clearing translated string cache" );
         PhetLocalizer.get().clearCache();
+    }
+
+    /**
+     * Clears the cache of what string keys are translatable in what entities.
+     * Could need refreshing if we are adding in strings!
+     */
+    public static void clearTranslationEntityCache() {
+        TranslationEntity.clearCache();
     }
 
     /**

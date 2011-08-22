@@ -15,6 +15,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.cache.CacheUtils;
 import edu.colorado.phet.website.components.LocalizedLabel;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
@@ -264,6 +265,7 @@ public class StringUtils {
         if ( result == null ) {
             logger.warn( "Auto-setting English string with key=" + key + " value=" + englishValue );
             setEnglishString( session, key, englishValue );
+            CacheUtils.clearTranslationEntityCache(); // trigger updates for translation entities
         }
     }
 
@@ -300,12 +302,14 @@ public class StringUtils {
      */
     public static boolean deleteString( Session session, final String key ) {
         // TODO: consider using session.getTransaction().isActive() to detect whether we are in a transaction or not
-        return HibernateUtils.wrapTransaction( session, new HibernateTask() {
+        boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
             public boolean run( Session session ) {
                 deleteStringWithinTransaction( session, key );
                 return true;
             }
         } );
+        CacheUtils.clearTranslationEntityCache(); // trigger updates for translation entities
+        return success;
     }
 
     /**
@@ -325,6 +329,7 @@ public class StringUtils {
                 session.delete( str );
             }
         }
+        CacheUtils.clearTranslationEntityCache(); // trigger updates for translation entities
     }
 
     private static class StatusTask implements HibernateTask {
@@ -385,6 +390,9 @@ public class StringUtils {
      */
     public static String mapStringForStorage( String str ) {
         // Tested on Mac, Safari 4.0.5, Firefox 3.6.3
+        if( str == null ) {
+            str = "";
+        }
         str = str.replaceAll( "\r", "" );
         str = str.replaceAll( "\n", "<br/>" );
         return str;

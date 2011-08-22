@@ -505,6 +505,7 @@ public class PhetWicketApplication extends WebApplication {
 
     private static Locale defaultLocale = LocaleUtils.stringToLocale( "en" );
 
+    // TODO: rename to English, and consider moving to a different class?
     public static Locale getDefaultLocale() {
         return defaultLocale;
     }

@@ -107,7 +107,8 @@ public class AdminEditFAQPage extends AdminPage {
                 @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
                     addNewQuestion( questionField.getModelObject(), "(add HTML answer here)" );
                     questionField.getModel().setObject( "" );
-                    target.addComponent( AdminEditFAQPage.this );
+                    updateItems( target );
+                    updatePreview( target );
                 }
             } );
 
@@ -125,7 +126,8 @@ public class AdminEditFAQPage extends AdminPage {
                 @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
                     addNewHeader( textField.getModelObject() );
                     textField.getModel().setObject( "" );
-                    target.addComponent( AdminEditFAQPage.this );
+                    updateItems( target );
+                    updatePreview( target );
                 }
             } );
 
