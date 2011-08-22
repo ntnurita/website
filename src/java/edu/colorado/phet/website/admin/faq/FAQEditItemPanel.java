@@ -30,26 +30,24 @@ public class FAQEditItemPanel extends PhetPanel {
             @Override public void onClick( AjaxRequestTarget target ) {
                 page.delete( item );
 
-                target.addComponent( page );
-//                page.updatePreview( target );
-//                target.addComponent( FAQEditItemPanel.this.getParent() );
+                page.updateItems( target );
+                page.updatePreview( target );
             }
         } );
         add( new AjaxLink( "up-link" ) {
             @Override public void onClick( AjaxRequestTarget target ) {
                 page.moveUp( item );
 
-                target.addComponent( page );
-//                page.updatePreview( target );
-//                target.addComponent( FAQEditItemPanel.this.getParent() );
+                page.updateItems( target );
+                page.updatePreview( target );
             }
         } );
         add( new AjaxLink( "down-link" ) {
             @Override public void onClick( AjaxRequestTarget target ) {
                 page.moveDown( item );
-                target.addComponent( page );
-//                page.updatePreview( target );
-//                target.addComponent( FAQEditItemPanel.this.getParent() );
+
+                page.updateItems( target );
+                page.updatePreview( target );
             }
         } );
     }

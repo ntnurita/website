@@ -42,9 +42,10 @@ public class AdminEditFAQPage extends AdminPage {
     private List<FAQItem> faqItems = new LinkedList<FAQItem>();
     private FAQList list;
 
-    private final MarkupContainer previewHolder; // holds the preview, so we can have a consistent AJAX ID to update
+    private final MarkupContainer previewContainer; // holds the preview, so we can have a consistent AJAX ID to update
     private FAQPanel preview; // current preview component
 
+    private final MarkupContainer itemsContainer; // holds the list of items being edited. needed since we can't AJAX update a ListView itself, and updating the entire page is inefficient
     private String faqName;
 
     public AdminEditFAQPage( PageParameters parameters ) {
@@ -66,13 +67,18 @@ public class AdminEditFAQPage extends AdminPage {
 
         add( new Label( "title", "FAQs for " + faqName ) );
 
-        previewHolder = new MarkupContainer( "preview-container" ) {{
+        previewContainer = new MarkupContainer( "preview-container" ) {{
             setOutputMarkupId( true );
         }};
-        add( previewHolder );
+        add( previewContainer );
+
+        itemsContainer = new MarkupContainer( "items-container" ) {{
+            setOutputMarkupId( true );
+        }};
+        add( itemsContainer );
 
         // display all of the currently active items
-        final ListView<FAQItem> faqView = new ListView<FAQItem>( "items", faqItems ) {
+        itemsContainer.add( new ListView<FAQItem>( "items", faqItems ) {
             {
                 setOutputMarkupId( true );
             }
@@ -86,8 +92,7 @@ public class AdminEditFAQPage extends AdminPage {
                 }
                 item.setOutputMarkupId( true );
             }
-        };
-        add( faqView );
+        } );
 
         updatePreview();
 
@@ -130,17 +135,21 @@ public class AdminEditFAQPage extends AdminPage {
         setOutputMarkupId( true );
     }
 
+    public void updateItems( AjaxRequestTarget target ) {
+        target.addComponent( itemsContainer );
+    }
+
     public void updatePreview( AjaxRequestTarget target ) {
         updatePreview();
-        target.addComponent( previewHolder );
+        target.addComponent( previewContainer );
     }
 
     public void updatePreview() {
         if ( preview != null ) {
-            previewHolder.remove( preview );
+            previewContainer.remove( preview );
         }
         preview = new FAQPanel( "preview", faqName, getPageContext(), false );
-        previewHolder.add( preview );
+        previewContainer.add( preview );
     }
 
     /**

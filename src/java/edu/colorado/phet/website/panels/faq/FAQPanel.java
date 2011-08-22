@@ -14,6 +14,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.data.faq.FAQItem;
+import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -34,7 +35,10 @@ public class FAQPanel extends PhetPanel implements Serializable {
         Result<List<FAQItem>> items = HibernateUtils.resultTransaction( getHibernateSession(), new Task<List<FAQItem>>() {
             public List<FAQItem> run( final Session session ) {
                 ArrayList<FAQItem> result = new ArrayList<FAQItem>();
-                result.addAll( session.createQuery( "select f from FAQItem as f where f.list.name = :name" ).setString( "name", faqName ).list() );
+                FAQList list = (FAQList) session.createQuery( "select f from FAQList as f where f.name = :name" ).setString( "name", faqName ).uniqueResult();
+                for ( Object o : list.getFaqItems() ) {
+                    result.add( (FAQItem) o );
+                }
                 return result;
             }
         } );
