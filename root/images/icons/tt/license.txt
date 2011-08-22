@@ -1,0 +1,1 @@
+See https://code.google.com/p/twotiny/ (available under GPL1 or http://dev.perl.org/licenses/artistic.html)
