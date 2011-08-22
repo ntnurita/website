@@ -7,7 +7,7 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.admin.AdminPage;
-import edu.colorado.phet.website.panels.FAQPanel;
+import edu.colorado.phet.website.panels.faq.FAQPanel;
 
 /**
  * Shows a preview of a FAQ page (for one that may not be visible to non-administrators)

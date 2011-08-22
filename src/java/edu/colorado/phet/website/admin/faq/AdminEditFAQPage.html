@@ -11,12 +11,48 @@
     </wicket:remove>
     <wicket:head>
         <style type="text/css">
+            .faq-preview {
+                float: right;
+                border: 1px solid gray;
+                padding: 10px;
+                width: 525px;
+                margin-left: 100px;
+            }
         </style>
     </wicket:head>
 </head>
 <body wicket:message="dir:language.dir">
 
 <wicket:extend>
+    <h2 wicket:id="title">FAQs for ...</h2>
+
+    <div class="faq-preview">
+        <h2>Preview</h2>
+
+        <div wicket:id="preview-container">
+            <div wicket:id="preview"></div>
+        </div>
+    </div>
+
+    <table>
+        <tr wicket:id="items">
+            <div wicket:id="item"></div>
+        </tr>
+    </table>
+
+    <h2>Add Question</h2>
+
+    <form wicket:id="add-question">
+        Question: <input wicket:id="question" type="text" value=""/>
+        <input type="submit" value="add question" wicket:id="submit"/>
+    </form>
+
+    <h2>Add Section Header</h2>
+
+    <form wicket:id="add-header">
+        Header: <input wicket:id="text" type="text" value=""/>
+        <input type="submit" value="add header" wicket:id="submit"/>
+    </form>
 
 </wicket:extend>
 

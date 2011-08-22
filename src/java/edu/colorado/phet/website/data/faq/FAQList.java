@@ -19,7 +19,7 @@ public class FAQList implements Serializable, IntId {
     private String name;
 
     // list of items, in order
-    private List faqItems = new ArrayList(  );
+    private List faqItems = new ArrayList();
 
     public FAQList() {
     }
@@ -37,6 +37,10 @@ public class FAQList implements Serializable, IntId {
     }
 
     public void setName( String name ) {
+        // since we have a few strings that fit the new FAQ string format, we need to blacklist these to prevent overwriting them for the time being
+        if ( name.equals( "embedding" ) || name.equals( "header" ) || name.equals( "licensing" ) || name.equals( "mobileDevices" ) || name.equals( "sourceCode" ) ) {
+            throw new RuntimeException( "FAQ name reserved: " + name );
+        }
         this.name = name;
     }
 

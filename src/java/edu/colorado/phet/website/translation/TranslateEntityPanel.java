@@ -89,8 +89,7 @@ public class TranslateEntityPanel extends PhetPanel {
                 item.setMarkupId( markupId );
 
                 String initString = getLocalizer().getString( tString.getKey(), TranslateEntityPanel.this );
-                initString = initString.replaceAll( "<br/>", "\n" );
-                final Model<String> model = new Model<String>( initString );
+                final Model<String> model = new Model<String>( StringUtils.mapStringForEditing( initString ) );
                 stringModelMap.put( tString.getKey(), model );
 
                 if ( tString.getNotes() == null ) {
@@ -142,7 +141,7 @@ public class TranslateEntityPanel extends PhetPanel {
                             if ( oldValue == null ) {
                                 oldValue = StringUtils.getDefaultStringDirect( getHibernateSession(), tString.getKey() );
                             }
-                            model.setObject( oldValue );
+                            model.setObject( StringUtils.mapStringForEditing( oldValue ) );
                         }
                         target.addComponent( panel );
                         target.addComponent( item );

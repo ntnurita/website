@@ -1,0 +1,42 @@
+<!-- Copyright 2002-2011, University of Colorado -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title>[PREVIEW] FAQPanel</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+        <script type="text/javascript" src="../../../../../../../../root/js/jquery-1.4.4.min.js"></script>
+        <style type="text/css">
+            .faq-container {
+                width: 525px;
+                margin: 0 auto;
+            }
+        </style>
+    </wicket:remove>
+</head>
+<body>
+
+<wicket:panel>
+    <script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" wicket:id="activation-js">
+        $( document ).ready( function() {
+            $( ".simFaqAnswer" ).hide();
+            $( ".simFaqQuestion" ).css( 'cursor', 'pointer' );
+            $( ".simFaqQuestion" ).click( function( evt ) {
+                $( this ).parent().children( ".simFaqAnswer" ).toggle();
+            } );
+        } );
+    </script>
+    <div class="faq-container" wicket:message="dir:language.dir">
+        <div wicket:id="items">
+            <div wicket:id="item"></div>
+        </div>
+    </div>
+</wicket:panel>
+
+</body>
+</html>
+

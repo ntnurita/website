@@ -11,9 +11,7 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -68,6 +66,10 @@ public class StringUtils {
         return ret[0];
     }
 
+    public static String getEnglishStringDirect( Session session, final String key ) {
+        return getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+    }
+
     /**
      * Returns a string from the database for a visible translation (specified by a locale). Run from within the
      * transaction
@@ -84,7 +86,8 @@ public class StringUtils {
         TranslatedString string = getTranslatedString( session, key, locale );
         if ( string == null ) {
             return null;
-        } else {
+        }
+        else {
             return string.getValue();
         }
     }
@@ -102,7 +105,8 @@ public class StringUtils {
                 .setLocale( "locale", locale ).setString( "key", key ).list();
         if ( list.isEmpty() ) {
             return null;
-        } else {
+        }
+        else {
             if ( list.size() != 1 ) {
                 logger.warn( "strings for key " + key + ", locale " + locale + " have " + list.size() + " options" );
             }
@@ -149,7 +153,8 @@ public class StringUtils {
         TranslatedString string = getTranslatedString( session, key, translationId );
         if ( string == null ) {
             return null;
-        } else {
+        }
+        else {
             return string.getValue();
         }
     }
@@ -167,7 +172,8 @@ public class StringUtils {
                 .setInteger( "id", translationId ).setString( "key", key ).list();
         if ( list.isEmpty() ) {
             return null;
-        } else {
+        }
+        else {
             if ( list.size() != 1 ) {
                 logger.warn( "strings for key " + key + ", translationId " + translationId + " have " + list.size() + " options" );
             }
@@ -191,7 +197,8 @@ public class StringUtils {
         for ( char c : chars ) {
             if ( Character.isLetterOrDigit( c ) ) {
                 buf.append( c );
-            } else {
+            }
+            else {
                 buf.append( "_" );
             }
         }
@@ -207,7 +214,8 @@ public class StringUtils {
     public static String makeUrlAbsoluteProduction( String url ) {
         if ( url.startsWith( "/" ) ) {
             return "http://phet.colorado.edu" + url;
-        } else {
+        }
+        else {
             return url;
         }
     }
@@ -223,7 +231,8 @@ public class StringUtils {
         String scheme = PhetRequestCycle.get().getScheme(); // protocol
         if ( url.startsWith( "/" ) ) {
             return scheme + "://" + server + url;
-        } else {
+        }
+        else {
             return url;
         }
     }
@@ -257,7 +266,8 @@ public class StringUtils {
                     .setInteger( "id", translationId ).setString( "key", key ).uniqueResult();
             if ( string != null ) {
                 status = STRING_TRANSLATED;
-            } else {
+            }
+            else {
                 return true;
             }
             TranslatedString englishString = (TranslatedString) session.createQuery(
@@ -286,111 +296,93 @@ public class StringUtils {
         return setString( session, key, value, PhetWicketApplication.getDefaultLocale() );
     }
 
-    public static boolean setString( Session session, String key, String value, Locale locale ) {
+    /**
+     * Turn newlines into line breaks, so that people can type in line-breaks and have it
+     * appear visually in that style. We need to store them in this modified format since
+     * using wicket's string lookup inserts the strings as-is.
+     *
+     * @param str The string to convert
+     * @return The string with newlines replaced with XHTML line-breaks
+     */
+    public static String mapStringForStorage( String str ) {
         // Tested on Mac, Safari 4.0.5, Firefox 3.6.3
-        // TODO: note don't modify unless checking the below setString. refactor
-        value = value.replaceAll( "\r", "" );
-        value = value.replaceAll( "\n", "<br/>" );
-
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-
-            Translation translation = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", locale ).uniqueResult();
-            TranslatedString tString = null;
-            for ( Object o : translation.getTranslatedStrings() ) {
-                TranslatedString ts = (TranslatedString) o;
-                if ( ts.getKey().equals( key ) ) {
-                    tString = ts;
-                    break;
-                }
-            }
-            if ( tString == null ) {
-                tString = new TranslatedString();
-                tString.initializeNewString( translation, key, value );
-                session.save( tString );
-                session.update( translation );
-            } else {
-                tString.setValue( value );
-                tString.setUpdatedAt( new Date() );
-
-                session.update( tString );
-            }
-
-            // if it's cached, change the cache entries so it doesn't fail
-            ( (PhetLocalizer) PhetWicketApplication.get().getResourceSettings().getLocalizer() ).updateCachedString( translation, key, value );
-
-            tx.commit();
-        }
-        catch ( RuntimeException e ) {
-            logger.warn( "Exception: " + e );
-            if ( tx != null && tx.isActive() ) {
-                try {
-                    tx.rollback();
-                }
-                catch ( HibernateException e1 ) {
-                    logger.error( "ERROR: Error rolling back transaction", e1 );
-                }
-                throw e;
-            }
-            return false;
-        }
-        return true;
+        str = str.replaceAll( "\r", "" );
+        str = str.replaceAll( "\n", "<br/>" );
+        return str;
     }
 
-    public static boolean setString( Session session, String key, String value, int translationId ) {
+    /**
+     * Turn line-breaks into newlines, so that we can take stored translated string text and
+     * make it fit nicely within a multiline text editing box
+     *
+     * @param str String to convert
+     * @return The string with XHTML line-breaks replaced with newlines
+     */
+    public static String mapStringForEditing( String str ) {
+        return str.replaceAll( "<br/>", "\n" );
+    }
+
+    public static void setEnglishStringWithinTransaction( Session session, String key, String value ) {
+        setStringWithinTransaction( session, HibernateUtils.getTranslationWithinTransaction( session, PhetWicketApplication.getDefaultLocale() ), key, value );
+    }
+
+    public static void setStringWithinTransaction( Session session, Translation translation, String key, String value ) {
+        value = mapStringForStorage( value );
+
+        TranslatedString tString = null;
+
+        // look to see if we have an existing translated string
+        // TODO: inefficient. do a better lookup, since we probably index on string key!
+        for ( Object o : translation.getTranslatedStrings() ) {
+            TranslatedString ts = (TranslatedString) o;
+            if ( ts.getKey().equals( key ) ) {
+                tString = ts;
+                break;
+            }
+        }
+
+        // if there is no existing string, create a new one
+        if ( tString == null ) {
+            tString = new TranslatedString();
+            tString.initializeNewString( translation, key, value );
+            session.save( tString );
+            session.update( translation );
+        }
+        else {
+            // otherwise, update the existing string
+            tString.setValue( value );
+            tString.setUpdatedAt( new Date() );
+
+            session.update( tString );
+        }
+
+        // if it's cached, change the cache entries so it doesn't fail
+        // TODO: fix: on transaction failure, we will have deposited the wrong value in the cache!!!
+        ( (PhetLocalizer) PhetWicketApplication.get().getResourceSettings().getLocalizer() ).updateCachedString( translation, key, value );
+    }
+
+    public static boolean setString( Session session, final String key, final String value, final Locale locale ) {
+        return HibernateUtils.wrapTransaction( session, new HibernateTask() {
+            public boolean run( Session session ) {
+                Translation translation = HibernateUtils.getTranslationWithinTransaction( session, locale );
+                setStringWithinTransaction( session, translation, key, value );
+                return true;
+            }
+        } );
+    }
+
+    public static boolean setString( Session session, final String key, final String value, final int translationId ) {
         logger.info( "Request to set string with key=" + key + " and value=" + value );
         if ( value == null ) {
             return false;
         }
-        // TODO: refactor this somehow with setString with locale
-        value = value.replaceAll( "\r", "" );
-        value = value.replaceAll( "\n", "<br/>" );
-
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-
-            Translation translation = (Translation) session.createQuery( "select t from Translation as t where t.id = :id" ).setInteger( "id", translationId ).uniqueResult();
-            TranslatedString tString = null;
-            for ( Object o : translation.getTranslatedStrings() ) {
-                TranslatedString ts = (TranslatedString) o;
-                if ( ts.getKey().equals( key ) ) {
-                    tString = ts;
-                    break;
-                }
+        return HibernateUtils.wrapTransaction( session, new HibernateTask() {
+            public boolean run( Session session ) {
+                Translation translation = HibernateUtils.getTranslationWithinTransaction( session, translationId );
+                setStringWithinTransaction( session, translation, key, value );
+                return true;
             }
-            if ( tString == null ) {
-                tString = new TranslatedString();
-                tString.initializeNewString( translation, key, value );
-                session.save( tString );
-                session.update( translation );
-            } else {
-                tString.setValue( value );
-                tString.setUpdatedAt( new Date() );
-
-                session.update( tString );
-            }
-
-            // if it's cached, change the cache entries so it doesn't fail
-            ( (PhetLocalizer) PhetWicketApplication.get().getResourceSettings().getLocalizer() ).updateCachedString( translation, key, value );
-
-            tx.commit();
-        }
-        catch ( RuntimeException e ) {
-            logger.warn( "Exception: " + e );
-            if ( tx != null && tx.isActive() ) {
-                try {
-                    tx.rollback();
-                }
-                catch ( HibernateException e1 ) {
-                    logger.error( "ERROR: Error rolling back transaction", e1 );
-                }
-                throw e;
-            }
-            return false;
-        }
-        return true;
+        } );
     }
 
     private static String messageFormatFilter( String str ) {
@@ -408,7 +400,8 @@ public class StringUtils {
                     ret.append( str.charAt( i + 1 ) );
                     ret.append( '\'' );
                     i += 2;
-                } else {
+                }
+                else {
                     ret.append( '\'' );
                 }
             }

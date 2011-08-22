@@ -5,10 +5,21 @@
 package edu.colorado.phet.website.util.hibernate;
 
 import java.text.Collator;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.hibernate.*;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
@@ -18,6 +29,7 @@ import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.Translation;
+import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.StringUtils;
 
@@ -208,7 +220,7 @@ public class HibernateUtils {
         throw new RuntimeException( "WARNING: matches more than 3 simulations!" );
     }
 
-    public static final String[] SIM_TITLE_IGNORE_WORDS = {"The", "La", "El"};
+    public static final String[] SIM_TITLE_IGNORE_WORDS = { "The", "La", "El" };
 
     public static String getLeadingSimCharacter( String name, Locale locale ) {
         String str = name;
@@ -450,7 +462,7 @@ public class HibernateUtils {
                 //logger.warn( "tx not active", new RuntimeException( "exception made for stack trace" ) );
             }
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             ret = false;
             logger.warn( "Exception", e );
             if ( tx != null && tx.isActive() ) {
@@ -458,7 +470,7 @@ public class HibernateUtils {
                     logger.warn( "Attempting to roll back" );
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction!", e1 );
                 }
                 throw e;
@@ -477,7 +489,7 @@ public class HibernateUtils {
                 logger.info( "Attempting to roll back" );
                 tx.rollback();
             }
-            catch( HibernateException e1 ) {
+            catch ( HibernateException e1 ) {
                 logger.error( "ERROR: Error rolling back transaction!", e1 );
                 throw e1;
             }
@@ -520,12 +532,12 @@ public class HibernateUtils {
             }
             return new Result<T>( true, ret, null );
         }
-        catch( TaskException e ) {
+        catch ( TaskException e ) {
             logger.log( e.level, "exception: ", e ); // log the TaskException at the desired level
             tryRollback( tx );
             return new Result<T>( false, ret, e );
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( "exception: ", e );
             tryRollback( tx );
             if ( throwHibernateExceptions ) {
@@ -567,6 +579,28 @@ public class HibernateUtils {
         Result<T> ret = transactionCore( session, task, throwHibernateExceptions );
         session.close();
         return ret;
+    }
+
+    /**
+     * Get the publicly-visible translation by its Locale
+     *
+     * @param session Hibernate session
+     * @param locale  Locale
+     * @return Translation
+     */
+    public static Translation getTranslationWithinTransaction( Session session, Locale locale ) {
+        return (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", locale ).uniqueResult();
+    }
+
+    /**
+     * Translation lookup by ID
+     *
+     * @param session       Hibernate session
+     * @param translationId Translation ID
+     * @return Translation
+     */
+    public static Translation getTranslationWithinTransaction( Session session, int translationId ) {
+        return (Translation) session.load( Translation.class, translationId );
     }
 
 }

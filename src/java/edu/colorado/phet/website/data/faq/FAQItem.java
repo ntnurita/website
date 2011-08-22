@@ -22,6 +22,22 @@ public class FAQItem implements Serializable, IntId {
     // the list that this item is in
     private FAQList list;
 
+    public String getBaseKey() {
+        return "faq." + list.getName() + "." + key;
+    }
+
+    public String getHeaderKey() {
+        return getBaseKey() + ".header";
+    }
+
+    public String getQuestionKey() {
+        return getBaseKey() + ".question";
+    }
+
+    public String getAnswerKey() {
+        return getBaseKey() + ".answer";
+    }
+
     public FAQItem() {
     }
 

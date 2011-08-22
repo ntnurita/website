@@ -5,24 +5,19 @@
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] FAQPanel</title>
+    <title>[PREVIEW] FAQEditQuestionPanel</title>
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-        <style type="text/css">
-            .simulation-main-container {
-                width: 525px;
-                margin: 0 auto;
-            }
-        </style>
     </wicket:remove>
 </head>
 <body>
 
-<wicket:panel>
-    <div class="simulation-main-container" wicket:message="dir:language.dir">
-
-    </div>
-</wicket:panel>
+<wicket:extend>
+    <strong>Question</strong>
+    <div wicket:id="question"></div>
+    <strong>Answer</strong>
+    <div wicket:id="answer"></div>
+</wicket:extend>
 
 </body>
 </html>
