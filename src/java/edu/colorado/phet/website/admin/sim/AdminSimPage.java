@@ -2,7 +2,7 @@
  * Copyright 2010, University of Colorado
  */
 
-package edu.colorado.phet.website.admin;
+package edu.colorado.phet.website.admin.sim;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,9 +43,8 @@ import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
-import edu.colorado.phet.website.admin.sim.AdminSimFAQPanel;
-import edu.colorado.phet.website.admin.sim.LRETermPanel;
-import edu.colorado.phet.website.admin.sim.NSDLScienceLiteracyMapPanel;
+import edu.colorado.phet.website.admin.AdminPage;
+import edu.colorado.phet.website.admin.AdminSimsPage;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;

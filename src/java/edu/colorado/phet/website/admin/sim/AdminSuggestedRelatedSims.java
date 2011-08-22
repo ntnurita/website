@@ -2,7 +2,7 @@
  * Copyright 2011, University of Colorado
  */
 
-package edu.colorado.phet.website.admin;
+package edu.colorado.phet.website.admin.sim;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -17,6 +17,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.admin.AdminPage;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
