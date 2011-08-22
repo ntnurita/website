@@ -43,6 +43,7 @@ import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.admin.sim.AdminSimFAQPanel;
 import edu.colorado.phet.website.admin.sim.LRETermPanel;
 import edu.colorado.phet.website.admin.sim.NSDLScienceLiteracyMapPanel;
 import edu.colorado.phet.website.components.InvisibleComponent;
@@ -187,6 +188,8 @@ public class AdminSimPage extends AdminPage {
         add( new GuidanceRecommendedForm( "guidance-recommended" ) );
         add( new ClassroomTestedForm( "classroom-tested" ) );
         add( new VisibleForm( "simulation-visibility" ) );
+
+        add( new AdminSimFAQPanel( "faq-panel", getPageContext(), simulation ) );
 
         add( new ModifyTranslationForm( "add-set-translation" ) );
 
