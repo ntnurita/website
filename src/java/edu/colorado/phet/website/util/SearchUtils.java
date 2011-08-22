@@ -29,6 +29,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -454,7 +455,7 @@ public class SearchUtils {
     public static List<LocalizedSimulation> englishSimulationSearch( Session session, String queryString ) {
         try {
             Query query = parseEnglishSimQuery( queryString );
-            return queryToSimulations( session, query, PhetWicketApplication.getDefaultLocale() );
+            return queryToSimulations( session, query, WebsiteConstants.ENGLISH );
         }
         catch( ParseException e ) {
             logger.debug( "english search parse exception", e );
@@ -463,7 +464,7 @@ public class SearchUtils {
     }
 
     public static List<LocalizedSimulation> simulationSearch( Session session, String queryString, final Locale locale ) {
-        if ( locale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
+        if ( locale.equals( WebsiteConstants.ENGLISH ) ) {
             return englishSimulationSearch( session, queryString );
         }
         try {
@@ -488,7 +489,7 @@ public class SearchUtils {
     }
 
     public static List<Contribution> contributionSearch( Session session, String queryString, final Locale locale ) {
-        if ( locale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
+        if ( locale.equals( WebsiteConstants.ENGLISH ) ) {
             return englishContributionSearch( session, queryString );
         }
         try {

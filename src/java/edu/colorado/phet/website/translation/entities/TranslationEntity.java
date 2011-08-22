@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
 import edu.colorado.phet.website.translation.PhetPanelPreview;
@@ -93,7 +93,7 @@ public abstract class TranslationEntity implements Serializable {
     private static TranslationEntity cachedEnglishEntity = null;
 
     public static List<TranslationEntity> getTranslationEntitiesForLocale( Locale locale ) {
-        if ( PhetWicketApplication.getDefaultLocale().equals( locale ) ) {
+        if ( WebsiteConstants.ENGLISH.equals( locale ) ) {
             return getAllTranslationEntities();
         }
         else {

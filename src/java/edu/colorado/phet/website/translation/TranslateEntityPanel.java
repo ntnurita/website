@@ -25,11 +25,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedLabel;
 import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.test.TestTranslateString;
@@ -104,11 +104,11 @@ public class TranslateEntityPanel extends PhetPanel {
 
                 item.add( new Label( "translation-string-key", tString.getKey() ) );
 
-                if ( testLocale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
+                if ( testLocale.equals( WebsiteConstants.ENGLISH ) ) {
                     item.add( new InvisibleComponent( "translation-string-english" ) );
                 }
                 else {
-                    item.add( new LocalizedLabel( "translation-string-english", PhetWicketApplication.getDefaultLocale(), new ResourceModel( tString.getKey() ) ) );
+                    item.add( new LocalizedLabel( "translation-string-english", WebsiteConstants.ENGLISH, new ResourceModel( tString.getKey() ) ) );
                 }
 
                 final AjaxEditableMultiLineLabel<String> editableLabel = new AjaxEditableMultiLineLabel<String>( "translation-string-value", model ) {
@@ -217,7 +217,7 @@ public class TranslateEntityPanel extends PhetPanel {
         boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 TranslatedString standard = (TranslatedString) session.createQuery( "select ts from TranslatedString as ts, Translation as t where ts.translation = t and t.visible = true and t.locale = :locale and ts.key = :key" )
-                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() )
+                        .setLocale( "locale", WebsiteConstants.ENGLISH )
                         .setString( "key", key )
                         .uniqueResult();
                 TranslatedString current = (TranslatedString) session.createQuery( "select ts from TranslatedString as ts, Translation as t where ts.translation = t and t.id = :id and ts.key = :key" )

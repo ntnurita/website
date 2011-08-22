@@ -53,6 +53,7 @@ import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.authentication.SignOutPage;
 import edu.colorado.phet.website.authentication.panels.ChangePasswordSuccessPanel;
 import edu.colorado.phet.website.cache.InstallerCache;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.BlankPage;
 import edu.colorado.phet.website.content.ClassroomUsePanel;
 import edu.colorado.phet.website.content.DonatePanel;
@@ -478,7 +479,7 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     public synchronized boolean isVisibleLocale( Locale locale ) {
-        if ( locale.equals( getDefaultLocale() ) ) {
+        if ( locale.equals( WebsiteConstants.ENGLISH ) ) {
             return true;
         }
         for ( Translation translation : translations ) {
@@ -501,13 +502,6 @@ public class PhetWicketApplication extends WebApplication {
     @Override
     public RequestCycle newRequestCycle( Request request, Response response ) {
         return new PhetRequestCycle( this, (WebRequest) request, response );
-    }
-
-    private static Locale defaultLocale = LocaleUtils.stringToLocale( "en" );
-
-    // TODO: rename to English, and consider moving to a different class?
-    public static Locale getDefaultLocale() {
-        return defaultLocale;
     }
 
     // TODO: separate out translation parts into another area?

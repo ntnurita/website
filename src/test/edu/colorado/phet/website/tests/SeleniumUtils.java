@@ -14,7 +14,7 @@ import org.w3c.dom.Document;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
@@ -54,6 +54,6 @@ public class SeleniumUtils {
     }
 
     public static void main( String[] args ) {
-        System.out.println( "String: " + getString( "language.dir", PhetWicketApplication.getDefaultLocale() ) );
+        System.out.println( "String: " + getString( "language.dir", WebsiteConstants.ENGLISH ) );
     }
 }

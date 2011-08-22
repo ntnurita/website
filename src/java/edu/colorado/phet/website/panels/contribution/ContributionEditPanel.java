@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
@@ -34,7 +33,7 @@ import edu.colorado.phet.website.authentication.AuthenticatedPage;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.CSS;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.contribution.ContributionSuccessPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
@@ -128,7 +127,7 @@ public class ContributionEditPanel extends PhetPanel {
         else {
             // initialize defaults for a new contribution
             contribution.setFromPhet( currentUser.isTeamMember() );
-            contribution.setLocale( PhetWicketApplication.getDefaultLocale() );
+            contribution.setLocale( WebsiteConstants.ENGLISH );
             contribution.setAuthors( currentUser.getName() );
             contribution.setAuthorOrganization( currentUser.getOrganization() );
             contribution.setContactEmail( currentUser.getEmail() );
@@ -339,7 +338,7 @@ public class ContributionEditPanel extends PhetPanel {
                     // pull out values
                     int duration = ( (DurationItem) durationChoice.getModelObject() ).getDuration();
                     boolean answers = getModelObject().isAnswersIncluded();
-                    Locale locale = localeChoice.getLocale() == null ? PhetWicketApplication.getDefaultLocale() : localeChoice.getLocale();
+                    Locale locale = localeChoice.getLocale() == null ? WebsiteConstants.ENGLISH : localeChoice.getLocale();
 
                     //Contribution contribution;
                     PhetUser user = (PhetUser) session.load( PhetUser.class, PhetSession.get().getUser().getId() );

@@ -16,6 +16,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.Changelog;
 import edu.colorado.phet.website.data.Project;
@@ -50,7 +51,7 @@ public class PublicChangelogTest extends WebPage {
                     // load lazy hibernate simulations
                     for ( Object ox : project.getSimulations() ) {
                         Simulation sim = (Simulation) ox;
-                        titleMap.put( sim, sim.getBestLocalizedSimulation( PhetWicketApplication.getDefaultLocale() ).getTitle() );
+                        titleMap.put( sim, sim.getBestLocalizedSimulation( WebsiteConstants.ENGLISH ).getTitle() );
                     }
                 }
                 return true;
@@ -74,7 +75,7 @@ public class PublicChangelogTest extends WebPage {
             protected void populateItem( ListItem<ProjectEntry> entryItem ) {
                 Changelog.Entry entry = entryItem.getModelObject().getEntry();
                 Project project = entryItem.getModelObject().getProject();
-                entryItem.add( new Label( "header", project.getName() + " " + entry.headerString( PhetWicketApplication.getDefaultLocale(), true ) ) );
+                entryItem.add( new Label( "header", project.getName() + " " + entry.headerString( WebsiteConstants.ENGLISH, true ) ) );
 
                 entryItem.add( new ListView<Simulation>( "sim", new LinkedList<Simulation>( project.getSimulations() ) ) {
                     @Override

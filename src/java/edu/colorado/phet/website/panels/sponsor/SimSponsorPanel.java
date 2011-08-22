@@ -7,9 +7,9 @@ package edu.colorado.phet.website.panels.sponsor;
 import org.apache.log4j.Logger;
 import org.apache.wicket.behavior.AbstractHeaderContributor;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
@@ -37,7 +37,7 @@ public class SimSponsorPanel extends PhetPanel {
 
         add( Sponsor.createSponsorLogoPanel( "sim-sponsor-panel", sponsor, context, SIM_SPONSOR_STYLE, Sponsor.SponsorContext.SIM ) );
 
-        if ( getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && sponsor.getNeedsArticle() ) {
+        if ( getMyLocale().equals( WebsiteConstants.ENGLISH ) && sponsor.getNeedsArticle() ) {
             add( new LocalizedText( "before-text", "sponsors.sim.supportedByThe" ) );
         }
         else {

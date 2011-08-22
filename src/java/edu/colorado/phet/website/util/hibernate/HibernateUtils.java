@@ -25,11 +25,11 @@ import org.hibernate.criterion.Restrictions;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.Translation;
-import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.StringUtils;
 
@@ -364,7 +364,7 @@ public class HibernateUtils {
 
         for ( Object o : li ) {
             Translation translation = (Translation) o;
-            if ( translation.getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
+            if ( translation.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
                 continue;
             }
             ret.add( translation );
@@ -381,7 +381,7 @@ public class HibernateUtils {
             if ( lsim.getLocale().equals( locale ) ) {
                 return lsim;
             }
-            else if ( lsim.getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
+            else if ( lsim.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
                 defaultSim = lsim;
             }
             else if ( lsim.getLocale().getLanguage().equals( locale.getLanguage() ) ) {

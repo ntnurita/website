@@ -17,8 +17,8 @@ import org.apache.wicket.request.target.coding.IRequestTargetUrlCodingStrategy;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.constants.Linkers;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
@@ -770,7 +770,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
 
         final int simId = Integer.parseInt( ( (String[]) parameters.get( "sim_id" ) )[0] );
 
-        final Locale locale = parameters.get( TranslationUrlStrategy.LOCALE ) == null ? PhetWicketApplication.getDefaultLocale() :
+        final Locale locale = parameters.get( TranslationUrlStrategy.LOCALE ) == null ? WebsiteConstants.ENGLISH :
                               LocaleUtils.stringToLocale( ( (String[]) parameters.get( TranslationUrlStrategy.LOCALE ) )[0] );
         final StringBuffer ret = new StringBuffer();
         boolean success = HibernateUtils.wrapSession( new HibernateTask() {

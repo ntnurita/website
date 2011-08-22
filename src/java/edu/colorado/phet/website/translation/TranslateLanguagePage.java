@@ -17,10 +17,10 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
@@ -48,7 +48,7 @@ public class TranslateLanguagePage extends TranslationPage {
 
         locale = LocaleUtils.stringToLocale( parameters.getString( TRANSLATION_LOCALE ) );
 
-        String localeString = StringUtils.getLocaleTitle( locale, PhetWicketApplication.getDefaultLocale(), getPhetLocalizer() );
+        String localeString = StringUtils.getLocaleTitle( locale, WebsiteConstants.ENGLISH, getPhetLocalizer() );
 
         add( new Label( "header", localeString ) );
 

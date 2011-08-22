@@ -17,8 +17,8 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -99,7 +99,7 @@ public class AdminSuggestedRelatedSims extends AdminPage {
                         if ( keywords.length() > 0 ) {
                             keywords += ", ";
                         }
-                        keywords += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Keyword) o ).getLocalizationKey(), PhetWicketApplication.getDefaultLocale() );
+                        keywords += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Keyword) o ).getLocalizationKey(), WebsiteConstants.ENGLISH );
                     }
                 }
 
@@ -110,7 +110,7 @@ public class AdminSuggestedRelatedSims extends AdminPage {
                         if ( categories.length() > 0 ) {
                             categories += ", ";
                         }
-                        categories += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Category) o ).getLocalizationKey(), PhetWicketApplication.getDefaultLocale() );
+                        categories += PhetLocalizer.get().getBestStringWithinTransaction( getHibernateSession(), ( (Category) o ).getLocalizationKey(), WebsiteConstants.ENGLISH );
                     }
                 }
                 return new Score( lsim, count, notes, keywords, categories );

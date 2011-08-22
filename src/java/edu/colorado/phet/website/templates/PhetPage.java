@@ -33,6 +33,7 @@ import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.data.Translation;
@@ -339,7 +340,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
 
         // add meta description if it does not already exist
         if ( metaDescriptionLabel == null ) {
-            if ( metaDescription == null || !getLocale().equals( PhetWicketApplication.getDefaultLocale() ) ) {
+            if ( metaDescription == null || !getLocale().equals( WebsiteConstants.ENGLISH ) ) {
                 metaDescriptionLabel = new InvisibleComponent( "metaDescription" );
             }
             else {

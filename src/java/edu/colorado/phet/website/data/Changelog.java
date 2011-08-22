@@ -13,7 +13,7 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 
 /**
  * Represents the content of a single changelog
@@ -218,7 +218,7 @@ public class Changelog {
 
             if ( date != null ) {
                 DateFormat format = DateFormat.getDateInstance( DateFormat.SHORT, locale );
-                if ( locale.equals( PhetWicketApplication.getDefaultLocale() ) ) {
+                if ( locale.equals( WebsiteConstants.ENGLISH ) ) {
                     format = FORMAT_VERSION_TIMESTAMP;
                 }
 

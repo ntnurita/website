@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 
 import edu.colorado.phet.common.phetcommon.util.PhetLocales;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 
@@ -24,7 +25,7 @@ public class LocaleDropDownChoice extends PhetPanel {
     private LocaleModel selectedLocaleModel;
 
     public LocaleDropDownChoice( String id, PageContext context ) {
-        this( id, context, PhetWicketApplication.getDefaultLocale() );
+        this( id, context, WebsiteConstants.ENGLISH );
     }
 
     public LocaleDropDownChoice( String id, PageContext context, Locale defaultLocale ) {

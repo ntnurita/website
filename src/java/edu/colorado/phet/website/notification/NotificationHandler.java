@@ -17,9 +17,7 @@ import org.hibernate.event.PostUpdateEvent;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.WebsiteProperties;
-import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.constants.NotificationEmails;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.NotificationEvent;
@@ -278,7 +276,7 @@ public class NotificationHandler {
     }
 
     public static boolean sendTranslationRequestForCollaboration( int id, Locale locale, List<PhetUser> users, PhetUser currentUser, String translatorMessageString ) {
-        String localeName = StringUtils.getLocaleTitle( locale, PhetWicketApplication.getDefaultLocale(), PhetLocalizer.get() );
+        String localeName = StringUtils.getLocaleTitle( locale, WebsiteConstants.ENGLISH, PhetLocalizer.get() );
         logger.info( "Sending collaboration request from user " + currentUser.getEmail() + " at IP " + PhetRequestCycle.get().getHttpServletRequest().getRemoteAddr() );
         try {
             String subject = "PhET translator requests access to your " + localeName + " website translation #" + id;

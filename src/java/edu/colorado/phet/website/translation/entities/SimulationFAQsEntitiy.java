@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.faq.FAQItem;
 import edu.colorado.phet.website.data.faq.FAQList;
@@ -22,8 +22,8 @@ public class SimulationFAQsEntitiy extends TranslationEntity {
         HibernateUtils.wrapSession( new HibernateTask() {
             public boolean run( Session session ) {
                 // get a sorted list of simulations
-                List<LocalizedSimulation> lsims = HibernateUtils.getAllVisibleSimulationsWithLocale( session, PhetWicketApplication.getDefaultLocale() );
-                HibernateUtils.orderSimulations( lsims, PhetWicketApplication.getDefaultLocale() );
+                List<LocalizedSimulation> lsims = HibernateUtils.getAllVisibleSimulationsWithLocale( session, WebsiteConstants.ENGLISH );
+                HibernateUtils.orderSimulations( lsims, WebsiteConstants.ENGLISH );
 
                 // add their FAQ item strings, in order
                 for ( LocalizedSimulation lsim : lsims ) {

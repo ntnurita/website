@@ -14,11 +14,11 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.CacheableUrlStaticPanel;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.TranslationUtilityPanel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
@@ -60,7 +60,7 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
                         .setLocale( "locale", locale ).setLocale( "default", context.getLocale() ).list();
 
                 List ensims = session.createQuery( "select ls from LocalizedSimulation as ls where ls.locale = :locale" )
-                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).list();
+                        .setLocale( "locale", WebsiteConstants.ENGLISH ).list();
 
                 for ( Object lsim : lsims ) {
                     LocalizedSimulation localizedSimulation = (LocalizedSimulation) lsim;

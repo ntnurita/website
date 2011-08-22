@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.panels.ChangePasswordPanel;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.newsletter.InitialSubscribePanel;
 import edu.colorado.phet.website.panels.contribution.ContributionEditPanel;
@@ -146,7 +147,7 @@ public class PhetLocalizer extends Localizer {
      * @return Translated string
      */
     public String getDefaultString( Session session, String key, String defaultValue, boolean inTransaction ) {
-        String defaultCacheKey = mapCacheKey( key, PhetWicketApplication.getDefaultLocale() );
+        String defaultCacheKey = mapCacheKey( key, WebsiteConstants.ENGLISH );
 
         String lookup = getFromCache( defaultCacheKey );
 
@@ -172,7 +173,7 @@ public class PhetLocalizer extends Localizer {
 
         // perform a "default" lookup, which usually should give the English translation, if it exists
         if ( inTransaction ) {
-            lookup = StringUtils.getStringDirectWithinTransaction( session, key, PhetWicketApplication.getDefaultLocale() );
+            lookup = StringUtils.getStringDirectWithinTransaction( session, key, WebsiteConstants.ENGLISH );
         }
         else {
             lookup = StringUtils.getDefaultStringDirect( session, key );

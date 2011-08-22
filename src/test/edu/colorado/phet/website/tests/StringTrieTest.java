@@ -6,7 +6,7 @@ package edu.colorado.phet.website.tests;
 
 import org.junit.Test;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.util.StringTrie;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class StringTrieTest {
     @Test
     public void testStringTrie1() {
-        StringTrie trie = new StringTrie( PhetWicketApplication.getDefaultLocale() );
+        StringTrie trie = new StringTrie( WebsiteConstants.ENGLISH );
         System.out.println( "---\n" + trie + "\n---" );
         for ( String str : new String[]{
                 "This is a test",

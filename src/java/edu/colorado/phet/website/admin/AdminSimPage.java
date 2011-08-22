@@ -49,6 +49,7 @@ import edu.colorado.phet.website.admin.sim.NSDLScienceLiteracyMapPanel;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -130,7 +131,7 @@ public class AdminSimPage extends AdminPage {
             for ( Object other : others ) {
                 lothers.add( ( (Simulation) other ).getEnglishSimulation() );
             }
-            HibernateUtils.orderSimulations( lothers, PhetWicketApplication.getDefaultLocale() );
+            HibernateUtils.orderSimulations( lothers, WebsiteConstants.ENGLISH );
             for ( Object o : lothers ) {
                 LocalizedSimulation other = (LocalizedSimulation) o;
                 otherSimItems.add( new SimOrderItem( other.getSimulation(), other.getTitle() ) );
@@ -561,7 +562,7 @@ public class AdminSimPage extends AdminPage {
                     final String value = valueText.getInput();
                     final String localizationKey = "keyword." + key;
 
-                    String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, PhetWicketApplication.getDefaultLocale() );
+                    String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, WebsiteConstants.ENGLISH );
                     if ( preexistingValue != null ) {
                         HashMap<String, Object> map = new HashMap<String, Object>();
                         map.put( "0", preexistingValue );
@@ -571,7 +572,7 @@ public class AdminSimPage extends AdminPage {
                         HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
                             public Void run( Session session ) {
                                 List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
-                                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "value", value ).list();
+                                        .setLocale( "locale", WebsiteConstants.ENGLISH ).setString( "value", value ).list();
                                 for ( Object o : list ) {
                                     TranslatedString ts = (TranslatedString) o;
                                     if ( ts.getKey().startsWith( "keyword." ) ) {
@@ -600,7 +601,7 @@ public class AdminSimPage extends AdminPage {
             final String value = valueText.getModelObject();
             final String localizationKey = "keyword." + key;
 
-            String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, PhetWicketApplication.getDefaultLocale() );
+            String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, WebsiteConstants.ENGLISH );
             assert ( preexistingValue == null );
 
             boolean success = StringUtils.setEnglishString( getHibernateSession(), localizationKey, value );
@@ -973,7 +974,7 @@ public class AdminSimPage extends AdminPage {
                         lsim.setSimulation( (Simulation) session.load( Simulation.class, simulation.getId() ) );
                         session.save( lsim );
                         localizedSimulations.add( lsim );
-                        HibernateUtils.orderSimulations( localizedSimulations, PhetWicketApplication.getDefaultLocale() );
+                        HibernateUtils.orderSimulations( localizedSimulations, WebsiteConstants.ENGLISH );
                     }
                     else {
                         LocalizedSimulation lsim = (LocalizedSimulation) matching.get( 0 );

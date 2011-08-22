@@ -18,13 +18,12 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.authentication.AuthenticatedPage;
 import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.SocialBookmarkService;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -57,7 +56,7 @@ public abstract class PhetMenuPage extends PhetPage {
             }
         }.instantiate( "sponsors-panel", getPageContext(), getPhetCycle() ) );
 
-        if ( !getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
+        if ( !getMyLocale().equals( WebsiteConstants.ENGLISH ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
             add( new LocalizedText( "translation-credits", "translation.credits" ) );
         }
         else {

@@ -6,7 +6,7 @@ package edu.colorado.phet.website.tests;
 
 import org.junit.Test;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.util.DataTrie;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class DataTrieTest {
     @Test
     public void testStringTrie1() {
-        DataTrie<TestData> trie = new DataTrie<TestData>( PhetWicketApplication.getDefaultLocale() ) {
+        DataTrie<TestData> trie = new DataTrie<TestData>( WebsiteConstants.ENGLISH ) {
             @Override
             protected String toString( TestData data ) {
                 return data.getStr();

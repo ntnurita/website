@@ -4,7 +4,7 @@ import java.text.Collator;
 import java.util.Comparator;
 import java.util.Locale;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 
 /**
  * Sorts string forms of objects with locale-specific information
@@ -15,7 +15,7 @@ public abstract class StringComparator<T> implements Comparator<T> {
     private final Comparator<Object> collator;
 
     protected StringComparator() {
-        this( PhetWicketApplication.getDefaultLocale() );
+        this( WebsiteConstants.ENGLISH );
     }
 
     protected StringComparator( Locale locale ) {

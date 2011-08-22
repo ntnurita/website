@@ -15,7 +15,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.ResourceModel;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.translation.TranslationEntityString;
 import edu.colorado.phet.website.translation.entities.TranslationEntity;
@@ -34,7 +34,7 @@ public class AdminOrphanStringReport extends AdminPage {
 
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
-                List strings = session.createQuery( "select ts from TranslatedString as ts, Translation as t where ts.translation = t and t.visible = true and t.locale = :locale" ).setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).list();
+                List strings = session.createQuery( "select ts from TranslatedString as ts, Translation as t where ts.translation = t and t.visible = true and t.locale = :locale" ).setLocale( "locale", WebsiteConstants.ENGLISH ).list();
                 for ( Object string : strings ) {
                     englishStrings.add( (TranslatedString) string );
                 }

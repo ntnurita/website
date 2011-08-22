@@ -18,6 +18,7 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.SimulationCache;
 import edu.colorado.phet.website.components.RawBodyLabel;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.util.DataTrie;
@@ -38,9 +39,9 @@ public class Autocomplete extends WebPage {
 
         String query = parameters.getString( "q" );
         String localeString = parameters.getString( "l" );
-        Locale locale = localeString == null ? PhetWicketApplication.getDefaultLocale() : LocaleUtils.stringToLocale( localeString );
+        Locale locale = localeString == null ? WebsiteConstants.ENGLISH : LocaleUtils.stringToLocale( localeString );
         if ( !PhetWicketApplication.get().isVisibleLocale( locale ) ) {
-            locale = PhetWicketApplication.getDefaultLocale();
+            locale = WebsiteConstants.ENGLISH;
         }
         logger.debug( query );
 

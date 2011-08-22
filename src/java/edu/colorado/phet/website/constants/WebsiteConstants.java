@@ -4,6 +4,10 @@
 
 package edu.colorado.phet.website.constants;
 
+import java.util.Locale;
+
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+
 /**
  * Global website constants
  */
@@ -23,4 +27,6 @@ public class WebsiteConstants {
      * Web server hostname
      */
     public static final String WEB_SERVER = "phet.colorado.edu";
+
+    public static final Locale ENGLISH = LocaleUtils.stringToLocale( "en" );
 }

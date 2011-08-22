@@ -16,8 +16,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
@@ -131,7 +131,7 @@ public class AdminCategoryPage extends AdminPage {
 
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
-                for ( LocalizedSimulation localizedSimulation : HibernateUtils.getLocalizedSimulationsMatching( session, null, null, PhetWicketApplication.getDefaultLocale() ) ) {
+                for ( LocalizedSimulation localizedSimulation : HibernateUtils.getLocalizedSimulationsMatching( session, null, null, WebsiteConstants.ENGLISH ) ) {
                     titleMap.put( localizedSimulation.getSimulation(), localizedSimulation.getTitle() );
                 }
                 return true;

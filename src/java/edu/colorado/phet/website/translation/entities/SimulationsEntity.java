@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -30,7 +30,7 @@ public class SimulationsEntity extends TranslationEntity {
         HibernateUtils.wrapSession( new HibernateTask() {
             public boolean run( Session session ) {
                 List strs = session.createQuery( "select ts from Translation as t, TranslatedString as ts where t.visible = true and t.locale = :locale and ts.translation = t and ts.key like 'simulation.%'" )
-                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).list();
+                        .setLocale( "locale", WebsiteConstants.ENGLISH ).list();
                 for ( Object o : strs ) {
                     TranslatedString string = (TranslatedString) o;
                     strings.add( string );

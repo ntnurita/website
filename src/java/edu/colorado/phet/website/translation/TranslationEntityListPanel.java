@@ -17,8 +17,8 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -99,7 +99,7 @@ public class TranslationEntityListPanel extends PhetPanel {
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 Translation english = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
-                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).uniqueResult();
+                        .setLocale( "locale", WebsiteConstants.ENGLISH ).uniqueResult();
                 Translation other = (Translation) session.load( Translation.class, translationId );
 
                 int untranslated = 0;
@@ -138,7 +138,7 @@ public class TranslationEntityListPanel extends PhetPanel {
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 Translation english = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" )
-                        .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).uniqueResult();
+                        .setLocale( "locale", WebsiteConstants.ENGLISH ).uniqueResult();
                 Translation other = (Translation) session.load( Translation.class, translationId );
 
                 Set englishStrings = english.getTranslatedStrings();
@@ -194,7 +194,7 @@ public class TranslationEntityListPanel extends PhetPanel {
             HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
                     Translation localTranslation = (Translation) session.load( Translation.class, translationId );
-                    Translation englishTranslation = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).uniqueResult();
+                    Translation englishTranslation = (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", WebsiteConstants.ENGLISH ).uniqueResult();
                     for ( Object o : localTranslation.getTranslatedStrings() ) {
                         TranslatedString string = (TranslatedString) o;
                         map.put( string.getKey(), new StringDat( string.getKey(), string.getUpdatedAt() ) );

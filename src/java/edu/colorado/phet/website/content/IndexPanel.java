@@ -12,13 +12,13 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.about.*;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
@@ -129,14 +129,14 @@ public class IndexPanel extends PhetPanel {
             add( new InvisibleComponent( "featured-sponsor-installer-js" ) );
         }
 
-        if ( context.getLocale().equals( PhetWicketApplication.getDefaultLocale() ) && DistributionHandler.displayTranslationEditLink( (PhetRequestCycle) getRequestCycle() ) ) {
+        if ( context.getLocale().equals( WebsiteConstants.ENGLISH ) && DistributionHandler.displayTranslationEditLink( (PhetRequestCycle) getRequestCycle() ) ) {
             add( TranslationMainPage.getLinker().getLink( "test-translation", context, getPhetCycle() ) );
         }
         else {
             add( new InvisibleComponent( "test-translation" ) );
         }
 
-        if ( !getMyLocale().equals( PhetWicketApplication.getDefaultLocale() ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
+        if ( !getMyLocale().equals( WebsiteConstants.ENGLISH ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
             add( new LocalizedText( "translation-credits", "translation.credits" ) );
         }
         else {

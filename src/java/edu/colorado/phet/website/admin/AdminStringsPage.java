@@ -16,7 +16,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -33,7 +33,7 @@ public class AdminStringsPage extends AdminPage {
         HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 List list = session.createQuery( "select ts from TranslatedString as ts where ts.translation.visible = true and ts.translation.locale = :en" )
-                        .setLocale( "en", PhetWicketApplication.getDefaultLocale() ).list();
+                        .setLocale( "en", WebsiteConstants.ENGLISH ).list();
                 for ( Object o : list ) {
                     strings.add( (TranslatedString) o );
                 }

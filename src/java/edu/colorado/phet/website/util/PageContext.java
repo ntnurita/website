@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Locale;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
-import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 
 /**
  * Stores the locale, prefix and path of the main page loaded, and is available to all PhetPages and PhetPanels.
@@ -35,7 +35,7 @@ public class PageContext implements Serializable {
      *         links where there is no context (like in RedirectionStrategy)
      */
     public static PageContext getNewDefaultContext() {
-        return new PageContext( "/en/", "", PhetWicketApplication.getDefaultLocale() );
+        return new PageContext( "/en/", "", WebsiteConstants.ENGLISH );
     }
 
     /**

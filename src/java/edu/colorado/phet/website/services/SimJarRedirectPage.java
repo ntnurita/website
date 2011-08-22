@@ -15,6 +15,7 @@ import org.apache.wicket.request.target.resource.ResourceStreamRequestTarget;
 import org.apache.wicket.util.resource.FileResourceStream;
 
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Simulation;
 
 /**
@@ -59,7 +60,7 @@ public class SimJarRedirectPage extends WebPage {
                     jarFile = Simulation.getLocalizedJar( docRoot, project, sim, new Locale( locale.getLanguage() ) );
                 }
                 if ( !jarFile.exists() ) {
-                    jarFile = Simulation.getLocalizedJar( docRoot, project, sim, PhetWicketApplication.getDefaultLocale() );
+                    jarFile = Simulation.getLocalizedJar( docRoot, project, sim, WebsiteConstants.ENGLISH );
                 }
             }
         }

@@ -11,6 +11,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
@@ -31,7 +32,7 @@ public class Translation implements Serializable, IntId {
     private Set authorizedUsers = new HashSet(); // set of PhetUser
 
     public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[]{
-            PhetWicketApplication.getDefaultLocale(),
+            WebsiteConstants.ENGLISH,
             LocaleUtils.stringToLocale( "ar_SA" )
     };
 
@@ -78,7 +79,7 @@ public class Translation implements Serializable, IntId {
      * @return Whether this translation is the default translation (IE English)
      */
     public boolean isDefault() {
-        return isVisible() && getLocale().equals( PhetWicketApplication.getDefaultLocale() );
+        return isVisible() && getLocale().equals( WebsiteConstants.ENGLISH );
     }
 
     public boolean isPublished( Session session ) {

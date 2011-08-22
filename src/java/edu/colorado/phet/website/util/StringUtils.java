@@ -17,6 +17,7 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.CacheUtils;
 import edu.colorado.phet.website.components.LocalizedLabel;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -40,7 +41,7 @@ public class StringUtils {
      * @return Translated String (probably not translated though!)
      */
     public static String getDefaultStringDirect( Session session, String key ) {
-        return getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+        return getStringDirect( session, key, WebsiteConstants.ENGLISH );
     }
 
     /**
@@ -68,7 +69,7 @@ public class StringUtils {
     }
 
     public static String getEnglishStringDirect( Session session, final String key ) {
-        return getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+        return getStringDirect( session, key, WebsiteConstants.ENGLISH );
     }
 
     /**
@@ -261,7 +262,7 @@ public class StringUtils {
      * @param englishValue Initial English value
      */
     public static void addString( Session session, String key, String englishValue ) {
-        String result = getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+        String result = getStringDirect( session, key, WebsiteConstants.ENGLISH );
         if ( result == null ) {
             logger.warn( "Auto-setting English string with key=" + key + " value=" + englishValue );
             setEnglishString( session, key, englishValue );
@@ -280,7 +281,7 @@ public class StringUtils {
      * @param newEnglishValue New English value
      */
     public static void overwriteString( Session session, String key, String oldEnglishValue, String newEnglishValue ) {
-        String result = getStringDirect( session, key, PhetWicketApplication.getDefaultLocale() );
+        String result = getStringDirect( session, key, WebsiteConstants.ENGLISH );
         if ( result == null ) {
             logger.warn( "Auto-setting English string with key=" + key + " value=" + newEnglishValue );
             setEnglishString( session, key, newEnglishValue );
@@ -319,7 +320,7 @@ public class StringUtils {
      * @param key     Translation key
      */
     public static void deleteStringWithinTransaction( Session session, final String key ) {
-        String result = getStringDirectWithinTransaction( session, key, PhetWicketApplication.getDefaultLocale() );
+        String result = getStringDirectWithinTransaction( session, key, WebsiteConstants.ENGLISH );
         if ( result != null ) {
             logger.warn( "Deleting strings with key=" + key + ". English value=" + result );
             List strings = session.createQuery( "select ts from TranslatedString as ts where ts.key = :key" ).setString( "key", key ).list();
@@ -356,7 +357,7 @@ public class StringUtils {
             }
             TranslatedString englishString = (TranslatedString) session.createQuery(
                     "select ts from TranslatedString as ts where ts.translation.visible = true and ts.translation.locale = :locale and ts.key = :key" )
-                    .setLocale( "locale", PhetWicketApplication.getDefaultLocale() ).setString( "key", key ).uniqueResult();
+                    .setLocale( "locale", WebsiteConstants.ENGLISH ).setString( "key", key ).uniqueResult();
             if ( string.getUpdatedAt().compareTo( englishString.getUpdatedAt() ) < 0 ) {
                 status = STRING_OUT_OF_DATE;
             }
@@ -377,7 +378,7 @@ public class StringUtils {
     }
 
     public static boolean setEnglishString( Session session, String key, String value ) {
-        return setString( session, key, value, PhetWicketApplication.getDefaultLocale() );
+        return setString( session, key, value, WebsiteConstants.ENGLISH );
     }
 
     /**
@@ -410,7 +411,7 @@ public class StringUtils {
     }
 
     public static void setEnglishStringWithinTransaction( Session session, String key, String value ) {
-        setStringWithinTransaction( session, HibernateUtils.getTranslationWithinTransaction( session, PhetWicketApplication.getDefaultLocale() ), key, value );
+        setStringWithinTransaction( session, HibernateUtils.getTranslationWithinTransaction( session, WebsiteConstants.ENGLISH ), key, value );
     }
 
     public static void setStringWithinTransaction( Session session, Translation translation, String key, String value ) {
