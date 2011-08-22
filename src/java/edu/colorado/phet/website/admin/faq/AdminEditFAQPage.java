@@ -2,6 +2,7 @@
 
 package edu.colorado.phet.website.admin.faq;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,15 +94,14 @@ public class AdminEditFAQPage extends AdminPage {
         // form to add a question
         add( new Form( "add-question" ) {{
             final TextField<String> questionField;
-//            final TextField<String> answerField;
 
             add( questionField = new TextField<String>( "question", new Model<String>( "" ) ) );
-//            add( answerField = new TextField<String>( "answer", new Model<String>( "" ) ) );
 
             final Form formReference = this;
             add( new AjaxButton( "submit", this ) {
                 @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
                     addNewQuestion( questionField.getModelObject(), "(add HTML answer here)" );
+                    questionField.getModel().setObject( "" );
                     target.addComponent( AdminEditFAQPage.this );
                 }
             } );
@@ -119,6 +119,7 @@ public class AdminEditFAQPage extends AdminPage {
             add( new AjaxButton( "submit", this ) {
                 @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
                     addNewHeader( textField.getModelObject() );
+                    textField.getModel().setObject( "" );
                     target.addComponent( AdminEditFAQPage.this );
                 }
             } );
@@ -201,5 +202,59 @@ public class AdminEditFAQPage extends AdminPage {
                 StringUtils.setEnglishStringWithinTransaction( session, item.getHeaderKey(), headerText );
             }
         } );
+    }
+
+    public void delete( final FAQItem item ) {
+        final int index = faqItems.indexOf( item );
+        boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+            public boolean run( Session session ) {
+                FAQList aList = (FAQList) session.load( FAQList.class, list.getId() );
+                FAQItem anItem = (FAQItem) session.load( FAQItem.class, item.getId() );
+
+                // beware of https://hibernate.onjira.com/browse/HHH-1268
+                aList.getFaqItems().remove( index );
+                session.delete( anItem );
+                session.update( aList );
+                return true;
+            }
+        } );
+        if ( success ) {
+            faqItems.remove( index );
+        }
+    }
+
+    public void moveUp( FAQItem item ) {
+        int index = faqItems.indexOf( item );
+        if ( index <= 0 ) {
+            return;
+        }
+        swapItems( index, index - 1 );
+    }
+
+    public void moveDown( FAQItem item ) {
+        int index = faqItems.indexOf( item );
+        if ( index >= faqItems.size() - 1 ) {
+            return;
+        }
+        swapItems( index, index + 1 );
+    }
+
+    public void swapItems( final int a, final int b ) {
+        boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+            public boolean run( Session session ) {
+                FAQList aList = (FAQList) session.load( FAQList.class, list.getId() );
+                FAQItem aItem = (FAQItem) session.load( FAQItem.class, faqItems.get( a ).getId() );
+                FAQItem bItem = (FAQItem) session.load( FAQItem.class, faqItems.get( b ).getId() );
+
+                Collections.swap( aList.getFaqItems(), a, b );
+                session.update( aList );
+                session.update( aItem );
+                session.update( bItem );
+                return true;
+            }
+        } );
+        if ( success ) {
+            Collections.swap( faqItems, a, b );
+        }
     }
 }

@@ -12,7 +12,7 @@
         <property name="question"/>
         <property name="key"/>
 
-        <many-to-one name="list" column="list_id" class="edu.colorado.phet.website.data.faq.FAQList" not-null="true" lazy="false"/>
+        <many-to-one name="list" column="list_id" class="edu.colorado.phet.website.data.faq.FAQList" not-null="true" lazy="false" insert="false" update="false"/>
 
     </class>
 </hibernate-mapping>

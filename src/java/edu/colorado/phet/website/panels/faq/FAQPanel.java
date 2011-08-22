@@ -2,6 +2,7 @@
 
 package edu.colorado.phet.website.panels.faq;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
 
-public class FAQPanel extends PhetPanel {
+public class FAQPanel extends PhetPanel implements Serializable {
 
     private static final Logger logger = Logger.getLogger( FAQPanel.class.getName() );
 
@@ -32,9 +33,9 @@ public class FAQPanel extends PhetPanel {
 
         Result<List<FAQItem>> items = HibernateUtils.resultTransaction( getHibernateSession(), new Task<List<FAQItem>>() {
             public List<FAQItem> run( final Session session ) {
-                return new ArrayList<FAQItem>() {{
-                    addAll( session.createQuery( "select f from FAQItem as f where f.list.name = :name" ).setString( "name", faqName ).list() );
-                }};
+                ArrayList<FAQItem> result = new ArrayList<FAQItem>();
+                result.addAll( session.createQuery( "select f from FAQItem as f where f.list.name = :name" ).setString( "name", faqName ).list() );
+                return result;
             }
         } );
 

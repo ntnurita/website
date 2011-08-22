@@ -3,6 +3,8 @@
 package edu.colorado.phet.website.admin.faq;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 
 import edu.colorado.phet.website.data.faq.FAQItem;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -15,7 +17,7 @@ public class FAQEditItemPanel extends PhetPanel {
 
     private static final Logger logger = Logger.getLogger( FAQEditItemPanel.class.getName() );
 
-    public FAQEditItemPanel( String id, PageContext context, AdminEditFAQPage page, FAQItem item ) {
+    public FAQEditItemPanel( String id, PageContext context, final AdminEditFAQPage page, final FAQItem item ) {
         super( id, context );
 
         // don't show the external div tag that we wrap this with in AdminEditFAQPage.html
@@ -23,5 +25,32 @@ public class FAQEditItemPanel extends PhetPanel {
 
         // remember to output the markup ID, so that Ajax requests can update just this part
         setOutputMarkupId( true );
+
+        add( new AjaxLink( "delete-link" ) {
+            @Override public void onClick( AjaxRequestTarget target ) {
+                page.delete( item );
+
+                target.addComponent( page );
+//                page.updatePreview( target );
+//                target.addComponent( FAQEditItemPanel.this.getParent() );
+            }
+        } );
+        add( new AjaxLink( "up-link" ) {
+            @Override public void onClick( AjaxRequestTarget target ) {
+                page.moveUp( item );
+
+                target.addComponent( page );
+//                page.updatePreview( target );
+//                target.addComponent( FAQEditItemPanel.this.getParent() );
+            }
+        } );
+        add( new AjaxLink( "down-link" ) {
+            @Override public void onClick( AjaxRequestTarget target ) {
+                page.moveDown( item );
+                target.addComponent( page );
+//                page.updatePreview( target );
+//                target.addComponent( FAQEditItemPanel.this.getParent() );
+            }
+        } );
     }
 }

@@ -11,8 +11,8 @@
 
         <property name="name"/>
 
-        <list name="faqItems">
-            <key column="list_id" not-null="false"/>
+        <list name="faqItems" lazy="true">
+            <key column="list_id" not-null="true"/>
             <list-index column="item_idx"/>
             <one-to-many class="edu.colorado.phet.website.data.faq.FAQItem"/>
         </list>
