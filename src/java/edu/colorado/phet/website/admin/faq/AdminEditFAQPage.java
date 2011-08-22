@@ -13,6 +13,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -29,6 +30,7 @@ import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
+import edu.colorado.phet.website.util.hibernate.TaskException;
 
 /**
  * Page for editing FAQs by administrators
@@ -98,17 +100,23 @@ public class AdminEditFAQPage extends AdminPage {
 
         // form to add a question
         add( new Form( "add-question" ) {{
+            final TextField<String> nameField;
             final TextField<String> questionField;
 
-            add( questionField = new TextField<String>( "question", new Model<String>( "" ) ) );
+            add( nameField = new TextField<String>( "name", new Model<String>( "" ) ) );
+            add( questionField = new RequiredTextField<String>( "question", new Model<String>( "" ) ) );
 
             final Form formReference = this;
             add( new AjaxButton( "submit", this ) {
                 @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
-                    addNewQuestion( questionField.getModelObject(), "(add HTML answer here)" );
-                    questionField.getModel().setObject( "" );
-                    updateItems( target );
-                    updatePreview( target );
+                    boolean success = addNewQuestion( nameField.getModelObject(), questionField.getModelObject(), "(add HTML answer here)" );
+                    if ( success ) {
+                        nameField.getModel().setObject( "" );
+                        questionField.getModel().setObject( "" );
+                        updateItems( target );
+                        updatePreview( target );
+                        target.addComponent( formReference );
+                    }
                 }
             } );
 
@@ -117,17 +125,23 @@ public class AdminEditFAQPage extends AdminPage {
 
         // form to add a header
         add( new Form( "add-header" ) {{
+            final TextField<String> nameField;
             final TextField<String> textField;
 
-            add( textField = new TextField<String>( "text", new Model<String>( "" ) ) );
+            add( nameField = new TextField<String>( "name", new Model<String>( "" ) ) );
+            add( textField = new RequiredTextField<String>( "text", new Model<String>( "" ) ) );
 
             final Form formReference = this;
             add( new AjaxButton( "submit", this ) {
                 @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
-                    addNewHeader( textField.getModelObject() );
-                    textField.getModel().setObject( "" );
-                    updateItems( target );
-                    updatePreview( target );
+                    boolean success = addNewHeader( nameField.getModelObject(), textField.getModelObject() );
+                    if ( success ) {
+                        nameField.getModel().setObject( "" );
+                        textField.getModel().setObject( "" );
+                        updateItems( target );
+                        updatePreview( target );
+                        target.addComponent( formReference );
+                    }
                 }
             } );
 
@@ -154,22 +168,51 @@ public class AdminEditFAQPage extends AdminPage {
         previewContainer.add( preview );
     }
 
-    /**
-     * @return A randomly-generated key that will be used for the translation keys of FAQ items
-     */
-    private static String generateKey() {
-        String timeString = Long.toOctalString( System.currentTimeMillis() );
-        String doubleString = Double.toHexString( Math.random() * 100 );
-        return timeString.substring( Math.max( 0, timeString.length() - 6 ) ) + doubleString.substring( Math.max( 0, doubleString.length() - 6 ) );
+    private static String generateName( String other ) {
+        String result = "";
+        for ( char c : other.toCharArray() ) {
+            if ( Character.isLetterOrDigit( c ) ) {
+                result = result + Character.toLowerCase( c );
+            }
+            else {
+                result = result + '-';
+            }
+        }
+        // essentially trim the back of it if it had hyphens (common when generated from questions)
+        while(result.endsWith( "-" )) {
+            result = result.substring( 0, result.length() - 1 );
+        }
+        return result;
     }
 
-    private void addFAQItem( final FAQItem item, final VoidFunction1<Session> postUpdateAction ) {
+    private static boolean isAcceptedName( String name ) {
+        for ( char c : name.toCharArray() ) {
+            if ( !Character.isLetterOrDigit( c ) && c != '-' ) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean addFAQItem( final String name, final FAQItem item, final VoidFunction1<Session> postUpdateAction ) {
+        // make sure our suggested name fits the naming conventions
+        if ( !isAcceptedName( name ) ) {
+            return false;
+        }
         Result<FAQItem> result = HibernateUtils.resultTransaction( getHibernateSession(), new Task<FAQItem>() {
             public FAQItem run( Session session ) {
                 FAQList faqList = (FAQList) session.load( FAQList.class, list.getId() );
 
+                // double-check that our name is going to be unique for the FAQ list that we are processing
+                for ( Object o : faqList.getFaqItems() ) {
+                    FAQItem item = (FAQItem) o;
+                    if ( item.getKey().equals( name ) ) {
+                        throw new TaskException( "passed key that already exists. not continuing" );
+                    }
+                }
+
                 // initialize the question
-                item.setKey( generateKey() );// TODO
+                item.setKey( name );
                 item.setList( faqList );
 
                 // add it to the list
@@ -190,12 +233,14 @@ public class AdminEditFAQPage extends AdminPage {
         if ( result.success ) {
             faqItems.add( result.value );
         }
+
+        return result.success;
     }
 
-    private void addNewQuestion( final String questionText, final String answerText ) {
+    private boolean addNewQuestion( final String name, final String questionText, final String answerText ) {
         final FAQItem item = new FAQItem();
         item.setQuestion( true );
-        addFAQItem( item, new VoidFunction1<Session>() {
+        return addFAQItem( name == null ? generateName( questionText ) : name, item, new VoidFunction1<Session>() {
             public void apply( Session session ) {
                 // set up the English strings, and do it within the transaction so if one part fails, everything is rolled back
                 StringUtils.setEnglishStringWithinTransaction( session, item.getQuestionKey(), questionText );
@@ -204,10 +249,10 @@ public class AdminEditFAQPage extends AdminPage {
         } );
     }
 
-    private void addNewHeader( final String headerText ) {
+    private boolean addNewHeader( final String name, final String headerText ) {
         final FAQItem item = new FAQItem();
         item.setQuestion( false );
-        addFAQItem( item, new VoidFunction1<Session>() {
+        return addFAQItem( name == null ? generateName( headerText ) : name, item, new VoidFunction1<Session>() {
             public void apply( Session session ) {
                 // set up the English strings, and do it within the transaction so if one part fails, everything is rolled back
                 StringUtils.setEnglishStringWithinTransaction( session, item.getHeaderKey(), headerText );

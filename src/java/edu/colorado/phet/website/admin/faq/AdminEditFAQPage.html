@@ -18,6 +18,10 @@
                 width: 525px;
                 margin-left: 100px;
             }
+
+            .items-container {
+                max-width: 525px;
+            }
         </style>
     </wicket:head>
 </head>
@@ -34,7 +38,7 @@
         </div>
     </div>
 
-    <p>To edit a header, question or answer, just click on the text and it will open up an editing box. Click outside of the box to save.</p>
+    <p style="color: red;">Before using, please see the instructions below!</p>
 
     <table wicket:id="items-container">
         <tr wicket:id="items">
@@ -45,17 +49,88 @@
     <h2>Add Question</h2>
 
     <form wicket:id="add-question">
-        Question: <input wicket:id="question" type="text" value=""/>
-        <input type="submit" value="add question" wicket:id="submit"/>
+        <table>
+            <tr>
+                <td>Question:</td>
+                <td><input wicket:id="question" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td>(optional) Name:</td>
+                <td><input wicket:id="name" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right;"><input type="submit" value="add question" wicket:id="submit"/></td>
+            </tr>
+        </table>
     </form>
 
     <h2>Add Section Header</h2>
 
     <form wicket:id="add-header">
-        Header: <input wicket:id="text" type="text" value=""/>
-        <input type="submit" value="add header" wicket:id="submit"/>
+        <table>
+            <tr>
+                <td>Header:</td>
+                <td><input wicket:id="text" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td>(optional) Name:</td>
+                <td><input wicket:id="name" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right;"><input type="submit" value="add header" wicket:id="submit"/></td>
+            </tr>
+        </table>
     </form>
 
+    <h2>Instructions</h2>
+
+    <div style="max-width: 600px;">
+
+        <p>
+            A FAQ page is essentially composed of a list of headers and questions. Here you can add headers and questions, edit them,
+            reorder
+            them, or delete them. For simplicity, I call both headers and questions "items".
+        </p>
+
+        <p>
+            Each item will have a name. This name is used for multiple purposes:
+        </p>
+
+        <ul>
+            <li>
+                You can make a link to specific headers or questions by using their name after a "#". For example,
+                http://phet.colorado.edu/(....)/some-faq#molecules points to the item with the name "molecules". When clicked on, this link
+                will go to that FAQ, and scroll the screen so that the item selected is visible.
+            </li>
+            <li>
+                The name is also used in the translation keys that are needed for the underlying system and for translators. Thus, if you
+                have a FAQ for Build a Molecule and a question named "how-to-do-X", it will create translatable strings with the keys
+                "faq.build-a-molecule.how-to-do-X.question" and "faq.build-a-molecule.how-to-do-X.answer".
+            </li>
+        </ul>
+
+        <p><strong>
+            Names should only contain letters (lower case preferred, but upper case is allowed), digits, and hyphens. Additionally, after
+            creating an item, it's name cannot be changed. If you do not enter in a name, it will attempt to create one based on either
+            the question or header specified. No two items in the same list should have the same name!
+        </strong></p>
+
+        <p>
+            Any text can be edited at any time after creating a question or header. Just click on the text you want to change, and it should
+            turn into a text-editing box. Make your changes, and then click outside to immediately save the change.
+        </p>
+
+        <p>A preview is available to the right side to show the immediate effect of changes.</p>
+
+        <p>
+            It is recommended that answers use XHTML formatting to display their responses. This means using
+            &lt;strong&gt; and &lt;em&gt; instead of &lt;b&gt; and &lt;i&gt;, and following all best practices. If you have any questions,
+            please do not hesitate to ask the website administrator.
+        </p>
+
+    </div>
 </wicket:extend>
 
 </body>

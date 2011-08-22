@@ -5,6 +5,7 @@ package edu.colorado.phet.website.admin.faq;
 import org.apache.log4j.Logger;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.data.faq.FAQItem;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -25,6 +26,9 @@ public class FAQEditItemPanel extends PhetPanel {
 
         // remember to output the markup ID, so that Ajax requests can update just this part
         setOutputMarkupId( true );
+
+        // show the key, so they can know what to anchor against
+        add( new Label( "faq-anchor-text", item.getKey() ) );
 
         add( new AjaxLink( "delete-link" ) {
             @Override public void onClick( AjaxRequestTarget target ) {

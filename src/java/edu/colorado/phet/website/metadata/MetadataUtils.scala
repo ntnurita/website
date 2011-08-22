@@ -15,6 +15,7 @@ import edu.colorado.phet.common.phetcommon.util.FileUtils
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils.localeTo4646String
 import java.text.SimpleDateFormat
 import edu.colorado.phet.website.data.{Category, Keyword, Simulation, LocalizedSimulation}
+import edu.colorado.phet.website.constants.WebsiteConstants
 
 /**
  * Utilities for metadata in general, and construction of the master format
@@ -44,7 +45,7 @@ object MetadataUtils {
   def simulationToMasterFormat(sim: Simulation): String = {
     val project = sim.getProject
 
-    val English = PhetWicketApplication.getDefaultLocale // TODO: put this renaming somewhere else, since it is globally useful
+    val English = WebsiteConstants.ENGLISH // TODO: put this renaming somewhere else, since it is globally useful
 
     def localeSort(a: Locale, b: Locale): Boolean = {
       (a, b) match {

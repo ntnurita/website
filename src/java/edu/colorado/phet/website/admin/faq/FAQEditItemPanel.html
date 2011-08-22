@@ -13,6 +13,7 @@
         <style type="text/css">
             .faq-item-surround {
                 border: 1px solid gray;
+                min-width: 250px;
             }
 
             .faq-tmp-link {
@@ -30,6 +31,10 @@
                 /*margin-right: 10px;*/
                 /*margin-bottom: 3px;*/
             }
+
+            .faq-anchor-text {
+                color: gray;
+            }
         </style>
     </wicket:head>
 </head>
@@ -45,6 +50,7 @@
             &nbsp;
             <a href="#" class="faq-tmp-link" wicket:id="down-link"><img src="/images/icons/tt/arrow-down.gif"/></a>
         </div>
+        <span class="faq-anchor-text" wicket:id="faq-anchor-text"></span><br/>
         <wicket:child/>
     </td>
 </wicket:panel>
