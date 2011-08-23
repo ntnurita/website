@@ -86,8 +86,8 @@
 
     <h2>Validate XHTML</h2>
 
-    <!--TODO-->
     <form wicket:id="validate-form">
+        <p>If successful, this will generate an English PDF and show "OK". If not successful, it means that invalid XHTML is used.</p>
         Valid: <span wicket:id="state"></span>
         &nbsp;
         <a href="#" wicket:id="english-pdf">(english PDF)</a>
@@ -143,7 +143,13 @@
         <p>
             It is recommended that answers use XHTML formatting to display their responses. This means using
             &lt;strong&gt; and &lt;em&gt; instead of &lt;b&gt; and &lt;i&gt;, and following all best practices. If you have any questions,
-            please do not hesitate to ask the website administrator.
+            please do not hesitate to ask the website administrator. (Also note that as of right now, newlines in the edit box are turned
+            to line-breaks in HTML (&lt;br/&gt;), so don't split lines inside of &lt;ul&gt; tags).
+        </p>
+
+        <p>
+            It is recommended to validate after changes, since it is very hard to scan through an entire FAQ to find a problem.
+            In the future, it may be possible to identify the question/header that has the problem.
         </p>
 
     </div>
