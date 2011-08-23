@@ -232,9 +232,19 @@
                 </ul>
             </wicket:enclosure>
 
-            <a id="tips-for-teachers"></a>
+            <wicket:enclosure child="faq-text">
+                <a id="faq"></a>
+
+                <h3>
+                    <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
+                </h3>
+                <div wicket:id="faq-text" class="teachers-tips-holder">
+                    This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
+                </div>
+            </wicket:enclosure>
 
             <wicket:enclosure child="guide-text">
+                <a id="tips-for-teachers"></a>
                 <h3>
                     <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
                 </h3>

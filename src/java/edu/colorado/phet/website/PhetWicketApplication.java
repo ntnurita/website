@@ -94,6 +94,7 @@ import edu.colorado.phet.website.content.simulations.ByGradeLevelPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
+import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
@@ -262,6 +263,7 @@ public class PhetWicketApplication extends WebApplication {
         ConfirmEmailLandingPage.addToMapper( mapper );
         UnsubscribeLandingPage.addToMapper( mapper );
         SponsorListPage.addToMapper( mapper );
+        SimulationFAQPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );

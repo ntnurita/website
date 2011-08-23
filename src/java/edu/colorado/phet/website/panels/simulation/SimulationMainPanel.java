@@ -27,15 +27,26 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.borders.SmallOrangeButtonBorder;
 import edu.colorado.phet.website.cache.EventDependency;
-import edu.colorado.phet.website.components.*;
+import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.components.RawBodyLabel;
+import edu.colorado.phet.website.components.RawLabel;
+import edu.colorado.phet.website.components.RawLink;
+import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
+import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
-import edu.colorado.phet.website.data.*;
+import edu.colorado.phet.website.data.Keyword;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
+import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.TeachersGuide;
+import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.data.util.AbstractChangeListener;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
@@ -81,18 +92,18 @@ public class SimulationMainPanel extends PhetPanel {
         }
 
         RawLink link = new RawLink( "simulation-main-link-run-main", simulation.getRunUrl() );
-        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
+        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[] {
                 encode( simulation.getTitle() )
         } ) ) );
         add( link );
 
         //add( new Label( "simulation-main-description", simulation.getDescription() ) );
         add( new LocalizedText( "simulation-main-description", simulation.getSimulation().getDescriptionKey() ) );
-        add( new LocalizedText( "simulationMainPanel.version", "simulationMainPanel.version", new Object[]{
+        add( new LocalizedText( "simulationMainPanel.version", "simulationMainPanel.version", new Object[] {
                 HtmlUtils.encode( simulationVersionString ),
                 SimulationChangelogPage.getLinker( simulation ).getHref( context, getPhetCycle() )
         } ) );
-        add( new LocalizedText( "simulationMainPanel.kilobytes", "simulationMainPanel.kilobytes", new Object[]{
+        add( new LocalizedText( "simulationMainPanel.kilobytes", "simulationMainPanel.kilobytes", new Object[] {
                 simulation.getSimulation().getKilobytes()
         } ) );
 
@@ -147,7 +158,7 @@ public class SimulationMainPanel extends PhetPanel {
             }
         } );
         if ( !guides.isEmpty() ) {
-            add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
+            add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[] {
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
 //            Label visLabel = new Label( "tips-for-teachers-visible", "" );
@@ -311,13 +322,13 @@ public class SimulationMainPanel extends PhetPanel {
 
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -399,7 +410,7 @@ public class SimulationMainPanel extends PhetPanel {
             try {
                 title = StringUtils.messageFormat( localizer.getString( "simulationPage.title", this ), titleParams.toArray() );
             }
-            catch( RuntimeException e ) {
+            catch ( RuntimeException e ) {
                 e.printStackTrace();
                 title = simulation.getEncodedTitle();
             }
@@ -590,9 +601,23 @@ public class SimulationMainPanel extends PhetPanel {
             add( new InvisibleComponent( "sim-sponsor-installer-js" ) );
         }
 
-        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
+        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[] {
                 ContributionCreatePage.getLinker().getHref( context, getPhetCycle() )
         } ) );
+
+        /*---------------------------------------------------------------------------*
+        * FAQ
+        *----------------------------------------------------------------------------*/
+
+        if ( simulation.getSimulation().isFaqVisible() && simulation.getSimulation().getFaqList() != null ) {
+            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[] {
+                    SimulationFAQPage.getLinker( simulation ).getHref( context, getPhetCycle() ),
+                    simulation.getSimulation().getFaqList().getPDFLinker( getMyLocale() ).getHref( context, getPhetCycle() )
+            } ) );
+        }
+        else {
+            add( new InvisibleComponent( "faq-text" ) );
+        }
     }
 
     public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {

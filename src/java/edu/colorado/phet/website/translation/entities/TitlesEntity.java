@@ -24,7 +24,7 @@ public class TitlesEntity extends TranslationEntity {
         addString( "about.who-we-are.title", "Title of the Who We Are About page" );
         addString( "about.licensing.title", "Title of the Licensing About page" );
         addString( "sponsors.title", "Title of the PhET Sponsors page" );
-        addString( "contribution.title", "Title of contribution pages. {0} will be replaced by the contribution title.");
+        addString( "contribution.title", "Title of contribution pages. {0} will be replaced by the contribution title." );
         addString( "workshops.title", "Title of the Workshops page" );
         addString( "get-phet.title", "Title of the 'Run our Simulations' page" );
         addString( "get-phet.one-at-a-time.title", "Title of the 'One at a Time' page" );
@@ -42,11 +42,12 @@ public class TitlesEntity extends TranslationEntity {
         addString( "forTranslators.website.title" );
         addString( "contribution.search.title" );
         addString( "faqs.title" );
+        addString( "simulation.faq.title", "{0} will be replaced by the simulation title" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TitlePreviewPanel( id, context );
-            }
-        }, "Assorted Titles" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TitlePreviewPanel( id, context );
+                        }
+                    }, "Assorted Titles" );
     }
 
     public String getDisplayName() {
