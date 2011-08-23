@@ -104,9 +104,9 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPane
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
-import edu.colorado.phet.website.metadata.LRETerm;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
+import edu.colorado.phet.website.metadata.LRETerm;
 import edu.colorado.phet.website.metadata.MetadataDump;
 import edu.colorado.phet.website.newsletter.ConfirmEmailLandingPage;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
@@ -474,6 +474,15 @@ public class PhetWicketApplication extends WebApplication {
         List<String> ret = new LinkedList<String>();
         for ( Translation translation : translations ) {
             ret.add( LocaleUtils.localeToString( translation.getLocale() ) );
+        }
+        return ret;
+    }
+
+    public synchronized List<Locale> getAllVisibleTranslationLocales() {
+        List<Locale> ret = new LinkedList<Locale>();
+        ret.add( WebsiteConstants.ENGLISH ); // TODO: refactor translations to include English!
+        for ( Translation translation : translations ) {
+            ret.add( translation.getLocale() );
         }
         return ret;
     }

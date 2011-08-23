@@ -3,6 +3,7 @@ package edu.colorado.phet.website.data.faq;
 
 import java.io.Serializable;
 
+import edu.colorado.phet.common.phetcommon.util.function.Function1;
 import edu.colorado.phet.website.data.util.IntId;
 
 /**
@@ -24,6 +25,19 @@ public class FAQItem implements Serializable, IntId {
 
     public String getBaseKey() {
         return "faq." + list.getName() + "." + key;
+    }
+
+    public String getXHTMLText( Function1<String, String> stringLookup ) {
+        if ( isQuestion() ) {
+            return "<div class=\"simFaqItem\"><div class=\"simFaqQuestion\">" +
+                   stringLookup.apply( getQuestionKey() ) +
+                   "</div><div class=\"simFaqAnswer\">" +
+                   stringLookup.apply( getAnswerKey() ) +
+                   "</div></div>";
+        }
+        else {
+            return "<h2>" + stringLookup.apply( getHeaderKey() ) + "</h2>";
+        }
     }
 
     public String getHeaderKey() {

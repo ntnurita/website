@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -15,6 +16,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
@@ -22,6 +24,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.function.VoidFunction1;
 import edu.colorado.phet.website.admin.AdminPage;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.faq.FAQItem;
 import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.panels.faq.FAQPanel;
@@ -148,6 +151,51 @@ public class AdminEditFAQPage extends AdminPage {
             setOutputMarkupId( true );
         }} );
 
+        add( new Form( "validate-form" ) {{
+            final Model<String> stateModel = new Model<String>( "?" ); // is it finite?
+            final Label state = new Label( "state", stateModel );
+            add( state );
+
+            final Link link = list.getPDFLinker( WebsiteConstants.ENGLISH ).getLink( "english-pdf", getPageContext(), getPhetCycle() );
+            add( link );
+
+            // hide the link for now. once we validate, show it
+            link.setVisible( false );
+
+            final Form formReference = this;
+            add( new AjaxButton( "validate" ) {
+                @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
+                    // grab the FAQ list (in-memory copy might be stale. don't want to generate from that)
+                    Result<FAQList> latestList = HibernateUtils.load( getHibernateSession(), FAQList.class, list.getId() );
+                    boolean success = latestList.success;
+
+                    // write the English version of the FAQ PDF
+                    if ( success ) {
+                        success = latestList.value.writeFaq( getHibernateSession(), WebsiteConstants.ENGLISH );
+                    }
+
+                    // handle the result
+                    link.setVisible( success );
+                    stateModel.setObject( success ? "OK" : "FAIL" );
+                    state.add( new AttributeModifier( "style", true, new Model<String>( success ? "color: green;" : "color: red;" ) ) );
+
+                    target.addComponent( formReference );
+                }
+            } );
+
+            setOutputMarkupId( true );
+        }} );
+
+        // form for updating the PDFs
+        add( new Form( "update-form" ) {{
+            add( new AjaxButton( "update" ) {
+                @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
+                    Result<FAQList> latestList = HibernateUtils.load( getHibernateSession(), FAQList.class, list.getId() );
+                    latestList.value.updatePDFs( getHibernateSession() );
+                }
+            } );
+        }} );
+
         setOutputMarkupId( true );
     }
 
@@ -179,7 +227,7 @@ public class AdminEditFAQPage extends AdminPage {
             }
         }
         // essentially trim the back of it if it had hyphens (common when generated from questions)
-        while(result.endsWith( "-" )) {
+        while ( result.endsWith( "-" ) ) {
             result = result.substring( 0, result.length() - 1 );
         }
         return result;

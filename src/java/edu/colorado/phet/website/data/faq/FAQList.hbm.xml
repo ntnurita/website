@@ -11,7 +11,7 @@
 
         <property name="name"/>
 
-        <list name="faqItems" lazy="true">
+        <list name="faqItems" lazy="false">
             <key column="list_id" not-null="true"/>
             <list-index column="item_idx"/>
             <one-to-many class="edu.colorado.phet.website.data.faq.FAQItem"/>

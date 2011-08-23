@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.xhtmlrenderer.pdf.ITextRenderer;
+import org.xml.sax.SAXParseException;
 
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
 

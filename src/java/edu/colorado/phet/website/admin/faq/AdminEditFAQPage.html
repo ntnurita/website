@@ -84,6 +84,22 @@
         </table>
     </form>
 
+    <h2>Validate XHTML</h2>
+
+    <!--TODO-->
+    <form wicket:id="validate-form">
+        Valid: <span wicket:id="state"></span>
+        &nbsp;
+        <a href="#" wicket:id="english-pdf">(english PDF)</a>
+        <input type="submit" value="validate" wicket:id="validate"/>
+    </form>
+
+    <h2>Rebuild PDFs</h2>
+
+    <form wicket:id="update-form">
+        <input type="submit" value="rebuild" wicket:id="update"/>
+    </form>
+
     <h2>Instructions</h2>
 
     <div style="max-width: 600px;">
