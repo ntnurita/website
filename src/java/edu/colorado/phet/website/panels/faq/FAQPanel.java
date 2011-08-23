@@ -12,11 +12,13 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.data.faq.FAQItem;
 import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
@@ -65,6 +67,10 @@ public class FAQPanel extends PhetPanel implements Serializable {
         else {
             add( new InvisibleComponent( "activation-js" ) );
         }
+    }
+
+    public static String getFAQCSS() {
+        return StringUtils.loadStreamAsString( PhetWicketApplication.get().getServletContext().getResourceAsStream( "/css/sim-faq.css" ) );
     }
 
 }

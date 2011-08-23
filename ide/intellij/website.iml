@@ -190,6 +190,24 @@
     <orderEntry type="module" module-name="phetcommon" />
     <orderEntry type="module" module-name="build-tools" />
     <orderEntry type="module" module-name="flash-launcher" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/iText-2.0.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/core-renderer.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

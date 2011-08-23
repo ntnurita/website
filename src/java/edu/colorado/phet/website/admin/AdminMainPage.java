@@ -38,9 +38,11 @@ import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.metadata.MetadataUtils;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
+import edu.colorado.phet.website.panels.faq.FAQPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.ImageUtils;
+import edu.colorado.phet.website.util.PDFUtils;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -293,6 +295,55 @@ public class AdminMainPage extends AdminPage {
                         return null;
                     }
                 } );
+            }
+        } );
+
+        add( new Link( "debug-pdfout" ) {
+            @Override
+            public void onClick() {
+                try {
+                    File outputFile = new File( PhetWicketApplication.get().getWebsiteProperties().getPhetDownloadRoot(), "faq/test.pdf" );
+                    outputFile.getParentFile().mkdir();
+                    PDFUtils.writeHTMLToPDF( PDFUtils.constructPreferredHTML( "<div class=\"simFaqItem\">\n" +
+                                                                              "    <div class=\"simFaqQuestion\">How can I use this in my class?</div>\n" +
+                                                                              "\n" +
+                                                                              "    <div class=\"simFaqAnswer\">Here's some ideas:<br/><br/>You can use the Build a Molecule sim:<br/><br/><strong>- In class</strong> by\n" +
+                                                                              "        having your students work individually or in pairs at computers. Check out the sample activities for this simulation available\n" +
+                                                                              "        in the Teacher Resources section (below where you download the sim).<br/><br/><strong>- As a demo</strong> by projecting the\n" +
+                                                                              "        simulation onto a screen. You can manipulate the simulation, or you can select students to come up and build molecules for the\n" +
+                                                                              "        class.<br/><br/><strong>- As homework</strong> by asking students to complete a set number of collection boxes in preparation\n" +
+                                                                              "        for a class, or as practice after an introduction to molecules.<br/><br/><strong>- With clicker questions</strong> by asking\n" +
+                                                                              "        students the name or geometry of a molecule with a clicker questions, and then build and visualize it to see if they were\n" +
+                                                                              "        correct.\n" +
+                                                                              "    </div>\n" +
+                                                                              "</div>\n" +
+                                                                              "\n" +
+                                                                              "<div class=\"simFaqItem\">\n" +
+                                                                              "    <div class=\"simFaqQuestion\">What can students learn from playing with this sim?</div>\n" +
+                                                                              "    <div class=\"simFaqAnswer\">A lot! Students can learn:<br/>\n" +
+                                                                              "        <ul>\n" +
+                                                                              "            <li>Molecules are made from atoms,</li>\n" +
+                                                                              "            <li>What are molecular formulas,</li>\n" +
+                                                                              "            <li>What are subscripts and coefficients,</li>\n" +
+                                                                              "            <li>The same molecule can be represented in many different ways (with a name, formula, in 2D and 3D, in space filling and\n" +
+                                                                              "                ball and stick view),\n" +
+                                                                              "            </li>\n" +
+                                                                              "        </ul>\n" +
+                                                                              "        Students can also:\n" +
+                                                                              "        <ul>\n" +
+                                                                              "            <li>Compare names for similar looking molecules to start learning about naming,</li>\n" +
+                                                                              "            <li>Learn that molecules have a specific structure (a certain way the atoms go together) and begin asking questions about\n" +
+                                                                              "                why do atoms go together in particular ways.\n" +
+                                                                              "            </li>\n" +
+                                                                              "            <li>And more...!</li>\n" +
+                                                                              "        </ul>\n" +
+                                                                              "    </div>\n" +
+                                                                              "</div>",
+                                                                              FAQPanel.getFAQCSS() ), outputFile );
+                }
+                catch ( Exception e ) {
+                    logger.warn( e );
+                }
             }
         } );
 

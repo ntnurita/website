@@ -4,10 +4,12 @@
 
 package edu.colorado.phet.website.util;
 
+import java.io.InputStream;
 import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
@@ -391,7 +393,7 @@ public class StringUtils {
      */
     public static String mapStringForStorage( String str ) {
         // Tested on Mac, Safari 4.0.5, Firefox 3.6.3
-        if( str == null ) {
+        if ( str == null ) {
             str = "";
         }
         str = str.replaceAll( "\r", "" );
@@ -545,5 +547,9 @@ public class StringUtils {
 
     public static String getSeparator( Component component ) {
         return component.getLocalizer().getString( StringUtils.LIST_SEPARATOR_KEY, component ) + " ";
+    }
+
+    public static String loadStreamAsString( InputStream is ) {
+        return new Scanner( is ).useDelimiter( "\\A" ).next();
     }
 }
