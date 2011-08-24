@@ -35,7 +35,6 @@ public class FacebookStatisticsPage extends AdminPage {
 
         // get a sorted list of simulation names that we can query with
         final List<String> simNames = new ArrayList<String>();
-        Collections.sort( simNames );
         HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public Void run( Session session ) {
                 final List simList = session.createQuery( "select s from Simulation as s" ).list();
@@ -49,6 +48,7 @@ public class FacebookStatisticsPage extends AdminPage {
                 return null;
             }
         } );
+        Collections.sort( simNames );
 
         // show simulation statistics
         add( new ListView<String>( "sim-stats", simNames ) {
