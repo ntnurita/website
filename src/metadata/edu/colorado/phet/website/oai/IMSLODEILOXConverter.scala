@@ -33,7 +33,7 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
             <rights>
               <cost><source>costValues</source><value>no</value></cost>
               <copyrightAndOtherRestrictions><source>copyrightAndOtherRestrictionsValues</source><value>yes</value></copyrightAndOtherRestrictions>
-              <description><string language="x-t-rights-url">{licenseURL}</string></description>
+              <description><string language={if ( licenseURL.contains("by/3.0") ) "x-t-cc-url" else "x-t-rights-url"}>{licenseURL}</string></description>
             </rights>
           </lom>
         </metadata>
