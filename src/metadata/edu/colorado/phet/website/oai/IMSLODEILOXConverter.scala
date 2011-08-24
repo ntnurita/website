@@ -117,7 +117,7 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
 
             <!-- LOM 4 Technical -->
             <technical>
-              {record.mimeTypes.map(mimeType => <format>{mimeType}</format>)}
+              <!-- not including format information, since this is included in the manifestations -->
               <size>{( record.kilobytes * 1000 ).toString}</size>
               <location>{record.simPageLink}</location>
               <installationRemarks>
@@ -144,8 +144,7 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
 
               <typicalAgeRange><string language="x-t-lre">{record.minGradeLevel.getLowAge + "-" + record.maxGradeLevel.getHighAge}</string></typicalAgeRange>
 
-              <!-- languages (again, see above in LOM 1 General) -->
-              {record.languages.map(language => <language>{language}</language>)}
+              <!-- no languages here, since they were specified elsewhere -->
             </educational>
 
             <!-- LRE 9 Classification -->
