@@ -5,11 +5,16 @@
 package edu.colorado.phet.website.data;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.common.phetcommon.util.PhetLocales;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.util.IntId;
@@ -19,7 +24,7 @@ import edu.colorado.phet.website.util.hibernate.Task;
 
 /**
  * A translation, which has a certain number of strings and authorized users.
- *
+ * <p/>
  * NOTE: "delete" is somewhat like moving an item to the trash. This is called "deactivating" it. It can be reactivated,
  * or thus undeleted. Users will still see this as "delete", and then the translation will disappear from them.
  */
@@ -31,7 +36,7 @@ public class Translation implements Serializable, IntId {
     private Set translatedStrings = new HashSet(); // set of TranslatedString
     private Set authorizedUsers = new HashSet(); // set of PhetUser
 
-    public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[]{
+    public static final Locale[] DIRECTLY_EDITED_LOCALES = new Locale[] {
             WebsiteConstants.ENGLISH,
             LocaleUtils.stringToLocale( "ar_SA" )
     };
@@ -113,6 +118,11 @@ public class Translation implements Serializable, IntId {
             ret.add( (Translation) o );
         }
         return ret;
+    }
+
+    public String getPrettyEnglishLocaleString() {
+        PhetLocales phetLocales = PhetWicketApplication.get().getSupportedLocales();
+        return phetLocales.getName( getLocale() ) + " (" + LocaleUtils.localeToString( getLocale() ) + ")";
     }
 
     /*---------------------------------------------------------------------------*

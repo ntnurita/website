@@ -496,8 +496,19 @@ public class HibernateUtils {
         }
     }
 
+    // TODO: organization!!!
+
     public static <T> Result<T> resultTransaction( Session session, Task<T> task ) {
         return transactionCore( session, task, true );
+    }
+
+    public static boolean resultTransaction( Session session, final SimpleTask task ) {
+        return resultTransaction( session, new VoidTask() {
+            public Void run( Session session ) {
+                task.run( session );
+                return null;
+            }
+        } ).success;
     }
 
     // TODO: make a version of this that will not print out errors?
@@ -505,12 +516,52 @@ public class HibernateUtils {
         return transactionCore( session, task, false );
     }
 
+    public static <T> Result<T> ensureTransaction( Session session, Task<T> task ) {
+        if ( session.getTransaction().isActive() ) {
+            // if we have a failure, it will be handled at the preceeding catch blocks
+            return new Result<T>( true, task.run( session ), null );
+        }
+        else {
+            return resultTransaction( session, task );
+        }
+    }
+
+    public static boolean ensureTransaction( Session session, SimpleTask task ) {
+        if ( session.getTransaction().isActive() ) {
+            task.run( session );
+            return true;
+        }
+        else {
+            return resultTransaction( session, task );
+        }
+    }
+
     public static boolean wrapTransaction( Session session, VoidTask task ) {
         return transactionCore( session, task, true ).success;
     }
 
+    public static boolean wrapTransaction( Session session, final SimpleTask task ) {
+        return transactionCore( session,
+                                new VoidTask() {
+                                    public Void run( Session session ) {
+                                        task.run( session );
+                                        return null;
+                                    }
+                                }, true ).success;
+    }
+
     public static boolean wrapCatchTransaction( Session session, VoidTask task ) {
         return transactionCore( session, task, false ).success;
+    }
+
+    public static boolean wrapCatchTransaction( Session session, final SimpleTask task ) {
+        return transactionCore( session,
+                                new VoidTask() {
+                                    public Void run( Session session ) {
+                                        task.run( session );
+                                        return null;
+                                    }
+                                }, false ).success;
     }
 
     private static <T> Result<T> transactionCore( Session session, Task<T> task, boolean throwHibernateExceptions ) {
@@ -533,6 +584,7 @@ public class HibernateUtils {
             return new Result<T>( true, ret, null );
         }
         catch ( TaskException e ) {
+            // TODO: check current levels of TaskExceptions
             logger.log( e.level, "exception: ", e ); // log the TaskException at the desired level
             tryRollback( tx );
             return new Result<T>( false, ret, e );

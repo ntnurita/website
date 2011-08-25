@@ -347,6 +347,22 @@ public class AdminMainPage extends AdminPage {
             }
         } );
 
+        add( new Link( "debug-safe-1" ) {
+            @Override
+            public void onClick() {
+                Session session = getHibernateSession();
+                logger.info( "outside transaction:" + session.getTransaction() );
+                logger.info( "outside transaction active:" + session.getTransaction().isActive() );
+                HibernateUtils.wrapTransaction( session, new VoidTask() {
+                    public Void run( Session session ) {
+                        logger.info( "inside translation: " + session.getTransaction() );
+                        logger.info( "inside transaction active:" + session.getTransaction().isActive() );
+                        return null;
+                    }
+                } );
+            }
+        } );
+
         add( new RawLabel( "logTest", new Model<String>( logTest ) ) );
     }
 

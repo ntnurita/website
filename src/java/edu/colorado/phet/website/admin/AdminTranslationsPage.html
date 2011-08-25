@@ -16,7 +16,31 @@
 <body wicket:message="dir:language.dir">
 
 <wicket:extend>
-    <div style="width: 765px;">
+    <div style="width: 765px; margin: 0 auto;">
+        <h2>Update a translation</h2>
+
+        <p>
+            Under the hood, this will create a new copy of the parent translation ("published" translation that is editable),
+            make the currently visible child translation hidden, and will make the new child translation visible.
+        </p>
+
+        <table>
+            <tr>
+                <th>Parent ID</th>
+                <th>Child ID</th>
+                <th>Locale</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr wicket:id="translation">
+                <td wicket:id="parent-id"></td>
+                <td wicket:id="child-id"></td>
+                <td wicket:id="locale"></td>
+                <td><a href="#" wicket:id="view-link">view</a></td>
+                <td><a href="#" wicket:id="update-link">update</a></td>
+            </tr>
+        </table>
+
         <h2>Translations</h2>
 
         <div wicket:id="translations">

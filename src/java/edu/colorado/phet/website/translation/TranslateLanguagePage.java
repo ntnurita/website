@@ -4,7 +4,11 @@
 
 package edu.colorado.phet.website.translation;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -16,20 +20,19 @@ import org.apache.wicket.model.PropertyModel;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
-import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
-import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.Translation;
-import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.StringUtils;
-import edu.colorado.phet.website.util.hibernate.*;
+import edu.colorado.phet.website.util.TranslationUtils;
+import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 public class TranslateLanguagePage extends TranslationPage {
@@ -123,54 +126,18 @@ public class TranslateLanguagePage extends TranslationPage {
 
         @Override
         protected void onSubmit() {
-            Result<Translation> result = HibernateUtils.resultTransaction( getHibernateSession(), new Task<Translation>() {
-                public Translation run( Session session ) {
-                    PhetUser user = (PhetUser) session.load( PhetUser.class, PhetSession.get().getUser().getId() );
+            Result<Translation> result = TranslationUtils.createNewTranslation( getHibernateSession(), locale );
 
-                    Translation translation = new Translation( locale, user, null );
-
-                    session.save( translation );
-                    session.save( user );
-                    return translation;
-                }
-            } );
-
+            // if successful, go to the edit page for the translation
             if ( result.success ) {
-                final Translation translation = result.value;
-
-                logger.info( "Created translation: " + translation );
-
-                PageParameters params = new PageParameters();
-                params.put( TranslationEditPage.TRANSLATION_ID, translation.getId() );
-                params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( locale ) );
-
-                final PhetUser user = PhetSession.get().getUser();
-                final PhetRequestCycle cycle = PhetRequestCycle.get();
-
-                if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
-                    ( new Thread() {
-                        @Override
-                        public void run() {
-                            Session session = HibernateUtils.getInstance().openSession();
-                            try {
-                                NotificationHandler.sendTranslationCreatedNotification( translation.getId(), locale, user );
-                                NotificationHandler.sendCreationNotificationToTranslators( session, translation, user, cycle );
-                            }
-                            finally {
-                                session.close();
-                            }
-                        }
-                    } ).start();
-                }
-
-                setResponsePage( TranslationEditPage.class, params );
+                setResponsePage( TranslationEditPage.class, TranslationEditPage.createPageParameters( result.value ) );
             }
         }
     }
 
     private class CopyTranslationForm extends Form {
 
-        private Translation translation;
+        private Translation translation; // this is used, just using the PropertyModel which fools Intellij with its reflection
 
         public CopyTranslationForm( String id, final List<Translation> translations ) {
             super( id );
@@ -184,75 +151,21 @@ public class TranslateLanguagePage extends TranslationPage {
 
         @Override
         protected void onSubmit() {
-
+            // ignore if they haven't selected a result yet (it will be null)
             if ( translation == null ) {
                 return;
             }
 
-            final Translation ret[] = new Translation[1];
+            Result<Translation> result = TranslationUtils.createCopiedTranslation( getHibernateSession(), translation );
 
-            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                public boolean run( Session session ) {
-                    PhetUser user = (PhetUser) session.load( PhetUser.class, PhetSession.get().getUser().getId() );
-                    Translation newTranslation = new Translation( translation.getLocale(), user, translation );
-
-                    session.save( newTranslation );
-                    session.save( user ); // TODO this looks suspicious. update instead?
-                    ret[0] = newTranslation;
-
-                    Translation oldTranslation = (Translation) session.load( Translation.class, translation.getId() );
-
-                    for ( Object o : oldTranslation.getTranslatedStrings() ) {
-                        TranslatedString oldString = (TranslatedString) o;
-
-                        TranslatedString newString = new TranslatedString();
-                        newString.setCreatedAt( oldString.getCreatedAt() );
-                        newString.setUpdatedAt( oldString.getUpdatedAt() );
-                        newString.setKey( oldString.getKey() );
-                        newString.setValue( oldString.getValue() );
-                        newTranslation.addString( newString );
-
-                        session.save( newString );
-                    }
-
-                    return true;
-                }
-            } );
-
-            if ( success ) {
-
-                logger.info( "Created translation: " + ret[0] + " based on " + translation );
-
-                PageParameters params = new PageParameters();
-                params.put( TranslationEditPage.TRANSLATION_ID, ret[0].getId() );
-                params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( ret[0].getLocale() ) );
-
-                final PhetUser user = PhetSession.get().getUser();
-                final PhetRequestCycle cycle = PhetRequestCycle.get();
-
-                if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
-                    ( new Thread() {
-                        @Override
-                        public void run() {
-                            Session session = HibernateUtils.getInstance().openSession();
-                            try {
-                                NotificationHandler.sendTranslationCreatedBasedOnNotification( ret[0].getId(), ret[0].getLocale(), user, translation.getId() );
-                                NotificationHandler.sendCreationNotificationToTranslators( session, ret[0], user, cycle );
-                            }
-                            finally {
-                                session.close();
-                            }
-                        }
-                    } ).start();
-                }
-
-                setResponsePage( TranslationEditPage.class, params );
+            if ( result.success ) {
+                setResponsePage( TranslationEditPage.class, TranslationEditPage.createPageParameters( result.value ) );
             }
         }
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "for-translators/website", TranslateLanguagePage.class, new String[]{} );
+        mapper.addMap( "for-translators/website", TranslateLanguagePage.class, new String[] { } );
     }
 
     public static AbstractLinker getLinker() {

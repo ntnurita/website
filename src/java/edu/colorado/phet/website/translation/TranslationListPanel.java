@@ -4,7 +4,13 @@
 
 package edu.colorado.phet.website.translation;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
@@ -12,7 +18,6 @@ import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.hibernate.Session;
@@ -33,6 +38,7 @@ import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.TranslationUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
@@ -151,7 +157,7 @@ public class TranslationListPanel extends PhetPanel {
             boolean emailsShown = user.isTeamMember();
 
             item.add( new Label( "id", String.valueOf( translation.getId() ) ) );
-            item.add( new Label( "locale", phetLocales.getName( translation.getLocale() ) + " (" + LocaleUtils.localeToString( translation.getLocale() ) + ")" ) );
+            item.add( new Label( "locale", translation.getPrettyEnglishLocaleString() ) );
             item.add( new Label( "num-strings", String.valueOf( sizes.get( translation ) ) ) );
             Label visibleLabel = new Label( "visible-label", getTranslationVisibilityString( translation ) );
             if ( translation.isVisible() ) {
@@ -186,17 +192,16 @@ public class TranslationListPanel extends PhetPanel {
             String type;
             if ( translation.isVisible() ) {
                 type = "view";
-                newContext = new PageContext( PageContext.getStandardPrefix( translation.getLocale() ), "", translation.getLocale() );
+                newContext = PageContext.getNewLocaleContext( translation.getLocale() );
             }
             else {
                 type = "preview";
-                newContext = new PageContext( PageContext.getTranslationPrefix( translation.getId() ), "", translation.getLocale() );
+                newContext = PageContext.getNewIdLocaleContext( translation.getId(), translation.getLocale() );
             }
 
             // make a popuplink class
             Link popupLink = IndexPage.getLinker().getLink( "preview", newContext, getPhetCycle() );
-            popupLink.setPopupSettings( new PopupSettings( PopupSettings.LOCATION_BAR | PopupSettings.MENU_BAR | PopupSettings.RESIZABLE
-                                                           | PopupSettings.SCROLLBARS | PopupSettings.STATUS_BAR | PopupSettings.TOOL_BAR ) );
+            WicketUtils.makePopupLink( popupLink );
             popupLink.add( new Label( "type", type ) );
             item.add( popupLink );
 
@@ -346,32 +351,7 @@ public class TranslationListPanel extends PhetPanel {
         }
 
         public void toggleVisibility( final Translation translation ) {
-            final boolean[] ret = new boolean[1];
-            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                public boolean run( Session session ) {
-                    Translation tr = (Translation) session.load( Translation.class, translation.getId() );
-                    List otherTranslations = session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", translation.getLocale() ).list();
-
-                    if ( !tr.isVisible() && !otherTranslations.isEmpty() ) {
-                        throw new RuntimeException( "There is already a visible translation of that locale" );
-                    }
-
-                    tr.setVisible( !tr.isVisible() );
-                    ret[0] = tr.isVisible();
-                    session.update( tr );
-
-                    return true;
-                }
-            } );
-            if ( success ) {
-                translation.setVisible( ret[0] );
-                if ( translation.isVisible() ) {
-                    ( (PhetWicketApplication) getApplication() ).addTranslation( translation );
-                }
-                else {
-                    ( (PhetWicketApplication) getApplication() ).removeTranslation( translation );
-                }
-            }
+            TranslationUtils.setTranslationVisibility( getHibernateSession(), translation, !translation.isVisible() );
         }
 
         public void reactivate( final Translation translation ) {

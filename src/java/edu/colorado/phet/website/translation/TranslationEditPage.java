@@ -67,16 +67,16 @@ public class TranslationEditPage extends TranslationPage {
 
             tx.commit();
         }
-        catch( AuthorizationException e ) {
+        catch ( AuthorizationException e ) {
             setResponsePage( AccessDeniedPage.class );
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -112,6 +112,13 @@ public class TranslationEditPage extends TranslationPage {
         }
         subPanel = new TranslateEntityPanel( panelHolder.getWicketId(), getPageContext(), this, selectedEntity, translationId, testLocale );
         panelHolder.add( subPanel );
+    }
+
+    public static PageParameters createPageParameters( Translation translation ) {
+        PageParameters params = new PageParameters();
+        params.put( TranslationEditPage.TRANSLATION_ID, translation.getId() );
+        params.put( TranslationEditPage.TRANSLATION_LOCALE, LocaleUtils.localeToString( translation.getLocale() ) );
+        return params;
     }
 
     /**

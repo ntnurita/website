@@ -39,6 +39,24 @@ public class PageContext implements Serializable {
     }
 
     /**
+     * @param locale Locale of the new context
+     * @return A new context for the default (visible) translation for a particular locale
+     */
+    public static PageContext getNewLocaleContext( Locale locale ) {
+        return new PageContext( PageContext.getStandardPrefix( locale ), "", locale );
+    }
+
+    /**
+     * @param translationId Translation id
+     * @param locale        Locale
+     * @return A new context for the translation with the specified ID and locale. This will be a "translation" context, and ideally should
+     *         not be used for standard (non-translation-preview) uses
+     */
+    public static PageContext getNewIdLocaleContext( int translationId, Locale locale ) {
+        return new PageContext( PageContext.getTranslationPrefix( translationId ), "", locale );
+    }
+
+    /**
      * Copy the context with a new locale. If the prefix is standard, the prefix will be replaced for the new locale.
      *
      * @param newLocale The new locale

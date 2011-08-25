@@ -7,13 +7,25 @@ package edu.colorado.phet.website.util.wicket;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.wicket.*;
+import org.apache.wicket.Component;
+import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.Page;
+import org.apache.wicket.PageParameters;
+import org.apache.wicket.RequestCycle;
+import org.apache.wicket.Response;
 import org.apache.wicket.behavior.AbstractHeaderContributor;
-import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.protocol.http.*;
+import org.apache.wicket.protocol.http.BufferedWebResponse;
+import org.apache.wicket.protocol.http.MockHttpServletRequest;
+import org.apache.wicket.protocol.http.MockHttpServletResponse;
+import org.apache.wicket.protocol.http.MockHttpSession;
+import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.protocol.http.WebRequest;
+import org.apache.wicket.protocol.http.WebRequestCycle;
 import org.apache.wicket.protocol.http.request.WebErrorCodeResponseTarget;
 import org.apache.wicket.protocol.http.servlet.ServletWebRequest;
 import org.apache.wicket.request.target.component.BookmarkablePageRequestTarget;
@@ -129,7 +141,7 @@ public class WicketUtils {
                 component.prepareForRender();
                 component.renderComponent();
             }
-            catch( RuntimeException e ) {
+            catch ( RuntimeException e ) {
                 component.afterRender();
                 throw e;
             }
@@ -154,7 +166,7 @@ public class WicketUtils {
         return new AbstractHeaderContributor() {
             @Override
             public IHeaderContributor[] getHeaderContributors() {
-                return new IHeaderContributor[]{
+                return new IHeaderContributor[] {
                         new IHeaderContributor() {
                             public void renderHead( IHeaderResponse response ) {
                                 response.renderString( str );
@@ -163,6 +175,16 @@ public class WicketUtils {
                 };
             }
         };
+    }
+
+    /**
+     * Sets popup properties on the specified link
+     *
+     * @param link The link to make into a popup link
+     */
+    public static void makePopupLink( Link link ) {
+        link.setPopupSettings( new PopupSettings( PopupSettings.LOCATION_BAR | PopupSettings.MENU_BAR | PopupSettings.RESIZABLE
+                                                  | PopupSettings.SCROLLBARS | PopupSettings.STATUS_BAR | PopupSettings.TOOL_BAR ) );
     }
 
 }
