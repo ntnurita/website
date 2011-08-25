@@ -46,6 +46,7 @@ import edu.colorado.phet.website.util.PDFUtils;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 public class AdminMainPage extends AdminPage {
@@ -159,8 +160,8 @@ public class AdminMainPage extends AdminPage {
             @Override
             public void onClick() {
                 final List<PhetUser> users = new LinkedList<PhetUser>();
-                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
-                    public Void run( Session session ) {
+                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new SimpleTask() {
+                    public void run( Session session ) {
 
                         List list = session.createQuery( "select u from PhetUser as u" ).list();
                         for ( Object o : list ) {
@@ -177,7 +178,6 @@ public class AdminMainPage extends AdminPage {
                                 session.update( user );
                             }
                         }
-                        return null;
                     }
                 } );
                 new NewsletterSender().sendNewsletters( users );
@@ -189,8 +189,8 @@ public class AdminMainPage extends AdminPage {
             @Override
             public void onClick() {
                 final List<PhetUser> users = new LinkedList<PhetUser>();
-                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
-                    public Void run( Session session ) {
+                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new SimpleTask() {
+                    public void run( Session session ) {
                         List list = session.createQuery( "select u from PhetUser as u" ).list();
                         for ( Object o : list ) {
                             PhetUser user = (PhetUser) o;
@@ -208,7 +208,6 @@ public class AdminMainPage extends AdminPage {
                                 session.update( user );
                             }
                         }
-                        return null;
                     }
                 } );
                 new NewsletterSender().sendNewsletters( users );
@@ -219,8 +218,8 @@ public class AdminMainPage extends AdminPage {
             @Override
             public void onClick() {
                 final List<PhetUser> users = new LinkedList<PhetUser>();
-                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
-                    public Void run( Session session ) {
+                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new SimpleTask() {
+                    public void run( Session session ) {
                         String[] emails = new String[] {
                                 "olsonsjc@gmail.com"
                         };
@@ -238,7 +237,6 @@ public class AdminMainPage extends AdminPage {
                                 session.update( user );
                             }
                         }
-                        return null;
                     }
                 } );
                 new NewsletterSender().sendNewsletters( users );
@@ -283,8 +281,8 @@ public class AdminMainPage extends AdminPage {
         add( new Link( "debug-gradelevelcategories" ) {
             @Override
             public void onClick() {
-                HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                    public Void run( Session session ) {
+                HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+                    public void run( Session session ) {
                         List sims = session.createQuery( "select s from Simulation as s" ).list();
                         for ( Object o : sims ) {
                             Simulation sim = (Simulation) o;
@@ -292,7 +290,6 @@ public class AdminMainPage extends AdminPage {
                             sim.setHighGradeLevel( sim.getMaxGradeLevel() );
                             session.update( sim );
                         }
-                        return null;
                     }
                 } );
             }
@@ -353,11 +350,10 @@ public class AdminMainPage extends AdminPage {
                 Session session = getHibernateSession();
                 logger.info( "outside transaction:" + session.getTransaction() );
                 logger.info( "outside transaction active:" + session.getTransaction().isActive() );
-                HibernateUtils.wrapTransaction( session, new VoidTask() {
-                    public Void run( Session session ) {
+                HibernateUtils.wrapTransaction( session, new SimpleTask() {
+                    public void run( Session session ) {
                         logger.info( "inside translation: " + session.getTransaction() );
                         logger.info( "inside transaction active:" + session.getTransaction().isActive() );
-                        return null;
                     }
                 } );
             }

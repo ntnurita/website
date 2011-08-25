@@ -25,6 +25,7 @@ import edu.colorado.phet.website.metadata.LRETerm;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -61,8 +62,8 @@ public class LRETermPanel extends PhetPanel {
                             @Override public void onClick( AjaxRequestTarget target ) {
                                 final List<LRETerm> newTerms = new LinkedList<LRETerm>();
 
-                                boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                                    public Void run( Session session ) {
+                                boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+                                    public void run( Session session ) {
                                         // get a copy of the simulation that is hooked through Hibernate
                                         Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
 
@@ -74,7 +75,6 @@ public class LRETermPanel extends PhetPanel {
 
                                         // store the list of keys, so we can update the UI
                                         newTerms.addAll( sim.getLRETerms() );
-                                        return null;
                                     }
                                 } );
 
@@ -103,8 +103,8 @@ public class LRETermPanel extends PhetPanel {
                         if ( !terms.contains( newTerm ) ) {
                             final List<LRETerm> newTerms = new LinkedList<LRETerm>();
 
-                            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                                public Void run( Session session ) {
+                            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+                                public void run( Session session ) {
                                     // get a copy of the simulation that is hooked through Hibernate
                                     Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
 
@@ -116,7 +116,6 @@ public class LRETermPanel extends PhetPanel {
 
                                     // store the list of keys, so we can update the UI
                                     newTerms.addAll( sim.getLRETerms() );
-                                    return null;
                                 }
                             } );
 

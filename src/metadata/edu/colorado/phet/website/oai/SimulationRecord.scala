@@ -154,7 +154,7 @@ class SimulationRecord(str: String) {
 
   def rights: Seq[LanguageString] = allStrings(xml \ "rights")
 
-  def englishRights:String = rights.find(_.language == "en").get.string
+  def englishRights: String = rights.find(_.language == "en").get.string
 
   /*---------------------------------------------------------------------------*
   * grade levels

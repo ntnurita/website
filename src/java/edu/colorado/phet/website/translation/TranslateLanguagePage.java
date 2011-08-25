@@ -32,6 +32,7 @@ import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.TranslationUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
@@ -57,8 +58,8 @@ public class TranslateLanguagePage extends TranslationPage {
 
         final List<Translation> translations = new LinkedList<Translation>();
         final PhetUser currentUser = PhetSession.get().getUser();
-        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-            public Void run( Session session ) {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+            public void run( Session session ) {
                 List trans = session.createQuery( "select t from Translation as t where t.locale = :locale order by t.id" )
                         .setLocale( "locale", locale ).list();
                 for ( Object o : trans ) {
@@ -84,12 +85,11 @@ public class TranslateLanguagePage extends TranslationPage {
                     }
                     translations.add( translation );
                 }
-                return null;
             }
         } );
         // sort the translations so that "preferred" simulations are at the top
-        HibernateUtils.resultCatchTransaction( getHibernateSession(), new VoidTask() {
-            public Void run( final Session session ) {
+        HibernateUtils.resultCatchTransaction( getHibernateSession(), new SimpleTask() {
+            public void run( final Session session ) {
                 Collections.sort( translations, new Comparator<Translation>() {
                     public int compare( Translation a, Translation b ) {
                         boolean ba = a.isPublished( session );
@@ -98,7 +98,6 @@ public class TranslateLanguagePage extends TranslationPage {
                         return ( ba ? -1 : 1 );
                     }
                 } );
-                return null;
             }
         } );
         TranslationListPanel translationList = new TranslationListPanel( "translation-list-panel", getPageContext(), translations );

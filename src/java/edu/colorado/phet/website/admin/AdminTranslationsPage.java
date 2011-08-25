@@ -24,6 +24,7 @@ import edu.colorado.phet.website.translation.TranslationListPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.TranslationUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -42,8 +43,8 @@ public class AdminTranslationsPage extends AdminPage {
         // map from published parent to visible child
         final Map<Translation, Translation> visibleChildMap = new HashMap<Translation, Translation>();
 
-        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-            public Void run( Session session ) {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+            public void run( Session session ) {
                 List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
                 for ( Object o : trans ) {
                     Translation translation = (Translation) o;
@@ -55,7 +56,6 @@ public class AdminTranslationsPage extends AdminPage {
                         visibleChildMap.put( translation.getParent(), translation );
                     }
                 }
-                return null;
             }
         } );
 

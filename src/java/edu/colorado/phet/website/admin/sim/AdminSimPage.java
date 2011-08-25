@@ -63,6 +63,7 @@ import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 public class AdminSimPage extends AdminPage {
@@ -568,8 +569,8 @@ public class AdminSimPage extends AdminPage {
                         error( keyText, "admin.keyword.create.exists", map );
                     }
                     else {
-                        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                            public Void run( Session session ) {
+                        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+                            public void run( Session session ) {
                                 List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.value = :value)" )
                                         .setLocale( "locale", WebsiteConstants.ENGLISH ).setString( "value", value ).list();
                                 for ( Object o : list ) {
@@ -580,7 +581,6 @@ public class AdminSimPage extends AdminPage {
                                         error( keyText, "admin.keyword.create.duplicate", map );
                                     }
                                 }
-                                return null;
                             }
                         } );
                     }

@@ -20,6 +20,7 @@ import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -35,8 +36,8 @@ public class MainStatisticsPage extends AdminPage {
     public MainStatisticsPage( PageParameters parameters ) {
         super( parameters );
 
-        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-            public Void run( Session session ) {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+            public void run( Session session ) {
                 final List simList = session.createQuery( "select s from Simulation as s" ).list();
                 final List activityList = session.createQuery( "select c from Contribution as c" ).list();
                 final Set<Locale> usedSimulationLocales = new HashSet<Locale>();
@@ -71,8 +72,6 @@ public class MainStatisticsPage extends AdminPage {
                 add( new Label( "total-users", "Number of users: " + session.createQuery( "select count(*) from PhetUser" ).uniqueResult() ) );
                 add( new Label( "subscribed-users", "Users subscribed to receive our newsletter: " + session.createQuery( "select count(*) from PhetUser as u where u.receiveEmail = true" ).uniqueResult() ) );
                 add( new Label( "newsletter-only-users", "Users with newsletter-only accounts: " + session.createQuery( "select count(*) from PhetUser as u where u.newsletterOnlyAccount = true" ).uniqueResult() ) );
-
-                return null;
             }
         } );
     }

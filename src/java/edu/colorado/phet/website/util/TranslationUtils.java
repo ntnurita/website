@@ -184,8 +184,8 @@ public class TranslationUtils {
             final Translation newTranslation = result.value;
 
             // then attempt switching the visible translation
-            boolean swapSuccess = HibernateUtils.wrapCatchTransaction( session, new VoidTask() {
-                public Void run( Session session ) {
+            boolean swapSuccess = HibernateUtils.wrapCatchTransaction( session, new SimpleTask() {
+                public void run( Session session ) {
                     // TODO: do the swap. check the swap code AND the notifications that trigger the translation add/removal. order could go bad
                     Translation oldChild = (Translation) session.load( Translation.class, oldTranslation.getId() );
                     Translation newChild = (Translation) session.load( Translation.class, newTranslation.getId() );
@@ -200,7 +200,6 @@ public class TranslationUtils {
 
                     session.update( oldChild );
                     session.update( newChild );
-                    return null;
                 }
             } );
 

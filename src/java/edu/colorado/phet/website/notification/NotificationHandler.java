@@ -37,6 +37,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -210,15 +211,14 @@ public class NotificationHandler {
 
         final Set<PhetUser> translators = new HashSet<PhetUser>();
 
-        HibernateUtils.wrapTransaction( session, new VoidTask() {
-            public Void run( Session session ) {
+        HibernateUtils.wrapTransaction( session, new SimpleTask() {
+            public void run( Session session ) {
                 List list = session.createQuery( "select t from Translation as t where t.locale = :locale" )
                         .setLocale( "locale", translation.getLocale() ).list();
                 for ( Object o : list ) {
                     Translation otherTranslation = (Translation) o;
                     translators.addAll( otherTranslation.getAuthorizedUsers() );
                 }
-                return null;
             }
         } );
 

@@ -24,6 +24,7 @@ import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -64,8 +65,8 @@ public class NSDLScienceLiteracyMapPanel extends PhetPanel {
                             @Override public void onClick( AjaxRequestTarget target ) {
                                 final List<String> newKeys = new LinkedList<String>();
 
-                                boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                                    public Void run( Session session ) {
+                                boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+                                    public void run( Session session ) {
                                         // get a copy of the simulation that is hooked through Hibernate
                                         Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
 
@@ -77,7 +78,6 @@ public class NSDLScienceLiteracyMapPanel extends PhetPanel {
 
                                         // store the list of keys, so we can update the UI
                                         newKeys.addAll( sim.getScienceLiteracyMapKeys() );
-                                        return null;
                                     }
                                 } );
 
@@ -105,8 +105,8 @@ public class NSDLScienceLiteracyMapPanel extends PhetPanel {
                         if ( newKey.startsWith( "SMS-" ) ) {
                             final List<String> newKeys = new LinkedList<String>();
 
-                            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-                                public Void run( Session session ) {
+                            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+                                public void run( Session session ) {
                                     // get a copy of the simulation that is hooked through Hibernate
                                     Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
 
@@ -118,7 +118,6 @@ public class NSDLScienceLiteracyMapPanel extends PhetPanel {
 
                                     // store the list of keys, so we can update the UI
                                     newKeys.addAll( sim.getScienceLiteracyMapKeys() );
-                                    return null;
                                 }
                             } );
 

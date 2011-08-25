@@ -19,6 +19,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.RawCSV;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -47,8 +48,8 @@ public class LearningComExport extends WebPage {
         csv.betweenLines();
 
         // simulations
-        HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new VoidTask() {
-            public Void run( final Session session ) {
+        HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new SimpleTask() {
+            public void run( final Session session ) {
                 List list = session.createQuery( "select s from Simulation as s" ).list();
                 List<Simulation> simulations = new LinkedList<Simulation>( list );
 
@@ -116,7 +117,6 @@ public class LearningComExport extends WebPage {
 
                     csv.betweenLines();
                 }
-                return null;
             }
         } );
 

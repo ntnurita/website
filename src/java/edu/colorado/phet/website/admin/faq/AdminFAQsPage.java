@@ -21,6 +21,7 @@ import edu.colorado.phet.website.admin.AdminPage;
 import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
@@ -36,13 +37,12 @@ public class AdminFAQsPage extends AdminPage {
 
         final List<String> faqNames = new ArrayList<String>();
 
-        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-            public Void run( Session session ) {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+            public void run( Session session ) {
                 List faqs = session.createQuery( "select f from FAQList as f" ).list();
                 for ( Object faq : faqs ) {
                     faqNames.add( ( (FAQList) faq ).getName() );
                 }
-                return null;
             }
         } );
 

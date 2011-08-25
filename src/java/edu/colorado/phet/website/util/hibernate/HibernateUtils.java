@@ -516,6 +516,15 @@ public class HibernateUtils {
         return transactionCore( session, task, false );
     }
 
+    public static boolean resultCatchTransaction( Session session, final SimpleTask task ) {
+        return resultCatchTransaction( session, new VoidTask() {
+            public Void run( Session session ) {
+                task.run( session );
+                return null;
+            }
+        } ).success;
+    }
+
     public static <T> Result<T> ensureTransaction( Session session, Task<T> task ) {
         if ( session.getTransaction().isActive() ) {
             // if we have a failure, it will be handled at the preceeding catch blocks

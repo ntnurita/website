@@ -22,6 +22,7 @@ import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
@@ -41,8 +42,8 @@ public class TranslationMainPage extends TranslationPage {
 
         final List<Translation> translations = new LinkedList<Translation>();
         final PhetUser user = PhetSession.get().getUser();
-        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
-            public Void run( Session session ) {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+            public void run( Session session ) {
                 List trans = session.createQuery( "select t from Translation as t order by t.id" ).list();
                 for ( Object o : trans ) {
                     Translation translation = (Translation) o;
@@ -50,7 +51,6 @@ public class TranslationMainPage extends TranslationPage {
                         translations.add( translation );
                     }
                 }
-                return null;
             }
         } );
 
