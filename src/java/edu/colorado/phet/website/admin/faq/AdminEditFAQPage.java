@@ -291,8 +291,8 @@ public class AdminEditFAQPage extends AdminPage {
         return addFAQItem( name == null ? generateName( questionText ) : name, item, new VoidFunction1<Session>() {
             public void apply( Session session ) {
                 // set up the English strings, and do it within the transaction so if one part fails, everything is rolled back
-                StringUtils.setEnglishStringWithinTransaction( session, item.getQuestionKey(), questionText );
-                StringUtils.setEnglishStringWithinTransaction( session, item.getAnswerKey(), answerText );
+                StringUtils.setEnglishString( session, item.getQuestionKey(), questionText );
+                StringUtils.setEnglishString( session, item.getAnswerKey(), answerText );
             }
         } );
     }
@@ -303,7 +303,7 @@ public class AdminEditFAQPage extends AdminPage {
         return addFAQItem( name == null ? generateName( headerText ) : name, item, new VoidFunction1<Session>() {
             public void apply( Session session ) {
                 // set up the English strings, and do it within the transaction so if one part fails, everything is rolled back
-                StringUtils.setEnglishStringWithinTransaction( session, item.getHeaderKey(), headerText );
+                StringUtils.setEnglishString( session, item.getHeaderKey(), headerText );
             }
         } );
     }
@@ -317,11 +317,11 @@ public class AdminEditFAQPage extends AdminPage {
 
                 // clean up the deleted strings
                 if ( anItem.isQuestion() ) {
-                    StringUtils.deleteStringWithinTransaction( session, anItem.getQuestionKey() );
-                    StringUtils.deleteStringWithinTransaction( session, anItem.getAnswerKey() );
+                    StringUtils.deleteString( session, anItem.getQuestionKey() );
+                    StringUtils.deleteString( session, anItem.getAnswerKey() );
                 }
                 else {
-                    StringUtils.deleteStringWithinTransaction( session, anItem.getHeaderKey() );
+                    StringUtils.deleteString( session, anItem.getHeaderKey() );
                 }
 
                 // beware of https://hibernate.onjira.com/browse/HHH-1268

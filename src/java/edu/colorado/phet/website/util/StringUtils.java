@@ -25,6 +25,8 @@ import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Task;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Includes static functions (with their own transaction handling) that handle setting and getting of localization strings
@@ -36,64 +38,28 @@ public class StringUtils {
     private static final Logger logger = Logger.getLogger( StringUtils.class.getName() );
 
     /**
-     * Returns a default (English) string from the database
+     * Returns a default (English) string from the database, or null if not found
      *
-     * @param session Hibernate session (already open)
+     * @param session Hibernate session - transaction optional
      * @param key     Localization key
-     * @return Translated String (probably not translated though!)
+     * @return String, or null if not found
      */
-    public static String getDefaultStringDirect( Session session, String key ) {
-        return getStringDirect( session, key, WebsiteConstants.ENGLISH );
-    }
-
-    /**
-     * Returns a string from the database for a visible translation (specified by a locale)
-     *
-     * @param session Hibernate session (already open)
-     * @param key     Localization key
-     * @param locale  Locale of the string
-     * @return Translated String
-     */
-    public static String getStringDirect( Session session, final String key, final Locale locale ) {
-        final String[] ret = new String[1];
-        ret[0] = null;
-        HibernateUtils.wrapTransaction( session, new HibernateTask() {
-            public boolean run( Session session ) {
-                TranslatedString translatedString = (TranslatedString) session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.key = :key)" )
-                        .setLocale( "locale", locale ).setString( "key", key ).uniqueResult();
-                if ( translatedString != null ) {
-                    ret[0] = translatedString.getValue();
-                }
-                return true;
-            }
-        } );
-        return ret[0];
-    }
-
-    public static String getEnglishStringDirect( Session session, final String key ) {
+    public static String getEnglishStringDirect( Session session, String key ) {
         return getStringDirect( session, key, WebsiteConstants.ENGLISH );
     }
 
     /**
      * Returns a string from the database for a visible translation (specified by a locale). Run from within the
-     * transaction
-     * <p/>
-     * (The X denotes that this function should only be called from within the scope of a Hibernate transaction for the
-     * particular session)
+     * transaction.
      *
-     * @param session Hibernate session (already open)
+     * @param session Hibernate session
      * @param key     Localization key
      * @param locale  Locale of the string
-     * @return Translated String
+     * @return Translated String, or null if it does not exist
      */
-    public static String getStringDirectWithinTransaction( Session session, final String key, final Locale locale ) {
+    public static String getStringDirect( Session session, final String key, final Locale locale ) {
         TranslatedString string = getTranslatedString( session, key, locale );
-        if ( string == null ) {
-            return null;
-        }
-        else {
-            return string.getValue();
-        }
+        return string == null ? null : string.getValue();
     }
 
     /**
@@ -102,97 +68,106 @@ public class StringUtils {
      * @param session Hibernate session (already open)
      * @param key     Localization key
      * @param locale  Locale of the string
-     * @return Translated String
+     * @return Translated String, or null if it does not exist
      */
     public static TranslatedString getTranslatedString( Session session, final String key, final Locale locale ) {
-        List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.key = :key)" )
-                .setLocale( "locale", locale ).setString( "key", key ).list();
-        if ( list.isEmpty() ) {
-            return null;
-        }
-        else {
-            if ( list.size() != 1 ) {
-                logger.warn( "strings for key " + key + ", locale " + locale + " have " + list.size() + " options" );
-            }
-            return (TranslatedString) list.get( 0 );
-        }
-    }
+        return HibernateUtils.ensureTransaction( session, new Task<TranslatedString>() {
+            public TranslatedString run( Session session ) {
+                // use a list, so we can fail gracefully if there are no results, and print out warnings if there are multiple matching strings (error conditions)
+                List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.visible = true and t.locale = :locale and ts.key = :key)" )
+                        .setLocale( "locale", locale ).setString( "key", key ).list();
 
-    /**
-     * Returns a string from the database for any translation (by id)
-     *
-     * @param session       Hibernate Session (already open)
-     * @param key           Localization key
-     * @param translationId Translation ID
-     * @return Translated String
-     */
-    public static String getStringDirect( Session session, final String key, final int translationId ) {
-        final String[] ret = new String[1];
-        ret[0] = null;
-        HibernateUtils.wrapTransaction( session, new HibernateTask() {
-            public boolean run( Session session ) {
-                TranslatedString translatedString = (TranslatedString) session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.id = :id and ts.key = :key)" )
-                        .setInteger( "id", translationId ).setString( "key", key ).uniqueResult();
-                if ( translatedString != null ) {
-                    ret[0] = translatedString.getValue();
+                if ( list.isEmpty() ) {
+                    return null;
                 }
-                return true;
+                else {
+                    if ( list.size() != 1 ) {
+                        logger.warn( "strings for key " + key + ", locale " + locale + " have " + list.size() + " options" );
+                    }
+                    return (TranslatedString) list.get( 0 );
+                }
             }
         } );
-        return ret[0];
     }
 
     /**
-     * Returns a string from the database for any translation (by id). Run from within a transaction
-     * <p/>
-     * (The X denotes that this function should only be called from within the scope of a Hibernate transaction for the
-     * particular session)
+     * Returns a string from the database for any translation (by id).
      *
-     * @param session       Hibernate Session (already open)
+     * @param session       Hibernate Session - transaction optional
      * @param key           Localization key
      * @param translationId Translation ID
-     * @return Translated String
+     * @return Translated string, or null if not found
      */
-    public static String getStringDirectWithinTransaction( Session session, final String key, final int translationId ) {
+    public static String getStringDirect( Session session, final String key, final int translationId ) {
         TranslatedString string = getTranslatedString( session, key, translationId );
-        if ( string == null ) {
-            return null;
-        }
-        else {
-            return string.getValue();
-        }
+        return string == null ? null : string.getValue();
     }
 
     /**
-     * Returns a translated string instance, assuming one is already inside of a transaction.
+     * Returns a translated string instance.
      *
-     * @param session       Hibernate Session (already open)
+     * @param session       Hibernate Session - transaction optional
      * @param key           Localization key
      * @param translationId Translation ID
-     * @return Translated String
+     * @return TranslatedString instance, or null if not found
      */
     public static TranslatedString getTranslatedString( Session session, final String key, final int translationId ) {
-        List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.id = :id and ts.key = :key)" )
-                .setInteger( "id", translationId ).setString( "key", key ).list();
-        if ( list.isEmpty() ) {
-            return null;
-        }
-        else {
-            if ( list.size() != 1 ) {
-                logger.warn( "strings for key " + key + ", translationId " + translationId + " have " + list.size() + " options" );
+        return HibernateUtils.ensureTransaction( session, new Task<TranslatedString>() {
+            public TranslatedString run( Session session ) {
+                List list = session.createQuery( "select ts from TranslatedString as ts, Translation as t where (ts.translation = t and t.id = :id and ts.key = :key)" )
+                        .setInteger( "id", translationId ).setString( "key", key ).list();
+                if ( list.isEmpty() ) {
+                    return null;
+                }
+                else {
+                    if ( list.size() != 1 ) {
+                        logger.warn( "strings for key " + key + ", translationId " + translationId + " have " + list.size() + " options" );
+                    }
+                    return (TranslatedString) list.get( 0 );
+                }
             }
-            return (TranslatedString) list.get( 0 );
-        }
+        } );
     }
 
-    public static final int STRING_TRANSLATED = 0;
-    public static final int STRING_UNTRANSLATED = 1;
-    public static final int STRING_OUT_OF_DATE = 2;
+    public static enum StringStatus {
+        TRANSLATED,
+        UNTRANSLATED,
+        OUT_OF_DATE
+    }
 
-    public static int stringStatus( Session session, final String key, final int translationId ) {
-        StatusTask task = new StatusTask( translationId, key );
-        HibernateUtils.wrapTransaction( session, task );
-        return task.status;
+    /**
+     * Check the status of a string (untranslated, translated, or out of date)
+     *
+     * @param session       Hibernate session - transaction optional
+     * @param key           String key
+     * @param translationId Translation ID
+     * @return String status
+     */
+    public static StringStatus stringStatus( Session session, final String key, final int translationId ) {
+        return HibernateUtils.ensureTransaction( session, new Task<StringStatus>() {
+            public StringStatus run( Session session ) {
+                // check for existence
+                TranslatedString string = (TranslatedString) session.createQuery(
+                        "select ts from TranslatedString as ts where ts.translation.id = :id and ts.key = :key" )
+                        .setInteger( "id", translationId ).setString( "key", key ).uniqueResult();
+                if ( string == null ) {
+                    return StringStatus.UNTRANSLATED;
+                }
+
+                // if it exists, check for freshness
+                TranslatedString englishString = (TranslatedString) session.createQuery(
+                        "select ts from TranslatedString as ts where ts.translation.visible = true and ts.translation.locale = :locale and ts.key = :key" )
+                        .setLocale( "locale", WebsiteConstants.ENGLISH ).setString( "key", key ).uniqueResult();
+
+                // out-of-date if English string has been updated more recently
+                if ( englishString != null && string.getUpdatedAt().compareTo( englishString.getUpdatedAt() ) < 0 ) {
+                    return StringStatus.OUT_OF_DATE;
+                }
+                else {
+                    return StringStatus.TRANSLATED;
+                }
+            }
+        } );
     }
 
     public static String escapeFileString( String str ) {
@@ -301,70 +276,29 @@ public class StringUtils {
      *
      * @param session Hibernate session
      * @param key     Translation key
-     * @return Success
+     * @return Success (failure if there was no string?)
      */
     public static boolean deleteString( Session session, final String key ) {
-        // TODO: consider using session.getTransaction().isActive() to detect whether we are in a transaction or not
-        boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
-            public boolean run( Session session ) {
-                deleteStringWithinTransaction( session, key );
-                return true;
+        boolean success = HibernateUtils.ensureTransaction( session, new Task<Boolean>() {
+            public Boolean run( Session session ) {
+                String result = getStringDirect( session, key, WebsiteConstants.ENGLISH );
+                if ( result != null ) {
+                    logger.warn( "Deleting strings with key=" + key + ". English value=" + result );
+                    List strings = session.createQuery( "select ts from TranslatedString as ts where ts.key = :key" ).setString( "key", key ).list();
+                    for ( Object string : strings ) {
+                        TranslatedString str = (TranslatedString) string;
+                        str.getTranslation().removeString( str );
+                        session.delete( str );
+                    }
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         } );
         CacheUtils.clearTranslationEntityCache(); // trigger updates for translation entities
         return success;
-    }
-
-    /**
-     * Delete all translatable strings with a specific key, inside of a transaction
-     *
-     * @param session Hibernate session
-     * @param key     Translation key
-     */
-    public static void deleteStringWithinTransaction( Session session, final String key ) {
-        String result = getStringDirectWithinTransaction( session, key, WebsiteConstants.ENGLISH );
-        if ( result != null ) {
-            logger.warn( "Deleting strings with key=" + key + ". English value=" + result );
-            List strings = session.createQuery( "select ts from TranslatedString as ts where ts.key = :key" ).setString( "key", key ).list();
-            for ( Object string : strings ) {
-                TranslatedString str = (TranslatedString) string;
-                str.getTranslation().removeString( str );
-                session.delete( str );
-            }
-        }
-        CacheUtils.clearTranslationEntityCache(); // trigger updates for translation entities
-    }
-
-    private static class StatusTask implements HibernateTask {
-        public int status;
-        private final int translationId;
-        private final String key;
-
-        public StatusTask( int translationId, String key ) {
-            this.translationId = translationId;
-            this.key = key;
-            status = STRING_UNTRANSLATED;
-        }
-
-        public boolean run( Session session ) {
-            // should hit an error and return false if it doesn't exist
-            TranslatedString string = (TranslatedString) session.createQuery(
-                    "select ts from TranslatedString as ts where ts.translation.id = :id and ts.key = :key" )
-                    .setInteger( "id", translationId ).setString( "key", key ).uniqueResult();
-            if ( string != null ) {
-                status = STRING_TRANSLATED;
-            }
-            else {
-                return true;
-            }
-            TranslatedString englishString = (TranslatedString) session.createQuery(
-                    "select ts from TranslatedString as ts where ts.translation.visible = true and ts.translation.locale = :locale and ts.key = :key" )
-                    .setLocale( "locale", WebsiteConstants.ENGLISH ).setString( "key", key ).uniqueResult();
-            if ( string.getUpdatedAt().compareTo( englishString.getUpdatedAt() ) < 0 ) {
-                status = STRING_OUT_OF_DATE;
-            }
-            return true;
-        }
     }
 
     public static boolean isStringSet( Session session, final String key, final int translationId ) {
@@ -379,8 +313,8 @@ public class StringUtils {
         } );
     }
 
-    public static boolean setEnglishString( Session session, String key, String value ) {
-        return setString( session, key, value, WebsiteConstants.ENGLISH );
+    public static void setEnglishString( Session session, String key, String value ) {
+        setString( session, key, value, WebsiteConstants.ENGLISH );
     }
 
     /**
@@ -412,67 +346,46 @@ public class StringUtils {
         return str.replaceAll( "<br/>", "\n" );
     }
 
-    public static void setEnglishStringWithinTransaction( Session session, String key, String value ) {
-        setStringWithinTransaction( session, HibernateUtils.getTranslationWithinTransaction( session, WebsiteConstants.ENGLISH ), key, value );
-    }
+    public static void setString( Session session, final Translation translation, final String key, final String value ) {
+        final String mappedValue = mapStringForStorage( value );
 
-    public static void setStringWithinTransaction( Session session, Translation translation, String key, String value ) {
-        value = mapStringForStorage( value );
+        HibernateUtils.ensureTransaction( session, new VoidTask() {
+            public void run( Session session ) {
+                TranslatedString tString = getTranslatedString( session, key, translation.getId() );
 
-        TranslatedString tString = null;
+                // if there is no existing string, create a new one
+                if ( tString == null ) {
+                    tString = new TranslatedString();
+                    tString.initializeNewString( translation, key, mappedValue );
+                    session.save( tString );
+                    session.update( translation );
+                }
+                else {
+                    // otherwise, update the existing string
+                    tString.setValue( mappedValue );
+                    tString.setUpdatedAt( new Date() );
 
-        // look to see if we have an existing translated string
-        // TODO: inefficient. do a better lookup, since we probably index on string key!
-        for ( Object o : translation.getTranslatedStrings() ) {
-            TranslatedString ts = (TranslatedString) o;
-            if ( ts.getKey().equals( key ) ) {
-                tString = ts;
-                break;
-            }
-        }
+                    session.update( tString );
+                }
 
-        // if there is no existing string, create a new one
-        if ( tString == null ) {
-            tString = new TranslatedString();
-            tString.initializeNewString( translation, key, value );
-            session.save( tString );
-            session.update( translation );
-        }
-        else {
-            // otherwise, update the existing string
-            tString.setValue( value );
-            tString.setUpdatedAt( new Date() );
-
-            session.update( tString );
-        }
-
-        // if it's cached, change the cache entries so it doesn't fail
-        // TODO: fix: on transaction failure, we will have deposited the wrong value in the cache!!!
-        ( (PhetLocalizer) PhetWicketApplication.get().getResourceSettings().getLocalizer() ).updateCachedString( translation, key, value );
-    }
-
-    public static boolean setString( Session session, final String key, final String value, final Locale locale ) {
-        return HibernateUtils.wrapTransaction( session, new HibernateTask() {
-            public boolean run( Session session ) {
-                Translation translation = HibernateUtils.getTranslationWithinTransaction( session, locale );
-                setStringWithinTransaction( session, translation, key, value );
-                return true;
+                // if it's cached, change the cache entries so it doesn't fail
+                // TODO: fix: on transaction failure, we will have deposited the wrong value in the cache!!!  (consider converting to Wicket sources and modifying, OR completely overriding everything on Localizer?
+                ( (PhetLocalizer) PhetWicketApplication.get().getResourceSettings().getLocalizer() ).updateCachedString( translation, key, mappedValue );
             }
         } );
     }
 
-    public static boolean setString( Session session, final String key, final String value, final int translationId ) {
+    public static void setString( Session session, final String key, final String value, final Locale locale ) {
+        Translation translation = HibernateUtils.getTranslation( session, locale );
+        setString( session, translation, key, value );
+    }
+
+    public static void setString( Session session, final String key, final String value, final int translationId ) {
         logger.info( "Request to set string with key=" + key + " and value=" + value );
-        if ( value == null ) {
-            return false;
+        if ( value != null ) {
+            Translation translation = HibernateUtils.getTranslation( session, translationId );
+            setString( session, translation, key, value );
         }
-        return HibernateUtils.wrapTransaction( session, new HibernateTask() {
-            public boolean run( Session session ) {
-                Translation translation = HibernateUtils.getTranslationWithinTransaction( session, translationId );
-                setStringWithinTransaction( session, translation, key, value );
-                return true;
-            }
-        } );
     }
 
     private static String messageFormatFilter( String str ) {

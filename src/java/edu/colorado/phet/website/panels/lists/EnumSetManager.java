@@ -106,7 +106,7 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
                     if ( translatedString == null ) {
                         // if the string isn't translated yet, use the English version? hrmm...
                         // TODO: handle this with more grace. don't do the direct string
-                        translatedString = StringUtils.getDefaultStringDirect( session, getTranslationKey( type ) );
+                        translatedString = StringUtils.getEnglishStringDirect( session, getTranslationKey( type ) );
                     }
                     if ( translatedString == null ) {
                         logger.warn( "failure to get a good string for translation key " + getTranslationKey( type ) + " for val " + type );

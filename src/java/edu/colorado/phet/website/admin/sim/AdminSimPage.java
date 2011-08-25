@@ -602,26 +602,25 @@ public class AdminSimPage extends AdminPage {
             String preexistingValue = StringUtils.getStringDirect( getHibernateSession(), localizationKey, WebsiteConstants.ENGLISH );
             assert ( preexistingValue == null );
 
-            boolean success = StringUtils.setEnglishString( getHibernateSession(), localizationKey, value );
-            if ( success ) {
-                final Keyword keyword = new Keyword();
-                keyword.setKey( localizationKey );
-                success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
-                    public boolean run( Session session ) {
-                        List sameKeywords = session.createQuery( "select k from Keyword as k where k.key = :key" ).setString( "key", key ).list();
-                        if ( sameKeywords.isEmpty() ) {
-                            session.save( keyword );
-                            return true;
-                        }
-                        else {
-                            return false;
-                        }
+            StringUtils.setEnglishString( getHibernateSession(), localizationKey, value );
+
+            final Keyword keyword = new Keyword();
+            keyword.setKey( localizationKey );
+            boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                public boolean run( Session session ) {
+                    List sameKeywords = session.createQuery( "select k from Keyword as k where k.key = :key" ).setString( "key", key ).list();
+                    if ( sameKeywords.isEmpty() ) {
+                        session.save( keyword );
+                        return true;
                     }
-                } );
-                if ( success ) {
-                    allKeywords.add( keyword );
-                    sortKeywords( allKeywords );
+                    else {
+                        return false;
+                    }
                 }
+            } );
+            if ( success ) {
+                allKeywords.add( keyword );
+                sortKeywords( allKeywords );
             }
         }
     }
@@ -748,7 +747,7 @@ public class AdminSimPage extends AdminPage {
         }
 
         public String getCurrentValue() {
-            return StringUtils.getDefaultStringDirect( getHibernateSession(), simulation.getDescriptionKey() );
+            return StringUtils.getEnglishStringDirect( getHibernateSession(), simulation.getDescriptionKey() );
         }
     }
 
@@ -763,7 +762,7 @@ public class AdminSimPage extends AdminPage {
         }
 
         public String getCurrentValue() {
-            return StringUtils.getDefaultStringDirect( getHibernateSession(), simulation.getLearningGoalsKey() );
+            return StringUtils.getEnglishStringDirect( getHibernateSession(), simulation.getLearningGoalsKey() );
         }
     }
 

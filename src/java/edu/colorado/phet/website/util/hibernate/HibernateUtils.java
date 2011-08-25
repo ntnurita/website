@@ -503,12 +503,7 @@ public class HibernateUtils {
     }
 
     public static boolean resultTransaction( Session session, final VoidTask task ) {
-        return resultTransaction( session, new Task<Void>() {
-            public Void run( Session session ) {
-                task.run( session );
-                return null;
-            }
-        } ).success;
+        return resultTransaction( session, voidToVoid( task ) ).success;
     }
 
     // TODO: make a version of this that will not print out errors?
@@ -517,32 +512,29 @@ public class HibernateUtils {
     }
 
     public static boolean resultCatchTransaction( Session session, final VoidTask task ) {
-        return resultCatchTransaction( session, new Task<Void>() {
-            public Void run( Session session ) {
-                task.run( session );
-                return null;
-            }
-        } ).success;
+        return resultCatchTransaction( session, voidToVoid( task ) ).success;
     }
 
-    public static <T> Result<T> ensureTransaction( Session session, Task<T> task ) {
+    public static <T> T ensureTransaction( Session session, Task<T> task ) {
         if ( session.getTransaction().isActive() ) {
             // if we have a failure, it will be handled at the preceeding catch blocks
-            return new Result<T>( true, task.run( session ), null );
+            return task.run( session );
         }
         else {
-            return resultTransaction( session, task );
+            // we need to put it inside of a transaction, so we will wrap it here
+            Result<T> result = resultTransaction( session, task );
+            if ( result.success ) {
+                return result.value;
+            }
+            else {
+                // make sure we exception-out if we had a failure (particularly a task exception!!!)
+                throw new RuntimeException( result.exception );
+            }
         }
     }
 
     public static boolean ensureTransaction( Session session, VoidTask task ) {
-        if ( session.getTransaction().isActive() ) {
-            task.run( session );
-            return true;
-        }
-        else {
-            return resultTransaction( session, task );
-        }
+        return ensureTransaction( session, voidToBoolean( task ) );
     }
 
     public static boolean wrapTransaction( Session session, Task<Void> task ) {
@@ -550,13 +542,7 @@ public class HibernateUtils {
     }
 
     public static boolean wrapTransaction( Session session, final VoidTask task ) {
-        return transactionCore( session,
-                                new Task<Void>() {
-                                    public Void run( Session session ) {
-                                        task.run( session );
-                                        return null;
-                                    }
-                                }, true ).success;
+        return transactionCore( session, voidToVoid( task ), true ).success;
     }
 
     public static boolean wrapCatchTransaction( Session session, Task<Void> task ) {
@@ -564,13 +550,7 @@ public class HibernateUtils {
     }
 
     public static boolean wrapCatchTransaction( Session session, final VoidTask task ) {
-        return transactionCore( session,
-                                new Task<Void>() {
-                                    public Void run( Session session ) {
-                                        task.run( session );
-                                        return null;
-                                    }
-                                }, false ).success;
+        return transactionCore( session, voidToVoid( task ), false ).success;
     }
 
     private static <T> Result<T> transactionCore( Session session, Task<T> task, boolean throwHibernateExceptions ) {
@@ -582,14 +562,10 @@ public class HibernateUtils {
 
             ret = task.run( session );
 
-            //logger.debug( "tx isactive: " + tx.isActive() );
-            //logger.debug( "tx wascommited: " + tx.wasCommitted() );
             if ( tx.isActive() ) {
                 tx.commit();
             }
-            else {
-                //logger.warn( "tx not active", new RuntimeException( "exception made for stack trace" ) );
-            }
+
             return new Result<T>( true, ret, null );
         }
         catch ( TaskException e ) {
@@ -645,23 +621,49 @@ public class HibernateUtils {
     /**
      * Get the publicly-visible translation by its Locale
      *
-     * @param session Hibernate session
+     * @param session Hibernate session - transaction optional
      * @param locale  Locale
      * @return Translation
      */
-    public static Translation getTranslationWithinTransaction( Session session, Locale locale ) {
-        return (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", locale ).uniqueResult();
+    public static Translation getTranslation( Session session, final Locale locale ) {
+        return ensureTransaction( session, new Task<Translation>() {
+            public Translation run( Session session ) {
+                return (Translation) session.createQuery( "select t from Translation as t where t.visible = true and t.locale = :locale" ).setLocale( "locale", locale ).uniqueResult();
+            }
+        } );
     }
 
     /**
      * Translation lookup by ID
      *
-     * @param session       Hibernate session
+     * @param session       Hibernate session - transaction optional
      * @param translationId Translation ID
      * @return Translation
      */
-    public static Translation getTranslationWithinTransaction( Session session, int translationId ) {
-        return (Translation) session.load( Translation.class, translationId );
+    public static Translation getTranslation( Session session, final int translationId ) {
+        return ensureTransaction( session, new Task<Translation>() {
+            public Translation run( Session session ) {
+                return (Translation) session.load( Translation.class, translationId );
+            }
+        } );
+    }
+
+    private static Task<Void> voidToVoid( final VoidTask task ) {
+        return new Task<Void>() {
+            public Void run( Session session ) {
+                task.run( session );
+                return null;
+            }
+        };
+    }
+
+    private static Task<Boolean> voidToBoolean( final VoidTask task ) {
+        return new Task<Boolean>() {
+            public Boolean run( Session session ) {
+                task.run( session );
+                return true; // indicates success
+            }
+        };
     }
 
 }

@@ -173,10 +173,10 @@ public class PhetLocalizer extends Localizer {
 
         // perform a "default" lookup, which usually should give the English translation, if it exists
         if ( inTransaction ) {
-            lookup = StringUtils.getStringDirectWithinTransaction( session, key, WebsiteConstants.ENGLISH );
+            lookup = StringUtils.getStringDirect( session, key, WebsiteConstants.ENGLISH );
         }
         else {
-            lookup = StringUtils.getDefaultStringDirect( session, key );
+            lookup = StringUtils.getEnglishStringDirect( session, key );
         }
 
         if ( lookup != null ) {
@@ -348,7 +348,7 @@ public class PhetLocalizer extends Localizer {
 
         // perform the lookup
         if ( inTransaction ) {
-            lookup = StringUtils.getStringDirectWithinTransaction( session, key, translationId );
+            lookup = StringUtils.getStringDirect( session, key, translationId );
         }
         else {
             lookup = StringUtils.getStringDirect( session, key, translationId );
@@ -398,7 +398,7 @@ public class PhetLocalizer extends Localizer {
 
         // perform the lookup
         if ( inTransaction ) {
-            lookup = StringUtils.getStringDirectWithinTransaction( session, key, locale );
+            lookup = StringUtils.getStringDirect( session, key, locale );
         }
         else {
             lookup = StringUtils.getStringDirect( session, key, locale );

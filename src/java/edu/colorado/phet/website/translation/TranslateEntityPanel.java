@@ -37,6 +37,7 @@ import edu.colorado.phet.website.translation.entities.TranslationEntity;
 import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
+import edu.colorado.phet.website.util.StringUtils.StringStatus;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -115,7 +116,7 @@ public class TranslateEntityPanel extends PhetPanel {
                     @Override
                     protected void onSubmit( AjaxRequestTarget target ) {
                         super.onSubmit( target );
-                        int status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
+                        StringStatus status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
                         String value = model.getObject();
                         if ( value == null ) {
                             value = ""; // check in case they put in a blank string
@@ -123,12 +124,12 @@ public class TranslateEntityPanel extends PhetPanel {
                         if ( allowStringChange( tString.getKey(), value ) ) {
                             logger.info( "user " + PhetSession.get().getUser().getEmail() + " setting string " + tString.getKey() + " on translation #" + translationId );
                             StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
-                            if ( status == StringUtils.STRING_OUT_OF_DATE ) {
+                            if ( status == StringStatus.OUT_OF_DATE ) {
                                 Map<Integer, Integer> map = entity.getOutOfDateMap();
                                 Integer old = map.get( translationId );
                                 map.put( translationId, old - 1 );
                             }
-                            else if ( status == StringUtils.STRING_UNTRANSLATED ) {
+                            else if ( status == StringStatus.UNTRANSLATED ) {
                                 Map<Integer, Integer> map = entity.getUntranslatedMap();
                                 Integer old = map.get( translationId );
                                 map.put( translationId, old - 1 );
@@ -139,7 +140,7 @@ public class TranslateEntityPanel extends PhetPanel {
                             // mostly preventative measure to prevent attacks
                             String oldValue = StringUtils.getStringDirect( getHibernateSession(), tString.getKey(), translationId );
                             if ( oldValue == null ) {
-                                oldValue = StringUtils.getDefaultStringDirect( getHibernateSession(), tString.getKey() );
+                                oldValue = StringUtils.getEnglishStringDirect( getHibernateSession(), tString.getKey() );
                             }
                             model.setObject( StringUtils.mapStringForEditing( oldValue ) );
                         }
@@ -170,7 +171,7 @@ public class TranslateEntityPanel extends PhetPanel {
                     item.add( new AjaxLink( "translate-auto" ) {
                         public void onClick( AjaxRequestTarget target ) {
                             String value = TestTranslateString.translate( model.getObject(), "en", testLocale.getLanguage() );
-                            int status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
+                            StringStatus status = StringUtils.stringStatus( getHibernateSession(), tString.getKey(), translationId );
                             if ( value != null ) {
                                 StringUtils.setString( getHibernateSession(), tString.getKey(), value, translationId );
                             }
@@ -178,12 +179,12 @@ public class TranslateEntityPanel extends PhetPanel {
                             target.addComponent( item );
                             // TODO: consolidate with above functions
                             //page.getEntityListPanel().updateEntity( entity );
-                            if ( status == StringUtils.STRING_OUT_OF_DATE ) {
+                            if ( status == StringStatus.OUT_OF_DATE ) {
                                 Map<Integer, Integer> map = entity.getOutOfDateMap();
                                 Integer old = map.get( translationId );
                                 map.put( translationId, old - 1 );
                             }
-                            else if ( status == StringUtils.STRING_UNTRANSLATED ) {
+                            else if ( status == StringStatus.UNTRANSLATED ) {
                                 Map<Integer, Integer> map = entity.getUntranslatedMap();
                                 Integer old = map.get( translationId );
                                 map.put( translationId, old - 1 );
