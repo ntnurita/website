@@ -4,7 +4,11 @@
 
 package edu.colorado.phet.website.admin.deploy;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -14,8 +18,8 @@ import org.apache.log4j.Logger;
 import edu.colorado.phet.buildtools.BuildLocalProperties;
 import edu.colorado.phet.buildtools.JARGenerator;
 import edu.colorado.phet.buildtools.resource.ResourceDeployUtils;
-import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.buildtools.util.PhetJarSigner;
+import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.IProguardKeepClass;
 import edu.colorado.phet.common.phetcommon.util.StreamReaderThread;
 
@@ -112,10 +116,10 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                 inputStream.close();
             }
         }
-        catch( FileNotFoundException e ) {
+        catch ( FileNotFoundException e ) {
             e.printStackTrace();
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -179,11 +183,11 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                 copyJavaJNLPs();
             }
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
             return false;
         }
-        catch( InterruptedException e ) {
+        catch ( InterruptedException e ) {
             e.printStackTrace();
             return false;
         }
@@ -226,7 +230,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
                     try {
                         logger.warn( "JNLP does not exist: " + baseJnlpFile.getCanonicalPath() );
                     }
-                    catch( IOException e ) {
+                    catch ( IOException e ) {
                         e.printStackTrace();
                     }
                     finally {

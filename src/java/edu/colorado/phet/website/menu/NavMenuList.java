@@ -7,7 +7,6 @@ package edu.colorado.phet.website.menu;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -16,7 +15,6 @@ import org.apache.wicket.model.ResourceModel;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.VisListView;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;

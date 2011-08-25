@@ -21,10 +21,10 @@ public class DonateEntity extends TranslationEntity {
         addString( "donate.note" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new DonatePanel( id, context );
-            }
-        }, "Donate page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new DonatePanel( id, context );
+                        }
+                    }, "Donate page" );
     }
 
     public String getDisplayName() {

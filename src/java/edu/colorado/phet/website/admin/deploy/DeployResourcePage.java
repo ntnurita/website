@@ -6,7 +6,12 @@ package edu.colorado.phet.website.admin.deploy;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
@@ -48,7 +53,7 @@ public class DeployResourcePage extends AdminPage {
                 return;
             }
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
 
@@ -75,7 +80,7 @@ public class DeployResourcePage extends AdminPage {
         }
         else {
             boolean ok;
-            synchronized( usedLock ) {
+            synchronized ( usedLock ) {
                 ok = !usedDirs.contains( resourceTmpDir );
                 if ( ok ) {
                     usedDirs.add( resourceTmpDir );
@@ -140,7 +145,7 @@ public class DeployResourcePage extends AdminPage {
                 try {
                     FileUtils.writeString( new File( resourceTmpDir, "error.txt" ), "errored at " + new Date() );
                 }
-                catch( IOException e ) {
+                catch ( IOException e ) {
                     e.printStackTrace();
                 }
             }
@@ -207,7 +212,7 @@ public class DeployResourcePage extends AdminPage {
             try {
                 FileUtils.writeString( new File( resourceTmpDir, "error.txt" ), "errored at " + new Date() );
             }
-            catch( IOException e ) {
+            catch ( IOException e ) {
                 e.printStackTrace();
             }
         }

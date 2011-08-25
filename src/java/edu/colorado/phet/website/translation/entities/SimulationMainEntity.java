@@ -75,34 +75,34 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "changelog.backToSimulation" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
 
-                Session session = requestCycle.getHibernateSession();
-                LocalizedSimulation simulation = null;
-                Transaction tx = null;
-                try {
-                    tx = session.beginTransaction();
+                            Session session = requestCycle.getHibernateSession();
+                            LocalizedSimulation simulation = null;
+                            Transaction tx = null;
+                            try {
+                                tx = session.beginTransaction();
 
-                    simulation = HibernateUtils.getExampleSimulation( session, context.getLocale() );
+                                simulation = HibernateUtils.getExampleSimulation( session, context.getLocale() );
 
-                    tx.commit();
-                }
-                catch( RuntimeException e ) {
-                    logger.warn( "Exception: " + e );
-                    if ( tx != null && tx.isActive() ) {
-                        try {
-                            tx.rollback();
+                                tx.commit();
+                            }
+                            catch ( RuntimeException e ) {
+                                logger.warn( "Exception: " + e );
+                                if ( tx != null && tx.isActive() ) {
+                                    try {
+                                        tx.rollback();
+                                    }
+                                    catch ( HibernateException e1 ) {
+                                        logger.error( "ERROR: Error rolling back transaction", e1 );
+                                    }
+                                    throw e;
+                                }
+                            }
+
+                            return new SimulationMainPanel( id, simulation, context );
                         }
-                        catch( HibernateException e1 ) {
-                            logger.error( "ERROR: Error rolling back transaction", e1 );
-                        }
-                        throw e;
-                    }
-                }
-
-                return new SimulationMainPanel( id, simulation, context );
-            }
-        }, "Main Simulation Page" );
+                    }, "Main Simulation Page" );
     }
 
     public String getDisplayName() {

@@ -7,7 +7,15 @@ package edu.colorado.phet.website.panels.contribution;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
@@ -15,7 +23,14 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
+import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
+import org.apache.wicket.markup.html.form.RequiredTextField;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -37,11 +52,24 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.contribution.ContributionSuccessPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
-import edu.colorado.phet.website.data.contribution.*;
+import edu.colorado.phet.website.data.contribution.Contribution;
+import edu.colorado.phet.website.data.contribution.ContributionFile;
+import edu.colorado.phet.website.data.contribution.ContributionLevel;
+import edu.colorado.phet.website.data.contribution.ContributionSubject;
+import edu.colorado.phet.website.data.contribution.ContributionType;
+import edu.colorado.phet.website.data.contribution.Level;
+import edu.colorado.phet.website.data.contribution.Subject;
+import edu.colorado.phet.website.data.contribution.Type;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.panels.MultipleFileUploadPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.panels.lists.*;
+import edu.colorado.phet.website.panels.lists.EnumSetManager;
+import edu.colorado.phet.website.panels.lists.LevelSetManager;
+import edu.colorado.phet.website.panels.lists.SimOrderItem;
+import edu.colorado.phet.website.panels.lists.SimSetManager;
+import edu.colorado.phet.website.panels.lists.SortedList;
+import edu.colorado.phet.website.panels.lists.SubjectSetManager;
+import edu.colorado.phet.website.panels.lists.TypeSetManager;
 import edu.colorado.phet.website.translation.LocaleDropDownChoice;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -229,7 +257,7 @@ public class ContributionEditPanel extends PhetPanel {
             uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
             add( uploadPanel );
 
-            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[]{
+            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[] {
                     ContributionFile.getFiletypes( ContributionEditPanel.this )
             } ) );
 
@@ -263,8 +291,8 @@ public class ContributionEditPanel extends PhetPanel {
 
             //stdK4A = new CheckBox( "stdK4A", new Model( creating ? Boolean.FALSE : new Boolean( contribution.isStandardK4A() ) ) ); add( stdK4A );
 
-            for ( String level : new String[]{"K4", "58", "912"} ) {
-                for ( String standard : new String[]{"A", "B", "C", "D", "E", "F", "G"} ) {
+            for ( String level : new String[] { "K4", "58", "912" } ) {
+                for ( String standard : new String[] { "A", "B", "C", "D", "E", "F", "G" } ) {
                     add( new CheckBox( "standard" + level + standard ) );
                 }
             }
@@ -278,7 +306,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{uploadPanel.getField()};
+                    return new FormComponent[] { uploadPanel.getField() };
                 }
 
                 public void validate( Form form ) {
@@ -302,7 +330,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent()};
+                    return new FormComponent[] { simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent() };
                 }
 
                 public void validate( Form form ) {
@@ -519,7 +547,7 @@ public class ContributionEditPanel extends PhetPanel {
                         try {
                             upload.writeTo( file );
                         }
-                        catch( IOException e ) {
+                        catch ( IOException e ) {
                             e.printStackTrace();
                             logger.warn( "upload failed", e );
                             return false;

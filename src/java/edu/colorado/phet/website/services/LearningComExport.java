@@ -4,7 +4,14 @@
 
 package edu.colorado.phet.website.services;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
@@ -20,7 +27,6 @@ import edu.colorado.phet.website.util.RawCSV;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * CSV of simulation data that is targetted towards exporting data to learning.com

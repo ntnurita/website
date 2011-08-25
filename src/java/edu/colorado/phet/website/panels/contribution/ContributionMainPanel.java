@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -26,7 +25,6 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
@@ -38,7 +36,12 @@ import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
-import edu.colorado.phet.website.data.contribution.*;
+import edu.colorado.phet.website.data.contribution.Contribution;
+import edu.colorado.phet.website.data.contribution.ContributionComment;
+import edu.colorado.phet.website.data.contribution.ContributionFile;
+import edu.colorado.phet.website.data.contribution.ContributionLevel;
+import edu.colorado.phet.website.data.contribution.ContributionSubject;
+import edu.colorado.phet.website.data.contribution.ContributionType;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
@@ -72,7 +75,7 @@ public class ContributionMainPanel extends PhetPanel {
             add( new InvisibleComponent( "admin-contrib-panel" ) );
         }
 
-        title = StringUtils.messageFormat( getPhetLocalizer().getString( "contribution.title", this ), new Object[]{
+        title = StringUtils.messageFormat( getPhetLocalizer().getString( "contribution.title", this ), new Object[] {
                 HtmlUtils.encode( contribution.getTitle() )
         } );
         //title = "PhET contribution: " + HtmlUtils.encode( contribution.getTitle() );
@@ -101,7 +104,7 @@ public class ContributionMainPanel extends PhetPanel {
             }
         } );
 
-        add( new LocalizedText( "zip-link", "contribution.view.zipDownload", new Object[]{
+        add( new LocalizedText( "zip-link", "contribution.view.zipDownload", new Object[] {
                 contribution.getZipLinker().getHref( context, getPhetCycle() )
         } ) );
 
@@ -138,7 +141,7 @@ public class ContributionMainPanel extends PhetPanel {
         }
 
         if ( contribution.getDuration() != 0 ) {
-            add( new LocalizedText( "duration", "contribution.duration", new Object[]{
+            add( new LocalizedText( "duration", "contribution.duration", new Object[] {
                     contribution.getDuration()
             } ) );
         }
@@ -249,7 +252,7 @@ public class ContributionMainPanel extends PhetPanel {
         commentContrib2.add( new AttributeAppender( "value", new Model<String>( Integer.toString( contribution.getId() ) ), "" ) );
 
         add( new StaticImage( "gold-star-nominate", Images.GOLD_STAR, "Gold Star Contribution" ) );
-        add( new LocalizedText( "contribution-nominate-text", "contribution.view.nominateText", new Object[]{
+        add( new LocalizedText( "contribution-nominate-text", "contribution.view.nominateText", new Object[] {
                 ContributionGuidelinesPanel.getLinker().getHref( context, getPhetCycle() ),
                 Linkers.CONTRIBUTION_GUIDELINES_PDF.getHref( context, getPhetCycle() )
         } ) );

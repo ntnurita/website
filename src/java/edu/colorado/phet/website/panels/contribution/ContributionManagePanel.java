@@ -7,12 +7,10 @@ package edu.colorado.phet.website.panels.contribution;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.panels.PhetPanel;

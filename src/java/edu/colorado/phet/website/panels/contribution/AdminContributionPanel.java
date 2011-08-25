@@ -7,13 +7,11 @@ package edu.colorado.phet.website.panels.contribution;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.contribution.ContributionEditPage;
 import edu.colorado.phet.website.data.contribution.Contribution;

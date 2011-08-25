@@ -11,7 +11,6 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.xhtmlrenderer.util.XRRuntimeException;
-import org.xml.sax.SAXParseException;
 
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;

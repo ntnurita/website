@@ -48,7 +48,7 @@ public class ContributionEditPage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^contributions/edit/([^/]+)$", ContributionEditPage.class, new String[]{"contributionId"} );
+        mapper.addMap( "^contributions/edit/([^/]+)$", ContributionEditPage.class, new String[] { "contributionId" } );
     }
 
     public static RawLinkable getLinker( final int contributionId ) {

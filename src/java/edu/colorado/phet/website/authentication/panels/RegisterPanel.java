@@ -7,7 +7,11 @@ package edu.colorado.phet.website.authentication.panels;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -170,13 +174,13 @@ public class RegisterPanel extends PhetPanel {
 
                     tx.commit();
                 }
-                catch( RuntimeException e ) {
+                catch ( RuntimeException e ) {
                     logger.warn( e );
                     if ( tx != null && tx.isActive() ) {
                         try {
                             tx.rollback();
                         }
-                        catch( HibernateException e1 ) {
+                        catch ( HibernateException e1 ) {
                             logger.error( "ERROR: Error rolling back transaction", e1 );
                         }
                         throw e;

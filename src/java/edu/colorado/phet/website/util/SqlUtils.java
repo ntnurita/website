@@ -5,7 +5,11 @@
 package edu.colorado.phet.website.util;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 
@@ -43,17 +47,17 @@ public class SqlUtils {
                 }
             }
         }
-        catch( ClassNotFoundException e ) {
+        catch ( ClassNotFoundException e ) {
             e.printStackTrace();
             logger.warn( "sqlutils", e );
             success = false;
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
             logger.warn( "sqlutils", e );
             success = false;
         }
-        catch( SQLException e ) {
+        catch ( SQLException e ) {
             e.printStackTrace();
             logger.warn( "sqlutils", e );
             success = false;

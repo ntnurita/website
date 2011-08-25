@@ -33,7 +33,6 @@ import edu.colorado.phet.website.util.TranslationUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 public class TranslateLanguagePage extends TranslationPage {

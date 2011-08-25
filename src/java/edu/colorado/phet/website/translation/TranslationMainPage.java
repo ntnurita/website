@@ -23,7 +23,6 @@ import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 /**
@@ -85,7 +84,7 @@ public class TranslationMainPage extends TranslationPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "for-translators/website", TranslationMainPage.class, new String[]{} );
+        mapper.addMap( "for-translators/website", TranslationMainPage.class, new String[] { } );
     }
 
     public static AbstractLinker getLinker() {

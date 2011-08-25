@@ -52,22 +52,22 @@ public class ForTeachersEntity extends TranslationEntity {
         addString( "for-teachers.classroom-use.title" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TeacherIdeasPanel( id, context );
-            }
-        }, "For Teachers" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TeacherIdeasPanel( id, context );
+                        }
+                    }, "For Teachers" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ContributionGuidelinesPanel( id, context );
-            }
-        }, "Contribution guidelines" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ContributionGuidelinesPanel( id, context );
+                        }
+                    }, "Contribution guidelines" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ClassroomUsePanel( id, context );
-            }
-        }, "Classroom Use" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ClassroomUsePanel( id, context );
+                        }
+                    }, "Classroom Use" );
 
     }
 

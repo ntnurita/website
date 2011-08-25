@@ -69,16 +69,16 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.about.licensing" );
         addString( "nav.sponsors" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                HashSet<NavLocation> locations = new HashSet<NavLocation>();
-                locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "motion" ) );
-                locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "tools" ) );
-                locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "get-phet.full-install" ) );
-                locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "troubleshooting.java" ) );
-                locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "about.licensing" ) );
-                return new SideNavMenu( id, context, locations );
-            }
-        }, "Navigation Menu" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            HashSet<NavLocation> locations = new HashSet<NavLocation>();
+                            locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "motion" ) );
+                            locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "tools" ) );
+                            locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "get-phet.full-install" ) );
+                            locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "troubleshooting.java" ) );
+                            locations.add( ( (PhetWicketApplication) requestCycle.getApplication() ).getMenu().getLocationByKey( "about.licensing" ) );
+                            return new SideNavMenu( id, context, locations );
+                        }
+                    }, "Navigation Menu" );
 
         // categories (and translatable strings) can change now during runtime, so we need to keep this up to date
         HibernateEventListener.addListener( Category.class, new AbstractChangeListener() {

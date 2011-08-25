@@ -132,7 +132,7 @@ public abstract class EventDependency {
      * @return A convenience listener that will invalidate the cache entry upon any insert, update or delete events
      */
     protected final IChangeListener getAnyChangeInvalidator() {
-        synchronized( this ) {
+        synchronized ( this ) {
             if ( anyChangeListener == null ) {
                 anyChangeListener = new IChangeListener() {
                     public void onInsert( Object object, PostInsertEvent event ) {
@@ -160,7 +160,7 @@ public abstract class EventDependency {
      * @return A convenience listener that will invalidate the cache when the visible translation list is changed.
      */
     protected final PhetWicketApplication.TranslationChangeListener getTranslationChangeInvalidator() {
-        synchronized( this ) {
+        synchronized ( this ) {
             if ( translationChangeListener == null ) {
                 translationChangeListener = new PhetWicketApplication.TranslationChangeListener() {
                     public void onChange() {

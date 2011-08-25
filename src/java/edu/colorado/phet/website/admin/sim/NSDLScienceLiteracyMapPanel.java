@@ -25,7 +25,6 @@ import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Displays a list of NSDL Science Literacy Map keys that are used by a simulation, and allows keys to be added or removed

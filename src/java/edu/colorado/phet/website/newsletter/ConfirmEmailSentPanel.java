@@ -17,19 +17,19 @@ public class ConfirmEmailSentPanel extends PhetPanel {
 
         // show them the "newsletter" option if they are newsletter-only, OR if they are already registered and confirmed.
         if ( user.isNewsletterOnlyAccount() || user.isConfirmed() ) {
-            add( new LocalizedText( "toFinish", "newsletter.toFinishSubscribing", new Object[]{
+            add( new LocalizedText( "toFinish", "newsletter.toFinishSubscribing", new Object[] {
                     HtmlUtils.encode( user.getEmail() )
             } ) );
             add( new LocalizedText( "pleaseCheck", "newsletter.pleaseCheckSubscribing" ) );
         }
         else {
-            add( new LocalizedText( "toFinish", "newsletter.toFinishRegistering", new Object[]{
+            add( new LocalizedText( "toFinish", "newsletter.toFinishRegistering", new Object[] {
                     HtmlUtils.encode( user.getEmail() )
             } ) );
             add( new LocalizedText( "pleaseCheck", "newsletter.pleaseCheckRegistering" ) );
         }
 
-        add( new LocalizedText( "trouble", "newsletter.troubleshooting", new Object[]{
+        add( new LocalizedText( "trouble", "newsletter.troubleshooting", new Object[] {
                 "<a href=\"mailto:" + WebsiteConstants.HELP_EMAIL + "\">" + WebsiteConstants.HELP_EMAIL + "</a>" // TODO: factor out somewhere
         } ) );
     }

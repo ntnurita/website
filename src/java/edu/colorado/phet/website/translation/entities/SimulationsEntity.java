@@ -50,13 +50,13 @@ public class SimulationsEntity extends TranslationEntity {
         }
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                final List<LocalizedSimulation> simulations = new LinkedList<LocalizedSimulation>();
-                HibernateUtils.addPreferredFullSimulationList( simulations, requestCycle.getHibernateSession(), context.getLocale() );
-                HibernateUtils.orderSimulations( simulations, context.getLocale() );
-                return new SimulationMainPanel( id, simulations.get( 0 ), context );
-            }
-        }, "1st simulation page with description and learning goals" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            final List<LocalizedSimulation> simulations = new LinkedList<LocalizedSimulation>();
+                            HibernateUtils.addPreferredFullSimulationList( simulations, requestCycle.getHibernateSession(), context.getLocale() );
+                            HibernateUtils.orderSimulations( simulations, context.getLocale() );
+                            return new SimulationMainPanel( id, simulations.get( 0 ), context );
+                        }
+                    }, "1st simulation page with description and learning goals" );
     }
 
     public String getDisplayName() {

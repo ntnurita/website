@@ -63,7 +63,6 @@ import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 import static edu.colorado.phet.website.util.HtmlUtils.encode;

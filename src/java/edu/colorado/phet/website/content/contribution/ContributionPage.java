@@ -60,7 +60,7 @@ public class ContributionPage extends PhetRegularPage {
 
     public static void addToMapper( PhetUrlMapper mapper ) {
         // WARNING: don't change without also changing the old URL redirection
-        mapper.addMap( "^contributions/view/([^/]+)$", ContributionPage.class, new String[]{"contribution"} );
+        mapper.addMap( "^contributions/view/([^/]+)$", ContributionPage.class, new String[] { "contribution" } );
     }
 
     public static RawLinkable getLinker( final int contributionId ) {

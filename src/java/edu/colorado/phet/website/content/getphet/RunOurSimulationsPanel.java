@@ -4,10 +4,7 @@
 
 package edu.colorado.phet.website.content.getphet;
 
-import org.apache.wicket.behavior.HeaderContributor;
-
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
@@ -27,11 +24,11 @@ public class RunOurSimulationsPanel extends PhetPanel {
         add( new LocalizedText( "get-phet-install-header", "get-phet.install.header" ) );
         add( new LocalizedText( "get-phet-offline-header", "get-phet.offline.header" ) );
 
-        add( new LocalizedText( "get-phet-install-howToGet", "get-phet.install.howToGet", new Object[]{
+        add( new LocalizedText( "get-phet-install-howToGet", "get-phet.install.howToGet", new Object[] {
                 FullInstallPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "get-phet-offline-howToGet", "get-phet.offline.howToGet", new Object[]{
+        add( new LocalizedText( "get-phet-offline-howToGet", "get-phet.offline.howToGet", new Object[] {
                 OneAtATimePanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 

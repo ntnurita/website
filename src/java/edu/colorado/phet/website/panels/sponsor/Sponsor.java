@@ -18,7 +18,11 @@ import edu.colorado.phet.website.components.LinkWrapper;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.util.*;
+import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.HtmlUtils;
+import edu.colorado.phet.website.util.ImageHandle;
+import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.links.RawLinker;
 
 /**
@@ -195,7 +199,7 @@ public abstract class Sponsor implements Serializable {
     public static Random random = new Random();
 
     // NOTE: on adding a sponsor, do we need to update the installer to rip the image?
-    public static Sponsor[] ActiveSponsors = new Sponsor[]{
+    public static Sponsor[] ActiveSponsors = new Sponsor[] {
             HEWLETT_FOUNDATION,
             NSF,
             KSU,

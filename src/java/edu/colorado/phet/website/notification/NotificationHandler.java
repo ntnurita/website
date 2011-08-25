@@ -4,7 +4,14 @@
 
 package edu.colorado.phet.website.notification;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import javax.mail.BodyPart;
 import javax.mail.MessagingException;
@@ -38,7 +45,6 @@ import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Handles email notification of events that should be reviewed by the PhET team
@@ -192,7 +198,7 @@ public class NotificationHandler {
 
             return EmailUtils.sendMessage( message );
         }
-        catch( MessagingException e ) {
+        catch ( MessagingException e ) {
             logger.warn( "Email failure on attempting to notify of translation " + action, e );
             return false;
         }
@@ -246,7 +252,7 @@ public class NotificationHandler {
                 logger.info( "Sending automatic translation notification to " + user.getEmail() );
                 EmailUtils.sendMessage( message );
             }
-            catch( MessagingException e ) {
+            catch ( MessagingException e ) {
                 logger.warn( "Email failure on attempting to notify of translation creation to user " + user.getEmail(), e );
             }
         }
@@ -299,7 +305,7 @@ public class NotificationHandler {
 
             return EmailUtils.sendMessage( message );
         }
-        catch( MessagingException e ) {
+        catch ( MessagingException e ) {
             logger.warn( "Email failure on sending collaboration request", e );
             return false;
         }

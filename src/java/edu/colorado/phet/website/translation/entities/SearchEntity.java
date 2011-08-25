@@ -25,10 +25,10 @@ public class SearchEntity extends TranslationEntity {
         addString( "search.autocomplete.simulation", "{0} will be replaced by the simulation name, and will be displayed in the autocomplete area" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new SearchResultsPanel( id, context, "electricity" );
-            }
-        }, "Search Results" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new SearchResultsPanel( id, context, "electricity" );
+                        }
+                    }, "Search Results" );
     }
 
     public String getDisplayName() {

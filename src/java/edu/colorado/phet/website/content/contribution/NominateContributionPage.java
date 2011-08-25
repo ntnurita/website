@@ -87,7 +87,7 @@ public class NominateContributionPage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^contributions/submit-nomination", NominateContributionPage.class, new String[]{} );
+        mapper.addMap( "^contributions/submit-nomination", NominateContributionPage.class, new String[] { } );
     }
 
     public static RawLinkable getLinker( final int contributionId, final String text ) {
@@ -97,7 +97,7 @@ public class NominateContributionPage extends PhetRegularPage {
                 try {
                     return "contributions/submit-nomination?contribution_id=" + contributionId + "&reason=" + URLEncoder.encode( text, "UTF-8" );
                 }
-                catch( UnsupportedEncodingException e ) {
+                catch ( UnsupportedEncodingException e ) {
                     e.printStackTrace();
                     throw new RuntimeException( e );
                 }

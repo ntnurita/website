@@ -97,7 +97,7 @@ public class TranslationUserPanel extends PhetPanel {
 
             add( new AjaxButton( "submit-button", this ) {
                 protected void onSubmit( AjaxRequestTarget target, Form form ) {
-                    final PhetUser[] phetUsers = new PhetUser[]{null};
+                    final PhetUser[] phetUsers = new PhetUser[] { null };
 
                     final String email = userField.getModelObject().toString();
 

@@ -4,9 +4,19 @@
 
 package edu.colorado.phet.website.data.contribution;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.text.Collator;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -166,8 +176,9 @@ public class Contribution implements Serializable, DataListener, IntId {
 
     /**
      * Sort a list of contributions
+     *
      * @param contributions List of contributions
-     * @param locale The locale to use for sorting
+     * @param locale        The locale to use for sorting
      */
     public static void orderContributions( List<Contribution> contributions, final Locale locale ) {
         final Comparator<Object> collator = Collator.getInstance( locale );
@@ -240,7 +251,7 @@ public class Contribution implements Serializable, DataListener, IntId {
         try {
             createZipFile();
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
             logger.error( "unable to recreate zip file for contribution " + id, e );
         }

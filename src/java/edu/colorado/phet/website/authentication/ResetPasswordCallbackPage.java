@@ -47,7 +47,7 @@ public class ResetPasswordCallbackPage extends PhetMenuPage {
     }
 
     private PhetUser lookupUserForResetPasswordKey( final String key ) {
-        final PhetUser[] savedUser = {null};
+        final PhetUser[] savedUser = { null };
         boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
             public boolean run( Session session ) {
                 List matches = session.createQuery( "select ts from ResetPasswordRequest as ts where ts.key = :key" ).setString( "key", key ).list();

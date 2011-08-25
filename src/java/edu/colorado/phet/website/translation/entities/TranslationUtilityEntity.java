@@ -58,16 +58,16 @@ public class TranslationUtilityEntity extends TranslationEntity {
         addString( "translationUtility.bugReports.whatToDo" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ForTranslatorsPanel( id, context );
-            }
-        }, "For Translators" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ForTranslatorsPanel( id, context );
+                        }
+                    }, "For Translators" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TranslationUtilityPanel( id, context );
-            }
-        }, "Translation Utility" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TranslationUtilityPanel( id, context );
+                        }
+                    }, "Translation Utility" );
     }
 
     public String getDisplayName() {

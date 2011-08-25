@@ -4,7 +4,11 @@
 
 package edu.colorado.phet.website.content.simulations;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
@@ -49,7 +53,7 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
         final List<LocalizedSimulation> untranslatedSimulations = new LinkedList<LocalizedSimulation>();
         final Map<Simulation, String> simNameDefault = new HashMap<Simulation, String>();
 
-        add( new LocalizedText( "untranslated-header", "simulations.translated.untranslated", new Object[]{
+        add( new LocalizedText( "untranslated-header", "simulations.translated.untranslated", new Object[] {
                 StringUtils.getLocaleTitle( locale, context.getLocale(), PhetLocalizer.get() )
         } ) );
 
@@ -146,7 +150,7 @@ public class TranslationListPanel extends PhetPanel implements CacheableUrlStati
             } );
         }
 
-        add( new LocalizedText( "remaining", "simulations.translated.toTranslate", new Object[]{
+        add( new LocalizedText( "remaining", "simulations.translated.toTranslate", new Object[] {
                 TranslationUtilityPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 

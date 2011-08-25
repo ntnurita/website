@@ -52,7 +52,7 @@ public class ContributionSuccessPage extends PhetMenuPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^contributions/update-success/([^/]+)$", ContributionSuccessPage.class, new String[]{"contribution"} );
+        mapper.addMap( "^contributions/update-success/([^/]+)$", ContributionSuccessPage.class, new String[] { "contribution" } );
     }
 
     public static RawLinkable getLinker( final int contributionId ) {

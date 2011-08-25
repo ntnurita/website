@@ -80,7 +80,7 @@ public class ChangePasswordPanel extends PhetPanel {
                 // verify the user's current password
                 add( new AbstractFormValidator() {
                     public FormComponent[] getDependentFormComponents() {
-                        return new FormComponent[]{currentPasswordTextField};
+                        return new FormComponent[] { currentPasswordTextField };
                     }
 
                     public void validate( Form<?> form ) {
@@ -102,7 +102,7 @@ public class ChangePasswordPanel extends PhetPanel {
             // make sure the user's new password matches
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{newPasswordTextField, confirmNewPasswordTextField};
+                    return new FormComponent[] { newPasswordTextField, confirmNewPasswordTextField };
                 }
 
                 public void validate( Form<?> form ) {

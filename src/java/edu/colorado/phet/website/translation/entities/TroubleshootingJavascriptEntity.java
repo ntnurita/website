@@ -29,10 +29,10 @@ public class TroubleshootingJavascriptEntity extends TranslationEntity {
         addString( "troubleshooting.javascript.q5.title" );
         addString( "troubleshooting.javascript.q5.answer" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TroubleshootingJavascriptPanel( id, context );
-            }
-        }, "Troubleshooting (javascript)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TroubleshootingJavascriptPanel( id, context );
+                        }
+                    }, "Troubleshooting (javascript)" );
     }
 
     public String getDisplayName() {

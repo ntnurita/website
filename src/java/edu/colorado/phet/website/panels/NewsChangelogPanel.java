@@ -4,7 +4,12 @@
 
 package edu.colorado.phet.website.panels;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
@@ -17,7 +22,11 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.VisListView;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
-import edu.colorado.phet.website.data.*;
+import edu.colorado.phet.website.data.Changelog;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
+import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.util.PageContext;

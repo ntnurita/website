@@ -37,10 +37,10 @@ public class FullInstallEntity extends TranslationEntity {
         addString( "installer.mostUpToDate" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new FullInstallPanel( id, context );
-            }
-        }, "Full Installation Page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new FullInstallPanel( id, context );
+                        }
+                    }, "Full Installation Page" );
     }
 
     public String getDisplayName() {

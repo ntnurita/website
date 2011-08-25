@@ -26,7 +26,6 @@ import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Displays a list of LRE-0001 (LRETerm) terms that are associated with the simulation, and allows adding and removal of the terms

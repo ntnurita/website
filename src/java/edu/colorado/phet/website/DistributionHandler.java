@@ -8,7 +8,11 @@ import org.apache.log4j.Logger;
 
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.ResearchPanel;
-import edu.colorado.phet.website.content.about.*;
+import edu.colorado.phet.website.content.about.AboutContactPanel;
+import edu.colorado.phet.website.content.about.AboutLicensingPanel;
+import edu.colorado.phet.website.content.about.AboutMainPanel;
+import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
+import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
@@ -151,7 +155,7 @@ public class DistributionHandler {
      * Pages which we want all links to them to point to phet.colorado.edu sub-sites (depend on the particular page)
      * Young & Freedman specific
      */
-    private static final Class[] yfPageRedirects = new Class[]{
+    private static final Class[] yfPageRedirects = new Class[] {
             AboutContactPanel.class,
             AboutLicensingPanel.class,
             AboutMainPanel.class,
@@ -264,7 +268,7 @@ public class DistributionHandler {
 
     public static String[] getDistributionServers( PhetRequestCycle cycle ) {
         if ( cycle.isInstaller() ) {
-            return new String[]{PhetWicketApplication.get().getWebsiteProperties().getWebHostname()};
+            return new String[] { PhetWicketApplication.get().getWebsiteProperties().getWebHostname() };
         }
         else {
             return PhetWicketApplication.DATA_SERVERS;

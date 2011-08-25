@@ -18,7 +18,11 @@ import org.hibernate.criterion.Restrictions;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.data.Simulation;
-import edu.colorado.phet.website.data.contribution.*;
+import edu.colorado.phet.website.data.contribution.Contribution;
+import edu.colorado.phet.website.data.contribution.ContributionLevel;
+import edu.colorado.phet.website.data.contribution.ContributionType;
+import edu.colorado.phet.website.data.contribution.Level;
+import edu.colorado.phet.website.data.contribution.Type;
 import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.panels.contribution.ContributionEmptyPanel;
 import edu.colorado.phet.website.panels.contribution.ContributionSearchPanel;

@@ -19,7 +19,11 @@ import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.WebsiteConstants;
-import edu.colorado.phet.website.content.about.*;
+import edu.colorado.phet.website.content.about.AboutContactPanel;
+import edu.colorado.phet.website.content.about.AboutLicensingPanel;
+import edu.colorado.phet.website.content.about.AboutMainPanel;
+import edu.colorado.phet.website.content.about.AboutNewsPanel;
+import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
@@ -68,16 +72,16 @@ public class IndexPanel extends PhetPanel {
             add( new InvisibleComponent( "odf-and" ) );
         }
 
-        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[]{
+        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
                 "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
         } ) );
-        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[]{
+        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[] {
                 "<img class=\"index-social-image\" src=\"/images/icons/social/twitter.png\" alt=\"Twitter icon\" width=\"16\" height=\"16\"/>"
         } ) );
         add( new LocalizedText( "blog-text", "home.blogText" ) );
         add( InitialSubscribePage.getLinker().getLink( "subscribe-link", context, getPhetCycle() ) );
 
-        add( new LocalizedText( "index-main-text", "home.subheader", new Object[]{
+        add( new LocalizedText( "index-main-text", "home.subheader", new Object[] {
                 ResearchPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
@@ -115,7 +119,7 @@ public class IndexPanel extends PhetPanel {
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );
         add( AboutNewsPanel.getLinker().getLink( "about-news", context, getPhetCycle() ) );
         add( AboutContactPanel.getLinker().getLink( "about-contact", context, getPhetCycle() ) );
-        add( new LocalizedText( "other-sponsors", "home.about.alongWithOurSponsors", new Object[]{
+        add( new LocalizedText( "other-sponsors", "home.about.alongWithOurSponsors", new Object[] {
                 AboutSponsorsPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-general", context, getPhetCycle() ) );

@@ -6,7 +6,11 @@ package edu.colorado.phet.website.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
@@ -71,7 +75,7 @@ public class SearchUtils {
 
             reindex( app, localizer );
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -88,7 +92,7 @@ public class SearchUtils {
                 directory.close();
             }
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -106,7 +110,7 @@ public class SearchUtils {
         indexerThread = new Thread() {
             @Override
             public void run() {
-                synchronized( SearchUtils.class ) {
+                synchronized ( SearchUtils.class ) {
                     logger.info( "starting indexing thread" );
                     addAllDocuments( app, localizer );
                     logger.info( "indexing complete" );
@@ -118,7 +122,7 @@ public class SearchUtils {
                         englishContributionParser = createEnglishContributionParser();
                         logger.debug( "parser construction: " + ( System.currentTimeMillis() - a ) );
                     }
-                    catch( IOException e ) {
+                    catch ( IOException e ) {
                         e.printStackTrace();
                     }
                 }
@@ -177,7 +181,7 @@ public class SearchUtils {
                             logger.debug( "doc: " + doc );
                         }
                     }
-                    catch( IOException e ) {
+                    catch ( IOException e ) {
                         e.printStackTrace();
                     }
                     return true;
@@ -187,7 +191,7 @@ public class SearchUtils {
             writer.optimize();
             writer.close();
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
     }
@@ -199,13 +203,13 @@ public class SearchUtils {
             logger.info( "dropped " + dropped + " documents" );
             reader.close();
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
     }
 
     private static QueryParser createEnglishSimParser() {
-        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[] {
                 "sim_name",
                 "sim_en_title",
                 "sim_en_description",
@@ -219,7 +223,7 @@ public class SearchUtils {
     private static QueryParser createSimParser( Locale locale ) {
         String localeString = LocaleUtils.localeToString( locale );
         // TODO: possibly add boosts to
-        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[] {
                 "sim_name",
                 "sim_en_title",
                 "sim_en_description",
@@ -237,7 +241,7 @@ public class SearchUtils {
     }
 
     private static QueryParser createEnglishContributionParser() {
-        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[] {
                 "contribution_title",
                 "contribution_authors",
                 "contribution_organization",
@@ -249,7 +253,7 @@ public class SearchUtils {
     }
 
     private static QueryParser createContributionParser( Locale locale ) {
-        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[]{
+        return new MultiFieldQueryParser( Version.LUCENE_CURRENT, new String[] {
                 "contribution_title",
                 "contribution_authors",
                 "contribution_organization",
@@ -399,7 +403,7 @@ public class SearchUtils {
                             logger.debug( score + ": " + contribution.getTitle() + " " + doc.get( "contribution_title" ) );
                             ret.add( contribution );
                         }
-                        catch( IOException e ) {
+                        catch ( IOException e ) {
                             e.printStackTrace();
                         }
 
@@ -408,7 +412,7 @@ public class SearchUtils {
                 }
             } );
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
         }
         return ret;
@@ -437,7 +441,7 @@ public class SearchUtils {
                                 ret.add( lsim );
                             }
                         }
-                        catch( IOException e ) {
+                        catch ( IOException e ) {
                             e.printStackTrace();
                         }
                     }
@@ -445,7 +449,7 @@ public class SearchUtils {
                 }
             } );
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             throw new RuntimeException( "Sim search fail", e );
         }
 
@@ -457,7 +461,7 @@ public class SearchUtils {
             Query query = parseEnglishSimQuery( queryString );
             return queryToSimulations( session, query, WebsiteConstants.ENGLISH );
         }
-        catch( ParseException e ) {
+        catch ( ParseException e ) {
             logger.debug( "english search parse exception", e );
             return new LinkedList<LocalizedSimulation>();
         }
@@ -471,7 +475,7 @@ public class SearchUtils {
             Query query = createSimParser( locale ).parse( queryString );
             return queryToSimulations( session, query, locale );
         }
-        catch( ParseException e ) {
+        catch ( ParseException e ) {
             logger.debug( "search parse exception", e );
             return new LinkedList<LocalizedSimulation>();
         }
@@ -482,7 +486,7 @@ public class SearchUtils {
             Query query = parseEnglishContributionQuery( queryString );
             return queryToContributions( session, query );
         }
-        catch( ParseException e ) {
+        catch ( ParseException e ) {
             logger.debug( "english search parse exception", e );
             return new LinkedList<Contribution>();
         }
@@ -496,7 +500,7 @@ public class SearchUtils {
             Query query = createContributionParser( locale ).parse( queryString );
             return queryToContributions( session, query );
         }
-        catch( ParseException e ) {
+        catch ( ParseException e ) {
             logger.debug( "search parse exception", e );
             return new LinkedList<Contribution>();
         }

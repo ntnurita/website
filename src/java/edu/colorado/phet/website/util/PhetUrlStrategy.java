@@ -82,7 +82,7 @@ public class PhetUrlStrategy implements IRequestTargetUrlCodingStrategy {
                 return path;
             }
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             return path;
         }
     }

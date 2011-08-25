@@ -57,11 +57,11 @@ public class ContributionCommentSuccessPage extends PhetMenuPage {
 
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas" ) );
 
-        add( new LocalizedText( "comment-header", "contribution.comment.success", new Object[]{
+        add( new LocalizedText( "comment-header", "contribution.comment.success", new Object[] {
                 HtmlUtils.encode( contribution.getTitle() )
         } ) );
 
-        add( new LocalizedText( "comment-success", "contribution.comment.successRedirection", new Object[]{
+        add( new LocalizedText( "comment-success", "contribution.comment.successRedirection", new Object[] {
                 ContributionPage.getLinker( contributionId ).getHref( getPageContext(), getPhetCycle() ),
                 REDIRECTION_DELAY_SECONDS
         } ) );
@@ -70,7 +70,7 @@ public class ContributionCommentSuccessPage extends PhetMenuPage {
         redirector.add( new AttributeModifier( "content", true, new Model<String>( REDIRECTION_DELAY_SECONDS + ";url=" + ContributionPage.getLinker( contributionId ).getRawUrl( getPageContext(), getPhetCycle() ) ) ) );
         add( redirector );
 
-        setTitle( StringUtils.messageFormat( PhetLocalizer.get().getString( "contribution.comment.success", this ), new Object[]{
+        setTitle( StringUtils.messageFormat( PhetLocalizer.get().getString( "contribution.comment.success", this ), new Object[] {
                 HtmlUtils.encode( contribution.getTitle() )
         } ) );
 
@@ -79,7 +79,7 @@ public class ContributionCommentSuccessPage extends PhetMenuPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^contributions/comment-success/([^/]+)$", ContributionCommentSuccessPage.class, new String[]{"contribution"} );
+        mapper.addMap( "^contributions/comment-success/([^/]+)$", ContributionCommentSuccessPage.class, new String[] { "contribution" } );
     }
 
     public static RawLinkable getLinker( final int contributionId ) {

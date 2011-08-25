@@ -48,15 +48,15 @@ public class RunSimulationsEntity extends TranslationEntity {
         addString( "get-phet.one-at-a-time.runningSims" );
         addString( "get-phet.one-at-a-time.downloadingSims" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new RunOurSimulationsPanel( id, context );
-            }
-        }, "Run Simulations" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new RunOurSimulationsPanel( id, context );
+                        }
+                    }, "Run Simulations" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new OneAtATimePanel( id, context );
-            }
-        }, "Run Simulations - One at a Time" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new OneAtATimePanel( id, context );
+                        }
+                    }, "Run Simulations - One at a Time" );
     }
 
     public String getDisplayName() {

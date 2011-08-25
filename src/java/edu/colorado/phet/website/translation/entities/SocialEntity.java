@@ -22,10 +22,10 @@ public class SocialEntity extends TranslationEntity {
         addString( "social.delicious.tooltip" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new StayConnectedPanel( id, context );
-            }
-        }, "Stay Connected" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new StayConnectedPanel( id, context );
+                        }
+                    }, "Stay Connected" );
     }
 
     public String getDisplayName() {

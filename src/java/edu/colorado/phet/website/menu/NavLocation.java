@@ -5,7 +5,11 @@
 package edu.colorado.phet.website.menu;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.link.Link;
@@ -162,7 +166,7 @@ public class NavLocation implements Serializable {
     }
 
     public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
-        if( linker == null ) {
+        if ( linker == null ) {
             // this must be detached. this is error-worthy
             logger.error( "NavLocation linker == null on getLink. key=" + key + ", id=" + id + ", context=" + context );
         }

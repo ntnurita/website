@@ -179,9 +179,9 @@ public abstract class PhetMenuPage extends PhetPage {
                         Link link = mark.getLinker( getFullPath(), getSocialBookmarkTitle() ).getLink( "link", getPageContext(), getPhetCycle() );
                         link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
                         item.add( link );
-                        link.add( new WebMarkupContainer( "icon"){{
-                            add( new AttributeModifier( "style", true, new Model<String>("display: block; width: 16px; height: 16px; background-image: url('" + mark.getSpritePath() + "');background-repeat: no-repeat; background-position: 0 -" + mark.getSpriteOffset() + "px;")));
-                        }});
+                        link.add( new WebMarkupContainer( "icon" ) {{
+                            add( new AttributeModifier( "style", true, new Model<String>( "display: block; width: 16px; height: 16px; background-image: url('" + mark.getSpritePath() + "');background-repeat: no-repeat; background-position: 0 -" + mark.getSpriteOffset() + "px;" ) ) );
+                        }} );
                         //link.add( new StaticImage( "icon", mark.getIconHandle(), null ) ); // for now, don't replace the alt attribute
                     }
                 } );

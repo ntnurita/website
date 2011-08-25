@@ -22,7 +22,6 @@ import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Administration page for FAQs that shows a list of FAQs that can be viewed and edited. Also includes

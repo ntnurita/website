@@ -40,34 +40,34 @@ public class NewsletterEntity extends TranslationEntity {
         addString( "newsletter.redirection" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new InitialSubscribePanel( id, context );
-            }
-        }, "Initial subscribe page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new InitialSubscribePanel( id, context );
+                        }
+                    }, "Initial subscribe page" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ConfirmEmailSentPanel( id, context, new PhetUser() {{
-                    setEmail( "email@example.com" );
-                    setNewsletterOnlyAccount( true );
-                }} );
-            }
-        }, "Sent confirmation: newsletter" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ConfirmEmailSentPanel( id, context, new PhetUser() {{
+                                setEmail( "email@example.com" );
+                                setNewsletterOnlyAccount( true );
+                            }} );
+                        }
+                    }, "Sent confirmation: newsletter" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ConfirmEmailSentPanel( id, context, new PhetUser() {{
-                    setEmail( "email@example.com" );
-                    setNewsletterOnlyAccount( false );
-                }} );
-            }
-        }, "Sent confirmation: account" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ConfirmEmailSentPanel( id, context, new PhetUser() {{
+                                setEmail( "email@example.com" );
+                                setNewsletterOnlyAccount( false );
+                            }} );
+                        }
+                    }, "Sent confirmation: account" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new UnsubscribeLandingPanel( id, context, new PhetUser() {{
-                    setEmail( "email@example.com" );
-                    setNewsletterOnlyAccount( false );
-                }} );
-            }
-        }, "Unsubscribed" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new UnsubscribeLandingPanel( id, context, new PhetUser() {{
+                                setEmail( "email@example.com" );
+                                setNewsletterOnlyAccount( false );
+                            }} );
+                        }
+                    }, "Unsubscribed" );
     }
 
     public String getDisplayName() {

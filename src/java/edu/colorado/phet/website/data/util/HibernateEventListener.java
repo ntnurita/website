@@ -10,7 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.hibernate.event.*;
+import org.hibernate.event.PostCollectionUpdateEvent;
+import org.hibernate.event.PostCollectionUpdateEventListener;
+import org.hibernate.event.PostDeleteEvent;
+import org.hibernate.event.PostDeleteEventListener;
+import org.hibernate.event.PostInsertEvent;
+import org.hibernate.event.PostInsertEventListener;
+import org.hibernate.event.PostUpdateEvent;
+import org.hibernate.event.PostUpdateEventListener;
 import org.hibernate.persister.entity.EntityPersister;
 
 public class HibernateEventListener implements PostInsertEventListener, PostUpdateEventListener, PostDeleteEventListener, PostCollectionUpdateEventListener {
@@ -23,7 +30,7 @@ public class HibernateEventListener implements PostInsertEventListener, PostUpda
 
     public HibernateEventListener() {
         logger.info( "Creating HibernateEventListener" );
-        synchronized( this ) {
+        synchronized ( this ) {
             me = this;
         }
     }

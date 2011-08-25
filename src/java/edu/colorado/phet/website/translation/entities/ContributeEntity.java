@@ -188,30 +188,30 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.nomination.successRedirection" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                final Contribution contribution[] = new Contribution[1];
-                HibernateUtils.wrapTransaction( requestCycle.getHibernateSession(), new HibernateTask() {
-                    public boolean run( Session session ) {
-                        List list = session.createQuery( "select c from Contribution as c" ).setMaxResults( 1 ).list();
-                        contribution[0] = (Contribution) list.get( 0 );
-                        return true;
-                    }
-                } );
-                return new ContributionMainPanel( id, contribution[0], context );
-            }
-        }, "Contribution view" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            final Contribution contribution[] = new Contribution[1];
+                            HibernateUtils.wrapTransaction( requestCycle.getHibernateSession(), new HibernateTask() {
+                                public boolean run( Session session ) {
+                                    List list = session.createQuery( "select c from Contribution as c" ).setMaxResults( 1 ).list();
+                                    contribution[0] = (Contribution) list.get( 0 );
+                                    return true;
+                                }
+                            } );
+                            return new ContributionMainPanel( id, contribution[0], context );
+                        }
+                    }, "Contribution view" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ContributionSearchPanel( id, context, new PageParameters() );
-            }
-        }, "Contribution search / browse" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ContributionSearchPanel( id, context, new PageParameters() );
+                        }
+                    }, "Contribution search / browse" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ContributionEditPanel( id, context, new Contribution() );
-            }
-        }, "Contribution create / edit" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ContributionEditPanel( id, context, new Contribution() );
+                        }
+                    }, "Contribution create / edit" );
     }
 
     public String getDisplayName() {

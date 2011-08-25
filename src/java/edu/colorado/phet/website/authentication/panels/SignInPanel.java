@@ -6,7 +6,11 @@ package edu.colorado.phet.website.authentication.panels;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
@@ -47,7 +51,7 @@ public class SignInPanel extends PhetPanel {
 
         add( new SignInForm( "sign-in-form" ) );
 
-        add( new LocalizedText( "to-register", "signIn.toRegister", new Object[]{
+        add( new LocalizedText( "to-register", "signIn.toRegister", new Object[] {
                 RegisterPage.getLinker( destination == null ? "/" : destination ).getHref( context, getPhetCycle() )
         } ) );
         add( ResetPasswordRequestPage.getLinker().getLink( "reset-your-password", context, getPhetCycle() ) );
@@ -81,7 +85,7 @@ public class SignInPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{username, password};
+                    return new FormComponent[] { username, password };
                 }
 
                 public void validate( Form form ) {

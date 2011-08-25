@@ -47,15 +47,15 @@ public class SponsorsEntity extends TranslationEntity {
         addString( "sponsors.youSubtitle" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new SponsorsPanel( id, context );
-            }
-        }, "Sponsors Panel" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new SponsorsPanel( id, context );
+                        }
+                    }, "Sponsors Panel" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new AboutSponsorsPanel( id, context );
-            }
-        }, "Sponsors Page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new AboutSponsorsPanel( id, context );
+                        }
+                    }, "Sponsors Page" );
     }
 
     public String getDisplayName() {

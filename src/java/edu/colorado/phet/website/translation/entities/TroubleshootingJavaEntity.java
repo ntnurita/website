@@ -32,10 +32,10 @@ public class TroubleshootingJavaEntity extends TranslationEntity {
         addString( "troubleshooting.java.q8.title" );
         addString( "troubleshooting.java.q8.answer" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TroubleshootingJavaPanel( id, context );
-            }
-        }, "Troubleshooting (java)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TroubleshootingJavaPanel( id, context );
+                        }
+                    }, "Troubleshooting (java)" );
     }
 
     public String getDisplayName() {

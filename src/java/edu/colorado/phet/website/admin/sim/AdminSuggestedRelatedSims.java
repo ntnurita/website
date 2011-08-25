@@ -28,7 +28,6 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
 import edu.colorado.phet.website.util.hibernate.Task;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 public class AdminSuggestedRelatedSims extends AdminPage {
 

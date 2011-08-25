@@ -7,7 +7,6 @@ package edu.colorado.phet.website.panels;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -19,10 +18,6 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.LocalizedLabel;
 import edu.colorado.phet.website.components.RawLink;
-import edu.colorado.phet.website.constants.CSS;
-import edu.colorado.phet.website.data.LocalizedSimulation;
-import edu.colorado.phet.website.data.Project;
-import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;

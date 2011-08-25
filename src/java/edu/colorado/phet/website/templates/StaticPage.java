@@ -63,16 +63,16 @@ public class StaticPage extends PhetRegularPage {
                             PhetPanel panel = (PhetPanel) ctor.newInstance( "panel", getPageContext() );
                             return panel;
                         }
-                        catch( InvocationTargetException e ) {
+                        catch ( InvocationTargetException e ) {
                             e.printStackTrace();
                         }
-                        catch( NoSuchMethodException e ) {
+                        catch ( NoSuchMethodException e ) {
                             e.printStackTrace();
                         }
-                        catch( IllegalAccessException e ) {
+                        catch ( IllegalAccessException e ) {
                             e.printStackTrace();
                         }
-                        catch( InstantiationException e ) {
+                        catch ( InstantiationException e ) {
                             e.printStackTrace();
                         }
                         throw new RuntimeException( "failed to construct panel!" );
@@ -100,19 +100,19 @@ public class StaticPage extends PhetRegularPage {
             }
 
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             e.printStackTrace();
         }
-        catch( NoSuchMethodException e ) {
+        catch ( NoSuchMethodException e ) {
             e.printStackTrace();
         }
-        catch( InvocationTargetException e ) {
+        catch ( InvocationTargetException e ) {
             e.printStackTrace();
         }
-        catch( IllegalAccessException e ) {
+        catch ( IllegalAccessException e ) {
             e.printStackTrace();
         }
-        catch( InstantiationException e ) {
+        catch ( InstantiationException e ) {
             e.printStackTrace();
         }
 
@@ -132,13 +132,13 @@ public class StaticPage extends PhetRegularPage {
             String url = (String) meth.invoke( null );
             panelMap.put( url, panelClass );
         }
-        catch( NoSuchMethodException e ) {
+        catch ( NoSuchMethodException e ) {
             e.printStackTrace();
         }
-        catch( InvocationTargetException e ) {
+        catch ( InvocationTargetException e ) {
             e.printStackTrace();
         }
-        catch( IllegalAccessException e ) {
+        catch ( IllegalAccessException e ) {
             e.printStackTrace();
         }
     }

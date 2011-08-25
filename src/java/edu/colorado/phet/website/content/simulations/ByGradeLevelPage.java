@@ -29,7 +29,7 @@ public class ByGradeLevelPage extends PhetRegularPage {
         NavLocation location = getNavMenu().getLocationByKey( Category.BY_LEVEL_CATEGORY_NAME );
 
         initializeLocation( location );
-        setTitle( StringUtils.messageFormat( getLocalizer().getString( "simulationDisplay.title", this ), new Object[]{
+        setTitle( StringUtils.messageFormat( getLocalizer().getString( "simulationDisplay.title", this ), new Object[] {
                 new StringResourceModel( location.getLocalizationKey(), this, null )
         } ) );
 //        addTitle( new StringResourceModel( "simulationDisplay.title", this, null, new Object[]{new StringResourceModel( location.getLocalizationKey(), this, null )} ) );

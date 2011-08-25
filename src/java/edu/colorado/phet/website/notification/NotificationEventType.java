@@ -54,7 +54,7 @@ public enum NotificationEventType {
         try {
             return HtmlUtils.encode( URLDecoder.decode( string, "UTF-8" ) );
         }
-        catch( UnsupportedEncodingException e ) {
+        catch ( UnsupportedEncodingException e ) {
             e.printStackTrace();
             return string;
         }
@@ -115,7 +115,7 @@ public enum NotificationEventType {
                     event.setData( "contribution_id=" + nomination.getContribution().getId() + ",email=" + URLEncoder.encode( nomination.getPhetUser().getEmail(), "UTF-8" )
                                    + ",reason=" + URLEncoder.encode( nomination.getReason(), "UTF-8" ) );
                 }
-                catch( UnsupportedEncodingException e ) {
+                catch ( UnsupportedEncodingException e ) {
                     e.printStackTrace();
                     return false;
                 }
@@ -135,7 +135,7 @@ public enum NotificationEventType {
                     event.setData( "contribution_id=" + comment.getContribution().getId() + ",email=" + URLEncoder.encode( comment.getPhetUser().getEmail(), "UTF-8" )
                                    + ",text=" + URLEncoder.encode( comment.getText(), "UTF-8" ) );
                 }
-                catch( UnsupportedEncodingException e ) {
+                catch ( UnsupportedEncodingException e ) {
                     e.printStackTrace();
                     return false;
                 }

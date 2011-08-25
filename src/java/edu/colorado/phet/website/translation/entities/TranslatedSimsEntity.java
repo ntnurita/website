@@ -26,23 +26,23 @@ public class TranslatedSimsEntity extends TranslationEntity {
         addString( "simulations.translated.toTranslate" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TranslationLocaleListPanel( id, context );
-            }
-        }, "Translated Sims" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TranslationLocaleListPanel( id, context );
+                        }
+                    }, "Translated Sims" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                Locale otherLocale;
-                if ( context.getLocale().equals( new Locale( "ko" ) ) ) {
-                    otherLocale = new Locale( "zh", "TW" );
-                }
-                else {
-                    otherLocale = new Locale( "ko" );
-                }
-                return new TranslationListPanel( id, context, otherLocale );
-            }
-        }, "Translation list" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            Locale otherLocale;
+                            if ( context.getLocale().equals( new Locale( "ko" ) ) ) {
+                                otherLocale = new Locale( "zh", "TW" );
+                            }
+                            else {
+                                otherLocale = new Locale( "ko" );
+                            }
+                            return new TranslationListPanel( id, context, otherLocale );
+                        }
+                    }, "Translation list" );
     }
 
     public String getDisplayName() {

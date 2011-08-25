@@ -59,7 +59,7 @@ public class WebsiteTranslationFinishedPanel extends PhetPanel {
 
                     link.add( new Label( "name", file.getName() ) );
                 }
-                catch( IOException e ) {
+                catch ( IOException e ) {
                     e.printStackTrace();
                 }
             }

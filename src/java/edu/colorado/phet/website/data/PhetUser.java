@@ -5,7 +5,11 @@
 package edu.colorado.phet.website.data;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -324,12 +328,12 @@ public class PhetUser implements Serializable, IntId {
         this.receiveWebsiteNotifications = receiveWebsiteNotifications;
     }
 
-	 /*_/|
-	 =0-0=
-	 \'I'|
-	 |<|,,\_
-	 |[>,,/,\
-	 |[|,\_,,)
-	 ((J(=_*/
+    /*_/|
+      =0-0=
+      \'I'|
+      |<|,,\_
+      |[>,,/,\
+      |[|,\_,,)
+      ((J(=_*/
 
 }

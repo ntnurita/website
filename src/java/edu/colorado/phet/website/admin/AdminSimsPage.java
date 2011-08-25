@@ -4,7 +4,13 @@
 
 package edu.colorado.phet.website.admin;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -56,13 +62,13 @@ public class AdminSimsPage extends AdminPage {
 
             tx.commit();
         }
-        catch( RuntimeException e ) {
+        catch ( RuntimeException e ) {
             logger.warn( e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch( HibernateException e1 ) {
+                catch ( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -118,7 +124,7 @@ public class AdminSimsPage extends AdminPage {
                                 simulations.remove( simulation );
                             }
                         }
-                        catch( RuntimeException e ) {
+                        catch ( RuntimeException e ) {
                             e.printStackTrace();
                         }
                     }

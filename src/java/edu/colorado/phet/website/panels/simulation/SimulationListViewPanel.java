@@ -4,7 +4,11 @@
 
 package edu.colorado.phet.website.panels.simulation;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
@@ -14,7 +18,11 @@ import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.content.NotFoundPage;
-import edu.colorado.phet.website.data.*;
+import edu.colorado.phet.website.data.Category;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
+import edu.colorado.phet.website.data.Simulation;
+import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.AbstractCategoryListener;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
 import edu.colorado.phet.website.data.util.HibernateEventListener;

@@ -4,12 +4,9 @@
 
 package edu.colorado.phet.website.content.troubleshooting;
 
-import org.apache.wicket.behavior.HeaderContributor;
-
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLabel;
-import edu.colorado.phet.website.constants.CSS;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
@@ -23,11 +20,11 @@ public class TroubleshootingJavascriptPanel extends PhetPanel {
 
         //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
 
-        add( new LocalizedText( "troubleshooting-javascript-notJava", "troubleshooting.javascript.notJava", new Object[]{
+        add( new LocalizedText( "troubleshooting-javascript-notJava", "troubleshooting.javascript.notJava", new Object[] {
                 TroubleshootingJavaPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-javascript-notify", "troubleshooting.javascript.notify", new Object[]{
+        add( new LocalizedText( "troubleshooting-javascript-notify", "troubleshooting.javascript.notify", new Object[] {
                 Linkers.PHET_HELP_LINK
         } ) );
 
@@ -39,11 +36,11 @@ public class TroubleshootingJavascriptPanel extends PhetPanel {
 
         add( new LocalizedText( "troubleshooting-javascript-q2-answer", "troubleshooting.javascript.q2.answer" ) );
 
-        add( new LocalizedText( "troubleshooting-javascript-q3-answer", "troubleshooting.javascript.q3.answer", new Object[]{
+        add( new LocalizedText( "troubleshooting-javascript-q3-answer", "troubleshooting.javascript.q3.answer", new Object[] {
                 "href=\"#q1\""
         } ) );
 
-        add( new LocalizedText( "troubleshooting-javascript-q4-answer", "troubleshooting.javascript.q4.answer", new Object[]{
+        add( new LocalizedText( "troubleshooting-javascript-q4-answer", "troubleshooting.javascript.q4.answer", new Object[] {
                 "href=\"#q1\""
         } ) );
 

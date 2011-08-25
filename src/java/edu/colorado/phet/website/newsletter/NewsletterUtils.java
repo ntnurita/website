@@ -125,7 +125,7 @@ public class NewsletterUtils {
             message.addReplyTo( WebsiteConstants.HELP_EMAIL );
             return EmailUtils.sendMessage( message );
         }
-        catch( MessagingException e ) {
+        catch ( MessagingException e ) {
             logger.warn( "message send error: ", e );
             return false;
         }

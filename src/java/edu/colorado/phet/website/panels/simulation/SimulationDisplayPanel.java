@@ -57,7 +57,7 @@ public class SimulationDisplayPanel extends PhetPanel {
                 try {
                     alt = StringUtils.messageFormat( "Screenshot of the simulation {0}", encode( simulation.getTitle() ) );
                 }
-                catch( RuntimeException e ) {
+                catch ( RuntimeException e ) {
                     e.printStackTrace();
                     alt = "Screenshot of the simulation";
                 }

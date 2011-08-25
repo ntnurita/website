@@ -69,15 +69,15 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "nav.breadcrumb.faqs" );
         addString( "troubleshooting.main.licensingRequirements" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new TroubleshootingMainPanel( id, context );
-            }
-        }, "Troubleshooting (main)" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new TroubleshootingMainPanel( id, context );
+                        }
+                    }, "Troubleshooting (main)" );
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new GeneralFAQPanel( id, context );
-            }
-        }, "FAQs" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new GeneralFAQPanel( id, context );
+                        }
+                    }, "FAQs" );
     }
 
     public String getDisplayName() {

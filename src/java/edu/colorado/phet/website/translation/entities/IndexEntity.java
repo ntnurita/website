@@ -48,10 +48,10 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.about.alongWithOurSponsors" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new IndexPanel( id, context );
-            }
-        }, "Home Page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new IndexPanel( id, context );
+                        }
+                    }, "Home Page" );
     }
 
     public String getDisplayName() {

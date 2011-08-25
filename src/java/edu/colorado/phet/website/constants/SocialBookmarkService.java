@@ -49,7 +49,7 @@ public abstract class SocialBookmarkService implements Serializable {
         try {
             return new RawLinker( getShareUrl( relativeUrl, title ) );
         }
-        catch( UnsupportedEncodingException e ) {
+        catch ( UnsupportedEncodingException e ) {
             throw new RuntimeException( e );
         }
     }

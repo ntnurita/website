@@ -44,7 +44,7 @@ public class ComponentThreadStatusPanel extends PhetPanel {
                 boolean done;
                 logger.debug( "tick on " + index );
                 // synchronize on the same lock as the static methods
-                synchronized( ComponentThreadStatusPanel.this.getClass() ) {
+                synchronized ( ComponentThreadStatusPanel.this.getClass() ) {
                     ComponentThread thread = getThread( index );
                     if ( thread != null ) {
                         newStatus = thread.getComponent( "status", context );

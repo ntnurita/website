@@ -4,12 +4,21 @@
 
 package edu.colorado.phet.website.data;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
@@ -62,10 +71,10 @@ public class Changelog {
                 reader.close();
             }
         }
-        catch( FileNotFoundException e ) {
+        catch ( FileNotFoundException e ) {
             logger.error( e );
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             logger.error( e );
         }
     }
@@ -85,7 +94,7 @@ public class Changelog {
                 reader.close();
             }
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             logger.error( e );
         }
     }
@@ -348,7 +357,7 @@ public class Changelog {
                 if ( !tokenizer.hasMoreTokens() ) { return; }
                 devVersion = Integer.parseInt( tokenizer.nextToken() );
             }
-            catch( RuntimeException e ) {
+            catch ( RuntimeException e ) {
                 //logger.warn( "changelog failure at parsing version " + str, e );
             }
         }
@@ -357,7 +366,7 @@ public class Changelog {
             try {
                 revision = Integer.parseInt( str.replace( "(", "" ).replace( ")", "" ) );
             }
-            catch( RuntimeException e ) {
+            catch ( RuntimeException e ) {
                 //logger.warn( "changelog failure at parsing revision " + str, e );
             }
         }
@@ -366,11 +375,11 @@ public class Changelog {
             try {
                 date = FORMAT_VERSION_TIMESTAMP.parse( str );
             }
-            catch( ParseException e ) {
+            catch ( ParseException e ) {
                 try {
                     date = FORMAT_VERSION_BACKUP_TIMESTAMP.parse( str );
                 }
-                catch( ParseException e1 ) {
+                catch ( ParseException e1 ) {
                     //e1.printStackTrace();
                     //logger.warn( "changelog failure at parsing date " + str );
                 }
@@ -415,7 +424,7 @@ public class Changelog {
                     if ( !tokenizer.hasMoreTokens() ) { return; }
                     token = tokenizer.nextToken();
                 }
-                catch( Exception e ) {
+                catch ( Exception e ) {
                     // just catching ParseException didn't work for the empty string
                 }
             }

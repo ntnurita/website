@@ -34,7 +34,7 @@ public class DeployProjectPage extends PhetPage {
     public DeployProjectPage( PageParameters parameters ) {
         super( parameters );
 
-        synchronized( lock ) {
+        synchronized ( lock ) {
             String addr = getPhetCycle().getWebRequest().getHttpServletRequest().getRemoteAddr();
             String host = getPhetCycle().getWebRequest().getHttpServletRequest().getRemoteHost();
             String localhost = getPhetCycle().getWebRequest().getHttpServletRequest().getServerName();
@@ -89,11 +89,11 @@ public class DeployProjectPage extends PhetPage {
             try {
                 ( new JARGenerator() ).generateOfflineJARs( allJAR, websiteProperties.getPathToJarUtility(), BuildLocalProperties.getInstance() );
             }
-            catch( IOException e ) {
+            catch ( IOException e ) {
                 e.printStackTrace();
                 return;
             }
-            catch( InterruptedException e ) {
+            catch ( InterruptedException e ) {
                 e.printStackTrace();
                 return;
             }
@@ -109,7 +109,7 @@ public class DeployProjectPage extends PhetPage {
         try {
             FileUtils.copyRecursive( stagingDir, projectDir );
         }
-        catch( IOException e ) {
+        catch ( IOException e ) {
             e.printStackTrace();
             logger.error( "Attempting to recover after failed copy to project dir", e );
             // TODO: attempt to recover

@@ -44,7 +44,7 @@ public class StringGetter extends WebPage {
                 add( new Label( "string", value ) ); // this should escape it
             }
         }
-        catch( Exception e ) {
+        catch ( Exception e ) {
             showError();
         }
     }

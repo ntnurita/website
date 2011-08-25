@@ -27,7 +27,6 @@ import edu.colorado.phet.website.util.RawCSV;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.SimpleTask;
-import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Information for the state of North Carolina's repository

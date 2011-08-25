@@ -17,7 +17,11 @@ import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
-import edu.colorado.phet.website.util.hibernate.*;
+import edu.colorado.phet.website.util.hibernate.HibernateResult;
+import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.Task;
+import edu.colorado.phet.website.util.hibernate.TaskException;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
@@ -98,7 +102,7 @@ public class ConfirmEmailLandingPage extends PhetMenuPage {
                 try {
                     return "confirm-email?key=" + key + "&destination=" + URLEncoder.encode( destination, "UTF-8" );
                 }
-                catch( UnsupportedEncodingException e ) {
+                catch ( UnsupportedEncodingException e ) {
                     throw new RuntimeException( e ); // this really shouldn't happen
                 }
             }

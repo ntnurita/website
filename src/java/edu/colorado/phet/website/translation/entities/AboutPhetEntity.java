@@ -4,7 +4,11 @@
 
 package edu.colorado.phet.website.translation.entities;
 
-import edu.colorado.phet.website.content.about.*;
+import edu.colorado.phet.website.content.about.AboutContactPanel;
+import edu.colorado.phet.website.content.about.AboutLegendPanel;
+import edu.colorado.phet.website.content.about.AboutLicensingPanel;
+import edu.colorado.phet.website.content.about.AboutMainPanel;
+import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
 import edu.colorado.phet.website.util.PageContext;

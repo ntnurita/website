@@ -78,7 +78,7 @@ public class AdminProjectsPage extends AdminPage {
                                 projects.remove( project );
                             }
                         }
-                        catch( RuntimeException e ) {
+                        catch ( RuntimeException e ) {
                             e.printStackTrace();
                         }
                     }

@@ -54,10 +54,10 @@ public class ResearchEntity extends TranslationEntity {
         addString( "research.publications.perceptions" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new ResearchPanel( id, context );
-            }
-        }, "Research page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new ResearchPanel( id, context );
+                        }
+                    }, "Research page" );
     }
 
     public String getDisplayName() {

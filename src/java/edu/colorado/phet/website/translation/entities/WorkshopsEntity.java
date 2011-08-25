@@ -22,10 +22,10 @@ public class WorkshopsEntity extends TranslationEntity {
         addString( "workshops.uganda-photos.title" );
 
         addPreview( new PhetPanelFactory() {
-            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                return new WorkshopsPanel( id, context );
-            }
-        }, "Workshops page" );
+                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                            return new WorkshopsPanel( id, context );
+                        }
+                    }, "Workshops page" );
     }
 
     public String getDisplayName() {
