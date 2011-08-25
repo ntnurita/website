@@ -26,7 +26,7 @@ import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.hibernate.Task;
 
 public class AdminSuggestedRelatedSims extends AdminPage {
@@ -76,7 +76,7 @@ public class AdminSuggestedRelatedSims extends AdminPage {
 
     public List<Score> getSuggestedRelatedSimulations( final LocalizedSimulation simulation ) {
         final List<Score> ret = new LinkedList<Score>();
-        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             private LocalizedSimulation sim;
 
             private Score score( LocalizedSimulation lsim ) {

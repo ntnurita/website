@@ -32,7 +32,7 @@ import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.TranslationUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 public class TranslateLanguagePage extends TranslationPage {
@@ -57,7 +57,7 @@ public class TranslateLanguagePage extends TranslationPage {
 
         final List<Translation> translations = new LinkedList<Translation>();
         final PhetUser currentUser = PhetSession.get().getUser();
-        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public void run( Session session ) {
                 List trans = session.createQuery( "select t from Translation as t where t.locale = :locale order by t.id" )
                         .setLocale( "locale", locale ).list();
@@ -87,7 +87,7 @@ public class TranslateLanguagePage extends TranslationPage {
             }
         } );
         // sort the translations so that "preferred" simulations are at the top
-        HibernateUtils.resultCatchTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.resultCatchTransaction( getHibernateSession(), new VoidTask() {
             public void run( final Session session ) {
                 Collections.sort( translations, new Comparator<Translation>() {
                     public int compare( Translation a, Translation b ) {

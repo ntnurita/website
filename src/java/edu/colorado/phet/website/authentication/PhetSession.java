@@ -19,7 +19,7 @@ import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.hibernate.Task;
 import edu.colorado.phet.website.util.hibernate.TaskException;
 
@@ -64,7 +64,7 @@ public class PhetSession extends WebSession {
     }
 
     public boolean signInWithoutPassword( PhetRequestCycle currentCycle, final int userId ) {
-        return HibernateUtils.wrapCatchTransaction( currentCycle.getHibernateSession(), new SimpleTask() {
+        return HibernateUtils.wrapCatchTransaction( currentCycle.getHibernateSession(), new VoidTask() {
             public void run( org.hibernate.Session session ) {
                 PhetUser user = (PhetUser) session.load( PhetUser.class, userId );
                 setUser( user );

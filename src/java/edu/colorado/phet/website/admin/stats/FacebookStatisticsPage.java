@@ -21,7 +21,7 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.admin.AdminPage;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Shows "share" statistics about certain website pages and simulations, pulled from the Facebook Graph API
@@ -35,7 +35,7 @@ public class FacebookStatisticsPage extends AdminPage {
 
         // get a sorted list of simulation names that we can query with
         final List<String> simNames = new ArrayList<String>();
-        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public void run( Session session ) {
                 final List simList = session.createQuery( "select s from Simulation as s" ).list();
 

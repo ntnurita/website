@@ -20,7 +20,7 @@ import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * A page that shows some elementary statistics about the website, simulations, activities and translations.
@@ -35,7 +35,7 @@ public class MainStatisticsPage extends AdminPage {
     public MainStatisticsPage( PageParameters parameters ) {
         super( parameters );
 
-        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public void run( Session session ) {
                 final List simList = session.createQuery( "select s from Simulation as s" ).list();
                 final List activityList = session.createQuery( "select c from Contribution as c" ).list();

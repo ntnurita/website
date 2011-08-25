@@ -16,7 +16,7 @@ import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.hibernate.Task;
 
 /**
@@ -138,7 +138,7 @@ public class TranslationUtils {
             return false;
         }
 
-        boolean success = HibernateUtils.wrapCatchTransaction( session, new SimpleTask() {
+        boolean success = HibernateUtils.wrapCatchTransaction( session, new VoidTask() {
             public void run( Session session ) {
                 Translation tr = (Translation) session.load( Translation.class, translation.getId() );
 
@@ -183,7 +183,7 @@ public class TranslationUtils {
             final Translation newTranslation = result.value;
 
             // then attempt switching the visible translation
-            boolean swapSuccess = HibernateUtils.wrapCatchTransaction( session, new SimpleTask() {
+            boolean swapSuccess = HibernateUtils.wrapCatchTransaction( session, new VoidTask() {
                 public void run( Session session ) {
                     // TODO: do the swap. check the swap code AND the notifications that trigger the translation add/removal. order could go bad
                     Translation oldChild = (Translation) session.load( Translation.class, oldTranslation.getId() );

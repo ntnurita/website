@@ -44,7 +44,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Handles email notification of events that should be reviewed by the PhET team
@@ -217,7 +217,7 @@ public class NotificationHandler {
 
         final Set<PhetUser> translators = new HashSet<PhetUser>();
 
-        HibernateUtils.wrapTransaction( session, new SimpleTask() {
+        HibernateUtils.wrapTransaction( session, new VoidTask() {
             public void run( Session session ) {
                 List list = session.createQuery( "select t from Translation as t where t.locale = :locale" )
                         .setLocale( "locale", translation.getLocale() ).list();

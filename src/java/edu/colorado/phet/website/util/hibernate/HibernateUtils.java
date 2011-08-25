@@ -502,7 +502,7 @@ public class HibernateUtils {
         return transactionCore( session, task, true );
     }
 
-    public static boolean resultTransaction( Session session, final SimpleTask task ) {
+    public static boolean resultTransaction( Session session, final VoidTask task ) {
         return resultTransaction( session, new Task<Void>() {
             public Void run( Session session ) {
                 task.run( session );
@@ -516,7 +516,7 @@ public class HibernateUtils {
         return transactionCore( session, task, false );
     }
 
-    public static boolean resultCatchTransaction( Session session, final SimpleTask task ) {
+    public static boolean resultCatchTransaction( Session session, final VoidTask task ) {
         return resultCatchTransaction( session, new Task<Void>() {
             public Void run( Session session ) {
                 task.run( session );
@@ -535,7 +535,7 @@ public class HibernateUtils {
         }
     }
 
-    public static boolean ensureTransaction( Session session, SimpleTask task ) {
+    public static boolean ensureTransaction( Session session, VoidTask task ) {
         if ( session.getTransaction().isActive() ) {
             task.run( session );
             return true;
@@ -549,7 +549,7 @@ public class HibernateUtils {
         return transactionCore( session, task, true ).success;
     }
 
-    public static boolean wrapTransaction( Session session, final SimpleTask task ) {
+    public static boolean wrapTransaction( Session session, final VoidTask task ) {
         return transactionCore( session,
                                 new Task<Void>() {
                                     public Void run( Session session ) {
@@ -563,7 +563,7 @@ public class HibernateUtils {
         return transactionCore( session, task, false ).success;
     }
 
-    public static boolean wrapCatchTransaction( Session session, final SimpleTask task ) {
+    public static boolean wrapCatchTransaction( Session session, final VoidTask task ) {
         return transactionCore( session,
                                 new Task<Void>() {
                                     public Void run( Session session ) {

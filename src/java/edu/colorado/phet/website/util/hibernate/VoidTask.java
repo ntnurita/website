@@ -3,6 +3,6 @@ package edu.colorado.phet.website.util.hibernate;
 
 import org.hibernate.Session;
 
-public interface SimpleTask {
+public interface VoidTask {
     public void run( Session session );
 }

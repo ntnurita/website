@@ -21,7 +21,7 @@ import edu.colorado.phet.website.admin.AdminPage;
 import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * Administration page for FAQs that shows a list of FAQs that can be viewed and edited. Also includes
@@ -36,7 +36,7 @@ public class AdminFAQsPage extends AdminPage {
 
         final List<String> faqNames = new ArrayList<String>();
 
-        HibernateUtils.wrapTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
             public void run( Session session ) {
                 List faqs = session.createQuery( "select f from FAQList as f" ).list();
                 for ( Object faq : faqs ) {

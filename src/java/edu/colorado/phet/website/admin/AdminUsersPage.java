@@ -24,7 +24,7 @@ import edu.colorado.phet.website.newsletter.NewsletterUtils;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 public class AdminUsersPage extends AdminPage {
 
@@ -66,7 +66,7 @@ public class AdminUsersPage extends AdminPage {
         add( new UserEmailForm( "deactivate-form" ) {
             @Override
             protected void onSubmit() {
-                HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new SimpleTask() {
+                HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new VoidTask() {
                     public void run( Session session ) {
                         PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" )
                                 .setString( "email", getEmailAddress() ).uniqueResult();
@@ -80,7 +80,7 @@ public class AdminUsersPage extends AdminPage {
         add( new UserEmailForm( "delete-form" ) {
             @Override
             protected void onSubmit() {
-                HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new SimpleTask() {
+                HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new VoidTask() {
                     public void run( Session session ) {
                         PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" )
                                 .setString( "email", getEmailAddress() ).uniqueResult();
@@ -151,7 +151,7 @@ public class AdminUsersPage extends AdminPage {
         protected void onSubmit() {
             final String emailText = emailArea.getModelObject();
             logger.info( "Attempting to manually unsubscribe a list of users:\n" + emailText );
-            HibernateUtils.wrapCatchTransaction( getHibernateSession(), new SimpleTask() {
+            HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
                 public void run( Session session ) {
                     for ( String rawEmail : emailText.split( "\n" ) ) {
                         String email = rawEmail.trim();

@@ -26,7 +26,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.RawCSV;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 
 /**
  * CSV of simulation data that is targetted towards exporting data to learning.com
@@ -54,7 +54,7 @@ public class LearningComExport extends WebPage {
         csv.betweenLines();
 
         // simulations
-        HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapTransaction( PhetRequestCycle.get().getHibernateSession(), new VoidTask() {
             public void run( final Session session ) {
                 List list = session.createQuery( "select s from Simulation as s" ).list();
                 List<Simulation> simulations = new LinkedList<Simulation>( list );

@@ -62,7 +62,7 @@ import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
-import edu.colorado.phet.website.util.hibernate.SimpleTask;
+import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 import static edu.colorado.phet.website.util.HtmlUtils.encode;
@@ -622,7 +622,7 @@ public class SimulationMainPanel extends PhetPanel {
 
     public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {
         final List<LocalizedSimulation> ret = new LinkedList<LocalizedSimulation>();
-        HibernateUtils.wrapCatchTransaction( getHibernateSession(), new SimpleTask() {
+        HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
             public void run( Session session ) {
                 LocalizedSimulation lsim = (LocalizedSimulation) session.load( LocalizedSimulation.class, simulation.getId() );
                 for ( Object o : lsim.getSimulation().getRelatedSimulations() ) {
