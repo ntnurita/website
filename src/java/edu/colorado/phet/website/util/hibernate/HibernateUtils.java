@@ -503,7 +503,7 @@ public class HibernateUtils {
     }
 
     public static boolean resultTransaction( Session session, final SimpleTask task ) {
-        return resultTransaction( session, new VoidTask() {
+        return resultTransaction( session, new Task<Void>() {
             public Void run( Session session ) {
                 task.run( session );
                 return null;
@@ -517,7 +517,7 @@ public class HibernateUtils {
     }
 
     public static boolean resultCatchTransaction( Session session, final SimpleTask task ) {
-        return resultCatchTransaction( session, new VoidTask() {
+        return resultCatchTransaction( session, new Task<Void>() {
             public Void run( Session session ) {
                 task.run( session );
                 return null;
@@ -545,13 +545,13 @@ public class HibernateUtils {
         }
     }
 
-    public static boolean wrapTransaction( Session session, VoidTask task ) {
+    public static boolean wrapTransaction( Session session, Task<Void> task ) {
         return transactionCore( session, task, true ).success;
     }
 
     public static boolean wrapTransaction( Session session, final SimpleTask task ) {
         return transactionCore( session,
-                                new VoidTask() {
+                                new Task<Void>() {
                                     public Void run( Session session ) {
                                         task.run( session );
                                         return null;
@@ -559,13 +559,13 @@ public class HibernateUtils {
                                 }, true ).success;
     }
 
-    public static boolean wrapCatchTransaction( Session session, VoidTask task ) {
+    public static boolean wrapCatchTransaction( Session session, Task<Void> task ) {
         return transactionCore( session, task, false ).success;
     }
 
     public static boolean wrapCatchTransaction( Session session, final SimpleTask task ) {
         return transactionCore( session,
-                                new VoidTask() {
+                                new Task<Void>() {
                                     public Void run( Session session ) {
                                         task.run( session );
                                         return null;
@@ -627,11 +627,11 @@ public class HibernateUtils {
         return sessionCore( task, false );
     }
 
-    public static boolean wrapSession( VoidTask task ) {
+    public static boolean wrapSession( Task<Void> task ) {
         return sessionCore( task, true ).success;
     }
 
-    public static boolean wrapCatchSession( VoidTask task ) {
+    public static boolean wrapCatchSession( Task<Void> task ) {
         return sessionCore( task, false ).success;
     }
 
