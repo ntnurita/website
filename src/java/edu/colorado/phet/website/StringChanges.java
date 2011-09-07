@@ -30,6 +30,8 @@ public class StringChanges {
         StringUtils.overwriteString( session, "simulation.faq.title", "Frequently Asked Questions for {0}", "FAQ for {0}" );
         StringUtils.addString( session, "simulationMainPanel.simulationHasFAQ", "This simulation has a list of <a {0}>Frequently Asked Questions</a> (<a {1}>pdf</a>)." );
 
+        StringUtils.addString( session, "home.simulationsDelivered", "Over 50 million simulations delivered" );
+
         session.close();
     }
 

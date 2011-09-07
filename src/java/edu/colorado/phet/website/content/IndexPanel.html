@@ -45,16 +45,7 @@
                 <div id="sponsors" class="ie6sponsors">
                     <table cellpadding="0" cellspacing="0">
                         <tr>
-                            <td style="width: 50px"></td>
-                            <td style="width: 100px" class="sponsor">
-                                <a href="http://www.ksu.edu.sa/" wicket:message="dir:language.dir" rel="external">
-                                    <img wicket:id="ksu-logo"
-                                         src="../../../../../../../root/images/support/ERCSME-combined-logo-small.png"
-                                         alt="King Saud Univeristy logo"/>
-                                    <br/>
-                                    ERCSME at King Saud University
-                                </a>
-                            </td>
+                            <td style="width: 30px"></td>
                             <td style="width: 100px" class="sponsor">
                                 <a href="http://www.nsf.gov/" wicket:message="dir:language.dir" rel="external">
                                     <img wicket:id="nsf-logo"
@@ -72,16 +63,26 @@
                                     The William and Flora Hewlett Foundation
                                 </a>
                             </td>
+                            <td style="width: 130px;" class="sponsor">
+                                <a href="http://www.odf.org/" wicket:message="dir:language.dir" rel="external" style="margin-left: 10px;">
+                                    <img wicket:id="odf-logo"
+                                         src="../../../../../../../root/images/support/odf-combined-130.png"
+                                         alt="O'Donnell Foundation logo"/>
+                                    The O'Donnell Foundation
+                                </a>
+                            </td>
                         </tr>
                     </table>
-                    <div style="text-align: center; font-size: 10px;">
-                        <span wicket:id="odf-and" style="color: #666666;">and the</span>
-                        <a href="http://www.odf.org/" style="text-decoration: none; color: #990000;" rel="external">
-                            O'Donnell Foundation: Using Science to Teach Science
-                        </a>
+                    <div style="text-align: center; font-size: 12px;">
+                        <span style="color: #000;" wicket:id="sim-count">Over 50 million simulations delivered</span>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div style="text-align: center; font-size: 14px;margin-top: 13px;">
+            Recipient of <a href="https://secure.wikimedia.org/wikipedia/en/wiki/Agate">The Blue Agate 2011</a> <img
+                src="../../../../../../../root/images/logos/award-100x39.png" wicket:id="award-logo" style="vertical-align: middle;"/>
         </div>
 
         <div style="text-align: center; font-size: 11px; vertical-align:middle; position: relative; top: 13px;">
@@ -241,7 +242,9 @@
                     <!-- here we use a table with invisible elements with a specific height to mimic the min-height for a table -->
                     <table cellpadding="0" cellspacing="0" style="margin: 0; padding: 0; width: 100%; height: 100%;">
                         <tr>
-                            <td style="margin: 0; padding: 0;"><div style="height: 70px; width: 0;"></div></td>
+                            <td style="margin: 0; padding: 0;">
+                                <div style="height: 70px; width: 0;"></div>
+                            </td>
                             <td style="margin: 0; padding: 0; text-align: center; vertical-align:middle;">
                                 <div id="featured-sponsor-spot" style="display: none;"></div>
                                 <script type="text/javascript">
@@ -263,13 +266,15 @@
                                 </script>
                                 <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
                                     // NOTE: only works for root-based home pages!
-                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace(/\/images/g,"images");
+                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace( /\/images/g, "images" );
                                 </script>
                                 <noscript>
                                     <div wicket:id="featured-sponsor-panel"></div>
                                 </noscript>
                             </td>
-                            <td style="margin: 0; padding: 0;"><div style="height: 70px; width: 0;"></div></td>
+                            <td style="margin: 0; padding: 0;">
+                                <div style="height: 70px; width: 0;"></div>
+                            </td>
                         </tr>
                     </table>
                 </dd>

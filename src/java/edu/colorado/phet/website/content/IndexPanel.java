@@ -4,11 +4,8 @@
 
 package edu.colorado.phet.website.content;
 
-import java.util.Locale;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 
 import edu.colorado.phet.website.DistributionHandler;
@@ -61,16 +58,12 @@ public class IndexPanel extends PhetPanel {
     public IndexPanel( String id, final PageContext context ) {
         super( id, context );
 
-        add( new StaticImage( "ksu-logo", Images.LOGO_ERCSME_SMALL, null ) );
         add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
         add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
+        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
+        add( new StaticImage( "award-logo", Images.LOGO_AWARD, null ) );
 
-        if ( getMyLocale().equals( new Locale( "en" ) ) ) {
-            add( new Label( "odf-and", "and the" ) );
-        }
-        else {
-            add( new InvisibleComponent( "odf-and" ) );
-        }
+        add( new LocalizedText( "sim-count", "home.simulationsDelivered" ) );
 
         add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
                 "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"

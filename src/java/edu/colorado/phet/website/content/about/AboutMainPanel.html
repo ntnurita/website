@@ -7,6 +7,13 @@
     <title>[PREVIEW] AboutPhetPanel</title>
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+        <style type="text/css">
+            .about-phet {
+                /* centered, and the correct width */
+                width: 525px;
+                margin: 0 auto;
+            }
+        </style>
     </wicket:remove>
 </head>
 <body>
@@ -15,8 +22,8 @@
     <div wicket:message="dir:language.dir" class="about-phet standard-content">
         <p wicket:id="about-p1">
             PhET provides fun, interactive, <a href="#">research-based</a> simulations of physical phenomena for free.
-            We believe that our research-based approach– incorporating findings from prior research and our own
-            testing– enables students to make connections between real-life phenomena and the underlying science,
+            We believe that our research-based approach- incorporating findings from prior research and our own
+            testing- enables students to make connections between real-life phenomena and the underlying science,
             deepening their understanding and appreciation of the physical world.
         </p>
 
@@ -48,6 +55,38 @@
             browser as long as <a href="#">Flash</a> and
             <a href="#">Java</a> are installed.
         </p>
+
+        <h2>The Team</h2>
+
+        <div class="team-member">
+            <div class="team-headshot">
+                <div style="text-align:center;margin-top: 65px;">(headshot)</div>
+            </div>
+            <div class="team-content">
+                <h3 class="team-name">Name here</h3>
+                <h4 class="team-title">Title here?</h4>
+                <div class="team-desc">
+                    Description or other things. This part may be longer, so it could conceivably be pretty long. It may talk about duties,
+                    accomplishments, or whatnot.
+                </div>
+            </div>
+        </div>
+
+        <div class="team-member">
+            <div class="team-headshot">
+                <div style="text-align:center;margin-top: 65px;">(headshot)</div>
+            </div>
+            <div class="team-content">
+                <h3 class="team-name">Name here</h3>
+                <h4 class="team-title">Title here?</h4>
+                <div class="team-desc">
+                    Description or other things. This part may be longer, so it could conceivably be pretty long. It may talk about duties,
+                    accomplishments, or whatnot.
+                </div>
+            </div>
+        </div>
+
+        (and we would get rid of the stuff below here?)
 
         <h2>
             <wicket:message key="about.who-we-are.title">Who We Are</wicket:message>
