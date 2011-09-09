@@ -19,6 +19,20 @@ body {
     top: 0;
 }
 
+/* Place the "50 million sims delivered" or whatnot message in the top of the logo */
+#page-header-sims-served {
+    position: absolute;
+    width: 242px;
+    left: 0;
+    top: 9px;
+    font-size: 10px;
+    color: #ffa;
+    font-style: italic;
+
+    /* center the text in the top of the logo*/
+    text-align: center;
+}
+
 div.rtl #page-header-logo {
     left: auto !important;
     right: 0 !important;
@@ -38,7 +52,7 @@ div.rtl #page-header-logo {
 }
 
 #page-header-search a {
-/* for the current version link */
+    /* for the current version link */
     color: white;
 }
 
@@ -199,8 +213,8 @@ div.rtl .text-right-classic {
 }
 
 .donate-box1 a {
-/*text-decoration: none;*/
-/*color: black;*/
+    /*text-decoration: none;*/
+    /*color: black;*/
 }
 
 .donate-box2 {

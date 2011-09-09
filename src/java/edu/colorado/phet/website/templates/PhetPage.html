@@ -15,7 +15,7 @@
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
-    <link rel="stylesheet" type="text/css" href="/css/phet-v6-min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/phet-v7-min.css"/>
     <!--[if IE 6]>
     <link rel="stylesheet" type="text/css" href="/css/ie6fix-v3.css"/>
     <![endif]-->
@@ -35,9 +35,9 @@ var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5033201-1"]);_gaq.push(["_setDoma
 _gaq.push(["b._trackPageview"]);var benchmarkTracker=null;var overallTracker=null;(function(){var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";
 b.onload=b.onreadystatechange=function(){var c=this.readyState;if(c&&c!="complete"&&c!="loaded"){return}benchmarkTracker=_gat._getTracker("UA-5033201-1");benchmarkTracker._setDomainName("phet.colorado.edu");
 overallTracker=_gat._getTracker("UA-5033010-1");overallTracker._setDomainName("phet.colorado.edu")};var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();(function(){var b=document.createElement("script");
-b.type="text/javascript";b.async=true;b.src="/js/phet-v8-min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();
+b.type="text/javascript";b.async=true;b.src="/js/phet-v9-min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)})();
     </script>
-    <script type="text/javascript" src="/js/phet-v8-min.js" wicket:id="installer-javascript-reference"></script>
+    <script type="text/javascript" src="/js/phet-v9-min.js" wicket:id="installer-javascript-reference"></script>
 </head>
 <body wicket:message="dir:language.dir,class:language.dir,id:style.body.id">
 <div id="skipNav">
@@ -45,7 +45,6 @@ b.type="text/javascript";b.async=true;b.src="/js/phet-v8-min.js";var a=document.
         <wicket:message key="page.SkipToMainContent">Skip to Main Content</wicket:message>
     </a>
 </div>
-
 
 <div wicket:id="translation-preview-notification"
      style="color: red; text-align: center; border-bottom: 3px solid black;">This is a preview for translation #79 of
@@ -55,11 +54,14 @@ b.type="text/javascript";b.async=true;b.src="/js/phet-v8-min.js";var a=document.
 <div id="page-header" wicket:message="class:language.dir">
     <div id="page-header-container">
         <div id="page-header-logo">
-            <a href="PhetPage.html#" wicket:id="page-header-home-link">
+            <a href="#" wicket:id="page-header-home-link">
                 <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"
                      alt="PhET Logo" title="Go to the PhET home page" class="header-logo-image"
                      width="242" height="127"/>
             </a>
+        </div>
+        <div id="page-header-sims-served">
+            <span wicket:id="sim-count">Over 50 million simulations delivered</span>
         </div>
         <div id="page-header-title">
             <img wicket:id="page-header-title-image" src="../../../../../../../root/images/logo-title.jpg"

@@ -158,6 +158,9 @@ public abstract class PhetPage extends WebPage implements Stylable {
 
         // visual display
         if ( addTemplateBindings ) {
+
+            add( new LocalizedText( "sim-count", "home.simulationsDelivered" ) );
+
             // TODO: refactor static images to a single location, so paths / names can be quickly changed
             Link link = IndexPage.getLinker().getLink( "page-header-home-link", getPageContext(), getPhetCycle() );
             if ( DistributionHandler.redirectHeaderToProduction( (PhetRequestCycle) getRequestCycle() ) ) {

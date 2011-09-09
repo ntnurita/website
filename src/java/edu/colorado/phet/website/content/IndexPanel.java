@@ -63,8 +63,6 @@ public class IndexPanel extends PhetPanel {
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
         add( new StaticImage( "award-logo", Images.LOGO_AWARD, null ) );
 
-        add( new LocalizedText( "sim-count", "home.simulationsDelivered" ) );
-
         add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
                 "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
         } ) );
