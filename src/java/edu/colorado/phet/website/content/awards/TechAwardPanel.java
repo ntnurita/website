@@ -6,11 +6,10 @@ import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.ResearchPanel;
+import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.links.AbstractLinker;
-import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class TechAwardPanel extends PhetPanel {
     public TechAwardPanel( String id, PageContext context ) {
@@ -25,10 +24,11 @@ public class TechAwardPanel extends PhetPanel {
         add( ResearchPanel.getLinker().getLink( "research-link-1", context, getPhetCycle() ) );
         add( ResearchPanel.getLinker().getLink( "research-link-2", context, getPhetCycle() ) );
 
-        // TODO: fill in these links!
+        // TODO: correct these links!
         add( new RawLink( "world-photos-link-1", "#" ) );
         add( new RawLink( "world-photos-link-2", "#" ) );
-        add( new RawLink( "team-link", "#" ) );
+        add( AboutMainPanel.getLinker().getLink( "team-link", context, getPhetCycle() ) );
+        add( new RawLink( "", "#" ) );
         add( new RawLink( "hi-res-screenshots-link", "#" ) );
     }
 }

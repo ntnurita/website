@@ -37,6 +37,8 @@ public class StringChanges {
         StringUtils.deleteString( session, "nav.award.techAward2011" );
 
         StringUtils.addString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011" );
+        StringUtils.overwriteString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011",
+                                     "Recipient of <a {0}>The Tech Award 2011</a>");
         StringUtils.addString( session, "award.techAward2011.homeSubtitle", "honoring technology benefitting humanity" );
 
         StringUtils.addString( session, "award.techAward2011.title", "PhET Tech Award 2011" );
@@ -47,6 +49,7 @@ public class StringChanges {
     /*---------------------------------------------------------------------------*
     * deprecated strings:
     * newsletter-instructions
+    * about.who-we-are.title
     *----------------------------------------------------------------------------*/
 
 }

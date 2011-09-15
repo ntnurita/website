@@ -65,18 +65,20 @@ public class IndexPanel extends PhetPanel {
         add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
         add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
-        add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_COMBINED, null ) );
 
         /*---------------------------------------------------------------------------*
         * tech award area
         *----------------------------------------------------------------------------*/
-        Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
-        techAwardTitleLink.add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle" ) );
-        add( techAwardTitleLink );
+        add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle", new Object[] {
+                TechAwardPage.getLinker().getHref( context, getPhetCycle() )
+        } ) );
 
-        Link techAwardSubtitleLink = TechAwardPage.getLinker().getLink( "techAwardLinkSubtitle", context, getPhetCycle() );
-        techAwardSubtitleLink.add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
-        add( techAwardSubtitleLink );
+        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
+
+        // logo
+        Link techAwardTitleLink2 = TechAwardPage.getLinker().getLink( "techAwardLink2", context, getPhetCycle() );
+        techAwardTitleLink2.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_COMBINED, null ) );
+        add( techAwardTitleLink2 );
 
         /*---------------------------------------------------------------------------*
         * social links
