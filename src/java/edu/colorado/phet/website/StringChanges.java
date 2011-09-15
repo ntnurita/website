@@ -21,6 +21,8 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
+        StringUtils.addString( session, "media.images.title", "PhET Images and Logos");
+
         session.close();
     }
 

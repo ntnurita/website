@@ -89,6 +89,7 @@ import edu.colorado.phet.website.content.contribution.NominateContributionPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
+import edu.colorado.phet.website.content.media.MediaImagesPage;
 import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.media.WorldPhotosPage;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
@@ -268,6 +269,7 @@ public class PhetWicketApplication extends WebApplication {
         SimulationFAQPage.addToMapper( mapper );
         TechAwardPage.addToMapper( mapper );
         WorldPhotosPage.addToMapper( mapper );
+        MediaImagesPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );

@@ -28,9 +28,9 @@ public class TechAwardPanel extends PhetPanel {
         add( ResearchPanel.getLinker().getLink( "research-link-2", context, getPhetCycle() ) );
         add( WorldPhotosPage.getLinker().getLink( "world-photos-link-1", context, getPhetCycle() ) );
         add( WorldPhotosPage.getLinker().getLink( "world-photos-link-2", context, getPhetCycle() ) );
+        add( MediaImagesPage.getLinker().getLink( "hi-res-screenshots-link", context, getPhetCycle() ) );
 
         // TODO: correct these links!
         add( AboutMainPanel.getLinker().getLink( "team-link", context, getPhetCycle() ) );
-        add( new RawLink( "hi-res-screenshots-link", "#" ) );
     }
 }

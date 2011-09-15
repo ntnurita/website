@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title>[PREVIEW] MediaImagesPanel</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+            .image-logo-holder {
+                float: left;
+                width: 352px;
+                margin-right: 20px;
+                margin-bottom: 20px;
+            }
+
+            .image-logo-clear {
+                clear: both;
+            }
+
+            img.image-logo {
+                border: 1px solid #888;
+            }
+
+            .image-logo-link {
+                text-decoration: none;
+            }
+
+            .image-logo-description {
+
+            }
+        </style>
+    </wicket:head>
+</head>
+<body>
+
+<wicket:panel>
+    <div wicket:message="dir:language.dir" class="full-width-center standard-content media-images-panel">
+        <h1 style="color: #d36a04;">
+            <wicket:message key="media.images.title">PhET Images and Logos</wicket:message>
+        </h1>
+
+        <div class="image-logo-holder" wicket:id="images">
+            <a class="image-logo-link" href="#" wicket:id="link">
+                <img class="image-logo" wicket:id="image"/>
+            </a>
+
+            <div class="image-logo-description" wicket:id="description"></div>
+        </div>
+
+    </div>
+</wicket:panel>
+
+</body>
+</html>
+
