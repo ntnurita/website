@@ -10,26 +10,24 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
-public class TechAwardPage extends PhetPage {
-    public TechAwardPage( PageParameters parameters ) {
+public class WorldPhotosPage extends PhetPage {
+    public WorldPhotosPage( PageParameters parameters ) {
         super( parameters );
 
-        setTitle( getPhetLocalizer().getString( "award.techAward2011.title", this ) );
+        setTitle( getPhetLocalizer().getString( "world-photos.title", this ) );
 
-        add( new TechAwardPanel( "panel", getPageContext() ) );
-
-        // TODO: add in a better StaticPanel that can handle these non-menu bearing pages?
+        add( new WorldPhotosPanel( "panel", getPageContext() ) );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^media/tech-award-2011$", TechAwardPage.class );
+        mapper.addMap( "^media/photos$", WorldPhotosPage.class );
     }
 
     public static RawLinkable getLinker() {
         return new AbstractLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
-                return "media/tech-award-2011";
+                return "media/photos";
             }
         };
     }

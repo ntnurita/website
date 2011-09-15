@@ -38,10 +38,11 @@ public class StringChanges {
 
         StringUtils.addString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011" );
         StringUtils.overwriteString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011",
-                                     "Recipient of <a {0}>The Tech Award 2011</a>");
+                                     "Recipient of <a {0}>The Tech Award 2011</a>" );
         StringUtils.addString( session, "award.techAward2011.homeSubtitle", "honoring technology benefitting humanity" );
 
         StringUtils.addString( session, "award.techAward2011.title", "PhET Tech Award 2011" );
+        StringUtils.addString( session, "world-photos.title", "PhET Around the World" );
 
         session.close();
     }

@@ -23,10 +23,10 @@ public class TechAwardPanel extends PhetPanel {
         add( CategoryPage.getDefaultLinker().getLink( "interactive-simulations", context, getPhetCycle() ) );
         add( ResearchPanel.getLinker().getLink( "research-link-1", context, getPhetCycle() ) );
         add( ResearchPanel.getLinker().getLink( "research-link-2", context, getPhetCycle() ) );
+        add( WorldPhotosPage.getLinker().getLink( "world-photos-link-1", context, getPhetCycle() ) );
+        add( WorldPhotosPage.getLinker().getLink( "world-photos-link-2", context, getPhetCycle() ) );
 
         // TODO: correct these links!
-        add( new RawLink( "world-photos-link-1", "#" ) );
-        add( new RawLink( "world-photos-link-2", "#" ) );
         add( AboutMainPanel.getLinker().getLink( "team-link", context, getPhetCycle() ) );
         add( new RawLink( "hi-res-screenshots-link", "#" ) );
     }
