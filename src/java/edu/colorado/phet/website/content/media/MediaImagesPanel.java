@@ -23,7 +23,7 @@ public class MediaImagesPanel extends PhetPanel {
 
     private static final List<LogoImage> LOGO_IMAGES = new ArrayList<LogoImage>() {{
         add( new LogoImage( "PhET-logo.jpg", "PhET logo (high-res)" ) );
-        add( new LogoImage( "PhET-team-9-9-2011.jpg", "PhET logo (high-res)" ) );
+        add( new LogoImage( "PhET-team-9-9-2011.jpg", "PhET team photo (high-res)" ) );
 
         add( new LogoImage( "Acid-Base_Solutions.jpg", "Acid-Base Solutions" ) );
         add( new LogoImage( "AlphaDecay.jpg", "Alpha Decay" ) );
