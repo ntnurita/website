@@ -48,7 +48,7 @@ public class Images {
     public static final ImageHandle LOGO_IDAHO_DIGITAL_LEARNING = new ImageHandle( "/images/support/idaho-digital-learning-logo.png", true );
     public static final ImageHandle LOGO_COMPASS_LEARNING = new ImageHandle( "/images/support/compass-learning-small.png", true );
     public static final ImageHandle LOGO_LEARNING_COM = new ImageHandle( "/images/support/learning-com-extra-small.png", true );
-    public static final ImageHandle LOGO_AWARD = new ImageHandle( "/images/logos/award-100x39.png", true );
+    public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
 
     public static final ImageHandle BY_LEVEL_ELEMENTARY_SCHOOL = new ImageHandle( "/images/by-level/elementary-school.png", true );
     public static final ImageHandle BY_LEVEL_MIDDLE_SCHOOL = new ImageHandle( "/images/by-level/middle-school.png", true );
