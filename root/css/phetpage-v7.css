@@ -304,3 +304,13 @@ pre {
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
+
+.full-width-center {
+    width: 745px;
+    margin: 0 auto;
+}
+
+.tech-award-page-link {
+    text-decoration: none;
+    color: #000;
+}

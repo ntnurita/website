@@ -32,8 +32,14 @@ public class StringChanges {
 
         StringUtils.addString( session, "home.simulationsDelivered", "Over 50 million simulations delivered" );
 
-        StringUtils.addString( session, "award.techAward2011", "Recipient of The Tech Award 2011" );
-        StringUtils.addString( session, "award.techAward2011.subtitle", "honoring technology benefitting humanity" );
+        StringUtils.deleteString( session, "award.techAward2011" );
+        StringUtils.deleteString( session, "award.techAward2011.subtitle" );
+        StringUtils.deleteString( session, "nav.award.techAward2011" );
+
+        StringUtils.addString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011" );
+        StringUtils.addString( session, "award.techAward2011.homeSubtitle", "honoring technology benefitting humanity" );
+
+        StringUtils.addString( session, "award.techAward2011.title", "PhET Tech Award 2011" );
 
         session.close();
     }

@@ -75,6 +75,8 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
+import edu.colorado.phet.website.content.awards.TechAwardPage;
+import edu.colorado.phet.website.content.awards.TechAwardPanel;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCommentSuccessPage;
@@ -264,6 +266,7 @@ public class PhetWicketApplication extends WebApplication {
         UnsubscribeLandingPage.addToMapper( mapper );
         SponsorListPage.addToMapper( mapper );
         SimulationFAQPage.addToMapper( mapper );
+        TechAwardPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );

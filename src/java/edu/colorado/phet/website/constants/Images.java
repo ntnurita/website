@@ -49,9 +49,15 @@ public class Images {
     public static final ImageHandle LOGO_COMPASS_LEARNING = new ImageHandle( "/images/support/compass-learning-small.png", true );
     public static final ImageHandle LOGO_LEARNING_COM = new ImageHandle( "/images/support/learning-com-extra-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
+    public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 
     public static final ImageHandle BY_LEVEL_ELEMENTARY_SCHOOL = new ImageHandle( "/images/by-level/elementary-school.png", true );
     public static final ImageHandle BY_LEVEL_MIDDLE_SCHOOL = new ImageHandle( "/images/by-level/middle-school.png", true );
     public static final ImageHandle BY_LEVEL_HIGH_SCHOOL = new ImageHandle( "/images/by-level/high-school.png", true );
     public static final ImageHandle BY_LEVEL_UNIVERSITY = new ImageHandle( "/images/by-level/university.png", true );
+
+    /*---------------------------------------------------------------------------*
+    * contributed images
+    *----------------------------------------------------------------------------*/
+    public static final ImageHandle PHET_USE_IN_CAMBODIA = new ImageHandle( "/images/contributed/phet-cambodia.jpg", true );
 }

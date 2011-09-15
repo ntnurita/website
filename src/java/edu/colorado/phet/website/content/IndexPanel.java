@@ -21,6 +21,7 @@ import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
+import edu.colorado.phet.website.content.awards.TechAwardPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
@@ -58,14 +59,28 @@ public class IndexPanel extends PhetPanel {
     public IndexPanel( String id, final PageContext context ) {
         super( id, context );
 
+        /*---------------------------------------------------------------------------*
+        * sponsors
+        *----------------------------------------------------------------------------*/
         add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
         add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
         add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_COMBINED, null ) );
 
-        add( new LocalizedText( "techAward", "award.techAward2011" ) );
-        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.subtitle" ) );
+        /*---------------------------------------------------------------------------*
+        * tech award area
+        *----------------------------------------------------------------------------*/
+        Link techAwardTitleLink = TechAwardPanel.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
+        techAwardTitleLink.add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle" ) );
+        add( techAwardTitleLink );
 
+        Link techAwardSubtitleLink = TechAwardPanel.getLinker().getLink( "techAwardLinkSubtitle", context, getPhetCycle() );
+        techAwardSubtitleLink.add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
+        add( techAwardSubtitleLink );
+
+        /*---------------------------------------------------------------------------*
+        * social links
+        *----------------------------------------------------------------------------*/
         add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
                 "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
         } ) );

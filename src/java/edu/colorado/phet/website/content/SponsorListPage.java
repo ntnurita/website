@@ -21,7 +21,7 @@ public class SponsorListPage extends PhetPage {
     public SponsorListPage( PageParameters parameters ) {
         super( parameters );
 
-        setTitle( "PhET sponsor list" );
+        setTitle( "PhET sponsor list" ); // TODO: i18n?
 
         add( new ListView<Sponsor>( "home-sponsor", Sponsor.getHomeSponsors() ) {
             @Override
