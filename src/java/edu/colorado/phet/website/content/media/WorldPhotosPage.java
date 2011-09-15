@@ -4,6 +4,7 @@ package edu.colorado.phet.website.content.media;
 
 import org.apache.wicket.PageParameters;
 
+import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.templates.PhetPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
@@ -14,9 +15,12 @@ public class WorldPhotosPage extends PhetPage {
     public WorldPhotosPage( PageParameters parameters ) {
         super( parameters );
 
-        setTitle( getPhetLocalizer().getString( "world-photos.title", this ) );
+        String title = getPhetLocalizer().getString( "world-photos.title", this );
+        setTitle( title );
 
         add( new WorldPhotosPanel( "panel", getPageContext() ) );
+
+        add( new SocialBookmarkPanel( "social-bookmark-panel", getPageContext(), getFullPath(), title ) );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

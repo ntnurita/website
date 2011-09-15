@@ -43,6 +43,7 @@ public class TitlesEntity extends TranslationEntity {
         addString( "contribution.search.title" );
         addString( "faqs.title" );
         addString( "simulation.faq.title", "{0} will be replaced by the simulation title" );
+        addString( "world-photos.title" );
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
                             return new TitlePreviewPanel( id, context );
