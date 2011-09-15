@@ -21,29 +21,6 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
-        StringUtils.addString( session, "metadata.rights", "© 2011 University of Colorado. This simulation is available for free under either a Creative Commons Attribution license (http://creativecommons.org/licenses/by/3.0/us/) or the GNU General Public License (http://creativecommons.org/licenses/GPL/2.0/). Donations welcome and encouraged (http://phet.colorado.edu/en/donate)." );
-        StringUtils.addString( session, "metadata.rightsGplOnly", "© 2011 University of Colorado. This simulation is available for free under the GNU General Public License (http://creativecommons.org/licenses/GPL/2.0/). Donations welcome and encouraged (http://phet.colorado.edu/en/donate)." );
-        StringUtils.addString( session, "sponsors.jprofiler.desc", "For providing licenses of JProfiler" );
-
-        StringUtils.addString( session, "simulationMainPanel.frequentlyAskedQuestions", "Frequently Asked Questions" );
-        StringUtils.addString( session, "simulation.faq.title", "Frequently Asked Questions for {0}" );
-        StringUtils.overwriteString( session, "simulation.faq.title", "Frequently Asked Questions for {0}", "FAQ for {0}" );
-        StringUtils.addString( session, "simulationMainPanel.simulationHasFAQ", "This simulation has a list of <a {0}>Frequently Asked Questions</a> (<a {1}>pdf</a>)." );
-
-        StringUtils.addString( session, "home.simulationsDelivered", "Over 50 million simulations delivered" );
-
-        StringUtils.deleteString( session, "award.techAward2011" );
-        StringUtils.deleteString( session, "award.techAward2011.subtitle" );
-        StringUtils.deleteString( session, "nav.award.techAward2011" );
-
-        StringUtils.addString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011" );
-        StringUtils.overwriteString( session, "award.techAward2011.homeTitle", "Recipient of The Tech Award 2011",
-                                     "Recipient of <a {0}>The Tech Award 2011</a>" );
-        StringUtils.addString( session, "award.techAward2011.homeSubtitle", "honoring technology benefitting humanity" );
-
-        StringUtils.addString( session, "award.techAward2011.title", "PhET Tech Award 2011" );
-        StringUtils.addString( session, "world-photos.title", "PhET Around the World" );
-
         session.close();
     }
 
