@@ -20,7 +20,7 @@ public class TechAwardPanel extends PhetPanel {
 
         add( ResearchPanel.getLinker().getLink( "research-link", context, getPhetCycle() ) );
 
-        add( new StaticImage( "tech-awards-logo", Images.LOGO_TECH_AWARDS, null ) );
+        add( new StaticImage( "tech-awards-logo", Images.LOGO_TECH_AWARDS_COMBINED, null ) );
         add( new StaticImage( "cambodia-image", Images.PHET_USE_IN_CAMBODIA, null ) );
 
         add( CategoryPage.getDefaultLinker().getLink( "interactive-simulations", context, getPhetCycle() ) );
