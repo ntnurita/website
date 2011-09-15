@@ -14,6 +14,14 @@
                 font-size: 14px;
             }
 
+            .tech-award-panel li {
+                padding-bottom: 4px;
+            }
+
+            .tech-award-panel .award-past-press-releases li {
+                font-size: 12px;
+            }
+
             .tech-award-panel td {
                 vertical-align: top;
             }
@@ -30,7 +38,10 @@
     <div wicket:message="dir:language.dir" class="full-width-center standard-content tech-award-panel">
         <div style="float: right; margin-left: 20px;">
             <p>
-                <img src="../../../../../../../../root/images/logos/tech-awards-logo-150x48.png" alt="The Tech Awards logo" wicket:id="tech-awards-logo"/>
+                <a href="http://www.techawards.org/">
+                    <img src="../../../../../../../../root/images/logos/tech-awards-logo-150x48.png" alt="The Tech Awards logo"
+                         wicket:id="tech-awards-logo" style="border: none;"/>
+                </a>
             </p>
 
             <p style="width: 275px; text-align: center; margin-top: 40px;">
@@ -53,8 +64,12 @@
 
         <p>
             For those new to PhET and our work to advance science literacy and education worldwide, we include a brief introduction to the
-            project below as well as links to photos of PhET being used around the world, to our Tech Award application, and to an amazing
-            nomination letter from PhET user Sandor Nagy from Hungary.
+            project below. We also include links to <a href="#" wicket:id="world-photos-link-1">photos of PhET being used around the
+            world</a>,
+            our <a href="/publications/tech-award-2011-resources/PhET_TechAwards_Application.pdf">Tech Award application</a>, and an amazing
+            <a href="/publications/tech-award-2011-resources/LetterOfReference_SandorNagy.pdf">nomination letter</a> written by PhET user
+            Sandor Nagy
+            from Hungary.
         </p>
 
         <div style="clear: both;"></div>
@@ -80,8 +95,11 @@
                 <td><h2>Our approach:</h2></td>
                 <td>
                     <p>
-                        For teachers and students around the world, the PhET project provides interactive simulations that are based on
-                        extensive education research and support more effective science education. Going beyond traditional educational
+                        For teachers and students around the world, the PhET project provides
+                        <a href="#" wicket:id="interactive-simulations">interactive simulations</a> that are based on
+                        extensive <a href="#" wicket:id="research-link-1">education research</a> and support more effective science
+                        education. Going
+                        beyond traditional educational
                         resources, PhET simulations offer an intuitive, game-like environment where students can learn through
                         scientist-like exploration, where dynamic visual representations make the invisible visible, and where science ideas
                         are connected to real-world phenomena. Unlike most educational software, PhET simulations are free, easily
@@ -109,7 +127,8 @@
                         <li>Simulations available in 64 languages and the PhET website translated into 15 languages - a special thanks to
                             our scientist and teacher volunteers worldwide!
                         </li>
-                        <li>Over 30 publications by the PhET team demonstrating their research-based design, their flexibility in classroom
+                        <li>Over 30 <a href="#" wicket:id="research-link-2">publications</a> by the PhET team demonstrating their
+                            research-based design, their flexibility in classroom
                             use, and their effectiveness in science education.
                         </li>
                     </ul>
@@ -131,14 +150,39 @@
         <div class="award-additional-info">
             <ul>
                 <li>Press release announcing the CU PhET's Tech Award</li>
-                <li>Tech Award Application (pdf)</li>
-                <li>Letter of Support from Sandor Nagy in Hungary (pdf)</li>
-                <li>The PhET Team</li>
-                <li>Photos of PhET use around the world</li>
-                <li>High resolution simulation images</li>
+                <li>Tech Award Application (<a href="/publications/tech-award-2011-resources/PhET_TechAwards_Application.pdf">pdf</a>)</li>
+                <li>Letter of Support from Sandor Nagy in Hungary (<a
+                        href="/publications/tech-award-2011-resources/LetterOfReference_SandorNagy.pdf">pdf</a>)
+                </li>
+                <li><a href="#" wicket:id="team-link">The PhET Team</a></li>
+                <li><a href="#" wicket:id="world-photos-link-2">Photos of PhET use around the world</a></li>
+                <li><a href="#" wicket:id="hi-res-screenshots-link">High resolution simulation images</a></li>
                 <li><a href="#" wicket:id="research-link">Research on PhET simulations</a></li>
 
-                <li>Prior press releases on PhET (date, date, date, date)</li>
+                <li>Prior press releases covering PhET
+                    <ul class="award-past-press-releases">
+                        <li>10/28/2002: <a href="http://www.colorado.edu/news/r/4e684b90188ca093233db98ac819cd91.html">
+                            CU Nobel Laureate
+                            Carl Wieman Launches Project To Improve Physics And Science Education
+                        </a></li>
+                        <li>5/24/2006: <a href="http://www.colorado.edu/news/r/d0f49a868cba17308c3a99bbe7b76e07.html">
+                            CU Nobel Laureate Carl Wieman's Physics Education Web Site Wins Two Online Awards
+                        </a></li>
+
+                        <li>9/29/2006: <a href="http://www.colorado.edu/news/r/3e92c4610d6e9d528d7efacbb63cb4c6.html">
+                            CU Professor Carl Wieman Receives Highest Honor Given By American Association Of Physics Teachers
+                        </a></li>
+                        <li>9/27/2007: <a href="http://www.colorado.edu/news/r/304102cbd0051bd018021d93889fffe0.html">
+                            CU Nobel Laureate Carl Wieman's Physics Education Web Site Wins International Online Award
+                        </a></li>
+                        <li>2/2/2009: <a href="http://www.colorado.edu/news/r/c5b2d73c902fa5421eb9864e7043959b.html">
+                            CU-Boulder Online Simulation Project Gets $1.1 Million Grant, Continues to Change the Way Science is Taught
+                        </a></li>
+                        <li>11/29/2010: <a href="http://www.colorado.edu/news/r/ee52f6fda72b0526dffcb920a874c544.html">
+                            Online Science Project Launched by CU Nobel Laureate Receives $2.5 Million to Enhance Middle School Science
+                        </a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

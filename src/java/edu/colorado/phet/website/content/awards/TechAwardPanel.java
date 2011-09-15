@@ -2,9 +2,11 @@
 
 package edu.colorado.phet.website.content.awards;
 
+import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.ResearchPanel;
+import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.links.AbstractLinker;
@@ -18,17 +20,15 @@ public class TechAwardPanel extends PhetPanel {
 
         add( new StaticImage( "tech-awards-logo", Images.LOGO_TECH_AWARDS, null ) );
         add( new StaticImage( "cambodia-image", Images.PHET_USE_IN_CAMBODIA, null ) );
-    }
 
-    public static String getUrl() {
-        return "award/tech-award-2011";
-    }
+        add( CategoryPage.getDefaultLinker().getLink( "interactive-simulations", context, getPhetCycle() ) );
+        add( ResearchPanel.getLinker().getLink( "research-link-1", context, getPhetCycle() ) );
+        add( ResearchPanel.getLinker().getLink( "research-link-2", context, getPhetCycle() ) );
 
-    public static RawLinkable getLinker() {
-        return new AbstractLinker() {
-            public String getSubUrl( PageContext context ) {
-                return getUrl();
-            }
-        };
+        // TODO: fill in these links!
+        add( new RawLink( "world-photos-link-1", "#" ) );
+        add( new RawLink( "world-photos-link-2", "#" ) );
+        add( new RawLink( "team-link", "#" ) );
+        add( new RawLink( "hi-res-screenshots-link", "#" ) );
     }
 }

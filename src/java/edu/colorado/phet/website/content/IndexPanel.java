@@ -21,7 +21,7 @@ import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
-import edu.colorado.phet.website.content.awards.TechAwardPanel;
+import edu.colorado.phet.website.content.awards.TechAwardPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
@@ -70,11 +70,11 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * tech award area
         *----------------------------------------------------------------------------*/
-        Link techAwardTitleLink = TechAwardPanel.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
+        Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
         techAwardTitleLink.add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle" ) );
         add( techAwardTitleLink );
 
-        Link techAwardSubtitleLink = TechAwardPanel.getLinker().getLink( "techAwardLinkSubtitle", context, getPhetCycle() );
+        Link techAwardSubtitleLink = TechAwardPage.getLinker().getLink( "techAwardLinkSubtitle", context, getPhetCycle() );
         techAwardSubtitleLink.add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
         add( techAwardSubtitleLink );
 

@@ -20,14 +20,14 @@ public class TechAwardPage extends PhetPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^award/tech-award-2011$", TechAwardPage.class );
+        mapper.addMap( "^media/tech-award-2011$", TechAwardPage.class );
     }
 
     public static RawLinkable getLinker() {
         return new AbstractLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
-                return "award/tech-award-2011";
+                return "media/tech-award-2011";
             }
         };
     }
