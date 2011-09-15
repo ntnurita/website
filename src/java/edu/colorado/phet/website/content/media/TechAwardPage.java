@@ -1,6 +1,6 @@
 // Copyright 2002-2011, University of Colorado
 
-package edu.colorado.phet.website.content.awards;
+package edu.colorado.phet.website.content.media;
 
 import org.apache.wicket.PageParameters;
 

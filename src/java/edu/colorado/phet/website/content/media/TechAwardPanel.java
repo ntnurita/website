@@ -1,6 +1,6 @@
 // Copyright 2002-2011, University of Colorado
 
-package edu.colorado.phet.website.content.awards;
+package edu.colorado.phet.website.content.media;
 
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
@@ -28,7 +28,6 @@ public class TechAwardPanel extends PhetPanel {
         add( new RawLink( "world-photos-link-1", "#" ) );
         add( new RawLink( "world-photos-link-2", "#" ) );
         add( AboutMainPanel.getLinker().getLink( "team-link", context, getPhetCycle() ) );
-        add( new RawLink( "", "#" ) );
         add( new RawLink( "hi-res-screenshots-link", "#" ) );
     }
 }
