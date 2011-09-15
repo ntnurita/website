@@ -22,15 +22,8 @@
             </div>
         </div>
         <div id="main-content" class="main-menu-content">
-            <wicket:enclosure child="social-list">
-                <div class="social-div">
-                    <div wicket:id="social-list" class="social-sub-div">
-                        <a wicket:id="link" href="#" style="padding: 0; margin: 0; text-decoration: none;"
-                           rel="external,nofollow">
-                            <span wicket:id="icon"></span>
-                        </a>
-                    </div>
-                </div>
+            <wicket:enclosure child="social-bookmark-panel">
+                <div class="social-div" wicket:id="social-bookmark-panel"></div>
             </wicket:enclosure>
             <wicket:child/>
             <wicket:remove>

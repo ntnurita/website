@@ -8,30 +8,26 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.authentication.AuthenticatedPage;
 import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.SocialBookmarkService;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.SideNavMenu;
+import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.SponsorsPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.wicket.IComponentFactory;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 /**
  * This is a page with a menu on the left, and the PhET header and footer
@@ -171,24 +167,11 @@ public abstract class PhetMenuPage extends PhetPage {
             throw new RuntimeException( "title was not set before onBeforeRender for " + this.getClass().getCanonicalName() );
         }
         if ( !addedSocialIcons ) {
-            if ( showSocialBookmarkButtons ) {
-                add( new ListView<SocialBookmarkService>( "social-list", SocialBookmarkService.SERVICES ) {
-                    @Override
-                    protected void populateItem( ListItem<SocialBookmarkService> item ) {
-                        final SocialBookmarkService mark = item.getModelObject();
-                        Link link = mark.getLinker( getFullPath(), getSocialBookmarkTitle() ).getLink( "link", getPageContext(), getPhetCycle() );
-                        link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
-                        item.add( link );
-                        link.add( new WebMarkupContainer( "icon" ) {{
-                            add( new AttributeModifier( "style", true, new Model<String>( "display: block; width: 16px; height: 16px; background-image: url('" + mark.getSpritePath() + "');background-repeat: no-repeat; background-position: 0 -" + mark.getSpriteOffset() + "px;" ) ) );
-                        }} );
-                        //link.add( new StaticImage( "icon", mark.getIconHandle(), null ) ); // for now, don't replace the alt attribute
-                    }
-                } );
-            }
-            else {
-                add( new InvisibleComponent( "social-list" ) );
-            }
+            add( WicketUtils.componentIf( showSocialBookmarkButtons, "social-bookmark-panel", new IComponentFactory<Component>() {
+                public Component create( String id ) {
+                    return new SocialBookmarkPanel( "social-bookmark-panel", getPageContext(), getFullPath(), getSocialBookmarkTitle() );
+                }
+            } ) );
             addedSocialIcons = true;
         }
 

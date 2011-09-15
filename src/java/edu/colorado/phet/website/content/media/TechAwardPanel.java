@@ -11,6 +11,9 @@ import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 
+/**
+ * Information about PhET's 2011 Tech Award
+ */
 public class TechAwardPanel extends PhetPanel {
     public TechAwardPanel( String id, PageContext context ) {
         super( id, context );
