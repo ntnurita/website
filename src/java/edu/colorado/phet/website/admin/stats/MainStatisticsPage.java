@@ -62,7 +62,7 @@ public class MainStatisticsPage extends AdminPage {
                     }
                 }
 
-                add( new Label( "sim-count", "Total visible simulations: " + simulations.size() ) );
+                add( new Label( "statistics-sim-count", "Total visible simulations: " + simulations.size() ) );
                 add( new Label( "activity-count", "Total activities: " + contributions.size() ) );
                 add( new Label( "phet-activity-count", "PhET activities: " + phetContributionsCount ) );
                 add( new Label( "total-sim-languages", "Number of languages (including English) that sims are translated into: " + usedSimulationLocales.size() ) );
