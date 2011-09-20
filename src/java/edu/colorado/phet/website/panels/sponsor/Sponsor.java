@@ -189,6 +189,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
+    public static Sponsor WIRELESS_GENERATION = new LogoSponsor(
+            "Wireless Generation",
+            "http://www.wirelessgeneration.com/",
+            Images.LOGO_WIRELESS_GENERATION, "padding: 3px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -213,6 +221,7 @@ public abstract class Sponsor implements Serializable {
             IDAHO_DIGITAL_LEARNING,
             COMPASS_LEARNING,
             LEARNING_COM,
+            WIRELESS_GENERATION,
             YOU
     };
 
