@@ -197,6 +197,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
+    public static Sponsor OREGON_DEPARTMENT_OF_EDUCATION = new LogoSponsor(
+            "Oregon Department of Education",
+            "http://www.ode.state.or.us",
+            Images.LOGO_OREGON_DOE, "padding: 5px;" ) {{
+        setHomeWeight( 3 );
+        setSimWeight( 3 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -222,6 +230,7 @@ public abstract class Sponsor implements Serializable {
             COMPASS_LEARNING,
             LEARNING_COM,
             WIRELESS_GENERATION,
+            OREGON_DEPARTMENT_OF_EDUCATION,
             YOU
     };
 
