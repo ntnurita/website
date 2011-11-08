@@ -11,6 +11,9 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
+/**
+ * The main page for showing our various sponsors
+ */
 public class AboutSponsorsPanel extends PhetPanel {
     public AboutSponsorsPanel( String id, PageContext context ) {
         super( id, context );

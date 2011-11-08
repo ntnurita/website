@@ -205,6 +205,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 3 );
     }};
 
+    public static Sponsor JEFFERSON_COUNTY_VLA = new LogoSponsor(
+            "Jefferson County Virtual Learning Academy",
+            "virtuallearningacademy.net",
+            Images.LOGO_JEFFERSON_COUNTY_VLA, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -231,6 +239,7 @@ public abstract class Sponsor implements Serializable {
             LEARNING_COM,
             WIRELESS_GENERATION,
             OREGON_DEPARTMENT_OF_EDUCATION,
+            JEFFERSON_COUNTY_VLA,
             YOU
     };
 
