@@ -207,7 +207,7 @@ public abstract class Sponsor implements Serializable {
 
     public static Sponsor JEFFERSON_COUNTY_VLA = new LogoSponsor(
             "Jefferson County Virtual Learning Academy",
-            "virtuallearningacademy.net",
+            "http://www.jcesc.k12.oh.us/",
             Images.LOGO_JEFFERSON_COUNTY_VLA, "padding: 5px;" ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
