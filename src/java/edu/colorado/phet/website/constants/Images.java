@@ -51,6 +51,7 @@ public class Images {
     public static final ImageHandle LOGO_WIRELESS_GENERATION = new ImageHandle( "/images/support/wireless-generation-160x19.png", true );
     public static final ImageHandle LOGO_OREGON_DOE = new ImageHandle( "/images/support/oregon-doe-black-small.png", true );
     public static final ImageHandle LOGO_JEFFERSON_COUNTY_VLA = new ImageHandle( "/images/support/jefferson-county-vla-125x128.png", true );
+    public static final ImageHandle LOGO_CAROLINA_CORP = new ImageHandle( "/images/support/carolina-160x56.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 

@@ -213,6 +213,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor CAROLINA_CORP = new LogoSponsor(
+            "Carolina Biological Supply Company",
+            "http://www.carolina.com",
+            Images.LOGO_CAROLINA_CORP, "padding: 0px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -240,6 +248,7 @@ public abstract class Sponsor implements Serializable {
             WIRELESS_GENERATION,
             OREGON_DEPARTMENT_OF_EDUCATION,
             JEFFERSON_COUNTY_VLA,
+            CAROLINA_CORP,
             YOU
     };
 
