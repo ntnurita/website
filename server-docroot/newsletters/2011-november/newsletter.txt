@@ -1,0 +1,132 @@
+May 2011 Newsletter - PhET Interactive Simulations (http://phet.colorado.edu)
+
+*** Featured Sims:
+
+Explore Snell's Law and More with Bending Light
+
+Investigate the bending of light (refraction) between two mediums with different refractive indices
+with the new Bending Light sim (http://phet.colorado.edu/en/simulation/bending-light). See how
+changing from air to water to glass changes the bending angle. Play with prisms of different shapes
+and make rainbows. Use more tools to measure light intensity and probe E-field versus time. Students
+can learn what determines the angle of refraction, how to apply Snell's law, how the speed and
+wavelength of light changes in different materials, and how wavelength effects the angle of
+refraction. In the end, students will be able to explain how a prism creates a rainbow.
+
+Increase Engagement with Balancing Chemical Equations
+
+Make learning how to balance a chemical equation more fun with the new Balancing Chemical Equations
+sim (http://phet.colorado.edu/en/simulation/balancing-chemical-equations). What can you change to
+balance an equation? Play a game to test your ideas!
+
+After the activity, students will be able to:
+        * Balance a chemical equation.
+        * Explain that the number of atoms of each element is conserved in a chemical reaction.
+        * Describe the difference between coefficients and subscripts in a chemical equation.
+        * Translate from symbolic to molecular representations of matter.
+
+
+*** Check Out These Other New Simuations:
+
+        * Membrane Channels (http://phet.colorado.edu/en/simulation/membrane-channels)
+        * States of Matter (http://phet.colorado.edu/en/simulation/states-of-matter)
+        * Improved Gravity and Orbits (http://phet.colorado.edu/en/simulation/gravity-and-orbits)
+
+
+*** Meet Kelly:
+
+What got you involved in PhET?
+I had some teaching experience, but I was eager to learn more about how students learn chemistry.
+PhET gave me an opportunity to grow as an educator. What I did not expect was how much chemistry I
+would learn in the process!
+
+What do you do for PhET?
+I work with the team to design and develop new chemistry sims, and I help run workshops for teachers.
+I also study the effect of PhET on student learning in interview and classroom settings, and present
+the research at conferences and in papers.
+
+How do you see PhET helping teachers?
+I like how the open-source nature of PhET gives science teachers who have little access to lab
+equipment -- or even the internet -- a way to use inquiry in their classrooms. I am excited to use
+the sims in my own teaching!
+
+How do you see PhET helping kids?
+I am continually amazed at how much students learn from using the sims, and how PhET engages students
+in learning science. PhET gets students to ask their own questions, which is what science is all about!
+
+Where do you see PhET going?
+I think PhET will grow in two areas: the earth and life sciences, and the middle school level. Our
+new sim-sharing project will give teachers more ways to use PhET in their classrooms. And of course,
+stay tuned for more chemistry sims!
+
+
+*** Don't forget to join us on Facebook, Twitter and our Blog!
+
+Be the first to learn about new sims, new teacher activities, articles and newsletters. We'd also
+love to hear how you use PhET in your classrooms. Spread the word so PhET can go viral....
+
+Join us on Facebook: http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall
+Follow us on Twitter icon: http://twitter.com/PhETSims
+Read our blog: http://phet.colorado.edu/blog/
+
+
+*** Help Support the Future of PhET!
+
+Your donation brings science to kids in your town and around the world. So please consider:
+$15      if you're a teacher who uses a few sims
+$25-50+  if you use more sims
+$200+    for individual schools
+$500+    for districts
+
+Donate now: http://www.cufund.org/giving-opportunities/fund-description/?id=7397
+
+All donations are tax deductible.
+
+Thanks for your support!
+
+
+*** Upcoming Events:
+
+ISTE 2011 (http://www.isteconference.org/2011/)
+Philadelphia, PA
+June 26-29, 2011
+
+Chemistry Education Research & Practice
+Gordon Research Conference (http://www.grc.org/programs.aspx?year=2011&program=chemedu)
+Davidson, NC
+June 26-July 1, 2011
+
+AAPT (talks only) (http://www.aapt.org/Conferences/sm2011/index.cfm)
+Omaha, NE
+July 30 - August 3, 2011
+
+ACS Fall 2011 National Meeting (http://www.acs.org/denver2011)
+Denver, CO
+August 28 - Sept. 1, 2011
+
+iNACOL VSS 2011 (http://www.virtualschoolsymposium.org/)
+Indianapolis, IN
+November 9-11, 2011
+
+
+*** In the Pipeline:
+
+    * Fluid Pressure and Flow
+    * Build a Molecule
+    * Multiple Capacitors
+    * Resonance
+    * Sugar and Salt Solutions
+    * Teeter Totter Torque
+    * Plate Tectonics
+
+
+*** Check Out Our Free Webinar & Podcast
+
+Introduce teachers new to PhET with this free archived webinar
+(http://archive.constantcontact.com/fs013/1103655070384/archive/1105484107172.html) or our
+Podcast on iTunes (http://itunes.apple.com/us/itunes-u/phet-interactive-simulation/id432333491).
+
+
+You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
+phethelp@colorado.edu. To opt out of these newsletters, please click on this link: @UNSUBSCRIBE@ or copy and paste the text into your browser.
+
+PhET Interactive Simulations | University of Colorado 390 UCB | Boulder, CO 80309-0390
