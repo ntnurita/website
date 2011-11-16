@@ -51,6 +51,11 @@ public class NavMenuList extends PhetPanel {
                 // adds class so we can remove these for things like the installer and whatnot in CSS
                 if ( location.isUnderLocationKey( "get-phet" ) ) {
                     label.add( new ClassAppender( "get-phet-item" ) );
+
+                    // if this is an offline installer, just get rid of it
+                    if ( PhetRequestCycle.get().isOfflineInstaller() ) {
+                        item.setVisible( false );
+                    }
                 }
                 if ( location.isUnderLocationKey( "teacherIdeas" ) ) {
                     label.add( new ClassAppender( "teacher-ideas-item" ) );
