@@ -1,0 +1,41 @@
+/* Copyright 2002-2011, University of Colorado */
+
+/* Contains CSS for the temporary yellow-background donation banner */
+
+#donation-banner {
+    background-color: #ffff88;
+    margin-bottom: 10px;
+}
+
+#donation-banner-container {
+    margin: 0 auto;
+    width: 745px;
+    height: 164px;
+}
+
+.donation-header {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.donation-text {
+    margin-top: 8px;
+    padding-top: 0;
+    font-size: 17px;
+}
+
+#donation-rotator {
+    margin-top: 10px;
+    float: right;
+}
+
+#donation-button-form {
+    position: relative;
+    left: 180px;
+    top: 10px;
+}
+
+.large-form-button {
+    font-size: 130%;
+}

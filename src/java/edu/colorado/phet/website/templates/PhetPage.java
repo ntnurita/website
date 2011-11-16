@@ -168,7 +168,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
             }
             add( link );
             // TODO: localize alt attributes
-            link.add( new StaticImage( "page-header-logo-image", WebImage.get( Images.PHET_LOGO ), null ) );
+            link.add( new StaticImage( "page-header-logo-image", WebImage.get( Images.PHET_LOGO_YELLOW ), null ) );
             add( new StaticImage( "page-header-title-image", WebImage.get( Images.LOGO_TITLE ), null ) );
 
             //add( HeaderContributor.forCss( CSS.PHET_PAGE ) );

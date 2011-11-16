@@ -15,7 +15,7 @@
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
-    <link rel="stylesheet" type="text/css" href="/css/phet-v8-min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/phet-v9-min.css"/>
     <!--[if IE 6]>
     <link rel="stylesheet" type="text/css" href="/css/ie6fix-v3.css"/>
     <![endif]-->
@@ -55,7 +55,7 @@ b.type="text/javascript";b.async=true;b.src="/js/phet-v9-min.js";var a=document.
     <div id="page-header-container">
         <div id="page-header-logo">
             <a href="#" wicket:id="page-header-home-link">
-                <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"
+                <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo-yellow.png"
                      alt="PhET Logo" title="Go to the PhET home page" class="header-logo-image"
                      width="242" height="127"/>
             </a>
@@ -79,6 +79,21 @@ b.type="text/javascript";b.async=true;b.src="/js/phet-v9-min.js";var a=document.
                 </div>
             </form>
         </div>
+    </div>
+</div>
+<div id="donation-banner">
+    <div id="donation-banner-container">
+        <div id="donation-rotator">
+            <img src="http://phet.colorado.edu/files/world-photos/thumbs/CIMG3209.jpg" alt="PhET in Burundi" width="192" height="144"/>
+        </div>
+        <div class="donation-header">PhET's Annual Campaign</div>
+        <p class="donation-text">
+            Donate to advance science literacy and education worldwide<br/>
+            25 million uses per year, 65 languages, and growing
+        </p>
+        <form id="donation-button-form">
+            <input type="button" value="Donate now" class="large-form-button" onclick="document.location='http://www.cufund.org/giving-opportunities/fund-description/?id=7397'"/>
+        </form>
     </div>
 </div>
 <div class="log-in-out" wicket:id="log-in-out-panel">
