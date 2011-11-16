@@ -10,6 +10,10 @@ body {
     height: 127px;
 }
 
+#offline-installer-body #page-header {
+    background: url(../images/header_BG.gif) left top repeat-x;
+}
+
 #page-header-logo {
     position: absolute;
     width: 242px;
