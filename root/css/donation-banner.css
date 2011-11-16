@@ -31,6 +31,31 @@
     float: right;
 }
 
+.donation-rotator-image {
+    position: absolute;
+}
+
+.donation-rotator-image img {
+    position: absolute;
+}
+
+.donation-rotator-image div {
+    position: absolute;
+    top: 119px;
+    width: 192px;
+    height: 25px;
+    background-color: black;
+    background: rgba(0, 0, 0, 0.65);
+    line-height: 25px;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+
+.start-off-screen {
+    right: 5000px;
+}
+
 #donation-button-form {
     position: relative;
     left: 180px;
