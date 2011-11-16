@@ -38,6 +38,8 @@ import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
+import edu.colorado.phet.website.panels.DonationBannerHomePanel;
+import edu.colorado.phet.website.panels.DonationBannerRegularPanel;
 import edu.colorado.phet.website.panels.LogInOutPanel;
 import edu.colorado.phet.website.panels.SearchPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -233,6 +235,13 @@ public abstract class PhetPage extends WebPage implements Stylable {
         }
         else {
             add( new WebMarkupContainer( "js" ) );
+        }
+
+        if ( this instanceof IndexPage ) {
+            add( new DonationBannerHomePanel( "donation-banner", getPageContext() ) );
+        }
+        else {
+            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
         }
     }
 

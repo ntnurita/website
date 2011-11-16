@@ -81,21 +81,12 @@ b.type="text/javascript";b.async=true;b.src="/js/phet-v9-min.js";var a=document.
         </div>
     </div>
 </div>
-<div id="donation-banner">
-    <div id="donation-banner-container">
-        <div id="donation-rotator">
-            <img src="http://phet.colorado.edu/files/world-photos/thumbs/CIMG3209.jpg" alt="PhET in Burundi" width="192" height="144"/>
+<wicket:enclosure child="donation-banner">
+    <div id="donation-banner">
+        <div id="donation-banner-container" wicket:id="donation-banner">
         </div>
-        <div class="donation-header">PhET's Annual Campaign</div>
-        <p class="donation-text">
-            Donate to advance science literacy and education worldwide<br/>
-            25 million uses per year, 65 languages, and growing
-        </p>
-        <form id="donation-button-form">
-            <input type="button" value="Donate now" class="large-form-button" onclick="document.location='http://www.cufund.org/giving-opportunities/fund-description/?id=7397'"/>
-        </form>
     </div>
-</div>
+</wicket:enclosure>
 <div class="log-in-out" wicket:id="log-in-out-panel">
 </div>
 <div id="page-content" wicket:message="class:language.dir">

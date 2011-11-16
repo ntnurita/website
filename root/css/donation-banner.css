@@ -5,12 +5,12 @@
 #donation-banner {
     background-color: #ffff88;
     margin-bottom: 10px;
+    position: relative;
 }
 
 #donation-banner-container {
     margin: 0 auto;
     width: 745px;
-    height: 164px;
 }
 
 .donation-header {
@@ -23,6 +23,7 @@
     margin-top: 8px;
     padding-top: 0;
     font-size: 17px;
+    padding-bottom: 10px;
 }
 
 #donation-rotator {
@@ -33,9 +34,16 @@
 #donation-button-form {
     position: relative;
     left: 180px;
-    top: 10px;
 }
 
 .large-form-button {
-    font-size: 130%;
+    font-size: 120%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#donation-button-right {
+    position: absolute;
+    left: 560px;
+    top: 20px;
 }
