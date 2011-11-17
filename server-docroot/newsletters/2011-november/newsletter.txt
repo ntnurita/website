@@ -1,62 +1,114 @@
-May 2011 Newsletter - PhET Interactive Simulations (http://phet.colorado.edu)
+November 2011 Newsletter - PhET Interactive Simulations (http://phet.colorado.edu)
+
+PhET Honored as 2011 Tech Award Laureate
+
+We're excited to announce that PhET was selected as a 2011 Tech Award Laureate, and the recipient
+of the Microsoft Education Tech Award $50,000 cash prize. The Tech Award - a signature program of
+The Tech Museum in San Jose, CA - honors innovators from around the world who are applying technology
+to benefit humanity in 5 award categories: environment, economic development, equality, education and
+health. PhET was selected from over 600 applications. Thanks to all our users for your continued
+support!
+
+    Watch PhET's Tech Laureaute video at https://www.youtube.com/watch?v=vDl_dddNqPs&feature=youtu.be
 
 *** Featured Sims:
 
-Explore Snell's Law and More with Bending Light
+Build a Molecule
 
-Investigate the bending of light (refraction) between two mediums with different refractive indices
-with the new Bending Light sim (http://phet.colorado.edu/en/simulation/bending-light). See how
-changing from air to water to glass changes the bending angle. Play with prisms of different shapes
-and make rainbows. Use more tools to measure light intensity and probe E-field versus time. Students
-can learn what determines the angle of refraction, how to apply Snell's law, how the speed and
-wavelength of light changes in different materials, and how wavelength effects the angle of
-refraction. In the end, students will be able to explain how a prism creates a rainbow.
+Build a collection of molecules starting from atoms with the new Build a Molecule sim
+(http://phet.colorado.edu/en/simulation/build-a-molecule). See how many you can build and see them
+in 3D! After the activity, students will be able to:
+    * Describe the differences between an atom and a molecule.
+    * Construct simple molecules from atoms.
+    * Recognize that the subscript in the molecular formula indicates the quantity of that atom in
+      the molecule.
+    * Recognize that the coefficient indicates the total number of molecules.
+And our research shows it works! Results from a study with a 5th grade classroom shows high learning
+gains with about 75% of 5th grades achieving these learning goals.
 
-Increase Engagement with Balancing Chemical Equations
+Learn about Resonance with Harmonic Oscillators (http://phet.colorado.edu/en/simulation/resonance)
 
-Make learning how to balance a chemical equation more fun with the new Balancing Chemical Equations
-sim (http://phet.colorado.edu/en/simulation/balancing-chemical-equations). What can you change to
-balance an equation? Play a game to test your ideas!
-
-After the activity, students will be able to:
-        * Balance a chemical equation.
-        * Explain that the number of atoms of each element is conserved in a chemical reaction.
-        * Describe the difference between coefficients and subscripts in a chemical equation.
-        * Translate from symbolic to molecular representations of matter.
+For advanced undergraduate students: Observe resonance in a collection of driven, damped harmonic
+oscillators. Vary the driving frequency and amplitude, the damping constant, and the mass and spring
+constant of each resonator. Notice the long-lived transients when damping is small, and observe the
+phase change for resonators above and below resonance. Students will be able to explain the conditions
+required for resonance, identify variables that affect the natural frequency, distinguish between
+natural and driving frequencies, and learn about real-world examples.
 
 
 *** Check Out These Other New Simuations:
 
-        * Membrane Channels (http://phet.colorado.edu/en/simulation/membrane-channels)
-        * States of Matter (http://phet.colorado.edu/en/simulation/states-of-matter)
-        * Improved Gravity and Orbits (http://phet.colorado.edu/en/simulation/gravity-and-orbits)
+        * Sugar and Salt Solutions (http://phet.colorado.edu/en/simulation/sugar-and-salt-solutions)
+        * Isotopes and Atomic Mass (http://phet.colorado.edu/en/simulation/isotopes-and-atomic-mass)
+        * Molecule Polarity (http://phet.colorado.edu/en/simulation/molecule-polarity)
+        * Molecule Shapes (http://phet.colorado.edu/en/simulation/molecule-shapes)
+        * Improved Capacitor Lab (http://phet.colorado.edu/en/simulation/capacitor-lab)
+          with Multiple Capacitor Tab
 
 
-*** Meet Kelly:
+*** Meet Our Director:
+
+Recently PhET director, Kathy Perkins, was featured on CU Connections. Here are some excerpts from her
+interview. For the full transcript, see http://connections.cu.edu/news/five-questions-for-kathy-perkins/
 
 What got you involved in PhET?
-I had some teaching experience, but I was eager to learn more about how students learn chemistry.
-PhET gave me an opportunity to grow as an educator. What I did not expect was how much chemistry I
-would learn in the process!
+I had always wanted to do something that would help society so I originally pursued using my science
+background on environmental problems, specifically atmospheric science. For my graduate degree, I
+studied ozone depletion and creating new instruments that would help measure chemical compounds
+important in controlling ozone in the atmosphere.
+Then I came to Colorado to focus on tropospheric chemistry. (The troposphere is where we all live.)
+But I felt a longing to work on a project that had more immediate impact on people and their lives.
+The university was advertising for a position of physics instructor who would also work in physics
+education research. That was the first time I'd ever heard of this new - and still growing - field.
+It was exciting and eye-opening for me to think that you could study how people learn science and
+take those results and teach science more effectively. In 2003, I began working as a postdoctoral
+researcher with Carl Wieman, working on the PhET project as well as co-teaching courses for non-science
+majors. Together we would examine the course content and how it should be taught, and create an
+interactive lecture experience using clickers and simulations. The idea was to tie the content to
+everyday life, improve learning and make science relevant and interesting for students.
 
-What do you do for PhET?
-I work with the team to design and develop new chemistry sims, and I help run workshops for teachers.
-I also study the effect of PhET on student learning in interview and classroom settings, and present
-the research at conferences and in papers.
+What are the main goals of PhET?
+PhET's mission is to advance science literacy and education worldwide through engaging, interactive
+simulations. Each simulation offers an intuitive, game-like environment where students can engage
+in exploration like a scientist would, and where they can see the invisible, so they can literally
+interact with things like electrons, neutrons and protons to build their own atoms. Through the
+interaction and the immediate feedback they get, they can develop an understanding of key science
+concepts such as important cause-and-effect relationships and can build connections to everyday
+life. They can also experiment with things they can't experiment with in everyday life, such as
+building molecules, changing gravity, or shooting photons. With the Circuit Construction Kit
+simulation, for instance, students can interact with a battery by easily increasing or decreasing
+the voltage with a slider and immediately see how a light bulb gets brighter and electrons go
+faster when they increase the voltage. With the simulations, students can develop a visual,
+mental model of what's happening.
 
-How do you see PhET helping teachers?
-I like how the open-source nature of PhET gives science teachers who have little access to lab
-equipment -- or even the internet -- a way to use inquiry in their classrooms. I am excited to use
-the sims in my own teaching!
+What makes PhET different from other simulations?
+One thing that makes the PhET project unique is that it's research-based. We take the published
+research and our own research, digest it, and integrate it into the design. Our group studies
+the features of effective simulations, how students learn from simulations, and use of
+simulations in the classroom. Right now, we have about 15 people on the PhET team. It's a
+great team. Everyone is vested in making the best simulations possible, simulations that are
+highly effective learning tools and are also fun for students. When we start a new simulation,
+we create a design team with expertise across different areas. The team will have content
+specialists, teachers who would use the simulation, design experts, an education researcher
+and professional software developer. We brainstorm about the simulation. We storyboard the
+design and develop scenarios of what students would be able to interact with. Once that's
+done, we start programming and test features as we go along. For every simulation, we conduct
+interviews with students. During the "think-aloud" interview, we ask them to open and play
+with everything and talk about what they are doing. We want to see whether students engage
+with learning from the simulation and find out what is working and what is not. We always
+learn something, and make revisions as necessary. It takes about four to nine months to
+complete a simulation.
 
 How do you see PhET helping kids?
-I am continually amazed at how much students learn from using the sims, and how PhET engages students
-in learning science. PhET gets students to ask their own questions, which is what science is all about!
-
-Where do you see PhET going?
-I think PhET will grow in two areas: the earth and life sciences, and the middle school level. Our
-new sim-sharing project will give teachers more ways to use PhET in their classrooms. And of course,
-stay tuned for more chemistry sims!
+Most of the funding comes from federal grants and foundations. We want the PhET project to be
+sustainable for the long-term, however, so we're trying to increase the number of corporate
+and individual donations. Companies are allowed to use the simulations for free. Pearson, for
+instance, uses them in textbooks and in their online homework system. We're working to develop
+an NPR-like model where companies sponsor the project in lieu of a licensing fee, so that we
+can create more simulations and improve the sustainability of the project. We are also trying
+to develop a micro-donation model so that individuals can donate small amounts. Every year,
+22 million simulations are run from our website and in 5 years we expect this number to be more
+than 100 million. Eventually, micro-donations could help fund a significant fraction of the budget.
 
 
 *** Don't forget to join us on Facebook, Twitter and our Blog!
@@ -69,7 +121,10 @@ Follow us on Twitter icon: http://twitter.com/PhETSims
 Read our blog: http://phet.colorado.edu/blog/
 
 
-*** Help Support the Future of PhET!
+*** PhET's Annual Campaign
+
+Donate to advance science literacy and education worldwide
+25 million uses per year, 65 languages, and growing
 
 Your donation brings science to kids in your town and around the world. So please consider:
 $15      if you're a teacher who uses a few sims
@@ -86,44 +141,44 @@ Thanks for your support!
 
 *** Upcoming Events:
 
-ISTE 2011 (http://www.isteconference.org/2011/)
-Philadelphia, PA
-June 26-29, 2011
+AAPT Winter Meeting
+Ontario CA
 
-Chemistry Education Research & Practice
-Gordon Research Conference (http://www.grc.org/programs.aspx?year=2011&program=chemedu)
-Davidson, NC
-June 26-July 1, 2011
+ACS 2012
+San Diego, CA
 
-AAPT (talks only) (http://www.aapt.org/Conferences/sm2011/index.cfm)
-Omaha, NE
-July 30 - August 3, 2011
+NSTA 2012
+San Diego, CA
 
-ACS Fall 2011 National Meeting (http://www.acs.org/denver2011)
-Denver, CO
-August 28 - Sept. 1, 2011
+ISTE 2012
+San Diego, CA
+June 25-27, 2012
 
-iNACOL VSS 2011 (http://www.virtualschoolsymposium.org/)
-Indianapolis, IN
-November 9-11, 2011
-
+BCCE 2012
 
 *** In the Pipeline:
 
+    * PhET "Basic" series designed for middle-schoolers
     * Fluid Pressure and Flow
-    * Build a Molecule
-    * Multiple Capacitors
-    * Resonance
-    * Sugar and Salt Solutions
-    * Teeter Totter Torque
+    * Balancing Act
+    * Molecule Shapes (Real Tab)
     * Plate Tectonics
 
 
-*** Check Out Our Free Webinar & Podcast
+*** Create a DVD Installation Disk (http://phet.colorado.edu/en/get-phet/full-install)
 
-Introduce teachers new to PhET with this free archived webinar
-(http://archive.constantcontact.com/fs013/1103655070384/archive/1105484107172.html) or our
-Podcast on iTunes (http://itunes.apple.com/us/itunes-u/phet-interactive-simulation/id432333491).
+Did you know you can install a local copy of PhET on your computer? And, we've improved our
+DVD installer to include the teaching activities along with the full suite of PhET sims.
+Ideal for computers that don't have internet access; all you need is a DVD writer, blank
+disks and an internet connection.
+
+
+*** More PhET PodCasts on iTunes
+
+Check out our PhET podcasts at
+http://itunes.apple.com/us/itunes-u/phet-interactive-simulation/id432333491. Learn more
+about PhET's Energy Skate Park sim and the Masses & Springs simulations. Are there ideas
+that you would like to see in podcasts? Let us know.
 
 
 You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
