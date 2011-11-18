@@ -242,7 +242,8 @@ public abstract class PhetPage extends WebPage implements Stylable {
             add( new InvisibleComponent( "donation-banner" ) );
         }
         else if ( this instanceof IndexPage ) {
-            add( new DonationBannerHomePanel( "donation-banner", getPageContext() ) );
+            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
+//            add( new DonationBannerHomePanel( "donation-banner", getPageContext() ) );
         }
         else {
             add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
