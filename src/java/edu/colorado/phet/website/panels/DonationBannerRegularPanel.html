@@ -13,12 +13,12 @@
 
 <wicket:panel>
     <form method="get" target="#" style="position: relative;">
-        <input type="button" value="Donate now" class="large-form-button" id="donation-button-right"
+        <input type="button" value="Donate now" wicket:message="value:donation-banner.donateNow" class="large-form-button" id="donation-button-right"
                onclick="window.open('http://www.cufund.org/giving-opportunities/fund-description/?id=7397','_blank');"/>
     </form>
-    <div class="donation-header">PhET's Annual Campaign</div>
+    <div class="donation-header"><wicket:message key="donation-banner.phetsAnnualCampaign">PhET's Annual Campaign</wicket:message></div>
     <p class="donation-text">
-        Donate to advance science literacy and education worldwide
+        <wicket:message key="donation-banner.donateToAdvanceScience">Donate to advance science literacy and education worldwide</wicket:message>
     </p>
 </wicket:panel>
 
