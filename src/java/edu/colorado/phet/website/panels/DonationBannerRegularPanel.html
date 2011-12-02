@@ -14,7 +14,7 @@
 <wicket:panel>
     <form method="get" target="#" style="position: relative;">
         <input type="button" value="Donate now" wicket:message="value:donation-banner.donateNow" class="large-form-button" id="donation-button-right"
-               onclick="window.open('http://www.cufund.org/giving-opportunities/fund-description/?id=7397','_blank');"/>
+               onclick="_gaq.push(['_trackEvent', 'Donation', 'Banner Button', document.URL]); window.open('http://www.cufund.org/giving-opportunities/fund-description/?id=7397','_blank');"/>
     </form>
     <div class="donation-header"><wicket:message key="donation-banner.phetsAnnualCampaign">PhET's Annual Campaign</wicket:message></div>
     <p class="donation-text">
