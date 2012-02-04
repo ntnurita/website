@@ -33,7 +33,7 @@ var overallTracker = null;
     var phetJS = document.createElement( 'script' );
     phetJS.type = 'text/javascript';
     phetJS.async = true;
-    phetJS.src = '/js/phet-v10-min.js';
+    phetJS.src = '/js/phet-v11-min.js';
     var s = document.getElementsByTagName( 'script' )[0];
     s.parentNode.insertBefore( phetJS, s );
 })();
