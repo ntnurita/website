@@ -229,6 +229,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor PEARSON = new LogoSponsor(
+            "Pearson",
+            "http://www.pearsoned.com/",
+            Images.LOGO_PEARSON, "padding: 0px;" ) {{
+        setHomeWeight( 5 );
+        setSimWeight( 5 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -258,6 +266,7 @@ public abstract class Sponsor implements Serializable {
             JEFFERSON_COUNTY_VLA,
             CAROLINA_CORP,
             KANG_HSUAN,
+            PEARSON,
             YOU
     };
 
