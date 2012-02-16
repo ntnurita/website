@@ -221,6 +221,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
+    public static Sponsor KANG_HSUAN = new LogoSponsor(
+            "Kang Hsuan Educational Publishing Group",
+            "http://www.knsh.com.tw/",
+            Images.LOGO_KANG_HSUAN, "padding: 2px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -249,6 +257,7 @@ public abstract class Sponsor implements Serializable {
             OREGON_DEPARTMENT_OF_EDUCATION,
             JEFFERSON_COUNTY_VLA,
             CAROLINA_CORP,
+            KANG_HSUAN,
             YOU
     };
 
