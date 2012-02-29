@@ -237,6 +237,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 5 );
     }};
 
+    public static Sponsor PAN_AMERICA = new LogoSponsor(
+            "Pan America Construction",
+            "http://www.pancopty.com/",
+            Images.LOGO_PAN_AMERICA, "padding: 0px;" ) {{
+        setHomeWeight( 5 );
+        setSimWeight( 5 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -267,6 +275,7 @@ public abstract class Sponsor implements Serializable {
             CAROLINA_CORP,
             KANG_HSUAN,
             PEARSON,
+            PAN_AMERICA,
             YOU
     };
 

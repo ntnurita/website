@@ -56,6 +56,7 @@ public class Images {
     public static final ImageHandle LOGO_CAROLINA_CORP = new ImageHandle( "/images/support/carolina-160x56.png", true );
     public static final ImageHandle LOGO_KANG_HSUAN = new ImageHandle( "/images/support/kang-hsuan-logo.png", true );
     public static final ImageHandle LOGO_PEARSON = new ImageHandle( "/images/support/pearson-medium.png", true );
+    public static final ImageHandle LOGO_PAN_AMERICA = new ImageHandle( "/images/support/pan-america-medium.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 
