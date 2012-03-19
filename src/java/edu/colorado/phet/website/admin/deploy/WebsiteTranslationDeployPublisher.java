@@ -45,13 +45,21 @@ public class WebsiteTranslationDeployPublisher {
             Project.backupProject( docRoot, project );
             String[] locales = WebsiteTranslationDeployServer.getJavaTranslatedLocales( translationDir, project );
 
+            // if it doesn't include the English translation, include it
+            boolean containsEnglish = containsEnglish( locales );
+            if ( !containsEnglish ) {
+                String[] oldLocales = locales;
+                locales = new String[locales.length + 1];
+                System.arraycopy( oldLocales, 0, locales, 0, oldLocales.length );
+                locales[oldLocales.length] = "en";
+            }
+
             // remove packed JAR files since our process does not guarantee it will be produced (does not halt on failure).
             // we don't want to serve a stale pack200 JAR!
             removeProjectPackedJar( project );
 
             copyToSimsDir( translationDir, project, locales );
             generateJNLPs( translationDir, project, locales );
-
         }
 
         /*---------------------------------------------------------------------------*
@@ -78,6 +86,17 @@ public class WebsiteTranslationDeployPublisher {
         deployedProjectNames.addAll( javaProjectNameList );
         deployedProjectNames.addAll( flashProjectNameList );
 
+    }
+
+    private boolean containsEnglish( String[] locales ) {
+        boolean containsEnglish = false;
+        for ( String locale : locales ) {
+            if ( locale.equals( "en" ) ) {
+                containsEnglish = true;
+                break;
+            }
+        }
+        return containsEnglish;
     }
 
     public static Logger getLogger() {
