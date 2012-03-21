@@ -21,10 +21,7 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
-        StringUtils.addString( session, "media.images.title", "PhET Images and Logos");
-        StringUtils.addString( session, "donation-banner.donateNow", "Donate now" );
-        StringUtils.addString( session, "donation-banner.phetsAnnualCampaign", "PhET's Annual Campaign" );
-        StringUtils.addString( session, "donation-banner.donateToAdvanceScience", "Donate to advance science literacy and education worldwide" );
+        StringUtils.addString( session, "emergencyMessage", "" );
 
         session.close();
     }

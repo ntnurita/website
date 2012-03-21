@@ -9,6 +9,9 @@ package edu.colorado.phet.website.translation.entities;
  */
 public class EnglishEntity extends TranslationEntity {
     public EnglishEntity() {
+
+        addString( "emergencyMessage", "If non-blank, will be shown as an emergency banner at the top of the page" );
+
         addString( "admin.keyword.create.duplicate" );
         addString( "admin.keyword.create.exists" );
 

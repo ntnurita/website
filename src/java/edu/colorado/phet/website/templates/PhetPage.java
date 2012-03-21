@@ -207,6 +207,14 @@ public abstract class PhetPage extends WebPage implements Stylable {
                 add( new InvisibleComponent( "translation-preview-notification" ) );
             }
 
+            String emergencyString = getPhetLocalizer().getBestString( getHibernateSession(), "emergencyMessage", WebsiteConstants.ENGLISH );
+            if ( emergencyString == null || emergencyString.length() == 0 ) {
+                add( new InvisibleComponent( "emergency-message" ) );
+            }
+            else {
+                add( new Label( "emergency-message", emergencyString ) );
+            }
+
             boolean isAdmin = PhetSession.get().isSignedIn() && PhetSession.get().getUser().isTeamMember();
 
             if ( !isAdmin && ( this instanceof SignInPage || this instanceof RegisterPage || this instanceof EditProfilePage ) ) {
