@@ -245,6 +245,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 5 );
     }};
 
+    public static Sponsor TEXAS_INSTRUMENTS = new LogoSponsor(
+            "Texas Instruments",
+            "http://www.ti.com/",
+            Images.LOGO_TEXAS_INSTRUMENTS, "padding: 2px;" ) {{
+        setHomeWeight( 5 );
+        setSimWeight( 5 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -276,6 +284,7 @@ public abstract class Sponsor implements Serializable {
             KANG_HSUAN,
             PEARSON,
             PAN_AMERICA,
+            TEXAS_INSTRUMENTS,
             YOU
     };
 
