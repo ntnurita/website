@@ -58,6 +58,8 @@ public class AboutLicensingPanel extends PhetPanel {
                 Linkers.SOFTWARE_AGREEMENT.getHref( context, getPhetCycle() )
         } ) );
 
+        add( new LocalizedText( "about-licensing-trademark", "about.licensing.trademarkText" ) );
+
     }
 
     public static String getKey() {

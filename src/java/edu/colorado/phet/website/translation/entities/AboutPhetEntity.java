@@ -95,6 +95,8 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.licensing.sourceCodeLink" );
         addString( "about.licensing.softwareAgreementSection" );
         addString( "about.licensing.softwareAgreementFullText" );
+        addString( "about.licensing.trademarkLicensing" );
+        addString( "about.licensing.trademarkText" );
 
         addString( "about.contact.backRow" );
         addString( "about.contact.middleRow" );
