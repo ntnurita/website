@@ -293,6 +293,7 @@ public abstract class Sponsor implements Serializable {
             PEARSON,
             PAN_AMERICA,
             TEXAS_INSTRUMENTS,
+            MCGRAW_HILL,
             YOU
     };
 
