@@ -58,6 +58,7 @@ public class Images {
     public static final ImageHandle LOGO_PEARSON = new ImageHandle( "/images/support/pearson-medium.png", true );
     public static final ImageHandle LOGO_PAN_AMERICA = new ImageHandle( "/images/support/pan-america-medium.png", true );
     public static final ImageHandle LOGO_TEXAS_INSTRUMENTS = new ImageHandle( "/images/support/ti-small.png", true );
+    public static final ImageHandle LOGO_MCGRAW_HILL = new ImageHandle( "/images/support/mcgraw-hill-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 

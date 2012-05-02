@@ -253,6 +253,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 5 );
     }};
 
+    public static Sponsor MCGRAW_HILL = new LogoSponsor(
+            "McGraw-Hill Education",
+            "http://www.mheonline.com/",
+            Images.LOGO_MCGRAW_HILL, "padding: 2px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
