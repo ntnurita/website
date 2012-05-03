@@ -241,6 +241,10 @@ public class NotificationHandler {
                                      NewsletterUtils.THANKYOU_MESSAGE );
                 }
                 else {
+                    if ( user.isTeamMember() ) {
+                        // unnecessary message for PhET team members
+                        continue;
+                    }
                     message.setBody(
                             "<p>A new translation was created for the language " + language + " with the id #" + translation.getId() + "</p>" +
                             "<p>You received this email because you are marked as a translator for a translation with the same language. You can contact the author of this new translation through the PhET website translation manager.</p>" +
