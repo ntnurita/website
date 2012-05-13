@@ -477,6 +477,7 @@ public class PhetWicketApplication extends WebApplication {
         } );
     }
 
+    // always return a defensive copy, as this is modified at some calling sites
     public synchronized List<String> getTranslationLocaleStrings() {
         // TODO: maybe cache this list if it's called a lot?
         List<String> ret = new LinkedList<String>();

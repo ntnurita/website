@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.panels;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
@@ -12,7 +13,9 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.ResourceModel;
 
+import edu.colorado.phet.common.phetcommon.util.FunctionalUtils;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.common.phetcommon.util.function.Function1;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.cache.EventDependency;
@@ -25,6 +28,9 @@ import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+
+import static edu.colorado.phet.common.phetcommon.util.FunctionalUtils.filter;
+import static edu.colorado.phet.common.phetcommon.util.FunctionalUtils.map;
 
 /**
  * Shows a list of the available website translations with the currently viewed one grayed. Clicking the links to
@@ -57,7 +63,25 @@ public class TranslationLinksPanel extends PhetPanel {
         }
         add( englishLink );
 
-        ListView listView = new ListView<String>( "translation-links", PhetWicketApplication.get().getTranslationLocaleStrings() ) {
+        List<String> translationLocaleStrings = PhetWicketApplication.get().getTranslationLocaleStrings();
+
+        if ( getPhetCycle().isOfflineInstaller() ) {
+            // if we are being ripped for an offline installer, ONLY show the locales that are requested
+
+            translationLocaleStrings = filter( // filter out English, since this is already shown
+                    map( DistributionHandler.shownLocales( PhetRequestCycle.get() ),
+                         new Function1<Locale, String>() {
+                             public String apply( Locale locale ) {
+                                 return LocaleUtils.localeToString( locale );
+                             }
+                         } ), new Function1<String, Boolean>() {
+                public Boolean apply( String localeString ) {
+                    return !localeString.equals( "en" );
+                }
+            } );
+        }
+
+        ListView listView = new ListView<String>( "translation-links", translationLocaleStrings ) {
             protected void populateItem( ListItem<String> item ) {
                 String localeString = item.getModelObject();
                 Locale locale = LocaleUtils.stringToLocale( localeString );

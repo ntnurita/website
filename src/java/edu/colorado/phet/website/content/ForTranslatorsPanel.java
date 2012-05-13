@@ -32,7 +32,7 @@ public class ForTranslatorsPanel extends PhetPanel {
 
         //add( AboutMainPanel.getLinker().getLink( "about-phet-link", context, getPhetCycle() ) );
 
-        if ( DistributionHandler.hideWebsiteTranslations( getPhetCycle() ) ) {
+        if ( !DistributionHandler.showAnyWebsiteTranslations( getPhetCycle() ) ) {
             add( new InvisibleComponent( "translate-website" ) );
         }
         else {

@@ -4,8 +4,15 @@
 
 package edu.colorado.phet.website;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 import org.apache.log4j.Logger;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.ResearchPanel;
 import edu.colorado.phet.website.content.about.AboutContactPanel;
@@ -42,21 +49,39 @@ public class DistributionHandler {
         return cycle.isForProductionServer() || cycle.isForTestingServer();
     }
 
-    /**
-     * Whether or not to show anything related to website translations on the website
-     *
-     * @param cycle
-     * @return
-     */
-    public static boolean hideWebsiteTranslations( PhetRequestCycle cycle ) {
-        if ( cycle.getUserAgent().equals( PhetRequestCycle.HIDE_TRANSLATIONS_USER_AGENT ) ) {
-            return true;
+    public static List<Locale> shownLocales( PhetRequestCycle cycle ) {
+        String userAgent = cycle.getUserAgent();
+        if ( userAgent.startsWith( PhetRequestCycle.OFFLINE_USER_AGENT_PREFIX ) ) {
+            List<Locale> result = new ArrayList<Locale>();
+            String localeListString = userAgent.substring( PhetRequestCycle.OFFLINE_USER_AGENT_PREFIX.length() );
+            for ( String localeString : localeListString.split( "," ) ) {
+                try {
+                    Locale locale = LocaleUtils.stringToLocale( localeString );
+                    if ( PhetWicketApplication.get().isVisibleLocale( locale ) ) {
+                        result.add( locale );
+                    }
+                }
+                catch ( Exception e ) {
+                    logger.warn( "shownLocales failure for user-agent \"" + userAgent + "\" and locale string \"" + localeString + "\"", e );
+                }
+            }
+            return result;
         }
-        if ( cycle.isOfflineInstaller() ) {
-            return true;
+        else {
+            if ( !showAnyWebsiteTranslations( cycle ) ) {
+                return Arrays.asList( WebsiteConstants.ENGLISH );
+            }
+            else {
+                return PhetWicketApplication.get().getAllVisibleTranslationLocales();
+            }
         }
-        return false; // we are now going to show translations
-        //return cycle.isForProductionServer();
+    }
+
+    // Whether or not to show anything related to website translations on the website
+    public static boolean showAnyWebsiteTranslations( PhetRequestCycle cycle ) {
+        String userAgent = cycle.getUserAgent();
+        return !userAgent.equals( PhetRequestCycle.HIDE_TRANSLATIONS_USER_AGENT )
+               && !userAgent.equals( PhetRequestCycle.ENGLISH_ONLY_OFFLINE_USER_AGENT );
     }
 
     /**
@@ -99,10 +124,7 @@ public class DistributionHandler {
      * @return Whether or not to display links to other translations
      */
     public static boolean displayTranslationLinksPanel( PhetRequestCycle cycle ) {
-        if ( hideWebsiteTranslations( cycle ) ) {
-            return false;
-        }
-        return !cycle.isYoungAndFreedmanRipperRequest() && !cycle.isOfflineInstaller();
+        return showAnyWebsiteTranslations( cycle ) && !cycle.isYoungAndFreedmanRipperRequest();
     }
 
     /**
@@ -112,7 +134,7 @@ public class DistributionHandler {
      * @return Whether or not to display the link to edit translations
      */
     public static boolean displayTranslationEditLink( PhetRequestCycle cycle ) {
-        if ( hideWebsiteTranslations( cycle ) ) {
+        if ( !showAnyWebsiteTranslations( cycle ) ) {
             return false;
         }
         return !cycle.isInstaller();
