@@ -54,7 +54,7 @@
                            class="simulation-main-link-run-main">
                             <img wicket:id="simulation-main-screenshot" class="simulation-main-screenshot"
                                  src="../../../../../../../../template-files/images/arithmetic-screenshot.png"
-                                 width="300"/>
+                                 width="300" id="simulation-main-screenshot-image"/>
                         </a>
                         <a class="sim-download sim-button" href="#" wicket:id="run-offline-link">
                             <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
@@ -149,9 +149,13 @@
                         //]]>
                     </script>
                     <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
-                                    // NOTE: only works for root-based home pages!
-                                    document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace(/\/images/g,"../../images");
-                                </script>
+                        (function() {
+                            var otherImageSrc = document.getElementById( "simulation-main-screenshot-image" ).src;
+                            var lastIndex = Math.max( otherImageSrc.lastIndexOf( "/" ), otherImageSrc.lastIndexOf( "\\" ) );
+                            var newImagesDirectory = otherImageSrc.substring( 0, lastIndex );
+                            document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
+                        })();
+                    </script>
                     <noscript>
                         <div wicket:id="pearson-sponsor" style="padding-top: 10px;"></div>
                     </noscript>
