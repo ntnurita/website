@@ -151,7 +151,8 @@
                     <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
                         (function() {
                             var otherImageSrc = document.getElementById( "simulation-main-screenshot-image" ).src;
-                            var lastIndex = Math.max( otherImageSrc.lastIndexOf( "/" ), otherImageSrc.lastIndexOf( "\\" ) );
+                            // 0x2F is for a slash, to fool the httrack ripper
+                            var lastIndex = Math.max( otherImageSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), otherImageSrc.lastIndexOf( "\\" ) );
                             var newImagesDirectory = otherImageSrc.substring( 0, lastIndex );
                             document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
                         })();
