@@ -788,7 +788,7 @@ public class AdminSimPage extends AdminPage {
         @Override
         protected void onSubmit() {
             super.onSubmit();
-            String text = value.getModelObject().toString();
+            String text = ( value == null || value.getModelObject() == null ) ? "" : value.getModelObject().toString();
 
             List<String> strings = new LinkedList<String>();
             String str;
