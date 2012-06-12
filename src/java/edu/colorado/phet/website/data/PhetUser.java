@@ -51,6 +51,7 @@ public class PhetUser implements Serializable, IntId {
     private String confirmationKey; // key that is used for subscribing or unsubscribing to email. will be reset on each subscribe/unsubscribe operation
 
     private boolean receiveEmail = true; // for receiving newsletters
+    private boolean receiveSimulationNotifications = false; // for receiving notifications about new / modified simulations (for everyone)
     private boolean receiveWebsiteNotifications = false; // for receiving internal (team-member) only notifications
 
     private static Random random = new Random(); // for computing things like the confirmation keys
@@ -328,12 +329,20 @@ public class PhetUser implements Serializable, IntId {
         this.receiveWebsiteNotifications = receiveWebsiteNotifications;
     }
 
+    public boolean isReceiveSimulationNotifications() {
+        return receiveSimulationNotifications;
+    }
+
+    public void setReceiveSimulationNotifications( boolean receiveSimulationNotifications ) {
+        this.receiveSimulationNotifications = receiveSimulationNotifications;
+    }
+
     /*_/|
-      =0-0=
-      \'I'|
-      |<|,,\_
-      |[>,,/,\
-      |[|,\_,,)
-      ((J(=_*/
+    =0-0=
+    \'I'|
+    |<|,,\_
+    |[>,,/,\
+    |[|,\_,,)
+    ((J(=_*/
 
 }

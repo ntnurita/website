@@ -84,6 +84,7 @@ public class EditProfilePanel extends PhetPanel {
         private TextField fax;
 
         private CheckBox receiveEmail;
+        private CheckBox receiveSimulationNotifications;
         private CheckBox receiveWebsiteNotifications;
         private CheckBox teamMember;
 
@@ -124,6 +125,7 @@ public class EditProfilePanel extends PhetPanel {
             add( phone2 = new StringTextField( "phone2", new PropertyModel( properties, "phone2" ) ) );
             add( fax = new StringTextField( "fax", new PropertyModel( properties, "fax" ) ) );
             add( receiveEmail = new CheckBox( "receiveEmail", new Model<Boolean>( user.isReceiveEmail() ) ) );
+            add( receiveSimulationNotifications = new CheckBox( "receiveSimulationNotifications", new Model<Boolean>( user.isReceiveSimulationNotifications() ) ) );
             if ( currentUser.isTeamMember() ) {
                 Label label = new Label( "rwn-phet", "" );
                 add( label );
@@ -177,6 +179,7 @@ public class EditProfilePanel extends PhetPanel {
                         user.setPhone2( phone2.getModelObject().toString() );
                         user.setFax( fax.getModelObject().toString() );
                         user.setReceiveEmail( receiveEmail.getModelObject() );
+                        user.setReceiveSimulationNotifications( receiveSimulationNotifications.getModelObject() );
                         if ( PhetSession.get().getUser().isTeamMember() ) {
                             user.setReceiveWebsiteNotifications( receiveWebsiteNotifications.getModelObject() );
                             user.setTeamMember( teamMember.getModelObject() );
@@ -204,6 +207,7 @@ public class EditProfilePanel extends PhetPanel {
                     user.setPhone2( phone2.getModelObject().toString() );
                     user.setFax( fax.getModelObject().toString() );
                     user.setReceiveEmail( receiveEmail.getModelObject() );
+                    user.setReceiveSimulationNotifications( receiveSimulationNotifications.getModelObject() );
                     if ( PhetSession.get().getUser().isTeamMember() ) {
                         user.setReceiveWebsiteNotifications( receiveWebsiteNotifications.getModelObject() );
                         user.setTeamMember( teamMember.getModelObject() );

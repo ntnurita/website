@@ -38,7 +38,7 @@
         <form wicket:id="edit-profile-form">
             <table>
                 <tr>
-                    <td align="right">
+                    <td align="right" width="150px">
                         <wicket:message key="profile.name">Name:</wicket:message>
                     </td>
                     <td>
@@ -143,25 +143,33 @@
                 </tr>
                 <tr>
                     <td align="right">
+                        <input wicket:id="receiveEmail" type="checkbox"/>
+                    </td>
+                    <td align="left">
                         <wicket:message key="profile.receiveEmail">Receive PhET Email:</wicket:message>
                     </td>
-                    <td>
-                        <input wicket:id="receiveEmail" type="checkbox"/>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input wicket:id="receiveSimulationNotifications" type="checkbox"/>
+                    </td>
+                    <td align="left">
+                        <wicket:message key="profile.receiveSimulationNotifications">Email when PhET posts a new sim</wicket:message>
                     </td>
                 </tr>
                 <wicket:enclosure child="rwn-phet">
-                    <tr>
-                        <td align="right">Receive Website Notifications (PhET team only):</td>
+                    <tr align="right">
                         <td>
                             <input wicket:id="receiveWebsiteNotifications" type="checkbox"/>
                             <span wicket:id="rwn-phet"></span>
                         </td>
+                        <td align="left">Receive Website Notifications (PhET team only)</td>
                     </tr>
-                    <tr>
-                        <td align="right">PhET team member:</td>
+                    <tr align="right">
                         <td>
                             <input wicket:id="phetTeamMember" type="checkbox"/>
                         </td>
+                        <td align="left">PhET team member</td>
                     </tr>
                 </wicket:enclosure>
                 <tr>
