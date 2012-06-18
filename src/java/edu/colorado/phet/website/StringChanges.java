@@ -24,6 +24,7 @@ public class StringChanges {
         StringUtils.addString( session, "profile.receiveSimulationNotifications", "Email when PhET posts a new sim" );
         StringUtils.overwriteString( session, "profile.receiveSimulationNotifications", "Email when PhET posts a new sim", "Email me when new simulations are posted" );
         StringUtils.overwriteString( session, "profile.receiveEmail", "Receive PhET Email:", "Receive PhET Email" );
+        StringUtils.overwriteString( session, "profile.receiveEmail", "Receive PhET Email", "Email me PhET's Newsletter (~4/year)" );
 
         session.close();
     }
