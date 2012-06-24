@@ -48,6 +48,10 @@ object LearningRegistryUtils {
   }
 
   def main(args: Array[String]) {
+
+    // TODO: do this on application initialization (if added in with other code
+//    Security.addProvider( new BouncyCastleProvider )
+
     // TODO: do with each metadata format
     new File("/Users/olsonsjc/phet/tmp/metadata").listFiles().foreach((file: File) => publishMetadata(
       new SimulationRecord(FileUtils.loadFileAsString(file)),
