@@ -13,6 +13,10 @@ import edu.colorado.phet.website.oai.OaiUtils.convertLangString
 class IMSLODEILOXConverter extends PhetFormatConverter {
   def getToFormat = "oai_ilox"
 
+  def getSchemaURI = Some("http://www.imsglobal.org/xsd/imsloilox_v1p0")
+
+  def getLRSchemaTypes = List("IMS LODE ILOX")
+
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
     val runNowManifestation = if ( record.isJava ) "jnlp" else "experience"
 

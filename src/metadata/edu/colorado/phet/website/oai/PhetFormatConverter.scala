@@ -12,6 +12,12 @@ abstract class PhetFormatConverter extends XMLFormatConverter {
 
   def getFromFormat = OaiUtils.MasterFormatName
 
+  // main schema URI
+  def getSchemaURI: Option[String]
+
+  // schema types that are sent in the Learning Registry envelope
+  def getLRSchemaTypes: List[String]
+
   /**
    * Actually convert the SimulationRecord into XML. We return NodeSeq so that we can embed output from one converter into
    * that of another.

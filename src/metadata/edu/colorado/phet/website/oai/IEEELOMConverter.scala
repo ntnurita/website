@@ -14,6 +14,10 @@ import edu.colorado.phet.website.constants.Licenses
 class IEEELOMConverter extends PhetFormatConverter {
   def getToFormat = "lom"
 
+  def getSchemaURI = Some("http://ltsc.ieee.org/xsd/LOM")
+
+  def getLRSchemaTypes = List("IEEE LOM 2002")
+
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
 
     /*
