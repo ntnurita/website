@@ -211,7 +211,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/lift-json-2.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/lift-json_2.9.0-1-2.4-M2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

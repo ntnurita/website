@@ -18,7 +18,7 @@ class IEEELOMConverter extends PhetFormatConverter {
 
   def getLRSchemaTypes = List("IEEE LOM 2002")
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
+  def convertRecord(record: SimulationRecord): Node = {
 
     /*
     Physics classification example (LRE-0001)

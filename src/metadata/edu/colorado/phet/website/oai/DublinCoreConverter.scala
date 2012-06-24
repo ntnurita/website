@@ -15,7 +15,7 @@ class DublinCoreConverter extends PhetFormatConverter {
 
   def getLRSchemaTypes = List("oai_dc", "DC 1.1")
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
+  def convertRecord(record: SimulationRecord): Node = {
 
     // note: no dc:date element is used currently, as there would be no unambiguous meaning to this
     // type uses InteractiveResource from http://dublincore.org/documents/dcmi-type-vocabulary/, and also "Simulation" as our general type

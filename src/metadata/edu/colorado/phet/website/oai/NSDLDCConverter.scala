@@ -18,7 +18,7 @@ class NSDLDCConverter extends PhetFormatConverter {
 
   def getLRSchemaTypes = List("nsdl_dc", "DC 1.1")
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
+  def convertRecord(record: SimulationRecord): Node = {
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
 

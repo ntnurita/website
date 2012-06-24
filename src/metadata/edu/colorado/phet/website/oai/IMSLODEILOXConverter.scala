@@ -17,7 +17,7 @@ class IMSLODEILOXConverter extends PhetFormatConverter {
 
   def getLRSchemaTypes = List("IMS LODE ILOX")
 
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
+  def convertRecord(record: SimulationRecord): Node = {
     val runNowManifestation = if ( record.isJava ) "jnlp" else "experience"
 
     <work xmlns="http://www.imsglobal.org/xsd/imsloilox_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
