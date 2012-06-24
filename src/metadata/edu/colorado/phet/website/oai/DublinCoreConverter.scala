@@ -11,6 +11,10 @@ import xml.Node
 class DublinCoreConverter extends PhetFormatConverter {
   def getToFormat = "oai_dc"
 
+  def getSchemaURI = Some("http://www.openarchives.org/OAI/2.0/oai_dc/")
+
+  def getLRSchemaTypes = List("oai_dc", "DC 1.1")
+
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
 
     // note: no dc:date element is used currently, as there would be no unambiguous meaning to this

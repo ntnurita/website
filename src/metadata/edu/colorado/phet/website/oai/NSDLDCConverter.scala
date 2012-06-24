@@ -14,6 +14,10 @@ import edu.colorado.phet.website.data.GradeLevel
 class NSDLDCConverter extends PhetFormatConverter {
   def getToFormat = "nsdl_dc"
 
+  def getSchemaURI = Some("http://ns.nsdl.org/nsdl_dc_v1.02/")
+
+  def getLRSchemaTypes = List("nsdl_dc", "DC 1.1")
+
   def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node = {
     // TODO: verify that rights section is ok for now
     // TODO: license! (and maybe we need to specify which sims are available under which licenses?)
