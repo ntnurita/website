@@ -22,12 +22,12 @@ abstract class PhetFormatConverter extends XMLFormatConverter {
    * Actually convert the SimulationRecord into XML. We return NodeSeq so that we can embed output from one converter into
    * that of another.
    */
-  def convertRecord(record: SimulationRecord, servletContext: ServletContext): Node
+  def convertRecord(record: SimulationRecord): Node
 
   def convertXML(masterXML: String, servletContext: ServletContext): String = {
     try {
       // TODO: strip out comments in production version. Utility.toXML( node, true ) should work
-      convertRecord(new SimulationRecord(masterXML), servletContext).toString()
+      convertRecord(new SimulationRecord(masterXML)).toString()
     }
     catch {
       case e: Exception => {
