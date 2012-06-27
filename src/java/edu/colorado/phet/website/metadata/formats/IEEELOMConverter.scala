@@ -1,8 +1,9 @@
-package edu.colorado.phet.website.metadata
+package edu.colorado.phet.website.metadata.formats
 
 import xml.Node
 import edu.colorado.phet.website.constants.Licenses
-import edu.colorado.phet.website.metadata.OaiUtils._
+import edu.colorado.phet.website.metadata.MetadataUtils._
+import edu.colorado.phet.website.metadata.{MetadataUtils, SimulationRecord, PhetMetadataConverter}
 
 /**
  * Converts our master format simulation data to IEEE LOM
@@ -13,7 +14,7 @@ import edu.colorado.phet.website.metadata.OaiUtils._
  * NOTE: do not change the package / class name of this, since it is referenced in the server-side web.xml of the
  * jOAI webapp
  */
-class IEEELOMConverter extends PhetMetadataConverter {
+trait IEEELOMConverter extends PhetMetadataConverter {
   def getToFormat = "lom"
 
   def getSchemaURI = Some("http://ltsc.ieee.org/xsd/LOM")
@@ -150,7 +151,7 @@ class IEEELOMConverter extends PhetMetadataConverter {
           <value>author</value>
         </role>
         <entity>
-          {OaiUtils.vCardFromName(author)}
+          {MetadataUtils.vCardFromName(author)}
         </entity>
       </contribute>)}
       </lifeCycle>

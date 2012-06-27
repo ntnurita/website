@@ -1,7 +1,8 @@
-package edu.colorado.phet.website.metadata
+package edu.colorado.phet.website.metadata.formats
 
 import xml.Node
-import edu.colorado.phet.website.metadata.OaiUtils._
+import edu.colorado.phet.website.metadata.MetadataUtils._
+import edu.colorado.phet.website.metadata.{MetadataUtils, SimulationRecord, PhetMetadataConverter}
 
 /**
  * Metadata conversion to the IMS LODE ILOX metadata format
@@ -12,7 +13,7 @@ import edu.colorado.phet.website.metadata.OaiUtils._
  * NOTE: do not change the package / class name of this, since it is referenced in the server-side web.xml of the
  * jOAI webapp
  */
-class IMSLODEILOXConverter extends PhetMetadataConverter {
+trait IMSLODEILOXConverter extends PhetMetadataConverter {
   def getToFormat = "oai_ilox"
 
   def getSchemaURI = Some("http://www.imsglobal.org/xsd/imsloilox_v1p0")
@@ -139,7 +140,7 @@ class IMSLODEILOXConverter extends PhetMetadataConverter {
                 <value>author</value>
               </role>
               <entity>
-                {OaiUtils.vCardFromName(author)}
+                {MetadataUtils.vCardFromName(author)}
               </entity>
             </contribute>)}
             </lifeCycle>

@@ -1,7 +1,7 @@
-package edu.colorado.phet.website.metadata
+package edu.colorado.phet.website.metadata.formats
 
 import xml.Node
-import edu.colorado.phet.website.metadata.OaiUtils._
+import edu.colorado.phet.website.metadata.{SimulationRecord, PhetMetadataConverter}
 
 /**
  * Converts our master format simulation data to Dublin Core XML
@@ -11,7 +11,7 @@ import edu.colorado.phet.website.metadata.OaiUtils._
  * NOTE: do not change the package / class name of this, since it is referenced in the server-side web.xml of the
  * jOAI webapp
  */
-class DublinCoreConverter extends PhetMetadataConverter {
+trait DublinCoreConverter extends PhetMetadataConverter {
   def getToFormat = "oai_dc"
 
   def getSchemaURI = Some("http://www.openarchives.org/OAI/2.0/oai_dc/")

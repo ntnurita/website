@@ -1,8 +1,9 @@
-package edu.colorado.phet.website.metadata
+package edu.colorado.phet.website.metadata.formats
 
 import xml.{Node, Comment}
 import edu.colorado.phet.website.data.GradeLevel
-import edu.colorado.phet.website.metadata.OaiUtils._
+import edu.colorado.phet.website.metadata.MetadataUtils._
+import edu.colorado.phet.website.metadata.{MetadataUtils, SimulationRecord, PhetMetadataConverter}
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
@@ -13,7 +14,7 @@ import edu.colorado.phet.website.metadata.OaiUtils._
  * NOTE: do not change the package / class name of this, since it is referenced in the server-side web.xml of the
  * jOAI webapp
  */
-class NSDLDCConverter extends PhetMetadataConverter {
+trait NSDLDCConverter extends PhetMetadataConverter {
   def getToFormat = "nsdl_dc"
 
   def getSchemaURI = Some("http://ns.nsdl.org/nsdl_dc_v1.02/")
@@ -90,10 +91,10 @@ class NSDLDCConverter extends PhetMetadataConverter {
       {record.gradeLevels.map(level => <dct:educationLevel xsi:type="nsdl_dc:NSDLEdLevel">{gradeLevelMap(level)}</dct:educationLevel>)}
 
       <!-- Keywords -->
-      {record.translatedTerms.map(term => <dc:subject xml:lang="en">{OaiUtils.englishString(term)}</dc:subject>)}
+      {record.translatedTerms.map(term => <dc:subject xml:lang="en">{MetadataUtils.englishString(term)}</dc:subject>)}
 
       <!-- subjects from our "categories" -->
-      {record.translatedCategories.map(term => <dc:subject xml:lang="en">{OaiUtils.englishString(term)}</dc:subject>)}
+      {record.translatedCategories.map(term => <dc:subject xml:lang="en">{MetadataUtils.englishString(term)}</dc:subject>)}
 
       <!-- subjects from our LRE vocabulary -->
       {record.lreTerms.map(term => <dc:subject xml:lang="en">{term._2}</dc:subject>)}

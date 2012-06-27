@@ -2,8 +2,8 @@ package edu.colorado.phet.website.metadata
 
 import xml.{NodeSeq, XML}
 import collection.mutable.ListBuffer
-import java.util.Date
 import edu.colorado.phet.website.data.GradeLevel
+import java.util
 
 /**
  * Represents a simulation record from the master data
@@ -108,9 +108,9 @@ class SimulationRecord(str: String) {
 
   def hasTimeUpdated = ( xml \ "updateTime" ).text.length() > 0
 
-  def dateCreated: Date = OaiUtils.dateFormat.parse(( xml \ "createTime" ).text)
+  def dateCreated: util.Date = MetadataUtils.dateFormat.parse(( xml \ "createTime" ).text)
 
-  def dateUpdated: Date = OaiUtils.dateFormat.parse(( xml \ "updateTime" ).text)
+  def dateUpdated: util.Date = MetadataUtils.dateFormat.parse(( xml \ "updateTime" ).text)
 
   /*---------------------------------------------------------------------------*
   * languages (translations)
