@@ -1,4 +1,4 @@
-package edu.colorado.phet.website.oai
+package edu.colorado.phet.website.metadata
 
 import java.text.SimpleDateFormat
 import java.util.Date

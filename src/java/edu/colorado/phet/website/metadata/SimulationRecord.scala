@@ -1,4 +1,4 @@
-package edu.colorado.phet.website.oai
+package edu.colorado.phet.website.metadata
 
 import xml.{NodeSeq, XML}
 import collection.mutable.ListBuffer

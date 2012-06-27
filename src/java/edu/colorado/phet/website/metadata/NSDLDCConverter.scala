@@ -1,17 +1,19 @@
-package edu.colorado.phet.website.oai
+package edu.colorado.phet.website.metadata
 
-import javax.servlet.ServletContext
-import edu.colorado.phet.website.oai.OaiUtils.formatDateIso8601
 import xml.{Node, Comment}
 import edu.colorado.phet.website.data.GradeLevel
+import edu.colorado.phet.website.metadata.OaiUtils._
 
 /**
  * Converts our master format simulation data to NSDL_DC XML
  *
  * metadata guide for the format: http://nsdl.org/collection/metadata-guide.php
  * example: http://ns.nsdl.org/schemas/nsdl_dc/nsdl_dc1_v1.02.xml
+ *
+ * NOTE: do not change the package / class name of this, since it is referenced in the server-side web.xml of the
+ * jOAI webapp
  */
-class NSDLDCConverter extends PhetFormatConverter {
+class NSDLDCConverter extends PhetMetadataConverter {
   def getToFormat = "nsdl_dc"
 
   def getSchemaURI = Some("http://ns.nsdl.org/nsdl_dc_v1.02/")

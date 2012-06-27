@@ -1,15 +1,13 @@
 // Copyright 2002-2012, University of Colorado
-package edu.colorado.phet.website.oai
+package edu.colorado.phet.website.metadata
 
-import org.dlese.dpc.xml.XMLFormatConverter
 import javax.servlet.ServletContext
 import xml.Node
-import edu.colorado.phet.website.metadata.{SimulationRecord, OaiUtils}
 
 /**
  * Handles things that are common between our format converters from the master format
  */
-abstract class PhetFormatConverter extends XMLFormatConverter {
+abstract class PhetMetadataConverter {
   def lastModified(servletContext: ServletContext) = OaiUtils.commonTimestamp
 
   def getFromFormat = OaiUtils.MasterFormatName
