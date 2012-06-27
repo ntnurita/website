@@ -1,6 +1,7 @@
 // Copyright 2002-2012, University of Colorado
-package edu.colorado.phet.website.oai
+package edu.colorado.phet.website.metadata
 
+import formats.NSDLDCConverter
 import java.io.File
 import edu.colorado.phet.common.phetcommon.util.FileUtils
 
@@ -10,9 +11,9 @@ object LearningRegistryUtils {
   // common keywords that we want to be included in every simulation
   private val LRTerms = List("phet", "simulation")
 
-  def wrapWithEnvelope(record: SimulationRecord, formatConverter: PhetFormatConverter): String = {
+  def wrapWithEnvelope(record: SimulationRecord, formatConverter: PhetMetadataConverter): String = {
 
-    val keywords : Seq[String] = LRTerms ++ record.translatedTerms.flatten.map( _.string ).distinct;
+    val keywords: Seq[String] = LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct
 
     import net.liftweb.json.JsonDSL._
     import net.liftweb.json.Printer.compact
@@ -43,19 +44,19 @@ object LearningRegistryUtils {
     compact(render(json))
   }
 
-  def publishMetadata(record: SimulationRecord, formatConverter: PhetFormatConverter) {
+  def publishMetadata(record: SimulationRecord, formatConverter: PhetMetadataConverter) {
     println(wrapWithEnvelope(record, formatConverter))
   }
 
   def main(args: Array[String]) {
 
     // TODO: do this on application initialization (if added in with other code
-//    Security.addProvider( new BouncyCastleProvider )
+    //    Security.addProvider( new BouncyCastleProvider )
 
     // TODO: do with each metadata format
     new File("/Users/olsonsjc/phet/tmp/metadata").listFiles().foreach((file: File) => publishMetadata(
       new SimulationRecord(FileUtils.loadFileAsString(file)),
-      new NSDLDCConverter
+      new NSDLDCConverter{}
     ))
   }
 

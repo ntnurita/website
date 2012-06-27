@@ -7,7 +7,7 @@ import edu.colorado.phet.website.PhetWicketApplication
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils.stringToLocale
 import edu.colorado.phet.website.util.PhetRequestCycle
 import edu.colorado.phet.website.util.StringUtils.makeUrlAbsoluteProduction
-import xml.Node
+import xml.{NodeSeq, Unparsed, Node}
 import edu.colorado.phet.website.util.ScalaHibernateUtils._
 import java.io.File
 import edu.colorado.phet.website.content.simulations.SimulationPage
@@ -16,13 +16,38 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils.localeTo4646String
 import java.text.SimpleDateFormat
 import edu.colorado.phet.website.data.{Category, Keyword, Simulation, LocalizedSimulation}
 import edu.colorado.phet.website.constants.WebsiteConstants
+import java.util
 
 /**
  * Utilities for metadata in general, and construction of the master format
  */
 object MetadataUtils {
 
-  def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss") // NOTE: also used in OaiUtils
+  val MasterFormatName = "phet-simulation"
+
+  def dateFormat = new SimpleDateFormat("yyyy-MM-dd:HH-mm-ss")
+
+  def iso8601DateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+
+  def formatDateIso8601(date: util.Date) = iso8601DateFormat.format(date)
+
+  /**
+   * Turn a name into a VCard format entry
+   */
+  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
+
+  /**
+   * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
+   */
+  def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
+
+  /**
+   * Find and return the English translation from a list of LanguageStrings
+   */
+  def englishString(lang: Seq[LanguageString]): String = lang.find(_.language == "en").get.string
+
+  // TODO: better documentation on why this is here! seems fishy!
+  val commonTimestamp = 1340780168000L; // used so we can update all converters at once
 
   def convertNewlinesToPipes(str: String): String = if ( str == null ) "" else str.replace("<br/>", "|")
 
