@@ -261,6 +261,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor HARK = new LogoSponsor(
+            "Hark",
+            "http://www.hark.com/",
+            Images.LOGO_HARK, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -294,6 +302,7 @@ public abstract class Sponsor implements Serializable {
             PAN_AMERICA,
             TEXAS_INSTRUMENTS,
             MCGRAW_HILL,
+            HARK,
             YOU
     };
 
