@@ -128,6 +128,14 @@ public class PhetUser implements Serializable, IntId {
         setHashedPassword( PhetSession.compatibleHashPassword( password ) );
     }
 
+    // if the user has no confirmation (unsubscription) key, create one for them. needs to be run from within a transaction
+    public void ensureHasConfirmationKey( Session session ) {
+        if ( getConfirmationKey() == null ) {
+            setConfirmationKey( PhetUser.generateConfirmationKey() );
+            session.update( this );
+        }
+    }
+
     // TODO: don't allow users with the same email address!
 
     public PhetUser() {

@@ -90,11 +90,7 @@ public class PhetSession extends WebSession {
                 if ( user == null ) {
                     throw new TaskException( "User does not exist", Level.DEBUG );
                 }
-                if ( user.getConfirmationKey() == null ) {
-                    // for old users without confirmation keys
-                    user.setConfirmationKey( PhetUser.generateConfirmationKey() );
-                    session.update( user );
-                }
+                user.ensureHasConfirmationKey( session );
                 if ( !user.isConfirmed() ) {
                     logger.info( "User " + user.getEmail() + " has not confirmed their email" );
                     return null; // will not log in an unconfirmed user

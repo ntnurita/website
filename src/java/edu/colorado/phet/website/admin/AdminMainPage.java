@@ -72,7 +72,7 @@ public class AdminMainPage extends AdminPage {
                     message.addReplyTo( "phethelp@colorado.edu" );
                     EmailUtils.sendMessage( message );
                 }
-                catch ( MessagingException e ) {
+                catch( MessagingException e ) {
                     e.printStackTrace();
                 }
             }
@@ -93,7 +93,7 @@ public class AdminMainPage extends AdminPage {
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).signJar( jarFile );
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
                 }
             }
@@ -108,7 +108,7 @@ public class AdminMainPage extends AdminPage {
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
                     ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).packAndSignJar( jarFile );
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
                 }
             }
@@ -172,10 +172,7 @@ public class AdminMainPage extends AdminPage {
 
                         for ( PhetUser user : users ) {
                             // if user doesn't have a good confirmation key for unsubscribing, generate one
-                            if ( user.getConfirmationKey() == null ) {
-                                user.setConfirmationKey( PhetUser.generateConfirmationKey() );
-                                session.update( user );
-                            }
+                            user.ensureHasConfirmationKey( session );
                         }
                     }
                 } );
@@ -202,10 +199,7 @@ public class AdminMainPage extends AdminPage {
 
                         for ( PhetUser user : users ) {
                             // if user doesn't have a good confirmation key for unsubscribing, generate one
-                            if ( user.getConfirmationKey() == null ) {
-                                user.setConfirmationKey( PhetUser.generateConfirmationKey() );
-                                session.update( user );
-                            }
+                            user.ensureHasConfirmationKey( session );
                         }
                     }
                 } );
@@ -219,7 +213,7 @@ public class AdminMainPage extends AdminPage {
                 final List<PhetUser> users = new LinkedList<PhetUser>();
                 HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
                     public void run( Session session ) {
-                        String[] emails = new String[] {
+                        String[] emails = new String[]{
                                 "olsonsjc@gmail.com"
                         };
                         for ( String email : emails ) {
@@ -231,10 +225,7 @@ public class AdminMainPage extends AdminPage {
 
                         for ( PhetUser user : users ) {
                             // if user doesn't have a good confirmation key for unsubscribing, generate one
-                            if ( user.getConfirmationKey() == null ) {
-                                user.setConfirmationKey( PhetUser.generateConfirmationKey() );
-                                session.update( user );
-                            }
+                            user.ensureHasConfirmationKey( session );
                         }
                     }
                 } );
@@ -337,7 +328,7 @@ public class AdminMainPage extends AdminPage {
                                                                               "</div>",
                                                                               FAQPanel.getFAQCSS() ), outputFile );
                 }
-                catch ( Exception e ) {
+                catch( Exception e ) {
                     logger.warn( e );
                 }
             }

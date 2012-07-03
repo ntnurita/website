@@ -27,8 +27,11 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.WebsiteProperties;
 import edu.colorado.phet.website.constants.NotificationEmails;
 import edu.colorado.phet.website.constants.WebsiteConstants;
+import edu.colorado.phet.website.content.simulations.SimulationPage;
+import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.NotificationEvent;
 import edu.colorado.phet.website.data.PhetUser;
+import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.data.contribution.ContributionComment;
@@ -40,11 +43,19 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.translation.TranslationMainPage;
 import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.HtmlUtils;
+import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.hibernate.Result;
+import edu.colorado.phet.website.util.hibernate.Task;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
+
+import static edu.colorado.phet.website.util.hibernate.HibernateUtils.resultCatchTransaction;
+import static edu.colorado.phet.website.util.hibernate.HibernateUtils.resultTransaction;
+import static edu.colorado.phet.website.util.hibernate.HibernateUtils.wrapCatchTransaction;
+import static edu.colorado.phet.website.util.hibernate.HibernateUtils.wrapTransaction;
 
 /**
  * Handles email notification of events that should be reviewed by the PhET team
@@ -128,7 +139,7 @@ public class NotificationHandler {
 
     public static String getEventsString( org.hibernate.Session session ) {
         final List<NotificationEvent> events = new LinkedList<NotificationEvent>();
-        boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
+        boolean success = wrapTransaction( session, new HibernateTask() {
             public boolean run( org.hibernate.Session session ) {
                 addEventsToList( session, events );
                 return true;
@@ -173,6 +184,7 @@ public class NotificationHandler {
     }
 
     private static final String TRANSLATION_NOTIFICATION_FROM = WebsiteConstants.PHET_NO_REPLY_EMAIL_ADDRESS;
+    private static final String SIMULATION_NOTIFICATION_FROM = WebsiteConstants.PHET_NO_REPLY_EMAIL_ADDRESS;
 
     private static final String TRANSLATION_NOTIFICATION_FOOTER = "<p>Replying to this email will send the response to the translation creator(s).</p>";
 
@@ -198,10 +210,113 @@ public class NotificationHandler {
 
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "Email failure on attempting to notify of translation " + action, e );
             return false;
         }
+    }
+
+    // call from within a web session
+    public void kickOffSimulationNotificationEmails( final String subject, final String body, final Simulation simulation ) {
+        final PhetRequestCycle cycle = PhetRequestCycle.get();
+
+        // launch notifications in a new thread
+        if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
+            ( new Thread() {
+                @Override
+                public void run() {
+                    Session session = HibernateUtils.getInstance().openSession();
+                    try {
+                        NotificationHandler.sendNewSimulationNotification( session, subject, body, simulation, cycle );
+                    }
+                    finally {
+                        session.close();
+                    }
+                }
+            } ).start();
+        }
+    }
+
+    private static void sendNewSimulationNotification( Session session,
+                                                       final String subject,
+                                                       final String body,
+                                                       final Simulation simulation,
+                                                       PhetRequestCycle cycle ) {
+        if ( !DistributionHandler.allowNotificationEmails( cycle ) ) {
+            logger.info( "not sending translation email because we are not on the production server" );
+            return; // fail out gracefully if we are not allowed to send notification emails
+        }
+
+        wrapTransaction( session, new VoidTask() {
+            public void run( Session session ) {
+
+            }
+        } );
+
+        Result<List<PhetUser>> result = resultTransaction( session, new Task<List<PhetUser>>() {
+            public List<PhetUser> run( Session session ) {
+                final List result = session.createQuery( "select u from PhetUser as u where u.receiveSimulationNotifications = true" ).list();
+                ArrayList<PhetUser> returnedArray = new ArrayList<PhetUser>() {{
+                    addAll( result );
+                }};
+                for ( PhetUser user : returnedArray ) {
+                    // update confirmation key if necessary
+                    user.ensureHasConfirmationKey( session );
+                }
+                return returnedArray;
+            }
+        } );
+
+        // grab information needed from the simulation in a new transaction
+        Result<LocalizedSimulation> simResult = resultTransaction( session, new Task<LocalizedSimulation>() {
+            public LocalizedSimulation run( Session session ) {
+                // load the simulation in this transaction
+                Simulation sim = (Simulation) session.load( Simulation.class, simulation.getId() );
+
+                // extract the localized sim
+                return sim.getEnglishSimulation();
+            }
+        } );
+
+        LocalizedSimulation lsim = simResult.value;
+        String simTitle = lsim.getTitle();
+        String simPageUrl = SimulationPage.getLinker( simulation ).getDefaultRawUrl();
+
+        for ( PhetUser user : result.value ) {
+            try {
+                EmailUtils.GeneralEmailBuilder message = new EmailUtils.GeneralEmailBuilder( subject, SIMULATION_NOTIFICATION_FROM );
+
+                message.addRecipient( user.getEmail() );
+                message.setBody( getSimulationNotificationMessage( simTitle, simPageUrl, body, user.getConfirmationKey() ) );
+
+                logger.info( "Sending simulation notification to " + user.getEmail() );
+                EmailUtils.sendMessage( message );
+            }
+            catch( MessagingException e ) {
+                logger.warn( "Email failure on attempting to notify of simulation creation to user " + user.getEmail(), e );
+            }
+
+            // throttle notification sending
+            try {
+                Thread.sleep( 500 );
+            }
+            catch( InterruptedException e ) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static String getSimulationNotificationMessage( String simTitle, String simPageUrl, String body, String confirmationKey ) {
+        return simTitle + " is available at " + simPageUrl + "\n\n" +
+               body + "\n\n" +
+               "Thanks,\n\n" +
+               "The PhET Team\n\n" +
+               "http://phet.colorado.edu\n\n" +
+               "You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at\n" +
+               "phethelp@colorado.edu. To opt out of these newsletters, please click on this link: " +
+               NewsletterUtils.getUnsubscribeLink( PageContext.getNewDefaultContext(), confirmationKey ) +
+               " or copy and paste the text into your browser.\n\n" +
+               WebsiteConstants.EMAIL_ADDRESS_FOOTER;
     }
 
     /**
@@ -217,7 +332,7 @@ public class NotificationHandler {
 
         final Set<PhetUser> translators = new HashSet<PhetUser>();
 
-        HibernateUtils.wrapTransaction( session, new VoidTask() {
+        wrapTransaction( session, new VoidTask() {
             public void run( Session session ) {
                 List list = session.createQuery( "select t from Translation as t where t.locale = :locale" )
                         .setLocale( "locale", translation.getLocale() ).list();
@@ -256,7 +371,7 @@ public class NotificationHandler {
                 logger.info( "Sending automatic translation notification to " + user.getEmail() );
                 EmailUtils.sendMessage( message );
             }
-            catch ( MessagingException e ) {
+            catch( MessagingException e ) {
                 logger.warn( "Email failure on attempting to notify of translation creation to user " + user.getEmail(), e );
             }
         }
@@ -309,7 +424,7 @@ public class NotificationHandler {
 
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "Email failure on sending collaboration request", e );
             return false;
         }

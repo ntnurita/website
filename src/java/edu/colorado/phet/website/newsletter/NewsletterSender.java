@@ -90,6 +90,14 @@ public class NewsletterSender {
         for ( PhetUser user : users ) {
             if ( user.isConfirmed() && user.isReceiveEmail() && PhetUser.isValidEmail( user.getEmail() ) ) {
                 sendNewsletter( user );
+
+                // throttle newsletter sending
+                try {
+                    Thread.sleep( 500 );
+                }
+                catch( InterruptedException e ) {
+                    e.printStackTrace();
+                }
             }
         }
         synchronized ( lock ) {

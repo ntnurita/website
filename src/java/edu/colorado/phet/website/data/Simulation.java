@@ -14,13 +14,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.hibernate.Session;
+
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.constants.Licenses;
 import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.metadata.LRETerm;
+import edu.colorado.phet.website.notification.NotificationHandler;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.UrlUtils;
 import edu.colorado.phet.website.util.WebImage;
+import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class Simulation implements Serializable, IntId {
     private int id;
