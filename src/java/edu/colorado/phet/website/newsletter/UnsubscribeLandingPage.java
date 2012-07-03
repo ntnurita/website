@@ -40,6 +40,7 @@ public class UnsubscribeLandingPage extends PhetMenuPage {
                 userResult.setValue( user );
                 if ( user != null ) {
                     user.setReceiveEmail( false );
+                    user.setReceiveSimulationNotifications( false );
                     session.update( user );
                     return true;
                 }

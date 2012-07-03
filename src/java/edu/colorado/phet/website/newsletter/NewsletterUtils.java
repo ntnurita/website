@@ -107,8 +107,8 @@ public class NewsletterUtils {
      * Send when the user visits the UnsubscribeLandingPage
      */
     public static boolean sendUnsubscribedEmail( PageContext context, PhetUser user ) {
-        String subject = "PhET Newsletter Unsubscribe Confirmation";
-        String body = "<p>The following email has been unsubscribed from the PhET newsletter: " + user.getEmail() + ".</p>" +
+        String subject = "PhET Unsubscribe Confirmation";
+        String body = "<p>The following email has been unsubscribed from the PhET newsletter / simulation notifications: " + user.getEmail() + ".</p>" +
                       "<p>To resubscribe, please log in to your account on <a href=\"http://phet.colorado.edu\">the PhET website</a>.</p>" +
                       THANKYOU_MESSAGE +
                       "<p " + HIDDEN_STYLE + ">If you need further assistance, please contact us at " +
@@ -125,7 +125,7 @@ public class NewsletterUtils {
             message.addReplyTo( WebsiteConstants.HELP_EMAIL );
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "message send error: ", e );
             return false;
         }
