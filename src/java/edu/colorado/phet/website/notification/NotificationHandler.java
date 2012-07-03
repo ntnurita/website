@@ -217,7 +217,7 @@ public class NotificationHandler {
     }
 
     // call from within a web session
-    public void kickOffSimulationNotificationEmails( final String subject, final String body, final Simulation simulation ) {
+    public static void kickOffSimulationNotificationEmails( final String subject, final String body, final Simulation simulation ) {
         final PhetRequestCycle cycle = PhetRequestCycle.get();
 
         // launch notifications in a new thread
@@ -280,7 +280,7 @@ public class NotificationHandler {
 
         LocalizedSimulation lsim = simResult.value;
         String simTitle = lsim.getTitle();
-        String simPageUrl = SimulationPage.getLinker( simulation ).getDefaultRawUrl();
+        String simPageUrl = StringUtils.makeUrlAbsolute( SimulationPage.getLinker( simulation ).getDefaultRawUrl() );
 
         for ( PhetUser user : result.value ) {
             try {

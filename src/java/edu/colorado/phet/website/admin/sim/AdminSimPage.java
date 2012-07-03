@@ -19,8 +19,13 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -42,20 +47,26 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.common.phetcommon.util.function.VoidFunction0;
+import edu.colorado.phet.common.phetcommon.util.function.VoidFunction1;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.admin.AdminPage;
 import edu.colorado.phet.website.admin.AdminSimsPage;
+import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.constants.WebsiteConstants;
+import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TeachersGuide;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
+import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.panels.lists.OrderList;
 import edu.colorado.phet.website.panels.lists.SimOrderItem;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -64,6 +75,8 @@ import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
+
+import static edu.colorado.phet.website.notification.NotificationHandler.getSimulationNotificationMessage;
 
 public class AdminSimPage extends AdminPage {
     private Simulation simulation = null;
@@ -141,13 +154,13 @@ public class AdminSimPage extends AdminPage {
 
             tx.commit();
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -192,6 +205,8 @@ public class AdminSimPage extends AdminPage {
         add( new AdminSimFAQPanel( "faq-panel", getPageContext(), simulation ) );
 
         add( new ModifyTranslationForm( "add-set-translation" ) );
+
+        add( new SimulationNotificationForm( "notification-form" ) );
 
         add( new ListView<LocalizedSimulation>( "translation-list", localizedSimulations ) {
             protected void populateItem( ListItem<LocalizedSimulation> item ) {
@@ -552,7 +567,7 @@ public class AdminSimPage extends AdminPage {
 
             add( new AbstractFormValidator() {
                 public FormComponent<?>[] getDependentFormComponents() {
-                    return new FormComponent<?>[] { keyText, valueText };
+                    return new FormComponent<?>[]{keyText, valueText};
                 }
 
                 public void validate( Form<?> form ) {
@@ -802,7 +817,7 @@ public class AdminSimPage extends AdminPage {
                     }
                 }
             }
-            catch ( IOException e ) {
+            catch( IOException e ) {
                 e.printStackTrace();
             }
 
@@ -989,6 +1004,93 @@ public class AdminSimPage extends AdminPage {
         }
     }
 
+    private class SimulationNotificationForm extends Form {
+
+        private TextField<String> subjectText;
+        private TextArea<String> bodyText;
+        private final Model<String> previewSubjectModel;
+        private final Model<String> previewBodyModel;
+        private final AjaxButton submitButton;
+
+        public SimulationNotificationForm( String id ) {
+            super( id );
+
+            final Form formReference = this;
+
+            final WebMarkupContainer container = new WebMarkupContainer( "notification-compose-table" );
+            add( container );
+
+            previewSubjectModel = new Model<String>( "" );
+            previewBodyModel = new Model<String>( "" );
+
+            container.add( subjectText = new TextField<String>( "subject", new Model<String>( "" ) ) );
+            container.add( bodyText = new TextArea<String>( "body", new Model<String>( "" ) ) );
+            final Label subjectPreview = new Label( "preview-subject", previewSubjectModel ) {{
+                setOutputMarkupId( true );
+            }};
+            final MultiLineLabel bodyPreview = new MultiLineLabel( "preview-body", previewBodyModel ) {{
+                setOutputMarkupId( true );
+            }};
+            container.add( subjectPreview );
+            container.add( bodyPreview );
+            submitButton = new AjaxButton( "submit", this ) {
+                @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
+                    target.addComponent( formReference );
+
+                    NotificationHandler.kickOffSimulationNotificationEmails( subjectText.getModelObject(),
+                                                                             bodyText.getModelObject(),
+                                                                             simulation );
+
+                    // hide the container afterwards
+                    container.setVisible( false );
+                    target.addComponent( container );
+                }
+            };
+            container.add( submitButton );
+
+            container.setVisible( false );
+
+
+            AjaxButton composeButton = new AjaxButton( "compose-button", this ) {
+                @Override protected void onSubmit( AjaxRequestTarget target, Form<?> form ) {
+                    target.addComponent( formReference );
+
+                    // hide the button
+                    setVisible( false );
+                    container.setVisible( true );
+                }
+            };
+            add( composeButton );
+
+            // code to run (and what to update) when text fields change
+            final VoidFunction1<AjaxRequestTarget> updateFunction = new VoidFunction1<AjaxRequestTarget>() {
+                public void apply( AjaxRequestTarget target ) {
+                    target.addComponent( subjectPreview );
+                    target.addComponent( bodyPreview );
+                    updatePreview();
+                }
+            };
+
+            subjectText.add( new OnChangeAjaxBehavior() {
+                @Override protected void onUpdate( AjaxRequestTarget target ) {
+                    updateFunction.apply( target );
+                }
+            } );
+            bodyText.add( new OnChangeAjaxBehavior() {
+                @Override protected void onUpdate( AjaxRequestTarget target ) {
+                    updateFunction.apply( target );
+                }
+            } );
+        }
+
+        private void updatePreview() {
+            previewSubjectModel.setObject( subjectText.getModelObject() );
+            previewBodyModel.setObject( getSimulationNotificationMessage( simulation.getEnglishSimulation().getTitle(),
+                                                                          StringUtils.makeUrlAbsolute( SimulationPage.getLinker( simulation ).getDefaultRawUrl() ),
+                                                                          bodyText.getModelObject(), PhetSession.get().getUser().getConfirmationKey() ) );
+        }
+    }
+
     private class FileUploadForm extends Form {
 
         private FileUploadField field;
@@ -1027,7 +1129,7 @@ public class AdminSimPage extends AdminPage {
                             fup.writeTo( file );
                             guide.setSize( (int) file.length() );
                         }
-                        catch ( IOException e ) {
+                        catch( IOException e ) {
                             e.printStackTrace();
                             logger.warn( e );
                             return false;

@@ -402,6 +402,40 @@
             </table>
         </form>
     </div>
+    <div>
+        <h3>Send Simulation Notification</h3>
+
+        <p>
+            Please do not send notifications more than once per sim, unless major changes have occurred. Be patient, it takes a while to
+            send out new simulation notifications. If you think there has been a problem, contact the website developer first.
+        </p>
+
+        <form wicket:id="notification-form">
+            <input type="submit" value="Compose Notification" wicket:id="compose-button"/>
+            <table class="admin" wicket:id="notification-compose-table">
+                <tr>
+                    <td>Subject</td>
+                    <td><input wicket:id="subject" type="text" value="" style="width: 100%"/></td>
+                </tr>
+                <tr>
+                    <td>Body</td>
+                    <td><textarea rows="7" cols="70" wicket:id="body"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Preview</td>
+                    <td>
+                        <h4 wicket:id="preview-subject"></h4>
+                        <span wicket:id="preview-body"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: right;">
+                        <input type="submit" name="submit" value="Send Notifications" wicket:id="submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </wicket:extend>
 
 </body>
