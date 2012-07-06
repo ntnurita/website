@@ -62,7 +62,7 @@ public class UserEntity extends TranslationEntity {
         addString( "profile.phone2" );
         addString( "profile.fax" );
         addString( "profile.receiveEmail" );
-        addString( "profile.receiveSimulationNotifications" );
+        addString( "profile.receiveSimulationNotifications", "PLEASE NOTE: Translated versions should commet that these emails will only be sent out in English!" );
 
         addString( "profile.edit" );
         addString( "profile.edit.submit" );
