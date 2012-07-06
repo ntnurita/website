@@ -62,6 +62,7 @@ public class UserEntity extends TranslationEntity {
         addString( "profile.phone2" );
         addString( "profile.fax" );
         addString( "profile.receiveEmail" );
+        addString( "profile.receiveSimulationNotifications" );
 
         addString( "profile.edit" );
         addString( "profile.edit.submit" );
