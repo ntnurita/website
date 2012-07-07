@@ -70,7 +70,7 @@ public class MainStatisticsPage extends AdminPage {
 
                 add( new Label( "total-users", "Number of users: " + session.createQuery( "select count(*) from PhetUser" ).uniqueResult() ) );
                 add( new Label( "subscribed-users", "Users subscribed to receive our newsletter: " + session.createQuery( "select count(*) from PhetUser as u where u.receiveEmail = true" ).uniqueResult() ) );
-                add( new Label( "subscribed-users", "Users subscribed to receive simulation notifications: " + session.createQuery( "select count(*) from PhetUser as u where u.receiveSimulationNotifications = true" ).uniqueResult() ) );
+                add( new Label( "subscribed-simulation-users", "Users subscribed to receive simulation notifications: " + session.createQuery( "select count(*) from PhetUser as u where u.receiveSimulationNotifications = true" ).uniqueResult() ) );
                 add( new Label( "newsletter-only-users", "Users with newsletter-only accounts: " + session.createQuery( "select count(*) from PhetUser as u where u.newsletterOnlyAccount = true" ).uniqueResult() ) );
             }
         } );
