@@ -85,23 +85,18 @@ public class SimulationNotificationForm extends Form {
         };
         add( composeButton );
 
-        // code to run (and what to update) when text fields change
-        final VoidFunction1<AjaxRequestTarget> updateFunction = new VoidFunction1<AjaxRequestTarget>() {
-            public void apply( AjaxRequestTarget target ) {
+        subjectText.add( new OnChangeAjaxBehavior() {
+            @Override protected void onUpdate( AjaxRequestTarget target ) {
                 target.addComponent( subjectPreview );
                 target.addComponent( bodyPreview );
                 updatePreview();
             }
-        };
-
-        subjectText.add( new OnChangeAjaxBehavior() {
-            @Override protected void onUpdate( AjaxRequestTarget target ) {
-                updateFunction.apply( target );
-            }
         } );
         bodyText.add( new OnChangeAjaxBehavior() {
             @Override protected void onUpdate( AjaxRequestTarget target ) {
-                updateFunction.apply( target );
+                target.addComponent( subjectPreview );
+                target.addComponent( bodyPreview );
+                updatePreview();
             }
         } );
     }
