@@ -274,24 +274,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcpg-jdk15on-147.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcprov-jdk15on-147.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/jackson-mapper-lgpl-1.9.8.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -301,7 +283,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcmail-jdk15on-147.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcmail-jdk15on-147.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -310,7 +292,25 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcpkix-jdk15on-147.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcpg-jdk15on-147.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcpkix-jdk15on-147.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcprov-jdk15on-147.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
