@@ -1,0 +1,1 @@
+Commons-codec and commons-io are dependencies of LRJavaLib for the Learning Registry

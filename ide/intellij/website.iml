@@ -22,6 +22,8 @@
       <sourceFolder url="file://$MODULE_DIR$/../../src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/metadata" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../contrib/json/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../contrib/LRJavaLib/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -105,7 +107,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library>
+      <library name="Hibernate 3">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/hibernate3.jar!/" />
         </CLASSES>
@@ -188,9 +190,109 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library>
+      <library name="Lift JSON">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/lift-json_2.9.0-1-2.4-M2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Bee-Encode 0.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/bee-encode/bee-encode-0.2.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$MODULE_DIR$/../../contrib/bee-encode/api" />
+        </JAVADOC>
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-codec-1.6/commons-codec-1.6.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-codec-1.6/commons-codec-1.6-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-codec-1.6/commons-codec-1.6-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-io-2.4/commons-io-2.4.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-io-2.4/commons-io-2.4-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-io-2.4/commons-io-2.4-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/httpcomponents-client-4.2.1/lib/commons-logging-1.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/httpcomponents-client-4.2.1/lib/httpclient-4.2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/httpcomponents-client-4.2.1/lib/httpcore-4.2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/jackson/jackson-core-lgpl-1.9.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcpg-jdk15on-147.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcprov-jdk15on-147.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../contrib/jackson/jackson-mapper-lgpl-1.9.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
