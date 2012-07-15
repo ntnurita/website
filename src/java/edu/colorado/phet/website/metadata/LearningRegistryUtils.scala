@@ -4,12 +4,104 @@ package edu.colorado.phet.website.metadata
 import formats.NSDLDCConverter
 import java.io.File
 import edu.colorado.phet.common.phetcommon.util.FileUtils
+import com.navnorth.learningregistry._
+import org.apache.log4j.Logger
+import edu.colorado.phet.website.{PhetWicketApplication, WebsiteProperties}
+import scala.collection.JavaConversions._
 
 // Envelope creation and publishing for data destined for a Learning Registry node
 object LearningRegistryUtils {
+  private[this] val logger: Logger = Logger.getLogger(getClass.getName)
 
   // common keywords that we want to be included in every simulation
   private val LRTerms = List("phet", "simulation")
+
+  // returns success
+  def submitEnvelope(record: SimulationRecord, formatConverter: PhetMetadataConverter) {
+    // extract the necessary strings and information that is not stored inside the website WAR or codebase
+    val websiteProperties: WebsiteProperties = PhetWicketApplication.get().getWebsiteProperties
+    val publicKeyLocation = websiteProperties.getGPGPublicKeyLocation
+    val privateKey = FileUtils.loadFileAsString(websiteProperties.getGPGPrivateKeyFile)
+    val passphrase = websiteProperties.getGPGPassphrase
+    val nodeHost = websiteProperties.getLearningRegistryNodeHost
+
+    // initialize the signer and exporter
+    val batchsize = 1
+    val signer = new LRSigner(publicKeyLocation, privateKey, passphrase)
+    val exporter = new LRExporter(batchsize, nodeHost)
+    exporter.configure()
+
+    // build the envelope
+    val envelope = new LREnvelope {
+      protected def getResourceData: AnyRef = formatConverter.convertRecord(record).toString()
+
+      resourceDataType = "metadata"
+      resourceLocator = record.simPageLink
+      // no curator
+      owner = "PhET Interactive Simulations"
+      tags = ( LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct ).toArray // keywords
+      payloadPlacement = "inline"
+      payloadSchemaLocator = formatConverter.getSchemaURI match {
+        case Some(x) => x
+        case None => null
+      }
+      payloadSchema = formatConverter.getLRSchemaTypes.toArray
+      submitter = "PhET Interactive Simulations"
+      submitterType = "agent"
+      submissionTOS = "http://www.learningregistry.org/tos/cc0/v0-5/"
+      // no submission attribution
+      signer = "PhET Interactive Simulations"
+    }
+//    val envelope = new LRJSONDocument(
+//      formatConverter.convertRecord(record).toString(),
+//      "metadata",
+//      record.simPageLink,
+//      null,
+//      "PhET Interactive Simulations",
+//      keywords,
+//      "inline",
+//      formatConverter.getSchemaURI match {
+//        case Some(x) => x
+//        case None => null
+//      },
+//      formatConverter.getLRSchemaTypes.toArray,
+//      "PhET Interactive Simulations",
+//      "agent",
+//      "http://www.learningregistry.org/tos/cc0/v0-5/",
+//      null,
+//      "PhET Interactive Simulations"
+//    )
+
+    // sign it with our keys
+    val signedEnvelope = signer.sign(envelope)
+
+    // upload the signed document
+    exporter.addDocument(signedEnvelope)
+    val responses = exporter.sendData()
+
+    // and receive responses
+    responses.foreach(response => {
+      logger.info("<h2>Batch Results</h2>")
+      logger.info("Status Code: " + response.getStatusCode)
+      logger.info("Status Reason: " + response.getStatusReason)
+      logger.info("Batch Success: " + response.getBatchSuccess)
+      logger.info("Batch Response: " + response.getBatchResponse)
+
+      logger.info("Published Resource(s)")
+      for ( id: String <- response.getResourceSuccess ) {
+        logger.info("ID: " + id)
+        logger.info("URI: http://" + nodeHost + "/harvest/getrecord?by_doc_ID=T&request_ID=" + id)
+      }
+
+      if ( !response.getResourceFailure.isEmpty ) {
+        logger.warn("Publish Errors")
+
+        for ( message <- response.getResourceFailure ) {
+          logger.error("Error: " + message)
+        }
+      }
+    })
+  }
 
   def wrapWithEnvelope(record: SimulationRecord, formatConverter: PhetMetadataConverter): String = {
 
@@ -44,7 +136,7 @@ object LearningRegistryUtils {
     compact(render(json))
   }
 
-  def publishMetadata(record: SimulationRecord, formatConverter: PhetMetadataConverter) {
+  private[this] def publishMetadata(record: SimulationRecord, formatConverter: PhetMetadataConverter) {
     println(wrapWithEnvelope(record, formatConverter))
   }
 
@@ -56,7 +148,7 @@ object LearningRegistryUtils {
     // TODO: do with each metadata format
     new File("/Users/olsonsjc/phet/tmp/metadata").listFiles().foreach((file: File) => publishMetadata(
       new SimulationRecord(FileUtils.loadFileAsString(file)),
-      new NSDLDCConverter{}
+      new NSDLDCConverter {}
     ))
   }
 

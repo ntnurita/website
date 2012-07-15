@@ -29,6 +29,13 @@ public class WebsiteProperties {
     public static final String WEB_HOSTNAME = "web-hostname";
     public static final String SIMULATION_METADATA = "simulation-metadata";
 
+    public static final String GPG_PUBLIC_KEY_LOCATION = "gpg-public-key-location";
+    public static final String GPG_PUBLIC_KEY_FILE = "gpg-public-key-file";
+    public static final String GPG_PRIVATE_KEY_FILE = "gpg-private-key-file";
+    public static final String GPG_PASSPHRASE = "gpg-passphrase";
+
+    public static final String LEARNING_REGISTRY_NODE_HOST = "learning-registry-node-host";
+
     public WebsiteProperties( ServletContext servletContext ) {
         this.servletContext = servletContext;
     }
@@ -47,6 +54,26 @@ public class WebsiteProperties {
 
     public File getNewsletterFile() {
         return new File( getParameter( NEWSLETTER_FILE ) );
+    }
+
+    public File getGPGPublicKeyFile() {
+        return new File( getParameter( GPG_PUBLIC_KEY_FILE ) );
+    }
+
+    public File getGPGPrivateKeyFile() {
+        return new File( getParameter( GPG_PRIVATE_KEY_FILE ) );
+    }
+
+    public String getGPGPublicKeyLocation() {
+        return getParameter( GPG_PUBLIC_KEY_LOCATION );
+    }
+
+    public String getGPGPassphrase() {
+        return getParameter( GPG_PASSPHRASE );
+    }
+
+    public String getLearningRegistryNodeHost() {
+        return getParameter( LEARNING_REGISTRY_NODE_HOST );
     }
 
     public String getPhetDownloadLocation() {

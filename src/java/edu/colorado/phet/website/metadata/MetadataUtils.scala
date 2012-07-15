@@ -1,6 +1,7 @@
 package edu.colorado.phet.website.metadata
 
 import edu.colorado.phet.website.translation.PhetLocalizer
+import formats.{NSDLDCConverter, IMSLODEILOXConverter, IEEELOMConverter, DublinCoreConverter}
 import scala.collection.JavaConversions._
 import java.util.{Locale, Date}
 import edu.colorado.phet.website.PhetWicketApplication
@@ -22,6 +23,11 @@ import java.util
  * Utilities for metadata in general, and construction of the master format
  */
 object MetadataUtils {
+
+  val dublinCoreConverter = new DublinCoreConverter {}
+  val ieeeLomConverter = new IEEELOMConverter {}
+  val imsLodeIloxConverter = new IMSLODEILOXConverter {}
+  val nsdlDcConverter = new NSDLDCConverter {}
 
   val MasterFormatName = "phet-simulation"
 

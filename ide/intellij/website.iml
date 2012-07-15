@@ -201,7 +201,7 @@
     <orderEntry type="module-library">
       <library name="Bee-Encode 0.2">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/bee-encode/bee-encode-0.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bee-encode-0.2.jar!/" />
         </CLASSES>
         <JAVADOC>
           <root url="file://$MODULE_DIR$/../../contrib/bee-encode/api" />
@@ -293,6 +293,24 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/jackson-mapper-lgpl-1.9.8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcmail-jdk15on-147.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcpkix-jdk15on-147.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

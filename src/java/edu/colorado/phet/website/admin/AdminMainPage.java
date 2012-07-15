@@ -36,7 +36,10 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.metadata.LearningRegistryUtils;
 import edu.colorado.phet.website.metadata.MetadataUtils;
+import edu.colorado.phet.website.metadata.SimulationRecord;
+import edu.colorado.phet.website.metadata.formats.NSDLDCConverter;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
 import edu.colorado.phet.website.panels.faq.FAQPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -337,13 +340,13 @@ public class AdminMainPage extends AdminPage {
         add( new Link( "debug-safe-1" ) {
             @Override
             public void onClick() {
-                Session session = getHibernateSession();
-                logger.info( "outside transaction:" + session.getTransaction() );
-                logger.info( "outside transaction active:" + session.getTransaction().isActive() );
-                HibernateUtils.wrapTransaction( session, new VoidTask() {
+                HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
                     public void run( Session session ) {
-                        logger.info( "inside translation: " + session.getTransaction() );
-                        logger.info( "inside transaction active:" + session.getTransaction().isActive() );
+                        Simulation simulation = (Simulation) session.createQuery("select s from Simulation as s where s.name = 'density'").uniqueResult();
+
+                        String masterFormat = MetadataUtils.simulationToMasterFormat( simulation );
+
+                        LearningRegistryUtils.submitEnvelope( new SimulationRecord( masterFormat ), MetadataUtils.nsdlDcConverter() );
                     }
                 } );
             }
