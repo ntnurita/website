@@ -1,0 +1,1 @@
+Code and dependencies in this test folder are not used in the production website, but are used to regression test it.
