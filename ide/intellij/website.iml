@@ -212,7 +212,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-codec-1.6/commons-codec-1.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/commons-codec-1.6.jar!/" />
         </CLASSES>
         <JAVADOC>
           <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-codec-1.6/commons-codec-1.6-javadoc.jar!/" />
@@ -225,7 +225,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-io-2.4/commons-io-2.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/commons-io-2.4.jar!/" />
         </CLASSES>
         <JAVADOC>
           <root url="jar://$MODULE_DIR$/../../contrib/apache-commons/commons-io-2.4/commons-io-2.4-javadoc.jar!/" />
@@ -238,7 +238,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/httpcomponents-client-4.2.1/lib/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/commons-logging-1.1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -247,7 +247,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/httpcomponents-client-4.2.1/lib/httpclient-4.2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/httpclient-4.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -256,7 +256,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/httpcomponents-client-4.2.1/lib/httpcore-4.2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/httpcore-4.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -265,7 +265,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/jackson/jackson-core-lgpl-1.9.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/jackson-core-lgpl-1.9.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -274,7 +274,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcpg-jdk15on-147.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcpg-jdk15on-147.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -283,7 +283,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/bouncy-castle/bcprov-jdk15on-147.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/bcprov-jdk15on-147.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -292,7 +292,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../contrib/jackson/jackson-mapper-lgpl-1.9.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../root/WEB-INF/lib/jackson-mapper-lgpl-1.9.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
