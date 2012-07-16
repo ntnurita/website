@@ -36,24 +36,30 @@ public class TranslatedSimsPage extends PhetRegularPage {
                 throw new RestartResponseAtInterceptPageException( NotFoundPage.class );
             }
 
-            final Locale locale = LocaleUtils.stringToLocale( localeName );
+            // try block shows 404 whenever someone visits a page like /en/simulations/translated/undefined (which happens)
+            try {
+                final Locale locale = LocaleUtils.stringToLocale( localeName );
 
-            if ( locale == null ) {
+                if ( locale == null ) {
+                    throw new RestartResponseAtInterceptPageException( NotFoundPage.class );
+                }
+
+                String localeKey = "language.names." + localeName;
+                initializeLocation( getNavMenu().getLocationByKey( localeKey ) );
+
+                String title = StringUtils.messageFormat( getPhetLocalizer().getString( "simulations.translated.language.title", this ), new Object[]{getPhetLocalizer().getString( localeKey, this )} );
+                setTitle( title );
+
+                PhetPanel panel = new SimplePanelCacheEntry( TranslationListPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
+                    public PhetPanel constructPanel( String id, PageContext context ) {
+                        return new TranslationListPanel( id, context, locale );
+                    }
+                }.instantiate( "panel", getPageContext(), getPhetCycle() );
+                add( panel );
+            }
+            catch( IllegalArgumentException e ) {
                 throw new RestartResponseAtInterceptPageException( NotFoundPage.class );
             }
-
-            String localeKey = "language.names." + localeName;
-            initializeLocation( getNavMenu().getLocationByKey( localeKey ) );
-
-            String title = StringUtils.messageFormat( getPhetLocalizer().getString( "simulations.translated.language.title", this ), new Object[] { getPhetLocalizer().getString( localeKey, this ) } );
-            setTitle( title );
-
-            PhetPanel panel = new SimplePanelCacheEntry( TranslationListPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
-                public PhetPanel constructPanel( String id, PageContext context ) {
-                    return new TranslationListPanel( id, context, locale );
-                }
-            }.instantiate( "panel", getPageContext(), getPhetCycle() );
-            add( panel );
         }
         else {
             initializeLocation( getNavMenu().getLocationByKey( "simulations.translated" ) );
@@ -72,8 +78,8 @@ public class TranslatedSimsPage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^simulations/translated$", TranslatedSimsPage.class, new String[] { } );
-        mapper.addMap( "^simulations/translated/([^/]+)$", TranslatedSimsPage.class, new String[] { "translationlocale" } );
+        mapper.addMap( "^simulations/translated$", TranslatedSimsPage.class, new String[]{} );
+        mapper.addMap( "^simulations/translated/([^/]+)$", TranslatedSimsPage.class, new String[]{"translationlocale"} );
     }
 
     public static AbstractLinker getLinker() {
