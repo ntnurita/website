@@ -175,6 +175,8 @@ public class LRSigner {
             throw new LRException( LRException.NULL_FIELD );
         }
 
+        // Add the provider here so that after signing, we can remove the provider.
+        // This allows using this code from multiple separate class loaders while Bouncy Castle is on a separate class loader
         BouncyCastleProvider provider = new BouncyCastleProvider();
         Security.addProvider( provider );
 

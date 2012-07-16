@@ -75,6 +75,12 @@ public class LRException extends Exception
         this.code = code;
     }
 
+    /**
+     * Create an exception that also records the underlying cause of this exception
+     *
+     * @param code The error code of the exception to be created
+     * @param cause The underlying cause that triggered this exception
+     */
     public LRException(Integer code, Throwable cause)
     {
         super(cause);
