@@ -23,7 +23,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../src/scala" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../src/metadata" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../contrib/json/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../contrib/LRJavaLib/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../contrib/LRJava/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
