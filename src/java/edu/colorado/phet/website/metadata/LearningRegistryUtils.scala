@@ -31,6 +31,8 @@ object LearningRegistryUtils {
     val exporter = new LRExporter(batchsize, nodeHost)
     exporter.configure()
 
+    val keywords = ( LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct )
+
     // build the envelope
     val envelope = new LREnvelope {
       protected def getResourceData: AnyRef = formatConverter.convertRecord(record).toString()
@@ -39,7 +41,7 @@ object LearningRegistryUtils {
       resourceLocator = record.simPageLink
       // no curator
       owner = "PhET Interactive Simulations"
-      tags = ( LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct ).toArray // keywords
+      tags = keywords.toArray // keywords
       payloadPlacement = "inline"
       payloadSchemaLocator = formatConverter.getSchemaURI match {
         case Some(x) => x
@@ -52,25 +54,6 @@ object LearningRegistryUtils {
       // no submission attribution
       signer = "PhET Interactive Simulations"
     }
-//    val envelope = new LRJSONDocument(
-//      formatConverter.convertRecord(record).toString(),
-//      "metadata",
-//      record.simPageLink,
-//      null,
-//      "PhET Interactive Simulations",
-//      keywords,
-//      "inline",
-//      formatConverter.getSchemaURI match {
-//        case Some(x) => x
-//        case None => null
-//      },
-//      formatConverter.getLRSchemaTypes.toArray,
-//      "PhET Interactive Simulations",
-//      "agent",
-//      "http://www.learningregistry.org/tos/cc0/v0-5/",
-//      null,
-//      "PhET Interactive Simulations"
-//    )
 
     // sign it with our keys
     val signedEnvelope = signer.sign(envelope)
