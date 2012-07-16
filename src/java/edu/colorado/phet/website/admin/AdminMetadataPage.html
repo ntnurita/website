@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title wicket:id="page-title">[PREVIEW] AdminMetadataPage</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+        </style>
+    </wicket:head>
+</head>
+<body wicket:message="dir:language.dir">
+
+<wicket:extend>
+    <div>
+        <h2>Metadata Links</h2>
+
+        <p>
+            It is recommended that if people need up-to-date metadata, they should harvest from our OAI-PMH provider. Four metadata formats
+            are available (Dublin Core, NSDL Dublin Core (NSDL_DC), IEEE LOM, and IMS LODE ILOX).
+        </p>
+
+        <ul>
+            <li>The OAI-PMH provider is available at <a href="http://phet.colorado.edu/oai/provider">http://phet.colorado.edu/oai/provider</a></li>
+            <li>jOAI administration is available at <a href="http://phet.colorado.edu/oai/admin/">http://phet.colorado.edu/oai/admin/</a> (this is the easiest way to view metadata formats. see /usr/local/tomcat6/webapps/oai/WEB-INF/users.xml on figaro for user credentials)</li>
+            <li>Metadata made available to North Carolina is available at <a href="http://phet.colorado.edu/services/nc-info.csv">http://phet.colorado.edu/services/nc-info.csv</a></li>
+            <li>Metadata made available to Learning.com is available at <a href="http://phet.colorado.edu/services/learning-com-export.csv">http://phet.colorado.edu/services/learning-com-export.csv</a></li>
+            <li>An up-to-date simulation list is available at <a href="http://phet.colorado.edu/services/project-sorted-simulations.csv">http://phet.colorado.edu/services/project-sorted-simulations.csv</a></li>
+            <li>A (very large) dump of all simulations in the PhET master-format is available at <a href="http://phet.colorado.edu/metadata-dump.xml">http://phet.colorado.edu/metadata-dump.xml</a> (this has all data included in other metadata)</li>
+        </ul>
+
+        <h2>Updating or Publishing Metadata</h2>
+
+        <p>
+            Once a week, metadata should be updated for OAI-PMH use. This writes master-format XML files into the htdocs/metadata directory,
+            and jOAI updates from there. To manually write out the master-format metadata files, click below:
+        </p>
+
+        <a wicket:id="write-master-format-metadata">Write out master-format metadata files</a> (may take a while)
+
+        <p>
+            The Learning Registry does not harvest OAI-PMH. Instead we publish simulation metadata up to them. To publish metadata for all
+            of our simulations (recommended 4 times a year), click below:
+        </p>
+
+        <a wicket:id="learning-registry-full-publish">Publish Learning Registry metadata for ALL simulations</a> (may take a while)
+
+    </div>
+</wicket:extend>
+
+</body>
+</html>
+
