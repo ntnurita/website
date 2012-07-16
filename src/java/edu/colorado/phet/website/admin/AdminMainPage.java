@@ -39,7 +39,6 @@ import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.metadata.LearningRegistryUtils;
 import edu.colorado.phet.website.metadata.MetadataUtils;
 import edu.colorado.phet.website.metadata.SimulationRecord;
-import edu.colorado.phet.website.metadata.formats.NSDLDCConverter;
 import edu.colorado.phet.website.newsletter.NewsletterSender;
 import edu.colorado.phet.website.panels.faq.FAQPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -267,7 +266,7 @@ public class AdminMainPage extends AdminPage {
         add( new Link( "debug-writemetadata" ) {
             @Override
             public void onClick() {
-                MetadataUtils.writeSimulations();
+                MetadataUtils.writeSimulationsFromSession();
             }
         } );
 

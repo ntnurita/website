@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat
 import edu.colorado.phet.website.data.{Category, Keyword, Simulation, LocalizedSimulation}
 import edu.colorado.phet.website.constants.WebsiteConstants
 import java.util
+import org.hibernate.Session
 
 /**
  * Utilities for metadata in general, and construction of the master format
@@ -57,17 +58,26 @@ object MetadataUtils {
 
   def convertNewlinesToPipes(str: String): String = if ( str == null ) "" else str.replace("<br/>", "|")
 
-  def writeSimulations() {
-    wrapTransaction(session => {
-      val simulations = session.createQuery("select s from Simulation as s").list.map(_.asInstanceOf[Simulation])
+  def writeSimulationsWithoutSession() {
+    wrapSession(session => writeSimulations(session))
+  }
 
-      val metadataDir = PhetWicketApplication.get().getWebsiteProperties.getSimulationMetadataDir
+  def writeSimulationsFromSession() {
+    wrapTransaction(session => writeSimulations(session))
+  }
 
-      for ( sim <- simulations.filter(_.isVisible) ) {
-        val metadataString: String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + MetadataUtils.simulationToMasterFormat(sim)
-        FileUtils.writeString(new File(metadataDir, sim.getName + ".xml"), metadataString)
-      }
-    })
+  // write XML metadata in our PhET "master" format out to a metadata directory that jOAI (for OAI-PMH) will use as an input
+  private[this] def writeSimulations(session: Session) {
+    logger.info("writing out simulation master-format metadata")
+
+    val simulations = session.createQuery("select s from Simulation as s").list.map(_.asInstanceOf[Simulation])
+
+    val metadataDir = PhetWicketApplication.get().getWebsiteProperties.getSimulationMetadataDir
+
+    for ( sim <- simulations.filter(_.isVisible) ) {
+      val metadataString: String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + MetadataUtils.simulationToMasterFormat(sim)
+      FileUtils.writeString(new File(metadataDir, sim.getName + ".xml"), metadataString)
+    }
   }
 
   /**
