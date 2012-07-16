@@ -344,9 +344,7 @@ public class AdminMainPage extends AdminPage {
                     public void run( Session session ) {
                         Simulation simulation = (Simulation) session.createQuery("select s from Simulation as s where s.name = 'density'").uniqueResult();
 
-                        String masterFormat = MetadataUtils.simulationToMasterFormat( simulation );
-
-                        LearningRegistryUtils.submitEnvelope( new SimulationRecord( masterFormat ), MetadataUtils.nsdlDcConverter() );
+                        LearningRegistryUtils.submitEnvelope( new SimulationRecord( MetadataUtils.simulationToMasterFormat( simulation ) ), MetadataUtils.ieeeLomConverter() );
                     }
                 } );
             }
