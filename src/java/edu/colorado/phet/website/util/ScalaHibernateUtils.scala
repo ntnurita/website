@@ -13,8 +13,10 @@ object ScalaHibernateUtils {
   }
 
   def wrapSession(task: Session => Unit): Boolean = {
-    HibernateUtils.wrapSession(new Task[Void] {
-      def run(session: Session): Void = task(session)
+    HibernateUtils.wrapSession(new VoidTask {
+      def run(session: Session) {
+        task(session)
+      }
     })
   }
 }

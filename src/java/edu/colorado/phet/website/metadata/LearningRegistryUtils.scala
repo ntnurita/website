@@ -64,28 +64,40 @@ object LearningRegistryUtils {
 
     // and receive responses
     responses.foreach(response => {
-      logger.info("<h2>Batch Results</h2>")
-      logger.info("Status Code: " + response.getStatusCode)
-      logger.info("Status Reason: " + response.getStatusReason)
-      logger.info("Batch Success: " + response.getBatchSuccess)
-      logger.info("Batch Response: " + response.getBatchResponse)
+      val hasError = !response.getResourceFailure.isEmpty || response.getResourceSuccess.isEmpty
 
-      logger.info("Published Resource(s)")
-      for ( id: String <- response.getResourceSuccess ) {
-        logger.info("ID: " + id)
-        logger.info("URI: http://" + nodeHost + "/harvest/getrecord?by_doc_ID=T&request_ID=" + id)
+      if ( hasError ) {
+        logger.error("Error publishing " + record.simulationName + " with format " + formatConverter.toString + " to Learning Registry")
+        logger.info("Batch Results")
+        logger.info("Status Code: " + response.getStatusCode)
+        logger.info("Status Reason: " + response.getStatusReason)
+        logger.info("Batch Success: " + response.getBatchSuccess)
+        logger.info("Batch Response: " + response.getBatchResponse)
+
+        logger.info("Published Resource(s)")
+        for ( id: String <- response.getResourceSuccess ) {
+          logger.info("ID: " + id)
+          logger.info("URI: http://" + nodeHost + "/harvest/getrecord?by_doc_ID=T&request_ID=" + id)
+        }
+
+        if ( !response.getResourceFailure.isEmpty ) {
+          logger.warn("Publish Errors")
+
+          for ( message <- response.getResourceFailure ) {
+            logger.error("Error: " + message)
+          }
+        }
       }
-
-      if ( !response.getResourceFailure.isEmpty ) {
-        logger.warn("Publish Errors")
-
-        for ( message <- response.getResourceFailure ) {
-          logger.error("Error: " + message)
+      else {
+        for ( id <- response.getResourceSuccess ) {
+          logger.info("Published " + record.simulationName + " with format " + formatConverter.toString + " to Learning Registry. See http://" + nodeHost + "/harvest/getrecord?by_doc_ID=T&request_ID=" + id)
         }
       }
     })
   }
 
+
+  // manually wrap with an envelope and put it in JSON format
   def wrapWithEnvelope(record: SimulationRecord, formatConverter: PhetMetadataConverter): String = {
 
     val keywords: Seq[String] = LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct
@@ -118,22 +130,4 @@ object LearningRegistryUtils {
 
     compact(render(json))
   }
-
-  private[this] def publishMetadata(record: SimulationRecord, formatConverter: PhetMetadataConverter) {
-    println(wrapWithEnvelope(record, formatConverter))
-  }
-
-  def main(args: Array[String]) {
-
-    // TODO: do this on application initialization (if added in with other code
-    //    Security.addProvider( new BouncyCastleProvider )
-
-    // TODO: do with each metadata format
-    new File("/Users/olsonsjc/phet/tmp/metadata").listFiles().foreach((file: File) => publishMetadata(
-      new SimulationRecord(FileUtils.loadFileAsString(file)),
-      new NSDLDCConverter {}
-    ))
-  }
-
-
 }

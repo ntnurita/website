@@ -19,16 +19,25 @@ import edu.colorado.phet.website.data.{Category, Keyword, Simulation, LocalizedS
 import edu.colorado.phet.website.constants.WebsiteConstants
 import java.util
 import org.hibernate.Session
+import org.apache.log4j.Logger
 
 /**
  * Utilities for metadata in general, and construction of the master format
  */
 object MetadataUtils {
+  private[this] val logger: Logger = Logger.getLogger(getClass.getName)
 
   val dublinCoreConverter = new DublinCoreConverter {}
   val ieeeLomConverter = new IEEELOMConverter {}
   val imsLodeIloxConverter = new IMSLODEILOXConverter {}
   val nsdlDcConverter = new NSDLDCConverter {}
+
+  val formatConverters = List(
+    dublinCoreConverter,
+    ieeeLomConverter,
+    imsLodeIloxConverter,
+    nsdlDcConverter
+  )
 
   val MasterFormatName = "phet-simulation"
 
@@ -54,9 +63,34 @@ object MetadataUtils {
   def englishString(lang: Seq[LanguageString]): String = lang.find(_.language == "en").get.string
 
   // TODO: better documentation on why this is here! seems fishy!
-  val commonTimestamp = 1340780168000L; // used so we can update all converters at once
+  val commonTimestamp = 1340780168000L;
 
-  def convertNewlinesToPipes(str: String): String = if ( str == null ) "" else str.replace("<br/>", "|")
+  // used so we can update all converters at once
+
+  def convertNewlinesToPipes(str: String): String = if ( str == null ) {
+    ""
+  }
+  else {
+    str.replace("<br/>", "|")
+  }
+
+  def publishLearningRegistryAllSimulationsFromSession() {
+    wrapTransaction(session => publishLearningRegistryAllSimulations(session))
+  }
+
+  private[this] def publishLearningRegistryAllSimulations(session: Session) {
+    logger.info("Publishing all simulation metadata to the learning registry")
+
+    val simulations = session.createQuery("select s from Simulation as s").list.map(_.asInstanceOf[Simulation])
+
+    for ( sim <- simulations.filter(_.isVisible) ) {
+      val masterFormat: String = MetadataUtils.simulationToMasterFormat(sim)
+      val simulationRecord: SimulationRecord = new SimulationRecord(masterFormat)
+      for ( formatConverter <- formatConverters ) {
+        LearningRegistryUtils.submitEnvelope(simulationRecord, formatConverter)
+      }
+    }
+  }
 
   def writeSimulationsWithoutSession() {
     wrapSession(session => writeSimulations(session))
@@ -114,7 +148,12 @@ object MetadataUtils {
       yield { <string locale={localeTo4646String(locale)}>{translatedString}</string> }
     }
 
-    def convertDate(date: Date): String = if ( date == null ) "" else dateFormat.format(date)
+    def convertDate(date: Date): String = if ( date == null ) {
+      ""
+    }
+    else {
+      dateFormat.format(date)
+    }
 
     val titles = lsims.map(lsim => <string locale={localeTo4646String(lsim.getLocale)}>{lsim.getTitle}</string>)
     val descriptions = translateToList(sim.getDescriptionKey)
@@ -152,7 +191,12 @@ object MetadataUtils {
       <classification>
         <lre0001>{sim.getLRETerms.map(term => <term id={term.id} english={term.englishCaption}/>)}</lre0001>
       </classification>
-      <rights>{if ( sim.isHasCreativeCommonsAttributionLicense ) translateToList("metadata.rights") else translateToList("metadata.rightsGplOnly")}</rights>
+      <rights>{if ( sim.isHasCreativeCommonsAttributionLicense ) {
+        translateToList("metadata.rights")
+      }
+      else {
+        translateToList("metadata.rightsGplOnly")
+      }}</rights>
     </simulation>
 
     xml.toString()

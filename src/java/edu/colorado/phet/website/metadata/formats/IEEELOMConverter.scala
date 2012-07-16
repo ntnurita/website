@@ -17,6 +17,8 @@ import edu.colorado.phet.website.metadata.{MetadataUtils, SimulationRecord, Phet
 trait IEEELOMConverter extends PhetMetadataConverter {
   def getToFormat = "lom"
 
+  override def toString = getToFormat
+
   def getSchemaURI = Some("http://ltsc.ieee.org/xsd/LOM")
 
   def getLRSchemaTypes = List("IEEE LOM 2002")

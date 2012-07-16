@@ -17,6 +17,8 @@ import edu.colorado.phet.website.metadata.{MetadataUtils, SimulationRecord, Phet
 trait NSDLDCConverter extends PhetMetadataConverter {
   def getToFormat = "nsdl_dc"
 
+  override def toString = getToFormat
+
   def getSchemaURI = Some("http://ns.nsdl.org/nsdl_dc_v1.02/")
 
   def getLRSchemaTypes = List("nsdl_dc", "DC 1.1")

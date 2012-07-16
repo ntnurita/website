@@ -16,6 +16,8 @@ import edu.colorado.phet.website.metadata.{MetadataUtils, SimulationRecord, Phet
 trait IMSLODEILOXConverter extends PhetMetadataConverter {
   def getToFormat = "oai_ilox"
 
+  override def toString = getToFormat
+
   def getSchemaURI = Some("http://www.imsglobal.org/xsd/imsloilox_v1p0")
 
   def getLRSchemaTypes = List("IMS LODE ILOX")

@@ -606,6 +606,10 @@ public class HibernateUtils {
         return sessionCore( task, true ).success;
     }
 
+    public static boolean wrapSession( VoidTask task ) {
+        return sessionCore( voidToVoid( task ), true ).success;
+    }
+
     public static boolean wrapCatchSession( Task<Void> task ) {
         return sessionCore( task, false ).success;
     }

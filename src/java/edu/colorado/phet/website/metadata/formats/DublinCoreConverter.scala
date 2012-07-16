@@ -14,6 +14,8 @@ import edu.colorado.phet.website.metadata.{SimulationRecord, PhetMetadataConvert
 trait DublinCoreConverter extends PhetMetadataConverter {
   def getToFormat = "oai_dc"
 
+  override def toString = getToFormat
+
   def getSchemaURI = Some("http://www.openarchives.org/OAI/2.0/oai_dc/")
 
   def getLRSchemaTypes = List("oai_dc", "DC 1.1")
