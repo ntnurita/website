@@ -124,50 +124,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/log4j/log4j-1.2.16.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/log4j/log4j-1.2.16-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/jul-to-slf4j-1.6.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/jul-to-slf4j-1.6.0-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-log4j12-1.6.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-log4j12-1.6.0-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-api-1.6.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../svn/trunk/simulations-java/contrib/slf4j/slf4j-api-1.6.0-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="phetcommon" exported="" />
     <orderEntry type="module" module-name="build-tools" exported="" />
     <orderEntry type="module" module-name="flash-launcher" exported="" />
@@ -316,6 +272,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="log4j" />
+    <orderEntry type="module" module-name="slf4j" />
   </component>
 </module>
 
