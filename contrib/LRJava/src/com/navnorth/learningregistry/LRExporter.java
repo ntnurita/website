@@ -102,6 +102,15 @@ public class LRExporter
         this.nodeHost = nodeHost;
         this.publishAuthUser = null;
         this.publishAuthPassword = null;
+
+        if (publishOverSSL)
+        {
+            this.publishProtocol = "https";
+        }
+        else
+        {
+            this.publishProtocol = "http";
+        }
     }
     
     /**
