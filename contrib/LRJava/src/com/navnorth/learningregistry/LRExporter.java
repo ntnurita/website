@@ -88,6 +88,21 @@ public class LRExporter
         this.publishAuthUser = null;
         this.publishAuthPassword = null;
     }
+
+    /**
+     * Creates the exporter object with the specified details
+     *
+     * @param batchSize the number of items to submit per batch to the Learning Registry node
+     * @param nodeHost location of the Learning Registry node to use for export
+     * @param publishOverSSL whether or not to use SSL for publishing
+    */
+    public LRExporter(int batchSize, String nodeHost, boolean publishOverSSL)
+    {
+        this.batchSize = batchSize;
+        this.nodeHost = nodeHost;
+        this.publishAuthUser = null;
+        this.publishAuthPassword = null;
+    }
     
     /**
      * Creates the exporter object with the specified details

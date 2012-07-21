@@ -24,11 +24,12 @@ object LearningRegistryUtils {
     val privateKey = FileUtils.loadFileAsString(websiteProperties.getGPGPrivateKeyFile)
     val passphrase = websiteProperties.getGPGPassphrase
     val nodeHost = websiteProperties.getLearningRegistryNodeHost
+    val nodeProtocol = websiteProperties.getLearningRegistryProtocol
 
     // initialize the signer and exporter
     val batchsize = 1
     val signer = new LRSigner(publicKeyLocation, privateKey, passphrase)
-    val exporter = new LRExporter(batchsize, nodeHost)
+    val exporter = new LRExporter(batchsize, nodeHost, protocol == "https")
     exporter.configure()
 
     val keywords = ( LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct )

@@ -35,6 +35,7 @@ public class WebsiteProperties {
     public static final String GPG_PASSPHRASE = "gpg-passphrase";
 
     public static final String LEARNING_REGISTRY_NODE_HOST = "learning-registry-node-host";
+    public static final String LEARNING_REGISTRY_PROTOCOL = "learning-registry-protocol";
 
     public WebsiteProperties( ServletContext servletContext ) {
         this.servletContext = servletContext;
@@ -74,6 +75,10 @@ public class WebsiteProperties {
 
     public String getLearningRegistryNodeHost() {
         return getParameter( LEARNING_REGISTRY_NODE_HOST );
+    }
+
+    public String getLearningRegistryProtocol() {
+        return getParameter( LEARNING_REGISTRY_PROTOCOL );
     }
 
     public String getPhetDownloadLocation() {
