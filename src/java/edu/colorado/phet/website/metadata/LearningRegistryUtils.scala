@@ -29,7 +29,7 @@ object LearningRegistryUtils {
     // initialize the signer and exporter
     val batchsize = 1
     val signer = new LRSigner(publicKeyLocation, privateKey, passphrase)
-    val exporter = new LRExporter(batchsize, nodeHost, protocol == "https")
+    val exporter = new LRExporter(batchsize, nodeHost, nodeProtocol == "https")
     exporter.configure()
 
     val keywords = ( LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct )
