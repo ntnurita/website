@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
 
-import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 
 public class HighlightedListView extends ListView {
     public HighlightedListView( String id ) {

@@ -9,6 +9,8 @@ import java.util.Locale;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.components.RawLink;
+import edu.colorado.phet.website.components.SimulationDownloadLink;
+import edu.colorado.phet.website.components.SimulationRunLink;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.WebImage;
@@ -24,11 +26,11 @@ public class LocalizedSimulation implements Serializable, IntId {
     }
 
     public RawLink getRunLink( String id ) {
-        return new RawLink( id, getRunUrl() );
+        return new SimulationRunLink( id, this );
     }
 
     public RawLink getDownloadLink( String id ) {
-        return new RawLink( id, getDownloadUrl() );
+        return new SimulationDownloadLink( id, this );
     }
 
     public String getRunUrl() {

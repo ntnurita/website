@@ -44,7 +44,7 @@ public class OneAtATimePanel extends PhetPanel {
         add( new ListView( "simulation-list", simulations ) {
             protected void populateItem( ListItem item ) {
                 LocalizedSimulation simulation = (LocalizedSimulation) item.getModel().getObject();
-                Link link = new RawLink( "download-link", simulation.getDownloadUrl() );
+                Link link = simulation.getDownloadLink( "download-link" );
                 link.add( new Label( "simulation-title", simulation.getTitle() ) );
                 item.add( link );
             }

@@ -12,7 +12,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.PageContext;
 

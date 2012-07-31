@@ -32,7 +32,7 @@ import org.apache.wicket.request.target.component.BookmarkablePageRequestTarget;
 import org.apache.wicket.response.StringResponse;
 
 import edu.colorado.phet.website.components.InvisibleComponent;
-import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 
 public class WicketUtils {
 

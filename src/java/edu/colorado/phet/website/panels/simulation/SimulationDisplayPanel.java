@@ -20,7 +20,7 @@ import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
 

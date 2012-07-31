@@ -16,7 +16,7 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.VisListView;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;

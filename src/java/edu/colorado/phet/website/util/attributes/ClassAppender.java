@@ -2,7 +2,7 @@
  * Copyright 2010, University of Colorado
  */
 
-package edu.colorado.phet.website.util;
+package edu.colorado.phet.website.util.attributes;
 
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.Model;

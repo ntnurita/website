@@ -32,6 +32,8 @@ import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawBodyLabel;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.RawLink;
+import edu.colorado.phet.website.components.SimulationDownloadLink;
+import edu.colorado.phet.website.components.SimulationRunLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.DonatePanel;
@@ -56,10 +58,12 @@ import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.translation.PhetLocalizer;
-import edu.colorado.phet.website.util.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
+import edu.colorado.phet.website.util.attributes.SimulationDownloadAppender;
+import edu.colorado.phet.website.util.attributes.SimulationRunAppender;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
@@ -91,19 +95,19 @@ public class SimulationMainPanel extends PhetPanel {
             add( new LocalizedText( "untranslated-sim-text", "simulationMainPanel.untranslatedMessage" ) );
         }
 
-        RawLink link = new RawLink( "simulation-main-link-run-main", simulation.getRunUrl() );
-        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[] {
+        RawLink link = simulation.getRunLink( "simulation-main-link-run-main" );
+        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
         } ) ) );
         add( link );
 
         //add( new Label( "simulation-main-description", simulation.getDescription() ) );
         add( new LocalizedText( "simulation-main-description", simulation.getSimulation().getDescriptionKey() ) );
-        add( new LocalizedText( "simulationMainPanel.version", "simulationMainPanel.version", new Object[] {
+        add( new LocalizedText( "simulationMainPanel.version", "simulationMainPanel.version", new Object[]{
                 HtmlUtils.encode( simulationVersionString ),
                 SimulationChangelogPage.getLinker( simulation ).getHref( context, getPhetCycle() )
         } ) );
-        add( new LocalizedText( "simulationMainPanel.kilobytes", "simulationMainPanel.kilobytes", new Object[] {
+        add( new LocalizedText( "simulationMainPanel.kilobytes", "simulationMainPanel.kilobytes", new Object[]{
                 simulation.getSimulation().getKilobytes()
         } ) );
 
@@ -158,7 +162,7 @@ public class SimulationMainPanel extends PhetPanel {
             }
         } );
         if ( !guides.isEmpty() ) {
-            add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[] {
+            add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
 //            Label visLabel = new Label( "tips-for-teachers-visible", "" );
@@ -235,8 +239,8 @@ public class SimulationMainPanel extends PhetPanel {
             protected void populateItem( ListItem<LocalizedSimulation> item ) {
                 LocalizedSimulation simulation = item.getModelObject();
                 Locale simLocale = simulation.getLocale();
-                RawLink runLink = new RawLink( "simulation-main-translation-link", simulation.getRunUrl() );
-                RawLink downloadLink = new RawLink( "simulation-main-translation-download", simulation.getDownloadUrl() );
+                RawLink runLink = simulation.getRunLink( "simulation-main-translation-link" );
+                RawLink downloadLink = simulation.getDownloadLink( "simulation-main-translation-download" );
                 String defaultLanguageName = simLocale.getDisplayName( context.getLocale() );
                 String languageName = ( (PhetLocalizer) getLocalizer() ).getString( "language.names." + LocaleUtils.localeToString( simLocale ), this, null, defaultLanguageName, false );
                 item.add( runLink );
@@ -264,13 +268,11 @@ public class SimulationMainPanel extends PhetPanel {
         *----------------------------------------------------------------------------*/
 
         // TODO: move from direct links to page redirections, so bookmarkables will be minimized
-        RawLink runOnlineLink = new RawLink( "run-online-link", simulation.getRunUrl() );
+        RawLink runOnlineLink = simulation.getRunLink( "run-online-link" );
         add( runOnlineLink );
-        if ( simulation.getSimulation().getProject().isFlash() ) {
-            // make Flash links open in a new window / tab
-            runOnlineLink.add( new ClassAppender( "external" ) );
-        }
-        add( new RawLink( "run-offline-link", simulation.getDownloadUrl() ) );
+
+        RawLink downloadLink = simulation.getDownloadLink( "run-offline-link" );
+        add( downloadLink );
 
         if ( getPhetCycle().isInstaller() ) {
             add( new InvisibleComponent( "embed-button" ) );
@@ -322,13 +324,13 @@ public class SimulationMainPanel extends PhetPanel {
 
             tx.commit();
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( "Exception: " + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -410,7 +412,7 @@ public class SimulationMainPanel extends PhetPanel {
             try {
                 title = StringUtils.messageFormat( localizer.getString( "simulationPage.title", this ), titleParams.toArray() );
             }
-            catch ( RuntimeException e ) {
+            catch( RuntimeException e ) {
                 e.printStackTrace();
                 title = simulation.getEncodedTitle();
             }
@@ -601,7 +603,7 @@ public class SimulationMainPanel extends PhetPanel {
             add( new InvisibleComponent( "sim-sponsor-installer-js" ) );
         }
 
-        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[] {
+        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
                 ContributionCreatePage.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
@@ -610,7 +612,7 @@ public class SimulationMainPanel extends PhetPanel {
         *----------------------------------------------------------------------------*/
 
         if ( simulation.getSimulation().isFaqVisible() && simulation.getSimulation().getFaqList() != null ) {
-            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[] {
+            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[]{
                     SimulationFAQPage.getLinker( simulation ).getHref( context, getPhetCycle() ),
                     simulation.getSimulation().getFaqList().getPDFLinker( getMyLocale() ).getHref( context, getPhetCycle() )
             } ) );

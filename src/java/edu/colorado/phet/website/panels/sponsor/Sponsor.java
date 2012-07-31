@@ -18,7 +18,7 @@ import edu.colorado.phet.website.components.LinkWrapper;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.util.ClassAppender;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.PageContext;
