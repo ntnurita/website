@@ -15,6 +15,7 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPane
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.attributes.GoogleAnalyticsEventAppender;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
@@ -29,52 +30,57 @@ public class FullInstallPanel extends PhetPanel {
     public FullInstallPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( new LocalizedText( "text-installer-description", "get-phet.full-install.installerDescription", new Object[] {
+        add( new LocalizedText( "text-installer-description", "get-phet.full-install.installerDescription", new Object[]{
                 "href=\"http://www.java.com/\"",
                 "href=\"http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=shockwaveFlash\"",
                 "href=\"http://www.mozilla.com/en-US/\"",
                 "href=\"http://www.microsoft.com/windows/products/winfamily/ie/default.mspx\""
         } ) );
 
-        add( new LocalizedText( "contact-for-cd-link", "get-phet.full-install.contactForCD", new Object[] {
+        add( new LocalizedText( "contact-for-cd-link", "get-phet.full-install.contactForCD", new Object[]{
                 AboutContactPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-link", "get-phet.full-install.troubleshootingInfo", new Object[] {
+        add( new LocalizedText( "troubleshooting-link", "get-phet.full-install.troubleshootingInfo", new Object[]{
                 TroubleshootingMainPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "requirements", "get-phet.full-install.requirements", new Object[] {
+        add( new LocalizedText( "requirements", "get-phet.full-install.requirements", new Object[]{
                 TroubleshootingMainPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "cd-intro", "get-phet.full-install.creatingInstallationCD.intro", new Object[] {
+        add( new LocalizedText( "cd-intro", "get-phet.full-install.creatingInstallationCD.intro", new Object[]{
                 AboutContactPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "step1", "get-phet.full-install.creatingInstallationCD.step1", new Object[] {
-                Linkers.CD_INSTALLER.getHref( context, getPhetCycle() ),
+        add( new LocalizedText( "step1", "get-phet.full-install.creatingInstallationCD.step1", new Object[]{
+                Linkers.CD_INSTALLER.getHref( context, getPhetCycle() ) + " "
+                + new GoogleAnalyticsEventAppender( "Installer Download", "DVD Without Activities" ).getSingleAttributeBlock(),
                 InstallerCache.getCdSize() / 1000000,
-                Linkers.DVD_INSTALLER.getHref( context, getPhetCycle() ),
+                Linkers.DVD_INSTALLER.getHref( context, getPhetCycle() ) + " "
+                + new GoogleAnalyticsEventAppender( "Installer Download", "DVD With Activities" ).getSingleAttributeBlock(),
                 InstallerCache.getDvdSize() / 1000000
         } ) );
 
-        add( new LocalizedText( "updatedFrequently", "get-phet.full-install.updatedFrequently", new Object[] {
+        add( new LocalizedText( "updatedFrequently", "get-phet.full-install.updatedFrequently", new Object[]{
                 new Date( InstallerCache.getTimestampMilliseconds() )
         } ) );
 
-        add( new LocalizedText( "download-win", "get-phet.full-install.downloadWindows", new Object[] {
-                Linkers.WINDOWS_INSTALLER.getHref( context, getPhetCycle() ),
+        add( new LocalizedText( "download-win", "get-phet.full-install.downloadWindows", new Object[]{
+                Linkers.WINDOWS_INSTALLER.getHref( context, getPhetCycle() ) + " "
+                + new GoogleAnalyticsEventAppender( "Installer Download", "Windows Installer" ).getSingleAttributeBlock(),
                 InstallerCache.getWinSize() / 1000000
         } ) );
 
-        add( new LocalizedText( "download-mac", "get-phet.full-install.downloadMac", new Object[] {
-                Linkers.MAC_INSTALLER.getHref( context, getPhetCycle() ),
+        add( new LocalizedText( "download-mac", "get-phet.full-install.downloadMac", new Object[]{
+                Linkers.MAC_INSTALLER.getHref( context, getPhetCycle() ) + " "
+                + new GoogleAnalyticsEventAppender( "Installer Download", "Mac Installer" ).getSingleAttributeBlock(),
                 InstallerCache.getMacSize() / 1000000
         } ) );
 
-        add( new LocalizedText( "download-linux", "get-phet.full-install.downloadLinux", new Object[] {
-                Linkers.LINUX_INSTALLER.getHref( context, getPhetCycle() ),
+        add( new LocalizedText( "download-linux", "get-phet.full-install.downloadLinux", new Object[]{
+                Linkers.LINUX_INSTALLER.getHref( context, getPhetCycle() ) + " "
+                + new GoogleAnalyticsEventAppender( "Installer Download", "Linux Installer" ).getSingleAttributeBlock(),
                 InstallerCache.getLinuxSize() / 1000000
         } ) );
 
