@@ -29,6 +29,8 @@ public class PreFilter implements Filter {
 
     public void doFilter( ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain ) throws IOException, ServletException {
         logger.debug( "prefiltering" );
+        servletRequest.setCharacterEncoding( "UTF-8" );
+        servletResponse.setCharacterEncoding( "UTF-8" );
         String rawData = IOUtils.toString( servletRequest.getInputStream() );
         servletRequest.setAttribute( "raw-data", rawData );
         chain.doFilter( servletRequest, servletResponse );

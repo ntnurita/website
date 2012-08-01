@@ -158,7 +158,7 @@ public class PhetWicketApplication extends WebApplication {
      * We have a list of data server DNS names that are essentially aliases to phetsims. These should be used when a
      * large number of separate files need to be downloaded (like sim thumbnails) for speed increases.
      */
-    public static final String[] DATA_SERVERS = new String[] {
+    public static final String[] DATA_SERVERS = new String[]{
             "phet-data1.colorado.edu",
             "phet-data2.colorado.edu"
 //            "phet-data3.colorado.edu", // use these later if we determine that it helps performance. DNS was hitting us too hard
@@ -178,7 +178,7 @@ public class PhetWicketApplication extends WebApplication {
     protected void init() {
         super.init();
 
-        synchronized ( PhetWicketApplication.class ) {
+        synchronized( PhetWicketApplication.class ) {
             instance = this;
         }
 
@@ -379,11 +379,11 @@ public class PhetWicketApplication extends WebApplication {
                 stream.close();
             }
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.error( "setInstallerTimestamp runtime exception" );
             InstallerCache.setDefault();
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             logger.error( "setInstallerTimestamp IO exception" );
             InstallerCache.setDefault();
         }
@@ -452,13 +452,13 @@ public class PhetWicketApplication extends WebApplication {
 
             tx.commit();
         }
-        catch ( RuntimeException e ) {
+        catch( RuntimeException e ) {
             logger.warn( "WARNING: exception:\n" + e );
             if ( tx != null && tx.isActive() ) {
                 try {
                     tx.rollback();
                 }
-                catch ( HibernateException e1 ) {
+                catch( HibernateException e1 ) {
                     logger.error( "ERROR: Error rolling back transaction", e1 );
                 }
                 throw e;
@@ -583,9 +583,9 @@ public class PhetWicketApplication extends WebApplication {
         try {
             return (PhetWicketApplication) WebApplication.get();
         }
-        catch ( WicketRuntimeException e ) {
+        catch( WicketRuntimeException e ) {
             // attempting from an outside thread
-            synchronized ( PhetWicketApplication.class ) {
+            synchronized( PhetWicketApplication.class ) {
                 return instance;
             }
         }
@@ -600,7 +600,7 @@ public class PhetWicketApplication extends WebApplication {
 
             logger.info( HibernateUtils.getInstance().getCache().getClass().getCanonicalName() );
         }
-        catch ( Exception e ) {
+        catch( Exception e ) {
             logger.error( e );
         }
     }
