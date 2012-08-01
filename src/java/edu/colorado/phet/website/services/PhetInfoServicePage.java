@@ -15,6 +15,7 @@ import org.hibernate.Session;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXParseException;
 
 import edu.colorado.phet.common.phetcommon.view.util.XMLUtils;
 import edu.colorado.phet.website.cache.InstallerCache;
@@ -81,11 +82,12 @@ public class PhetInfoServicePage extends WebPage {
         }
         catch ( TransformerException e ) {
             logger.info( "transform exception " + e.getMessage() );
-            if ( rawData.trim().length() > 0 ) {
-                // only print stacktrace on non-empty data
-                logger.info( "on data: " + rawData );
-                e.printStackTrace();
-            }
+            logger.info( "verbose description is omitted. uncomment to see future exceptions" );
+//            if ( rawData.trim().length() > 0 ) {
+//                // only print stacktrace on non-empty data
+//                logger.info( "on data: " + rawData );
+//                e.printStackTrace();
+//            }
             overallSuccess = false;
         }
         catch ( ParserConfigurationException e ) {
