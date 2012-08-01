@@ -7,6 +7,7 @@ package edu.colorado.phet.website.content.contribution;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.util.string.StringValueConversionException;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.content.NotFoundPage;
@@ -34,7 +35,13 @@ public class ContributionPage extends PhetRegularPage {
     public ContributionPage( PageParameters parameters ) {
         super( parameters );
 
-        contributionId = parameters.getInt( "contribution" );
+        try {
+            contributionId = parameters.getInt( "contribution" );
+        }
+        catch( StringValueConversionException e ) {
+            logger.info( "invalid contribution id: " + parameters.get( "contribution" ) );
+            throw new RestartResponseAtInterceptPageException( NotFoundPage.class );
+        }
 
         NavLocation navLocation = getNavMenu().getLocationByKey( "teacherIdeas.browse" );
         logger.debug( navLocation.getLocalizationKey() );
@@ -60,7 +67,7 @@ public class ContributionPage extends PhetRegularPage {
 
     public static void addToMapper( PhetUrlMapper mapper ) {
         // WARNING: don't change without also changing the old URL redirection
-        mapper.addMap( "^contributions/view/([^/]+)$", ContributionPage.class, new String[] { "contribution" } );
+        mapper.addMap( "^contributions/view/([^/]+)$", ContributionPage.class, new String[]{"contribution"} );
     }
 
     public static RawLinkable getLinker( final int contributionId ) {
