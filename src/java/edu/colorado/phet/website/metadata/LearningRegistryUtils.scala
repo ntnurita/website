@@ -1,8 +1,6 @@
 // Copyright 2002-2012, University of Colorado
 package edu.colorado.phet.website.metadata
 
-import formats.NSDLDCConverter
-import java.io.File
 import edu.colorado.phet.common.phetcommon.util.FileUtils
 import com.navnorth.learningregistry._
 import org.apache.log4j.Logger
@@ -25,11 +23,21 @@ object LearningRegistryUtils {
     val passphrase = websiteProperties.getGPGPassphrase
     val nodeHost = websiteProperties.getLearningRegistryNodeHost
     val nodeProtocol = websiteProperties.getLearningRegistryProtocol
+    val username = websiteProperties.getLearningRegistryUser
+    val password = websiteProperties.getLearningRegistryPassword
 
     // initialize the signer and exporter
     val batchsize = 1
     val signer = new LRSigner(publicKeyLocation, privateKey, passphrase)
-    val exporter = new LRExporter(batchsize, nodeHost, nodeProtocol == "https")
+
+    val useSSL: Boolean = nodeProtocol == "https"
+    val exporter = if ( websiteProperties.hasLearningRegistryCredentials ) {
+      // use publishing credentials if they exist
+      new LRExporter(batchsize, nodeHost, username, password, useSSL)
+    }
+    else {
+      new LRExporter(batchsize, nodeHost, useSSL)
+    }
     exporter.configure()
 
     val keywords = ( LRTerms ++ record.translatedTerms.flatten.map(_.string).distinct )

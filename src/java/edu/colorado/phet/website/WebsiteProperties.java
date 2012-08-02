@@ -35,6 +35,8 @@ public class WebsiteProperties {
     public static final String GPG_PASSPHRASE = "gpg-passphrase";
 
     public static final String LEARNING_REGISTRY_NODE_HOST = "learning-registry-node-host";
+    public static final String LEARNING_REGISTRY_USER = "learning-registry-user";
+    public static final String LEARNING_REGISTRY_PASSWORD = "learning-registry-password";
     public static final String LEARNING_REGISTRY_PROTOCOL = "learning-registry-protocol";
 
     public WebsiteProperties( ServletContext servletContext ) {
@@ -75,6 +77,18 @@ public class WebsiteProperties {
 
     public String getLearningRegistryNodeHost() {
         return getParameter( LEARNING_REGISTRY_NODE_HOST );
+    }
+
+    public String getLearningRegistryUser() {
+        return getParameter( LEARNING_REGISTRY_USER );
+    }
+
+    public String getLearningRegistryPassword() {
+        return getParameter( LEARNING_REGISTRY_PASSWORD );
+    }
+
+    public boolean hasLearningRegistryCredentials() {
+        return getParameter( LEARNING_REGISTRY_USER ) != null && getParameter( LEARNING_REGISTRY_PASSWORD ) != null;
     }
 
     public String getLearningRegistryProtocol() {
