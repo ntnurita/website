@@ -32,8 +32,6 @@ import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawBodyLabel;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.RawLink;
-import edu.colorado.phet.website.components.SimulationDownloadLink;
-import edu.colorado.phet.website.components.SimulationRunLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.DonatePanel;
@@ -61,9 +59,6 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
-import edu.colorado.phet.website.util.attributes.ClassAppender;
-import edu.colorado.phet.website.util.attributes.SimulationDownloadAppender;
-import edu.colorado.phet.website.util.attributes.SimulationRunAppender;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
@@ -304,6 +299,7 @@ public class SimulationMainPanel extends PhetPanel {
         List<Keyword> keywords = new LinkedList<Keyword>();
         List<Keyword> topics = new LinkedList<Keyword>();
 
+        // TODO: improve handling here
         Transaction tx = null;
         try {
             Session session = getHibernateSession();
