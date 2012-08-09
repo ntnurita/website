@@ -22,7 +22,7 @@ public class RawCSV {
         }
         if ( value != null && value.length() >= 0 ) {
             // do proper CSV escaping of double-quotes. see http://en.wikipedia.org/wiki/Comma-separated_values
-            str.append( "\"" ).append( value.replace( "\"", "\"\"" ) ).append( "\"" );
+            str.append( "\"" ).append( value.replace( "\"", "\"\"" ).replace( "\n", "\\n" ) ).append( "\"" );
         }
         columnsPrinted++;
     }
