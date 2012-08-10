@@ -124,6 +124,7 @@ import edu.colorado.phet.website.services.ProjectSortedSimulations;
 import edu.colorado.phet.website.services.SchedulerService;
 import edu.colorado.phet.website.services.SimJarRedirectPage;
 import edu.colorado.phet.website.services.StringGetter;
+import edu.colorado.phet.website.services.TranslationList;
 import edu.colorado.phet.website.templates.StaticPage;
 import edu.colorado.phet.website.test.FaqTestPage;
 import edu.colorado.phet.website.test.NestedFormTest;
@@ -305,6 +306,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/nc-info.csv", NCInformationPage.class );
         mountBookmarkablePage( "services/learning-com-export.csv", LearningComExport.class );
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
+        mountBookmarkablePage( "services/translation-list", TranslationList.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
         mountBookmarkablePage( "metadata-dump.xml", MetadataDump.class );
