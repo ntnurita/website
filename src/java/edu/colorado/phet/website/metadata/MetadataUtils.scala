@@ -32,12 +32,14 @@ object MetadataUtils {
   val imsLodeIloxConverter = new IMSLODEILOXConverter {}
   val nsdlDcConverter = new NSDLDCConverter {}
 
-  val formatConverters = List(
+  val formatConverters : List[PhetMetadataConverter] = List(
     dublinCoreConverter,
     ieeeLomConverter,
     imsLodeIloxConverter,
     nsdlDcConverter
   )
+
+  val javaFormatConverters : java.util.List[PhetMetadataConverter] = formatConverters
 
   val MasterFormatName = "phet-simulation"
 

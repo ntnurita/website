@@ -12,6 +12,8 @@ trait PhetMetadataConverter {
 
   def getFromFormat = MetadataUtils.MasterFormatName
 
+  def getToFormat : String
+
   // main schema URI
   def getSchemaURI: Option[String]
 
