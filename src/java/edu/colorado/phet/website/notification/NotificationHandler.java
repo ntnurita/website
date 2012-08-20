@@ -308,15 +308,15 @@ public class NotificationHandler {
     }
 
     public static String getSimulationNotificationMessage( String simTitle, String simPageUrl, String body, String confirmationKey ) {
-        return simTitle + " is available at " + simPageUrl + "\n\n" +
-               body + "\n\n" +
-               "Thanks,\n\n" +
-               "The PhET Team\n\n" +
-               "http://phet.colorado.edu\n\n" +
-               "You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at\n" +
+        return simTitle + " is available at " + simPageUrl + "\r\n\r\n" +
+               body + "\r\n\r\n" +
+               "Thanks,\r\n\r\n" +
+               "The PhET Team\r\n\r\n" +
+               "http://phet.colorado.edu\r\n\r\n" +
+               "You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at\r\n" +
                "phethelp@colorado.edu. To opt out of these newsletters, please click on this link: " +
                NewsletterUtils.getUnsubscribeLink( PageContext.getNewDefaultContext(), confirmationKey ) +
-               " or copy and paste the text into your browser.\n\n" +
+               " or copy and paste the text into your browser.\r\n\r\n" +
                WebsiteConstants.EMAIL_ADDRESS_FOOTER;
     }
 
