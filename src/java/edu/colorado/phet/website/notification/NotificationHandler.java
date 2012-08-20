@@ -52,9 +52,7 @@ import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.Task;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 
-import static edu.colorado.phet.website.util.hibernate.HibernateUtils.resultCatchTransaction;
 import static edu.colorado.phet.website.util.hibernate.HibernateUtils.resultTransaction;
-import static edu.colorado.phet.website.util.hibernate.HibernateUtils.wrapCatchTransaction;
 import static edu.colorado.phet.website.util.hibernate.HibernateUtils.wrapTransaction;
 
 /**
@@ -222,18 +220,21 @@ public class NotificationHandler {
 
         // launch notifications in a new thread
         if ( DistributionHandler.allowNotificationEmails( PhetRequestCycle.get() ) ) {
-            ( new Thread() {
-                @Override
-                public void run() {
-                    Session session = HibernateUtils.getInstance().openSession();
-                    try {
-                        NotificationHandler.sendNewSimulationNotification( session, subject, body, simulation, cycle );
-                    }
-                    finally {
-                        session.close();
-                    }
-                }
-            } ).start();
+            NotificationHandler.sendNewSimulationNotification( PhetRequestCycle.get().getHibernateSession(), subject, body, simulation, cycle );
+
+            // TODO: get makeUrlAbsolute to work even if we aren't inside of a request cycle!
+//            ( new Thread() {
+//                @Override
+//                public void run() {
+//                    Session session = HibernateUtils.getInstance().openSession();
+//                    try {
+//                        NotificationHandler.sendNewSimulationNotification( session, subject, body, simulation, cycle );
+//                    }
+//                    finally {
+//                        session.close();
+//                    }
+//                }
+//            } ).start();
         }
     }
 
