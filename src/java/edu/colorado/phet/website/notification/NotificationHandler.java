@@ -280,7 +280,7 @@ public class NotificationHandler {
 
         LocalizedSimulation lsim = simResult.value;
         String simTitle = lsim.getTitle();
-        String simPageUrl = StringUtils.makeUrlAbsolute( SimulationPage.getLinker( simulation ).getDefaultRawUrl() );
+        String simPageUrl = "http://phet.colorado.edu" + SimulationPage.getLinker( simulation ).getDefaultRawUrl();
 
         for ( PhetUser user : result.value ) {
             try {
