@@ -41,6 +41,7 @@ public class SimulationNotificationForm extends Form {
 
         // we make this container (and all the editing tools visible) when the user hits the "compose" button
         final WebMarkupContainer container = new WebMarkupContainer( "notification-compose-table" );
+        container.setOutputMarkupId( true );
         add( container );
 
         previewSubjectModel = new Model<String>( "" );
