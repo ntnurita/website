@@ -261,6 +261,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor ZANICHELLI = new LogoSponsor(
+            "Zanichelli",
+            "http://www.zanichelli.it",
+            Images.LOGO_ZANICHELLI, "padding: 2px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
     public static Sponsor HARK = new LogoSponsor(
             "Hark",
             "http://www.hark.com/",
@@ -303,6 +311,7 @@ public abstract class Sponsor implements Serializable {
             TEXAS_INSTRUMENTS,
             MCGRAW_HILL,
             HARK,
+            ZANICHELLI,
             YOU
     };
 
