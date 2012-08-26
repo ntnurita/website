@@ -261,6 +261,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor HARK = new LogoSponsor(
+            "Hark",
+            "http://www.hark.com/",
+            Images.LOGO_HARK, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor ZANICHELLI = new LogoSponsor(
             "Zanichelli",
             "http://www.zanichelli.it",
@@ -269,10 +277,10 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
-    public static Sponsor HARK = new LogoSponsor(
-            "Hark",
-            "http://www.hark.com/",
-            Images.LOGO_HARK, "padding: 5px;" ) {{
+    public static Sponsor CYBERNETYX = new LogoSponsor(
+            "Cybernetyx",
+            "http://www.cybernetyx.com/",
+            Images.LOGO_CYBERNETYX, "padding: 5px;" ) {{
         setHomeWeight( 1 );
         setSimWeight( 1 );
     }};
@@ -312,6 +320,7 @@ public abstract class Sponsor implements Serializable {
             MCGRAW_HILL,
             HARK,
             ZANICHELLI,
+            CYBERNETYX,
             YOU
     };
 
