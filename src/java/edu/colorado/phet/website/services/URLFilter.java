@@ -2,7 +2,6 @@
 package edu.colorado.phet.website.services;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -30,13 +28,15 @@ public class URLFilter implements Filter {
 
         // prevents CharConversionExceptions on invalid URLs like http://phet.colorado.edu/fi/simulation/rotation?iframe=true&width=80%&height=80%
         // this was SIGNIFICANTLY cluttering our error logs
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         if ( servletRequest instanceof HttpServletRequest
-             && ( (HttpServletRequest) servletRequest ).getQueryString() != null
-             && ( (HttpServletRequest) servletRequest ).getQueryString().contains( "iframe=true&width=80%&height=80%" ) ) {
-            logger.info( "gagged url for invalid query string: " + ( (HttpServletRequest) servletRequest ).getRequestURL() + " with query string " + ( (HttpServletRequest) servletRequest ).getQueryString() );
-            if ( servletResponse instanceof HttpServletRequest ) {
-                ( (HttpServletResponse) servletResponse ).sendError( HttpURLConnection.HTTP_BAD_REQUEST );
-            }
+             && httpRequest.getQueryString() != null
+             && httpRequest.getQueryString().contains( "iframe=true&width=" ) ) {
+            logger.info( "gagged url for invalid query string: " + httpRequest.getRequestURL() + " with query string " + httpRequest.getQueryString() );
+            logger.info( "referred from: " + httpRequest.getHeader( "referer" ) ); // the misspelling is correct
+//            if ( servletResponse instanceof HttpServletRequest ) {
+//                ( (HttpServletResponse) servletResponse ).sendError( HttpURLConnection.HTTP_BAD_REQUEST );
+//            }
         }
         else {
             // otherwise, behave like normal
