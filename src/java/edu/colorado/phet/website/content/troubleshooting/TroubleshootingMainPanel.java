@@ -25,34 +25,34 @@ public class TroubleshootingMainPanel extends PhetPanel {
         add( TroubleshootingFlashPanel.getLinker().getLink( "to-flash", context, getPhetCycle() ) );
         add( TroubleshootingJavascriptPanel.getLinker().getLink( "to-javascript", context, getPhetCycle() ) );
 
-        add( new LocalizedText( "troubleshooting-main-intro", "troubleshooting.main.intro", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-intro", "troubleshooting.main.intro", new Object[]{
                 Linkers.getHelpLink( "Help", context, getPhetCycle() ),
                 ""
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q1-answer", "troubleshooting.main.q1.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q1-answer", "troubleshooting.main.q1.answer", new Object[]{
                 TroubleshootingJavaPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q4-answer", "troubleshooting.main.q4.answer" ) );
 
-        add( new LocalizedText( "troubleshooting-main-q5-answer", "troubleshooting.main.q5.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q5-answer", "troubleshooting.main.q5.answer", new Object[]{
                 Linkers.getHelpLink( "Flash Simulations", context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q7-answer", "troubleshooting.main.q7.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q7-answer", "troubleshooting.main.q7.answer", new Object[]{
                 Linkers.getHelpLink( "Windows 2000 Issues", context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q8-answer", "troubleshooting.main.q8.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q8-answer", "troubleshooting.main.q8.answer", new Object[]{
                 Linkers.getHelpLink( "Laptop Performance Issues", context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q9-answer", "troubleshooting.main.q9.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q9-answer", "troubleshooting.main.q9.answer", new Object[]{
                 Linkers.getHelpLink( "Sound Issues", context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q11-answer", "troubleshooting.main.q11.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q11-answer", "troubleshooting.main.q11.answer", new Object[]{
                 FullInstallPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
@@ -60,11 +60,17 @@ public class TroubleshootingMainPanel extends PhetPanel {
 
         add( new LocalizedText( "troubleshooting-main-q13-answer", "troubleshooting.main.q13.answer" ) );
 
-        add( new LocalizedText( "troubleshooting-main-q14-answer", "troubleshooting.main.q14.answer", new Object[] {
+        add( new LocalizedText( "troubleshooting-main-q14-answer", "troubleshooting.main.q14.answer", new Object[]{
                 "<a href=\"http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221\">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221</a>"
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q18-answer", "troubleshooting.main.q18.answer" ) );
+
+        add( new LocalizedText( "troubleshooting-main-q19-answer", "troubleshooting.main.q19.answer", new Object[]{
+                "<a href=\"http://www.nvidia.com/Download/Find.aspx?lang=en-us\">Nvidia</a>",
+                "<a href=\"http://support.amd.com/us/Pages/AMDSupportHub.aspx\">AMD</a>",
+                "<a href=\"http://downloadcenter.intel.com/default.aspx\">Intel</a>"
+        } ) );
 
     }
 

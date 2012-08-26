@@ -56,6 +56,8 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "troubleshooting.main.q17.answer" );
         addString( "troubleshooting.main.q18.title" );
         addString( "troubleshooting.main.q18.answer" );
+        addString( "troubleshooting.main.q19.title" );
+        addString( "troubleshooting.main.q19.answer" );
         addString( "faq.header" );
         addString( "faq.embedding.title" );
         addString( "faq.embedding.answer" );
