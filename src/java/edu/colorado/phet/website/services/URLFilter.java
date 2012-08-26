@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -32,11 +33,15 @@ public class URLFilter implements Filter {
         if ( servletRequest instanceof HttpServletRequest
              && httpRequest.getQueryString() != null
              && httpRequest.getQueryString().contains( "iframe=true&width=" ) ) {
-            logger.info( "gagged url for invalid query string: " + httpRequest.getRequestURL() + " with query string " + httpRequest.getQueryString() );
+            String requestURL = httpRequest.getRequestURL().toString();
+            logger.info( "gagged url for invalid query string: " + requestURL + " with query string " + httpRequest.getQueryString() );
             logger.info( "referred from: " + httpRequest.getHeader( "referer" ) ); // the misspelling is correct
-//            if ( servletResponse instanceof HttpServletRequest ) {
-//                ( (HttpServletResponse) servletResponse ).sendError( HttpURLConnection.HTTP_BAD_REQUEST );
-//            }
+
+            HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+
+            // temporary redirect to the URL with the query string stripped off
+            httpResponse.setStatus( HttpServletResponse.SC_MOVED_TEMPORARILY );
+            httpResponse.setHeader( "Location", requestURL ); // request URL doesn't include query string, but should have everything else
         }
         else {
             // otherwise, behave like normal
