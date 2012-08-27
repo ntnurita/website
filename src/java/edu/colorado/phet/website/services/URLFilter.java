@@ -40,7 +40,7 @@ public class URLFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 
             // temporary redirect to the URL with the query string stripped off
-            httpResponse.setStatus( HttpServletResponse.SC_MOVED_TEMPORARILY );
+            httpResponse.setStatus( HttpServletResponse.SC_MOVED_PERMANENTLY );
             httpResponse.setHeader( "Location", requestURL ); // request URL doesn't include query string, but should have everything else
         }
         else {
