@@ -203,7 +203,7 @@ public class WebsiteTranslationDeployPublisher {
         for ( String flavor : flavors ) {
             //for now, copy english JNLP and replace value="en" with value="locale_STR"
             //also fix codebase
-            String englishJNLP = FileUtils.loadFileAsString( new File( sims, project + "/" + flavor + "_en.jnlp" ), "UTF-16" );
+            String englishJNLP = FileUtils.loadFileAsString( new File( sims, project + "/" + flavor + "_en.jnlp" ), "UTF-8" );
             for ( String localeString : locales ) {
                 StringTokenizer stringTokenizer = new StringTokenizer( localeString, "_ " );
                 String language = stringTokenizer.nextToken();
@@ -216,7 +216,7 @@ public class WebsiteTranslationDeployPublisher {
                 String out = FileUtils.replaceFirst( englishJNLP, "<property name=\"javaws.user.language\" value=\"en\" />", replacement );
 
                 out = FileUtils.replaceAll( out, "href=\"" + flavor + "_en.jnlp\"", "href=\"" + flavor + "_" + localeString + ".jnlp\"" );
-                FileUtils.writeString( new File( sims, project + "/" + flavor + "_" + localeString + ".jnlp" ), out, "UTF-16" );
+                FileUtils.writeString( new File( sims, project + "/" + flavor + "_" + localeString + ".jnlp" ), out, "UTF-8" );
             }
         }
     }

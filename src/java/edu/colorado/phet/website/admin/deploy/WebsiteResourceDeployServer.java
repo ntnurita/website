@@ -250,9 +250,9 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
     }
 
     private void modifyJnlp( File jnlpFile ) throws IOException {
-        String str = FileUtils.loadFileAsString( jnlpFile, "utf-16" );
+        String str = FileUtils.loadFileAsString( jnlpFile, "utf-8" );
         str = str.replace( "http://phet.colorado.edu/sims", "http://phet.colorado.edu/staging/resources/" + resourceDir.getName() + "/test" );
-        FileUtils.writeString( jnlpFile, str, "utf-16" );
+        FileUtils.writeString( jnlpFile, str, "utf-8" );
     }
 
     private void createBackupJARs() throws IOException {
