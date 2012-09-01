@@ -300,7 +300,7 @@ public abstract class Sponsor implements Serializable {
             NSF,
             KSU,
             ODONNELL_FOUNDATION,
-            MORTENSON_FOUNDATION,
+//            MORTENSON_FOUNDATION,
             JILA,
             TECH_SMITH,
             BITROCK,
