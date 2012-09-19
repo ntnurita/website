@@ -63,6 +63,7 @@ public class Images {
     public static final ImageHandle LOGO_HARK = new ImageHandle( "/images/support/hark-logo-full.png", true );
     public static final ImageHandle LOGO_ZANICHELLI = new ImageHandle( "/images/support/zanichelli-small.png", true );
     public static final ImageHandle LOGO_CYBERNETYX = new ImageHandle( "/images/support/cybernetyx-small.png", true );
+    public static final ImageHandle LOGO_GIANCOLI = new ImageHandle( "/images/support/giancoli-small.jpg", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 

@@ -285,6 +285,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor GIANCOLI = new LogoSponsor(
+            "Giancoli Answers",
+            "http://www.giancolianswers.com/",
+            Images.LOGO_GIANCOLI, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -321,6 +329,7 @@ public abstract class Sponsor implements Serializable {
             HARK,
             ZANICHELLI,
             CYBERNETYX,
+            GIANCOLI,
             YOU
     };
 
