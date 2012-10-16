@@ -13,7 +13,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
@@ -221,9 +220,11 @@ public class NewsletterUtils {
             userResult.value.ensureHasConfirmationKey( session );
 
             // then send them the current copy of the newsletter
-            NewsletterSender newsletterSender = new NewsletterSender();
-            if ( newsletterSender.allowAutomatedNewsletterEmails() ) {
-                newsletterSender.sendNewsletters( Arrays.asList( userResult.value ) );
+            if ( userResult.value.isReceiveEmail()  ) {
+                NewsletterSender newsletterSender = new NewsletterSender();
+                if ( newsletterSender.allowAutomatedNewsletterEmails() ) {
+                    newsletterSender.sendNewsletters( Arrays.asList( userResult.value ) );
+                }
             }
         }
         return userResult;
