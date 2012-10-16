@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.newsletter;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -12,6 +13,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
@@ -125,7 +127,7 @@ public class NewsletterUtils {
             message.addReplyTo( WebsiteConstants.HELP_EMAIL );
             return EmailUtils.sendMessage( message );
         }
-        catch( MessagingException e ) {
+        catch ( MessagingException e ) {
             logger.warn( "message send error: ", e );
             return false;
         }
@@ -213,6 +215,16 @@ public class NewsletterUtils {
             // hibernate failed (or some more internal error)
             logger.error( "Subscribe action failed for" + emailAddress );
             return new Result<PhetUser>( false, userResult.value, null ); // send failure
+        }
+        else {
+            // if user doesn't have a good confirmation key for unsubscribing, generate one
+            userResult.value.ensureHasConfirmationKey( session );
+
+            // then send them the current copy of the newsletter
+            NewsletterSender newsletterSender = new NewsletterSender();
+            if ( newsletterSender.allowAutomatedNewsletterEmails() ) {
+                newsletterSender.sendNewsletters( Arrays.asList( userResult.value ) );
+            }
         }
         return userResult;
     }

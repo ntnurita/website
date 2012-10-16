@@ -6,6 +6,7 @@ package edu.colorado.phet.website.newsletter;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -68,6 +69,21 @@ public class ConfirmEmailLandingPage extends PhetMenuPage {
                     PhetSession.get().signInWithoutPassword( getPhetCycle(), userResult.value.getId() );
                 }
             }
+
+            // if user doesn't have a good confirmation key for unsubscribing, generate one
+            userResult.value.ensureHasConfirmationKey( getHibernateSession() );
+
+            // then send them the current copy of the newsletter if they are subscribing to it AND if they were NOT confirmed before
+            // we don't want to get many copies of it
+            if ( userResult.value.isReceiveEmail() && !wasConfirmed.getValue() ) {
+                NewsletterSender newsletterSender = new NewsletterSender();
+
+                // double-check that we are sending out automated newsletters in this way
+                if ( newsletterSender.allowAutomatedNewsletterEmails() ) {
+                    newsletterSender.sendNewsletters( Arrays.asList( userResult.value ) );
+                }
+            }
+
             if ( !emailSuccess ) {
                 // we are still OK if email fails, since this only lets them know about the success. Don't fail out.
                 //ErrorPage.redirectToErrorPage();

@@ -45,6 +45,10 @@ public class DistributionHandler {
         throw new AssertionError();
     }
 
+    public static boolean allowAutomatedNewsletterEmails( PhetRequestCycle cycle ) {
+        return cycle.isForProductionServer() || cycle.isForTestingServer();
+    }
+
     public static boolean allowNotificationEmails( PhetRequestCycle cycle ) {
         return cycle.isForProductionServer() || cycle.isForTestingServer();
     }

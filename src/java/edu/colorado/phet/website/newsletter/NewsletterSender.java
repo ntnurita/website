@@ -33,6 +33,9 @@ public class NewsletterSender {
     private String fromAddress;
     private String replyTo;
 
+    // whether newsletters should also be sent when users subscribe
+    private boolean automated;
+
 //    private List<File> images = new LinkedList<File>();
 
     private static boolean sending = false;
@@ -55,8 +58,10 @@ public class NewsletterSender {
             subject = properties.getProperty( "subject" );
             fromAddress = properties.getProperty( "fromAddress" );
             replyTo = properties.getProperty( "replyTo" );
-            rawBody = FileUtils.loadFileAsString( new File( properties.getProperty( "bodyFile" ) ) );
+            automated = properties.getProperty( "automated" ).equals( "true" );
             rawText = FileUtils.loadFileAsString( new File( properties.getProperty( "bodyPlainTextFile" ) ) );
+            rawBody = FileUtils.loadFileAsString( new File( properties.getProperty( "bodyFile" ) ) );
+
 
 //            for ( String imageFilename : properties.getProperty( "images" ).split( " " ) ) {
 //                File imageFile = new File( imageFilename );
@@ -72,6 +77,10 @@ public class NewsletterSender {
         catch ( IOException e ) {
             logger.error( "message prep error: ", e );
         }
+    }
+
+    public boolean allowAutomatedNewsletterEmails() {
+        return automated;
     }
 
     public boolean sendNewsletters( List<PhetUser> users ) {
@@ -95,7 +104,7 @@ public class NewsletterSender {
                 try {
                     Thread.sleep( 500 );
                 }
-                catch( InterruptedException e ) {
+                catch ( InterruptedException e ) {
                     e.printStackTrace();
                 }
             }
