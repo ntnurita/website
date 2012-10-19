@@ -13,6 +13,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import edu.colorado.phet.common.phetcommon.util.Pair;
 import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
@@ -126,45 +127,69 @@ public class NewsletterUtils {
             message.addReplyTo( WebsiteConstants.HELP_EMAIL );
             return EmailUtils.sendMessage( message );
         }
-        catch ( MessagingException e ) {
+        catch( MessagingException e ) {
             logger.warn( "message send error: ", e );
             return false;
+        }
+    }
+
+    // Exception used for subscription handling where a user is not freshly subscribed to the newsletter in this transaction
+    private static class NotANewSubscription extends TaskException {
+        public NotANewSubscription( String message ) {
+            super( message );
+        }
+
+        public NotANewSubscription( String message, Level level ) {
+            super( message, level );
         }
     }
 
     private static Result<PhetUser> subscribeUser( Session session, final String emailAddress, final boolean automated ) {
         return HibernateUtils.resultTransaction( session, new Task<PhetUser>() {
             public PhetUser run( Session session ) {
-                List users = session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", emailAddress ).list();
-                PhetUser user;
-                if ( users.size() > 1 ) {
-                    throw new TaskException( "More than 1 user for an email address.", Level.ERROR );
-                }
-                else if ( users.size() == 1 ) {
-                    user = (PhetUser) users.get( 0 );
-                    if ( automated && !user.isNewsletterOnlyAccount() && !user.isReceiveEmail() ) {
-                        // user has full account and has selected to not receive email. DO NOT OVERRIDE
-                        throw new TaskException( "Email " + emailAddress + " was attempted to be automatically subscribed but has selected to not receive email. Overriding" );
-                    }
-                    user.setConfirmationKey( PhetUser.generateConfirmationKey() );
-                    user.setReceiveEmail( true );
-                    if ( automated ) {
-                        user.setConfirmed( true );
-                    }
-                    session.update( user );
-                }
-                else {
-                    // brand new, create a newsletter-only and unconfirmed user
-                    user = new PhetUser( emailAddress, true );
-                    user.setReceiveEmail( true );
-                    if ( automated ) {
-                        user.setConfirmed( true );
-                    }
-                    session.save( user );
-                }
-                return user;
+                return subscribeUserCore( session, emailAddress, automated )._1;
             }
         } );
+    }
+
+    // called from within a transaction, and returns more information (user, is a new user) than the normal subscribeUser for more flexibility
+    private static Pair<PhetUser, Boolean> subscribeUserCore( Session session, String emailAddress, boolean automated ) {
+        List users = session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", emailAddress ).list();
+        PhetUser user;
+        boolean isNewSubscription = false;
+        if ( users.size() > 1 ) {
+            throw new TaskException( "More than 1 user for an email address.", Level.ERROR );
+        }
+        else if ( users.size() == 1 ) {
+            user = (PhetUser) users.get( 0 );
+            if ( automated && !user.isNewsletterOnlyAccount() && !user.isReceiveEmail() ) {
+                // user has full account and has selected to not receive email. DO NOT OVERRIDE
+                throw new TaskException( "Email " + emailAddress + " was attempted to be automatically subscribed but has selected to not receive email. Overriding" );
+            }
+            user.setConfirmationKey( PhetUser.generateConfirmationKey() );
+
+            // it's only a new subscription if they weren't set to receive email beforehand
+            isNewSubscription = !user.isReceiveEmail();
+
+            // then update their flag
+            user.setReceiveEmail( true );
+
+            if ( automated ) {
+                user.setConfirmed( true );
+            }
+            session.update( user );
+        }
+        else {
+            // brand new, create a newsletter-only and unconfirmed user
+            isNewSubscription = true;
+            user = new PhetUser( emailAddress, true );
+            user.setReceiveEmail( true );
+            if ( automated ) {
+                user.setConfirmed( true );
+            }
+            session.save( user );
+        }
+        return new Pair<PhetUser, Boolean>( user, isNewSubscription );
     }
 
     /**
@@ -206,28 +231,29 @@ public class NewsletterUtils {
      * @param session      Hibernate session
      * @param emailAddress User email address
      * @param automated    If automated, subscribing users who have checked "Do not receive email" will not be overridden
-     * @return Result. Check result.success for success. If successful, will contain a user reference of result.value
      */
-    public static Result<PhetUser> subscribeUserWithoutEmail( PageContext context, Session session, final String emailAddress, boolean automated ) {
-        Result<PhetUser> userResult = subscribeUser( session, emailAddress, automated );
+    public static void subscribeUserWithoutEmail( PageContext context, Session session, final String emailAddress, final boolean automated ) {
+        Result<Pair<PhetUser, Boolean>> userResult = HibernateUtils.resultTransaction( session, new Task<Pair<PhetUser, Boolean>>() {
+            public Pair<PhetUser, Boolean> run( Session session11 ) {
+                return subscribeUserCore( session11, emailAddress, automated );
+            }
+        } );
         if ( !userResult.success ) {
             // hibernate failed (or some more internal error)
             logger.error( "Subscribe action failed for" + emailAddress );
-            return new Result<PhetUser>( false, userResult.value, null ); // send failure
         }
         else {
             // if user doesn't have a good confirmation key for unsubscribing, generate one
-            userResult.value.ensureHasConfirmationKey( session );
+            userResult.value._1.ensureHasConfirmationKey( session );
 
-            // then send them the current copy of the newsletter
-            if ( userResult.value.isReceiveEmail()  ) {
+            // then send them the current copy of the newsletter IF they receive email AND they are a brand new user
+            if ( userResult.value._1.isReceiveEmail() && userResult.value._2 ) {
                 NewsletterSender newsletterSender = new NewsletterSender();
                 if ( newsletterSender.allowAutomatedNewsletterEmails() ) {
-                    newsletterSender.sendNewsletters( Arrays.asList( userResult.value ) );
+                    newsletterSender.sendNewsletters( Arrays.asList( userResult.value._1 ) );
                 }
             }
         }
-        return userResult;
     }
 
 
