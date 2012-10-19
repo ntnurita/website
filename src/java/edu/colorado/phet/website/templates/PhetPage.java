@@ -38,6 +38,7 @@ import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
+import edu.colorado.phet.website.panels.DonationBannerRegularPanel;
 import edu.colorado.phet.website.panels.LogInOutPanel;
 import edu.colorado.phet.website.panels.SearchPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -168,7 +169,8 @@ public abstract class PhetPage extends WebPage implements Stylable {
             }
             add( link );
             // TODO: localize alt attributes
-            link.add( new StaticImage( "page-header-logo-image", WebImage.get( Images.PHET_LOGO ), null ) );
+//            link.add( new StaticImage( "page-header-logo-image", WebImage.get( Images.PHET_LOGO ), null ) );
+            link.add( new StaticImage( "page-header-logo-image", WebImage.get( PhetRequestCycle.get().isOfflineInstaller() ? Images.PHET_LOGO : Images.PHET_LOGO_YELLOW ), null ) );
             add( new StaticImage( "page-header-title-image", WebImage.get( Images.LOGO_TITLE ), null ) );
 
             //add( HeaderContributor.forCss( CSS.PHET_PAGE ) );
@@ -178,7 +180,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
                     add( new InvisibleComponent( "search-panel" ) );
                     break;
                 case OFFLINE_INSTALLER:
-                    add( new LocalizedText( "search-panel", "installer.mostUpToDate", new Object[] {
+                    add( new LocalizedText( "search-panel", "installer.mostUpToDate", new Object[]{
                             new Date(),
                             FullInstallPanel.getLinker().getHref( getPageContext(), getPhetCycle() )
                     } ) );
@@ -241,6 +243,19 @@ public abstract class PhetPage extends WebPage implements Stylable {
         }
         else {
             add( new WebMarkupContainer( "js" ) );
+        }
+
+
+        // hide the banner for the installer, and switch banner type based on the page
+        if ( PhetRequestCycle.get().isOfflineInstaller() ) {
+            add( new InvisibleComponent( "donation-banner" ) );
+        }
+        else if ( this instanceof IndexPage ) {
+            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
+            //            add( new DonationBannerHomePanel( "donation-banner", getPageContext() ) );
+        }
+        else {
+            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
         }
     }
 

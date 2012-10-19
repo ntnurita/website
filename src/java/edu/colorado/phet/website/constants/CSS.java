@@ -20,7 +20,7 @@ public class CSS {
     public static final String MENU_PAGE = "/css/menu-page-v4.css";
     public static final String NAV_BREADCRUMBS = "/css/nav-breadcrumbs-v1.css";
     public static final String NAV_MENU = "/css/navmenu-v3.css";
-    public static final String PHET_PAGE = "/css/phetpage-v8.css";
+    public static final String PHET_PAGE = "/css/phetpage-v9.css";
     public static final String RUN_OUR_SIMULATIONS = "/css/run-our-simulations-v1.css";
     public static final String SIMULATION_INDEX = "/css/simulation-index-v1.css";
     public static final String SIMULATION_MAIN = "/css/simulation-main-v3.css";

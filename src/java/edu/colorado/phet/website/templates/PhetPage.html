@@ -15,7 +15,7 @@
     <wicket:remove>
         <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
     </wicket:remove>
-    <link rel="stylesheet" type="text/css" href="/css/phet-v10-min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/phet-v12-min.css"/>
     <!--[if IE 6]>
     <link rel="stylesheet" type="text/css" href="/css/ie6fix-v3.css"/>
     <![endif]-->
@@ -88,7 +88,8 @@
     <div id="page-header-container">
         <div id="page-header-logo">
             <a href="#" wicket:id="page-header-home-link">
-                <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"
+                <!--<img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"-->
+                <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo-yellow.png"
                      alt="PhET Logo" title="Go to the PhET home page" class="header-logo-image"
                      width="242" height="127" id="phet-logo-main-image"/>
             </a>
@@ -114,6 +115,12 @@
         </div>
     </div>
 </div>
+<wicket:enclosure child="donation-banner">
+    <div id="donation-banner">
+        <div id="donation-banner-container" wicket:id="donation-banner">
+        </div>
+    </div>
+</wicket:enclosure>
 <div class="log-in-out" wicket:id="log-in-out-panel">
 </div>
 <div id="page-content" wicket:message="class:language.dir">
