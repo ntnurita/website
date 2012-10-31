@@ -293,6 +293,22 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor CENGAGE = new LogoSponsor(
+            "Cengage Learning",
+            "http://www.cengage.com",
+            Images.LOGO_CENGAGE, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
+    public static Sponsor CNEC = new LogoSponsor(
+            "Colégio Cenecista Dr. José Ferreira",
+            "http://www.noas.com.br/",
+            Images.LOGO_CNEC, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -330,6 +346,8 @@ public abstract class Sponsor implements Serializable {
             ZANICHELLI,
             CYBERNETYX,
             GIANCOLI,
+            CENGAGE,
+            CNEC,
             YOU
     };
 
