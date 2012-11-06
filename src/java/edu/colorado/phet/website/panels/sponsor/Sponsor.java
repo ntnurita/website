@@ -345,7 +345,7 @@ public abstract class Sponsor implements Serializable {
             HARK,
             ZANICHELLI,
             CYBERNETYX,
-            GIANCOLI,
+//            GIANCOLI, // removed at request Nov 5 2012, with donation refund?
             CENGAGE,
             CNEC,
             YOU
