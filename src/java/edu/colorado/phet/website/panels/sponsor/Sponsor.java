@@ -302,7 +302,7 @@ public abstract class Sponsor implements Serializable {
     }};
 
     public static Sponsor CNEC = new LogoSponsor(
-            "Colégio Cenecista Dr. José Ferreira",
+            "Camphanha Nacional de Escolas da Comunidade",
             "http://www.noas.com.br/",
             Images.LOGO_CNEC, "padding: 5px;" ) {{
         setHomeWeight( 1 );
