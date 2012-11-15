@@ -21,11 +21,11 @@ import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
-import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
+import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
@@ -40,6 +40,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.RotatorFallbackPanel;
 import edu.colorado.phet.website.panels.RotatorPanel;
+import edu.colorado.phet.website.panels.SurveySplashPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
@@ -185,7 +186,13 @@ public class IndexPanel extends PhetPanel {
             add( new RotatorFallbackPanel( "rotator-panel", context ) );
         }
         else {
-            add( new RotatorPanel( "rotator-panel", context ) );
+            // show the survey if we would show the rotator AND we are in an English translation (since it's English-only text)
+            if ( !getPhetCycle().isInstaller() && context.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
+                add( new SurveySplashPanel( "rotator-panel", context ) );
+            }
+            else {
+                add( new RotatorPanel( "rotator-panel", context ) );
+            }
         }
 
         add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
