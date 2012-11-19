@@ -12,24 +12,24 @@
 <body>
 
 <wicket:panel>
-    <!--<div style="color: #000; background-color: #ecd598; width: 300px; height: 220px; position: relative;">-->
     <div style="color: white; background-image: url('/images/survey-background-300x220.png'); width: 300px; height: 220px;">
     <!--<div style="color: white; background-image: url('../../../../../../../root/images/survey-background-300x220.png'); width: 300px; height: 220px;">-->
         <div style="font-size: 20px; width: 300px; text-align: center; padding-top: 10px;">Are you an educator?<br/>PhET
             needs your help!
         </div>
-        <div style="font-size: 14px; width: 280px; margin: 10px;">
-            To help advance our work, keep PhET free, and make the site as useful as possible for <span style="text-decoration: underline">you</span>,
-            we need to know more about how you use PhET.
-            <div style="text-align: center; margin-top: 5px;">
-                Please <a href="http://tinyurl.com/phetsurvey" target="_blank" style="color: white; text-decoration: underline;"
-                          onclick="_gaq.push(['_trackEvent', 'Survey', 'Survey Link', document.URL]); window.open('http://tinyurl.com/phetsurvey','_blank');">complete
-                our survey</a>!<br/>It takes ~15-20 minutes.
-            </div>
+        <div style="text-align: center; margin-top: 5px; font-size: 13px;">
+            Please <a href="http://tinyurl.com/phetsurvey" target="_blank" style="color: white; text-decoration: underline;"
+                      onclick="_gaq.push(['_trackEvent', 'Survey', 'Survey Link', document.URL]); window.open('http://tinyurl.com/phetsurvey','_blank');">complete
+            our survey</a>!<br/>It takes ~15-20 minutes.
         </div>
-        <div style="text-align: center;">
-            <input type="button" value="Go to Survey" class="large-form-button"
-                   onclick="_gaq.push(['_trackEvent', 'Survey', 'Survey Button', document.URL]); window.open('http://tinyurl.com/phetsurvey','_blank');"/>
+        <div style="text-align: center; margin-top: 12px;">
+            <!--<img src="../../../../../../../root/images/survey-button.png" onclick="_gaq.push(['_trackEvent', 'Survey', 'Survey Button', document.URL]); window.open('http://tinyurl.com/phetsurvey','_blank');"/>-->
+            <img src="/images/survey-button.png" alt="Go to Survey" onclick="_gaq.push(['_trackEvent', 'Survey', 'Survey Button', document.URL]); window.open('http://tinyurl.com/phetsurvey','_blank');"/>
+        </div>
+        <div style="font-size: 12px; width: 280px; margin: 12px; color: #DDD; line-height: 130%;">
+            <span style="text-decoration: underline;">Why?</span> To help advance our work, keep PhET free, and make the site as useful as
+            possible for <span style="text-decoration: underline">you</span>,
+            we need to know more about how you use PhET.
         </div>
     </div>
 </wicket:panel>
