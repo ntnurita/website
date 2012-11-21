@@ -24,7 +24,7 @@ a img.spons {
     width: 178px;
     height: 8px;
     background-color: transparent;
-    background-image: url(../images/relatedLinks_BG.gif);
+    background-image: url('../images/relatedLinks_BG.gif');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: bottom left;
@@ -35,7 +35,7 @@ a img.spons {
 
 #spons div.sponsors-fake-dl {
     width: 158px;
-    background-image: url(../images/relatedLinksBTTM_BG.gif);
+    background-image: url('../images/relatedLinksBTTM_BG.gif');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: bottom left;
@@ -71,7 +71,7 @@ a img.spons {
 
 #spons div.sponsors-fake-dt {
     background-color: transparent;
-    background-image: url(../images/circleArrow_Icon.gif);
+    background-image: url('../images/circleArrow_Icon.gif');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: left 3px;
@@ -101,7 +101,7 @@ a img.spons {
     text-align: center;
     vertical-align: middle;
     height: 24px;
-    background-image: url(../images/small-button-middle.gif);
+    background-image: url('../images/small-button-middle.gif');
 }
 
 #spons a#sponsors-panel-link {
@@ -118,14 +118,14 @@ a img.spons {
     padding: 0;
     width: 5px;
     height: 24px;
-    background-image: url(../images/small-button-left.gif);
+    background-image: url('../images/small-button-left.gif');
 }
 
 .other-sponsors-right {
     padding: 0;
     width: 5px;
     height: 24px;
-    background-image: url(../images/small-button-right.gif);
+    background-image: url('../images/small-button-right.gif');
 }
 
 

@@ -23,14 +23,14 @@ div.rtl .translated-sims table {
 
 .run-now-play {
     padding-left: 10px;
-    background-image: url(../images/control-play.gif);
+    background-image: url('../images/control-play.gif');
     background-position: left center;
     background-repeat: no-repeat;
 }
 
 .download-disk {
     padding-left: 14px;
-    background-image: url(../images/arrow-down.gif);
+    background-image: url('../images/arrow-down.gif');
     background-position: left center;
     background-repeat: no-repeat;
 }
