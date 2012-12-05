@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -616,6 +618,19 @@ public class SimulationMainPanel extends PhetPanel {
         else {
             add( new InvisibleComponent( "faq-text" ) );
         }
+
+        /*---------------------------------------------------------------------------*
+        * metadata
+        *----------------------------------------------------------------------------*/
+
+        // add the necessary license meta tags for our license list
+        add( new ListView<String>( "license-list", simulation.getSimulation().getLicenseURLs() ) {
+            @Override protected void populateItem( final ListItem<String> item ) {
+                item.add( new WebMarkupContainer( "license-meta-tag" ) {{
+                    add( new AttributeModifier( "content", true, new Model<String>( item.getModelObject() ) ) );
+                }} );
+            }
+        } );
     }
 
     public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {

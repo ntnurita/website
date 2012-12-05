@@ -18,9 +18,44 @@
 <body>
 
 <wicket:panel>
-    <div class="simulation-main-container" wicket:message="dir:language.dir">
+    <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope itemtype="http://schema.org/SoftwareApplication">
 
-        <h1 wicket:id="simulation-main-title" class="simulation-main-title">
+        <!-- educationalAlignment ! -->
+
+        <meta itemprop="intendedEndUserRole" content="student"/>
+        <meta itemprop="educationalUse" content="classroom"/>
+        <meta itemprop="educationalUse" content="homework"/>
+        <meta itemprop="educationalUse" content="simulation"/>
+        <!--<meta itemprop="timeRequired" content="TODO"/>-->
+        <!--<meta itemprop="typicalAgeRange" content="TODO"/>-->
+
+        <meta itemprop="useRightsUrl" content="http://phet.colorado.edu/en/about/licensing"/>
+        <div style="display: none;" wicket:id="license-list">
+            <meta itemprop="useRightsUrl" wicket:id="license-meta-tag"/>
+        </div>
+
+        <meta itemprop="interactivityType" content="active"/>
+        <meta itemprop="learningResourceType" content="simulation"/>
+
+        <!--<meta itemprop="dateCreated" content="simulation"/>--> <!-- NOTE: CreativeWork part-->
+
+        <!--<meta itemprop="inLanguage" content="simulation"/>--> <!-- NOTE: fake BCP 47, by replacing _ with - -->
+
+        <div style="display: none;" itemprop="author" itemscope itemtype="http://schema.org/Organization">
+            <meta itemprop="name" content="PhET Interactive Simulations"/>
+            <meta itemprop="url" content="http://phet.colorado.edu"/>
+        </div>
+        <div style="display: none;" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+            <meta itemprop="name" content="PhET Interactive Simulations"/>
+            <meta itemprop="url" content="http://phet.colorado.edu"/>
+        </div>
+
+        <!--<meta itemprop="thumbnailUrl" content="TODO"/>-->
+        <!--<meta itemprop="fileFormat" content="TODO"/>-->
+
+        <meta itemprop="applicationCategory" content="Educational"/>
+
+        <h1 wicket:id="simulation-main-title" class="simulation-main-title" itemprop="name">
             Simulation Title
         </h1>
 
@@ -54,18 +89,18 @@
                            class="simulation-main-link-run-main">
                             <img wicket:id="simulation-main-screenshot" class="simulation-main-screenshot"
                                  src="../../../../../../../../template-files/images/arithmetic-screenshot.png"
-                                 width="300" id="simulation-main-screenshot-image"/>
+                                 width="300" id="simulation-main-screenshot-image" itemprop="image screenshot"/>
                         </a>
-                        <a class="sim-download sim-button" href="#" wicket:id="run-offline-link">
+                        <a class="sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl">
                             <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
                         </a>
-                        <a class="sim-run-now sim-button" href="#" wicket:id="run-online-link">
+                        <a class="sim-run-now sim-button" href="#" wicket:id="run-online-link" itemprop="url">
                             <wicket:message key="simulationMainPanel.runOnline">Run Now!</wicket:message>
                         </a>
-                        <span class="sim-kb" wicket:id="simulationMainPanel.kilobytes">308 kB</span>
+                        <span class="sim-kb" wicket:id="simulationMainPanel.kilobytes" itemprop="fileSize">308 kB</span>
 
                         <div style="clear: both; width: 100%; height: 0; padding: 0; margin: 0;"></div>
-                        <span class="sim-version" wicket:id="simulationMainPanel.version">Version: 2.0</span>
+                        <span class="sim-version" wicket:id="simulationMainPanel.version" itemprop="version softwareVersion">Version: 2.0</span>
                         <a class="sim-embed sim-button" href="#" wicket:id="embed-button"
                            onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
                             <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
@@ -115,7 +150,7 @@
                     </div>
                 </td>
                 <td class="simulation-main-description">
-            <span wicket:id="simulation-main-description">
+            <span wicket:id="simulation-main-description" itemprop="description">
                 Play with one or two pendulums and discover how the period of a simple pendulum depends on the
                 length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
                 measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
@@ -206,7 +241,7 @@
                 </h3>
                 <ul>
                     <li wicket:id="topic-list">
-                        <span wicket:id="topic-label">
+                        <span wicket:id="topic-label" itemprop="keywords">
                         </span>
                     </li>
                 </ul>
@@ -221,7 +256,7 @@
                     <ul class="keyword-list-holder">
                         <li class="keyword" wicket:id="keyword-list">
                             <a wicket:id="keyword-link" href="SimulationMainPanel.html#">
-                                <span wicket:id="keyword-label">Keyword</span>
+                                <span wicket:id="keyword-label" itemprop="keywords">Keyword</span>
                             </a>
                         </li>
                     </ul>
