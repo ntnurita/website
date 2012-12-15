@@ -10,10 +10,9 @@ Donate now: https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId
 
 *** Be One of the First to Experience our Sims on Tablets
 
-Are you an iPad or Android tablet user? You'll be happy to hear that we've been busy working on a
-pathway to make our more popular sims tablet compatible. This December our developers spent three
-days at a workshop on converting open-educational resources to HTML5. And, we've begun prototyping
-sims to test out various HTML5 software libraries.
+Are you an iPad or Android tablet user? You'll be happy to hear that we've been busy working on a pathway to
+make our more popular sims tablet compatible. We've been prototyping sims and testing out various HTML5
+libraries with advice from Google and other HTML5 developers.
 
 If you would like to take a quick peek at our progress, try the HTML5 prototypes:
 
