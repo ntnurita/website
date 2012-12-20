@@ -223,7 +223,7 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( AboutSponsorsPanel.class );
         StaticPage.addPanel( TeacherIdeasPanel.class );
         StaticPage.addPanel( ContributionGuidelinesPanel.class );
-        StaticPage.addPanel( DonatePanel.class );
+        StaticPage.addPanel( DonatePanel.class ); // english donation page redirecting to https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125
         StaticPage.addPanel( ForTranslatorsPanel.class );
         StaticPage.addPanel( TranslationUtilityPanel.class );
         StaticPage.addPanel( AboutNewsPanel.class );

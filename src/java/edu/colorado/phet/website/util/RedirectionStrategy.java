@@ -136,6 +136,9 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         map.put( "/contribute/index.php", "/en/donate" );
         map.put( "/contribute/translation-utility.php", "/en/for-translators/translation-utility" );
         map.put( "/dev", "/dev/" );
+        // /en/donate not put in this map, since that would send a permanent redirection. we only want a temporary redirection
+        // see URLFilter
+        // map.put( "/en/donate", "https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125" );
         map.put( "/get_phet/", "/en/get-phet" );
         map.put( "/get_phet/full_install.php", "/en/get-phet/full-install" );
         map.put( "/get_phet/index.php", "/en/get-phet" );
