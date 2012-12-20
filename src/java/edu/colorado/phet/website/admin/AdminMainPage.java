@@ -235,6 +235,34 @@ public class AdminMainPage extends AdminPage {
             }
         } );
 
+        add( new Link( "debug-newsletter-to-team" ) {
+            @Override
+            public void onClick() {
+                final List<PhetUser> users = new LinkedList<PhetUser>();
+                HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
+                    public void run( Session session ) {
+                        String[] emails = new String[]{
+                                "olsonsjc@gmail.com",
+                                "katherine.perkins@colorado.edu",
+                                "Kathryn.Dessau@colorado.edu"
+                        };
+                        for ( String email : emails ) {
+                            PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", email ).uniqueResult();
+                            if ( user.isConfirmed() && user.isReceiveEmail() ) {
+                                users.add( user );
+                            }
+                        }
+
+                        for ( PhetUser user : users ) {
+                            // if user doesn't have a good confirmation key for unsubscribing, generate one
+                            user.ensureHasConfirmationKey( session );
+                        }
+                    }
+                } );
+                new NewsletterSender().sendNewsletters( users );
+            }
+        } );
+
 
         add( new Link( "debug-imagesize" ) {
             @Override
