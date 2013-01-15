@@ -12,7 +12,6 @@ import edu.colorado.phet.website.util.ImageHandle;
 public class Images {
     public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo.gif", true );
     public static final ImageHandle PHET_LOGO_YELLOW = new ImageHandle( "/images/phet-logo-yellow.png", true );
-    public static final ImageHandle PHET_LOGO_ORANGE = new ImageHandle( "/images/phet-logo-orange.png", true );
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
 
     public static final ImageHandle TRANSLATION_UTILITY_SMALL = new ImageHandle( "/images/screenshots/translation-utility-small.png", true );
