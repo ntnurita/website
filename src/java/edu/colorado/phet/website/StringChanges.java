@@ -35,6 +35,11 @@ public class StringChanges {
         StringUtils.addString( session, "troubleshooting.javaSecurity.monitoring", "PhET will continue to monitor the situation surrounding Java security issues and will issue an update when the problems are fully resolved." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.questions", "If you have questions or concerns regarding this, please contact us at {0}." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.thankyou", "Thank you for using and supporting PhET Interactive Simulations!" );
+        
+        // for the banner
+        StringUtils.addString( session, "troubleshooting.javaSecurity.readNow", "Read now" );
+        StringUtils.addString( session, "troubleshooting.javaSecurity.javaAdvisory", "Java Security Advisory" );
+        StringUtils.addString( session, "troubleshooting.javaSecurity.pleaseRead", "How to secure your Java and still run simulations" );
 
         session.close();
     }

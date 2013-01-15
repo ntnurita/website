@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title>[PREVIEW] JavaSecurityBanner</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+</head>
+<body>
+
+<wicket:panel>
+    <form method="get" target="#" style="position: relative;">
+        <input type="button" value="Read now" wicket:message="value:troubleshooting.javaSecurity.readNow" class="large-form-button" id="donation-button-right"
+               onclick="window.open('https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125','_blank');"
+               wicket:id="security-button"></input>
+    </form>
+    <div class="donation-header"><wicket:message key="troubleshooting.javaSecurity.javaAdvisory">Java Security Advisory</wicket:message></div>
+    <p class="donation-text">
+        <wicket:message key="troubleshooting.javaSecurity.pleaseRead">How to secure your Java and still run simulations</wicket:message>
+    </p>
+</wicket:panel>
+
+</body>
+</html>
+

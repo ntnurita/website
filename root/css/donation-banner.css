@@ -1,6 +1,8 @@
 /* Copyright 2002-2011, University of Colorado */
 
-/* Contains CSS for the temporary yellow-background donation banner */
+/* Contains CSS for the temporary yellow-background donation banner
+    AND also now CSS for the Java Security Banner
+ */
 
 #donation-banner {
     background-color: #ffff88;

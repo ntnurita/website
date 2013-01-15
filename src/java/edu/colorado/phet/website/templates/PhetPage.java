@@ -39,6 +39,7 @@ import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
 import edu.colorado.phet.website.panels.DonationBannerRegularPanel;
+import edu.colorado.phet.website.panels.JavaSecurityBanner;
 import edu.colorado.phet.website.panels.LogInOutPanel;
 import edu.colorado.phet.website.panels.SearchPanel;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -251,11 +252,12 @@ public abstract class PhetPage extends WebPage implements Stylable {
             add( new InvisibleComponent( "donation-banner" ) );
         }
         else if ( this instanceof IndexPage ) {
-            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
-            //            add( new DonationBannerHomePanel( "donation-banner", getPageContext() ) );
+            add( new JavaSecurityBanner( "donation-banner", getPageContext() ) );
+//            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
         }
         else {
-            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
+            add( new JavaSecurityBanner( "donation-banner", getPageContext() ) );
+//            add( new DonationBannerRegularPanel( "donation-banner", getPageContext() ) );
         }
     }
 
