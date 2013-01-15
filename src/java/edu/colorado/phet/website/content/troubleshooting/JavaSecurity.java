@@ -24,15 +24,12 @@ public class JavaSecurity extends PhetPanel {
         } ) );
 
         add( new LocalizedText( "troubleshooting-javaSecurity-disableStep", "troubleshooting.javaSecurity.disableStep", new Object[] {
-            "href=\"http://www.zdnet.com/how-to-disable-java-in-your-browser-on-windows-mac_p5-7000009732/\" target=\"blank\""
+            "href=\"http://www.zdnet.com/how-to-disable-java-in-your-browser-on-windows-mac-7000009732/\" target=\"blank\""
         } ) );
         
         add( new LocalizedText( "troubleshooting-javaSecurity-questions", "troubleshooting.javaSecurity.questions", new Object[] {
             "<a href=\"mailto:phethelp@colorado.edu\">phethelp@colorado.edu</a>"
         } ) );
-        
-        
-
     }
 
     public static String getKey() {
