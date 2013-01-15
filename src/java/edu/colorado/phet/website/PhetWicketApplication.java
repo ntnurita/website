@@ -101,6 +101,7 @@ import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
@@ -216,6 +217,7 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( TroubleshootingJavaPanel.class );
         StaticPage.addPanel( TroubleshootingFlashPanel.class );
         StaticPage.addPanel( TroubleshootingJavascriptPanel.class );
+        StaticPage.addPanel( JavaSecurity.class );
         StaticPage.addPanel( AboutSourceCodePanel.class );
         StaticPage.addPanel( AboutLegendPanel.class );
         StaticPage.addPanel( AboutContactPanel.class );

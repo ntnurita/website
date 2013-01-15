@@ -47,6 +47,7 @@ import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
+import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
@@ -232,6 +233,9 @@ public class NavMenu implements Serializable {
 
         NavLocation testFAQ = new NavLocation( null, "sim-faq-test", FaqTestPage.getLinker() );
         addLocation( testFAQ );
+        
+        NavLocation troubleshootingJavaSecurity = new NavLocation( null, "troubleshooting.javaSecurity", JavaSecurity.getLinker() );
+        addLocation( troubleshootingJavaSecurity );
 
         Session session = HibernateUtils.getInstance().openSession();
         Transaction tx = null;

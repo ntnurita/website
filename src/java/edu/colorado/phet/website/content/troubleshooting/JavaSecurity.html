@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title>[PREVIEW] TroubleshootingFlashPanel</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+</head>
+<body>
+
+<wicket:panel>
+    <div class="standard-content" id="faq_top" wicket:message="dir:language.dir">
+        <p wicket:id="troubleshooting-javaSecurity-intro">
+            On January 10th, 2012, the United States Computer Emergency Readiness Team (US-CERT) released a
+            <a href="http://www.us-cert.gov/cas/techalerts/TA13-010A.html">bulletin regarding security issues with Java</a>.
+            One of the recommendations in this bulletin is to disable Java in web browsers. In many cases, this will prevent
+            running PhET simulations directly from the PhET web site.
+        </p>
+        
+        <p>
+            <wicket:message key="troubleshooting.javaSecurity.steps">
+                If you are a user of PhET simulations and are currently running Java 7, we recommend that you take the following
+                steps in order to configure your computer to run safely and yet still be able to use PhET simulations:
+            </wicket:message>
+        </p>
+        
+        <ul>
+            <li wicket:id="troubleshooting-javaSecurity-upgradeStep">
+                <a href="http://www.java.com/en/download/index.jsp">Upgrade to the latest version of Java</a>.
+            </li>
+            <li wicket:id="troubleshooting-javaSecurity-disableStep">
+                Disable Java from running in web browsers. Note that this will prevent the "Run Now" option from launching simulations from the PhET site.
+                <a href="http://www.zdnet.com/how-to-disable-java-in-your-browser-on-windows-mac_p5-7000009732/">This article</a> has information about how
+                to perform this operation.
+            </li>
+            <li>
+                <wicket:message key="troubleshooting.javaSecurity.downloadStep">
+                    Run the simulations by downloading them via the "Download" button, and then running locally.
+                </wicket:message>
+            </li>
+        </ul>
+        
+        <p>
+            <wicket:message key="troubleshooting.javaSecurity.monitoring">
+                PhET will continue to monitor the situation surrounding Java security issues and will issue an update when the problems are fully resolved.
+            </wicket:message>
+        </p>
+        
+        <p wicket:id="troubleshooting-javaSecurity-questions"> 
+            If you have questions or concerns regarding this, please contact us at <a href="mailto:phethelp@colorado.edu">phethelp@colorado.edu</a>.
+        </p>
+        
+        <p>
+            <wicket:message key="troubleshooting.javaSecurity.thankyou">
+                Thank you for using and supporting PhET Interactive Simulations!
+            </wicket:message>
+        </p>
+    </div>
+</wicket:panel>
+
+</body>
+</html>
