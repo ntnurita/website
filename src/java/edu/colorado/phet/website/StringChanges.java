@@ -34,6 +34,7 @@ public class StringChanges {
         StringUtils.addString( session, "troubleshooting.javaSecurity.disableStep", "Disable Java from running in web browsers. Note that this will prevent the \"Run Now\" option from launching simulations from the PhET site. <a {0}>This article</a> has information about how to perform this operation." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.downloadStep", "Run the simulations by downloading them via the \"Download\" button, and then running locally." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.monitoring", "PhET will continue to monitor the situation surrounding Java security issues and will issue an update when the problems are fully resolved." );
+        StringUtils.overwriteString( session, "troubleshooting.javaSecurity.monitoring", "PhET will continue to monitor the situation surrounding Java security issues and will issue an update when the problems are fully resolved.", "PhET will continue to monitor the situation surrounding Java security issues and will send out an update when the problems are fully resolved." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.questions", "If you have questions or concerns regarding this, please contact us at {0}." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.thankyou", "Thank you for using and supporting PhET Interactive Simulations!" );
         

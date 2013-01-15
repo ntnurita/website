@@ -19,6 +19,9 @@ public class DonateEntity extends TranslationEntity {
         addString( "donate.donateNow" );
         addString( "donate.questions" );
         addString( "donate.note" );
+        addString( "donation-banner.donateToAdvanceScience" );
+        addString( "donation-banner.phetsAnnualCampaign" );
+        addString( "donation-banner.donateNow" );
 
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
