@@ -43,7 +43,8 @@ public class URLFilter implements Filter {
             httpResponse.setStatus( HttpServletResponse.SC_MOVED_PERMANENTLY );
             httpResponse.setHeader( "Location", requestURL ); // request URL doesn't include query string, but should have everything else
         }
-        else if ( servletRequest instanceof HttpServletRequest && httpRequest.getRequestURL().toString().endsWith( "/en/donate" ) ) {
+        else if ( servletRequest instanceof HttpServletRequest
+                  && ( httpRequest.getRequestURL().toString().endsWith( "/en/donate" ) || httpRequest.getRequestURL().toString().endsWith( "phet.colorado.edu/donate" ) ) ) {
             HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 
             // temporary redirection to the donation URL:
