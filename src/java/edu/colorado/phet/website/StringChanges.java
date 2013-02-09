@@ -43,6 +43,8 @@ public class StringChanges {
         StringUtils.addString( session, "troubleshooting.javaSecurity.javaAdvisory", "Java Security Advisory" );
         StringUtils.addString( session, "troubleshooting.javaSecurity.pleaseRead", "How to secure your Java and still run simulations" );
 
+        StringUtils.addString( session, "home.stayConnected", "If you want to stay informed of the latest PhET activities, join us on Facebook, Twitter, our blog or sign up for our newsletter." );
+
         session.close();
     }
 
