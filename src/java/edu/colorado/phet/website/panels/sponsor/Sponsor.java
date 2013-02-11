@@ -309,6 +309,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor WHRO = new LogoSponsor(
+            "WHRO Education",
+            "http://education.whro.org/",
+            Images.LOGO_WHRO, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -348,6 +356,7 @@ public abstract class Sponsor implements Serializable {
 //            GIANCOLI, // removed at request Nov 5 2012, with donation refund?
             CENGAGE,
             CNEC,
+            WHRO,
             YOU
     };
 

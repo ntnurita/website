@@ -68,6 +68,7 @@ public class Images {
     public static final ImageHandle LOGO_GIANCOLI = new ImageHandle( "/images/support/giancoli-small.jpg", true );
     public static final ImageHandle LOGO_CENGAGE = new ImageHandle( "/images/support/cengage-small.png", true );
     public static final ImageHandle LOGO_CNEC = new ImageHandle( "/images/support/cnec-small.png", true );
+    public static final ImageHandle LOGO_WHRO = new ImageHandle( "/images/support/whro-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 
