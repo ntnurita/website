@@ -20,7 +20,10 @@
 <wicket:panel>
     <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope itemtype="http://schema.org/SoftwareApplication">
 
-        <!-- educationalAlignment ! -->
+        <!-- educationalAlignment ! teaches for alignments, mingradelevel and maxgradelevel -->
+
+        <!-- Schema.org contributor (for credits, etc.) -->
+        <!-- Schema.org about (for categories)? -->
 
         <meta itemprop="intendedEndUserRole" content="student"/>
         <meta itemprop="educationalUse" content="classroom"/>
@@ -37,7 +40,8 @@
         <meta itemprop="interactivityType" content="active"/>
         <meta itemprop="learningResourceType" content="simulation"/>
 
-        <!--<meta itemprop="dateCreated" content="simulation"/>--> <!-- NOTE: CreativeWork part-->
+        <meta itemprop="dateCreated" wicket:id="schema-date-created" content="simulation"/>
+        <meta itemprop="dateModified" wicket:id="schema-date-modified" content="simulation"/>
 
         <!--<meta itemprop="inLanguage" content="simulation"/>--> <!-- NOTE: fake BCP 47, by replacing _ with - -->
 
@@ -50,7 +54,7 @@
             <meta itemprop="url" content="http://phet.colorado.edu"/>
         </div>
 
-        <!--<meta itemprop="thumbnailUrl" content="TODO"/>-->
+        <meta itemprop="thumbnailUrl" wicket:id="schema-thumbnail" content="..."/>
         <!--<meta itemprop="fileFormat" content="TODO"/>-->
 
         <meta itemprop="applicationCategory" content="Educational"/>

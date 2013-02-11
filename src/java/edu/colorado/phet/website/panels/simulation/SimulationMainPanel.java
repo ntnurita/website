@@ -36,6 +36,7 @@ import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
@@ -97,6 +98,8 @@ public class SimulationMainPanel extends PhetPanel {
                 encode( simulation.getTitle() )
         } ) ) );
         add( link );
+
+
 
         //add( new Label( "simulation-main-description", simulation.getDescription() ) );
         add( new LocalizedText( "simulation-main-description", simulation.getSimulation().getDescriptionKey() ) );
@@ -631,6 +634,26 @@ public class SimulationMainPanel extends PhetPanel {
                 }} );
             }
         } );
+
+        add( new WebMarkupContainer( "schema-thumbnail" ) {{
+            add( new AttributeModifier( "content", true, new Model<String>( StringUtils.makeUrlAbsoluteProduction( simulation.getSimulation().getThumbnailUrl() ) ) ) );
+        }} );
+
+        if( simulation.getSimulation().getCreateTime() != null ) {
+            add( new WebMarkupContainer( "schema-date-created" ) {{
+                add( new AttributeModifier( "content", true, new Model<String>( WebsiteConstants.ISO_8601.format( simulation.getSimulation().getCreateTime() ) ) ) );
+            }} );
+        } else {
+            add( new InvisibleComponent( "schema-date-created" ) );
+        }
+
+        if( simulation.getSimulation().getUpdateTime() != null ) {
+            add( new WebMarkupContainer( "schema-date-modified" ) {{
+                add( new AttributeModifier( "content", true, new Model<String>( WebsiteConstants.ISO_8601.format( simulation.getSimulation().getUpdateTime() ) ) ) );
+            }} );
+        } else {
+            add( new InvisibleComponent( "schema-date-modified" ) );
+        }
     }
 
     public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {

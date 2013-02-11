@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.constants;
 
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
@@ -12,6 +13,8 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
  * Global website constants
  */
 public class WebsiteConstants {
+
+    public static final SimpleDateFormat ISO_8601 = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss" );
 
     // General help email address
     public static final String HELP_EMAIL = "phethelp@colorado.edu";
