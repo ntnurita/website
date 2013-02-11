@@ -70,7 +70,7 @@ public class SimSponsorPanel extends PhetPanel {
                     builder.append( "," );
                 }
                 String componentString = WicketUtils.renderToString( this, new SimSponsorPanel( this.getId(), context, sponsor, false ) );
-                builder.append( "{weight:" + sponsor.getSimWeight() + ",html:\"" + componentString.replace( '\n', ' ' ).replace( "\"", "\\\"" ) + "\"}" );
+                builder.append( "{weight:" + sponsor.getSimWeight() + ",html:\"" + componentString.replace( '\n', ' ' ).replace( '\r', ' ' ).replace( '\t', ' ' ).replace( "\"", "\\\"" ) + "\"}" );
                 totalWeight += sponsor.getSimWeight();
             }
             // if someone gets an X S S attack through here, they've done their research.

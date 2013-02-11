@@ -80,7 +80,7 @@ public class FeaturedSponsorPanel extends PhetPanel {
                     builder.append( "," );
                 }
                 String componentString = WicketUtils.renderToString( this, new FeaturedSponsorPanel( this.getId(), sponsor, context, false ) );
-                builder.append( "{weight:" + sponsor.getHomeWeight() + ",html:\"" + componentString.replace( '\n', ' ' ).replace( "\"", "\\\"" ) + "\"}" );
+                builder.append( "{weight:" + sponsor.getHomeWeight() + ",html:\"" + componentString.replace( '\n', ' ' ).replace( '\r', ' ' ).replace( '\t', ' ' ).replace( "\"", "\\\"" ) + "\"}" );
                 totalWeight += sponsor.getHomeWeight();
             }
             // if someone gets an X S S attack through here, they've done their research.
