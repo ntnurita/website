@@ -37,7 +37,8 @@ public class StringChanges {
         StringUtils.overwriteString( session, "troubleshooting.javaSecurity.monitoring", "PhET will continue to monitor the situation surrounding Java security issues and will issue an update when the problems are fully resolved.", "PhET will continue to monitor the situation surrounding Java security issues and will send out an update when the problems are fully resolved." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.questions", "If you have questions or concerns regarding this, please contact us at {0}." );
         StringUtils.addString( session, "troubleshooting.javaSecurity.thankyou", "Thank you for using and supporting PhET Interactive Simulations!" );
-        
+        StringUtils.addString( session, "troubleshooting.javaSecurity.localInstallation", "If you are using PhET from a local installation, disabling Java in the web browser may block simulations from launching.  You will need to work with your IT department to determine whether Java in the browser can safely remain enabled.  Note that setting the security level to \"High\" in the Java console will cause users to be prompted before Java applications and applets are run, which may be a sufficient level of security for your needs." );
+
         // for the banner
         StringUtils.addString( session, "troubleshooting.javaSecurity.readNow", "Read now" );
         StringUtils.addString( session, "troubleshooting.javaSecurity.javaAdvisory", "Java Security Advisory" );

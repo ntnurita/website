@@ -37,6 +37,7 @@ public class TroubleshootingJavaEntity extends TranslationEntity {
         addString( "troubleshooting.javaSecurity.readNow" );
         addString( "troubleshooting.javaSecurity.thankyou" );
         addString( "troubleshooting.javaSecurity.questions" );
+        addString( "troubleshooting.javaSecurity.localInstallation" );
         addString( "troubleshooting.javaSecurity.monitoring" );
         addString( "troubleshooting.javaSecurity.downloadStep" );
         addString( "troubleshooting.javaSecurity.disableStep" );
