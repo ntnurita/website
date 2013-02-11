@@ -36,6 +36,8 @@ public class Simulation implements Serializable, IntId {
     private int kilobytes;
     private Set localizedSimulations = new HashSet(); // type LocalizedSimulation
     private Set categories = new HashSet(); // type Category
+    private Set alignments = new HashSet(); // type Alignment
+    private Set secondaryAlignments = new HashSet(); // type Alignment
     private Set contributions = new HashSet(); // type Contributuion. user-contributed activities
     private Set scienceLiteracyMapKeys = new HashSet(); // type String. keys for the NSDL science literacy maps
     private Set lreTermIDs = new HashSet(); // type String. IDs of the LRE-0001 metadata terms related to this simulation
@@ -281,6 +283,14 @@ public class Simulation implements Serializable, IntId {
 
     public void setCategories( Set categories ) {
         this.categories = categories;
+    }
+
+    public Set getAlignments() {
+        return alignments;
+    }
+
+    public void setAlignments( Set alignments ) {
+        this.alignments = alignments;
     }
 
     public Set getScienceLiteracyMapKeys() {

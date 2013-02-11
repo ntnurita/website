@@ -47,6 +47,8 @@
 
         <mapping resource="edu/colorado/phet/website/data/Keyword.hbm.xml"/>
 
+        <mapping resource="edu/colorado/phet/website/data/Alignment.hbm.xml"/>
+
         <mapping resource="edu/colorado/phet/website/data/PhetUser.hbm.xml"/>
         <mapping resource="edu/colorado/phet/website/data/ResetPasswordRequest.hbm.xml"/>
 
