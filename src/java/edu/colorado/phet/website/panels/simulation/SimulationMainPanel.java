@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.panels.simulation;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +45,7 @@ import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
+import edu.colorado.phet.website.data.Alignment;
 import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
@@ -98,7 +100,6 @@ public class SimulationMainPanel extends PhetPanel {
                 encode( simulation.getTitle() )
         } ) ) );
         add( link );
-
 
 
         //add( new Label( "simulation-main-description", simulation.getDescription() ) );
@@ -639,21 +640,35 @@ public class SimulationMainPanel extends PhetPanel {
             add( new AttributeModifier( "content", true, new Model<String>( StringUtils.makeUrlAbsoluteProduction( simulation.getSimulation().getThumbnailUrl() ) ) ) );
         }} );
 
-        if( simulation.getSimulation().getCreateTime() != null ) {
+        if ( simulation.getSimulation().getCreateTime() != null ) {
             add( new WebMarkupContainer( "schema-date-created" ) {{
                 add( new AttributeModifier( "content", true, new Model<String>( WebsiteConstants.ISO_8601.format( simulation.getSimulation().getCreateTime() ) ) ) );
             }} );
-        } else {
+        }
+        else {
             add( new InvisibleComponent( "schema-date-created" ) );
         }
 
-        if( simulation.getSimulation().getUpdateTime() != null ) {
+        if ( simulation.getSimulation().getUpdateTime() != null ) {
             add( new WebMarkupContainer( "schema-date-modified" ) {{
                 add( new AttributeModifier( "content", true, new Model<String>( WebsiteConstants.ISO_8601.format( simulation.getSimulation().getUpdateTime() ) ) ) );
             }} );
-        } else {
+        }
+        else {
             add( new InvisibleComponent( "schema-date-modified" ) );
         }
+
+        List<Alignment> alignments = new ArrayList<Alignment>();
+        alignments.addAll( simulation.getSimulation().getAlignments() );
+        alignments.addAll( simulation.getSimulation().getSecondaryAlignments() );
+
+        add( new ListView<Alignment>( "alignment-list", alignments ) {
+            @Override protected void populateItem( final ListItem<Alignment> item ) {
+                item.add( new WebMarkupContainer( "alignment" ) {{
+                    add( new AttributeModifier( "content", true, new Model<String>( item.getModelObject().getUrl() ) ) );
+                }} );
+            }
+        } );
     }
 
     public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {

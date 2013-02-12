@@ -20,10 +20,14 @@
 <wicket:panel>
     <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope itemtype="http://schema.org/SoftwareApplication">
 
-        <!-- educationalAlignment ! teaches for alignments, mingradelevel and maxgradelevel -->
+        <!-- educationalAlignment ! teaches for mingradelevel and maxgradelevel -->
+
+        <meta itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject" wicket:id="alignment-list">
+            <meta itemprop="alignmentType" content="teaches" />
+            <meta itemprop="targetUrl" wicket:id="alignment" content="..." />
+        </meta>
 
         <!-- Schema.org contributor (for credits, etc.) -->
-        <!-- Schema.org about (for categories)? -->
 
         <meta itemprop="intendedEndUserRole" content="student"/>
         <meta itemprop="educationalUse" content="classroom"/>
