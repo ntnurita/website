@@ -33,13 +33,13 @@
         </set>
 
         <!-- mapping educational alignments to simulations. we need to create an extra table for this information -->
-        <set name="alignments" inverse="true" table="alignment_mapping">
+        <set name="alignments" table="alignment_mapping">
             <key column="simulation_id"/>
             <many-to-many class="edu.colorado.phet.website.data.Alignment" column="alignment_id"/>
         </set>
 
         <!-- mapping educational alignments to simulations. we need to create an extra table for this information -->
-        <set name="secondaryAlignments" inverse="true" table="secondaryAlignment_mapping">
+        <set name="secondaryAlignments" table="secondaryAlignment_mapping">
             <key column="simulation_id"/>
             <many-to-many class="edu.colorado.phet.website.data.Alignment" column="alignment_id"/>
         </set>
