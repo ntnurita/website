@@ -1506,36 +1506,46 @@ public class InitializeMathCommonCore {
     }
 
     private static void addCommonCore( final String url, String primary, String secondary ) {
-        if( primary != null ) {
+        boolean save = true;
+        Alignment alignment = new Alignment() {{
+            setUrl( url );
+            setFramework( Framework.COMMON_CORE_MATH );
+        }};
+
+        List matchingAlignments = session.createQuery( "select a from Alignment as a where a.url = :url" ).setString( "url", url ).list();
+        if ( !matchingAlignments.isEmpty() ) {
+            save = false;
+            alignment = (Alignment) matchingAlignments.get( 0 );
+        }
+
+        if ( primary != null ) {
             Simulation simulation = simByName( primary );
 
-            if( simulation == null ) {
+            if ( simulation == null ) {
                 logger.warn( "primary simulation not found: " + primary );
                 return;
             }
 
-            simulation.getAlignments().add( new Alignment(){{
-                setUrl( url );
-                setFramework( Framework.COMMON_CORE_MATH );
-            }} );
-
+            simulation.getAlignments().add( alignment );
             session.update( simulation );
+            if ( save ) {
+                session.save( alignment );
+            }
         }
 
-        if( secondary != null ) {
+        if ( secondary != null ) {
             Simulation simulation = simByName( secondary );
 
-            if( simulation == null ) {
+            if ( simulation == null ) {
                 logger.warn( "secondary simulation not found: " + secondary );
                 return;
             }
 
-            simulation.getSecondaryAlignments().add( new Alignment(){{
-                setUrl( url );
-                setFramework( Framework.COMMON_CORE_MATH );
-            }} );
-
+            simulation.getSecondaryAlignments().add( alignment );
             session.update( simulation );
+            if ( save ) {
+                session.save( alignment );
+            }
         }
     }
 }
