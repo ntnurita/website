@@ -669,6 +669,11 @@ public class SimulationMainPanel extends PhetPanel {
                 }} );
             }
         } );
+
+        add( new WebMarkupContainer( "schema-inLanguage" ) {{
+            // currently, we fake BCP 47 somewhat by replacing the underscore with a dash if necessary
+            add( new AttributeModifier( "content", true, new Model<String>( simulation.getLocaleString().replace( '_', '-' ) ) ) );
+        }} );
     }
 
     public List<LocalizedSimulation> getRelatedSimulations( final LocalizedSimulation simulation ) {
