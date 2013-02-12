@@ -36,6 +36,7 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.metadata.InitializeMathCommonCore;
 import edu.colorado.phet.website.metadata.LearningRegistryUtils;
 import edu.colorado.phet.website.metadata.MetadataUtils;
 import edu.colorado.phet.website.metadata.SimulationRecord;
@@ -315,6 +316,17 @@ public class AdminMainPage extends AdminPage {
             }
         } );
 
+        add( new Link( "debug-initializeMathCommonCore" ) {
+            @Override
+            public void onClick() {
+                HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+                    public void run( Session session ) {
+                        InitializeMathCommonCore.run( session );
+                    }
+                } );
+            }
+        } );
+
         add( new Link( "debug-pdfout" ) {
             @Override
             public void onClick() {
@@ -369,7 +381,7 @@ public class AdminMainPage extends AdminPage {
             public void onClick() {
                 HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
                     public void run( Session session ) {
-                        Simulation simulation = (Simulation) session.createQuery("select s from Simulation as s where s.name = 'density'").uniqueResult();
+                        Simulation simulation = (Simulation) session.createQuery( "select s from Simulation as s where s.name = 'density'" ).uniqueResult();
 
                         LearningRegistryUtils.submitEnvelope( new SimulationRecord( MetadataUtils.simulationToMasterFormat( simulation ) ), MetadataUtils.ieeeLomConverter() );
                     }

@@ -6,11 +6,10 @@ import java.io.Serializable;
 
 import edu.colorado.phet.website.data.util.IntId;
 
+/**
+ * An educational alignment to a standard.
+ */
 public class Alignment implements Serializable, IntId {
-
-    public static enum Framework {
-        COMMON_CORE_MATH // see http://asn.jesandco.org/resources/D10003FB
-    }
 
     private int id;
 
@@ -38,5 +37,26 @@ public class Alignment implements Serializable, IntId {
 
     public void setUrl( String url ) {
         this.url = url;
+    }
+
+    public Framework getFramework() {
+        return framework;
+    }
+
+    public void setFramework( Framework framework ) {
+        this.framework = framework;
+    }
+
+    @Override public int hashCode() {
+        return url.hashCode() * 31 + framework.hashCode() + id;
+    }
+
+    @Override public boolean equals( Object obj ) {
+        if( obj instanceof Alignment ) {
+            Alignment other = (Alignment) obj;
+            return id == other.id && url.equals( other.url ) && framework == other.framework;
+        } else {
+            return false;
+        }
     }
 }

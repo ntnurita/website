@@ -293,6 +293,14 @@ public class Simulation implements Serializable, IntId {
         this.alignments = alignments;
     }
 
+    public Set getSecondaryAlignments() {
+        return secondaryAlignments;
+    }
+
+    public void setSecondaryAlignments( Set secondaryAlignments ) {
+        this.secondaryAlignments = secondaryAlignments;
+    }
+
     public Set getScienceLiteracyMapKeys() {
         return scienceLiteracyMapKeys;
     }
