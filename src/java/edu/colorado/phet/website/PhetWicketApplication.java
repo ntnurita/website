@@ -312,7 +312,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
         mountBookmarkablePage( "services/metadata/simulation", SimulationMetadataFormatService.class );
         mountBookmarkablePage( "services/translation-list", TranslationList.class );
-        mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
+//        mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
         mountBookmarkablePage( "metadata-dump.xml", MetadataDump.class );
