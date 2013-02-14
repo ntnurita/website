@@ -118,6 +118,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.Autocomplete;
+import edu.colorado.phet.website.services.GithubEmailHook;
 import edu.colorado.phet.website.services.LearningComExport;
 import edu.colorado.phet.website.services.NCInformationPage;
 import edu.colorado.phet.website.services.PhetInfoServicePage;
@@ -311,6 +312,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
         mountBookmarkablePage( "services/metadata/simulation", SimulationMetadataFormatService.class );
         mountBookmarkablePage( "services/translation-list", TranslationList.class );
+        mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
         mountBookmarkablePage( "metadata-dump.xml", MetadataDump.class );
