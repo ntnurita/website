@@ -18,13 +18,13 @@
 <body>
 
 <wicket:panel>
-    <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope itemtype="http://schema.org/SoftwareApplication">
+    <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope="itemscope" itemtype="http://schema.org/SoftwareApplication">
 
         <!-- educationalAlignment ! teaches for mingradelevel and maxgradelevel -->
 
         <!-- TODO: the changelog link is included in the software version! -->
 
-        <meta itemprop="educationalAlignment" itemscope itemtype="http://schema.org/AlignmentObject" wicket:id="alignment-list">
+        <meta itemprop="educationalAlignment" itemscope="itemscope" itemtype="http://schema.org/AlignmentObject" wicket:id="alignment-list">
             <meta itemprop="alignmentType" content="teaches" />
             <meta itemprop="targetUrl" wicket:id="alignment" content="..." />
         </meta>
@@ -51,11 +51,11 @@
 
         <meta itemprop="inLanguage" wicket:id="schema-inLanguage" content="..."/>
 
-        <div style="display: none;" itemprop="author" itemscope itemtype="http://schema.org/Organization">
+        <div style="display: none;" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Organization">
             <meta itemprop="name" content="PhET Interactive Simulations"/>
             <meta itemprop="url" content="http://phet.colorado.edu"/>
         </div>
-        <div style="display: none;" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <div style="display: none;" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
             <meta itemprop="name" content="PhET Interactive Simulations"/>
             <meta itemprop="url" content="http://phet.colorado.edu"/>
         </div>
