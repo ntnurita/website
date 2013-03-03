@@ -20,6 +20,7 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.twitterText", "{0} will be replaced with a small Twitter icon" );
         addString( "home.blogText" );
         addString( "home.subscribeToNewsletter" );
+        addString( "home.stayConnected" );
 
         addString( "home.runOurSims" );
         addString( "home.help" );
