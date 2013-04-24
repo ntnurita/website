@@ -51,6 +51,14 @@ public class URLFilter implements Filter {
             httpResponse.setStatus( HttpServletResponse.SC_MOVED_TEMPORARILY );
             httpResponse.setHeader( "Location", "https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125" );   
         }
+        else if ( servletRequest instanceof HttpServletRequest
+                  && ( httpRequest.getRequestURL().toString().endsWith( "phet.colorado.edu/sponsor-test" ) ) ) {
+            HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+
+            // temporary redirection to the sponsor test URL:
+            httpResponse.setStatus( HttpServletResponse.SC_MOVED_TEMPORARILY );
+            httpResponse.setHeader( "Location", "http://www.colorado.edu/physics/phet/dev/circuit-construction-kit/3.20.15/" );
+        }
         else {
             // otherwise, behave like normal
             chain.doFilter( servletRequest, servletResponse );
