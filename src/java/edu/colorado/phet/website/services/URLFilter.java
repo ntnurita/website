@@ -57,7 +57,7 @@ public class URLFilter implements Filter {
 
             // temporary redirection to the sponsor test URL:
             httpResponse.setStatus( HttpServletResponse.SC_MOVED_TEMPORARILY );
-            httpResponse.setHeader( "Location", "http://www.colorado.edu/physics/phet/dev/circuit-construction-kit/3.20.15/" );
+            httpResponse.setHeader( "Location", "http://www.colorado.edu/physics/phet/dev/circuit-construction-kit/3.20.15/sponsor-prototype_en.jnlp" );
         }
         else {
             // otherwise, behave like normal
