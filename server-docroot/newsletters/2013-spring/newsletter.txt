@@ -25,7 +25,7 @@ and searching of simulations and teacher-contributed activities, 5) community fo
   Featured Video: Using PhET in Lecture: Going Beyond Demos?
   http://www.youtube.com/watch?v=x7nJHxH1J58
 
-Have you seen our latest video Using PhET in Lecture: Going Beyond Demos? which is the first of
+Have you seen our latest video "Using PhET in Lecture: Going Beyond Demos" which is the first of
 many videos that will be available on the new site? See how to use PhET simulations in powerful ways
 that engage a whole class in a large lecture setting. See examples of how you can incorporate
 simulations with clickers and other instructional techniques to deliver engaging interactive lecture
