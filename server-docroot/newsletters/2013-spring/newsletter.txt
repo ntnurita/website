@@ -1,0 +1,206 @@
+10th Anniversary Newsletter: October 2012 - PhET Interactive Simulations (http://phet.colorado.edu)
+
+*** PhET's Annual Campaign
+
+It's PhET's 10th Anniversary. Show your support, and help keep
+PhET free and growing for another 10 years by donating today!
+
+Donate now: https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125
+
+
+*** Meet Our Founder and Nobel Laureate, Carl Wieman:
+
+What was the inspiration behind PhET?
+ The beginning of PhET really goes back to around 1990. I was working with Professor Marty Goldman
+ on a project called Physics 2000 where I got introduced to the idea of online interactive simulations.
+ At that point I was developing them to explain my research in laser cooling and Bose-Einstein
+ condensation. But as I gave talks on this all over the world in different settings, I discovered
+ the simulations were really quite amazing compared to other teaching tools, in that they seemed
+ to work very well and were very engaging. People learned a lot from them whether they were physics
+ professors at a colloquium or middle school students. So I kept thinking about how to incorporate
+ them into teaching more widely, and then I won an NSF Distinguished Teaching award. I used some of
+ the money to get some sims started, and very soon after, I won the Nobel Prize. And so for us, my
+ wife and me, it seemed like a natural thing to donate part of this big pot of money that came out
+ of the sky to really get this project started. I used some of the money from the Nobel prize to
+ hire the teams of people that were really necessary to develop and test sophisticated interactive
+ simulations. And, I was lucky enough to get very good people and things just took off from there.
+ For us, it has been very rewarding to see how successful this investment has been.
+
+In your opinion, what makes PhET sims special?
+ Using the sims as a teacher, which I've done a lot myself, one thing that makes them special is that
+ they get the students really engaged. The students follow the sims, they're interested in it, they
+ want to explore with it. But it also brings in real-world experiences and connects up what they know
+ from the outside world with the kind of book-learning we're trying to achieve. I think that it's very
+ important in science not just to produce more scientists, although that's clearly important, but also
+ to allow everybody to understand science better and to understand the role it plays in our lives. The
+ sims bridge this gap in a way no other educational materials can. They strip out a lot of the technical
+ jargon and the mathematics and therefore make the basic science much more accessible and understandable.
+ The students develop their own mental models of physical phenomena. That's a much deeper, more useful
+ level of understanding than memorizing procedures and facts, which is a lot of what people get in
+ classes, but is really not real expertise in the subject. Another very nice feature is they really
+ invite students to engage in scientific thinking themselves. By interacting with the sims, the students
+ test things, make predictions, develop models so they see what science really is all about. With the
+ sims, the invisible becomes visible, and they can see what atoms and light are doing. This process of
+ discovering really helps them identify as scientists. They can see how "I can discover things and
+ understand things." Suddenly, larger groups of people who would never have experienced this before
+ (including in particular groups very underrepresented in science) can start thinking of themselves,
+ essentially, as potential scientists.
+
+So what makes the sims so effective in reaching students?
+ There's all kind of efforts to bring technology into education. But, what we've strived for, and I
+ think what makes PhET unique, is the fact that it's based on looking very carefully at what we know
+ about learning, how the human brain learns, and builds into the technology the activities that achieve
+ that. That's done by having very good software engineers work with excellent scientists who know the
+ materials and educational researchers who understand how people learn. They do a very careful iterative
+ process of testing how effectively these work, refining them, changing them, and improving them until
+ we have something that we can really be quite confident achieves the desired interaction and learning.
+ I think if you look at the most educational technology, it really has not gone through this sort of
+ developmental process, and it's not building on research on learning.
+
+Where do you think PhET can improve?
+ PhET has made great strides, but I see there's still a great deal to be done, and a great many future
+ opportunities. Every time I turn around I notice something, whether it's biology or paleontology,
+ where I think, "Gee, a PhET simulation would really help teach this!" And of course that applies down
+ into grade school and up into graduate school. So there are enormous opportunities. But one of the
+ things we need to work on is more research showing their effectiveness. The research so far has been
+ really dominated by our own group, and I think there are tremendous opportunities to do more research
+ on understanding both how to optimize what students are learning and how they're best learning from
+ PhET sims. From that work, we can really understand how to use educational technology in more effective
+ ways than people are doing right now. Also, another area where I see we need to improve is providing
+ more support and guidance to teachers on how to use these powerful simulations in the most educationally
+ effective ways. Because this is a new technology, teachers are not familiar with them. We need to support
+ them with more professional development so they can take full advantage of the capability and power of
+ an interactive simulation for education.
+
+Reflecting on the past 10 years, has the project met your hopes and expectations?
+ When I first started PhET, I didn't really have nearly the grand vision it's turned into. I just saw
+ lots of opportunities to use the sims in classes I was teaching and other people were teaching. I thought,
+ "This would make it a lot easier to understand material and make it a lot more interesting. Simulations
+ could do a better job of showing students how physics relates to the real world around them." And it was
+ only as we developed more and more sims and we saw the use growing throughout the world that I began to
+ see the broader potential for PhET impacting education. What really surprised me was the international
+ span of it, how they are being translated into so many languages and being used by many tens of millions
+ of students all across the world.
+
+What are some of the challenges facing PhET?
+ One of the ongoing challenges for the PhET project is that it's expensive to develop such a high-quality
+ product and keep it continually upgraded and up to date. For example, technology is changing all the time.
+ There are new platforms, new hardware, new software. That puts great demands on a project like PhET to
+ keep at the cutting edge, to keep upgrading, to keep branching out so it can be used on tablets or the
+ next thing that's going to come after that. That's just part of the price of working with technology that
+ one has to do, but it has a significant price that one has to face. We're hoping that people will see
+ how they can help support PhET as we did, to build it to enhance science education.
+
+
+*** Help bring PhET simulations to the iPad!
+
+Donate now: https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125
+
+
+*** Featured Sims:
+
+Plate Tectonics (http://phet.colorado.edu/en/simulation/plate-tectonics)
+
+We are excited to offer the latest earth science simulation: Plate Tectonics. Explore how plates move on
+the surface of the earth. Change temperature, composition, and thickness of plates. Discover how to
+create new mountains, volcanoes, or oceans!
+
+After the activity, students will be able to:
+    * Describe the differences between oceanic and continental crust
+    * Predict how changes in composition and temperature change crust density and buoyancy
+    * Draw a time series for different types of plate boundaries and their motions
+    * Deduce the type of plate boundary given images or descriptions of surface features.
+    * Explain which types of plate boundaries create crust, and which destroy crust
+
+
+Fractions Intro (http://phet.colorado.edu/en/simulation/fractions-intro)
+
+Explore Fractions Intro while you help yourself to 1/3 of a chocolate cake and wash it down with 1/2 a
+glass of orange juice! Create your own fractions using fun interactive objects. Match shapes and numbers
+to earn stars in the fractions games. Challenge yourself on any level you like. Try to collect lots of
+stars!
+
+Learning goals include:
+    * Predict and explain how changing the numerator or denominator of a fraction affects the fraction's value
+    * Convert between a picture of a fraction, a numeric fraction, and a point on a number line
+    * Find matching fractions using numbers and pictures
+    * Make equivalent fractions using different numbers
+    * Compare fractions using numbers and patterns
+
+
+*** Check Out These Other New Simuations:
+    * Fraction Matcher (http://phet.colorado.edu/en/simulation/fraction-matcher)
+    * Gene Expression - Basics (http://phet.colorado.edu/en/simulation/gene-expression-basics)
+
+
+*** Don't forget to join us on Facebook, Twitter and our Blog!
+
+Be the first to learn about new sims, new teacher activities, articles and newsletters. We'd also
+love to hear how you use PhET in your classrooms. Spread the word so PhET can go viral....
+
+Join us on Facebook: http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall
+Follow us on Twitter icon: http://twitter.com/PhETSims
+Read our blog: http://phet.colorado.edu/blog/
+
+
+Help keep PhET free! Individual donations bring science to kids in your town and around the world.
+
+Your donation brings science to kids in your town and around the world. So please consider:
+$15      if you're a teacher who uses a few sims
+$25-50+  if you use more sims
+$200+    for individual schools
+$500+    for districts
+
+Donate now: https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125
+
+All donations are tax deductible.
+
+Thanks for your support!
+
+
+*** See our PhET Training Webinar
+
+See the new PhET Training Webinar hosted by Oregon Virtual Schools. You can download materials
+(http://orvsdtraining.org/training-event/using-phet-objects/), watch the webinar or use it for
+holding a workshop. For more materials on holding a workshop, email Patricia Loeblein
+(patricia.loeblein@colorado.edu).
+
+
+*** In the Pipeline:
+    * Collision Lab (for the iPad!)
+    * Force and Motion: Basics
+    * Energy Forms and Changes
+    * Line Graphing
+    * Chemical Reactions
+    * Molecule Shapes (upgrade)
+    * and more...
+
+
+*** Upcoming Events:
+
+Virtual School Symposium (http://vss.inacol.org/)
+New Orleans, LA
+October 21-24, 2012
+
+American Chemical Society (http://portal.acs.org/portal/acs/corg/content?_nfpb=true&_pageLabel=PP_MEETINGS&node_id=86&use_sec=false&__uuid=35e6318a-73f0-4453-a95e-d63d15b388dc)
+New Orleans, LA
+April 7-11, 2013
+
+NSTA (http://www.nsta.org/conferences/2013san/)
+San Santonio, TX
+April 11-14, 2013
+
+National Council of Teachers of Mathematics (http://www.nctm.org/denver/)
+Denver, CO
+April 17-20, 2013
+
+
+*** Feedback or Suggestions?
+
+If you have any ideas, please let us know at phethelp@colorado.edu.
+
+
+You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
+phethelp@colorado.edu. To opt out of these newsletters, please click on this link: @UNSUBSCRIBE@ or copy and paste the text into your browser.
+
+PhET Interactive Simulations | University of Colorado 390 UCB | Boulder, CO 80309-0390
