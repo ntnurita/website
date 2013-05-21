@@ -46,6 +46,9 @@ public class StringChanges {
 
         StringUtils.addString( session, "home.stayConnected", "If you want to stay informed of the latest PhET activities, join us on Facebook, Twitter, our blog or sign up for our newsletter." );
 
+        StringUtils.addString( session, "donation-banner.phetsEndOfSchoolCampaign", "PhET's End of School Campaign" );
+        StringUtils.addString( session, "donation-banner.summerVacation", "Over the summer PhET will be hard at work upgrading our simulations for the new school year! Help support our summer vacation work and give the gift of learning by donating today!" );
+
         session.close();
     }
 
