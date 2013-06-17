@@ -317,6 +317,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor NDLA = new LogoSponsor(
+            "Norwegian Digital Learning Arena",
+            "http://ndla.no/en",
+            Images.LOGO_NDLA, "padding: 0px;" ) {{
+        setHomeWeight( 5 );
+        setSimWeight( 5 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -357,6 +365,7 @@ public abstract class Sponsor implements Serializable {
             CENGAGE,
             CNEC,
             WHRO,
+            NDLA,
             YOU
     };
 
