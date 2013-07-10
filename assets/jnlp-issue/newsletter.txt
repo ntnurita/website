@@ -1,0 +1,26 @@
+PhET Sims: Work around for recent Java update and incompatibility with PhET
+
+Dear PhET Users,
+On June 18, 2013, Oracle released Java 7 update 25 (1.7.0_25), which introduced an incompatibility that prevents PhET simulations from
+launching when using either the "Run Now" button on the website or the PhET Offline Website installer.
+
+Oracle has fixed the problem and the fix should be available in the next version of Java (although this new version may not be released for some time).
+
+Until this problem has been resolved, the best work-around for users experiencing this issue is to download local copies of the simulations.
+When you press the "Download" button on a sim page, a ".jar" file will be downloaded. You can then double click the ".jar" file to run the sim locally.
+(Please note: on a Mac, you will have to right-click the ".jar" file and select "Open")
+
+Your PhET Team
+
+PhET Website: http://phet.colorado.edu
+Follow PhET:
+    Read our blog: http://phet.colorado.edu/blog/
+    Join us on Facebook: http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall
+    Follow us on Twitter: http://twitter.com/PhETSims
+
+Do you use PhET? Consider donating to PhET to support new sims and science education worldwide at http://phet.colorado.edu/en/donate.
+
+You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
+phethelp@colorado.edu. To opt out of these newsletters, please click on this link: @UNSUBSCRIBE@ or copy and paste the text into your browser.
+
+PhET Interactive Simulations | University of Colorado 390 UCB | Boulder, CO 80309-0390
