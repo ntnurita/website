@@ -17,7 +17,7 @@ public class JavaSecurityBanner extends PhetPanel {
     public JavaSecurityBanner( String id, final PageContext context ) {
         super( id, context );
         
-        // params: value, onclick="window.open('https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125','_blank');"
+        // params: value, onclick="window.open('https://donatenow.networkforgood.org/1437859','_blank');"
         add( new WebMarkupContainer( "security-button" ){{
             add( new AttributeModifier( "onclick", true, new Model<String>( "window.open('" + JavaSecurity.getLinker().getRawUrl( context, getPhetCycle() ) + "','_blank');" ) ) );
         }} );

@@ -34,7 +34,7 @@ public class DonatePanel extends PhetPanel {
         return "donate";
     }
 
-    // currently redirecting English version to https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125
+    // currently redirecting English version to https://donatenow.networkforgood.org/1437859
     public static RawLinkable getLinker() {
         return new AbstractLinker() {
             @Override

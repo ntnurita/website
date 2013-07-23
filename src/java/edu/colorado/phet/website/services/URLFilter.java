@@ -49,7 +49,7 @@ public class URLFilter implements Filter {
 
             // temporary redirection to the donation URL:
             httpResponse.setStatus( HttpServletResponse.SC_MOVED_TEMPORARILY );
-            httpResponse.setHeader( "Location", "https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125" );   
+            httpResponse.setHeader( "Location", "https://donatenow.networkforgood.org/1437859" );
         }
         else if ( servletRequest instanceof HttpServletRequest
                   && ( httpRequest.getRequestURL().toString().endsWith( "phet.colorado.edu/sponsor-test" ) ) ) {
