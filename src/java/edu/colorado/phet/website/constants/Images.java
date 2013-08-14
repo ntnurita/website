@@ -10,7 +10,7 @@ import edu.colorado.phet.website.util.ImageHandle;
  * All (hopefully all) dynamically inserted images. Does NOT include background images used in CSS
  */
 public class Images {
-    public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo.gif", true );
+    public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo-117.png", true );
     public static final ImageHandle PHET_LOGO_YELLOW = new ImageHandle( "/images/phet-logo-yellow.png", true );
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
 

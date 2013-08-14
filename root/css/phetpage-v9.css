@@ -7,7 +7,8 @@ body {
 
 #page-header {
     /*background: url('../images/header_BG.gif') left top repeat-x;*/
-    background: url('../images/header_BG-yellow.png') left top repeat-x;
+    /*background: url('../images/header_BG-yellow.png') left top repeat-x;*/
+    background-color: #2a326a;
     height: 127px;
 }
 
@@ -26,15 +27,12 @@ body {
 /* Place the "50 million sims delivered" or whatnot message in the top of the logo */
 #page-header-sims-served {
     position: absolute;
-    width: 242px;
-    left: 0;
-    top: 9px;
-    font-size: 10px;
-    color: #ffa;
+    left: 240px;
+    top: 26px;
+    font-size: 13px;
+    color: #fff;
     font-style: italic;
-
-    /* center the text in the top of the logo*/
-    text-align: center;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 div.rtl #page-header-logo {
@@ -43,13 +41,15 @@ div.rtl #page-header-logo {
 }
 
 .header-logo-image {
-    background-color: #18388c;
+    /*background-color: #18388c;*/
+    position: relative;
+    top: 8px;
 }
 
 #page-header-search {
     position: absolute;
-    right: 10px;
-    bottom: 20px;
+    right: 245px;
+    bottom: 7px;
     text-align: right;
     vertical-align: bottom;
     color: white;
@@ -70,12 +70,13 @@ div.rtl #page-header-search {
     left: 10px;
 }
 
-#page-header-title {
+#page-header-cu {
     position: absolute;
-    width: 400px;
-    height: 127px;
     right: 0;
-    top: 0;
+    bottom: 9px;
+    color: #fff;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
 }
 
 div.rtl #page-header-title {
