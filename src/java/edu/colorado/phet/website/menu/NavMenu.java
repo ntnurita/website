@@ -349,6 +349,9 @@ public class NavMenu implements Serializable {
             location.addChild( translatedSimsLocation );
             locationsBelowCategories.add( translatedSimsLocation );
 
+            NavLocation html5SimsLocation = new NavLocation( location, "html", TranslatedSimsPage.getLinker() );
+            addLocation( html5SimsLocation );
+
             PhetLocales phetLocales = PhetWicketApplication.get().getSupportedLocales();
             for ( String localeName : phetLocales.getSortedNames() ) {
                 Locale locale = phetLocales.getLocale( localeName );

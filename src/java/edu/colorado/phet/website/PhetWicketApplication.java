@@ -95,6 +95,7 @@ import edu.colorado.phet.website.content.media.WorldPhotosPage;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.ByGradeLevelPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
+import edu.colorado.phet.website.content.simulations.HTML5Page;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
@@ -239,6 +240,7 @@ public class PhetWicketApplication extends WebApplication {
 
         // create a url mapper, and add the page classes to it
         mapper = new PhetUrlMapper();
+        HTML5Page.addToMapper( mapper );
         ByGradeLevelPage.addToMapper( mapper ); // always add this before CategoryPage so it can display the icons
         CategoryPage.addToMapper( mapper );
         SimulationPage.addToMapper( mapper );
