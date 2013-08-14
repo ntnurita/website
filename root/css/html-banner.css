@@ -11,6 +11,7 @@
     position: relative;
     height: 80px;
     width: 100%;
+    text-decoration: none;
 }
 
 .html-banner-container .html-banner-text {
@@ -26,8 +27,8 @@
 
 .html-banner-container .html-banner-logo {
     display: block;
-    /*position: relative;*/
-    /*top: -60px;*/
+    position: relative;
+    top: -80px;
     /*left: 220px;*/
     /*margin: 0 auto;*/
 }
@@ -35,7 +36,7 @@
 .html-banner-container .html-banner-image {
     display: table;
     position: relative;
-    top: -60px;
+    top: 20px;
     left: 240px;
     margin: 0 auto;
 }
@@ -44,7 +45,7 @@
     display: table;
     position: relative;
     color: black;
-    top: -160px;
+    top: -80px;
     left: 240px;
     margin: 0 auto;
     line-height: 20px;
