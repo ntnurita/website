@@ -12,8 +12,22 @@
 <body>
 
 <wicket:extend>
-    <div wicket:id="breadcrumbs">Sample Title</div>
-    <!--<div wicket:id="html5-panel" wicket:message="dir:language.dir"/>-->
+    <div class="html-page">
+        <div wicket:id="breadcrumbs" class="html-breadcrumbs">Sample Title</div>
+        <div wicket:id="html-panel" wicket:message="dir:language.dir"></div>
+        <div class="main-footer">
+            <div class="main-footer-spacer"></div>
+            <div class="other-languages">
+                <div wicket:id="translation-credits" style="margin-bottom: 5px;" class="translation-credits">
+                    This is the credits line for the translation.
+                </div>
+                <span wicket:id="translation-links">Translation links</span>
+            </div>
+            <div class="copyright">&copy; 2011 University of Colorado. <a href="#" wicket:id="some-rights-link">
+                <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
+            </a></div>
+        </div>
+    </div>
 </wicket:extend>
 
 </body>

@@ -6,12 +6,19 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.model.StringResourceModel;
 
+import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.constants.WebsiteConstants;
+import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.panels.NavBreadCrumbs;
+import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.templates.PhetPage;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.links.AbstractLinker;
@@ -24,7 +31,7 @@ public class HTML5Page extends PhetPage {
     public HTML5Page( final PageParameters parameters ) {
         super( parameters );
 
-//        add( new ByGradeLevelPanel( "by-grade-level-panel", getPageContext() ) );
+        add( new HTML5Panel( "html-panel", getPageContext() ) );
 
         NavLocation location = getNavMenu().getLocationByKey( "html" );
 
@@ -35,6 +42,28 @@ public class HTML5Page extends PhetPage {
                 getPhetLocalizer().getString( location.getLocalizationKey(), this )
         } ) );
 //        addTitle( new StringResourceModel( "simulationDisplay.title", this, null, new Object[]{new StringResourceModel( location.getLocalizationKey(), this, null )} ) );
+
+        /*---------------------------------------------------------------------------*
+        * Footer
+        *----------------------------------------------------------------------------*/
+
+        // TODO: remove duplication from this and PhetMenuPage
+        if ( !getMyLocale().equals( WebsiteConstants.ENGLISH ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
+            add( new LocalizedText( "translation-credits", "translation.credits" ) );
+        }
+        else {
+            add( new InvisibleComponent( "translation-credits" ) );
+        }
+
+        if ( DistributionHandler.displayTranslationLinksPanel( (PhetRequestCycle) getRequestCycle() ) ) {
+            add( new TranslationLinksPanel( "translation-links", getPageContext() ) );
+        }
+        else {
+            add( new InvisibleComponent( "translation-links" ) );
+        }
+        //add( HeaderContributor.forCss( CSS.MENU_PAGE ) );
+
+        add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
 
     }
 

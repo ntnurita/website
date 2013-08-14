@@ -52,6 +52,7 @@ public abstract class PhetMenuPage extends PhetPage {
             }
         }.instantiate( "sponsors-panel", getPageContext(), getPhetCycle() ) );
 
+        // TODO: remove duplication from this and HTML5Page
         if ( !getMyLocale().equals( WebsiteConstants.ENGLISH ) && getPhetLocalizer().getString( "translation.credits", this ).length() > 0 ) {
             add( new LocalizedText( "translation-credits", "translation.credits" ) );
         }
