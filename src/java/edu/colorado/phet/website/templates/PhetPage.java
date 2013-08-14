@@ -36,6 +36,7 @@ import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
+import edu.colorado.phet.website.content.simulations.HTML5Page;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
 import edu.colorado.phet.website.panels.DonationBannerRegularPanel;
@@ -249,7 +250,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
 
 
         // hide the banner for the installer, and switch banner type based on the page
-        if ( PhetRequestCycle.get().isOfflineInstaller() ) {
+        if ( PhetRequestCycle.get().isOfflineInstaller() || this instanceof HTML5Page ) {
             add( new InvisibleComponent( "html-banner" ) );
         }
         else if ( this instanceof IndexPage ) {
