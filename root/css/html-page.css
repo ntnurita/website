@@ -11,7 +11,7 @@
 
 .html-right-panel {
     margin-top: 10px;
-    width: 220px;
+    width: 224px;
     float: right;
     text-align: center;
 }
@@ -22,11 +22,12 @@
     text-decoration: none;
     background-color: black;
     border: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
 }
 
 .html-video-thumbnail {
     opacity: 0.8;
-    border: none;
+    border: 2px solid black;
 }
 
 .html-video-play-button {
@@ -35,7 +36,7 @@
     height: 50px;
     background-color: black;
     top: 37px;
-    left: 75px;
+    left: 77px;
     border-radius: 15px;
     opacity: 0.7;
 }
@@ -58,10 +59,13 @@
 
 .html-text-our-new-html5-sims {
     display: block;
-    color: white;
-    font-size: 16px;
+    color: black;
+    font-size: 18px;
     padding: 5px;
-    background-color: #2a326a;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-top: none;
+    /*background-color: #6acef5;*/
 }
 
 .html-why-html5 {
