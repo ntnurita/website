@@ -17,6 +17,8 @@ public class HTML5Panel extends PhetPanel {
 
 //        TODO: localize (alt attributes)
 
+        add( new StaticImage( "html-video-thumbnail", Images.HTML5_VIDEO_THUMBNAIL_220, null ) );
+
 //        Link elementaryLink = getNavMenu().getLocationByKey( Category.ELEMENTARY_SCHOOL ).getLink( "elementary-school-link", context, getPhetCycle() );
 //        elementaryLink.add( new StaticImage( "elementary-image", Images.BY_LEVEL_ELEMENTARY_SCHOOL, null ) );
 //        add( elementaryLink );

@@ -17,9 +17,43 @@
 }
 
 .html-video-container {
+    position: relative;
     display: block;
     text-decoration: none;
-    background-color: #2a326a;
+    background-color: black;
+    border: none;
+}
+
+.html-video-thumbnail {
+    opacity: 0.8;
+    border: none;
+}
+
+.html-video-play-button {
+    position: absolute;
+    width: 70px;
+    height: 50px;
+    background-color: black;
+    top: 37px;
+    left: 75px;
+    border-radius: 15px;
+    opacity: 0.7;
+}
+
+.html-video-play-button:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 24px solid white;
+    top: 13px;
+    left: 25px;
+}
+
+.html-video-container:hover .html-video-play-button {
+    background-color: #c00;
 }
 
 .html-text-our-new-html5-sims {
@@ -27,6 +61,7 @@
     color: white;
     font-size: 16px;
     padding: 5px;
+    background-color: #2a326a;
 }
 
 .html-why-html5 {
