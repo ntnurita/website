@@ -27,6 +27,7 @@
 
 .html-video-thumbnail {
     opacity: 0.8;
+    display: block;
     border: 2px solid black;
 }
 
@@ -70,4 +71,5 @@
 
 .html-why-html5 {
     font-size: 18px;
+    margin: 30px auto;
 }
