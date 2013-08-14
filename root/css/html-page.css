@@ -1,7 +1,7 @@
 /* Copyright 2002-2013, University of Colorado */
 
 .html-page {
-    width: 765px;
+    width: 865px;
     margin: 0 auto;
 }
 
@@ -11,7 +11,7 @@
 
 .html-right-panel {
     margin-top: 10px;
-    width: 224px;
+    width: 324px;
     float: right;
     text-align: center;
 }
