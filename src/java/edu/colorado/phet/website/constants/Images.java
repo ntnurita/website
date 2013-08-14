@@ -14,6 +14,8 @@ public class Images {
     public static final ImageHandle PHET_LOGO_YELLOW = new ImageHandle( "/images/phet-logo-yellow.png", true );
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
 
+    public static final ImageHandle HTML5_LOGO_80 = new ImageHandle( "/images/HTML5_Badge_banner.png", true );
+
     public static final ImageHandle TRANSLATION_UTILITY_SMALL = new ImageHandle( "/images/screenshots/translation-utility-small.png", true );
 
     public static final ImageHandle GUIDANCE_RECOMMENDED = new ImageHandle( "/images/ratings/guidance-recommended.png", true );
