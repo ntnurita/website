@@ -8,3 +8,27 @@
 .html-breadcrumbs {
     margin: 15px 0;
 }
+
+.html-right-panel {
+    margin-top: 10px;
+    width: 220px;
+    float: right;
+    text-align: center;
+}
+
+.html-video-container {
+    display: block;
+    text-decoration: none;
+    background-color: #2a326a;
+}
+
+.html-text-our-new-html5-sims {
+    display: block;
+    color: white;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.html-why-html5 {
+    font-size: 18px;
+}
