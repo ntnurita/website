@@ -28,6 +28,8 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.kilobytes", "{0} will be replaced by the size of the simulation download (number of kilobytes)" );
         addString( "simulationMainPanel.runOffline" );
         addString( "simulationMainPanel.runOnline" );
+        addString( "simulationMainPanel.runHTML" );
+        addString( "simulationMainPanel.worksInBrowsersTablets" );
         addString( "simulationMainPanel.frequentlyAskedQuestions" );
         addString( "simulationMainPanel.simulationHasFAQ" );
         addString( "simulationMainPanel.tipsForTeachers" );

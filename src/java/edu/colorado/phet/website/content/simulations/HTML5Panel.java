@@ -9,6 +9,7 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -40,6 +41,12 @@ public class HTML5Panel extends PhetPanel {
         }
 
         add( new SocialBookmarkPanel( "social-bookmark-panel", context, getFullPath( context ), getPhetLocalizer().getString( "nav.html", this ) ) );
+
+        if ( this.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
+            add( new InvisibleComponent( "html-translations-coming-soon" ) );
+        } else {
+            add( new WebMarkupContainer( "html-translations-coming-soon" ) );
+        }
 
 //        add( new StaticImage( "html-video-thumbnail", Images.HTML5_VIDEO_THUMBNAIL_220, null ) );
     }

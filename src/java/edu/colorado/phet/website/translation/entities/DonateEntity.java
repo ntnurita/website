@@ -17,6 +17,7 @@ public class DonateEntity extends TranslationEntity {
         addString( "donate.ifUseSimulations" );
         addString( "donate.anySize" );
         addString( "donate.donateNow" );
+        addString( "donate.donateNowBang" );
         addString( "donate.questions" );
         addString( "donate.note" );
         addString( "donation-banner.donateToAdvanceScience" );

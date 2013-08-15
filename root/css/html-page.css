@@ -89,3 +89,13 @@
     border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
     font-weight: bold;
 }
+
+#html5-translations-soon {
+    /*display: none;*/
+    font-size: 16px;
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
+    border: 1px solid #444;
+    font-weight: bold;
+}

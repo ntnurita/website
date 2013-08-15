@@ -16,6 +16,9 @@ public class MiscellaneousEntity extends TranslationEntity {
         addString( "changelog.raw" );
         addString( "metadata.rights" );
         addString( "metadata.rightsGplOnly" );
+        addString( "html5.tryOurNewHTML5Sims" );
+        addString( "html5.features-missing" );
+        addString( "html5.translations-soon" );
         addString( PhetLocalizer.DROP_DOWN_CHOICE_NULL_KEY, "Text shown on drop-down boxes when one choice needs to be selected" );
     }
 
