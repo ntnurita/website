@@ -45,6 +45,10 @@
     border: none;
 }
 
+div.rtl .html-banner-container .html-banner-image {
+    left: -280px !important;
+}
+
 .html-banner-container .html-banner-html {
     position: absolute;
     color: black;
@@ -58,4 +62,8 @@
     text-align: center;
     background-color: white;
     font-stretch: expanded;
+}
+
+div.rtl .html-banner-container .html-banner-html {
+    left: -275px !important;
 }
