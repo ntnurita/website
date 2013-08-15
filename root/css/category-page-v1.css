@@ -10,14 +10,18 @@
     position: relative;
 }
 
-.simulation-list-item.htmlSim:after {
-    content: "";
+.simulation-list-item .simulation-link {
+    position: relative;
+}
+
+.sim-badge-html {
+    display: block;
     position: absolute;
     background-image: url(../images/HTML5_Logo_32_drop.png);
     width: 32px;
     height: 38px;
-    left: 132px;
-    top: 64px;
+    left: 111px;
+    top: -23px;
 }
 
 .simulation-list-thumbnail {
