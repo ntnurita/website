@@ -9,4 +9,9 @@ $( document ).ready( function() {
     $( '.autocompleteOff' ).each( function() {
         $( this ).attr( 'autocomplete', 'off' );
     } );
+  if(!Modernizr.svg) {
+    $('img[src*="svg"]').attr('src', function() {
+      return $(this).attr('src').replace('.svg', '.png');
+    });
+  }
 } );
