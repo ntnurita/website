@@ -111,6 +111,23 @@ div.rtl .simulation-main-image-panel {
     border-bottom-color: #99ffff;
 }
 
+.simStyleOrange {
+    background-color: #f17e18;
+    border: 1px solid #ffdd33;
+    border-right-color: #775500;
+    border-bottom-color: #775500;
+}
+
+.simStyleOrange:hover {
+    background-color: #d97216;
+}
+
+.simStyleOrange:active {
+    border: 1px solid #775500;
+    border-right-color: #ffdd33;
+    border-bottom-color: #ffdd33;
+}
+
 .sim-embed {
     float: left;
     clear: left;

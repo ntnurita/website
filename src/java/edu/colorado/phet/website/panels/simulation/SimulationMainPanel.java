@@ -5,9 +5,11 @@
 package edu.colorado.phet.website.panels.simulation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
@@ -79,6 +81,18 @@ public class SimulationMainPanel extends PhetPanel {
 
     private static final Logger logger = Logger.getLogger( SimulationMainPanel.class.getName() );
 
+    // maps Java/Flash sim names into HTML runnable English URLs. TODO: figure out something better
+    private static final Map<String,String> HTML_SIM_LINK_MAP = new HashMap<String, String>();
+
+    static {
+        HTML_SIM_LINK_MAP.put( "balloons", "/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" );
+        HTML_SIM_LINK_MAP.put( "beers-law-lab", "/sims/html/beers-law-lab/latest/beers-law-lab_en.html" );
+        HTML_SIM_LINK_MAP.put( "forces-and-motion-basics", "/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" );
+        HTML_SIM_LINK_MAP.put( "molarity", "/sims/html/molarity/latest/molarity_en.html" );
+        HTML_SIM_LINK_MAP.put( "ohms-law", "/sims/html/ohms-law/latest/ohms-law_en.html" );
+        HTML_SIM_LINK_MAP.put( "resistance-in-a-wire", "/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" );
+    }
+
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {
         super( id, context );
 
@@ -111,6 +125,18 @@ public class SimulationMainPanel extends PhetPanel {
         add( new LocalizedText( "simulationMainPanel.kilobytes", "simulationMainPanel.kilobytes", new Object[]{
                 simulation.getSimulation().getKilobytes()
         } ) );
+
+        {
+            String name = simulation.getSimulation().getName();
+            if ( HTML_SIM_LINK_MAP.containsKey( name ) ) {
+                WebMarkupContainer container = new WebMarkupContainer( "html-button" );
+                // TODO: isolate specific HTML5 sim links out!
+                container.add( new RawLink( "html-link", HTML_SIM_LINK_MAP.get( name ) ) );
+                add( container );
+            } else {
+                add( new InvisibleComponent( "html-button" ) );
+            }
+        }
 
         SmallOrangeButtonBorder orangeButton = new SmallOrangeButtonBorder( "orange-button", context );
         add( orangeButton );
