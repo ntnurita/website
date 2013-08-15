@@ -67,6 +67,7 @@ import edu.colorado.phet.website.content.SessionExpiredPage;
 import edu.colorado.phet.website.content.SponsorListPage;
 import edu.colorado.phet.website.content.StayConnectedPanel;
 import edu.colorado.phet.website.content.TeacherIdeasPanel;
+import edu.colorado.phet.website.content.TheFutureOfPhet;
 import edu.colorado.phet.website.content.TranslationUtilityPanel;
 import edu.colorado.phet.website.content.about.AboutContactPanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
@@ -302,6 +303,8 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "admin/new-installer", AdminNewInstallerPage.class );
         mountBookmarkablePage( "admin/tech-docs", TechnicalDocPage.class );
         mountBookmarkablePage( "admin/translation-docs", TranslationDocPage.class );
+
+        mountBookmarkablePage( "2013/the-future-of-phet", TheFutureOfPhet.class );
 
         // services
         mountBookmarkablePage( "services/phet-info", PhetInfoServicePage.class );
