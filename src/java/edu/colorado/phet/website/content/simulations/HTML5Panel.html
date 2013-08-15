@@ -32,6 +32,44 @@
             </div>
 
             <p class="html-why-html5"><a href="">The Future of PhET</a></p>
+
+            <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+                <a class="simStyleOrange sim-button" href="#" wicket:id="donate-link">
+                    <wicket:message key="donate.donateNowBang">Donate Now!</wicket:message>
+                </a>
+            </div>
+
+            <div id="sponsor-spot" style="padding-top: 10px;display: none;"></div>
+            <script type="text/javascript">
+                //<![CDATA[
+                (function() {
+                    var r = Math.random() * phetSimSponsors.totalWeight;
+                    var i;
+                    for ( i = 0; i <= phetSimSponsors.sponsors.length; i++ ) {
+                        r -= phetSimSponsors.sponsors[i].weight;
+                        if ( r <= 0 ) {
+                            break;
+                        }
+                    }
+                    var html = phetSimSponsors.sponsors[i].html;
+                    var ddToReplace = document.getElementById( 'sponsor-spot' );
+                    ddToReplace.innerHTML = html;
+                    ddToReplace.style.display = "block";
+                })();
+                //]]>
+            </script>
+            <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
+                (function() {
+                    var otherImageSrc = document.getElementById( "phet-logo-main-image" ).src;
+                    // 0x2F is for a slash, to fool the httrack ripper
+                    var lastIndex = Math.max( otherImageSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), otherImageSrc.lastIndexOf( "\\" ) );
+                    var newImagesDirectory = otherImageSrc.substring( 0, lastIndex );
+                    document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
+                })();
+            </script>
+            <noscript>
+                <div wicket:id="html-sponsor" style="padding-top: 10px;"></div>
+            </noscript>
         </div>
         <table>
             <tr>

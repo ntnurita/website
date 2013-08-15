@@ -2,12 +2,18 @@
 
 package edu.colorado.phet.website.content.simulations;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
 
+import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
+import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.util.PageContext;
 
 public class HTML5Panel extends PhetPanel {
@@ -15,25 +21,24 @@ public class HTML5Panel extends PhetPanel {
     public HTML5Panel( String id, final PageContext context ) {
         super( id, context );
 
-//        TODO: localize (alt attributes)
+        add( DonatePanel.getLinker().getLink( "donate-link", context, getPhetCycle() ) );
+
+        if ( getPhetCycle().isInstaller() ) {
+            add( new WebMarkupContainer( "sim-sponsor-installer-js" ) );
+        }
+        else {
+            add( new InvisibleComponent( "sim-sponsor-installer-js" ) );
+        }
+
+        if ( DistributionHandler.showSimSponsor( getPhetCycle() ) ) {
+            // this gets cached, so it will stay the same for the sim (but will be different for different sims)
+            add( new SimSponsorPanel( "html-sponsor", context, Sponsor.chooseRandomSimSponsor() ) );
+        }
+        else {
+            add( new InvisibleComponent( "html-sponsor" ) );
+        }
 
 //        add( new StaticImage( "html-video-thumbnail", Images.HTML5_VIDEO_THUMBNAIL_220, null ) );
-
-//        Link elementaryLink = getNavMenu().getLocationByKey( Category.ELEMENTARY_SCHOOL ).getLink( "elementary-school-link", context, getPhetCycle() );
-//        elementaryLink.add( new StaticImage( "elementary-image", Images.BY_LEVEL_ELEMENTARY_SCHOOL, null ) );
-//        add( elementaryLink );
-//
-//        Link middleLink = getNavMenu().getLocationByKey( Category.MIDDLE_SCHOOL ).getLink( "middle-school-link", context, getPhetCycle() );
-//        middleLink.add( new StaticImage( "middle-image", Images.BY_LEVEL_MIDDLE_SCHOOL, null ) );
-//        add( middleLink );
-//
-//        Link highLink = getNavMenu().getLocationByKey( Category.HIGH_SCHOOL ).getLink( "high-school-link", context, getPhetCycle() );
-//        highLink.add( new StaticImage( "high-image", Images.BY_LEVEL_HIGH_SCHOOL, null ) );
-//        add( highLink );
-//
-//        Link universityLink = getNavMenu().getLocationByKey( Category.UNIVERSITY ).getLink( "university-link", context, getPhetCycle() );
-//        universityLink.add( new StaticImage( "university-image", Images.BY_LEVEL_UNIVERSITY, null ) );
-//        add( universityLink );
     }
 
 }
