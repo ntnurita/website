@@ -4,8 +4,20 @@
     margin-right: 10px;
     width: 130px;
     vertical-align: top;
-    font-size: 9pt;
+    font-size: 12px;
     font-weight: bold;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    position: relative;
+}
+
+.simulation-list-item.htmlSim:after {
+    content: "";
+    position: absolute;
+    background-image: url(../images/HTML5_Logo_32_drop.png);
+    width: 32px;
+    height: 38px;
+    left: 132px;
+    top: 64px;
 }
 
 .simulation-list-thumbnail {

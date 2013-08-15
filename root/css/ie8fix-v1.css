@@ -1,0 +1,6 @@
+/* Copyright 2002-2013, University of Colorado */
+
+/* Due to the stacking bug that is putting :after under a child */
+.simulation-list-item.htmlSim:after {
+    display: none !important;
+}
