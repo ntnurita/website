@@ -45,6 +45,7 @@ import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
+import edu.colorado.phet.website.content.simulations.HTML5Page;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
@@ -344,7 +345,7 @@ public class NavMenu implements Serializable {
             location.addChild( allLocation );
             locationsBelowCategories.add( allLocation );
 
-            NavLocation translatedSimsLocation = new NavLocation( location, "simulations.translated", TranslatedSimsPage.getLinker() );
+            NavLocation translatedSimsLocation = new NavLocation( location, "simulations.translated", HTML5Page.getLinker() );
             addLocation( translatedSimsLocation );
             location.addChild( translatedSimsLocation );
             locationsBelowCategories.add( translatedSimsLocation );
