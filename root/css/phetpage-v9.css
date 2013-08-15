@@ -27,7 +27,7 @@ body {
 /* Place the "50 million sims delivered" or whatnot message in the top of the logo */
 #page-header-sims-served {
     position: absolute;
-    left: 240px;
+    left: 255px;
     top: 26px;
     font-size: 13px;
     color: #fff;
@@ -48,7 +48,7 @@ div.rtl #page-header-logo {
 
 #page-header-search {
     position: absolute;
-    right: 245px;
+    left: 255px;
     bottom: 7px;
     text-align: right;
     vertical-align: bottom;
