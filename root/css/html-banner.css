@@ -14,6 +14,10 @@
     text-decoration: none;
 }
 
+.html-banner-container:hover {
+    opacity: 0.9;
+}
+
 .html-banner-container .html-banner-text {
     line-height: 80px;
     font-variant: small-caps;
