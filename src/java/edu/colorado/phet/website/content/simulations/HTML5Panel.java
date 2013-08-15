@@ -12,6 +12,7 @@ import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.util.PageContext;
@@ -37,6 +38,8 @@ public class HTML5Panel extends PhetPanel {
         else {
             add( new InvisibleComponent( "html-sponsor" ) );
         }
+
+        add( new SocialBookmarkPanel( "social-bookmark-panel", context, getFullPath( context ), getPhetLocalizer().getString( "nav.html", this ) ) );
 
 //        add( new StaticImage( "html-video-thumbnail", Images.HTML5_VIDEO_THUMBNAIL_220, null ) );
     }

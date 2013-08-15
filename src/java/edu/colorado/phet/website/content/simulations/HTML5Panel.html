@@ -17,7 +17,7 @@
 <body wicket:message="dir:language.dir">
 
 <wicket:panel>
-    <div wicket:message="dir:language.dir" class="html-panel standard-content" >
+    <div wicket:message="dir:language.dir" class="html-panel standard-content">
         <div id="html5-features-missing">
             Your browser is missing features required to run our HTML5 simulations. Internet Explorer 9+ or recent versions of
             Firefox, Chrome and Safari are recommended.
@@ -25,11 +25,14 @@
         <div class="html-right-panel">
             <div class="html-video-container">
                 <!--<img src="../../../../../../../../root/images/creating-next-generation-phet-sims-220.png" alt="Creating Next Generation PhET Sims (YouTube video)"-->
-                        <!--class="html-video-thumbnail" wicket:id="html-video-thumbnail"/>-->
-                <iframe class="html-video-thumbnail" width="320" height="180" src="//www.youtube.com/embed/eBGYTPJOiNU" frameborder="0" allowfullscreen></iframe>
+                <!--class="html-video-thumbnail" wicket:id="html-video-thumbnail"/>-->
+                <iframe class="html-video-thumbnail" width="320" height="180" src="//www.youtube.com/embed/eBGYTPJOiNU" frameborder="0"
+                        allowfullscreen></iframe>
                 <!--<span class="html-video-play-button"></span>-->
                 <span class="html-text-our-new-html5-sims">Our New <strong>HTML5</strong> Sims</span>
             </div>
+
+            <div wicket:id="social-bookmark-panel" class="html-social-bookmark-panel"></div>
 
             <p class="html-why-html5"><a href="">The Future of PhET</a></p>
 
@@ -42,7 +45,7 @@
             <div id="sponsor-spot" style="padding-top: 10px;display: none;"></div>
             <script type="text/javascript">
                 //<![CDATA[
-                (function() {
+                (function () {
                     var r = Math.random() * phetSimSponsors.totalWeight;
                     var i;
                     for ( i = 0; i <= phetSimSponsors.sponsors.length; i++ ) {
@@ -59,7 +62,7 @@
                 //]]>
             </script>
             <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
-                (function() {
+                (function () {
                     var otherImageSrc = document.getElementById( "phet-logo-main-image" ).src;
                     // 0x2F is for a slash, to fool the httrack ripper
                     var lastIndex = Math.max( otherImageSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), otherImageSrc.lastIndexOf( "\\" ) );
@@ -76,7 +79,8 @@
                 <td class="simulation-list-item htmlSim">
                     <a href="/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" target="_blank" class="simulation-link">
                         <img class="simulation-list-thumbnail" width="128" height="84"
-                             src="/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics-128.png" alt="Thumbnail for Forces and Motion: Basics"/><br/>
+                             src="/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics-128.png"
+                             alt="Thumbnail for Forces and Motion: Basics"/><br/>
                         <strong><span class="simulation-list-title">Forces and Motion: Basics</span></strong><br/>
                     </a>
                 </td>
@@ -97,9 +101,11 @@
             </tr>
             <tr>
                 <td class="simulation-list-item htmlSim">
-                    <a href="/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" target="_blank" class="simulation-link">
+                    <a href="/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" target="_blank"
+                       class="simulation-link">
                         <img class="simulation-list-thumbnail" width="128" height="84"
-                             src="/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity-128.png" alt="Thumbnail for Balloons and Static Electricity"/><br/>
+                             src="/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity-128.png"
+                             alt="Thumbnail for Balloons and Static Electricity"/><br/>
                         <strong><span class="simulation-list-title">Balloons and Static Electricity</span></strong><br/>
                     </a>
                 </td>

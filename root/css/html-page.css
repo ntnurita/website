@@ -14,6 +14,13 @@
     width: 324px;
     float: right;
     text-align: center;
+    position: relative;
+}
+
+.html-social-bookmark-panel {
+    position: absolute;
+    right: 0;
+    top: 250px;
 }
 
 .html-video-container {
