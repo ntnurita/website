@@ -138,9 +138,11 @@ public class SimulationMainPanel extends PhetPanel {
             }
         }
 
-        SmallOrangeButtonBorder orangeButton = new SmallOrangeButtonBorder( "orange-button", context );
-        add( orangeButton );
-        orangeButton.add( DonatePanel.getLinker().getLink( "support-link", context, getPhetCycle() ) );
+        add( DonatePanel.getLinker().getLink( "donate-link", context, getPhetCycle() ) );
+
+//        SmallOrangeButtonBorder orangeButton = new SmallOrangeButtonBorder( "orange-button", context );
+//        add( orangeButton );
+//        orangeButton.add( DonatePanel.getLinker().getLink( "support-link", context, getPhetCycle() ) );
 
         /*---------------------------------------------------------------------------*
         * rating icons

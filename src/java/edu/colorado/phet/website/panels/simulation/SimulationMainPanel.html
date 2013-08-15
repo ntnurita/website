@@ -112,7 +112,7 @@
                         <wicket:enclosure child="html-button">
                             <div style="clear: both; width: 100%; height: 0; padding: 0; margin: 0; padding-bottom: 12px;"></div>
                             <div style="text-align: center;" wicket:id="html-button">
-                                <a class="simStyleOrange sim-button" href="#" wicket:id="html-link" itemprop="url">
+                                <a class="simStyleOrange sim-button" href="#" wicket:id="html-link">
                                     <wicket:message key="simulationMainPanel.runHTML">Run in HTML5</wicket:message>
                                 </a><br/>
                                 <div style="margin-top: 3px;"><wicket:message key="simulationMainPanel.worksInBrowsersTablets">works in browsers/tablets</wicket:message></div>
@@ -177,10 +177,9 @@
                 the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
             </span>
 
-                    <div wicket:id="orange-button" class="simulation-main-support-button">
-                        <a href="#" wicket:id="support-link" style="font-size: 12px;">
-                            <wicket:message key="simulationMainPanel.supportPhetButton">Support PhET
-                                &gt;</wicket:message>
+                    <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+                        <a class="simStyleOrange sim-button" href="#" wicket:id="donate-link">
+                            <wicket:message key="donate.donateNowBang">Donate Now!</wicket:message>
                         </a>
                     </div>
 

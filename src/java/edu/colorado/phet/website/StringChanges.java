@@ -22,6 +22,9 @@ public class StringChanges {
         Session session = HibernateUtils.getInstance().openSession();
 
         StringUtils.addString( session, "nav.html", "HTML5" );
+        StringUtils.addString( session, "donate.donateNowBang", "Donate Now!" );
+        StringUtils.addString( session, "simulationMainPanel.runHTML", "Run in HTML5" );
+        StringUtils.addString( session, "simulationMainPanel.worksInBrowsersTablets", "works in browsers/tablets" );
 
         session.close();
     }
