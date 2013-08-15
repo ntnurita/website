@@ -345,12 +345,12 @@ public class NavMenu implements Serializable {
             location.addChild( allLocation );
             locationsBelowCategories.add( allLocation );
 
-            NavLocation translatedSimsLocation = new NavLocation( location, "simulations.translated", HTML5Page.getLinker() );
+            NavLocation translatedSimsLocation = new NavLocation( location, "simulations.translated", TranslatedSimsPage.getLinker() );
             addLocation( translatedSimsLocation );
             location.addChild( translatedSimsLocation );
             locationsBelowCategories.add( translatedSimsLocation );
 
-            NavLocation html5SimsLocation = new NavLocation( location, "html", TranslatedSimsPage.getLinker() );
+            NavLocation html5SimsLocation = new NavLocation( location, "html", HTML5Page.getLinker() );
             addLocation( html5SimsLocation );
 
             PhetLocales phetLocales = PhetWicketApplication.get().getSupportedLocales();
