@@ -73,3 +73,12 @@
     font-size: 18px;
     margin: 30px auto;
 }
+
+#html5-features-missing {
+    display: none;
+    font-size: 18px;
+    background-color: #f88;
+    padding: 10px;
+    border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
+    font-weight: bold;
+}
