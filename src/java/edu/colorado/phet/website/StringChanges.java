@@ -23,6 +23,7 @@ public class StringChanges {
 
         StringUtils.addString( session, "nav.html", "HTML5" );
         StringUtils.addString( session, "donate.donateNowBang", "Donate Now!" );
+        StringUtils.overwriteString( session, "donate.donateNowBang", "Donate Now!", "Donate" );
         StringUtils.addString( session, "simulationMainPanel.runHTML", "Run in HTML5" );
         StringUtils.addString( session, "simulationMainPanel.worksInBrowsersTablets", "works in browsers/tablets" );
         StringUtils.addString( session, "html5.tryOurNewHTML5Sims", "TRY OUR NEW HTML5 SIMS" );
