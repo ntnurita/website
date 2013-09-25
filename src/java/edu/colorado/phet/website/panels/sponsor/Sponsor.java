@@ -13,16 +13,17 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.Model;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.components.LinkImageWrapper;
 import edu.colorado.phet.website.components.LinkWrapper;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.WebImage;
+import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.links.RawLinker;
 
 /**
@@ -50,7 +51,7 @@ public abstract class Sponsor implements Serializable {
         return fullName;
     }
 
-    public String getUrl() {
+    public String getUrl( PageContext context ) {
         // TODO: add linker!
         return url;
     }
@@ -325,6 +326,43 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 5 );
     }};
 
+    public static Sponsor ZALANDO = new LogoSponsor(
+            "Zalando",
+            "http://www.zalando.nl",
+            Images.LOGO_ZALANDO, "padding: 0px;" ) {
+        {
+            setHomeWeight( 1 );
+            setSimWeight( 1 );
+        }
+
+        @Override public String getUrl( PageContext context ) {
+            String localeString = LocaleUtils.localeToString( context.getLocale() );
+            String suffix = "nl";
+            if ( localeString.startsWith( "en" ) ) {
+                suffix = "co.uk";
+            }
+            else if ( localeString.startsWith( "da" ) ) {
+                suffix = "dk";
+            }
+            else if ( localeString.startsWith( "it" ) ) {
+                suffix = "it";
+            }
+            else if ( localeString.startsWith( "fr" ) ) {
+                suffix = "fr";
+            }
+            else if ( localeString.startsWith( "de" ) ) {
+                suffix = "de";
+            }
+            else if ( localeString.startsWith( "es" ) ) {
+                suffix = "es";
+            }
+            else if ( localeString.startsWith( "nl" ) ) {
+                suffix = "nl";
+            }
+            return "http://www.zalando." + suffix;
+        }
+    };
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -335,7 +373,7 @@ public abstract class Sponsor implements Serializable {
     public static Random random = new Random();
 
     // NOTE: on adding a sponsor, do we need to update the installer to rip the image?
-    public static Sponsor[] ActiveSponsors = new Sponsor[] {
+    public static Sponsor[] ActiveSponsors = new Sponsor[]{
             HEWLETT_FOUNDATION,
             NSF,
             KSU,
@@ -366,6 +404,7 @@ public abstract class Sponsor implements Serializable {
             CNEC,
             WHRO,
             NDLA,
+            ZALANDO,
             YOU
     };
 
@@ -495,9 +534,10 @@ public abstract class Sponsor implements Serializable {
     }
 
     public static Component createSponsorLogoPanel( String id, final Sponsor sponsor, final PageContext context, final String style, final SponsorContext sponsorContext ) {
-        if ( sponsor.getUrl() != null ) {
+        String url = sponsor.getUrl( context );
+        if ( url != null ) {
             if ( sponsor instanceof LogoSponsor ) {
-                return new LinkImageWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
+                return new LinkImageWrapper( id, context, new RawLinker( url ) ) {
                     {
                         getLink().add( new ClassAppender( "external" ) )
                                 .add( new AttributeModifier( "rel", true, new Model<String>( "nofollow" ) ) );
@@ -510,7 +550,7 @@ public abstract class Sponsor implements Serializable {
                 };
             }
             else {
-                return new LinkWrapper( id, context, new RawLinker( sponsor.getUrl() ) ) {
+                return new LinkWrapper( id, context, new RawLinker( url ) ) {
                     {
                         getLink().add( new ClassAppender( "external" ) )
                                 .add( new AttributeModifier( "rel", true, new Model<String>( "nofollow" ) ) );
