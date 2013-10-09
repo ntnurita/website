@@ -326,6 +326,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 5 );
     }};
 
+    public static Sponsor WHFREEMAN = new LogoSponsor(
+            "W. H. Freeman",
+            "http://www.whfreeman.com",
+            Images.LOGO_WHFREEMAN, "padding: 5px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor ZALANDO = new LogoSponsor(
             "Zalando",
             "http://www.zalando.nl",
@@ -405,6 +413,7 @@ public abstract class Sponsor implements Serializable {
             WHRO,
             NDLA,
             ZALANDO,
+            WHFREEMAN,
             YOU
     };
 
