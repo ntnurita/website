@@ -371,6 +371,14 @@ public abstract class Sponsor implements Serializable {
         }
     };
 
+    public static Sponsor RSC = new LogoSponsor(
+            "Royal Society of Chemistry",
+            "http://www.rsc.org/learn-chemistry",
+            Images.LOGO_RSC, "padding: 0px;" ) {{
+        setHomeWeight( 5 );
+        setSimWeight( 5 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -414,6 +422,7 @@ public abstract class Sponsor implements Serializable {
             NDLA,
             ZALANDO,
             WHFREEMAN,
+            RSC,
             YOU
     };
 
