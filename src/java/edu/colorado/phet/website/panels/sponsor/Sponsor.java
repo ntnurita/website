@@ -379,6 +379,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 5 );
     }};
 
+    public static Sponsor WILEY = new LogoSponsor(
+            "Wiley",
+            "http://www.wiley.com/",
+            Images.LOGO_WILEY, "padding: 0px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -423,6 +431,7 @@ public abstract class Sponsor implements Serializable {
             ZALANDO,
             WHFREEMAN,
             RSC,
+            WILEY,
             YOU
     };
 
