@@ -415,7 +415,7 @@ public abstract class Sponsor implements Serializable {
             OREGON_DEPARTMENT_OF_EDUCATION,
             JEFFERSON_COUNTY_VLA,
             CAROLINA_CORP,
-            KANG_HSUAN,
+//            KANG_HSUAN, // removed at request Oct 28 2013
             PEARSON,
             PAN_AMERICA,
             TEXAS_INSTRUMENTS,
