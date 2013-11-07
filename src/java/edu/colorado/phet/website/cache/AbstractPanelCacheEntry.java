@@ -25,11 +25,12 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
  */
 public abstract class AbstractPanelCacheEntry implements IPanelCacheEntry {
 
-    private Class panelClass;
-    private Class parentClass;
-    private String parentCacheId;
-    private Locale locale;
-    private List<EventDependency> dependencies = new LinkedList<EventDependency>();
+    private final Class panelClass;
+    private final Class parentClass;
+    private final String parentCacheId;
+    private final Locale locale;
+    private final String cacheId;
+    private final List<EventDependency> dependencies = new LinkedList<EventDependency>();
 
     private static final Logger logger = Logger.getLogger( AbstractPanelCacheEntry.class.getName() );
 
@@ -38,6 +39,9 @@ public abstract class AbstractPanelCacheEntry implements IPanelCacheEntry {
         this.parentClass = parentClass;
         this.locale = locale;
         this.parentCacheId = parentCacheId;
+
+        // combine the specified cache ID from the parent with the locale, so translated pages are distinctly cached
+        this.cacheId = ( parentCacheId == null ? "" : parentCacheId ) + "_" + LocaleUtils.localeToString( locale );
     }
 
     public Class getPanelClass() {
@@ -53,8 +57,7 @@ public abstract class AbstractPanelCacheEntry implements IPanelCacheEntry {
     }
 
     public String getCacheId() {
-        // combine the specified cache ID from the parent with the locale, so translated pages are distinctly cached
-        return ( parentCacheId == null ? "" : parentCacheId ) + "_" + LocaleUtils.localeToString( locale );
+        return cacheId;
     }
 
     public void onEnterCache( PanelCache cache ) {

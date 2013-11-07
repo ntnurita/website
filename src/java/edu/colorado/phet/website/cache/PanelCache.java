@@ -7,6 +7,7 @@ package edu.colorado.phet.website.cache;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 
@@ -23,13 +24,11 @@ public class PanelCache {
      */
     private static final PanelCache instance = new PanelCache();
 
-    private static final Object lock = new Object();
-
     /**
      * Stores cached entries. Should be an entry, entry pair where the entries are identical, so that we can look up
      * corresponding entries with filled in cached values.
      */
-    private HashMap<IPanelCacheEntry, CacheItem> cache = new HashMap<IPanelCacheEntry, CacheItem>();
+    private ConcurrentHashMap<IPanelCacheEntry, CacheItem> cache = new ConcurrentHashMap<IPanelCacheEntry, CacheItem>();
 
     private static final Logger logger = Logger.getLogger( PanelCache.class.getName() );
 
@@ -49,9 +48,7 @@ public class PanelCache {
      * @return Whether the cache contains a cached version for this entry
      */
     public boolean contains( IPanelCacheEntry entry ) {
-        synchronized ( lock ) {
-            return cache.containsKey( entry );
-        }
+        return cache.containsKey( entry );
     }
 
     /**
@@ -60,10 +57,8 @@ public class PanelCache {
      *         there is no such component
      */
     public IPanelCacheEntry getMatching( IPanelCacheEntry entry ) {
-        synchronized ( lock ) {
-            CacheItem item = cache.get( entry );
-            return item == null ? null : item.getEntry();
-        }
+        CacheItem item = cache.get( entry );
+        return item == null ? null : item.getEntry();
     }
 
     /**
@@ -75,12 +70,10 @@ public class PanelCache {
      */
     public boolean addIfMissing( IPanelCacheEntry entry ) {
         boolean adding;
-        synchronized ( lock ) {
-            adding = !cache.containsKey( entry );
-            if ( adding ) {
-                cache.put( entry, new CacheItem( entry ) );
-                entry.onEnterCache( this );
-            }
+        adding = !cache.containsKey( entry );
+        if ( adding ) {
+            cache.put( entry, new CacheItem( entry ) );
+            entry.onEnterCache( this );
         }
         if ( adding ) {
             logger.debug( "added to cache: " + entry );
@@ -89,16 +82,14 @@ public class PanelCache {
     }
 
     /**
-     * Removes an entry to the cache
+     * Removes an entry from the cache
      *
      * @param entry The entry to remove
      */
     public void remove( IPanelCacheEntry entry ) {
         logger.debug( "attempting to remove from cache: " + entry );
-        synchronized ( lock ) {
-            cache.remove( entry );
-            entry.onExitCache();
-        }
+        cache.remove( entry );
+        entry.onExitCache();
     }
 
     /**
@@ -106,9 +97,7 @@ public class PanelCache {
      */
     public Set<CacheItem> getEntries() {
         Set<CacheItem> ret = new HashSet<CacheItem>();
-        synchronized ( lock ) {
-            ret.addAll( cache.values() );
-        }
+        ret.addAll( cache.values() );
         return ret;
     }
 
@@ -116,9 +105,7 @@ public class PanelCache {
      * Clear all of this cache
      */
     public void clear() {
-        synchronized ( lock ) {
-            cache = new HashMap<IPanelCacheEntry, CacheItem>();
-        }
+        cache.clear();
     }
 
 }
