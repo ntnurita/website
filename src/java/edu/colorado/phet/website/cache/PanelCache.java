@@ -21,7 +21,7 @@ public class PanelCache {
     /**
      * Singleton instance
      */
-    private static PanelCache instance;
+    private static final PanelCache instance = new PanelCache();
 
     private static final Object lock = new Object();
 
@@ -41,11 +41,6 @@ public class PanelCache {
      * @return The singleton instance of the panel cache
      */
     public static PanelCache get() {
-        synchronized ( lock ) {
-            if ( instance == null ) {
-                instance = new PanelCache();
-            }
-        }
         return instance;
     }
 
