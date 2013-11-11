@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.cache;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.hibernate.event.PostCollectionUpdateEvent;
 import org.hibernate.event.PostDeleteEvent;
@@ -21,7 +22,7 @@ import edu.colorado.phet.website.util.WebImage;
  * Caches image objects based on their src attribute
  */
 public class ImageCache {
-    private static HashMap<String, WebImage> imageMap = new HashMap<String, WebImage>();
+    private static ConcurrentHashMap<String, WebImage> imageMap = new ConcurrentHashMap<String, WebImage>();
 
     static {
         // we need to initialize some listeners so that on any project / sim change we invalidate all images.
@@ -48,15 +49,15 @@ public class ImageCache {
         HibernateEventListener.addListener( Simulation.class, anyChangeInvalidator );
     }
 
-    public static synchronized void invalidate() {
+    public static void invalidate() {
         imageMap.clear();
     }
 
-    public static synchronized WebImage get( String src ) {
+    public static WebImage get( String src ) {
         return imageMap.get( src );
     }
 
-    public static synchronized void set( String src, WebImage image ) {
+    public static void set( String src, WebImage image ) {
         imageMap.put( src, image );
     }
 }

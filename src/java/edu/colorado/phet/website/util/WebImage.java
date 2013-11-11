@@ -36,15 +36,13 @@ public class WebImage implements Serializable {
         if ( image != null ) {
             return image;
         }
-        return new WebImage( src, inWar );
+        image = new WebImage( src, inWar );
+        ImageCache.set( src, image );
+        return image;
     }
 
     public static WebImage get( ImageHandle handle ) {
-        WebImage image = ImageCache.get( handle.src );
-        if ( image != null ) {
-            return image;
-        }
-        return new WebImage( handle.src, handle.inWar );
+        return get( handle.src, handle.inWar );
     }
 
     protected WebImage( String src, boolean inWar ) {
