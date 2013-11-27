@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body,td,th {
+	font-family: Helvetica, Arial, sans-serif;
+}
+.heading {
+	font-size:20px;}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.txcenter {
+	text-align:center;
+	font-size:20px;
+}
+.txtblue {color:#1C69B4}
+
+a:link {
+	color: #fece20;
+}
+a:visited {
+	color: #fece20;
+}
+a:hover {
+	color: #FF0;
+}
+a:active {
+	color: #FF0;
+}
+p, ul {
+    padding: 10;
+	margin: 0;
+}
+
