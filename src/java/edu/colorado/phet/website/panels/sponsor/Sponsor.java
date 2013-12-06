@@ -387,6 +387,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor PI = new LogoSponsor(
+            "Physik Instrumente",
+            "http://www.pi-usa.us/",
+            Images.LOGO_PI, "padding: 0px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -432,6 +440,7 @@ public abstract class Sponsor implements Serializable {
             WHFREEMAN,
             RSC,
             WILEY,
+            PI,
             YOU
     };
 

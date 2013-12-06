@@ -78,6 +78,7 @@ public class Images {
     public static final ImageHandle LOGO_WHFREEMAN = new ImageHandle( "/images/support/whfreeman-small.png", true );
     public static final ImageHandle LOGO_RSC = new ImageHandle( "/images/support/rsc-small.png", true );
     public static final ImageHandle LOGO_WILEY = new ImageHandle( "/images/support/wiley-small.png", true );
+    public static final ImageHandle LOGO_PI = new ImageHandle( "/images/support/pi-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 
