@@ -30,6 +30,7 @@ import edu.colorado.phet.buildtools.BuildLocalProperties;
 import edu.colorado.phet.buildtools.util.PhetJarSigner;
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.WebsiteProperties;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.constants.WebsiteConstants;
@@ -94,7 +95,7 @@ public class AdminMainPage extends AdminPage {
                     File source = new File( PhetWicketApplication.get().getSimulationsRoot(), "test-project/sim2_zh_TW.jar" );
                     FileUtils.copyToDir( source, tmpDir );
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
-                    ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).signJar( jarFile );
+                    ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).signJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), jarFile );
                 }
                 catch( IOException e ) {
                     e.printStackTrace();
@@ -109,7 +110,7 @@ public class AdminMainPage extends AdminPage {
                     File source = new File( PhetWicketApplication.get().getSimulationsRoot(), "test-project/sim2_zh_TW.jar" );
                     FileUtils.copyToDir( source, tmpDir );
                     File jarFile = new File( tmpDir, "sim2_zh_TW.jar" );
-                    ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).packAndSignJar( jarFile );
+                    ( new PhetJarSigner( BuildLocalProperties.getInstance() ) ).packAndSignJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), jarFile );
                 }
                 catch( IOException e ) {
                     e.printStackTrace();

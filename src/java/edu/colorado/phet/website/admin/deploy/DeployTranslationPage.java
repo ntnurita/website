@@ -84,14 +84,12 @@ public class DeployTranslationPage extends AdminPage {
     }
 
     private void startServer( final File translationDir ) {
-        final String jarPath = PhetWicketApplication.get().getWebsiteProperties().getPathToJarUtility();
         final File simsDir = PhetWicketApplication.get().getSimulationsRoot();
 
         ComponentThread thread = new LoggerComponentThread( WebsiteTranslationDeployServer.getLogger() ) {
             @Override
             public boolean process() throws IOException, InterruptedException {
                 WebsiteTranslationDeployServer runner = new WebsiteTranslationDeployServer(
-                        jarPath,
                         BuildLocalProperties.getInstance(),
                         simsDir
                 );

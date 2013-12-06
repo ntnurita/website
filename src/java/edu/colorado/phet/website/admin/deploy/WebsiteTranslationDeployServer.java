@@ -27,6 +27,7 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.common.phetcommon.util.StreamReaderThread;
 import edu.colorado.phet.flashlauncher.util.SimulationProperties;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;
+import edu.colorado.phet.website.PhetWicketApplication;
 
 /**
  * Takes translation files for Java and Flash in a temporary translation dir
@@ -41,8 +42,8 @@ public class WebsiteTranslationDeployServer {
 
     private static final Logger logger = Logger.getLogger( WebsiteTranslationDeployServer.class.getName() );
 
-    public WebsiteTranslationDeployServer( String jarCommand, BuildLocalProperties buildLocalProperties, File pathToSimsDir ) {
-        this.jarCommand = jarCommand;
+    public WebsiteTranslationDeployServer( BuildLocalProperties buildLocalProperties, File pathToSimsDir ) {
+        this.jarCommand = PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk() + "/bin/jar";
         this.buildLocalProperties = buildLocalProperties;
         this.pathToSimsDir = pathToSimsDir;
     }
@@ -154,7 +155,7 @@ public class WebsiteTranslationDeployServer {
             simulationPropertiesFile.delete();
 
             PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-            phetJarSigner.signJar( localJAR );
+            phetJarSigner.signJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), localJAR );
         }
 
         // add the translations to the English JAR
@@ -169,7 +170,7 @@ public class WebsiteTranslationDeployServer {
             runStringCommand( addXMLCommand );
         }
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.signJar( englishJAR );
+        phetJarSigner.signJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), englishJAR );
     }
 
     private void createBackupOfJAR( File localCopyOfAllJAR ) throws IOException {
@@ -284,12 +285,12 @@ public class WebsiteTranslationDeployServer {
     }
 
     private void createOfflineJARFiles( File translationDir, String project ) throws IOException, InterruptedException {
-        new JARGenerator().generateOfflineJARs( getLocalCopyOfAllJAR( translationDir, project ), jarCommand, buildLocalProperties );
+        new JARGenerator().generateOfflineJARs( getLocalCopyOfAllJAR( translationDir, project ), buildLocalProperties, PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk() );
     }
 
     private void packAndSignJAR( File translationDir, String project ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.packAndSignJar( getLocalCopyOfAllJAR( translationDir, project ) );
+        phetJarSigner.packAndSignJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), getLocalCopyOfAllJAR( translationDir, project ) );
     }
 
     private File getLocalCopyOfAllJAR( File translationDir, String project ) {

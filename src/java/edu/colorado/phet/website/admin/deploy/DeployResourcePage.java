@@ -99,8 +99,6 @@ public class DeployResourcePage extends AdminPage {
     }
 
     private void startServer( final File resourceTmpDir ) {
-        final String jarPath = PhetWicketApplication.get().getWebsiteProperties().getPathToJarUtility();
-        final File docRoot = PhetWicketApplication.get().getWebsiteProperties().getPhetDocumentRoot();
         final File liveSimsDir = PhetWicketApplication.get().getSimulationsRoot();
 
         final List<Logger> loggers = new LinkedList<Logger>();
@@ -119,7 +117,6 @@ public class DeployResourcePage extends AdminPage {
             public boolean process() throws IOException, InterruptedException {
                 logger.info( "process() for the resource server deployment thread" );
                 runner = new WebsiteResourceDeployServer(
-                        jarPath,
                         resourceTmpDir
                 );
 
@@ -164,13 +161,11 @@ public class DeployResourcePage extends AdminPage {
     }
 
     private static class ServerThread extends LoggerComponentThread {
-        private final String jarPath;
         private final File docRoot;
         private final File resourceTmpDir;
 
-        protected ServerThread( String jarPath, File docRoot, File resourceTmpDir ) {
+        protected ServerThread( File docRoot, File resourceTmpDir ) {
             super( Logger.getRootLogger() );
-            this.jarPath = jarPath;
             this.docRoot = docRoot;
             this.resourceTmpDir = resourceTmpDir;
         }
@@ -180,7 +175,6 @@ public class DeployResourcePage extends AdminPage {
         @Override
         public boolean process() throws IOException, InterruptedException {
             runner = new WebsiteResourceDeployServer(
-                    jarPath,
                     resourceTmpDir
             );
 

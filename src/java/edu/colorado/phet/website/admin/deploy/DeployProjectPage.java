@@ -87,7 +87,7 @@ public class DeployProjectPage extends PhetPage {
             }
 
             try {
-                ( new JARGenerator() ).generateOfflineJARs( allJAR, websiteProperties.getPathToJarUtility(), BuildLocalProperties.getInstance() );
+                ( new JARGenerator() ).generateOfflineJARs( allJAR, BuildLocalProperties.getInstance(), PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk() );
             }
             catch ( IOException e ) {
                 e.printStackTrace();

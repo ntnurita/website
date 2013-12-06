@@ -22,6 +22,7 @@ import edu.colorado.phet.buildtools.util.PhetJarSigner;
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.IProguardKeepClass;
 import edu.colorado.phet.common.phetcommon.util.StreamReaderThread;
+import edu.colorado.phet.website.PhetWicketApplication;
 
 /**
  * Builds all files necessary to test and run simulations with the new resource before they are published (copied into
@@ -56,8 +57,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
 
     private static final Logger logger = Logger.getLogger( WebsiteResourceDeployServer.class.getName() );
 
-    public WebsiteResourceDeployServer( String jarCommand, File resourceDir ) {
-        this.jarCommand = jarCommand;
+    public WebsiteResourceDeployServer( File resourceDir ) {
         this.resourceDir = resourceDir;
 
         File propertiesFile = ResourceDeployUtils.getResourceProperties( resourceDir );
@@ -333,7 +333,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
             } );
 
             for ( File jarFile : jarFiles ) {
-                String command = jarCommand + " uf " + jarFile.getAbsolutePath() + " -C " + tmpDir.getAbsolutePath() + " " + resourceDestination + resourceFile.getName();
+                String command = PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk() + "/bin/jar" + " uf " + jarFile.getAbsolutePath() + " -C " + tmpDir.getAbsolutePath() + " " + resourceDestination + resourceFile.getName();
                 runStringCommand( command );
             }
         }
@@ -364,12 +364,12 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
 
     private void signJAR( File jarFile ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.signJar( jarFile );
+        phetJarSigner.signJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), jarFile );
     }
 
     private void packAndSignJAR( File jarFile ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.packAndSignJar( jarFile );
+        phetJarSigner.packAndSignJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), jarFile );
     }
 
     private void generateOfflineJARs() throws IOException, InterruptedException {
@@ -387,7 +387,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
 
             for ( File jarFile : jarFiles ) {
                 logger.info( "generating offline JARs for jar: " + jarFile.getAbsolutePath() );
-                generator.generateOfflineJARs( jarFile, jarCommand, BuildLocalProperties.getInstance() );
+                generator.generateOfflineJARs( jarFile, BuildLocalProperties.getInstance(), PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk() );
             }
         }
     }

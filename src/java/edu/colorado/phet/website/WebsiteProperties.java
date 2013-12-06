@@ -15,7 +15,7 @@ public class WebsiteProperties {
     public static final String PHET_DOWNLOAD_ROOT = "phet-download-root";
     public static final String PHET_DOWNLOAD_LOCATION = "phet-download-location";
     public static final String BUILD_LOCAL_PROPERTIES = "build-local-properties";
-    public static final String PATH_TO_JAR_UTILITY = "path-to-jar-utility";
+    public static final String PATH_TO_JAR_JDK = "path-to-jar-jdk";
     public static final String SIM_STAGING_AREA = "sim-staging-area";
 
     public static final String MAIL_HOST = "mail-host";
@@ -99,8 +99,8 @@ public class WebsiteProperties {
         return getParameter( PHET_DOWNLOAD_LOCATION );
     }
 
-    public String getPathToJarUtility() {
-        return getParameter( PATH_TO_JAR_UTILITY );
+    public String getPathToJarJdk() {
+        return getParameter( PATH_TO_JAR_JDK );
     }
 
     public boolean hasMailParameters() {
