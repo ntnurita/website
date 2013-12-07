@@ -13,6 +13,7 @@ public class Images {
     public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo-117.svg", true ); // NOTE: don't switch without changing the SVG/PNG switcher
     public static final ImageHandle PHET_LOGO_YELLOW = new ImageHandle( "/images/phet-logo-yellow.png", true );
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
+    public static final ImageHandle CU_LOGO_HALF = new ImageHandle( "/images/cu-logo-half.png", true );
 
     public static final ImageHandle HTML5_LOGO_80 = new ImageHandle( "/images/HTML5_Badge_80_clean.svg", true );
     public static final ImageHandle HTML5_VIDEO_THUMBNAIL_220 = new ImageHandle( "/images/creating-next-generation-phet-sims-220.png", true );
