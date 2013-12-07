@@ -30,6 +30,10 @@ public class StringChanges {
         StringUtils.addString( session, "html5.features-missing", "Your browser is missing features required to run our HTML5 simulations. Internet Explorer 9+ or recent versions of Firefox, Chrome and Safari are recommended." );
         StringUtils.addString( session, "html5.translations-soon", "Our HTML5 simulations are currently English-only. Translations are one of our next steps, and we will contact translators once this is ready. Sorry for the inconvenience!" );
 
+        StringUtils.addString( session, "html5.crowdfundedProjects", "Support our new crowdfunded projects. Donate today:" );
+        StringUtils.addString( session, "html5.buildTeachWithPhet", "Build \"Teach with PhET\"" );
+        StringUtils.addString( session, "html5.bringCCK", "Bring Circuit Sim to iPad" );
+
         session.close();
     }
 
