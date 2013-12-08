@@ -31,6 +31,7 @@ public class StringChanges {
         StringUtils.addString( session, "html5.translations-soon", "Our HTML5 simulations are currently English-only. Translations are one of our next steps, and we will contact translators once this is ready. Sorry for the inconvenience!" );
 
         StringUtils.addString( session, "html5.crowdfundedProjects", "Support our new crowdfunded projects. Donate today:" );
+        StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support our new crowdfunded projects. Donate today:", "Donate now:" );
         StringUtils.addString( session, "html5.buildTeachWithPhet", "Build \"Teach with PhET\"" );
         StringUtils.addString( session, "html5.bringCCK", "Bring Circuit Sim to iPad" );
 

@@ -21,17 +21,17 @@
 .html-banner-container .html-banner-simsText {
     display: block;
     position: absolute;
-    top: 5px;
-    left: 100px;
-    width: 200px;
-    height: 70px;
-    line-height: 35px;
+    top: 10px;
+    left: 150px;
+    width: 150px;
+    height: 60px;
+    line-height: 30px;
     font-variant: small-caps;
     text-align: center;
     color: #fff;
     font-weight: bold;
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: 24px;
+    font-size: 17px;
     text-decoration: underline;
 }
 
@@ -77,10 +77,20 @@ div.rtl .html-banner-container .html-banner-html {
     display: block;
     position: absolute;
     top: 0;
-    left: -382px;
-    width: 476px;
+    left: -420px;
+    width: 420px;
     height: 80px;
     /*background-color: black;*/
+}
+
+.html-banner-container .html-banner-separator {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 490px;
+    width: 0;
+    height: 80px;
+    border-right: 12px solid #e44d26;
 }
 
 .html-banner-container .html-banner-crowdfundText {
@@ -95,16 +105,16 @@ div.rtl .html-banner-container .html-banner-html {
 .html-banner-container .html-banner-button {
     display: block;
     position: absolute;
-    width: 200px;
-    height: 30px;
+    width: 180px;
+    height: 25px;
     color: white;
     /*background-color: #279e2c;*/
     /*background-color: #4e609e;*/
     /*background-color: #3f48a1;*/
     /*background-color: #3aa125;*/
-    font-size: 15px;
+    font-size: 13px;
     text-align: center;
-    line-height: 30px;
+    line-height: 25px;
     border-radius: 8px;
     box-shadow: 3px 3px 10px 0 rgba(10,40,10,0.5);
 
