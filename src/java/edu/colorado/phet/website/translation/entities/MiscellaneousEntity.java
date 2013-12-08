@@ -19,6 +19,9 @@ public class MiscellaneousEntity extends TranslationEntity {
         addString( "html5.tryOurNewHTML5Sims" );
         addString( "html5.features-missing" );
         addString( "html5.translations-soon" );
+        addString( "html5.crowdfundedProjects" );
+        addString( "html5.buildTeachWithPhet", "Shown in fixed-size button, should be kept short" );
+        addString( "html5.bringCCK", "Shown in fixed-size button, should be kept short" );
         addString( PhetLocalizer.DROP_DOWN_CHOICE_NULL_KEY, "Text shown on drop-down boxes when one choice needs to be selected" );
     }
 
