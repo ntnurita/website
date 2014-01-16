@@ -369,7 +369,7 @@ public class WebsiteResourceDeployServer implements IProguardKeepClass {
 
     private void packAndSignJAR( File jarFile ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.packAndSignJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), jarFile );
+        phetJarSigner.createExtraJars( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), jarFile );
     }
 
     private void generateOfflineJARs() throws IOException, InterruptedException {

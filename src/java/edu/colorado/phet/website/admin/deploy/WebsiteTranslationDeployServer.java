@@ -290,7 +290,7 @@ public class WebsiteTranslationDeployServer {
 
     private void packAndSignJAR( File translationDir, String project ) {
         PhetJarSigner phetJarSigner = new PhetJarSigner( BuildLocalProperties.getInstance() );
-        phetJarSigner.packAndSignJar( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), getLocalCopyOfAllJAR( translationDir, project ) );
+        phetJarSigner.createExtraJars( PhetWicketApplication.get().getWebsiteProperties().getPathToJarJdk(), getLocalCopyOfAllJAR( translationDir, project ) );
     }
 
     private File getLocalCopyOfAllJAR( File translationDir, String project ) {
