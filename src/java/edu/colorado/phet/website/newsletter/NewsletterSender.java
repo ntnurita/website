@@ -102,7 +102,7 @@ public class NewsletterSender {
 
                 // throttle newsletter sending
                 try {
-                    Thread.sleep( 500 );
+                    Thread.sleep( 1500 );
                 }
                 catch ( InterruptedException e ) {
                     e.printStackTrace();
