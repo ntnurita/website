@@ -122,6 +122,7 @@ import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.Autocomplete;
 import edu.colorado.phet.website.services.GithubEmailHook;
+import edu.colorado.phet.website.services.HealthCheck;
 import edu.colorado.phet.website.services.IQityExportCSV;
 import edu.colorado.phet.website.services.LearningComExport;
 import edu.colorado.phet.website.services.NCInformationPage;
@@ -240,6 +241,7 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( ChangePasswordSuccessPanel.class );
         StaticPage.addPanel( StayConnectedPanel.class );
         StaticPage.addPanel( FaqTestPage.class );
+        // NOTE: Adding another static panel? Make sure it's cached properly by Varnish
 
         // create a url mapper, and add the page classes to it
         mapper = new PhetUrlMapper();
@@ -321,6 +323,9 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
         mountBookmarkablePage( "services/metadata/simulation", SimulationMetadataFormatService.class );
         mountBookmarkablePage( "services/translation-list", TranslationList.class );
+        mountBookmarkablePage( "services/varnish-health-check", HealthCheck.class );
+        mountBookmarkablePage( "services/nagios-health-check", HealthCheck.class );
+        mountBookmarkablePage( "services/general-health-check", HealthCheck.class );
 //        mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
