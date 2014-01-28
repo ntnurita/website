@@ -13,7 +13,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
  */
 public class HealthCheck extends WebPage {
     public HealthCheck() {
-        add( new RawBodyLabel( "text", "Varnish health check is OK" ) );
+        add( new RawBodyLabel( "text", "Health check is OK" ) );
     }
 
     @Override
