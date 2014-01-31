@@ -22,7 +22,13 @@ backend default {
   .host = "128.138.133.42";
   .port = "81";
   .probe = {
-    .url = "/services/varnish-health-check";
+    .request = "GET /services/varnish-health-check HTTP/1.1"
+               "Host: phet.colorado.edu"
+               "Connection: close";
+    .timeout = 0.5s;
+    .window = 10;
+    .threshold = 8;
+    .interval = 1s;
   }
 }
 
