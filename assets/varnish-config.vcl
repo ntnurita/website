@@ -165,7 +165,7 @@ sub vcl_recv {
          req.http.minus-locale ~ "^/troubleshooting/flash" ||
          req.http.minus-locale ~ "^/troubleshooting/javascript" ||
          req.http.minus-locale ~ "^/troubleshooting/javaSecurity" ||
-         req.http.minus-locale ~ "^/simulations/keyword/([^/]+)"" ||
+         req.http.minus-locale ~ "^/simulations/keyword/([^/]+)" ||
          req.http.minus-locale ~ "^/search" || # TODO: decide on whether this si a good idea
          req.http.minus-locale ~ "^/for-teachers/browse-activities" || # TODO: decide on whether this si a good idea
          req.http.minus-locale ~ "^/media/tech-award-2011" ||
