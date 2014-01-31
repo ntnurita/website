@@ -25,10 +25,10 @@ backend default {
     .request = "GET /services/varnish-health-check HTTP/1.1"
                "Host: phet.colorado.edu"
                "Connection: close";
-    .timeout = 0.5s;
+    .timeout = 0.2s;
     .window = 10;
     .threshold = 8;
-    .interval = 1s;
+    .interval = 0.3s;
   }
 }
 
