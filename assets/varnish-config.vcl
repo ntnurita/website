@@ -132,6 +132,16 @@ sub vcl_recv {
   if ( req.url ~ "^/autocomplete" ) { return (lookup); } # TODO: should we not include this?
   if ( req.url ~ "^/sims/.+\.(png|jpg)" ) { return (lookup); } # thumbnails and screenshots
   
+  # static files for Tomcat
+  if ( req.url ~ "^/images/" ||
+       req.url ~ "^/js/" ||
+       req.url ~ "^/css/" ||
+       req.url ~ "^/favicon.ico$" ||
+       req.url ~ "^/google00b23c7fe7eabc63.html$" ||
+       req.url ~ "^/crossdomain.xml$" ) {
+    return (lookup);
+  }
+  
   # TODO: /publications, /workshops, /files, /installer, /newsletters, /blog?, /oai?
   
   # check to see if we are relative to a locale (e.g. starts with "/en/" or "/pt_BR", etc.)
