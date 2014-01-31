@@ -36,6 +36,12 @@ acl local {
 
 # Pass through everything for now
 sub vcl_recv {
+  if ( req.backend.healthy ) {
+    set req.grace = 30s;
+  } else {
+    set req.grace = 1h;
+  }
+  
   # entry points for purges
   if ( req.request == "PURGE" ) {
     if ( !client.ip ~ local ) {
@@ -235,6 +241,7 @@ sub vcl_fetch {
   }
   
   set beresp.http.x-url = req.url; # store the URL for future bans that are lurker-friendly
+  set beresp.grace = 1h;
   
   return (deliver);
 }
