@@ -1,72 +1,6 @@
+# Varnish configuration for in front of Apache HTTPD and Tomcat
 
-# TODO: Figure out a good way of invalidating things. We DO NOT want to invalidate, have Tomcat crash, and not have a backup. Stale is great then. Notes about that:
-#     see https://www.varnish-software.com/static/book/Cache_invalidation.html for invalidation strategies (do we want to use req.hash_always_miss = true)?
-#     is there a way to skip ban checks if the server is down? or do we have to invalidate every single page recorded?
-#     evidence to the contrary: https://www.varnish-cache.org/lists/pipermail/varnish-misc/2012-April/021942.html
-#     investigate https://www.varnish-cache.org/vmod/soft-purge, or come up with a custom vmod to make this happen? See https://github.com/lkarsten/libvmod-softpurge
-#     note: we could customize the vmod to hit the URLs we need, like a ban?
-#     investigate softban patch: https://www.varnish-cache.org/patchwork/patch/30/
-#     and softban commit from https://github.com/mbgrydeland/varnish-cache/commit/59b92073daf812ff816b4da4433e8b6c5b0fa431, did it make it into a production version?
-#     and RFC https://www.varnish-cache.org/lists/pipermail/varnish-dev/2012-October/007297.html
-#     Drupal notes for softban: https://drupal.org/node/2138291, with https://www.varnish-cache.org/patchwork/patch/30/ and
-#                               https://github.com/mbgrydeland/varnish-cache/commit/59b92073daf812ff816b4da4433e8b6c5b0fa431
-#     Better to set up a second "backup" backend that properly stores safe snapshots, and serves them correctly?
-#     How to fail-over nicely here? Do we always do a health-check in vcl_recv?
-
-# TODO: Vary on Accept-Encoding for .jnlp files only (we can serve it with pack200, presumably still through Apache)
-
-# QUESTION: How can we use Varnish for HTTPS content? Do we need to put something in front of Varnish for HTTPS, or do we just not cache any of that content?
-
-# QUESTION: We have a few DNS aliases, like phet-data1.colorado.edu. Should we trigger more aggressive caching for these? If we only want to cache one copy for each 1,2,3,4,
-#           should we not put that in vcl_hash?
-
-# QUESTION: If we can use Varnish with HTTPS, it would be nice to use ESI to construct portions of the page. Will this work with compression, HTTPS, etc.? Would allow less
-#           memory in Tomcat.
-
-# QUESTION: If vcl_hash has added data, is that like implicitly varying on that?
-
-# TODO: The following are Apache-served directories, how should we handle them?
-#     /sims:
-#       We're currently setting Cache-control: max-age=0, must-revalidate
-#       Serving pack200s
-#     /publications:
-#       Very cacheable
-#     /workshops:
-#       Very cacheable
-#     /files:
-#       Very cacheable, but needs to support "added" files instantly (e.g. activities)
-#     /installer:
-#       Very cacheable, but invalidate manually once a new installer is uploaded
-#       Probably doesn't benefit from caching
-#     /newsletters:
-#       Very cacheable, but need ability to manually invalidate while working on the newsletter
-#       (consider 304s)
-#     /statistics:
-#       Never cache
-#     /staging:
-#       Never cache (deployment testing needs to work well)
-#     /dev:
-#       This gets redirected, no?
-#     /blog:
-#       Presumably only bypass cache if the req.url is wp-login or wp-admin (see below)
-#         Otherwise cache somewhat aggressively?
-#       See https://www.varnish-cache.org/trac/wiki/VarnishAndWordpress
-#         # Drop any cookies sent to Wordpress.
-#         sub vcl_recv {
-#           if (!(req.url ~ "wp-(login|admin)")) {
-#             unset req.http.cookie;
-#           }
-#         }
-#         
-#         # Drop any cookies Wordpress tries to send back to the client.
-#         sub vcl_fetch {
-#           if (!(req.url ~ "wp-(login|admin)")) {
-#             unset beresp.http.set-cookie;
-#           }
-#         }
-
-
-# TODO: Invalidation types:
+# TODO: ESI Invalidation types:
 #   Invalidate the HTML world (all HTML pages) on:
 #     Publicly-visible translation change
 #     Project / Simulation / LocalizedSimulation changes
@@ -82,22 +16,6 @@
 #     TranslationLinksPanel: on translation changes (Translation change invalidator)
 #     FeaturedSponsorPanel: strings
 #     SponsorsPanel: strings
-
-# TODO: How to handle the longer-term caching headers that Tomcat is sending right now:
-#     PostFilter is explicitly allowing caching for:
-#       /images/
-#       /js/ (we rename here anyways)
-#       /css/ (we rename here anyways)
-#       /favicon.ico
-#       /crossdomain.xml (for flash sims sending stats)
-#     Cache is 30 days, with:
-#       Cache-control: public
-#       Expires: <30 days from now>
-#       NOTES: says Vary: Accept-Encoding is already added by Tomcat or Apache, we NEED to keep this in presumably
-
-
-# TODO: Should we be caching /oai requests? Are those expensive? (They hit a different servlet)
-
 
 backend default {
   # simian.colorado.edu. will need to change for production (figaro)
@@ -202,7 +120,7 @@ sub vcl_recv {
   if ( req.url ~ "^/autocomplete" ) { return (lookup); } # TODO: should we not include this?
   if ( req.url ~ "^/sims/.+\.(png|jpg)" ) { return (lookup); } # thumbnails and screenshots
   
-  # TODO: /publications, /workshops, /files, /installer, /newsletters, /blog?
+  # TODO: /publications, /workshops, /files, /installer, /newsletters, /blog?, /oai?
   
   # check to see if we are relative to a locale (e.g. starts with "/en/" or "/pt_BR", etc.)
   if ( req.url ~ "^/\w\w(_\w\w)/" ) { # matches only ascii characters, but we have no locales with UTF-8 in the description
@@ -272,7 +190,11 @@ sub vcl_hash {
   hash_data( req.url );
   hash_data( req.proto ); # we handle HTTP and HTTPS slightly differently in some cases
   if ( req.http.host ) {
-    hash_data( req.http.host );
+    if ( req.http.host ~ "phet-data.\.colorado\.edu" ) { # like phet-data1.colorado.edu
+      hash_data( "data-host" );
+    } else {
+      hash_data( req.http.host );
+    }
   } else {
     hash_data( server.ip );
   }
