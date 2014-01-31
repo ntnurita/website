@@ -10,6 +10,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.protocol.http.WebResponse;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -93,6 +94,8 @@ public class SimulationPage extends PhetMenuPage {
         setTitle( (String) simPanel.getCacheParameter( "title" ) );
 
         initializeLocationWithSet( locations );
+
+        this.getPhetCycle().setMinutesToCache( 15 );
 
     }
 

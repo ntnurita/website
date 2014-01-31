@@ -28,22 +28,7 @@
 # TODO: The following are Apache-served directories, how should we handle them?
 #     /sims:
 #       We're currently setting Cache-control: max-age=0, must-revalidate
-#       Serving pack200s:
-#         AddType application/x-java-archive .jar
-#         AddType application/x-java-jnlp-file .jnlp
-#         
-#         <Files *.jar.pack.gz>
-#          AddEncoding pack200-gzip .jar
-#          RemoveEncoding .gz
-#         </Files>
-#         
-#         RewriteCond %{HTTP:Accept-Encoding} pack200-gzip
-#         RewriteCond %{REQUEST_FILENAME}.pack.gz -f
-#         RewriteRule ^(.*\.jar)$ $1.pack.gz [NC,L]
-#         
-#         RewriteCond %{HTTP:Accept-Encoding} gzip
-#         RewriteCond %{REQUEST_FILENAME}.gz -f
-#         RewriteRule ^(.*\.jar)$ $1.gz [NC,L]
+#       Serving pack200s
 #     /publications:
 #       Very cacheable
 #     /workshops:
@@ -215,6 +200,9 @@ sub vcl_recv {
   # cache pages that aren't relative to a locale
   if ( req.url == "/" ) { return (lookup); }
   if ( req.url ~ "^/autocomplete" ) { return (lookup); } # TODO: should we not include this?
+  if ( req.url ~ "^/sims/.+\.(png|jpg)" ) { return (lookup); } # thumbnails and screenshots
+  
+  # TODO: /publications, /workshops, /files, /installer, /newsletters, /blog?
   
   # check to see if we are relative to a locale (e.g. starts with "/en/" or "/pt_BR", etc.)
   if ( req.url ~ "^/\w\w(_\w\w)/" ) { # matches only ascii characters, but we have no locales with UTF-8 in the description

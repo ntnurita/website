@@ -65,6 +65,7 @@ public class HTML5Page extends PhetPage {
 
         add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

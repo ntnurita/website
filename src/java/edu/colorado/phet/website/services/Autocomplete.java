@@ -55,6 +55,8 @@ public class Autocomplete extends WebPage {
         }
 
         add( new RawBodyLabel( "response", buf.toString() ) );
+
+        PhetRequestCycle.get().setMinutesToCache( 15 );
     }
 
     public static synchronized void invalidate() {

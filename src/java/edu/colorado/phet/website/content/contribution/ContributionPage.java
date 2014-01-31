@@ -63,6 +63,7 @@ public class ContributionPage extends PhetRegularPage {
         add( contributionPanel );
         setTitle( contributionPanel.getTitle() );
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

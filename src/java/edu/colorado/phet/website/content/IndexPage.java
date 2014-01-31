@@ -33,6 +33,7 @@ public class IndexPage extends PhetPage {
         // TODO: localize
         setMetaDescriptionKey( "home.meta" );
 
+        this.getPhetCycle().setMinutesToCache( 60 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

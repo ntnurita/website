@@ -116,6 +116,7 @@ public class StaticPage extends PhetRegularPage {
             e.printStackTrace();
         }
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     public static Map<String, Class> panelMap = new HashMap<String, Class>();

@@ -11,9 +11,11 @@ import org.apache.wicket.Response;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebRequestCycle;
+import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -37,6 +39,7 @@ public class PhetRequestCycle extends WebRequestCycle {
     private boolean offlineInstaller;
     private boolean ksu;
     private boolean youngAndFreeman;
+    private long millisecondsToCache;
 
     public static final String KSU_RIPPER_USER_AGENT = "httrack-web-mirror-ar_SA";
     public static final String YOUNG_AND_FREEDMAN_USER_AGENT = "httrack-web-mirror-yf";
@@ -56,6 +59,8 @@ public class PhetRequestCycle extends WebRequestCycle {
         super( webApplication, webRequest, response );
 
         logger.debug( "created request cycle for " + originalRequest );
+
+        millisecondsToCache = 0; // by default, don't cache
     }
 
     @Override
@@ -74,6 +79,25 @@ public class PhetRequestCycle extends WebRequestCycle {
         logger.debug( "Request cycle: " + ( System.currentTimeMillis() - start ) + " ms" );
         session.close();
         super.onEndRequest();
+
+        // don't allow installer user agents to return cached content
+        if ( millisecondsToCache > 0 && !this.isInstaller() && !this.isSecure() ) {
+            WebResponse webResponse = (WebResponse) response;
+
+            // TODO: are we overriding something important here?
+            webResponse.setHeader( "Vary", "Accept-Encoding" );
+            webResponse.setHeader( "Cache-control", "public, max-age=" + ( millisecondsToCache / 1000 ) );
+            webResponse.setHeader( "Pragma", "public" ); // stop Wicket/Tomcat from sending no-cache
+            webResponse.setDateHeader( "Expires", System.currentTimeMillis() + millisecondsToCache );
+        }
+    }
+
+    public void setMillisecondsToCache( long millis ) {
+        millisecondsToCache = millis;
+    }
+
+    public void setMinutesToCache( long minutes ) {
+        this.setMillisecondsToCache( minutes * 60 * 1000 );
     }
 
     public Session getHibernateSession() {
@@ -180,6 +204,10 @@ public class PhetRequestCycle extends WebRequestCycle {
 
     public static PhetRequestCycle get() {
         return (PhetRequestCycle) WebRequestCycle.get();
+    }
+
+    public boolean isSecure() {
+        return this.getHttpServletRequest().isSecure();
     }
 
 }

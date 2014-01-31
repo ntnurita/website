@@ -97,6 +97,7 @@ public class SimulationChangelogPage extends PhetMenuPage {
 
         initializeLocationWithSet( locations );
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

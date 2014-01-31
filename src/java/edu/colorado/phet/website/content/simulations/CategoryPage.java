@@ -81,6 +81,7 @@ public class CategoryPage extends PhetRegularPage {
                 getPhetLocalizer().getString( location.getLocalizationKey(), this )
         } ) );
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     @Override

@@ -75,6 +75,8 @@ public class TranslatedSimsPage extends PhetRegularPage {
             add( panel );
         }
 
+        this.getPhetCycle().setMinutesToCache( 15 );
+
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

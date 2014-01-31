@@ -64,7 +64,7 @@ public class StaticImage extends WebComponent {
 
     public void setDataServer( String dataServer ) {
         // only use the data servers for unsecured connections, since we don't have HTTPS certs for those domain names
-        if ( !PhetRequestCycle.get().getHttpServletRequest().isSecure() ) {
+        if ( !PhetRequestCycle.get().isSecure() ) {
             dataServerPrefix = "http://" + dataServer;
         }
     }

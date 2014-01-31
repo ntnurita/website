@@ -34,6 +34,7 @@ public class ByGradeLevelPage extends PhetRegularPage {
         } ) );
 //        addTitle( new StringResourceModel( "simulationDisplay.title", this, null, new Object[]{new StringResourceModel( location.getLocalizationKey(), this, null )} ) );
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

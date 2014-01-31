@@ -74,7 +74,7 @@ public class PostFilter implements Filter {
                 // hard-cache the content
                 responseWrapper.setDateHeader( "Expires", expireTimeIfCachable );
                 // proxies should remember compressed and uncompressed versions of this file, and can respond with either
-                //responseWrapper.addHeader( "Vary", "Accept-Encoding" ); (already added by tomcat or apache)
+                responseWrapper.addHeader( "Vary", "Accept-Encoding" );
             }
 
             /*---------------------------------------------------------------------------*
