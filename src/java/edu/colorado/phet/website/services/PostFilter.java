@@ -66,10 +66,12 @@ public class PostFilter implements Filter {
                 // optimizations for caching. see http://code.google.com/speed/page-speed/docs/caching.html
                 long numberOfDaysToCache = 30L;
 
-                long expireTimeIfCachable = System.currentTimeMillis() + ( 3600L * 24L * numberOfDaysToCache * 1000L );
+                long millisecondsToCache = ( 3600L * 24L * numberOfDaysToCache * 1000L );
+
+                long expireTimeIfCachable = System.currentTimeMillis() + millisecondsToCache;
 
                 // make this cachable by proxies between the user and the website
-                responseWrapper.setHeader( "Cache-control", "public" );
+                responseWrapper.setHeader( "Cache-control", "public, max-age=" + ( millisecondsToCache / 1000 ) );
 
                 // hard-cache the content
                 responseWrapper.setDateHeader( "Expires", expireTimeIfCachable );
