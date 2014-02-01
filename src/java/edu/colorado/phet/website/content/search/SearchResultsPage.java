@@ -37,6 +37,7 @@ public class SearchResultsPage extends PhetRegularPage {
 
         add( new SearchResultsPanel( "search-results-panel", getPageContext(), query ) );
 
+        this.getPhetCycle().setMinutesToCache( 15 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
