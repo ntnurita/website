@@ -17,8 +17,11 @@
 #     FeaturedSponsorPanel: strings
 #     SponsorsPanel: strings
 
+# TODO: Should we add another back-end for serving Apache stuff only, that gets the fall-back?
+
 import std;
 
+# General "catch-all" backend that includes Tomcat, and gets health checks.
 backend default {
   # simian.colorado.edu. will need to change for production (figaro)
   .host = "128.138.133.42";
@@ -34,6 +37,12 @@ backend default {
   }
 }
 
+# Backend for Apache content that can be served when Tomcat is down.
+backend apache {
+  .host = "128.138.133.42";
+  .port = "81";
+}
+
 # these should be localhost and the IPs that we will have for production and testing
 acl local {
   "localhost";
@@ -44,12 +53,6 @@ acl local {
 
 # Pass through everything for now
 sub vcl_recv {
-  if ( req.backend.healthy ) {
-    set req.grace = 30s;
-  } else {
-    set req.grace = 1h;
-  }
-  
   # entry points for purges
   if ( req.request == "PURGE" ) {
     if ( !client.ip ~ local ) {
@@ -77,6 +80,26 @@ sub vcl_recv {
       } else {
           set req.http.X-Forwarded-For = client.ip;
       }
+  }
+  
+  if ( req.backend.healthy ) {
+    set req.grace = 30s;
+  } else {
+    set req.grace = 1h;
+  }
+  
+  # If the traffic will be directly handled by Apache, still serve it properly when Tomcat goes down
+  if ( req.url ~ "^/sims/" ||
+       req.url ~ "^/publications/" ||
+       req.url ~ "^/workshops/" ||
+       req.url ~ "^/files/" ||
+       req.url ~ "^/installer/" ||
+       req.url ~ "^/newsletters/" ||
+       req.url ~ "^/statistics/" ||
+       req.url ~ "^/staging/" ||
+       req.url ~ "^/dev/" ||
+       req.url ~ "^/blog/" ) {
+    set req.backend = apache;
   }
   
   # check for non-RFC2616 or CONNECT
