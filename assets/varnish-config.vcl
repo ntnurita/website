@@ -126,6 +126,11 @@ sub vcl_recv {
   # using example from https://www.varnish-cache.org/docs/3.0/tutorial/cookies.html for stripping out undesired cookies
   # everything that isn't a JSESSIONID or sign-in-panel.sign-in-form.username is cut (the latter is used for remembering the login name)
   if ( req.http.Cookie ) {
+    # don't mess with wordpress cookies for now (but strip them out if we are not under wordpress!)
+    if ( req.http.Cookie ~ "wordpress" && req.url ~ "^/blog/wp-(login|admin)" ) {
+      return (pass);
+    }
+    
     set req.http.Cookie = ";" + req.http.Cookie;
     set req.http.Cookie = regsuball(req.http.Cookie, "; +", ";");
     set req.http.Cookie = regsuball(req.http.Cookie, ";(JSESSIONID|sign-in-panel\.sign-in-form.username)=", "; \1=");
@@ -156,6 +161,7 @@ sub vcl_recv {
   if ( req.url == "/" ) { return (lookup); }
   if ( req.url ~ "^/autocomplete" ) { return (lookup); } # TODO: should we not include this?
   if ( req.url ~ "^/sims/.+\.(png|jpg)" ) { return (lookup); } # thumbnails and screenshots
+  if ( req.url ~ "^/blog/" ) { return (lookup); } # wordpress blog is getting hit a lot
   
   # static files for Tomcat
   if ( req.url ~ "^/images/" ||
