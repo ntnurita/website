@@ -287,6 +287,10 @@ sub vcl_fetch {
       return (hit_for_pass);
   }
   
+  if ( req.request == "GET" && req.url ~ "^/blog/" && !( req.url ~ "^/blog/wp-(login|admin)" ) ) {
+    set beresp.ttl = 15m;
+  }
+  
   set beresp.http.x-url = req.url; # store the URL for future bans that are lurker-friendly
   set beresp.grace = 1h;
   
