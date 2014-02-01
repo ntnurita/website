@@ -85,7 +85,7 @@ sub vcl_recv {
   if ( req.backend.healthy ) {
     set req.grace = 30s;
   } else {
-    set req.grace = 1h;
+    set req.grace = 24h;
   }
   
   # If the traffic will be directly handled by Apache, still serve it properly when Tomcat goes down
@@ -292,7 +292,7 @@ sub vcl_fetch {
   }
   
   set beresp.http.x-url = req.url; # store the URL for future bans that are lurker-friendly
-  set beresp.grace = 1h;
+  set beresp.grace = 24h;
   
   return (deliver);
 }
