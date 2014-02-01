@@ -17,6 +17,8 @@
 #     FeaturedSponsorPanel: strings
 #     SponsorsPanel: strings
 
+import std;
+
 backend default {
   # simian.colorado.edu. will need to change for production (figaro)
   .host = "128.138.133.42";
@@ -145,8 +147,8 @@ sub vcl_recv {
   # TODO: /publications, /workshops, /files, /installer, /newsletters, /blog?, /oai?
   
   # check to see if we are relative to a locale (e.g. starts with "/en/" or "/pt_BR", etc.)
-  if ( req.url ~ "^/\w\w(_\w\w)/" ) { # matches only ascii characters, but we have no locales with UTF-8 in the description
-    set req.http.minus-locale = regsub( req.url, "^/\w\w(_\w\w)", "" ); # strip off the "/en" or "/pt_BR", but leave the next slash
+  if ( req.url ~ "^/\w\w(_\w\w)?/" ) { # matches only ascii characters, but we have no locales with UTF-8 in the description
+    set req.http.minus-locale = regsub( req.url, "^/\w\w(_\w\w)?", "" ); # strip off the "/en" or "/pt_BR", but leave the next slash
     
     if ( req.http.minus-locale ~ "^/simulation/([^/]+)" ||
          req.http.minus-locale ~ "^/simulation/([^/])+/changelog" ||
