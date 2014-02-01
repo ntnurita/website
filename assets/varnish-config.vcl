@@ -214,12 +214,12 @@ sub vcl_recv {
          req.http.minus-locale ~ "^/troubleshooting/javaSecurity" ||
          req.http.minus-locale ~ "^/simulations/keyword/([^/]+)" ||
          req.http.minus-locale ~ "^/search" || # TODO: decide on whether this si a good idea
-         req.http.minus-locale ~ "^/for-teachers/browse-activities" || # TODO: decide on whether this si a good idea
+         # req.http.minus-locale ~ "^/for-teachers/browse-activities" || # TODO: decide on whether this is a good idea
          req.http.minus-locale ~ "^/media/tech-award-2011" ||
          req.http.minus-locale ~ "^/media/photos" ||
          req.http.minus-locale ~ "^/media/images" ||
-         req.http.minus-locale ~ "^/teachwithphet" ||
-         req.http.minus-locale ~ "^/contributions/view/([^/]+)" # TODO: need to invalidate this on any contribution changes!
+         req.http.minus-locale ~ "^/teachwithphet"
+         # req.http.minus-locale ~ "^/contributions/view/([^/]+)" # TODO: need to invalidate this on any contribution changes!
       ) {
       
       unset req.http.minus-locale;
