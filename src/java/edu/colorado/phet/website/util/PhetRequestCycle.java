@@ -67,7 +67,9 @@ public class PhetRequestCycle extends WebRequestCycle {
     protected void onBeginRequest() {
         logger.debug( "onBeginRequest" );
         logger.debug( "request for: " + getWebRequest().getHttpServletRequest().getRequestURI() );
-        logger.info( "request with proto: " + getWebRequest().getHttpServletRequest().getHeader( "X-Forwarded-Proto" ) + " secure: " + getWebRequest().getHttpServletRequest().isSecure() + " ip: " + getWebRequest().getHttpServletRequest().getRemoteAddr() );
+        if ( getWebRequest().getHttpServletRequest().getHeader( "X-Forwarded-Proto" ).equals( "https" ) && !getWebRequest().getHttpServletRequest().isSecure() ) {
+            logger.warn( "X-Forwarded-Proto HTTPS request from " + getWebRequest().getHttpServletRequest().getRemoteAddr() + " is not marked as secure" );
+        }
         start = System.currentTimeMillis();
         logger.debug( "----------" );
         session = HibernateUtils.getInstance().openSession();
