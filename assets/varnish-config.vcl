@@ -109,6 +109,13 @@ sub vcl_recv {
     }
   }
   
+  # If the traffic is for the manager Tomcat app, this is a separate servlet (use apache just in case)
+  if ( req.url ~ "^/manager/" ) {
+    set req.backend = apache;
+    
+    return (pass);
+  }
+  
   # check for non-RFC2616 or CONNECT
   if ( req.request != "GET" &&
        req.request != "HEAD" &&
@@ -296,6 +303,11 @@ sub vcl_miss {
 }
 
 sub vcl_fetch {
+  # force Tomcat's Set-Cookie to be secure-only (Tomcat thinks it's HTTP, not HTTPS)
+  if ( beresp.http.Set-Cookie && beresp.http.Set-Cookie ~ "JSESSIONID" && !( beresp.http.Set-Cookie ~ "Secure" ) ) {
+    set beresp.http.Set-Cookie = beresp.http.Set-Cookie + "; Secure";
+  }
+  
   if ( beresp.ttl <= 0s || beresp.http.Set-Cookie || beresp.http.Vary == "*" ) {
       # Mark as "Hit-For-Pass" for the next 2 minutes
       set beresp.ttl = 120 s;
