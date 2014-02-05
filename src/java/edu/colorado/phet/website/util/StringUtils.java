@@ -207,7 +207,7 @@ public class StringUtils {
      */
     public static String makeUrlAbsolute( String url ) {
         String server = PhetRequestCycle.get().getServerName();
-        String scheme = PhetRequestCycle.get().getScheme(); // protocol
+        String scheme = PhetRequestCycle.get().getOriginalScheme(); // protocol
         if ( url.startsWith( "/" ) ) {
             return scheme + "://" + server + url;
         }

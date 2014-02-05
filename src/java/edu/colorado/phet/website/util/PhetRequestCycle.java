@@ -15,7 +15,6 @@ import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
 import org.hibernate.Session;
 
-import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -81,7 +80,7 @@ public class PhetRequestCycle extends WebRequestCycle {
         super.onEndRequest();
 
         // don't allow installer user agents to return cached content
-        if ( millisecondsToCache > 0 && !this.isInstaller() && !this.isSecure() ) {
+        if ( millisecondsToCache > 0 && !this.isInstaller() && !this.isOriginalSecure() ) {
             WebResponse webResponse = (WebResponse) response;
 
             // TODO: are we overriding something important here?
@@ -198,7 +197,12 @@ public class PhetRequestCycle extends WebRequestCycle {
         return getHttpServletRequest().getServerName();
     }
 
-    public String getScheme() {
+    // NOTE: If X-Forwarded-Proto is set, we respect it
+    public String getOriginalScheme() {
+        String forwardedScheme = getHttpServletRequest().getHeader( "X-Forwarded-Proto" );
+        if ( forwardedScheme != null ) {
+            return forwardedScheme;
+        }
         return getHttpServletRequest().getScheme();
     }
 
@@ -206,8 +210,9 @@ public class PhetRequestCycle extends WebRequestCycle {
         return (PhetRequestCycle) WebRequestCycle.get();
     }
 
-    public boolean isSecure() {
-        return this.getHttpServletRequest().isSecure();
+    // NOTE: If X-Forwarded-Proto is set, we respect it
+    public boolean isOriginalSecure() {
+        return this.getOriginalScheme().equals( "https" ) || this.getHttpServletRequest().isSecure();
     }
 
 }

@@ -240,7 +240,7 @@ public abstract class PhetPage extends WebPage implements Stylable {
         else {
             add( new InvisibleComponent( "autotracking" ) ); // disable autotracking
         }
-        add( new RawBodyLabel( "debug-page-host", "<!-- host " + getPhetCycle().getWebRequest().getHttpServletRequest().getServerName() + " -->" ) );
+        add( new RawBodyLabel( "debug-page-host", "<!-- host " + getPhetCycle().getServerName() + " -->" ) );
 
         if ( DistributionHandler.getSearchBoxVisibility( getPhetCycle() ) != DistributionHandler.SearchBoxVisibility.NORMAL ) {
             add( new InvisibleComponent( "js" ) );

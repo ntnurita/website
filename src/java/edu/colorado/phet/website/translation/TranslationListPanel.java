@@ -399,7 +399,7 @@ public class TranslationListPanel extends PhetPanel {
                         session.update( childTranslation );
                     }
 
-                    logger.info( "attempting to delete translation #" + translation.getId() + " from user " + PhetSession.get().getUser().getEmail() + " and IP " + PhetRequestCycle.get().getHttpServletRequest().getRemoteHost() );
+                    logger.info( "attempting to delete translation #" + translation.getId() + " from user " + PhetSession.get().getUser().getEmail() + " and IP " + PhetRequestCycle.get().getRemoteHost() );
 
                     translations.remove( translation );
                     for ( Object o : translation.getTranslatedStrings() ) {

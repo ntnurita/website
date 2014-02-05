@@ -18,7 +18,7 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
  */
 public class RobotsTxtPage extends WebPage {
     public RobotsTxtPage() {
-        String server = PhetRequestCycle.get().getWebRequest().getHttpServletRequest().getServerName();
+        String server = PhetRequestCycle.get().getServerName();
 
         String response;
 
