@@ -67,6 +67,7 @@ public class PhetRequestCycle extends WebRequestCycle {
     protected void onBeginRequest() {
         logger.debug( "onBeginRequest" );
         logger.debug( "request for: " + getWebRequest().getHttpServletRequest().getRequestURI() );
+        logger.info( "request with proto: " + getWebRequest().getHttpServletRequest().getHeader( "X-Forwarded-Proto" ) );
         start = System.currentTimeMillis();
         logger.debug( "----------" );
         session = HibernateUtils.getInstance().openSession();
