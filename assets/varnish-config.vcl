@@ -100,6 +100,13 @@ sub vcl_recv {
        req.url ~ "^/dev/" ||
        req.url ~ "^/blog/" ) {
     set req.backend = apache;
+    
+    # strip cookies off of any non-wordpress logged in areas, since Apache content will be served statically, and pretend like it is HTTP traffic even if secure (for improved caching)
+    if ( !( req.http.Cookie ~ "wordpress" && req.url ~ "^/blog/" ) ) {
+      remove req.http.Cookie;
+      
+      set req.http.X-Forwarded-Proto = "http";
+    }
   }
   
   # check for non-RFC2616 or CONNECT
@@ -123,11 +130,39 @@ sub vcl_recv {
     return (pass);
   }
   
+  # force the installer ripper to bypass the cache, since we change behavior for rips (and want to avoid polluting the cache with installer versions)
+  if ( req.http.User-Agent ~ "^httrack" ) {
+    return (pass);
+  }
+  
+  # force another user-agent customization to bypass the cache, to avoid polluting it
+  if ( req.http.User-Agent ~ "^hide-translations$" ) {
+    return (pass);
+  }
+  
+  # static files for Tomcat
+  if ( req.url ~ "^/images/" ||
+       req.url ~ "^/js/" ||
+       req.url ~ "^/css/" ||
+       req.url ~ "^/favicon.ico$" ||
+       req.url ~ "^/google00b23c7fe7eabc63.html$" ||
+       req.url ~ "^/crossdomain.xml$" ) {
+    
+    # make it seem like the protocol was for HTTP, even if it was HTTPS (so we only cache one of each):
+    set req.http.X-Forwarded-Proto = "http";
+    
+    # remove cookies on the request, since they are not needed
+    remove req.http.Cookie;
+    
+    # try to serve cached content if available
+    return (lookup);
+  }
+  
   # using example from https://www.varnish-cache.org/docs/3.0/tutorial/cookies.html for stripping out undesired cookies
   # everything that isn't a JSESSIONID or sign-in-panel.sign-in-form.username is cut (the latter is used for remembering the login name)
   if ( req.http.Cookie ) {
     # don't mess with wordpress cookies for now (but strip them out if we are not under wordpress!)
-    if ( req.http.Cookie ~ "wordpress" && req.url ~ "^/blog/wp-(login|admin)" ) {
+    if ( req.http.Cookie ~ "wordpress" && req.url ~ "^/blog/" ) {
       return (pass);
     }
     
@@ -147,31 +182,11 @@ sub vcl_recv {
     }
   }
   
-  # force the installer ripper to bypass the cache, since we change behavior for rips (and want to avoid polluting the cache with installer versions)
-  if ( req.http.User-Agent ~ "^httrack" ) {
-    return (pass);
-  }
-  
-  # force another user-agent customization to bypass the cache, to avoid polluting it
-  if ( req.http.User-Agent ~ "^hide-translations$" ) {
-    return (pass);
-  }
-  
   # cache pages that aren't relative to a locale
   if ( req.url == "/" ) { return (lookup); }
   if ( req.url ~ "^/autocomplete" ) { return (lookup); } # TODO: should we not include this?
   if ( req.url ~ "^/sims/.+\.(png|jpg)" ) { return (lookup); } # thumbnails and screenshots
   if ( req.url ~ "^/blog/" ) { return (lookup); } # wordpress blog is getting hit a lot
-  
-  # static files for Tomcat
-  if ( req.url ~ "^/images/" ||
-       req.url ~ "^/js/" ||
-       req.url ~ "^/css/" ||
-       req.url ~ "^/favicon.ico$" ||
-       req.url ~ "^/google00b23c7fe7eabc63.html$" ||
-       req.url ~ "^/crossdomain.xml$" ) {
-    return (lookup);
-  }
   
   # TODO: /publications, /workshops, /files, /installer, /newsletters, /blog?, /oai?
   
@@ -241,7 +256,7 @@ sub vcl_recv {
 
 sub vcl_hash {
   hash_data( req.url );
-  hash_data( req.proto ); # we handle HTTP and HTTPS slightly differently in some cases
+  hash_data( req.http.X-Forwarded-Proto ); # we handle HTTP and HTTPS slightly differently in some cases
   if ( req.http.host ) {
     if ( req.http.host ~ "phet-data.\.colorado\.edu" ) { # like phet-data1.colorado.edu
       hash_data( "data-host" );
