@@ -65,10 +65,12 @@ public class PhetRequestCycle extends WebRequestCycle {
 
     @Override
     protected void onBeginRequest() {
+        javax.servlet.http.HttpServletRequest request = getWebRequest().getHttpServletRequest();
         logger.debug( "onBeginRequest" );
-        logger.debug( "request for: " + getWebRequest().getHttpServletRequest().getRequestURI() );
-        if ( getWebRequest().getHttpServletRequest().getHeader( "X-Forwarded-Proto" ).equals( "https" ) && !getWebRequest().getHttpServletRequest().isSecure() ) {
-            logger.warn( "X-Forwarded-Proto HTTPS request from " + getWebRequest().getHttpServletRequest().getRemoteAddr() + " is not marked as secure" );
+        logger.debug( "request for: " + request.getRequestURI() );
+        String forwardProtoHeader = request.getHeader( "X-Forwarded-Proto" );
+        if ( forwardProtoHeader != null && forwardProtoHeader.equals( "https" ) && !request.isSecure() ) {
+            logger.warn( "X-Forwarded-Proto HTTPS request from " + request.getRemoteAddr() + " is not marked as secure" );
         }
         start = System.currentTimeMillis();
         logger.debug( "----------" );
