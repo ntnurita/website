@@ -13,6 +13,7 @@ import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebRequestCycle;
 import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
+import org.apache.wicket.request.target.basic.RedirectRequestTarget;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.PhetWicketApplication;
@@ -213,6 +214,10 @@ public class PhetRequestCycle extends WebRequestCycle {
     // NOTE: If X-Forwarded-Proto is set, we respect it
     public boolean isOriginalSecure() {
         return this.getOriginalScheme().equals( "https" ) || this.getHttpServletRequest().isSecure();
+    }
+
+    public void redirectWithSameProtocol( String destination ) {
+        setRequestTarget( new RedirectRequestTarget( StringUtils.makeUrlAbsolute( destination ) ) );
     }
 
 }

@@ -203,15 +203,6 @@ public class RegisterPanel extends PhetPanel {
             else {
                 errorModel.setObject( "" );
                 setResponsePage( ConfirmEmailSentPage.class, ConfirmEmailSentPage.getParameters( user ) );
-//                PhetSession.get().signIn( (PhetRequestCycle) getRequestCycle(), username.getModelObject().toString(), password.getInput() );
-//                if ( destination != null ) {
-//                    getRequestCycle().setRequestTarget( new RedirectRequestTarget( destination ) );
-//                }
-//                else {
-//                    if ( !RegisterPanel.this.continueToOriginalDestination() ) {
-//                        getRequestCycle().setRequestTarget( new RedirectRequestTarget( "/" ) );
-//                    }
-//                }
             }
         }
     }

@@ -150,7 +150,7 @@ public class ResetPasswordRequestPanel extends PhetPanel {
                 } );
 
                 //redirect to the success page
-                getRequestCycle().setRequestTarget( new RedirectRequestTarget( ResetPasswordRequestSuccessPage.getLinker().getRawUrl( context, getPhetCycle() ) ) );
+                getPhetCycle().redirectWithSameProtocol( ResetPasswordRequestSuccessPage.getLinker().getRawUrl( context, getPhetCycle() ) );
             }
             else {
                 logger.warn( "Failed reset password attempt for email=" + emailTextField.getInput() );

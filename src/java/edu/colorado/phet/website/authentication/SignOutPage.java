@@ -27,7 +27,7 @@ public class SignOutPage extends PhetPage {
 
         PhetSession.get().signOut();
 
-        // redirect the user to the home page
+        // redirect the user to the home page, will probably default to HTTP
         getRequestCycle().setRequestTarget( new RedirectRequestTarget( "/" ) );
     }
 

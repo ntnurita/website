@@ -226,7 +226,7 @@ public class EditProfilePanel extends PhetPanel {
 
                 // success
                 if ( destination != null ) {
-                    getRequestCycle().setRequestTarget( new RedirectRequestTarget( destination ) );
+                    getPhetCycle().redirectWithSameProtocol( destination );
                 }
             }
         }

@@ -26,6 +26,7 @@ import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 
 public class SignInPanel extends PhetPanel {
 
@@ -104,11 +105,11 @@ public class SignInPanel extends PhetPanel {
 
         public final void onSubmit() {
             if ( destination != null ) {
-                getRequestCycle().setRequestTarget( new RedirectRequestTarget( destination ) );
+                getPhetCycle().redirectWithSameProtocol( destination );
             }
             else {
                 if ( !SignInPanel.this.continueToOriginalDestination() ) {
-                    getRequestCycle().setRequestTarget( new RedirectRequestTarget( "/" ) );
+                    getPhetCycle().redirectWithSameProtocol( "/" );
                 }
             }
         }

@@ -136,8 +136,8 @@ public class ChangePasswordPanel extends PhetPanel {
 
                 logger.info( "Successful password reset for user " + savedUser[0].getEmail() + ". confirmed current=" + confirmNewPasswordTextField );
 
-                //redirect to the success page  
-                getRequestCycle().setRequestTarget( new RedirectRequestTarget( ChangePasswordSuccessPanel.getLinker().getRawUrl( context, getPhetCycle() ) ) );
+                //redirect to the success page
+                getPhetCycle().redirectWithSameProtocol( ChangePasswordSuccessPanel.getLinker().getRawUrl( context, getPhetCycle() ) );
             }
             else {
                 logger.warn( "Failed password reset" );
