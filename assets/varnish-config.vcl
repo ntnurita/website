@@ -30,10 +30,10 @@ backend default {
     .request = "GET /services/varnish-health-check HTTP/1.1"
                "Host: phet.colorado.edu"
                "Connection: close";
-    .timeout = 0.2s;
+    .timeout = 0.5s;
     .window = 10;
-    .threshold = 8;
-    .interval = 0.3s;
+    .threshold = 4;
+    .interval = 0.5s;
   }
 }
 
@@ -144,6 +144,11 @@ sub vcl_recv {
   
   # force another user-agent customization to bypass the cache, to avoid polluting it
   if ( req.http.User-Agent ~ "^hide-translations$" ) {
+    return (pass);
+  }
+  
+  # never cache nagios health checks for correct monitoring
+  if ( req.http.User-Agent ~ "nagios" ) {
     return (pass);
   }
   
