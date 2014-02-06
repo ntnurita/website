@@ -23,8 +23,8 @@ import std;
 
 # General "catch-all" backend that includes Tomcat, and gets health checks.
 backend default {
-  # simian.colorado.edu. will need to change for production (figaro)
-  .host = "128.138.133.42";
+  # phet.colorado.edu.
+  .host = "128.138.128.89";
   .port = "81";
   .probe = {
     .request = "GET /services/varnish-health-check HTTP/1.1"
@@ -39,7 +39,7 @@ backend default {
 
 # Backend for Apache content that can be served when Tomcat is down.
 backend apache {
-  .host = "128.138.133.42";
+  .host = "128.138.128.89";
   .port = "81";
 }
 
@@ -366,3 +366,4 @@ sub vcl_init {
 sub vcl_fini {
   return (ok);
 }
+
