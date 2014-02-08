@@ -170,6 +170,13 @@ sub vcl_recv {
     return (lookup);
   }
   
+  # If Tomcat is down, remove the cookie and proto so we can properly deliver cached content
+  if ( !req.backend.healthy ) {
+    unset req.http.X-Forwarded-Proto;
+    unset req.http.Cookie;
+    set req.http.Varnish-No-Cache = "true";
+  }
+  
   # using example from https://www.varnish-cache.org/docs/3.0/tutorial/cookies.html for stripping out undesired cookies
   # everything that isn't a JSESSIONID or sign-in-panel.sign-in-form.username is cut (the latter is used for remembering the login name)
   if ( req.http.Cookie ) {
@@ -180,7 +187,7 @@ sub vcl_recv {
     
     set req.http.Cookie = ";" + req.http.Cookie;
     set req.http.Cookie = regsuball(req.http.Cookie, "; +", ";");
-    set req.http.Cookie = regsuball(req.http.Cookie, ";(JSESSIONID|sign-in-panel\.sign-in-form.username)=", "; \1=");
+    set req.http.Cookie = regsuball(req.http.Cookie, ";(JSESSIONID)=", "; \1="); # not including sign-in-panel\.sign-in-form.username for now
     set req.http.Cookie = regsuball(req.http.Cookie, ";[^ ][^;]*", "");
     set req.http.Cookie = regsuball(req.http.Cookie, "^[; ]+|[; ]+$", "");
     
@@ -317,7 +324,7 @@ sub vcl_fetch {
     set beresp.http.Set-Cookie = beresp.http.Set-Cookie + "; Secure";
   }
   
-  if ( beresp.ttl <= 0s || beresp.http.Set-Cookie || beresp.http.Vary == "*" ) {
+  if ( req.http.Varnish-No-Cache == "true" || beresp.ttl <= 0s || beresp.http.Set-Cookie || beresp.http.Vary == "*" ) {
       # Mark as "Hit-For-Pass" for the next 2 minutes
       set beresp.ttl = 120 s;
       return (hit_for_pass);
