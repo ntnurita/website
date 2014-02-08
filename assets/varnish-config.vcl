@@ -190,7 +190,11 @@ sub vcl_recv {
     } else {
       # if it has a JSESSIONID, we'll need to pass it through to Tomcat for proper processing for now.
       # TODO: use ESI for this purpose, so we can still cache most of a page?
-      return (pass);
+      
+      # for now, only skip cache directly when we are healthy
+      if ( req.backend.healthy ) {
+        return (pass);
+      }
     }
   }
   
