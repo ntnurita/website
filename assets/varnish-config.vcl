@@ -30,8 +30,8 @@ backend default {
     .request = "GET /services/varnish-health-check HTTP/1.1"
                "Host: phet.colorado.edu"
                "Connection: close";
-    .timeout = 0.5s;
-    .window = 10;
+    .timeout = 2s;
+    .window = 30;
     .threshold = 4;
     .interval = 0.5s;
   }
@@ -85,7 +85,7 @@ sub vcl_recv {
   if ( req.backend.healthy ) {
     set req.grace = 30s;
   } else {
-    set req.grace = 24h;
+    set req.grace = 12h;
   }
   
   # If the traffic will be directly handled by Apache, still serve it properly when Tomcat goes down
@@ -335,7 +335,7 @@ sub vcl_fetch {
   }
   
   set beresp.http.x-url = req.url; # store the URL for future bans that are lurker-friendly
-  set beresp.grace = 24h;
+  set beresp.grace = 12h;
   
   return (deliver);
 }
