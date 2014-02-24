@@ -395,6 +395,22 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
+    public static Sponsor BMG = new LogoSponsor(
+            "Bilim Media Group",
+            "http://commons.kz/en/",
+            Images.LOGO_BMG, "padding: 0px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
+    public static Sponsor THERESA_NEIL = new LogoSponsor(
+            "Theresa Neil Strategy & Design",
+            "http://www.theresaneil.com/",
+            Images.LOGO_THERESA_NEIL, "padding: 4px;" ) {{
+        setHomeWeight( 5 );
+        setSimWeight( 5 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -441,6 +457,8 @@ public abstract class Sponsor implements Serializable {
             RSC,
             WILEY,
             PI,
+            BMG,
+            THERESA_NEIL,
             YOU
     };
 
