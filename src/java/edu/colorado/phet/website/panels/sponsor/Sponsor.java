@@ -405,10 +405,18 @@ public abstract class Sponsor implements Serializable {
 
     public static Sponsor THERESA_NEIL = new LogoSponsor(
             "Theresa Neil Strategy & Design",
-            "http://www.theresaneil.com/",
+            "http://strategyplusdesign.com/",
             Images.LOGO_THERESA_NEIL, "padding: 4px;" ) {{
         setHomeWeight( 5 );
         setSimWeight( 5 );
+    }};
+
+    public static Sponsor ECS = new LogoSponsor(
+            "Effective Communication Strategies",
+            "http://www.ecommunicationstrategies.com/home",
+            Images.LOGO_ECS, "padding: 0px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
     }};
 
     public static Sponsor YOU = new YouSponsor(
@@ -459,6 +467,7 @@ public abstract class Sponsor implements Serializable {
             PI,
             BMG,
             THERESA_NEIL,
+            ECS,
             YOU
     };
 
