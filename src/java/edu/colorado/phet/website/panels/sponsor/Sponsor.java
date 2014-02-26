@@ -419,6 +419,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
+    public static Sponsor SCIENCE_4_US = new LogoSponsor(
+            "Science4Us: K-2nd Science Curriculum",
+            "http://Science4Us.com",
+            Images.LOGO_SCIENCE_4_US, "padding: 0px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -468,6 +476,7 @@ public abstract class Sponsor implements Serializable {
             BMG,
             THERESA_NEIL,
             ECS,
+            SCIENCE_4_US,
             YOU
     };
 

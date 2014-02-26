@@ -84,6 +84,7 @@ public class Images {
     public static final ImageHandle LOGO_BMG = new ImageHandle( "/images/support/bmg-small.png", true );
     public static final ImageHandle LOGO_THERESA_NEIL = new ImageHandle( "/images/support/theresa-neil-small.png", true );
     public static final ImageHandle LOGO_ECS = new ImageHandle( "/images/support/ecs-small.png", true );
+    public static final ImageHandle LOGO_SCIENCE_4_US = new ImageHandle( "/images/support/science4us-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 
