@@ -52,6 +52,7 @@ public class ResearchEntity extends TranslationEntity {
         addString( "research.publications.use" );
         addString( "research.publications.sims" );
         addString( "research.publications.perceptions" );
+        addString( "research.publications.other" );
 
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
