@@ -98,6 +98,7 @@ public class SimulationMainPanel extends PhetPanel {
         HTML_SIM_LINK_MAP.put( "ph-scale", "/sims/html/ph-scale/latest/ph-scale_en.html" );
         // NOTE: no original sim for pH Scale: Basics, so it is omitted here
         HTML_SIM_LINK_MAP.put( "resistance-in-a-wire", "/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" );
+        HTML_SIM_LINK_MAP.put( "under-pressure", "/sims/html/under-pressure/latest/under-pressure_en.html" );
     }
 
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {
