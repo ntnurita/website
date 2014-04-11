@@ -40,6 +40,12 @@ import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPanel;
 import edu.colorado.phet.website.content.contribution.ContributionManagePage;
+import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
+import edu.colorado.phet.website.content.forteachers.ClickersPanel;
+import edu.colorado.phet.website.content.forteachers.LectureDemoPanel;
+import edu.colorado.phet.website.content.forteachers.LectureOverviewPanel;
+import edu.colorado.phet.website.content.forteachers.TipsPanel;
+import edu.colorado.phet.website.content.forteachers.VirtualWorkshopPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
@@ -55,6 +61,7 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascri
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
+import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.util.AbstractCategoryListener;
@@ -111,9 +118,41 @@ public class NavMenu implements Serializable {
             addChild( teacherIdeasBrowse );
 
             NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
+   
+            //C.1. PhET Workshop Facilitators Guide
+            NavLocation workshopFacilitatorsGuide  = new NavLocation( this, "workshops", WorkshopFacilitatorsGuidePanel.getLinker() );
+
+            workshops.addChild(workshopFacilitatorsGuide);
             addLocation( workshops );
             addChild( workshops );
+//
+            //Tips for Using PhET
+            NavLocation tipsForUsingPhetPanel = new NavLocation( this, "tipsForUsingPhet", TipsPanel.getLinker() );
 
+            //Planning to Use PhET
+            NavLocation usingPhetInLecturePanel = new NavLocation( this, "usingPhetInLecture", LectureOverviewPanel.getLinker() );
+            tipsForUsingPhetPanel.addChild( usingPhetInLecturePanel ); 
+            
+            //Using PhET in Lecture
+            NavLocation lectureDemoPanel = new NavLocation( this, "lectureDemo", LectureDemoPanel.getLinker() );
+            tipsForUsingPhetPanel.addChild( lectureDemoPanel ); 
+            
+            //PhET as an (Interactive) Lecture Demonstration
+            NavLocation clickersDemoPanel = new NavLocation( this, "clickersDemo", ClickersPanel.getLinker() );
+            tipsForUsingPhetPanel.addChild( clickersDemoPanel );  
+            
+            //Using PhET with Clickers and Peer Instruction
+            NavLocation activitesDesignPanel = new NavLocation( this, "activitesDesign", ActivitiesdesignPanel.getLinker() );
+            tipsForUsingPhetPanel.addChild( activitesDesignPanel ); 
+            
+            //Designing Effective Activities for use in K12
+            NavLocation virtualWorkshopPanel = new NavLocation( this, "virtualWorkshop", VirtualWorkshopPanel.getLinker() );
+            tipsForUsingPhetPanel.addChild( virtualWorkshopPanel ); 
+            
+            addLocation( tipsForUsingPhetPanel );
+            addChild( tipsForUsingPhetPanel );  
+            
+//
             NavLocation teacherIdeasSubmit = new NavLocation( this, "teacherIdeas.submit", ContributionCreatePage.getLinker() );
             addLocation( teacherIdeasSubmit );
             addChild( teacherIdeasSubmit );

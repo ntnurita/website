@@ -111,6 +111,7 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascri
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
+import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
@@ -216,6 +217,7 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( GeneralFAQPanel.class );
         StaticPage.addPanel( AboutMainPanel.class );
         StaticPage.addPanel( WorkshopsPanel.class );
+        StaticPage.addPanel( WorkshopFacilitatorsGuidePanel.class );
         StaticPage.addPanel( RunOurSimulationsPanel.class );
         StaticPage.addPanel( FullInstallPanel.class );
         StaticPage.addPanel( OneAtATimePanel.class );
@@ -357,8 +359,11 @@ public class PhetWicketApplication extends WebApplication {
         mount( new HybridUrlCodingStrategy( "/uptime-check", BlankPage.class ) ); // landing page for checking that the PhET site is up
 
         logger.info( "Running as: " + getConfigurationType() );
+        try{
         logger.debug( "Detected phet-document-root: " + getWebsiteProperties().getPhetDocumentRoot().getAbsolutePath() );
-
+        } catch (Exception e){
+        	e.printStackTrace();
+        }
         NotificationHandler.initialize( websiteProperties );
 
         SearchUtils.initialize();

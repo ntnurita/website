@@ -1,0 +1,587 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+        "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Tips on Using PhET</title>
+    
+    
+    <link rel="stylesheet" type="text/css" href="../../css/phet-v17-min.css"/>
+    <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="/css/ie6fix-v3.css"/>
+    <![endif]-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="/css/ie7fix-v2.css"/>
+    <![endif]-->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8fix-v1.css"/>
+    <![endif]-->
+    <!--[if lt IE 7]>
+    <script defer type="text/javascript" src="/js/pngfix.js"></script>
+    <![endif]-->
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="/css/ie-v1.css"/>
+    <![endif]-->
+    <!-- class edu.colorado.phet.website.templates.StaticPage -->
+    <!-- host phet.colorado.edu -->
+    <script type="text/javascript">
+        //<![CDATA[
+        var _gaq = _gaq || [];
+        _gaq.push( ["_setAccount","UA-5033201-1"] );
+        _gaq.push( ["_setDomainName","phet.colorado.edu"] );
+        _gaq.push( ["_trackPageview"] );
+        _gaq.push( ['_trackPageLoadTime'] );
+        _gaq.push( ["b._setAccount","UA-5033010-1"] );
+        _gaq.push( ["b._setDomainName","phet.colorado.edu"] );
+        _gaq.push( ["b._trackPageview"] );
+        var benchmarkTracker = null;
+        var overallTracker = null;
+        (function() {
+            var b = document.createElement( "script" );
+            b.type = "text/javascript";
+            b.async = true;
+            b.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+            b.onload = b.onreadystatechange = function() {
+                var c = this.readyState;
+                if ( c && c != "complete" && c != "loaded" ) {return}
+                benchmarkTracker = _gat._getTracker( "UA-5033201-1" );
+                benchmarkTracker._setDomainName( "phet.colorado.edu" );
+                overallTracker = _gat._getTracker( "UA-5033010-1" );
+                overallTracker._setDomainName( "phet.colorado.edu" )
+            };
+            var a = document.getElementsByTagName( "script" )[0];
+            a.parentNode.insertBefore( b, a )
+        })();
+        (function() {
+            var b = document.createElement( "script" );
+            b.type = "text/javascript";
+            b.async = true;
+            b.src = "/js/phet-v12-min.js";
+            var a = document.getElementsByTagName( "script" )[0];
+            a.parentNode.insertBefore( b, a )
+        })();
+        //]]>
+    </script>
+    
+
+        
+    
+        <script type="text/javascript">var phetLocale = "en";var phetSimulationString = "{0} (simulation)";</script>
+    </head>
+<body dir="ltr" class="ltr" id="other-body">
+<div id="skipNav">
+    <a href="#main-content" accesskey="0">
+        Skip to Main Content
+    </a>
+</div>
+
+
+
+
+
+<div id="page-header" class="ltr">
+    <div id="page-header-container">
+        <div id="page-header-logo">
+            <a href="/">
+                <!--<img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"-->
+                <img src="../images/phet-logo-117.svg" alt="PhET Logo" title="Go to the PhET home page" class="header-logo-image" width="223" height="106" id="phet-logo-main-image"/>
+            </a>
+        </div>
+        <div id="page-header-sims-served">
+            <span>Over 110 million simulations delivered</span>
+        </div>
+        <img id="page-header-cu" src="../images/cu-logo-half.png" alt="University of Colorado Logo" width="150" height="77">
+        <div id="page-header-search">
+    <form method="get" id="search-form" class="autocompleteOff" action="/en/search">
+        <div>
+            <label for="search-text-id" style="display: none;">
+                Search
+            </label>
+            <input type="text" size="15" name="q" class="always-enabled acInput" id="search-text-id"/>
+            <input type="submit" value="Search" title="Click here to search the PhET website" class="always-enabled autocompleteOff" id="search-submit-id"/>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+
+    <div id="html-banner">
+        <div id="html-banner-container">
+    <a class="html-banner-container" href="/en/simulations/category/html">
+        <div class="html-banner-logo">
+            <img class="html-banner-image" src="../images/HTML5_Badge_80_clean.svg"/>
+            <span class="html-banner-html">HTML</span>
+            <div class="html-banner-simsText">
+                TRY OUR NEW HTML5 SIMS
+            </div>
+            <div class="html-banner-crowdfund">
+                <div class="html-banner-crowdfundText">
+                    Donate now:
+                </div>
+                <div class="html-banner-teach-with-phet html-banner-button" onclick="javascript:location.href='http://www.crowdrise.com/helpbuildteachwithphet';return false;">
+                    Build "Teach with PhET"
+                </div>
+                <div class="html-banner-cck html-banner-button" onclick="javascript:location.href='http://www.crowdrise.com/PhETHTML5CCKSimulation';return false;">
+                    Bring Circuit Sim to iPad
+                </div>
+                <div class="html-banner-separator">
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+    </div>
+
+<div class="log-in-out">
+    <a id="sign-in-link" href="https://phet.colorado.edu/en/sign-in?dest=%2Fen%2Ffor-teachers">
+        Sign in / Register
+    </a>
+    
+</div>
+<div id="page-content" class="ltr">
+    
+    <div class="menu-page-content" style="width: 1070px;">
+        <div id="side-panel">
+            <div>
+    <div class="side-nav">
+        <div>
+    
+        <ul class="nav-ul" dir="ltr">
+            <li class="nav-li">
+                <div class="link-holder">
+                    <a href="/" class="nml-link nav0" id="nav-location-nav-home">
+                        <span class="nml-link-label">Home</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/simulations/category/new" class="nml-link nav0" id="nav-location-nav-simulations">
+                        <span class="nml-link-label">Simulations</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="index.html" class="nml-link nav0" id="nav-location-nav-teacherIdeas">
+                        <span class="nml-link-label selected teacher-ideas-item">For Teachers</span>
+                    </a>
+                    
+    
+        <ul class="nav-ul" dir="ltr">
+            <li class="nav-li">
+            
+              <div class="link-holder">
+                   <a href="tips.html" class="nml-link nav1" id="nav-location-nav-workshops">
+                        <span class="nml-link-label selected teacher-ideas-item">Tips for Using PhET</span>
+                    </a>
+                    
+                </div>
+            
+            
+
+                    
+                <div class="link-holder">
+                    <a href="/en/for-teachers/browse-activities" class="nml-link nav1" id="nav-location-nav-teacherIdeas-browse">
+                        <span class="nml-link-label teacher-ideas-item">Browse Activities</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="workshops/index.html" class="nml-link nav1" id="nav-location-nav-workshops">
+                        <span class="nml-link-label teacher-ideas-item">Workshops</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/for-teachers/submit-activity" class="nml-link nav1" id="nav-location-nav-teacherIdeas-submit">
+                        <span class="nml-link-label teacher-ideas-item">Submit an Activity</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/for-teachers/manage-activities" class="nml-link nav1" id="nav-location-nav-teacherIdeas-manage">
+                        <span class="nml-link-label teacher-ideas-item">My Activities</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/for-teachers/legend" class="nml-link nav1" id="nav-location-nav-about-legend">
+                        <span class="nml-link-label teacher-ideas-item">Legend</span>
+                    </a>
+                    
+                </div>
+            </li>
+        </ul>
+    
+
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/stay-connected" class="nml-link nav0" id="nav-location-nav-stayConnected">
+                        <span class="nml-link-label">Stay Connected</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/get-phet" class="nml-link nav0" id="nav-location-nav-get-phet">
+                        <span class="nml-link-label get-phet-item">How to Run Simulations</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/troubleshooting" class="nml-link nav0" id="nav-location-nav-troubleshooting-main">
+                        <span class="nml-link-label">Troubleshooting</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/faqs" class="nml-link nav0" id="nav-location-nav-faqs">
+                        <span class="nml-link-label">FAQs</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/for-translators" class="nml-link nav0" id="nav-location-nav-forTranslators">
+                        <span class="nml-link-label">For Translators</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/donate" class="nml-link nav0" id="nav-location-nav-donate">
+                        <span class="nml-link-label">Donate</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="/en/research" class="nml-link nav0" id="nav-location-nav-research">
+                        <span class="nml-link-label">Research</span>
+                    </a>
+                    
+                </div>
+            </li><li class="nav-li">
+                <div class="link-holder">
+                    <a href="../about/index.html" class="nml-link nav0" id="nav-location-nav-about">
+                        <span class="nml-link-label">About PhET</span>
+                    </a>
+                    
+                </div>
+            </li>
+        </ul>
+    
+</div>
+    </div>
+</div>
+            <div>
+
+    <div id="spons" dir="ltr">
+        <div class="principalSponsors">
+            Principal Sponsors
+        </div>
+
+        <div class="header">
+        </div>
+        <div class="sponsors-fake-dl">
+            <div class="sponsors-fake-dt">
+                <a class="sponsor-text-link" href="http://www.hewlett.org/">The William and Flora Hewlett Foundation</a>
+
+            </div>
+
+            <div class="sponsors-fake-dd">
+                <a href="http://www.hewlett.org/">
+                    <img src="../images/support/hewlett-logo.jpg" alt="The Hewlett Logo" class="spons" width="132" height="32"/>
+                </a>
+                <br/>
+
+                <br/>
+                Makes grants to address the most serious social and environmental problems facing society, where risk capital, responsibly invested, may make a difference over time.
+            </div>
+
+            <div class="sponsors-fake-dt">
+                <a href="http://www.nsf.gov/">
+                    <img class="spons" src="../images/support/nsf-logo.gif" alt="The NSF Logo" width="38" height="38"/>
+                    National Science Foundation
+                </a>
+            </div>
+
+            <div class="sponsors-fake-dd">
+                <br/>
+                An independent federal agency created by Congress in 1950 to promote the progress of science.
+                <br/>
+
+                <br/>
+            </div>
+
+            <div class="sponsors-fake-dt">
+                <a href="http://www.ksu.edu.sa/">
+                    Excellence Center of Science and Mathematics Education at King Saud University
+                </a>
+            </div>
+
+            <div class="sponsors-fake-dd">
+                <a href="http://www.ksu.edu.sa/">
+                    <img class="spons" src="../images/support/ERCSME-combined-logo-regular.png" alt="The King Saud (ESCME) Logo" width="130" height="35"/>
+                </a>
+                <br/>
+                <br/>
+                King Saud University seeks to become a leader in educational and technological innovation, scientific discovery and creativity through fostering an atmosphere of intellectual inspiration and partnership for the prosperity of society.
+                <br/>
+                <br/>
+            </div>
+
+            <div class="sponsors-fake-dt">
+                <a class="sponsor-text-link" href="http://www.odf.org/">O'Donnell Foundation</a>
+            </div>
+
+            <div class="sponsors-fake-dd">
+                The O'Donnell Foundation is devoted to building model programs to enhance the quality of education.
+            </div>
+
+            <div class="sponsors-fake-dt">
+                <div class="other-sponsors-holder" dir="ltr">
+                    <table class="other-sponsors-table" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="other-sponsors-left">
+
+                            </td>
+                            <td class="other-sponsors-middle">
+                                <a href="/en/about/sponsors" id="sponsors-panel-link">
+                                    Other Sponsors &gt;&gt;
+                                </a>
+                            </td>
+                            <td class="other-sponsors-right">
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+        </div>
+        <div id="main-content" class="main-menu-content" style="width: 900px;">
+        <div>
+    <div class="breadcrumbs">
+        <h1 class="main-breadcrumb">
+            <a href="index.html" class="breadcrumb-link">
+                <span class="breadcrumb-label">For Teachers</span>
+            </a>
+        </h1>
+                <span class="sub-breadcrumb">
+            <span class="breadcrumb-separator">&gt;</span>
+            <a href="tips.html" class="breadcrumb-link"><span class="breadcrumb-label">Tips for Using PhET</span></a>
+        </span></div>
+</div>
+        
+    <div>
+    <div class="teacher-ideas standard-content" dir="ltr">
+
+        <table width="880" border="0">
+          <tr>
+            <td width="539" valign="top" style="padding-right:20px">
+              <p>PhET simulations are very flexible tools that can be used in many ways. Here, you will find videos and resources for learning about effective ways of integrating PhET simulations into your class.</p>
+              <p><strong><em>A Brief Introduction to PhET: </em></strong>An overview of the PhET Simulations</p>
+              <p><iframe width="520" height="293" src="http://www.youtube.com/embed/gKI-9Ksvgg4" frameborder="0" allowfullscreen></iframe></p>
+              <p><strong>Resources for Teaching with PhET Simulations in Various Contexts</strong></p>
+              <ul>
+                <li><a href="planning.html">Planning to Use PhET</a></li>
+                <li><a href="lecture_overview.html">Using PhET in Lecture: An Overview</a></li>
+                <li><a href="lecture_demo.html">Using PhET in Lecture: Interactive Lecture Demonstrations</a></li>
+                <li><a href="clickers.html">Using PhET in Lecture: With Clickers</a></li>
+                <li><a href="activities-design.html">Designing PhET Activities for the K12 Classroom</a></li>
+                <li><a href="workshop.html">Take a Virtual PhET Workshop</a></li>
+              </ul>
+              <p><strong>Guidance for using particular simulations:</strong></p>
+              <ul>
+                <li><a href="http://phet.colorado.edu/en/for-teachers/browse-activities">Browse our activities for use with each simulation</a></li>
+                <li>Find teacher tips for use with specific simulations on individual simulation pages (where applicable)</li>
+              </ul>
+              <div>
+                <div> </div>
+              </div></td>
+            <td width="331" valign="top"><div style="height:500px; padding-left:5px; padding-right:20px; background-color:#F0F0F0"> <br />
+                <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                  <tr>
+                    <td height="30" colspan="2" align="center" valign="top"><h2><strong>Tips and Resources</strong></h2></td>
+                  </tr>
+                  <tr>
+                    <td height="65" valign="top"><span style="color:#d36a04; font-size:14px"><a href="planning.html"><img src="../images/WhatisPhET.jpg" alt="" width="100" height="55" /></a></span></td>
+                    <td height="65" valign="top"><a href="planning.html">Planning to Use PhET</a></td>
+                  </tr>
+                  <tr>
+                    <td height="65" valign="top"><a href="lecture_overview.html"><img src="../images/UsingPhET.jpg" alt="" width="100" height="56" /></a></td>
+                    <td height="65" valign="top"><a href="lecture_overview.html">Using PhET in Lecture: An Overview</a></td>
+                  </tr>
+                  <tr>
+                    <td height="65" valign="top"><a href="lecture_demo.html"><img src="../images/experiment.jpg" alt="" width="100" height="55" /></a></td>
+                    <td height="65" valign="top"><a href="lecture_demo.html">Using PhET in Lecture: Interactive Lecture Demonstrations<br />
+                    </a></td>
+                  </tr>
+                  <tr>
+                    <td height="65" valign="top"><span style="color:#d36a04; font-size:14px"><a href="clickers.html"><img src="../images/PhETClickers.jpg" alt="" width="100" height="54" /></a></span></td>
+                    <td height="65" valign="top"><a href="clickers.html">Using PhET in Lecture: With Clickers<br />
+                    </a></td>
+                  </tr>
+                  <tr>
+                    <td height="65" valign="top"><a href="activities-design.html"><img src="../images/activities.jpg" alt="" width="100" height="55" /></a></td>
+                    <td height="65" valign="top"><a href="activities-design.html">Designing PhET Activities for the K12 Classroom<br />
+                    </a></td>
+                  </tr>
+                  <tr>
+                    <td height="65" valign="top"><a href="activities-design.html"><img src="../images/workshop.jpg" alt="" width="100" height="55" /></a></td>
+                    <td height="65" valign="top"><a href="activities-design.html">Take a Virtual PhET Workshop<br />
+                    </a></td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <p><br/>
+    </p>
+    </div>
+    </div>
+
+        
+    </div>
+
+            
+      </div>
+        <div class="main-footer">
+          <div class="main-footer-spacer"></div>
+            <div class="other-languages">
+                
+                <span>
+    <span>
+        <a href="/en/for-teachers" class="translation-link"><span class="current-locale">English</span></a>
+    </span>
+    <span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/ar_SA/for-teachers" class="translation-link"><span>العربية</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/bs/for-teachers" class="translation-link"><span>Bosanski</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/zh_CN/for-teachers" class="translation-link"><span>简体中文</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/zh_TW/for-teachers" class="translation-link"><span>正體中文</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/cs/for-teachers" class="translation-link"><span>Česky</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/da/for-teachers" class="translation-link"><span>Dansk</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/nl/for-teachers" class="translation-link"><span>Nederlands</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/et/for-teachers" class="translation-link"><span>Eesti</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/fi/for-teachers" class="translation-link"><span>Suomi</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/fr/for-teachers" class="translation-link"><span>Français</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/gl/for-teachers" class="translation-link"><span>Galego</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/ka/for-teachers" class="translation-link"><span>ქართული</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/de/for-teachers" class="translation-link"><span>Deutsch</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/el/for-teachers" class="translation-link"><span>Ελληνικά</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/hu/for-teachers" class="translation-link"><span>Magyar</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/in/for-teachers" class="translation-link"><span>Bahasa Indonesia</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/it/for-teachers" class="translation-link"><span>Italiano</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/ja/for-teachers" class="translation-link"><span>日本語</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/ko/for-teachers" class="translation-link"><span>한국어</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/ku/for-teachers" class="translation-link"><span>كوردي</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/mk/for-teachers" class="translation-link"><span>Македонски</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/mr/for-teachers" class="translation-link"><span>मराठी</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/nb/for-teachers" class="translation-link"><span>Norsk bokmål</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/fa/for-teachers" class="translation-link"><span>فارسی</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/pt/for-teachers" class="translation-link"><span>Português</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/pt_BR/for-teachers" class="translation-link"><span>Português do Brasil</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/ro/for-teachers" class="translation-link"><span>Română</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/sr/for-teachers" class="translation-link"><span>Српски</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/es/for-teachers" class="translation-link"><span>Español</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/es_PE/for-teachers" class="translation-link"><span>Español (Perú)</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/th/for-teachers" class="translation-link"><span>ไทย</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/tr/for-teachers" class="translation-link"><span>Türkçe</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/uk/for-teachers" class="translation-link"><span>Українська</span></a>
+    </span><span>
+        <span class="translation-separator"> &nbsp;|&nbsp; </span>
+        <a href="/vi/for-teachers" class="translation-link"><span>Tiếng Việt</span></a>
+    </span>
+    
+</span>
+            </div>
+            <div class="copyright">&copy; 2013 University of Colorado. <a href="/en/about/licensing">
+                Some rights reserved.
+            </a></div>
+      </div>
+    </div>
+
+</div>
+</body>
+</html>
+
