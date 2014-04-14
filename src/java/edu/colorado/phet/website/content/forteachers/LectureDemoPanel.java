@@ -15,16 +15,14 @@ public class LectureDemoPanel extends PhetPanel {
     public LectureDemoPanel( String id, PageContext context ) {
         super( id, context );
 
-       // add( UgandaWorkshopsPanel.getLinker().getLink( "workshop-uganda-link", context, getPhetCycle() ) );
-
     }
 
     public static String getKey() {
-        return "workshopFacilitatorsGuide";
+        return "lectureDemo";
     }
 
     public static String getUrl() {
-        return "for-teachers/workshopFacilitatorsGuide";
+        return "for-teachers/lectureDemo";
     }
 
     public static RawLinkable getLinker() {
@@ -32,7 +30,7 @@ public class LectureDemoPanel extends PhetPanel {
             @Override
             public String getRawUrl( PageContext context, PhetRequestCycle cycle ) {
                 if ( cycle != null && DistributionHandler.redirectPageClassToProduction( cycle, LectureDemoPanel.class ) ) {
-                    return "http://phet.colorado.edu/teacher_ideas/workshops.php";
+                    return "http://phet.colorado.edu/teacher_ideas/lectureDemo.php";
                 }
                 else {
                     return super.getRawUrl( context, cycle );

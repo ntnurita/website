@@ -20,11 +20,11 @@ public class PlanningPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "workshopFacilitatorsGuide";
+        return "planningToUsePhet";
     }
 
     public static String getUrl() {
-        return "for-teachers/workshopFacilitatorsGuide";
+        return "for-teachers/planningToUsePhet";
     }
 
     public static RawLinkable getLinker() {
@@ -32,7 +32,7 @@ public class PlanningPanel extends PhetPanel {
             @Override
             public String getRawUrl( PageContext context, PhetRequestCycle cycle ) {
                 if ( cycle != null && DistributionHandler.redirectPageClassToProduction( cycle, PlanningPanel.class ) ) {
-                    return "http://phet.colorado.edu/teacher_ideas/workshops.php";
+                    return "http://phet.colorado.edu/teacher_ideas/planningToUsePhet.php";
                 }
                 else {
                     return super.getRawUrl( context, cycle );

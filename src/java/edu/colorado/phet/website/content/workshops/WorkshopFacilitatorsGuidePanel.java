@@ -15,8 +15,7 @@ public class WorkshopFacilitatorsGuidePanel extends PhetPanel {
     public WorkshopFacilitatorsGuidePanel( String id, PageContext context ) {
         super( id, context );
 
-        add( UgandaWorkshopsPanel.getLinker().getLink( "workshop-uganda-link", context, getPhetCycle() ) );
-
+ 
     }
 
     public static String getKey() {
@@ -32,7 +31,7 @@ public class WorkshopFacilitatorsGuidePanel extends PhetPanel {
             @Override
             public String getRawUrl( PageContext context, PhetRequestCycle cycle ) {
                 if ( cycle != null && DistributionHandler.redirectPageClassToProduction( cycle, WorkshopFacilitatorsGuidePanel.class ) ) {
-                    return "http://phet.colorado.edu/teacher_ideas/workshops.php";
+                    return "http://phet.colorado.edu/teacher_ideas/workshopFacilitatorsGuide.php";
                 }
                 else {
                     return super.getRawUrl( context, cycle );

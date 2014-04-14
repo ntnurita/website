@@ -20,11 +20,11 @@ public class ClickersPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "workshopFacilitatorsGuide";
+        return "clickersDemo";
     }
 
     public static String getUrl() {
-        return "for-teachers/workshopFacilitatorsGuide";
+        return "for-teachers/clickersDemo";
     }
 
     public static RawLinkable getLinker() {
@@ -32,7 +32,7 @@ public class ClickersPanel extends PhetPanel {
             @Override
             public String getRawUrl( PageContext context, PhetRequestCycle cycle ) {
                 if ( cycle != null && DistributionHandler.redirectPageClassToProduction( cycle, ClickersPanel.class ) ) {
-                    return "http://phet.colorado.edu/teacher_ideas/workshops.php";
+                    return "http://phet.colorado.edu/teacher_ideas/clickersDemo.php";
                 }
                 else {
                     return super.getRawUrl( context, cycle );
