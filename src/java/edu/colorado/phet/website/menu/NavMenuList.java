@@ -39,8 +39,12 @@ public class NavMenuList extends PhetPanel {
 
                 if ( currentLocations != null ) {
                     for ( NavLocation currentLocation : currentLocations ) {
+                    	if(currentLocation == null) continue;
                         if ( !open ) {
+                        	
                             open = currentLocation.isUnderLocation( location );
+                        	
+                          
                         }
                         if ( currentLocation.getBaseKey().equals( location.getKey() ) || currentLocation.getKey().equals( location.getKey() ) ) {
                             label.add( new ClassAppender( "selected" ) );

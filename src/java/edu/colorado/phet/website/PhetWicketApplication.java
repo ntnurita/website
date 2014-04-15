@@ -488,7 +488,7 @@ public class PhetWicketApplication extends WebApplication {
 	}
 
 	public boolean isDeployment() {
-		return getConfigurationType().equals(Application.DEPLOYMENT);
+		return getConfigurationType().equals(Application.DEVELOPMENT);
 	}
 
 	public boolean isDevelopment() {

@@ -20,6 +20,7 @@ import edu.colorado.phet.website.panels.SideNavMenu;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -40,6 +41,14 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.teacherIdeas" );
         addString( "nav.teacherIdeas.browse" );
         addString( "nav.teacherIdeas.submit" );
+        addString( "nav.tipsForUsingPhet");
+        addString( "nav.planningToUsePhet" );
+        addString( "nav.usingPhetInLecture" ); 
+        addString( "nav.lectureDemo");
+        addString(  "nav.clickersDemo" );
+        addString(  "nav.activitesDesign" );
+        addString(  "nav.virtualWorkshop");
+
         addString( "nav.teacherIdeas.edit" );
         addString( "nav.teacherIdeas.manage" );
         addString( "nav.teacherIdeas.guide" );
