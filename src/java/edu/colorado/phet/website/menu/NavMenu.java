@@ -130,35 +130,35 @@ public class NavMenu implements Serializable {
             //Tips for Using PhET
             NavLocation tipsForUsingPhetPanel = new NavLocation( this, "tipsForUsingPhet", TipsPanel.getLinker() );
             
-            //Planning to Use PhET
+//            //Planning to Use PhET
             NavLocation planningPanel = new NavLocation( this, "planningToUsePhet", PlanningPanel.getLinker() );
             addLocation(planningPanel);
-            tipsForUsingPhetPanel.addChild( planningPanel ); 
-            
-            //Using PhET in Lecture
+//            tipsForUsingPhetPanel.addChild( planningPanel ); 
+//            
+//            //Using PhET in Lecture
             NavLocation usingPhetInLecturePanel = new NavLocation( this, "usingPhetInLecture", LectureOverviewPanel.getLinker() );
             addLocation(usingPhetInLecturePanel);
-            tipsForUsingPhetPanel.addChild( usingPhetInLecturePanel ); 
-            
-          //PhET as an (Interactive) Lecture Demonstration
+//            tipsForUsingPhetPanel.addChild( usingPhetInLecturePanel ); 
+//            
+//          //PhET as an (Interactive) Lecture Demonstration
             NavLocation lectureDemoPanel = new NavLocation( this, "lectureDemo", LectureDemoPanel.getLinker() );
             addLocation(lectureDemoPanel);
-            tipsForUsingPhetPanel.addChild( lectureDemoPanel ); 
-            
-          //Using PhET with Clickers and Peer Instruction
+//            tipsForUsingPhetPanel.addChild( lectureDemoPanel ); 
+//            
+//          //Using PhET with Clickers and Peer Instruction
             NavLocation clickersDemoPanel = new NavLocation( this, "clickersDemo", ClickersPanel.getLinker() );
             addLocation(clickersDemoPanel);
-            tipsForUsingPhetPanel.addChild( clickersDemoPanel );  
-            
-          //Designing Effective Activities for use in K12
+//            tipsForUsingPhetPanel.addChild( clickersDemoPanel );  
+//            
+//          //Designing Effective Activities for use in K12
             NavLocation activitesDesignPanel = new NavLocation( this, "activitesDesign", ActivitiesdesignPanel.getLinker() );
             addLocation(activitesDesignPanel);
-            tipsForUsingPhetPanel.addChild( activitesDesignPanel ); 
-            
-            //Take a Virtual PhET Workshop
+//            tipsForUsingPhetPanel.addChild( activitesDesignPanel ); 
+//            
+//            //Take a Virtual PhET Workshop
             NavLocation virtualWorkshopPanel = new NavLocation( this, "virtualWorkshop", VirtualWorkshopPanel.getLinker() );
-            addLocation(virtualWorkshopPanel);
-            tipsForUsingPhetPanel.addChild( virtualWorkshopPanel ); 
+           addLocation(virtualWorkshopPanel);
+//            tipsForUsingPhetPanel.addChild( virtualWorkshopPanel ); 
             
             addLocation( tipsForUsingPhetPanel );
             addChild( tipsForUsingPhetPanel );  
