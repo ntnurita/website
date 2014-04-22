@@ -128,6 +128,7 @@ public class Contribution implements Serializable, DataListener, IntId {
         return PhetWicketApplication.get().getActivitiesLocation() + "/zip/" + getZipName() + ".zip";
     }
 
+    // NOTE: should only be delivered from the contribution pages, or the installer will need to be changed
     public RawLinkable getZipLinker() {
         return new RawLinker( getZipLocation() );
     }

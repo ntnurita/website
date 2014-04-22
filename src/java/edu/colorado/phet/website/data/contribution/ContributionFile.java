@@ -58,6 +58,7 @@ public class ContributionFile implements Serializable, IntId {
         return id + "/" + filename.replace( '/', '_' ).replace( '\\', '_' );
     }
 
+    // NOTE: should only be delivered from the contribution pages, or the installer will need to be changed
     public AbstractLinker getLinker() {
         return new AbstractLinker() {
             @Override
