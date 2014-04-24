@@ -121,9 +121,9 @@ public class NavMenu implements Serializable {
             NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
    
             //C.1. PhET Workshop Facilitators Guide
-            NavLocation workshopFacilitatorsGuide  = new NavLocation( this, "workshopFacilitatorsGuide", WorkshopFacilitatorsGuidePanel.getLinker() );
-            addLocation( workshopFacilitatorsGuide );
-            workshops.addChild(workshopFacilitatorsGuide);
+//            NavLocation workshopFacilitatorsGuide  = new NavLocation( this, "workshopFacilitatorsGuide", WorkshopFacilitatorsGuidePanel.getLinker() );
+//            addLocation( workshopFacilitatorsGuide );
+//            workshops.addChild(workshopFacilitatorsGuide);
             addLocation( workshops );
             addChild( workshops );
 //
