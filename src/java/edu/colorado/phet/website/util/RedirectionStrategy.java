@@ -159,7 +159,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         map.put( "/simulations/translations.php", "/en/simulations/translated" );
         map.put( "/sponsors/index.php", "/en/about/sponsors" );
         map.put( "/teachwithphet", "/en/teachwithphet" );
-        map.put( "/teachresources", "https://www.youtube.com/playlist?list=PLU4AnY00ZrzrDr_o7Q8CwCFZIWeItGzqD" );
+        map.put( "/teachresources", "http://phet-dev.colorado.edu/en/for-teachers/tipsForUsingPhet" );
         map.put( "/teacher_ideas/", "/en/for-teachers" );
         map.put( "/teacher_ideas/browse.php", "/en/for-teachers/browse-activities" );
         map.put( "/teacher_ideas/classroom-use.php", "/en/for-teachers/classroom-use" );
