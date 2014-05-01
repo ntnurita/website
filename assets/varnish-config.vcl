@@ -227,6 +227,7 @@ sub vcl_recv {
          req.http.minus-locale ~ "^/simulations/translated/([^/]+)" ||
          req.http.minus-locale ~ "^/simulations/category/html" ||
          req.http.minus-locale ~ "^/simulations/category/by-level" ||
+         req.http.minus-locale ~ "^/$" ||
          req.http.minus-locale ~ "^/about" ||
          req.http.minus-locale ~ "^/about/contact" ||
          req.http.minus-locale ~ "^/about/licensing" ||
