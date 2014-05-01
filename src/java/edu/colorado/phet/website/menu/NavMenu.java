@@ -36,6 +36,7 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
+import edu.colorado.phet.website.content.about.HTMLLicensingPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPanel;
@@ -214,6 +215,9 @@ public class NavMenu implements Serializable {
         NavLocation aboutSponsors = new NavLocation( about, "sponsors", AboutSponsorsPanel.getLinker() );
         addLocation( aboutSponsors );
         about.addChild( aboutSponsors );
+
+        NavLocation htmlLicensing = new NavLocation( null, "html.licensing", HTMLLicensingPanel.getLinker() );
+        addLocation( htmlLicensing );
 
         // unconnected locations (TODO: doc how these work)
 

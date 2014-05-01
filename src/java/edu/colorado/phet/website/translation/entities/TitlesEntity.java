@@ -23,6 +23,7 @@ public class TitlesEntity extends TranslationEntity {
         addString( "about.contact.title", "Title of the Contact About page" );
         addString( "about.who-we-are.title", "Title of the Who We Are About page" );
         addString( "about.licensing.title", "Title of the Licensing About page" );
+        addString( "html.licensing.title", "Title of the HTML5 Licensing page" );
         addString( "sponsors.title", "Title of the PhET Sponsors page" );
         addString( "contribution.title", "Title of contribution pages. {0} will be replaced by the contribution title." );
         addString( "workshops.title", "Title of the Workshops page" );

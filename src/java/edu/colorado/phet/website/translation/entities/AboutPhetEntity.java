@@ -98,6 +98,8 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.licensing.trademarkLicensing" );
         addString( "about.licensing.trademarkText" );
 
+        addString( "html.licensing.comingSoon" );
+
         addString( "about.contact.backRow" );
         addString( "about.contact.middleRow" );
         addString( "about.contact.frontRow" );

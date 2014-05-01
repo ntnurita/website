@@ -22,6 +22,9 @@ public class StringChanges {
         Session session = HibernateUtils.getInstance().openSession();
 
         StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
+        StringUtils.addString( session, "nav.html.licensing", "HTML5 Licensing" );
+        StringUtils.addString( session, "html.licensing.title", "HTML5 Simulation Licensing Information" );
+        StringUtils.addString( session, "html.licensing.comingSoon", "Information coming soon, please contact {0}." );
 
         session.close();
     }

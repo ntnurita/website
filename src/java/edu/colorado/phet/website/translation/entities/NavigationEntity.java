@@ -68,6 +68,7 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.about.contact" );
         addString( "nav.about.who-we-are" );
         addString( "nav.about.licensing" );
+        addString( "nav.html.licensing" );
         addString( "nav.sponsors" );
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
