@@ -29,12 +29,21 @@ public class StringChanges {
 
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
+        StringUtils.deleteString( session, "clickersDemo" );
+        StringUtils.deleteString( session,"lectureDemo");
+        StringUtils.deleteString( session, "nav.clickersDemo" );
+        StringUtils.deleteString( session,"nav.lectureDemo");
+        StringUtils.deleteString( session, "nav.clickersDemo.title" );
+        StringUtils.deleteString( session,"nav.lectureDemo.title");
+        StringUtils.deleteString( session, "clickersDemo.title" );
+        StringUtils.deleteString( session,"lectureDemo.title");
+        
         StringUtils.addString( session,"nav.workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
        StringUtils.addString( session, "nav.tipsForUsingPhet", "Tips for Using PhET" );
        StringUtils.addString( session, "nav.planningToUsePhet", "Planning to Use PhET" );
        StringUtils.addString( session, "nav.usingPhetInLecture", "Using PhET in Lecture" ); 
-       StringUtils.addString( session,"nav.lectureDemo", " PhET as an (Interactive) Lecture Demonstration" );
-       StringUtils.addString( session, "nav.clickersDemo", "Using PhET with Clickers and Peer Instruction" );
+       StringUtils.addString( session,"nav.lectureDemo", " Interactive Lecture Demonstrations" );
+       StringUtils.addString( session, "nav.clickersDemo", "Using PhET with Clickers" );
        StringUtils.addString( session, "nav.activitesDesign", "Designing Effective Activities for use in K12" );
        StringUtils.addString( session, "nav.virtualWorkshop", "Take a Virtual PhET Workshop" );
    
@@ -42,8 +51,8 @@ public class StringChanges {
       StringUtils.addString( session, "nav.tipsForUsingPhet.title", "Tips for Using PhET" );
       StringUtils.addString( session, "nav.planningToUsePhet.title", "Planning to Use PhET" );
       StringUtils.addString( session, "nav.usingPhetInLecture.title", "Using PhET in Lecture" ); 
-      StringUtils.addString( session,"nav.lectureDemo.title", " PhET as an (Interactive) Lecture Demonstration" );
-      StringUtils.addString( session, "nav.clickersDemo.title", "Using PhET with Clickers and Peer Instruction" );
+      StringUtils.addString( session,"nav.lectureDemo.title", " Interactive Lecture Demonstrations" );
+      StringUtils.addString( session, "nav.clickersDemo.title", "Using PhET with Clickers" );
       StringUtils.addString( session, "nav.activitesDesign.title", "Designing Effective Activities for use in K12" );
       StringUtils.addString( session, "nav.virtualWorkshop.title", "Take a Virtual PhET Workshop" );
 
@@ -52,8 +61,8 @@ public class StringChanges {
      StringUtils.addString( session, "tipsForUsingPhet.title", "Tips for Using PhET" );
      StringUtils.addString( session, "planningToUsePhet.title", "Planning to Use PhET" );
      StringUtils.addString( session, "usingPhetInLecture.title", "Using PhET in Lecture" ); 
-     StringUtils.addString( session,"lectureDemo.title", " PhET as an (Interactive) Lecture Demonstration" );
-     StringUtils.addString( session, "clickersDemo.title", "Using PhET with Clickers and Peer Instruction" );
+     StringUtils.addString( session,"lectureDemo.title", " Interactive Lecture Demonstrations" );
+     StringUtils.addString( session, "clickersDemo.title", "Using PhET with Clickers" );
      StringUtils.addString( session, "activitesDesign.title", "Designing Effective Activities for use in K12" );
      StringUtils.addString( session, "virtualWorkshop.title", "Take a Virtual PhET Workshop" );
 
@@ -61,8 +70,9 @@ public class StringChanges {
     StringUtils.addString( session, "tipsForUsingPhet", "Tips for Using PhET" );
     StringUtils.addString( session, "planningToUsePhet", "Planning to Use PhET" );
     StringUtils.addString( session, "usingPhetInLecture", "Using PhET in Lecture" ); 
-    StringUtils.addString( session,"lectureDemo", " PhET as an (Interactive) Lecture Demonstration" );
-    StringUtils.addString( session, "clickersDemo", "Using PhET with Clickers and Peer Instruction" );
+    StringUtils.addString( session,"lectureDemo", "Interactive Lecture Demonstrations" );
+    
+    StringUtils.addString( session, "clickersDemo", "Using PhET with Clickers" );
     StringUtils.addString( session, "activitesDesign", "Designing Effective Activities for use in K12" );
     StringUtils.addString( session, "virtualWorkshop", "Take a Virtual PhET Workshop" );
       //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
