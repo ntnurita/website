@@ -39,7 +39,7 @@ public class PlanningPanel extends PhetPanel {
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {
-                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "planningToUsePhet", "getSocialBookmarkTitle()" );
+                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "planningToUsePhet");
                 }
             } ) );
             addedTips = true;

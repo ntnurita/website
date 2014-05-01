@@ -40,7 +40,7 @@ public class ActivitiesdesignPanel extends PhetPanel {
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {
-                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "activitesDesign", "getSocialBookmarkTitle()" );
+                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "activitesDesign" );
                 }
             } ) );
             addedTips = true;

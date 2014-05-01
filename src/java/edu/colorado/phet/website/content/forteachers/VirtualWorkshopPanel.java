@@ -26,7 +26,7 @@ public class VirtualWorkshopPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "tipsForUsingPhet";
+        return "virtualWorkshop";
     }
 
     public static String getUrl() {
@@ -39,7 +39,7 @@ public class VirtualWorkshopPanel extends PhetPanel {
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {
-                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "tipsForUsingPhet", "getSocialBookmarkTitle()" );
+                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "virtualWorkshop" );
                 }
             } ) );
             addedTips = true;

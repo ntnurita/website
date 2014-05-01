@@ -39,7 +39,7 @@ public class LectureDemoPanel extends PhetPanel {
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {
-                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "lectureDemo", "getSocialBookmarkTitle()" );
+                    return new TipsRighthandMenu( "righthand-menu-panel", context2, "lectureDemo" );
                 }
             } ) );
             addedTips = true;
