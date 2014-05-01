@@ -36,6 +36,7 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.metadata.InitializeMathCommonCore;
 import edu.colorado.phet.website.metadata.LearningRegistryUtils;
 import edu.colorado.phet.website.metadata.MetadataUtils;
@@ -133,6 +134,29 @@ public class AdminMainPage extends AdminPage {
                             }
                         }
                         return true;
+                    }
+                } );
+            }
+        } );
+
+        add( new Link( "debug-fix-contributions" ) {
+            @Override
+            public void onClick() {
+                HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+                    public void run( Session session ) {
+                        List contributions = session.createQuery( "select c from Contribution as c" ).list();
+
+                        for ( Object c : contributions ) {
+                            Contribution contribution = (Contribution) c;
+
+                            try {
+                                contribution.createZipFile();
+                                logger.info( "updated zip file for contribution " + contribution.getId() );
+                            }
+                            catch( IOException e ) {
+                                logger.warn( "failed to update zip file for contribution " + contribution.getId(), e );
+                            }
+                        }
                     }
                 } );
             }
