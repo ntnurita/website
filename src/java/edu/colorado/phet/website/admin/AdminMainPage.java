@@ -150,7 +150,9 @@ public class AdminMainPage extends AdminPage {
                             Contribution contribution = (Contribution) c;
 
                             try {
-                                contribution.createZipFile();
+                                if ( !contribution.getZipFile().exists() ) {
+                                    contribution.createZipFile();
+                                }
                                 logger.info( "updated zip file for contribution " + contribution.getId() );
                             }
                             catch( IOException e ) {
