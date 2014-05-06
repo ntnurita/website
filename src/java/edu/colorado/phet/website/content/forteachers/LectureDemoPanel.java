@@ -22,6 +22,7 @@ public class LectureDemoPanel extends PhetPanel {
     public LectureDemoPanel( String id, PageContext context ) {
         super( id, context );
         this.context2 = context;
+      
     }
 
     public static String getKey() {
@@ -36,6 +37,7 @@ public class LectureDemoPanel extends PhetPanel {
         super.onBeforeRender();
     
         ((PhetMenuPage) this.getPage()).hideSocialBookmarkButtons();
+        ((PhetMenuPage) this.getPage()).setContentWidth(961);
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {
