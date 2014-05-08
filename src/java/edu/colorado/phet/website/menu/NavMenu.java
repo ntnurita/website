@@ -118,14 +118,7 @@ public class NavMenu implements Serializable {
             addLocation( teacherIdeasBrowse );
             addChild( teacherIdeasBrowse );
 
-            NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
-   
-            //C.1. PhET Workshop Facilitators Guide
-//            NavLocation workshopFacilitatorsGuide  = new NavLocation( this, "workshopFacilitatorsGuide", WorkshopFacilitatorsGuidePanel.getLinker() );
-//            addLocation( workshopFacilitatorsGuide );
-//            workshops.addChild(workshopFacilitatorsGuide);
-            addLocation( workshops );
-            addChild( workshops );
+
 //
             //Tips for Using PhET
             NavLocation tipsForUsingPhetPanel = new NavLocation( this, "tipsForUsingPhet", TipsPanel.getLinker() );
@@ -162,7 +155,14 @@ public class NavMenu implements Serializable {
             
             addLocation( tipsForUsingPhetPanel );
             addChild( tipsForUsingPhetPanel );  
+            NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
             
+            //C.1. PhET Workshop Facilitators Guide
+//            NavLocation workshopFacilitatorsGuide  = new NavLocation( this, "workshopFacilitatorsGuide", WorkshopFacilitatorsGuidePanel.getLinker() );
+//            addLocation( workshopFacilitatorsGuide );
+//            workshops.addChild(workshopFacilitatorsGuide);
+            addLocation( workshops );
+            addChild( workshops );      
 //
             NavLocation teacherIdeasSubmit = new NavLocation( this, "teacherIdeas.submit", ContributionCreatePage.getLinker() );
             addLocation( teacherIdeasSubmit );
