@@ -44,6 +44,7 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.tipsForUsingPhet");
         addString( "nav.planningToUsePhet" );
         addString( "nav.usingPhetInLecture" ); 
+        addString( "nav.exampleworkshops" );
         addString( "nav.lectureDemo");
         addString(  "nav.clickersDemo" );
         addString(  "nav.activitesDesign" );

@@ -71,10 +71,15 @@ public class StringChanges {
     StringUtils.addString( session, "planningToUsePhet", "Planning to Use PhET" );
     StringUtils.addString( session, "usingPhetInLecture", "Using PhET in Lecture" ); 
     StringUtils.addString( session,"lectureDemo", "Interactive Lecture Demonstrations" );
-    
     StringUtils.addString( session, "clickersDemo", "Using PhET with Clickers" );
     StringUtils.addString( session, "activitesDesign", "Designing Effective Activities for use in K12" );
     StringUtils.addString( session, "virtualWorkshop", "Take a Virtual PhET Workshop" );
+    
+    StringUtils.addString( session, "nav.exampleworkshops.title", "Example Workshops" );
+    StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
+    StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
+    StringUtils.addString( session, "exampleworkshops", "Example Workshops" );
+    
       //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 
         session.close();
