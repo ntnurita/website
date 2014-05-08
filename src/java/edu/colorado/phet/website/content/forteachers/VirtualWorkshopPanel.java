@@ -37,7 +37,7 @@ public class VirtualWorkshopPanel extends PhetPanel {
     protected void onBeforeRender() {
         super.onBeforeRender();
         ((PhetMenuPage) this.getPage()).hideSocialBookmarkButtons();
-        ((PhetMenuPage) this.getPage()).setContentWidth(961);
+        ((PhetMenuPage) this.getPage()).setContentWidth(1120);
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {
