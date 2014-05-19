@@ -75,10 +75,11 @@ public class StringChanges {
     StringUtils.addString( session, "activitesDesign", "Designing Effective Activities for use in K12" );
     StringUtils.addString( session, "virtualWorkshop", "Take a Virtual PhET Workshop" );
     
+    StringUtils.addString( session, "exampleworkshops", "Example Workshops" );
     StringUtils.addString( session, "nav.exampleworkshops.title", "Example Workshops" );
     StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
     StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
-    StringUtils.addString( session, "exampleworkshops", "Example Workshops" );
+
     
       //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 

@@ -48,6 +48,7 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.lectureDemo");
         addString(  "nav.clickersDemo" );
         addString(  "nav.activitesDesign" );
+        addString(  "nav.activitesDesign2" );
         addString(  "nav.virtualWorkshop");
 
         addString( "nav.teacherIdeas.edit" );

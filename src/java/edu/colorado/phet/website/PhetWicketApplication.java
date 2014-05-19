@@ -116,6 +116,7 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPan
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
@@ -248,6 +249,7 @@ public class PhetWicketApplication extends WebApplication {
 		StaticPage.addPanel(WorkshopFacilitatorsGuidePanel.class);
 
 		StaticPage.addPanel(ActivitiesdesignPanel.class);
+		StaticPage.addPanel(ExampleWorkshopsPanel.class);
 		StaticPage.addPanel(ClickersPanel.class);
 		StaticPage.addPanel(LectureDemoPanel.class);
 		StaticPage.addPanel(LectureOverviewPanel.class);

@@ -8,6 +8,7 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
