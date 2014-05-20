@@ -1,0 +1,102 @@
+December 2013 Newsletter - PhET Interactive Simulations (http://phet.colorado.edu)
+
+*** PhET's Crowdfunding Campaign
+
+We need your help to make the "Teach with PhET" website a reality. Please donate today, and spread the word about our project!
+
+Donate now to build "Teach with PhET": http://www.crowdrise.com/helpbuildteachwithphet
+
+
+*** PhET is Busy Working on Two Big Initiatives:
+
+We are excited to have completed the design phase for the "Teach with PhET" website! Thanks to Theresa Niel Strategy and
+Design for their excellent work and to all the teachers who participated in the planning and review stages of this project.
+
+The "Teach with PhET" website is designed just for educators like you, providing quick and easy access to the resources,
+support, and community you need to get started with, or extend, your use of PhET in the classroom! You will be able to:
+- Easily find relevant simulations and activities
+- Access research-based strategies, video guides, and exemplars for teaching with PhET
+- See teacher recommendations and read reviews
+- Bookmark, tag and organize your resources in "My PhET"
+- Share ideas and learn from other teachers
+- And more ...
+
+Browse the designs at: http://phet.colorado.edu/teachwithphet. We hope you are as excited as we are about this new site.
+Send any suggestions to phethelp@colorado.edu, and spread the word about our crowdfunding campaign! We want to turn this
+vision into a reality: http://www.crowdrise.com/helpbuildteachwithphet
+
+*** New Next-Generation PhET Simulations Now Available!
+
+Have you been following our progress on creating next-generation PhET sims? These new simulations update our designs to
+work with touch or mouse interaction, and they are built on a new HTML5 code base, meaning that they run seamlessly on
+all of todayâ€™s classroom technologies from PCs, to tablets (iPads or Android-based), to Chromebooks. Hats off to our
+amazing software development team for their work to push the boundaries of HTML5 technology!
+
+To access the new sims, visit http://phet.colorado.edu/en/simulations/category/html.
+
+*** PhET has a new Logo!
+
+Do you like our new logo? We hope that the new logo reflects our mission to advance science and math literacy worldwide
+by making STEM learning active, engaging and most of all, fun!
+
+To stay up-to-date on the Future of PhET, join us on Twitter, Facebook and our Blog.
+
+*** Don't forget to join us on Facebook, Twitter and our Blog!
+
+Be the first to learn about new sims, new teacher activities, articles and newsletters. We'd also
+love to hear how you use PhET in your classrooms. Spread the word so PhET can go viral....
+
+Join us on Facebook: http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall
+Follow us on Twitter icon: http://twitter.com/PhETSims
+Read our blog: http://phet.colorado.edu/blog/
+
+*** Your donation brings science and math to kids in your town and around the world.
+
+Your donation brings science to kids in your town and around the world. So please consider:
+$15      if you're a teacher who uses a few sims
+$25-50+  if you use more sims
+$200+    for individual schools
+$500+    for districts
+
+Donate now: https://npo1.networkforgood.org/Donate/Donate.aspx?npoSubscriptionId=1006125
+
+All donations are tax deductible.
+
+Thanks for your support!
+
+*** In the HTML5 Pipeline:
+    * Balloons and Static Electricity: http://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html
+    * Beer's Law Lab: http://phet.colorado.edu/sims/html/beers-law-lab/latest/beers-law-lab_en.html
+    * Gravity Force Lab: http://phet.colorado.edu/sims/html/gravity-force-lab/latest/gravity-force-lab_en.html
+    * Build an Atom: http://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html
+    * Forces and Motion: Basics: http://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html
+Coming soon:
+    * Friction
+    * Wave on a String
+    * Gravity and Orbits
+    * pH Scale: Basics
+
+*** Upcoming Events:
+
+NSTA National Conference (http://www.nsta.org/conferences/national.aspx)
+Boston, MA
+April 3-6, 2014
+
+NCTM Annual Meeting (http://www.nctm.org/neworleans/)
+New Orleans, LA
+April 9-12, 2014
+
+ISTE 2014 (https://www.isteconference.org/2014/)
+Atlanta, GA
+June 28-July 1, 2014
+
+
+*** Feedback or Suggestions?
+
+If you have any ideas, please let us know at phethelp@colorado.edu.
+
+
+You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
+phethelp@colorado.edu. To opt out of these newsletters, please click on this link: @UNSUBSCRIBE@ or copy and paste the text into your browser.
+
+PhET Interactive Simulations | University of Colorado 390 UCB | Boulder, CO 80309-0390
