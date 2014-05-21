@@ -221,15 +221,18 @@ public class AdminMainPage extends AdminPage {
                             PhetUser user = (PhetUser) o;
                             if ( user.isConfirmed() && user.isReceiveEmail() ) {
                                 String email = user.getEmail();
-                                if ( ( "anikaaa".compareTo( email ) < 0 && email.compareTo( "bsezzz" ) < 0 ) ||
-                                     ( "djiaaa".compareTo( email ) < 0 && email.compareTo( "gcampbzzz" ) < 0 ) ||
-                                     ( "jclaaa".compareTo( email ) < 0 && email.compareTo( "knazzz" ) < 0 ) ||
-                                     ( "meganaaaa".compareTo( email ) < 0 && email.compareTo( "osmanzzz" ) < 0 ) ||
-                                     ( "royaaaa".compareTo( email ) < 0 && email.compareTo( "sushzzz" ) < 0 ) ||
-                                     "yez".compareTo( email ) < 0 ) {
-//                                    System.out.println( "Will send to " + email );
+                                if ( "norm".compareTo( email ) < 0 ) {
                                     users.add( user );
                                 }
+//                                if ( ( "anikaaa".compareTo( email ) < 0 && email.compareTo( "bsezzz" ) < 0 ) ||
+//                                     ( "djiaaa".compareTo( email ) < 0 && email.compareTo( "gcampbzzz" ) < 0 ) ||
+//                                     ( "jclaaa".compareTo( email ) < 0 && email.compareTo( "knazzz" ) < 0 ) ||
+//                                     ( "meganaaaa".compareTo( email ) < 0 && email.compareTo( "osmanzzz" ) < 0 ) ||
+//                                     ( "royaaaa".compareTo( email ) < 0 && email.compareTo( "sushzzz" ) < 0 ) ||
+//                                     "yez".compareTo( email ) < 0 ) {
+////                                    System.out.println( "Will send to " + email );
+//                                    users.add( user );
+//                                }
                             }
                         }
 
