@@ -37,6 +37,7 @@ public class Images {
     public static final ImageHandle NEWSLETTER_DECEMBER_12 = new ImageHandle( "/images/phet_newsletter_december_12_thumbnail.png", true );
     public static final ImageHandle NEWSLETTER_MAY_13 = new ImageHandle( "/images/phet_newsletter_may_13_thumbnail.png", true );
     public static final ImageHandle NEWSLETTER_DECEMBER_13 = new ImageHandle( "/images/phet_newsletter_december_13_thumbnail.png", true );
+    public static final ImageHandle NEWSLETTER_SPRING_14 = new ImageHandle( "/images/phet_newsletter_spring_14_thumbnail.png", true );
 
     public static final ImageHandle PHET_LOGO_ICON_SMALL = new ImageHandle( "/images/contributions/phet-logo-icon-small.jpg", true );
     public static final ImageHandle GOLD_STAR_SMALL = new ImageHandle( "/images/contributions/gold-star-small.jpg", true );
