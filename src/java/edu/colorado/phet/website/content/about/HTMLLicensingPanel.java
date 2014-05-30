@@ -25,7 +25,7 @@ public class HTMLLicensingPanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "html-licensing";
+        return "html-terms-privacy-and-licensing";
     }
 
     public static RawLinkable getLinker() {
