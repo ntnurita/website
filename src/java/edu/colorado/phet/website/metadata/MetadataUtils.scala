@@ -54,7 +54,7 @@ object MetadataUtils {
   /**
    * Turn a name into a VCard format entry
    */
-  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
+  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nN:" + name.split( " " ).reverse.mkString( ";" ) + "\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
   /**
    * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
