@@ -63,9 +63,9 @@ trait ODSLOMConverter extends PhetMetadataConverter {
 
         <!-- simulation version -->
         <lom:version>
-          <lom:language language="en">
+          <lom:string language="en">
             {record.versionString}
-          </lom:language>
+          </lom:string>
         </lom:version>
 
         <lom:status>
@@ -80,14 +80,12 @@ trait ODSLOMConverter extends PhetMetadataConverter {
             <lom:value>publisher</lom:value>
           </lom:role>
           <lom:entity>
-            <![CDATA[
-            BEGIN:VCARD
-            FN:PhET Interactive Simulations
-            N:;;PhET Interactive Simulations
-            ORG:PhET Interactive Simulations
-            VERSION:3.0
-            END:VCARD
-            ]]>
+            <![CDATA[BEGIN:VCARD
+N:;;PhET Interactive Simulations
+FN:PhET Interactive Simulations
+ORG:PhET Interactive Simulations
+VERSION:3.0
+END:VCARD]]>
           </lom:entity>
         </lom:contribute>
 
@@ -115,12 +113,12 @@ trait ODSLOMConverter extends PhetMetadataConverter {
           {record.simPageLink}
         </lom:location>
         <lom:installationRemarks>
-          <lom:language language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</lom:language>
+          <lom:string language="en">Press either "Run Now!" to run the simulation, or "Download" to download it to your computer to run later</lom:string>
         </lom:installationRemarks>
         <lom:otherPlatformRequirements>
-          <lom:language language="en">
+          <lom:string language="en">
             {record.englishSoftwareRequirements}
-          </lom:language>
+          </lom:string>
         </lom:otherPlatformRequirements>
       </lom:technical>
 
@@ -158,9 +156,9 @@ trait ODSLOMConverter extends PhetMetadataConverter {
         </lom:context>
 
         <lom:typicalAgeRange>
-          <lom:language language="x-t-lre">
+          <lom:string language="x-t-lre">
             {record.minGradeLevel.getLowAge + "-" + record.maxGradeLevel.getHighAge}
-          </lom:language>
+          </lom:string>
         </lom:typicalAgeRange>
 
         <!-- OPTION difficulty: very easy / easy / medium / difficult / very difficult -->
@@ -207,16 +205,16 @@ trait ODSLOMConverter extends PhetMetadataConverter {
       </lom:purpose>
       <lom:taxonPath>
         <lom:source>
-          <lom:language language="x-none">LRE-0001</lom:language>
+          <lom:string language="x-none">LRE-0001</lom:string>
         </lom:source>
         <lom:taxon>
           <lom:id>
             {term._1}
           </lom:id>
           <lom:entry>
-            <lom:language language="en">
+            <lom:string language="en">
               {term._2}
-            </lom:language>
+            </lom:string>
           </lom:entry>
         </lom:taxon>
       </lom:taxonPath>
