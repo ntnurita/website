@@ -122,6 +122,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.Autocomplete;
+import edu.colorado.phet.website.services.EnglishSummaryExportCSV;
 import edu.colorado.phet.website.services.GithubEmailHook;
 import edu.colorado.phet.website.services.HealthCheck;
 import edu.colorado.phet.website.services.IQityExportCSV;
@@ -320,6 +321,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/sim-jar-redirect.php", SimJarRedirectPage.class );
         mountBookmarkablePage( "services/get-string", StringGetter.class );
         mountBookmarkablePage( "services/nc-info.csv", NCInformationPage.class );
+        mountBookmarkablePage( "services/english-summary.csv", EnglishSummaryExportCSV.class );
         mountBookmarkablePage( "services/learning-com-export.csv", LearningComExport.class );
         mountBookmarkablePage( "services/iqity-export.csv", IQityExportCSV.class );
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
