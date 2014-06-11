@@ -133,6 +133,7 @@ import edu.colorado.phet.website.services.ProjectSortedSimulations;
 import edu.colorado.phet.website.services.SchedulerService;
 import edu.colorado.phet.website.services.SimJarRedirectPage;
 import edu.colorado.phet.website.services.SimulationMetadataFormatService;
+import edu.colorado.phet.website.services.SimulationMetadataFormatServiceWithoutDeclaration;
 import edu.colorado.phet.website.services.StringGetter;
 import edu.colorado.phet.website.services.TranslationList;
 import edu.colorado.phet.website.templates.StaticPage;
@@ -325,6 +326,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/learning-com-export.csv", LearningComExport.class );
         mountBookmarkablePage( "services/iqity-export.csv", IQityExportCSV.class );
         mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
+        mountBookmarkablePage( "services/metadata/simulation-nodecl", SimulationMetadataFormatServiceWithoutDeclaration.class );
         mountBookmarkablePage( "services/metadata/simulation", SimulationMetadataFormatService.class );
         mountBookmarkablePage( "services/translation-list", TranslationList.class );
         mountBookmarkablePage( "services/varnish-health-check", HealthCheck.class );
