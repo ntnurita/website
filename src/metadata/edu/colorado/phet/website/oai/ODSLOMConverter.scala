@@ -6,4 +6,4 @@ import org.dlese.dpc.xml.XMLFormatConverter
 /**
  * Stub format class that allows us to not include the DLESE (very large) code as a dependency for the website.
  */
-class ODSLOMConverterConverter extends XMLFormatConverter with edu.colorado.phet.website.metadata.formats.ODSLOMConverter
+class ODSLOMConverter extends XMLFormatConverter with edu.colorado.phet.website.metadata.formats.ODSLOMConverter
