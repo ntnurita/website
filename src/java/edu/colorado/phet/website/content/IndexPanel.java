@@ -22,6 +22,7 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
+import edu.colorado.phet.website.content.forteachers.TipsPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
@@ -123,9 +124,10 @@ public class IndexPanel extends PhetPanel {
         add( GeneralFAQPanel.getLinker().getLink( "faqs-link", context, getPhetCycle() ) );
 
         add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, getPhetCycle() ) );
-
+        add( TipsPanel.getLinker().getLink( "tipsforusingphet-link", context, getPhetCycle() ) );
         add( DonatePanel.getLinker().getLink( "support-phet-link", context, getPhetCycle() ) );
         add( TranslationUtilityPanel.getLinker().getLink( "translate-sims-link", context, getPhetCycle() ) );
+       
 
         add( AboutMainPanel.getLinker().getLink( "about-general", context, getPhetCycle() ) );
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );

@@ -182,9 +182,9 @@ public class NavMenu implements Serializable {
             NavLocation teacherIdeasGuide = new NavLocation( this, "teacherIdeas.guide", ContributionGuidelinesPanel.getLinker() );
             addLocation( teacherIdeasGuide );
 
-            NavLocation aboutLegend = new NavLocation( this, "about.legend", AboutLegendPanel.getLinker() );
-            addLocation( aboutLegend );
-            addChild( aboutLegend );
+//            NavLocation aboutLegend = new NavLocation( this, "about.legend", AboutLegendPanel.getLinker() );
+//            addLocation( aboutLegend );
+//            addChild( aboutLegend );
 
             // orphan!
             NavLocation classroomUse = new NavLocation( this, "for-teachers.classroom-use", ClassroomUsePanel.getLinker() );

@@ -33,6 +33,7 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.browseActivities" );
         addString( "home.donate" );
         addString( "home.workshops" );
+        addString( "tipsForUsingPhet");
         addString( "home.submitActivity" );
         addString( "home.supportPhet" );
         addString( "home.translateSimulations" );
