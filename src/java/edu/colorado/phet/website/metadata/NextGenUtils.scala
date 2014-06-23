@@ -4,6 +4,7 @@ package edu.colorado.phet.website.metadata
 import java.io.File
 import xml.{NodeSeq, XML}
 import edu.colorado.phet.common.phetcommon.util.FileUtils
+import collection.mutable
 
 /**
  * For parsing the next gen standards from the ASN
@@ -21,6 +22,36 @@ object NextGenUtils {
     val rdfNamespace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     val asnNamespace = "http://purl.org/ASN/schema/core/"
     val dctermsNamespace = "http://purl.org/dc/terms/"
+
+    val conceptMap = new mutable.HashMap[String,String]()
+
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/1", "Forces and Interactions: Pushes and Pulls" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/2", "Interdependent Relationships in Ecosystems: Animals, Plants, and Their Environment" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/3", "Weather and Climate" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/4", "Waves: Light and Sound" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/5", "Structure, Function, and Information Processing" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/6", "Space Systems: Patterns and Cycles" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/7", "Structure and Properties of Matter" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/8", "Interdependent Relationships in Ecosystems" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/9", "Earth's Systems: Processes that Shape the Earth" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/10", "Engineering Design" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/11", "Forces and Interactions" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/12", "Inheritance and Variation of Traits: Life Cycles and Traits" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/13", "Energy" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/14", "Waves: Waves and Information" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/15", "Matter and Energy in Organisms and Ecosystems" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/16", "Earth's Systems" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/17", "Space Systems: Stars and the Solar System" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/18", "Chemical Reactions" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/19", "Waves and Electromagnetic Radiation" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/20", "Growth, Development, and Reproduction of Organisms" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/21", "Natural Selection and Adaptations" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/22", "Space Systems" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/23", "History of Earth" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/24", "Human Impacts" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/25", "Structure and Function" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/26", "Inheritance and Variation of Traits" )
+    conceptMap.put( "http://purl.org/ASN/scheme/NGSSTopic/27", "Natural Selection and Evolution" )
 
     /*
 
@@ -88,7 +119,9 @@ object NextGenUtils {
             "Concept Term\t" +
             "Comprised Of\t" +
             "Align To\t" +
-            "Is Child Of"
+            "Is Child Of\t" +
+            "See Also\t" +
+            "Concept Term"
     )
 
       println( statements.map( node => List(
@@ -134,6 +167,16 @@ object NextGenUtils {
         ( node \ "isChildOf" ).map(
           n => {
             ( n \ ( "@{" + rdfNamespace + "}resource" ) ).text
+          }
+        ).mkString(","),
+        ( node \ "seeAlso" ).map(
+          n => {
+            ( n \ ( "@{" + rdfNamespace + "}resource" ) ).text
+          }
+        ).mkString(","),
+        ( node \ "conceptTerm" ).map(
+          n => {
+            conceptMap.get( ( n \ ( "@{" + rdfNamespace + "}resource" ) ).text ).get
           }
         ).mkString(",")
       ).mkString( "\t" ) ).mkString( "\n" ) )
