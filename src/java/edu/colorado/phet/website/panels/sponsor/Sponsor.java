@@ -427,6 +427,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 1 );
     }};
 
+    public static Sponsor CUSTOMER_PARADIGM = new LogoSponsor(
+            "Customer Paradigm",
+            "http://www.CustomerParadigm.com/",
+            Images.LOGO_CUSTOMER_PARADIGM, "padding: 4px;" ) {{
+        setHomeWeight( 3 );
+        setSimWeight( 3 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -477,6 +485,7 @@ public abstract class Sponsor implements Serializable {
             THERESA_NEIL,
             ECS,
             SCIENCE_4_US,
+            CUSTOMER_PARADIGM,
             YOU
     };
 
