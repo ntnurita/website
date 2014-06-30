@@ -2,7 +2,7 @@
 /*------------------------------------------------------------------------
 # WordPress Yashfa Theme - February 2009
 # ------------------------------------------------------------------------
-# @license - WordPress Yashfa Theme is available under the terms of the GPL 
+# @license - WordPress Yashfa Theme is available under the terms of the GPL
 # Author: Nurudin Jauhari
 # Websites:  http://wpgpl.com
 -------------------------------------------------------------------------*/
@@ -54,25 +54,23 @@
 
 </head>
 <body>
-<div style="background: url(/images/header_BG.gif) left top repeat-x; height: 127px; margin-bottom: 10px;">
-    <div style="height: 127px; margin: 0 auto; width: 765px; position: relative;">
+<div style="background: #2a326a; height: 127px">
+    <div style="height: 127px; margin: 0 auto; width: 950px; position: relative;">
         <div style="position: absolute; width: 242px; height: 127px; left: 0; top: 0;">
             <a href="/">
-                <img src="/images/phet-logo.gif" alt="PhET Logo" title="Go to the PhET home page"
-                     style="border: 0; background-color: #18388c;"/>
+                <img src="/images/phet-logo-117.svg" alt="PhET Logo" title="Go to the PhET home page"
+                     style="border: 0; background-color: #2a326a; position: relative; top: 8px;"/>
             </a>
         </div>
 
-        <div style="position: absolute; width: 400px; right: 0; top: 0;">
-            <img src="/images/logo-title.jpg"
+        <div style="position: absolute; left: 290px; top: 50px; font-size: 27px; color: white;">
+            The PhET Blog
+        </div>
+
+        <div style="position: absolute; right: 0; top: 25px;">
+            <img src="/images/cu-logo-half.png"
                  alt="Physics Education Technology - University of Colorado, Boulder"
                  title="Physics Education Technology - University of Colorado, Boulder"/>
-
-            <div style="text-align: center; position: relative; top: -8px;">
-                <a href="/blog/"
-                   style="color: #eded6d; font-size: 30px; font-style:italic; font-family: Times New Roman,Times,serif; text-decoration: none;">PhET
-                    Blog</a>
-            </div>
         </div>
     </div>
 </div>
