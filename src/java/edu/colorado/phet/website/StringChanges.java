@@ -68,6 +68,7 @@ public class StringChanges {
 
      StringUtils.addString( session,"workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
     StringUtils.addString( session, "tipsForUsingPhet", "Tips for Using PhET" );
+    StringUtils.addString( session, "about.team", "People" );
     StringUtils.addString( session, "planningToUsePhet", "Planning to Use PhET" );
     StringUtils.addString( session, "usingPhetInLecture", "Using PhET in Lecture" ); 
     StringUtils.addString( session,"lectureDemo", "Interactive Lecture Demonstrations" );
