@@ -24,6 +24,7 @@ import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPan
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
@@ -91,7 +92,12 @@ public class AboutMainPanel extends PhetPanel {
             }
         } );
     }
-
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        ((PhetMenuPage) this.getPage()).hideSocialBookmarkButtons();
+        ((PhetMenuPage) this.getPage()).setContentWidth(1120);
+    }
     public static String getKey() {
         return "about";
     }

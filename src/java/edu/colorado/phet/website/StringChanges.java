@@ -68,7 +68,7 @@ public class StringChanges {
 
      StringUtils.addString( session,"workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
     StringUtils.addString( session, "tipsForUsingPhet", "Tips for Using PhET" );
-    StringUtils.addString( session, "about.team", "People" );
+    
     StringUtils.addString( session, "planningToUsePhet", "Planning to Use PhET" );
     StringUtils.addString( session, "usingPhetInLecture", "Using PhET in Lecture" ); 
     StringUtils.addString( session,"lectureDemo", "Interactive Lecture Demonstrations" );
@@ -81,6 +81,9 @@ public class StringChanges {
     StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
     StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
 
+    StringUtils.addString( session, "about.team", "People" );
+    StringUtils.addString( session, "nav.about.team", "People" );
+    StringUtils.addString( session, "about.team.title", "People" );
     
       //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 

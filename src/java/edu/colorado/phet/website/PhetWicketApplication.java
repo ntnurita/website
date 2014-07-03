@@ -77,6 +77,7 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
+import edu.colorado.phet.website.content.about.AboutTeamPanel;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCommentSuccessPage;
@@ -284,6 +285,8 @@ public class PhetWicketApplication extends WebApplication {
 		StaticPage.addPanel(ChangePasswordSuccessPanel.class);
 		StaticPage.addPanel(StayConnectedPanel.class);
 		StaticPage.addPanel(FaqTestPage.class);
+		
+		StaticPage.addPanel(AboutTeamPanel.class);
 		// NOTE: Adding another static panel? Make sure it's cached properly by
 		// Varnish
 
