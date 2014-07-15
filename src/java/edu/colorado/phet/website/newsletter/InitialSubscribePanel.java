@@ -135,4 +135,12 @@ public class InitialSubscribePanel extends PhetPanel {
         ipAttempts = new HashMap<String, Integer>();
         emailAttempts = new HashMap<String, Integer>();
     }
+
+    public static synchronized int getIPCount() {
+        return ipAttempts.size();
+    }
+
+    public static synchronized int getEmailCount() {
+        return emailAttempts.size();
+    }
 }

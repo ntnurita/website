@@ -245,4 +245,8 @@ public class ResetPasswordRequestPanel extends PhetPanel {
             this.lastAttempt = lastAttempt;
         }
     }
+
+    public static synchronized int getAttemptCounts() {
+        return attempts.size();
+    }
 }

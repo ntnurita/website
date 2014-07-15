@@ -60,4 +60,8 @@ public class ImageCache {
     public static void set( String src, WebImage image ) {
         imageMap.put( src, image );
     }
+
+    public static int getImageMapCount() {
+        return imageMap.size();
+    }
 }

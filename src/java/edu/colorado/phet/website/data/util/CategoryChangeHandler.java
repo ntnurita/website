@@ -13,6 +13,10 @@ import edu.colorado.phet.website.data.Simulation;
 public class CategoryChangeHandler {
     private static Set<Listener> listeners = new HashSet<Listener>();
 
+    public static synchronized int getListenerCount() {
+        return listeners.size();
+    }
+
     public static synchronized void addListener( Listener listener ) {
         listeners.add( listener );
     }

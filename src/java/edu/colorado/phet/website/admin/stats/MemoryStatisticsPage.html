@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+    <title wicket:id="page-title">[PREVIEW] MemoryStatisticsPage</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
+    <wicket:head>
+        <style type="text/css">
+            .admin-panel {
+                padding: 10px;
+            }
+        </style>
+    </wicket:head>
+</head>
+<body wicket:message="dir:language.dir">
+
+<wicket:extend>
+    <div class="admin-panel">
+        <h2>Memory Statistics</h2>
+
+        <p wicket:id="mem-translation-count"></p>
+        <p wicket:id="mem-imagemap-count"></p>
+        <p wicket:id="mem-phetlocalizer-count"></p>
+        <p wicket:id="mem-panelcache-count"></p>
+        <p wicket:id="mem-simcache-preferred-count"></p>
+        <p wicket:id="mem-simcache-map-count"></p>
+        <p wicket:id="mem-autocomplete-count"></p>
+        <p wicket:id="mem-hibernatelistener-count"></p>
+        <p wicket:id="mem-categorylistener-count"></p>
+        <p wicket:id="mem-spamip-count"></p>
+        <p wicket:id="mem-spamemail-count"></p>
+        <p wicket:id="mem-threadmap-count"></p>
+        <p wicket:id="mem-resetattempt-count"></p>
+    </div>
+</wicket:extend>
+
+</body>
+</html>
+

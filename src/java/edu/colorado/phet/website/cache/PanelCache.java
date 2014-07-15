@@ -101,6 +101,10 @@ public class PanelCache {
         return ret;
     }
 
+    public int getSize() {
+        return cache.size();
+    }
+
     /**
      * Clear all of this cache
      */

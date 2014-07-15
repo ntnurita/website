@@ -515,6 +515,10 @@ public class PhetWicketApplication extends WebApplication {
         return ret;
     }
 
+    public synchronized int getTranslationCount() {
+        return translations.size();
+    }
+
     public synchronized List<Locale> getAllVisibleTranslationLocales() {
         List<Locale> ret = new LinkedList<Locale>();
         ret.add( WebsiteConstants.ENGLISH ); // TODO: refactor translations to include English!

@@ -85,4 +85,8 @@ public class ComponentThreadStatusPanel extends PhetPanel {
     private static synchronized ComponentThread getThread( int index ) {
         return threadMap.get( index );
     }
+
+    public static synchronized int getThreadMapCount() {
+        return threadMap.size();
+    }
 }

@@ -35,6 +35,14 @@ public class HibernateEventListener implements PostInsertEventListener, PostUpda
         }
     }
 
+    public static synchronized int getListenerCount() {
+        int count = 0;
+        for ( List<IChangeListener> listeners : listenermap.values() ) {
+            count += listeners.size();
+        }
+        return count;
+    }
+
     public static synchronized void addListener( Class eClass, IChangeListener listener ) {
         List<IChangeListener> listeners = listenermap.get( eClass );
         if ( listeners == null ) {
