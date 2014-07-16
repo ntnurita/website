@@ -72,6 +72,9 @@ public class PanelCache {
         boolean adding;
         adding = !cache.containsKey( entry );
         if ( adding ) {
+            if ( cache.size() > 10000 ) {
+                clear();
+            }
             cache.put( entry, new CacheItem( entry ) );
             entry.onEnterCache( this );
         }
@@ -108,7 +111,9 @@ public class PanelCache {
     /**
      * Clear all of this cache
      */
-    public void clear() {
+    public synchronized void clear() {
+        logger.info( "Clearing PanelCache" );
+
         for ( IPanelCacheEntry cacheEntry : new HashSet<IPanelCacheEntry>( cache.keySet() ) ) {
             remove( cacheEntry );
         }
