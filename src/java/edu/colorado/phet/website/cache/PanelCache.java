@@ -109,6 +109,11 @@ public class PanelCache {
      * Clear all of this cache
      */
     public void clear() {
+        for ( IPanelCacheEntry cacheEntry : new HashSet<IPanelCacheEntry>( cache.keySet() ) ) {
+            remove( cacheEntry );
+        }
+
+        // sanity check
         cache.clear();
     }
 

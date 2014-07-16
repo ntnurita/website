@@ -22,6 +22,7 @@ import edu.colorado.phet.website.authentication.panels.ResetPasswordRequestPanel
 import edu.colorado.phet.website.cache.ImageCache;
 import edu.colorado.phet.website.cache.PanelCache;
 import edu.colorado.phet.website.cache.SimulationCache;
+import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
@@ -61,6 +62,8 @@ public class MemoryStatisticsPage extends AdminPage {
             add( new Label( "mem-spamemail-count", "InitialSubscribeCount.emailAttempts: " + InitialSubscribePanel.getEmailCount() ) );
             add( new Label( "mem-threadmap-count", "ComponentThreadStatusPanel.threadMap: " + ComponentThreadStatusPanel.getThreadMapCount() ) );
             add( new Label( "mem-resetattempt-count", "ResetPasswordRequestPanel.attempts: " + ResetPasswordRequestPanel.getAttemptCounts() ) );
+            add( new RawLabel( "mem-hibernate-report", HibernateEventListener.getListenerReport() ) );
+            add( new RawLabel( "mem-category-report", CategoryChangeHandler.getListenerReport() ) );
         }
         catch( IllegalAccessException e ) {
             e.printStackTrace();

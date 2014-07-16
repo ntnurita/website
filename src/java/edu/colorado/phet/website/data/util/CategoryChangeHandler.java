@@ -4,7 +4,9 @@
 
 package edu.colorado.phet.website.data.util;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import edu.colorado.phet.website.data.Category;
@@ -15,6 +17,31 @@ public class CategoryChangeHandler {
 
     public static synchronized int getListenerCount() {
         return listeners.size();
+    }
+
+    public static synchronized String getListenerReport() {
+        Map<String, Integer> histogram = new HashMap<String, Integer>();
+
+            for ( Listener listener : listeners ) {
+                String listenerClassName = listener.getClass().getName();
+                if ( histogram.containsKey( listenerClassName ) ) {
+                    histogram.put( listenerClassName, histogram.get( listenerClassName ) + 1 );
+                }
+                else {
+                    histogram.put( listenerClassName, 1 );
+                }
+            }
+
+
+        StringBuilder builder = new StringBuilder(  );
+
+        builder.append( "CategoryChangeHandler listeners:<br>" );
+
+        for ( String key : histogram.keySet() ) {
+            builder.append( key ).append( ": " ).append( histogram.get( key ) );
+        }
+
+        return builder.toString();
     }
 
     public static synchronized void addListener( Listener listener ) {

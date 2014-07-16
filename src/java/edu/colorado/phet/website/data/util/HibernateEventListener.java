@@ -30,7 +30,7 @@ public class HibernateEventListener implements PostInsertEventListener, PostUpda
 
     public HibernateEventListener() {
         logger.info( "Creating HibernateEventListener" );
-        synchronized ( this ) {
+        synchronized( this ) {
             me = this;
         }
     }
@@ -41,6 +41,42 @@ public class HibernateEventListener implements PostInsertEventListener, PostUpda
             count += listeners.size();
         }
         return count;
+    }
+
+    public static synchronized String getListenerReport() {
+        Map<String, Integer> keyHistogram = new HashMap<String, Integer>();
+        Map<String, Integer> valueHistogram = new HashMap<String, Integer>();
+
+        for ( Class clazz : listenermap.keySet() ) {
+            List<IChangeListener> listeners = listenermap.get( clazz );
+            keyHistogram.put( clazz.getName(), listeners.size() );
+
+            for ( IChangeListener listener : listeners ) {
+                String listenerClassName = listener.getClass().getName();
+                if ( valueHistogram.containsKey( listenerClassName ) ) {
+                    valueHistogram.put( listenerClassName, valueHistogram.get( listenerClassName ) + 1 );
+                }
+                else {
+                    valueHistogram.put( listenerClassName, 1 );
+                }
+            }
+        }
+
+        StringBuilder builder = new StringBuilder(  );
+
+        builder.append( "Hibernate Event classes:<br>" );
+
+        for ( String key : keyHistogram.keySet() ) {
+            builder.append( key ).append( ": " ).append( keyHistogram.get( key ) );
+        }
+
+        builder.append( "<br><br>Hibernate listener classes:<br>" );
+
+        for ( String key : valueHistogram.keySet() ) {
+            builder.append( key ).append( ": " ).append( valueHistogram.get( key ) );
+        }
+
+        return builder.toString();
     }
 
     public static synchronized void addListener( Class eClass, IChangeListener listener ) {
