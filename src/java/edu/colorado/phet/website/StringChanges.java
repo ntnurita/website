@@ -84,6 +84,8 @@ public class StringChanges {
     StringUtils.addString( session, "about.team", "People" );
     StringUtils.addString( session, "nav.about.team", "People" );
     StringUtils.addString( session, "about.team.title", "People" );
+    StringUtils.addString( session, "contribution.view.creativecommons", "I agree to submit this activity under the Creative Commons" );
+    
     
       //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 
