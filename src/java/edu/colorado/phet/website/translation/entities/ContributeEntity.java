@@ -62,7 +62,6 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.standards.E" );
         addString( "contribution.standards.F" );
         addString( "contribution.standards.G" );
-        addString( "contribution.view.creativecommons" );
 
         addString( "contribution.edit.pageTitle" );
         addString( "contribution.edit.requiredInformation" );
