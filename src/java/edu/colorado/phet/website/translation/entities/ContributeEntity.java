@@ -40,6 +40,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.view.subject" );
         addString( "contribution.view.duration" );
         addString( "contribution.view.answers" );
+        addString( "contribution.view.creativeCommons" );
         addString( "contribution.view.language" );
         addString( "contribution.view.comments" );
         addString( "contribution.view.addComment" );
@@ -84,6 +85,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.subjects" );
         addString( "contribution.edit.duration" );
         addString( "contribution.edit.answers" );
+        addString( "contribution.edit.creativeCommons" );
         addString( "contribution.edit.language" );
 
         addString( "contribution.edit.continueToActivity" );
@@ -166,6 +168,9 @@ public class ContributeEntity extends TranslationEntity {
 
         addString( "contribution.answers.yes" );
         addString( "contribution.answers.no" );
+
+        addString( "contribution.creativeCommons.yes" );
+        addString( "contribution.creativeCommons.no" );
 
         addString( "contribution.edit.authors.Required" );
         addString( "contribution.edit.organization.Required" );

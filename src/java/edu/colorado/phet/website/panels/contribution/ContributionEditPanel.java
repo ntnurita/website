@@ -275,6 +275,8 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new CheckBox( "answersIncluded" ) );
 
+            add( new CheckBox( "creativeCommons" ) );
+
             localeChoice = new LocaleDropDownChoice( "locale", context );
             add( localeChoice );
 
@@ -366,6 +368,7 @@ public class ContributionEditPanel extends PhetPanel {
                     // pull out values
                     int duration = ( (DurationItem) durationChoice.getModelObject() ).getDuration();
                     boolean answers = getModelObject().isAnswersIncluded();
+                    boolean creativeCommons = getModelObject().isCreativeCommons();
                     Locale locale = localeChoice.getLocale() == null ? WebsiteConstants.ENGLISH : localeChoice.getLocale();
 
                     //Contribution contribution;
