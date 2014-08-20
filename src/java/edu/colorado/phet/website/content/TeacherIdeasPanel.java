@@ -37,6 +37,9 @@ public class TeacherIdeasPanel extends PhetPanel {
                 Linkers.CONTRIBUTION_GUIDELINES_PDF.getHref( context, getPhetCycle() )
         } ) );
 
+        // add linkers
+        add( CategoryPage.getLinker( "new" ).getLink( "new-sims-link", context, getPhetCycle() ) );
+
     }
 
     public static String getKey() {
