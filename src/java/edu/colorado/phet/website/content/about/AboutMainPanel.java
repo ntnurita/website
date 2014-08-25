@@ -20,6 +20,7 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.ResearchPanel;
+import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.data.PhetUser;
@@ -91,6 +92,9 @@ public class AboutMainPanel extends PhetPanel {
                 }
             }
         } );
+
+        // add linkers
+        add( TechAwardPage.getLinker().getLink( "tech-award-link", context, getPhetCycle() ) );
     }
     @Override
     protected void onBeforeRender() {
