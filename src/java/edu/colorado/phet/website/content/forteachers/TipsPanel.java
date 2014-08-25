@@ -7,6 +7,7 @@ package edu.colorado.phet.website.content.forteachers;
 import org.apache.wicket.Component;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
@@ -19,10 +20,19 @@ import edu.colorado.phet.website.util.wicket.WicketUtils;
 public class TipsPanel extends PhetPanel {
 	 boolean addedTips = false;
 	 PageContext context2 = null;
-    public TipsPanel( String id, PageContext context ) {
-        super( id, context );
-        this.context2 = context;
-       
+     public TipsPanel( String id, PageContext context ) {
+         super( id, context );
+         this.context2 = context;
+
+         // add linkers
+         add( ContributionBrowsePage.getLinker().getLink( "browse-activities-link", context, getPhetCycle() ) );
+         add( PlanningPanel.getLinker().getLink( "planning-to-use-phet-link", context, getPhetCycle() ) );
+         add( LectureOverviewPanel.getLinker().getLink( "using-phet-in-lecture-link", context, getPhetCycle() ) );
+         add( LectureDemoPanel.getLinker().getLink( "lecture-demo-link", context, getPhetCycle() ) );
+         add( ClickersPanel.getLinker().getLink( "clickers-demo-link", context, getPhetCycle() ) );
+         add( ActivitiesdesignPanel.getLinker().getLink( "activities-design-link", context, getPhetCycle() ) );
+         add( VirtualWorkshopPanel.getLinker().getLink( "virtual-workshop-link", context, getPhetCycle() ) );
+
     }
 
     public static String getKey() {

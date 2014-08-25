@@ -7,6 +7,7 @@ package edu.colorado.phet.website.content.forteachers;
 import org.apache.wicket.Component;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
@@ -23,6 +24,9 @@ public class VirtualWorkshopPanel extends PhetPanel {
         super( id, context );
 
         this.context2 = context;
+
+        // add linkers
+        add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, getPhetCycle() ) );
       
     }
 

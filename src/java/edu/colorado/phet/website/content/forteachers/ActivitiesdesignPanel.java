@@ -7,6 +7,8 @@ package edu.colorado.phet.website.content.forteachers;
 import org.apache.wicket.Component;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
+import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
@@ -22,8 +24,10 @@ public class ActivitiesdesignPanel extends PhetPanel {
 	 boolean addedTips = false;
     public ActivitiesdesignPanel( String id, PageContext context ) {
         super( id, context );
-         this.context2 = context;
-         
+        this.context2 = context;
+
+        // add linkers
+        add( ContributionBrowsePage.getLinker().getLink( "browse-activities-link", context, getPhetCycle() ) );
 
     }
    
