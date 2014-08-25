@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.content.workshops;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -15,8 +16,10 @@ public class WorkshopsPanel extends PhetPanel {
     public WorkshopsPanel( String id, PageContext context ) {
         super( id, context );
 
-//        add( UgandaWorkshopsPanel.getLinker().getLink( "workshop-uganda-link", context, getPhetCycle() ) );
-
+        // add linkers
+        add( AboutNewsPanel.getLinker().getLink( "about-news-link", context, getPhetCycle() ) );
+        add( UgandaWorkshopsPanel.getLinker().getLink( "workshop-uganda-link", context, getPhetCycle() ) );
+        add( ExampleWorkshopsPanel.getLinker().getLink( "example-workshops-link", context, getPhetCycle() ) );
     }
 
     public static String getKey() {

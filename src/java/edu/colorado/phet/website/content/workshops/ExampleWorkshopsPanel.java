@@ -16,6 +16,8 @@ public class ExampleWorkshopsPanel extends PhetPanel {
     public ExampleWorkshopsPanel( String id, PageContext context ) {
         super( id, context );
 
+        // add linkers
+        add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, PhetRequestCycle.get() ) );
 
     }
 
