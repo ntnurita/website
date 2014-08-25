@@ -116,66 +116,34 @@ public class NavMenu implements Serializable {
         addMajorLocation( simulations );
 
         NavLocation forTeachers = new NavLocation( null, "teacherIdeas", TeacherIdeasPanel.getLinker() ) {{
-            NavLocation teacherIdeasBrowse = new NavLocation( this, "teacherIdeas.browse", ContributionBrowsePage.getLinker() );
-            addLocation( teacherIdeasBrowse );
-            addChild( teacherIdeasBrowse );
+            // Nav Locations
 
-
-//
-            //Tips for Using PhET
-            NavLocation tipsForUsingPhetPanel = new NavLocation( this, "tipsForUsingPhet", TipsPanel.getLinker() );
-            
-//            //Planning to Use PhET
+            // Planning to Use PhET
             NavLocation planningPanel = new NavLocation( this, "planningToUsePhet", PlanningPanel.getLinker() );
             addLocation(planningPanel);
-//            tipsForUsingPhetPanel.addChild( planningPanel ); 
-//            
-//            //Using PhET in Lecture
+
+            // Using PhET in Lecture
             NavLocation usingPhetInLecturePanel = new NavLocation( this, "usingPhetInLecture", LectureOverviewPanel.getLinker() );
             addLocation(usingPhetInLecturePanel);
-//            tipsForUsingPhetPanel.addChild( usingPhetInLecturePanel ); 
-//            
-//          //PhET as an (Interactive) Lecture Demonstration
+
+            // PhET as an (Interactive) Lecture Demonstration
             NavLocation lectureDemoPanel = new NavLocation( this, "lectureDemo", LectureDemoPanel.getLinker() );
             addLocation(lectureDemoPanel);
-//            tipsForUsingPhetPanel.addChild( lectureDemoPanel ); 
-//            
-//          //Using PhET with Clickers and Peer Instruction
+
+            // Using PhET with Clickers and Peer Instruction
             NavLocation clickersDemoPanel = new NavLocation( this, "clickersDemo", ClickersPanel.getLinker() );
             addLocation(clickersDemoPanel);
-//            tipsForUsingPhetPanel.addChild( clickersDemoPanel );  
-//            
-//          //Designing Effective Activities for use in K12
-            NavLocation activitesDesignPanel = new NavLocation( this, "activitesDesign", ActivitiesdesignPanel.getLinker() );
-            addLocation(activitesDesignPanel);
-//            tipsForUsingPhetPanel.addChild( activitesDesignPanel ); 
-//            
-//            //Take a Virtual PhET Workshop
-            NavLocation virtualWorkshopPanel = new NavLocation( this, "virtualWorkshop", VirtualWorkshopPanel.getLinker() );
-           addLocation(virtualWorkshopPanel);
-//            tipsForUsingPhetPanel.addChild( virtualWorkshopPanel ); 
-      
-           NavLocation exampleworkshops = new NavLocation( this, "exampleworkshops", ExampleWorkshopsPanel.getLinker() );
-          addLocation(exampleworkshops);
-            
-            addLocation( tipsForUsingPhetPanel );
-            addChild( tipsForUsingPhetPanel );  
-            NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
-            
-            //C.1. PhET Workshop Facilitators Guide
-//            NavLocation workshopFacilitatorsGuide  = new NavLocation( this, "workshopFacilitatorsGuide", WorkshopFacilitatorsGuidePanel.getLinker() );
-//            addLocation( workshopFacilitatorsGuide );
-//            workshops.addChild(workshopFacilitatorsGuide);
-            addLocation( workshops );
-            addChild( workshops );      
-//
-            NavLocation teacherIdeasSubmit = new NavLocation( this, "teacherIdeas.submit", ContributionCreatePage.getLinker() );
-            addLocation( teacherIdeasSubmit );
-            addChild( teacherIdeasSubmit );
 
-            NavLocation teacherIdeasManage = new NavLocation( this, "teacherIdeas.manage", ContributionManagePage.getLinker() );
-            addLocation( teacherIdeasManage );
-            addChild( teacherIdeasManage );
+            // Designing Effective Activities for use in K12
+            NavLocation activitiesDesignPanel = new NavLocation( this, "activitesDesign", ActivitiesdesignPanel.getLinker() );
+            addLocation(activitiesDesignPanel);
+
+            // Take a Virtual PhET Workshop
+            NavLocation virtualWorkshopPanel = new NavLocation( this, "virtualWorkshop", VirtualWorkshopPanel.getLinker() );
+            addLocation(virtualWorkshopPanel);
+
+            NavLocation exampleWorkshops = new NavLocation( this, "exampleworkshops", ExampleWorkshopsPanel.getLinker() );
+            addLocation(exampleWorkshops);
 
             NavLocation teacherIdeasEdit = new NavLocation( this, "teacherIdeas.edit", ContributionBrowsePage.getLinker() );
             addLocation( teacherIdeasEdit );
@@ -190,6 +158,33 @@ public class NavMenu implements Serializable {
             // orphan!
             NavLocation classroomUse = new NavLocation( this, "for-teachers.classroom-use", ClassroomUsePanel.getLinker() );
             addLocation( classroomUse );
+
+            // Nav Locations with addChild - this determines order or links appearing in sidebar
+
+            // Tips for Using PhET
+            NavLocation tipsForUsingPhetPanel = new NavLocation( this, "tipsForUsingPhet", TipsPanel.getLinker() );
+            addLocation( tipsForUsingPhetPanel );
+            addChild( tipsForUsingPhetPanel );
+
+            // Browse Activities
+            NavLocation teacherIdeasBrowse = new NavLocation( this, "teacherIdeas.browse", ContributionBrowsePage.getLinker() );
+            addLocation( teacherIdeasBrowse );
+            addChild( teacherIdeasBrowse );
+
+            // Submit an Activity
+            NavLocation teacherIdeasSubmit = new NavLocation( this, "teacherIdeas.submit", ContributionCreatePage.getLinker() );
+            addLocation( teacherIdeasSubmit );
+            addChild( teacherIdeasSubmit );
+
+            // My Activities
+            NavLocation teacherIdeasManage = new NavLocation( this, "teacherIdeas.manage", ContributionManagePage.getLinker() );
+            addLocation( teacherIdeasManage );
+            addChild( teacherIdeasManage );
+
+            // Workshops
+            NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
+            addLocation( workshops );
+            addChild( workshops );
         }};
         addMajorLocation( forTeachers );
 
