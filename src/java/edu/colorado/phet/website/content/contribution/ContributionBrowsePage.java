@@ -17,6 +17,7 @@ import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
+import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.data.contribution.ContributionLevel;
@@ -26,6 +27,7 @@ import edu.colorado.phet.website.data.contribution.Type;
 import edu.colorado.phet.website.panels.contribution.ContributionBrowsePanel;
 import edu.colorado.phet.website.panels.contribution.ContributionEmptyPanel;
 import edu.colorado.phet.website.panels.contribution.ContributionSearchPanel;
+import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
@@ -316,6 +318,13 @@ public class ContributionBrowsePage extends PhetRegularPage {
 
     public static void addToMapper( PhetUrlMapper mapper ) {
         mapper.addMap( "^for-teachers/browse-activities$", ContributionBrowsePage.class );
+    }
+
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        // for some reason a 55 pixel offset is needed to actually make this page the same width as the other for teacher pages
+        ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH - 55 );
     }
 
     public static RawLinkable getLinker() {

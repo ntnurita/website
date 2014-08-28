@@ -23,7 +23,9 @@ import edu.colorado.phet.website.authentication.ResetPasswordRequestPage;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.StringPasswordTextField;
 import edu.colorado.phet.website.components.StringTextField;
+import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
@@ -101,6 +103,12 @@ public class SignInPanel extends PhetPanel {
         protected void onValidate() {
             super.onValidate();
             feedback.setVisible( feedback.anyMessage() );
+        }
+
+        @Override
+        protected void onBeforeRender() {
+            super.onBeforeRender();
+            ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH );
         }
 
         public final void onSubmit() {

@@ -18,11 +18,15 @@ import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
 import edu.colorado.phet.website.content.forteachers.TipsPanel;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class TeacherIdeasPanel extends PhetPanel {
+
+    public static final int FOR_TEACHERS_PAGE_WIDTH = 1120;
+
     public TeacherIdeasPanel( String id, PageContext context ) {
         super( id, context );
 
@@ -56,6 +60,13 @@ public class TeacherIdeasPanel extends PhetPanel {
 
     public static String getUrl() {
         return "for-teachers";
+    }
+
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        // for some reason a 55 pixel offset is needed to actually make this page the same width as the other for teacher pages
+        ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH - 55 );
     }
 
     public static RawLinkable getLinker() {
