@@ -85,7 +85,8 @@ public class StringChanges {
         StringUtils.addString( session, "nav.about.team", "People" );
         StringUtils.addString( session, "about.team.title", "People" );
 
-        StringUtils.addString( session, "contribution.view.creativeCommons", "I agree to submit this activity under the Creative Commons (required)" );
+//        StringUtils.deleteString( session, "contribution.view.creativeCommons" );
+//        StringUtils.addString( session, "contribution.view.creativeCommons", "I agree to submit this activity under the Creative Commons (required)" );
 
         // change navigation strings on home screen
         StringUtils.overwriteString( session, "home.submitActivity", "Contribute Activities", "Submit an Activity" );
