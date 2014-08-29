@@ -37,57 +37,64 @@ public class StringChanges {
         StringUtils.deleteString( session,"nav.lectureDemo.title");
         StringUtils.deleteString( session, "clickersDemo.title" );
         StringUtils.deleteString( session,"lectureDemo.title");
-        
+
         StringUtils.addString( session,"nav.workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
-       StringUtils.addString( session, "nav.tipsForUsingPhet", "Tips for Using PhET" );
-       StringUtils.addString( session, "nav.planningToUsePhet", "Planning to Use PhET" );
-       StringUtils.addString( session, "nav.usingPhetInLecture", "Using PhET in Lecture" ); 
-       StringUtils.addString( session,"nav.lectureDemo", " Interactive Lecture Demonstrations" );
-       StringUtils.addString( session, "nav.clickersDemo", "Using PhET with Clickers" );
-       StringUtils.addString( session, "nav.activitesDesign", "Designing Effective Activities for use in K12" );
-       StringUtils.addString( session, "nav.virtualWorkshop", "Take a Virtual PhET Workshop" );
-   
-       StringUtils.addString( session,"nav.workshopFacilitatorsGuide.title", "PhET Workshop Facilitators Guide");
-      StringUtils.addString( session, "nav.tipsForUsingPhet.title", "Tips for Using PhET" );
-      StringUtils.addString( session, "nav.planningToUsePhet.title", "Planning to Use PhET" );
-      StringUtils.addString( session, "nav.usingPhetInLecture.title", "Using PhET in Lecture" ); 
-      StringUtils.addString( session,"nav.lectureDemo.title", " Interactive Lecture Demonstrations" );
-      StringUtils.addString( session, "nav.clickersDemo.title", "Using PhET with Clickers" );
-      StringUtils.addString( session, "nav.activitesDesign.title", "Designing Effective Activities for use in K12" );
-      StringUtils.addString( session, "nav.virtualWorkshop.title", "Take a Virtual PhET Workshop" );
+        StringUtils.addString( session, "nav.tipsForUsingPhet", "Tips for Using PhET" );
+        StringUtils.addString( session, "nav.planningToUsePhet", "Planning to Use PhET" );
+        StringUtils.addString( session, "nav.usingPhetInLecture", "Using PhET in Lecture" );
+        StringUtils.addString( session,"nav.lectureDemo", " Interactive Lecture Demonstrations" );
+        StringUtils.addString( session, "nav.clickersDemo", "Using PhET with Clickers" );
+        StringUtils.addString( session, "nav.activitesDesign", "Designing Effective Activities for use in K12" );
+        StringUtils.addString( session, "nav.virtualWorkshop", "Take a Virtual PhET Workshop" );
 
-     
-      StringUtils.addString( session,"workshopFacilitatorsGuide.title", "PhET Workshop Facilitators Guide");
-     StringUtils.addString( session, "tipsForUsingPhet.title", "Tips for Using PhET" );
-     StringUtils.addString( session, "planningToUsePhet.title", "Planning to Use PhET" );
-     StringUtils.addString( session, "usingPhetInLecture.title", "Using PhET in Lecture" ); 
-     StringUtils.addString( session,"lectureDemo.title", " Interactive Lecture Demonstrations" );
-     StringUtils.addString( session, "clickersDemo.title", "Using PhET with Clickers" );
-     StringUtils.addString( session, "activitesDesign.title", "Designing Effective Activities for use in K12" );
-     StringUtils.addString( session, "virtualWorkshop.title", "Take a Virtual PhET Workshop" );
+        StringUtils.addString( session,"nav.workshopFacilitatorsGuide.title", "PhET Workshop Facilitators Guide");
+        StringUtils.addString( session, "nav.tipsForUsingPhet.title", "Tips for Using PhET" );
+        StringUtils.addString( session, "nav.planningToUsePhet.title", "Planning to Use PhET" );
+        StringUtils.addString( session, "nav.usingPhetInLecture.title", "Using PhET in Lecture" );
+        StringUtils.addString( session,"nav.lectureDemo.title", " Interactive Lecture Demonstrations" );
+        StringUtils.addString( session, "nav.clickersDemo.title", "Using PhET with Clickers" );
+        StringUtils.addString( session, "nav.activitesDesign.title", "Designing Effective Activities for use in K12" );
+        StringUtils.addString( session, "nav.virtualWorkshop.title", "Take a Virtual PhET Workshop" );
 
-     StringUtils.addString( session,"workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
-    StringUtils.addString( session, "tipsForUsingPhet", "Tips for Using PhET" );
-    
-    StringUtils.addString( session, "planningToUsePhet", "Planning to Use PhET" );
-    StringUtils.addString( session, "usingPhetInLecture", "Using PhET in Lecture" ); 
-    StringUtils.addString( session,"lectureDemo", "Interactive Lecture Demonstrations" );
-    StringUtils.addString( session, "clickersDemo", "Using PhET with Clickers" );
-    StringUtils.addString( session, "activitesDesign", "Designing Effective Activities for use in K12" );
-    StringUtils.addString( session, "virtualWorkshop", "Take a Virtual PhET Workshop" );
-    
-    StringUtils.addString( session, "exampleworkshops", "Example Workshops" );
-    StringUtils.addString( session, "nav.exampleworkshops.title", "Example Workshops" );
-    StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
-    StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
 
-    StringUtils.addString( session, "about.team", "People" );
-    StringUtils.addString( session, "nav.about.team", "People" );
-    StringUtils.addString( session, "about.team.title", "People" );
-    StringUtils.addString( session, "contribution.view.creativecommons", "I agree to submit this activity under the Creative Commons" );
-    
-    
-      //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
+        StringUtils.addString( session,"workshopFacilitatorsGuide.title", "PhET Workshop Facilitators Guide");
+        StringUtils.addString( session, "tipsForUsingPhet.title", "Tips for Using PhET" );
+        StringUtils.addString( session, "planningToUsePhet.title", "Planning to Use PhET" );
+        StringUtils.addString( session, "usingPhetInLecture.title", "Using PhET in Lecture" );
+        StringUtils.addString( session,"lectureDemo.title", " Interactive Lecture Demonstrations" );
+        StringUtils.addString( session, "clickersDemo.title", "Using PhET with Clickers" );
+        StringUtils.addString( session, "activitesDesign.title", "Designing Effective Activities for use in K12" );
+        StringUtils.addString( session, "virtualWorkshop.title", "Take a Virtual PhET Workshop" );
+
+        StringUtils.addString( session,"workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
+        StringUtils.addString( session, "tipsForUsingPhet", "Tips for Using PhET" );
+
+        StringUtils.addString( session, "planningToUsePhet", "Planning to Use PhET" );
+        StringUtils.addString( session, "usingPhetInLecture", "Using PhET in Lecture" );
+        StringUtils.addString( session,"lectureDemo", "Interactive Lecture Demonstrations" );
+        StringUtils.addString( session, "clickersDemo", "Using PhET with Clickers" );
+        StringUtils.addString( session, "activitesDesign", "Designing Effective Activities for use in K12" );
+        StringUtils.addString( session, "virtualWorkshop", "Take a Virtual PhET Workshop" );
+
+        StringUtils.addString( session, "exampleworkshops", "Example Workshops" );
+        StringUtils.addString( session, "nav.exampleworkshops.title", "Example Workshops" );
+        StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
+        StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
+
+        StringUtils.addString( session, "about.team", "People" );
+        StringUtils.addString( session, "nav.about.team", "People" );
+        StringUtils.addString( session, "about.team.title", "People" );
+
+        StringUtils.addString( session, "contribution.view.creativeCommons", "I agree to submit this activity under the Creative Commons (required)" );
+
+        // change navigation strings on home screen
+        StringUtils.overwriteString( session, "home.submitActivity", "Contribute Activities", "Submit an Activity" );
+        StringUtils.overwriteString( session, "home.workshops", "Workshops / Materials", "Workshops" );
+
+        // add validation string for cc licence
+        StringUtils.addString( session, "contribution.edit.validation.mustHaveLicence", "Activities will not be accepted unless you agree to use the Creative Commons licence" );
+
+        //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 
         session.close();
     }
