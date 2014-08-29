@@ -435,6 +435,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 3 );
     }};
 
+    public static Sponsor AACT = new LogoSponsor(
+            "AACT",
+            "http://teachchemistry.org/",
+            Images.LOGO_AACT, "padding: 4px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -486,6 +494,7 @@ public abstract class Sponsor implements Serializable {
             ECS,
             SCIENCE_4_US,
             CUSTOMER_PARADIGM,
+            AACT,
             YOU
     };
 
