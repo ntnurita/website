@@ -225,18 +225,6 @@
                 </tr>
                 <tr>
                     <td class="contribution-edit-label">
-                        <label for="cep-creativecommons">
-                            <wicket:message key="contribution.edit.creativeCommons">
-                                I agree to submit this activity under the Creative Commons
-                            </wicket:message>
-                        </label>
-                    </td>
-                    <td class="contribution-edit-input">
-                        <input type="checkbox" wicket:id="creativeCommons" id="cep-creativecommons"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="contribution-edit-label">
                         <wicket:message key="contribution.edit.language">
                             language
                         </wicket:message>
@@ -385,6 +373,23 @@
                     <td class="contribute-standard-checkmark"><input type="checkbox" wicket:id="standard912G"/></td>
                 </tr>
             </table>
+
+            <br/>
+            <table>
+                <tr>
+                    <td class="contribution-edit-label">
+                        <label for="cep-creativecommons">
+                            <wicket:message key="contribution.edit.creativeCommons">
+                                <strong>I agree to submit this activity under the <a href="http://creativecommons.org/">Creative Commons</a> (required)</strong>
+                            </wicket:message>
+                        </label>
+                    </td>
+                    <td class="contribution-edit-input">
+                        <input type="checkbox" wicket:id="creativeCommons" id="cep-creativecommons"/>
+                    </td>
+                </tr>
+            </table>
+            <br/>
 
             <div>
                 <input type="submit" name="submit" wicket:message="value:form.submit"/>

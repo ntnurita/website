@@ -235,6 +235,8 @@ public class ContributionEditPanel extends PhetPanel {
 
         private LocaleDropDownChoice localeChoice;
 
+        private CheckBox creativeCommonsCheckbox;
+
         public ContributionForm( String id ) {
             super( id );
 
@@ -275,7 +277,8 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new CheckBox( "answersIncluded" ) );
 
-            add( new CheckBox( "creativeCommons" ) );
+            creativeCommonsCheckbox = new CheckBox( "creativeCommons" );
+            add( creativeCommonsCheckbox );
 
             localeChoice = new LocaleDropDownChoice( "locale", context );
             add( localeChoice );
@@ -344,6 +347,9 @@ public class ContributionEditPanel extends PhetPanel {
                     }
                     if ( levelManager.getValues().isEmpty() ) {
                         error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
+                    }
+                    if ( !creativeCommonsCheckbox.getConvertedInput() ) {
+                        error( creativeCommonsCheckbox, "contribution.edit.validation.mustHaveLicence" );
                     }
                 }
             } );
