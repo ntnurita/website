@@ -153,7 +153,6 @@ public class ContributionMainPanel extends PhetPanel {
         initKeywordList( contribution, context );
 
         add( new LocalizedText( "answers", contribution.isAnswersIncluded() ? "contribution.answers.yes" : "contribution.answers.no" ) );
-        add( new LocalizedText( "creativeCommons", contribution.isAnswersIncluded() ? "contribution.creativeCommons.yes" : "contribution.creativeCommons.no" ) );
         add( new Label( "language", StringUtils.getLocaleTitle( contribution.getLocale(), getLocale(), getPhetLocalizer() ) ) );
 
         if ( contribution.hasStandards() ) {

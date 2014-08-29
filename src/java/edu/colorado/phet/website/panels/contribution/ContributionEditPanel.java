@@ -374,7 +374,6 @@ public class ContributionEditPanel extends PhetPanel {
                     // pull out values
                     int duration = ( (DurationItem) durationChoice.getModelObject() ).getDuration();
                     boolean answers = getModelObject().isAnswersIncluded();
-                    boolean creativeCommons = getModelObject().isCreativeCommons();
                     Locale locale = localeChoice.getLocale() == null ? WebsiteConstants.ENGLISH : localeChoice.getLocale();
 
                     //Contribution contribution;
