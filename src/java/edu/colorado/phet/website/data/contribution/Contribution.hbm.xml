@@ -17,6 +17,7 @@
         <property name="description" length="4096"/>
         <property name="duration"/>
         <property name="answersIncluded"/>
+        <property name="creativeCommons"/>
         <property name="contactEmail"/>
         <property name="authorOrganization"/>
         <property name="dateCreated" type="timestamp"/>
