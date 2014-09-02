@@ -349,7 +349,7 @@ public class ContributionEditPanel extends PhetPanel {
                         error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
                     }
                     if ( !creativeCommonsCheckbox.getConvertedInput() ) {
-                        error( creativeCommonsCheckbox, "contribution.edit.validation.mustHaveLicence" );
+                        error( creativeCommonsCheckbox, "contribution.edit.validation.mustHaveLicense" );
                     }
                 }
             } );

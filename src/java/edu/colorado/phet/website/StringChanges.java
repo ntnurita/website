@@ -92,8 +92,9 @@ public class StringChanges {
         StringUtils.overwriteString( session, "home.submitActivity", "Contribute Activities", "Submit an Activity" );
         StringUtils.overwriteString( session, "home.workshops", "Workshops / Materials", "Workshops" );
 
-        // add validation string for cc licence
-        StringUtils.addString( session, "contribution.edit.validation.mustHaveLicence", "Activities will not be accepted unless you agree to use the Creative Commons licence" );
+        // add validation string for cc license
+        StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons licence" );
+        StringUtils.deleteString( session, "contribution.edit.validation.mustHaveLicence" );
 
         //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 
