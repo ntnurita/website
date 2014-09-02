@@ -443,6 +443,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 2 );
     }};
 
+    public static Sponsor WW_NORTON = new LogoSponsor(
+            "W.W. Norton & Company",
+            "http://books.wwnorton.com/books/subject-detail.aspx?tid=444",
+            Images.LOGO_WW_NORTON, "padding: 4px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -495,6 +503,7 @@ public abstract class Sponsor implements Serializable {
             SCIENCE_4_US,
             CUSTOMER_PARADIGM,
             AACT,
+            WW_NORTON,
             YOU
     };
 
