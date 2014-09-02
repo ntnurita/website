@@ -93,7 +93,8 @@ public class StringChanges {
         StringUtils.overwriteString( session, "home.workshops", "Workshops / Materials", "Workshops" );
 
         // add validation string for cc license
-        StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons licence" );
+        StringUtils.deleteString( session, "contribution.edit.validation.mustHaveLicense" );
+        StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons license" );
         StringUtils.deleteString( session, "contribution.edit.validation.mustHaveLicence" );
 
         //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
