@@ -28,5 +28,24 @@ public class TipsRighthandMenu extends PhetPanel {
 		add( new StaticImage( "clickersDemo", "clickersDemo".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
 		add( new StaticImage( "activitesDesign", "activitesDesign".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
 		add( new StaticImage( "virtualWorkshop", "virtualWorkshop".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+
+        // add linkers
+        add ( PlanningPanel.getLinker().getLink( "planning-link-1", context, getPhetCycle() ) );
+        add ( PlanningPanel.getLinker().getLink( "planning-link-2", context, getPhetCycle() ) );
+
+        add ( LectureOverviewPanel.getLinker().getLink( "lecture-link-1", context, getPhetCycle() ) );
+        add ( LectureOverviewPanel.getLinker().getLink( "lecture-link-2", context, getPhetCycle() ) );
+
+        add ( LectureDemoPanel.getLinker().getLink( "lecture-demo-link-1", context, getPhetCycle() ) );
+        add ( LectureDemoPanel.getLinker().getLink( "lecture-demo-link-2", context, getPhetCycle() ) );
+
+        add ( ClickersPanel.getLinker().getLink( "clickers-demo-link-1", context, getPhetCycle() ) );
+        add ( ClickersPanel.getLinker().getLink( "clickers-demo-link-2", context, getPhetCycle() ) );
+
+        add ( ActivitiesdesignPanel.getLinker().getLink( "activities-design-link-1", context, getPhetCycle() ) );
+        add ( ActivitiesdesignPanel.getLinker().getLink( "activities-design-link-2", context, getPhetCycle() ) );
+
+        add ( VirtualWorkshopPanel.getLinker().getLink( "virtual-workshop-link-1", context, getPhetCycle() ) );
+        add ( VirtualWorkshopPanel.getLinker().getLink( "virtual-workshop-link-2", context, getPhetCycle() ) );
 	}
 }
