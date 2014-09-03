@@ -30,6 +30,12 @@ public class ActivitiesdesignPanel extends PhetPanel {
         // add linkers
         add( ContributionBrowsePage.getLinker().getLink( "browse-activities-link", context, getPhetCycle() ) );
 
+        add( ContributionPage.getLinker( 3448 ).getLink( "contribution-3448-link", context, getPhetCycle() ) );
+        add( ContributionPage.getLinker( 3314 ).getLink( "contribution-3314-link", context, getPhetCycle() ) );
+        add( ContributionPage.getLinker( 3401 ).getLink( "contribution-3401-link", context, getPhetCycle() ) );
+        add( ContributionPage.getLinker( 3503 ).getLink( "contribution-3503-link", context, getPhetCycle() ) );
+        add( ContributionPage.getLinker( 3423 ).getLink( "contribution-3423-link", context, getPhetCycle() ) );
+        add( ContributionPage.getLinker( 3584 ).getLink( "contribution-3584-link", context, getPhetCycle() ) );
     }
    
     public static String getKey() {
