@@ -31,7 +31,7 @@ public class ClickersPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "clickersDemo";
+        return "forTeachers.clickersDemo";
     }
 
     public static String getUrl() {

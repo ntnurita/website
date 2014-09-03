@@ -32,7 +32,7 @@ public class VirtualWorkshopPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "virtualWorkshop";
+        return "forTeachers.virtualWorkshop";
     }
 
     public static String getUrl() {

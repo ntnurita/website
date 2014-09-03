@@ -119,27 +119,27 @@ public class NavMenu implements Serializable {
             // Nav Locations
 
             // Planning to Use PhET
-            NavLocation planningPanel = new NavLocation( this, "planningToUsePhet", PlanningPanel.getLinker() );
+            NavLocation planningPanel = new NavLocation( this, "forTeachers.planningToUsePhet", PlanningPanel.getLinker() );
             addLocation(planningPanel);
 
             // Using PhET in Lecture
-            NavLocation usingPhetInLecturePanel = new NavLocation( this, "usingPhetInLecture", LectureOverviewPanel.getLinker() );
+            NavLocation usingPhetInLecturePanel = new NavLocation( this, "forTeachers.usingPhetInLecture", LectureOverviewPanel.getLinker() );
             addLocation(usingPhetInLecturePanel);
 
             // PhET as an (Interactive) Lecture Demonstration
-            NavLocation lectureDemoPanel = new NavLocation( this, "lectureDemo", LectureDemoPanel.getLinker() );
+            NavLocation lectureDemoPanel = new NavLocation( this, "forTeachers.lectureDemo", LectureDemoPanel.getLinker() );
             addLocation(lectureDemoPanel);
 
             // Using PhET with Clickers and Peer Instruction
-            NavLocation clickersDemoPanel = new NavLocation( this, "clickersDemo", ClickersPanel.getLinker() );
+            NavLocation clickersDemoPanel = new NavLocation( this, "forTeachers.clickersDemo", ClickersPanel.getLinker() );
             addLocation(clickersDemoPanel);
 
             // Designing Effective Activities for use in K12
-            NavLocation activitiesDesignPanel = new NavLocation( this, "activitesDesign", ActivitiesdesignPanel.getLinker() );
+            NavLocation activitiesDesignPanel = new NavLocation( this, "forTeachers.activitesDesign", ActivitiesdesignPanel.getLinker() );
             addLocation(activitiesDesignPanel);
 
             // Take a Virtual PhET Workshop
-            NavLocation virtualWorkshopPanel = new NavLocation( this, "virtualWorkshop", VirtualWorkshopPanel.getLinker() );
+            NavLocation virtualWorkshopPanel = new NavLocation( this, "forTeachers.virtualWorkshop", VirtualWorkshopPanel.getLinker() );
             addLocation(virtualWorkshopPanel);
 
             NavLocation exampleWorkshops = new NavLocation( this, "exampleworkshops", ExampleWorkshopsPanel.getLinker() );
@@ -162,7 +162,7 @@ public class NavMenu implements Serializable {
             // Nav Locations with addChild - this determines order or links appearing in sidebar
 
             // Tips for Using PhET
-            NavLocation tipsForUsingPhetPanel = new NavLocation( this, "tipsForUsingPhet", TipsPanel.getLinker() );
+            NavLocation tipsForUsingPhetPanel = new NavLocation( this, "forTeachers.tipsForUsingPhet", TipsPanel.getLinker() );
             addLocation( tipsForUsingPhetPanel );
             addChild( tipsForUsingPhetPanel );
 

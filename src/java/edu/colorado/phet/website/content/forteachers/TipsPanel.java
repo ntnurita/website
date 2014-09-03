@@ -37,7 +37,7 @@ public class TipsPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "tipsForUsingPhet";
+        return "forTeachers.tipsForUsingPhet";
     }
 
     public static String getUrl() {

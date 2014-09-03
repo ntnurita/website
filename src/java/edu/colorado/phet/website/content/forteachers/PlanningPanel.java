@@ -28,7 +28,7 @@ public class PlanningPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "planningToUsePhet";
+        return "forTeachers.planningToUsePhet";
     }
 
     public static String getUrl() {

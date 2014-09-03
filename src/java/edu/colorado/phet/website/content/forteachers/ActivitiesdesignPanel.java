@@ -33,7 +33,7 @@ public class ActivitiesdesignPanel extends PhetPanel {
     }
    
     public static String getKey() {
-        return "activitesDesign";
+        return "forTeachers.activitesDesign";
     }
 
     public static String getUrl() {

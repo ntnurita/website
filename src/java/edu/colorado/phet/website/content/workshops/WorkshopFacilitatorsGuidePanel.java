@@ -19,7 +19,7 @@ public class WorkshopFacilitatorsGuidePanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "workshopFacilitatorsGuide";
+        return "forTeachers.workshopFacilitatorsGuide";
     }
 
     public static String getUrl() {

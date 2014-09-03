@@ -29,7 +29,7 @@ public class LectureOverviewPanel extends PhetPanel {
     }
 
     public static String getKey() {
-        return "usingPhetInLecture";
+        return "forTeachers.usingPhetInLecture";
     }
 
     public static String getUrl() {
