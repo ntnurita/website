@@ -105,12 +105,6 @@ public class SignInPanel extends PhetPanel {
             feedback.setVisible( feedback.anyMessage() );
         }
 
-        @Override
-        protected void onBeforeRender() {
-            super.onBeforeRender();
-            ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH );
-        }
-
         public final void onSubmit() {
             if ( destination != null ) {
                 getPhetCycle().redirectWithSameProtocol( destination );
