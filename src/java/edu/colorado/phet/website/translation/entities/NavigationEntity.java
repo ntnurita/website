@@ -41,15 +41,7 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.teacherIdeas" );
         addString( "nav.teacherIdeas.browse" );
         addString( "nav.teacherIdeas.submit" );
-        addString( "nav.tipsForUsingPhet");
-        addString( "nav.planningToUsePhet" );
-        addString( "nav.usingPhetInLecture" ); 
         addString( "nav.exampleworkshops" );
-        addString( "nav.lectureDemo");
-        addString(  "nav.clickersDemo" );
-        addString(  "nav.activitesDesign" );
-        addString(  "nav.activitesDesign2" );
-        addString(  "nav.virtualWorkshop");
 
         addString( "nav.teacherIdeas.edit" );
         addString( "nav.teacherIdeas.manage" );
@@ -79,7 +71,19 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.about.contact" );
         addString( "nav.about.who-we-are" );
         addString( "nav.about.licensing" );
+        addString( "nav.about.team" );
         addString( "nav.sponsors" );
+
+        // add for teachers strings
+        addString( "nav.forTeachers.workshopFacilitatorsGuide" );
+        addString( "nav.forTeachers.tipsForUsingPhet" );
+        addString( "nav.forTeachers.planningToUsePhet" );
+        addString( "nav.forTeachers.usingPhetInLecture" );
+        addString( "nav.forTeachers.lectureDemo" );
+        addString( "nav.forTeachers.clickersDemo" );
+        addString( "nav.forTeachers.activitesDesign" );
+        addString( "nav.forTeachers.virtualWorkshop" );
+
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
                             HashSet<NavLocation> locations = new HashSet<NavLocation>();

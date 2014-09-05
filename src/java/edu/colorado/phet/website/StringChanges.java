@@ -65,14 +65,14 @@ public class StringChanges {
         StringUtils.deleteString( session, "nav.activitesDesign.title" );
         StringUtils.deleteString( session, "nav.virtualWorkshop.title" );
 
-        StringUtils.addString( session, "nav.forTeachers.workshopFacilitatorsGuide.title", "PhET Workshop Facilitators Guide");
-        StringUtils.addString( session, "nav.forTeachers.tipsForUsingPhet.title", "Tips for Using PhET" );
-        StringUtils.addString( session, "nav.forTeachers.planningToUsePhet.title", "Planning to Use PhET" );
-        StringUtils.addString( session, "nav.forTeachers.usingPhetInLecture.title", "Using PhET in Lecture" );
-        StringUtils.addString( session, "nav.forTeachers.lectureDemo.title", " Interactive Lecture Demonstrations" );
-        StringUtils.addString( session, "nav.forTeachers.clickersDemo.title", "Using PhET with Clickers" );
-        StringUtils.addString( session, "nav.forTeachers.activitesDesign.title", "Designing Effective Activities for use in K12" );
-        StringUtils.addString( session, "nav.forTeachers.virtualWorkshop.title", "Take a Virtual PhET Workshop" );
+        StringUtils.deleteString( session, "nav.forTeachers.workshopFacilitatorsGuide.title");
+        StringUtils.deleteString( session, "nav.forTeachers.tipsForUsingPhet.title" );
+        StringUtils.deleteString( session, "nav.forTeachers.planningToUsePhet.title" );
+        StringUtils.deleteString( session, "nav.forTeachers.usingPhetInLecture.title" );
+        StringUtils.deleteString( session, "nav.forTeachers.lectureDemo.title" );
+        StringUtils.deleteString( session, "nav.forTeachers.clickersDemo.title" );
+        StringUtils.deleteString( session, "nav.forTeachers.activitesDesign.title" );
+        StringUtils.deleteString( session, "nav.forTeachers.virtualWorkshop.title" );
 
         // remove un-prefixed for-teachers strings
         StringUtils.deleteString( session, "workshopFacilitatorsGuide.title" );
@@ -94,26 +94,29 @@ public class StringChanges {
         StringUtils.addString( session, "forTeachers.activitesDesign.title", "Designing Effective Activities for use in K12" );
         StringUtils.addString( session, "forTeachers.virtualWorkshop.title", "Take a Virtual PhET Workshop" );
 
-        StringUtils.addString( session, "exampleworkshops", "Example Workshops" );
-        StringUtils.addString( session, "nav.exampleworkshops.title", "Example Workshops" );
         StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
         StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
 
-        StringUtils.addString( session, "about.team", "People" );
         StringUtils.addString( session, "nav.about.team", "People" );
         StringUtils.addString( session, "about.team.title", "People" );
 
-//        StringUtils.deleteString( session, "contribution.view.creativeCommons" );
-//        StringUtils.addString( session, "contribution.view.creativeCommons", "I agree to submit this activity under the Creative Commons (required)" );
+        // delete unused strings
+        StringUtils.deleteString( session, "contribution.view.creativecommons" );
+        StringUtils.deleteString( session, "nav.exampleworkshops.title" );
+        StringUtils.deleteString( session, "exampleworkshops" );
+        StringUtils.deleteString( session, "virtualWorkshop" );
+        StringUtils.deleteString( session, "activitesDesign" );
+        StringUtils.deleteString( session, "usingPhetInLecture" );
+        StringUtils.deleteString( session, "planningToUsePhet" );
+        StringUtils.deleteString( session, "workshopFacilitatorsGuide" );
+        StringUtils.deleteString( session, "about.team" );
 
         // change navigation strings on home screen
         StringUtils.overwriteString( session, "home.submitActivity", "Contribute Activities", "Submit an Activity" );
         StringUtils.overwriteString( session, "home.workshops", "Workshops / Materials", "Workshops" );
 
         // add validation string for cc license
-        StringUtils.deleteString( session, "contribution.edit.validation.mustHaveLicense" );
         StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons license" );
-        StringUtils.deleteString( session, "contribution.edit.validation.mustHaveLicence" );
 
         //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
 
