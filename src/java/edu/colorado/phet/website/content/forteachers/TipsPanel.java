@@ -7,7 +7,6 @@ package edu.colorado.phet.website.content.forteachers;
 import org.apache.wicket.Component;
 
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
@@ -48,7 +47,7 @@ public class TipsPanel extends PhetPanel {
     protected void onBeforeRender() {
         super.onBeforeRender();
         ((PhetMenuPage) this.getPage()).hideSocialBookmarkButtons();
-        ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH );
+        ((PhetMenuPage) this.getPage()).setContentWidth(1120);
         if ( !addedTips ) {
             add( WicketUtils.componentIf( true, "righthand-menu-panel", new IComponentFactory<Component>() {
                 public Component create( String id ) {

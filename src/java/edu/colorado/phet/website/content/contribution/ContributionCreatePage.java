@@ -9,10 +9,8 @@ import org.apache.wicket.PageParameters;
 
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.constants.Linkers;
-import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.panels.contribution.ContributionEditPanel;
-import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
@@ -45,12 +43,6 @@ public class ContributionCreatePage extends PhetRegularPage {
 
     public static void addToMapper( PhetUrlMapper mapper ) {
         mapper.addMap( "^for-teachers/submit-activity$", ContributionCreatePage.class );
-    }
-
-    @Override
-    protected void onBeforeRender() {
-        super.onBeforeRender();
-        ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH );
     }
 
     public static RawLinkable getLinker() {

@@ -4,20 +4,13 @@
 
 package edu.colorado.phet.website.content.workshops;
 
-import org.apache.wicket.Component;
-
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
-import edu.colorado.phet.website.content.forteachers.TipsRighthandMenu;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
-import edu.colorado.phet.website.util.wicket.IComponentFactory;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 public class WorkshopsPanel extends PhetPanel {
     public WorkshopsPanel( String id, PageContext context ) {
@@ -35,13 +28,6 @@ public class WorkshopsPanel extends PhetPanel {
 
     public static String getUrl() {
         return "for-teachers/workshops";
-    }
-
-    @Override
-    protected void onBeforeRender() {
-        super.onBeforeRender();
-        // for some reason a 55 pixel offset is needed to actually make this page the same width as the other for teacher pages
-        ((PhetMenuPage) this.getPage()).setContentWidth( TeacherIdeasPanel.FOR_TEACHERS_PAGE_WIDTH - 55 );
     }
 
     public static RawLinkable getLinker() {
