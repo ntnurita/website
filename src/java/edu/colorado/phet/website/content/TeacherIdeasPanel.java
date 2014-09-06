@@ -15,14 +15,19 @@ import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPanel;
 import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
+import edu.colorado.phet.website.content.forteachers.ForTeachersPanel;
 import edu.colorado.phet.website.content.forteachers.TipsPanel;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class TeacherIdeasPanel extends PhetPanel {
+
+    public static final int CONTENT_WIDTH = ForTeachersPanel.CONTENT_WIDTH - PhetMenuPage.SOCIAL_ICON_PADDING;
+
     public TeacherIdeasPanel( String id, PageContext context ) {
         super( id, context );
 

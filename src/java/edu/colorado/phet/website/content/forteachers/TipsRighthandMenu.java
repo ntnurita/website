@@ -2,32 +2,34 @@
 
 package edu.colorado.phet.website.content.forteachers;
 
-import org.apache.wicket.MarkupContainer;
-import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.html.image.Image;
+import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
 
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.wicket.IComponentFactory;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 /**
  * Displays a vertical list of social bookmarking service icons
  */
 public class TipsRighthandMenu extends PhetPanel {
 
+    private static final Logger logger = Logger.getLogger( TipsRighthandMenu.class.getName() );
 
-	public TipsRighthandMenu(String id, final PageContext context,
-			final String bookmarkableUrl) {
+    public TipsRighthandMenu( String id, final PageContext context, final String bookmarkableUrl ) {
 		super(id, context);
 
-		add( new StaticImage( "planningToUsePhet", "planningToUsePhet".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
-		add( new StaticImage( "usingPhetInLecture", "usingPhetInLecture".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
-		add( new StaticImage( "lectureDemo", "lectureDemo".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
-		add( new StaticImage( "clickersDemo", "clickersDemo".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
-		add( new StaticImage( "activitesDesign", "activitesDesign".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
-		add( new StaticImage( "virtualWorkshop", "virtualWorkshop".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+        logger.info( "STRING = " + bookmarkableUrl );
+
+		add( new StaticImage( "planningToUsePhet", "forTeachers.planningToUsePhet".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+		add( new StaticImage( "usingPhetInLecture", "forTeachers.usingPhetInLecture".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+		add( new StaticImage( "lectureDemo", "forTeachers.lectureDemo".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+		add( new StaticImage( "clickersDemo", "forTeachers.clickersDemo".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+		add( new StaticImage( "activitesDesign", "forTeachers.activitesDesign".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
+		add( new StaticImage( "virtualWorkshop", "forTeachers.virtualWorkshop".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
 
         // add linkers
         add ( PlanningPanel.getLinker().getLink( "planning-link-1", context, getPhetCycle() ) );

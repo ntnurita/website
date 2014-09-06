@@ -46,7 +46,7 @@ public class ContributionBrowsePage extends PhetRegularPage {
 
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.browse" ) );
 
-        setContentWidth( 906 );
+        setContentWidth( 1065 );
 
         setTitle( getLocalizer().getString( "contribution.search.title", this ) );
 

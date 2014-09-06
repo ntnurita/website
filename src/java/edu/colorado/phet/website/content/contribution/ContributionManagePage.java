@@ -29,6 +29,8 @@ public class ContributionManagePage extends PhetRegularPage {
         add( new ContributionManagePanel( "contribution-manage-panel", getPageContext() ) );
 
         hideSocialBookmarkButtons();
+
+        setContentWidth( 1120 );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {

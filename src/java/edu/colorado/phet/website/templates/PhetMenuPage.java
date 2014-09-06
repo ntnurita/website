@@ -34,6 +34,8 @@ import edu.colorado.phet.website.util.wicket.WicketUtils;
  */
 public abstract class PhetMenuPage extends PhetPage {
 
+    public static final int SOCIAL_ICON_PADDING = 55;
+
     private int contentWidth = 765;
     private boolean initializedLocations = false;
     private boolean showSocialBookmarkButtons = true;
@@ -119,7 +121,7 @@ public abstract class PhetMenuPage extends PhetPage {
     public String getStyle( String key ) {
         // be able to override the width so we can increase it for specific pages
         if ( key.equals( "style.menu-page-content" ) ) {
-            int extraSocialButtonPadding = showSocialBookmarkButtons ? 55 : 0;
+            int extraSocialButtonPadding = showSocialBookmarkButtons ? SOCIAL_ICON_PADDING : 0;
             return "width: " + ( getContentWidth() + extraSocialButtonPadding ) + "px;"; // adding 55 for size of right column
         }
 

@@ -6,13 +6,18 @@ package edu.colorado.phet.website.content.workshops;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
+import edu.colorado.phet.website.content.forteachers.ForTeachersPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class WorkshopsPanel extends PhetPanel {
+
+    public static final int CONTENT_WIDTH = ForTeachersPanel.CONTENT_WIDTH - PhetMenuPage.SOCIAL_ICON_PADDING;
+
     public WorkshopsPanel( String id, PageContext context ) {
         super( id, context );
 
