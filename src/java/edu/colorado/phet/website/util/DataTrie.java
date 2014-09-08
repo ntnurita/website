@@ -88,6 +88,10 @@ public abstract class DataTrie<T> {
         }
         return equivalent( prefix, str.substring( 0, prefix.length() ) );
     }
+
+    public int getCount() {
+        return root.getCount();
+    }
 }
 
 class DataTrieNode<T> {
@@ -107,6 +111,16 @@ class DataTrieNode<T> {
 
     public boolean isLeaf() {
         return children == null;
+    }
+
+    public int getCount() {
+        int count = 1;
+        if ( children != null ) {
+            for ( DataTrieNode<T> trieNode : children.values() ) {
+                count += trieNode.getCount();
+            }
+        }
+        return count;
     }
 
     public DataTrieNode<T> getChild( CollationKey key ) {

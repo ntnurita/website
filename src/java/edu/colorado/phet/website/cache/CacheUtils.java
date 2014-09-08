@@ -29,7 +29,7 @@ public class CacheUtils {
         clearInstallerCache();
     }
 
-    private static void clearImageCache() {
+    public static void clearImageCache() {
         ImageCache.invalidate();
     }
 
@@ -44,6 +44,13 @@ public class CacheUtils {
         //cache.evictQueryRegions();
         cache.evictEntityRegions();
         cache.evictCollectionRegions();
+
+        try {
+            cache.evictDefaultQueryRegion();
+            cache.evictQueryRegions();
+        } catch( RuntimeException e ) {
+            logger.error( "Cache clear error", e );
+        }
 
         // deprecated, but cache.evictQueryRegions is throwing exceptions
         factory.evictQueries();

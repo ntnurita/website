@@ -1,0 +1,91 @@
+Spring 2014 Newsletter - PhET Interactive Simulations (http://phet.colorado.edu)
+
+*** See Our Latest Videos for Using PhET in the Classroom
+
+Have you seen our growing collection of YouTube videos (http://www.youtube.com/PhETInteractiveSims) that illustrate best
+practices of how to use PhET simulations in the classroom?
+
+https://www.youtube.com/watch?v=PsETuPSBWMs "Using PhET in Lecture: With Clickers" shows strategies for leveraging the
+dynamic interactivity in PhET simulations in lecture by pairing them with clicker questions and peer instruction.
+
+https://www.youtube.com/watch?v=dsdSiyytv5E "Designing PhET Activities for the K12 Classroom" highlights strategies for
+designing student activity worksheets for in-class use of PhET simulations. The simulations are specifically designed to
+enable inquiry-based exploration of STEM concepts, where students use them in a hands-on setting. Ever wonder how you can
+structure activities to help students achieve your learning goals while keeping the lesson student-centered and enabling
+students to make their own discoveries? Watch this video for tips and recommendations from other teachers and the PhET
+research team.
+
+And, if you'd like to see more tips from PhET, help our "Teach with PhET" Campaign at http://www.crowdrise.com/helpbuildteachwithphet
+
+*** Did You Know... (from Our Teacher Community)
+
+Over 2,000 teachers responded to our survey last year, and:
+
+- 86% of teachers said that PhET simulations made their teaching more effective
+- 99% of teachers said that students learned more
+- 76% of teachers rated PhET simulations in the top 10% of teaching and learning resources
+- 98% of teachers reported that their students like the simulations
+From one of our teachers: "PhET allows me to individualize the pace for my students, since they can complete the simulations
+at their own pace and on any computer, at school, the library, or even at home... I feel like the PhET simulations and the
+accompanying activities make me a more effective and responsive teacher."
+
+*** Featured HTML5 Simulations: pH Scale and pH Scale: Basics
+
+We're excited to have both pH Scale and pH Scale: Basics now available as HTML5 simulations. The original pH Scale sim
+has been redesigned and improved, resulting in both a Middle School (Basics version) and High School/University version.
+The more advanced simulation offers improved "screen" scaffolding to show "Macro", "Micro", and "Custom" representations,
+where you can design the pH of your own liquid. In addition, this simulation offers new logarithmic and linear-scale
+visualizations - to help teachers address this challenging concept.
+
+http://phet.colorado.edu/sims/html/ph-scale/latest/ph-scale_en.html
+http://phet.colorado.edu/sims/html/ph-scale-basics/latest/ph-scale-basics_en.html
+
+Whether you use pH Scale or pH Scale: Basics, test the pH of things like coffee, spit, and soap to determine whether
+each is acidic, basic, or neutral. Investigate whether changing the volume or diluting with water affects the pH.
+
+A big thank you to the Royal Society of Chemistry for their generous funding to help bring these simulations to HTML5.
+
+*** In the HTML5 Pipeline:
+Recently Released:
+    Acid-Base Solutions (http://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html)
+    Balancing Act (http://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_en.html)
+    Concentration (http://phet.colorado.edu/sims/html/concentration/latest/concentration_en.html)
+    Friction (http://phet.colorado.edu/sims/html/friction/latest/friction_en.html)
+    pH Scale (http://phet.colorado.edu/sims/html/ph-scale/latest/ph-scale_en.html)
+    pH Scale: Basics (http://phet.colorado.edu/sims/html/ph-scale-basics/latest/ph-scale-basics_en.html)
+    Under Pressure (http://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_en.html)
+Coming Soon:
+    Energy Skate Park: Basics
+    Color Vision
+    Gravity and Orbits
+    Graphing Lines
+    Wave on a String
+
+*** Upcoming Events:
+
+ISTE 2014 (https://www.isteconference.org/2014/)
+Atlanta, GA
+June 28-July 1, 2014
+
+International Conference on Chemical Education (http://www.icce2014.org/)
+Toronto, Canada
+July 13-18, 2014
+
+Biennial Conference on Chemical Education (http://www.bcce2014.org/)
+Grand Rapids, MI
+August 3-7, 2014
+
+
+*** Feedback or Suggestions?
+
+If you have any ideas, please let us know at phethelp@colorado.edu.
+
+*** Thank You Pearson
+
+Thank you Pearson, for your continued support of PhET - and for using PhET in Mastering Physics, Mastering Chemistry, and a number of textbooks.
+
+
+You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
+phethelp@colorado.edu. To opt out of these newsletters, please click on this link: @UNSUBSCRIBE@ or copy and paste the text into your browser.
+
+PhET Interactive Simulations | University of Colorado 390 UCB | Boulder, CO 80309-0390

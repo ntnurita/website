@@ -9,6 +9,7 @@ import it.sauronsoftware.cron4j.Scheduler;
 import org.apache.log4j.Logger;
 
 import edu.colorado.phet.website.PhetWicketApplication;
+import edu.colorado.phet.website.cache.CacheUtils;
 import edu.colorado.phet.website.metadata.MetadataUtils;
 import edu.colorado.phet.website.newsletter.InitialSubscribePanel;
 import edu.colorado.phet.website.notification.NotificationHandler;
@@ -40,6 +41,41 @@ public class SchedulerService {
             public void run() {
                 logger.info( "Running InitialSubscribePanel.resetSecurity" );
                 InitialSubscribePanel.resetSecurity();
+            }
+        } );
+
+        // clear our string cache 20 minutes into every 3 hours
+        masterScheduler.schedule( "20 0,3,6,9,12,15,18,21 * * *", new Runnable() {
+            public void run() {
+                logger.info( "Running CacheUtils.clearTranslatedStringCache()" );
+                CacheUtils.clearTranslatedStringCache();
+            }
+        } );
+
+        // clear our panel cache 25 minutes into every 3 hours
+        masterScheduler.schedule( "25 1,4,7,10,13,16,19,22 * * *", new Runnable() {
+            public void run() {
+                logger.info( "Running CacheUtils.clearPanelCache()" );
+                CacheUtils.clearPanelCache();
+            }
+        } );
+
+        // clear our second-level cache 45 minutes into every 3 hours
+        masterScheduler.schedule( "45 2,5,8,11,14,17,20,23 * * *", new Runnable() {
+            public void run() {
+                logger.info( "Running CacheUtils.clearSecondLevelCache()" );
+                CacheUtils.clearSecondLevelCache();
+            }
+        } );
+
+        // clear all of our other caches 12 minutes into every 6 hours
+        masterScheduler.schedule( "12 4,10,16,22 * * *", new Runnable() {
+            public void run() {
+                logger.info( "Running CacheUtils.clear{TranslationEntity|Simulation|Image|Installer}Cache" );
+                CacheUtils.clearTranslationEntityCache();
+                CacheUtils.clearSimulationCache();
+                CacheUtils.clearImageCache();
+                CacheUtils.clearInstallerCache();
             }
         } );
 

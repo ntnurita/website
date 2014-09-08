@@ -85,12 +85,16 @@ public class SimulationMainPanel extends PhetPanel {
     private static final Map<String,String> HTML_SIM_LINK_MAP = new HashMap<String, String>();
 
     static {
+        HTML_SIM_LINK_MAP.put( "acid-base-solutions", "/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html" );
+        HTML_SIM_LINK_MAP.put( "balancing-act", "/sims/html/balancing-act/latest/balancing-act_en.html" );
         HTML_SIM_LINK_MAP.put( "balloons", "/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" );
         HTML_SIM_LINK_MAP.put( "beers-law-lab", "/sims/html/beers-law-lab/latest/beers-law-lab_en.html" );
         HTML_SIM_LINK_MAP.put( "build-an-atom", "/sims/html/build-an-atom/latest/build-an-atom_en.html" );
         HTML_SIM_LINK_MAP.put( "concentration", "/sims/html/concentration/latest/concentration_en.html" );
         HTML_SIM_LINK_MAP.put( "forces-and-motion-basics", "/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" );
+        HTML_SIM_LINK_MAP.put( "fraction-matcher", "/sims/html/fraction-matcher/latest/fraction-matcher_en.html" );
         HTML_SIM_LINK_MAP.put( "friction", "/sims/html/friction/latest/friction_en.html" );
+        HTML_SIM_LINK_MAP.put( "graphing-lines", "/sims/html/graphing-lines/latest/graphing-lines_en.html" );
         HTML_SIM_LINK_MAP.put( "gravity-force-lab", "/sims/html/gravity-force-lab/latest/gravity-force-lab_en.html" );
         HTML_SIM_LINK_MAP.put( "travoltage", "/sims/html/john-travoltage/latest/john-travoltage_en.html" );
         HTML_SIM_LINK_MAP.put( "molarity", "/sims/html/molarity/latest/molarity_en.html" );

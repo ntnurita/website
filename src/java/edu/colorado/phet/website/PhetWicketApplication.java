@@ -78,6 +78,7 @@ import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.about.AboutTeamPanel;
+import edu.colorado.phet.website.content.about.HTMLLicensingPanel;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCommentSuccessPage;
@@ -131,6 +132,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.Autocomplete;
+import edu.colorado.phet.website.services.EnglishSummaryExportCSV;
 import edu.colorado.phet.website.services.GithubEmailHook;
 import edu.colorado.phet.website.services.HealthCheck;
 import edu.colorado.phet.website.services.IQityExportCSV;
@@ -141,6 +143,7 @@ import edu.colorado.phet.website.services.ProjectSortedSimulations;
 import edu.colorado.phet.website.services.SchedulerService;
 import edu.colorado.phet.website.services.SimJarRedirectPage;
 import edu.colorado.phet.website.services.SimulationMetadataFormatService;
+import edu.colorado.phet.website.services.SimulationMetadataFormatServiceWithoutDeclaration;
 import edu.colorado.phet.website.services.StringGetter;
 import edu.colorado.phet.website.services.TranslationList;
 import edu.colorado.phet.website.templates.StaticPage;
@@ -290,6 +293,9 @@ public class PhetWicketApplication extends WebApplication {
         // NOTE: Adding another static panel? Make sure it's cached properly by
         // Varnish
 
+        StaticPage.addPanel( HTMLLicensingPanel.class );
+        // NOTE: Adding another static panel? Make sure it's cached properly by Varnish
+
         // create a url mapper, and add the page classes to it
         mapper = new PhetUrlMapper();
         HTML5Page.addToMapper( mapper );
@@ -366,30 +372,22 @@ public class PhetWicketApplication extends WebApplication {
 
         // services
         mountBookmarkablePage( "services/phet-info", PhetInfoServicePage.class );
-        mountBookmarkablePage( "services/phet-info.php",
-                               PhetInfoServicePage.class );
-        mountBookmarkablePage( "services/sim-jar-redirect",
-                               SimJarRedirectPage.class );
-        mountBookmarkablePage( "services/sim-jar-redirect.php",
-                               SimJarRedirectPage.class );
+        mountBookmarkablePage( "services/phet-info.php", PhetInfoServicePage.class );
+        mountBookmarkablePage( "services/sim-jar-redirect", SimJarRedirectPage.class );
+        mountBookmarkablePage( "services/sim-jar-redirect.php", SimJarRedirectPage.class );
         mountBookmarkablePage( "services/get-string", StringGetter.class );
         mountBookmarkablePage( "services/nc-info.csv", NCInformationPage.class );
-        mountBookmarkablePage( "services/learning-com-export.csv",
-                               LearningComExport.class );
+        mountBookmarkablePage( "services/english-summary.csv", EnglishSummaryExportCSV.class );
+        mountBookmarkablePage( "services/learning-com-export.csv", LearningComExport.class );
         mountBookmarkablePage( "services/iqity-export.csv", IQityExportCSV.class );
-        mountBookmarkablePage( "services/project-sorted-simulations.csv",
-                               ProjectSortedSimulations.class );
-        mountBookmarkablePage( "services/metadata/simulation",
-                               SimulationMetadataFormatService.class );
-        mountBookmarkablePage( "services/translation-list",
-                               TranslationList.class );
-        mountBookmarkablePage( "services/varnish-health-check",
-                               HealthCheck.class );
+        mountBookmarkablePage( "services/project-sorted-simulations.csv", ProjectSortedSimulations.class );
+        mountBookmarkablePage( "services/metadata/simulation-nodecl", SimulationMetadataFormatServiceWithoutDeclaration.class );
+        mountBookmarkablePage( "services/metadata/simulation", SimulationMetadataFormatService.class );
+        mountBookmarkablePage( "services/translation-list", TranslationList.class );
+        mountBookmarkablePage( "services/varnish-health-check", HealthCheck.class );
         mountBookmarkablePage( "services/nagios-health-check", HealthCheck.class );
-        mountBookmarkablePage( "services/general-health-check",
-                               HealthCheck.class );
-        // mountBookmarkablePage( "services/github-push", GithubEmailHook.class
-        // );
+        mountBookmarkablePage( "services/general-health-check", HealthCheck.class );
+        // mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
         mountBookmarkablePage( "metadata-dump.xml", MetadataDump.class );
@@ -597,6 +595,10 @@ public class PhetWicketApplication extends WebApplication {
             ret.add( LocaleUtils.localeToString( translation.getLocale() ) );
         }
         return ret;
+    }
+
+    public synchronized int getTranslationCount() {
+        return translations.size();
     }
 
     public synchronized List<Locale> getAllVisibleTranslationLocales() {

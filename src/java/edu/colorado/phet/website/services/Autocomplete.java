@@ -63,6 +63,14 @@ public class Autocomplete extends WebPage {
         simulationNameTries.clear();
     }
 
+    public static synchronized int getTrieCount() {
+        int count = 0;
+        for ( DataTrie<LocalizedSimulation> trie : simulationNameTries.values() ) {
+            count += trie.getCount();
+        }
+        return count;
+    }
+
     private static synchronized DataTrie<LocalizedSimulation> getStringTrie( Session session, Locale locale ) {
         DataTrie<LocalizedSimulation> trie = simulationNameTries.get( locale );
         if ( trie == null ) {

@@ -72,6 +72,7 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.about.who-we-are" );
         addString( "nav.about.licensing" );
         addString( "nav.about.team" );
+        addString( "nav.html.licensing" );
         addString( "nav.sponsors" );
 
         // add for teachers strings

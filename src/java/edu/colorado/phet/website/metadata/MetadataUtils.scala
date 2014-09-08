@@ -1,7 +1,7 @@
 package edu.colorado.phet.website.metadata
 
 import edu.colorado.phet.website.translation.PhetLocalizer
-import formats.{NSDLDCConverter, IMSLODEILOXConverter, IEEELOMConverter, DublinCoreConverter}
+import formats._
 import scala.collection.JavaConversions._
 import java.util.{Locale, Date}
 import edu.colorado.phet.website.PhetWicketApplication
@@ -31,12 +31,14 @@ object MetadataUtils {
   val ieeeLomConverter = new IEEELOMConverter {}
   val imsLodeIloxConverter = new IMSLODEILOXConverter {}
   val nsdlDcConverter = new NSDLDCConverter {}
+  val odsLomConverter = new ODSLOMConverter {}
 
   val formatConverters : List[PhetMetadataConverter] = List(
     dublinCoreConverter,
     ieeeLomConverter,
     imsLodeIloxConverter,
-    nsdlDcConverter
+    nsdlDcConverter,
+    odsLomConverter
   )
 
   val javaFormatConverters : java.util.List[PhetMetadataConverter] = formatConverters
@@ -52,12 +54,17 @@ object MetadataUtils {
   /**
    * Turn a name into a VCard format entry
    */
-  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
+  def vCardFromName(name: String): Node = Unparsed("<![CDATA[BEGIN:VCARD\nN:" + name.split( " " ).reverse.mkString( ";" ) + "\nFN:" + name + "\nVERSION:3.0\nEND:VCARD]]>")
 
   /**
    * Turns a sequence of translated strings into an IEEE string (same meaning, but in different languages) that can be included in XML
    */
   def convertLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <string language={str.language}>{str.string}</string>)
+
+  /**
+   * Turns a sequence of translated strings into an ODS IEEE string (same meaning, but in different languages) that can be included in XML
+   */
+  def convertNSLomLangString(lang: Seq[LanguageString]): NodeSeq = lang.map(str => <lom:string language={str.language}>{str.string}</lom:string>)
 
   /**
    * Find and return the English translation from a list of LanguageStrings

@@ -36,6 +36,7 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TranslatedString;
+import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.metadata.InitializeMathCommonCore;
 import edu.colorado.phet.website.metadata.LearningRegistryUtils;
 import edu.colorado.phet.website.metadata.MetadataUtils;
@@ -138,6 +139,31 @@ public class AdminMainPage extends AdminPage {
             }
         } );
 
+        add( new Link( "debug-fix-contributions" ) {
+            @Override
+            public void onClick() {
+                HibernateUtils.wrapTransaction( getHibernateSession(), new VoidTask() {
+                    public void run( Session session ) {
+                        List contributions = session.createQuery( "select c from Contribution as c" ).list();
+
+                        for ( Object c : contributions ) {
+                            Contribution contribution = (Contribution) c;
+
+                            try {
+                                if ( !contribution.getZipFile().exists() ) {
+                                    contribution.createZipFile();
+                                }
+                                logger.info( "updated zip file for contribution " + contribution.getId() );
+                            }
+                            catch( IOException e ) {
+                                logger.warn( "failed to update zip file for contribution " + contribution.getId(), e );
+                            }
+                        }
+                    }
+                } );
+            }
+        } );
+
         add( new Link( "debug-logging" ) {
             @Override
             public void onClick() {
@@ -195,15 +221,18 @@ public class AdminMainPage extends AdminPage {
                             PhetUser user = (PhetUser) o;
                             if ( user.isConfirmed() && user.isReceiveEmail() ) {
                                 String email = user.getEmail();
-                                if ( ( "anikaaa".compareTo( email ) < 0 && email.compareTo( "bsezzz" ) < 0 ) ||
-                                     ( "djiaaa".compareTo( email ) < 0 && email.compareTo( "gcampbzzz" ) < 0 ) ||
-                                     ( "jclaaa".compareTo( email ) < 0 && email.compareTo( "knazzz" ) < 0 ) ||
-                                     ( "meganaaaa".compareTo( email ) < 0 && email.compareTo( "osmanzzz" ) < 0 ) ||
-                                     ( "royaaaa".compareTo( email ) < 0 && email.compareTo( "sushzzz" ) < 0 ) ||
-                                     "yez".compareTo( email ) < 0 ) {
-//                                    System.out.println( "Will send to " + email );
+                                if ( "norm".compareTo( email ) < 0 ) {
                                     users.add( user );
                                 }
+//                                if ( ( "anikaaa".compareTo( email ) < 0 && email.compareTo( "bsezzz" ) < 0 ) ||
+//                                     ( "djiaaa".compareTo( email ) < 0 && email.compareTo( "gcampbzzz" ) < 0 ) ||
+//                                     ( "jclaaa".compareTo( email ) < 0 && email.compareTo( "knazzz" ) < 0 ) ||
+//                                     ( "meganaaaa".compareTo( email ) < 0 && email.compareTo( "osmanzzz" ) < 0 ) ||
+//                                     ( "royaaaa".compareTo( email ) < 0 && email.compareTo( "sushzzz" ) < 0 ) ||
+//                                     "yez".compareTo( email ) < 0 ) {
+////                                    System.out.println( "Will send to " + email );
+//                                    users.add( user );
+//                                }
                             }
                         }
 

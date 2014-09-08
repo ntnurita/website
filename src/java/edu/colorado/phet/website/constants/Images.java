@@ -37,6 +37,7 @@ public class Images {
     public static final ImageHandle NEWSLETTER_DECEMBER_12 = new ImageHandle( "/images/phet_newsletter_december_12_thumbnail.png", true );
     public static final ImageHandle NEWSLETTER_MAY_13 = new ImageHandle( "/images/phet_newsletter_may_13_thumbnail.png", true );
     public static final ImageHandle NEWSLETTER_DECEMBER_13 = new ImageHandle( "/images/phet_newsletter_december_13_thumbnail.png", true );
+    public static final ImageHandle NEWSLETTER_SPRING_14 = new ImageHandle( "/images/phet_newsletter_spring_14_thumbnail.png", true );
 
     public static final ImageHandle PHET_LOGO_ICON_SMALL = new ImageHandle( "/images/contributions/phet-logo-icon-small.jpg", true );
     public static final ImageHandle GOLD_STAR_SMALL = new ImageHandle( "/images/contributions/gold-star-small.jpg", true );
@@ -85,6 +86,7 @@ public class Images {
     public static final ImageHandle LOGO_THERESA_NEIL = new ImageHandle( "/images/support/theresa-neil-small.png", true );
     public static final ImageHandle LOGO_ECS = new ImageHandle( "/images/support/ecs-small.png", true );
     public static final ImageHandle LOGO_SCIENCE_4_US = new ImageHandle( "/images/support/science4us-small.png", true );
+    public static final ImageHandle LOGO_CUSTOMER_PARADIGM = new ImageHandle( "/images/support/customer-paradigm-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
 

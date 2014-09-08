@@ -136,14 +136,13 @@ trait IEEELOMConverter extends PhetMetadataConverter {
             <value>publisher</value>
           </role>
           <entity>
-            <![CDATA[
-            BEGIN:VCARD
-            FN:PhET Interactive Simulations
-            N:;;PhET Interactive Simulations
-            ORG:PhET Interactive Simulations
-            VERSION:3.0
-            END:VCARD
-            ]]>
+            <![CDATA[BEGIN:VCARD
+N:;;PhET Interactive Simulations
+FN:PhET Interactive Simulations
+ORG:PhET Interactive Simulations
+VERSION:3.0
+END:VCARD]]>
+
           </entity>
         </contribute>
 

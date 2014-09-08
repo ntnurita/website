@@ -111,4 +111,12 @@ public class SimulationCache {
             list.add( (LocalizedSimulation) session.load( LocalizedSimulation.class, id ) );
         }
     }
+
+    public static synchronized int getPreferredSimsCount() {
+        return preferredSims.size();
+    }
+
+    public static synchronized int getMapCount() {
+        return fullSortedLocalizedMap.size();
+    }
 }

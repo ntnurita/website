@@ -146,6 +146,8 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         map.put( "/index.html", "/" );
         map.put( "/index.php", "/" );
         map.put( "/installers/PhET-windows-installer.exe", FullInstallPanel.WINDOWS_INSTALLER_LOCATION );
+        map.put( "/licensing", "/en/html-terms-privacy-and-licensing" );
+        map.put( "/en/html-licensing", "/en/html-terms-privacy-and-licensing" );
         map.put( "/phet-dist/installers/PhET-1.0-windows-installer.exe", FullInstallPanel.WINDOWS_INSTALLER_LOCATION );
         map.put( "/quantum", "/en/simulations/category/physics/quantum-phenomena" );
         map.put( "/random-thumbnail.php", "/images/mass-spring-lab-animated-screenshot.gif" );
@@ -159,7 +161,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         map.put( "/simulations/translations.php", "/en/simulations/translated" );
         map.put( "/sponsors/index.php", "/en/about/sponsors" );
         map.put( "/teachwithphet", "/en/teachwithphet" );
-        map.put( "/teachresources", "https://www.youtube.com/playlist?list=PLU4AnY00ZrzrDr_o7Q8CwCFZIWeItGzqD" );
+        map.put( "/teachresources", "http://phet-dev.colorado.edu/en/for-teachers/tipsForUsingPhet" );
         map.put( "/teacher_ideas/", "/en/for-teachers" );
         map.put( "/teacher_ideas/browse.php", "/en/for-teachers/browse-activities" );
         map.put( "/teacher_ideas/classroom-use.php", "/en/for-teachers/classroom-use" );
