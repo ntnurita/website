@@ -44,13 +44,13 @@ public class TeacherIdeasPanel extends PhetPanel {
 
         String browseActivitiesLink = ContributionBrowsePage.getLinker().getRawUrl( context, getPhetCycle() );
         WebMarkupContainer browseActivitiesContainer = new WebMarkupContainer( "browse-activities-button" );
-        browseActivitiesContainer.add( TipsPanel.getLinker().getLink( "browse-activities-link", context, getPhetCycle() ) );
+        browseActivitiesContainer.add( ContributionBrowsePage.getLinker().getLink( "browse-activities-link", context, getPhetCycle() ) );
         browseActivitiesContainer.add( new AttributeModifier( "onclick", true, new Model<String>( "document.location = '" + browseActivitiesLink + "'" ) ) );
         add( browseActivitiesContainer );
 
         String submitActivityLink = ContributionCreatePage.getLinker().getRawUrl( context, getPhetCycle() );
         WebMarkupContainer submitActivityContainer = new WebMarkupContainer( "submit-activity-button" );
-        submitActivityContainer.add( TipsPanel.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
+        submitActivityContainer.add( ContributionCreatePage.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
         submitActivityContainer.add( new AttributeModifier( "onclick", true, new Model<String>( "document.location = '" + submitActivityLink + "'" ) ) );
         add( submitActivityContainer );
     }
