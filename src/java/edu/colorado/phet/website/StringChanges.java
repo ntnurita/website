@@ -102,6 +102,7 @@ public class StringChanges {
 
         // delete unused strings
         StringUtils.deleteString( session, "contribution.view.creativecommons" );
+        StringUtils.deleteString( session, "contribution.edit.creativeCommons" );
         StringUtils.deleteString( session, "nav.exampleworkshops.title" );
         StringUtils.deleteString( session, "exampleworkshops" );
         StringUtils.deleteString( session, "virtualWorkshop" );
