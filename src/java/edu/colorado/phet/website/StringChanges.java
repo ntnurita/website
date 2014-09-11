@@ -113,8 +113,13 @@ public class StringChanges {
         StringUtils.deleteString( session, "about.team" );
 
         // change navigation strings on home screen
-        StringUtils.overwriteString( session, "home.submitActivity", "Contribute Activities", "Submit an Activity" );
         StringUtils.overwriteString( session, "home.workshops", "Workshops / Materials", "Workshops" );
+
+        StringUtils.deleteString( session, "home.submitActivity" );
+        StringUtils.addString( session, "home.submitActivity", "Share your Activities" );
+
+        StringUtils.deleteString( session, "nav.teacherIdeas.submit" );
+        StringUtils.addString( session, "nav.teacherIdeas.submit", "Share your Activities" );
 
         // add validation string for cc license
         StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons license" );
