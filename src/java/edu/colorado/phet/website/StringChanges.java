@@ -121,6 +121,20 @@ public class StringChanges {
         StringUtils.deleteString( session, "nav.teacherIdeas.submit" );
         StringUtils.addString( session, "nav.teacherIdeas.submit", "Share your Activities" );
 
+        // remove strings from TeacherIdeasPanel b/c the translation was scraped for now
+        StringUtils.deleteString( session, "teacherIdeas.browseSection" );
+        StringUtils.deleteString( session, "teacherIdeas.contributeSection" );
+        StringUtils.deleteString( session, "teacherIdeas.adviceSection" );
+        StringUtils.deleteString( session, "teacherIdeas.guidelinesSection" );
+        StringUtils.deleteString( session, "teacherIdeas.guidelines" );
+        StringUtils.deleteString( session, "teacherIdeas.exampleSection" );
+        StringUtils.deleteString( session, "teacherIdeas.examples" );
+        StringUtils.deleteString( session, "teacherIdeas.examples" );
+        StringUtils.deleteString( session, "teacherIdeas.examples" );
+        StringUtils.deleteString( session, "teacherIdeas.welcome" );
+        StringUtils.deleteString( session, "teacherIdeas.start" );
+        StringUtils.deleteString( session, "teacherIdeas.contribute" );
+
         // add validation string for cc license
         StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons license" );
 
