@@ -135,6 +135,10 @@ public class StringChanges {
         StringUtils.deleteString( session, "teacherIdeas.start" );
         StringUtils.deleteString( session, "teacherIdeas.contribute" );
 
+        StringUtils.deleteString( session, "teacherIdeas.examples.highSchool" );
+        StringUtils.deleteString( session, "teacherIdeas.examples.modernPhysics" );
+        StringUtils.deleteString( session, "teacherIdeas.examples.everydayPhysics" );
+
         // add validation string for cc license
         StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons license" );
 
