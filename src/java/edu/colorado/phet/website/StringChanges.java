@@ -150,6 +150,12 @@ public class StringChanges {
         StringUtils.addString( session, "html.licensing.title", "HTML5 Simulation Licensing Information" );
         StringUtils.addString( session, "html.licensing.comingSoon", "Information coming soon, please contact {0}." );
 
+        // update titles of browse and submit activities pages
+        StringUtils.deleteString( session, "contribution.create.pageTitle" );
+        StringUtils.deleteString( session, "contribution.search.title" );
+        StringUtils.addString( session, "contribution.create.pageTitle", "Share your Activities" );
+        StringUtils.addString( session, "contribution.search.title", "Browse Activities" );
+
         session.close();
     }
 
