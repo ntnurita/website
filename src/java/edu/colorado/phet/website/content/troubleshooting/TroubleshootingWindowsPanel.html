@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
+      lang="en">
+<head>
+  <title>[PREVIEW] TroubleshootingWindowsPanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
+</head>
+<body>
+
+<wicket:panel>
+  <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
+
+    <h2 id="faq_top">
+      <wicket:message key="troubleshooting.windows.faqs">FAQs</wicket:message>
+    </h2>
+
+    <div id="faq">
+      <ul id="nav">
+        <li class="faq"><a href="#q1">
+          <wicket:message key="troubleshooting.windows.q1.title">
+            When I attempt to open a Java sim, Windows will try to open the sim with a program other than Java (Word,
+            Internet Explorer, etc.) or give me the message "This XML file does not appear to have any style information
+            associated with it."
+          </wicket:message>
+        </a></li>
+
+        <li class="faq"><a href="#q2">
+          <wicket:message key="troubleshooting.windows.q2.title">
+            I am using Windows 8, when I try to open the sim I get a dialog asking me to find an app to run the sim.
+          </wicket:message>
+        </a></li>
+
+      </ul>
+    </div>
+    <br/>
+    <br/>
+
+    <h3 id="q1">
+      <wicket:message key="troubleshooting.windows.q1.title">
+        When I attempt to open a Java sim, Windows will try to open the sim with a program other than Java (Word,
+        Internet Explorer, etc.) or give me the message "This XML file does not appear to have any style information
+        associated with it."
+      </wicket:message>
+    </h3>
+
+    <!--<div wicket:id="troubleshooting-windows-q1-answer">-->
+    <div>
+      <p>
+        Sometimes, the Java file associations can become broken. Follow these steps to re-associate both '.jnlp' and
+        '.jar' files to use Java:
+      </p>
+      <p>
+        1.  Download both a '.jar' and '.jnlp' from our website - "Download" and "Run Now", respectively.<br/>
+        2.  For each file, right click and choose 'Open With..."<br/>
+        3.  Select "Choose Default Program"<br/>
+        4.  Check the "Always use the selected program to open this kind of file"<br/>
+        5.  Click the "Browse..." button<br/>
+        6.  For ',jnlp' select "JavaWS.exe" (located here on a default installation: C:\Program Files (x86)\Java\jre7\bin\)
+            For '.jar' select "Java.exe"<br/>
+        7.  Click "Open".<br/>
+        8.  Click "OK"<br/>
+        9.  The '.jnlp'/ '.jar' file should now open in Java.<br/>
+      </p>
+    </div>
+
+    <p class="to-top">
+      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
+      </wicket:message></span><span
+          class="to-top-arrow">&#9650;</span></a>
+    </p>
+
+    <h3 id="q2">
+      <wicket:message key="troubleshooting.windows.q2.title">
+        I am using Windows 8, when I try to open the sim I get a dialog asking me to find an app to run the sim.
+      </wicket:message>
+    </h3>
+
+    <!--<div wicket:id="troubleshooting-windows-q2-answer">-->
+    <div>
+      <p>
+        There are two versions of Windows 8: 'RT' and 'Pro'. All of our simulations will work on a 'Pro' operating system.
+        The 'RT' version of Windows 8 doesn't allow Java to be installed, but you can use our new HTML5 simulations as well
+        as our Flash simulations. If you have the 'Pro' version of Windows 8, you can go here to install Java:
+        http://www.java.com/en/ and once that it finished you should be able to run all of the simulations.
+      </p>
+      <p>
+        The two versions of Windows 8 provide very different possibilities in terms of accessibility. You can find your
+        Windows version here: http://windows.microsoft.com/en-us/windows/which-operating-system
+      </p>
+      <p>
+        If you still encounter problems on the 'Pro' version after verifying that Java installed, it may be that the file
+        associations are not correctly pointing to Java to open '.jar' and '.jnlp' files. Please follow the instructions
+        above to re-associate the files with Java.
+      </p>
+    </div>
+
+    <p class="to-top">
+      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
+      </wicket:message></span><span
+          class="to-top-arrow">&#9650;</span></a>
+    </p>
+  </div>
+</wicket:panel>
+
+</body>
+</html>

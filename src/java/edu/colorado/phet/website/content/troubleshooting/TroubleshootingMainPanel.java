@@ -21,9 +21,9 @@ public class TroubleshootingMainPanel extends PhetPanel {
     public TroubleshootingMainPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( TroubleshootingJavaPanel.getLinker().getLink( "to-java", context, getPhetCycle() ) );
-        add( TroubleshootingFlashPanel.getLinker().getLink( "to-flash", context, getPhetCycle() ) );
-        add( TroubleshootingJavascriptPanel.getLinker().getLink( "to-javascript", context, getPhetCycle() ) );
+        add( TroubleshootingMacPanel.getLinker().getLink( "to-mac", context, getPhetCycle() ) );
+        add( TroubleshootingWindowsPanel.getLinker().getLink( "to-windows", context, getPhetCycle() ) );
+        add( TroubleshootingMobilePanel.getLinker().getLink( "to-mobile", context, getPhetCycle() ) );
 
         add( new LocalizedText( "troubleshooting-main-intro", "troubleshooting.main.intro", new Object[]{
                 Linkers.getHelpLink( "Help", context, getPhetCycle() ),

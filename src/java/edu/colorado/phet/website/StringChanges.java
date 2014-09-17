@@ -26,6 +26,14 @@ public class StringChanges {
         StringUtils.addString( session, "html.licensing.title", "HTML5 Simulation Licensing Information" );
         StringUtils.addString( session, "html.licensing.comingSoon", "Information coming soon, please contact {0}." );
 
+        // add strings for new trouble shooting pages
+        StringUtils.addString( session, "nav.troubleshooting.mac", "Mac" );
+        StringUtils.addString( session, "troubleshooting.mac.title", "Troubleshooting Mac" );
+        StringUtils.addString( session, "nav.troubleshooting.windows", "Windows" );
+        StringUtils.addString( session, "troubleshooting.windows.title", "Troubleshooting Windows" );
+        StringUtils.addString( session, "nav.troubleshooting.mobile", "Tablets/Mobile Devices" );
+        StringUtils.addString( session, "troubleshooting.mobile.title", "Troubleshooting Tablets/Mobile Devices" );
+
         session.close();
     }
 

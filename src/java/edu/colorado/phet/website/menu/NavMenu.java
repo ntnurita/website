@@ -53,7 +53,10 @@ import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMacPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMobilePanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingWindowsPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
@@ -160,17 +163,29 @@ public class NavMenu implements Serializable {
         NavLocation troubleshooting = new NavLocation( null, "troubleshooting.main", TroubleshootingMainPanel.getLinker() );
         addMajorLocation( troubleshooting );
 
-        NavLocation troubleshootingJava = new NavLocation( troubleshooting, "troubleshooting.java", TroubleshootingJavaPanel.getLinker() );
-        addLocation( troubleshootingJava );
-        troubleshooting.addChild( troubleshootingJava );
+//        NavLocation troubleshootingJava = new NavLocation( troubleshooting, "troubleshooting.java", TroubleshootingJavaPanel.getLinker() );
+//        addLocation( troubleshootingJava );
+//        troubleshooting.addChild( troubleshootingJava );
+//
+//        NavLocation troubleshootingFlash = new NavLocation( troubleshooting, "troubleshooting.flash", TroubleshootingFlashPanel.getLinker() );
+//        addLocation( troubleshootingFlash );
+//        troubleshooting.addChild( troubleshootingFlash );
+//
+//        NavLocation troubleshootingJavascript = new NavLocation( troubleshooting, "troubleshooting.javascript", TroubleshootingJavascriptPanel.getLinker() );
+//        addLocation( troubleshootingJavascript );
+//        troubleshooting.addChild( troubleshootingJavascript );
 
-        NavLocation troubleshootingFlash = new NavLocation( troubleshooting, "troubleshooting.flash", TroubleshootingFlashPanel.getLinker() );
-        addLocation( troubleshootingFlash );
-        troubleshooting.addChild( troubleshootingFlash );
+        NavLocation troubleshootingMac = new NavLocation( troubleshooting, "troubleshooting.mac", TroubleshootingMacPanel.getLinker() );
+        addLocation( troubleshootingMac );
+        troubleshooting.addChild( troubleshootingMac );
 
-        NavLocation troubleshootingJavascript = new NavLocation( troubleshooting, "troubleshooting.javascript", TroubleshootingJavascriptPanel.getLinker() );
-        addLocation( troubleshootingJavascript );
-        troubleshooting.addChild( troubleshootingJavascript );
+        NavLocation troubleshootingWindows = new NavLocation( troubleshooting, "troubleshooting.windows", TroubleshootingWindowsPanel.getLinker() );
+        addLocation( troubleshootingWindows );
+        troubleshooting.addChild( troubleshootingWindows );
+
+        NavLocation troubleshootingMobile = new NavLocation( troubleshooting, "troubleshooting.mobile", TroubleshootingMobilePanel.getLinker() );
+        addLocation( troubleshootingMobile );
+        troubleshooting.addChild( troubleshootingMobile );
 
         NavLocation faq = new NavLocation( null, "faqs", GeneralFAQPanel.getLinker() );
         faq.setUseNavigationStringForBreadcrumb( false ); // use nav.breadcrumb.faqs for breadcrumbs
@@ -238,7 +253,7 @@ public class NavMenu implements Serializable {
 
         NavLocation testFAQ = new NavLocation( null, "sim-faq-test", FaqTestPage.getLinker() );
         addLocation( testFAQ );
-        
+
         NavLocation troubleshootingJavaSecurity = new NavLocation( null, "troubleshooting.javaSecurity", JavaSecurity.getLinker() );
         addLocation( troubleshootingJavaSecurity );
 
