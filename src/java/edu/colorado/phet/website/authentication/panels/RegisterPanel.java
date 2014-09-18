@@ -156,7 +156,7 @@ public class RegisterPanel extends PhetPanel {
                             user.setName( nom );
                             user.setOrganization( org );
                             user.setDescription( desc );
-                            user.setPassword( pass );
+                            user.setPassword( pass, email );
                             user.setReceiveEmail( receiveNewsletters );
                             session.update( user );
                         }
@@ -167,7 +167,7 @@ public class RegisterPanel extends PhetPanel {
                         user.setName( nom );
                         user.setOrganization( org );
                         user.setDescription( desc );
-                        user.setPassword( pass );
+                        user.setPassword( pass, email );
                         user.setReceiveEmail( receiveNewsletters );
                         session.save( user );
                     }
