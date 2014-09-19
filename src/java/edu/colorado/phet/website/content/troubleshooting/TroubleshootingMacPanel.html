@@ -12,49 +12,7 @@
 <body>
 
 <wicket:panel>
-  <script type="text/javascript">
-    function expand( element ) {
-      var target = document.getElementById( element );
-      var h = target.offsetHeight;
-      var sh = target.scrollHeight;
-      var loopTimer = setTimeout( 'expand(\'' + element + '\')', 8 );
-      if ( h < sh ) {
-        h += 5;
-      }
-      else {
-        clearTimeout( loopTimer );
-      }
-      target.style.height = h + "px";
-    }
-
-    function retract( element ) {
-      var target = document.getElementById( element );
-      var h = target.offsetHeight;
-      var loopTimer = setTimeout( 'retract(\'' + element + '\')', 8 );
-      if ( h > 0 ) {
-        h -= 5;
-      }
-      else {
-        target.style.height = "0px";
-        clearTimeout( loopTimer );
-      }
-      target.style.height = h + "px";
-    }
-
-    function toggleMe( id ) {
-      var e = document.getElementById( id );
-      if ( !e ) {
-        return true;
-      }
-      if ( !e.style.height || e.style.height === "0px" ) {
-        expand( id );
-      }
-      else {
-        retract( id );
-      }
-      return false;
-    }
-  </script>
+  <script type="text/javascript" src="/js/expandable-text.js"></script>
   <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
     <h2 id="faq_top">
@@ -105,7 +63,7 @@
 
       <p>
         The fix is:<br/>
-        1. Go to http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4<br/>
+        1. Go to <a href="http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4">http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4</a><br/>
         2. Click Download to download a .dmg file<br/>
         3. When the .dmg has downloaded, double-click on it (if it doesn't mount automatically)<br/>
         4. Quit all applications<br/>

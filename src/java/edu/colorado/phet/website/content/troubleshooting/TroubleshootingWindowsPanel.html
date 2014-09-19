@@ -12,50 +12,7 @@
 <body>
 
 <wicket:panel>
-  <script type="text/javascript">
-    function expand( element ) {
-      var target = document.getElementById( element );
-      var h = target.offsetHeight;
-      var sh = target.scrollHeight;
-      var loopTimer = setTimeout( 'expand(\'' + element + '\')', 8 );
-      if ( h < sh ) {
-        h += 5;
-      }
-      else {
-        clearTimeout( loopTimer );
-      }
-      target.style.height = h + "px";
-    }
-
-    function retract( element ) {
-      var target = document.getElementById( element );
-      var h = target.offsetHeight;
-      var loopTimer = setTimeout( 'retract(\'' + element + '\')', 8 );
-      if ( h > 0 ) {
-        h -= 5;
-      }
-      else {
-        target.style.height = "0px";
-        clearTimeout( loopTimer );
-      }
-      target.style.height = h + "px";
-    }
-
-    function toggleMe( id ) {
-      var e = document.getElementById( id );
-      if ( !e ) {
-        return true;
-      }
-      if ( !e.style.height || e.style.height === "0px" ) {
-        expand( id );
-      }
-      else {
-        retract( id );
-      }
-      return false;
-    }
-  </script>
-
+  <script type="text/javascript" src="/js/expandable-text.js"></script>
   <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
     <h2 id="faq_top">
@@ -107,7 +64,7 @@
       </p>
       <p>
         The two versions of Windows 8 provide very different possibilities in terms of accessibility. You can find your
-        Windows version here: http://windows.microsoft.com/en-us/windows/which-operating-system
+        Windows version <a href="http://windows.microsoft.com/en-us/windows/which-operating-system">http://windows.microsoft.com/en-us/windows/which-operating-system</a>
       </p>
       <p>
         If you still encounter problems on the 'Pro' version after verifying that Java installed, it may be that the file
@@ -115,35 +72,6 @@
         above to re-associate the files with Java.
       </p>
     </div>
-
-
-    <h3 id="q3"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a3')">
-      <wicket:message key="troubleshooting.windows.q3.title">
-        I use Internet Explorer and the simulations do not run on my computer.
-      </wicket:message>
-    </a></h3>
-
-    <!--<div wicket:id="troubleshooting-windows-q3-answer">-->
-    <div class="answer" id="a3">
-      <p>We <strong>strongly</strong> recommend you use the latest version of Internet Explorer (IE8).</p>
-
-      <p><strong>Internet Explorer Security Settings</strong></p>
-
-      <p>Some installations of Internet Explorer, particularly under Windows XP SP2, have default security
-          settings which
-          can impede some aspects of how your locally installed PhET interface functions. For the best user
-          experience
-          while using our simulations installed on your computer, we recommend following the steps below:</p>
-
-      <ol>
-          <li>In Internet Explorer on your local workstation, choose Tools &gt; Internet Options.</li>
-          <li>Choose the Advanced tab, then scroll to the Security section.</li>
-
-          <li>Enable "Allow active content to run in files on my computer".</li>
-          <li>Choose OK.</li>
-      </ol>
-    </div>
-
 
     <h3 id="q4"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a4')">
       <wicket:message key="troubleshooting.windows.q4.title">
