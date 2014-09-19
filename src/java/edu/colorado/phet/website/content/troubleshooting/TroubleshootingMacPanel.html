@@ -12,67 +12,65 @@
 <body>
 
 <wicket:panel>
+  <script type="text/javascript">
+    function expand( element ) {
+      var target = document.getElementById( element );
+      var h = target.offsetHeight;
+      var sh = target.scrollHeight;
+      var loopTimer = setTimeout( 'expand(\'' + element + '\')', 8 );
+      if ( h < sh ) {
+        h += 5;
+      }
+      else {
+        clearTimeout( loopTimer );
+      }
+      target.style.height = h + "px";
+    }
+
+    function retract( element ) {
+      var target = document.getElementById( element );
+      var h = target.offsetHeight;
+      var loopTimer = setTimeout( 'retract(\'' + element + '\')', 8 );
+      if ( h > 0 ) {
+        h -= 5;
+      }
+      else {
+        target.style.height = "0px";
+        clearTimeout( loopTimer );
+      }
+      target.style.height = h + "px";
+    }
+
+    function toggleMe( id ) {
+      var e = document.getElementById( id );
+      if ( !e ) {
+        return true;
+      }
+      if ( !e.style.height || e.style.height === "0px" ) {
+        expand( id );
+      }
+      else {
+        retract( id );
+      }
+      return false;
+    }
+  </script>
   <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
     <h2 id="faq_top">
       <wicket:message key="troubleshooting.mac.faqs">FAQs</wicket:message>
     </h2>
 
-    <div id="faq">
-      <ul id="nav">
-        <li class="faq"><a href="#q1">
-          <wicket:message key="troubleshooting.mac.q1.title">
-            When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says
-            "The application's digital signature has been verified. Do you want to run the application?"
-            (or something similar). What does this mean?
-          </wicket:message>
-        </a></li>
-
-        <li class="faq"><a href="#q2">
-          <wicket:message key="troubleshooting.mac.q2.title">
-            When I click "run now" to start the simulation all I get is a text file that opens?
-          </wicket:message>
-        </a></li>
-
-        <li class="faq"><a href="#q3">
-          <wicket:message key="troubleshooting.mac.q3.title">
-            Why is a simulation with 3D graphics not launching / displaying correctly?
-          </wicket:message>
-        </a></li>
-
-        <li class="faq"><a href="#q4">
-          <wicket:message key="troubleshooting.mac.q4.title">
-            When I open 'Molecule Shapes', 'Plate Tectonics', or 'Molecule Shapes: Basics', I get a dialog saying
-            "This simulation was unable to start."
-          </wicket:message>
-        </a></li>
-
-        <li class="faq"><a href="#q5">
-          <wicket:message key="troubleshooting.mac.q5.title">
-            When I open a Java sim I get a dialog saying the sim "can't be opened because it is from an unidentified developer."
-          </wicket:message>
-        </a></li>
-
-        <li class="faq"><a href="#q6">
-          <wicket:message key="troubleshooting.mac.q6.title">
-            When I click 'Run Now' from a sim page, nothing happens!
-          </wicket:message>
-        </a></li>
-      </ul>
-    </div>
-    <br/>
-    <br/>
-
-    <h3 id="q1">
+    <h3 id="q1"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a1')">
       <wicket:message key="troubleshooting.mac.q1.title">
         When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says
         "The application's digital signature has been verified. Do you want to run the application?"
         (or something similar). What does this mean?
       </wicket:message>
-    </h3>
+    </a></h3>
 
     <!--<div wicket:id="troubleshooting-mac-q1-answer">-->
-    <div>
+    <div class="answer" id="a1">
       <p>
         The PhET simulations that are distributed with the installer include a "digital certificate" that verifies that
         these simulations were actually created by PhET. This is a security measure that helps to prevent an unscrupulous
@@ -81,6 +79,7 @@
         validated by a trusted source, you can have a high degree of confidence that the application was produced by the
         PhET team.
       </p>
+
       <p>
         On most systems, it is possible to permanently accept the PhET certificate and thereby prevent this dialog from
         appearing each time a simulation is run locally. Most Windows and Max OSX systems have a check box on the certificate
@@ -89,20 +88,15 @@
       </p>
     </div>
 
-    <p class="to-top">
-      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-      </wicket:message></span><span
-          class="to-top-arrow">&#9650;</span></a>
-    </p>
 
-    <h3 id="q2">
+    <h3 id="q2"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a2')">
       <wicket:message key="troubleshooting.mac.q2.title">
         When I click "run now" to start the simulation all I get is a text file that opens?
       </wicket:message>
-    </h3>
+    </a></h3>
 
     <!--<div wicket:id="troubleshooting-mac-q2-answer">-->
-    <div>
+    <div class="answer" id="a2">
       <p>
         This problem will affect mac users who recently installed Apple's "Java for Mac OS X 10.5 Update 4". The update will
         typically be done via Software Update, or automatically. After installing this update, the problem appears: clicking
@@ -119,20 +113,15 @@
       </p>
     </div>
 
-    <p class="to-top">
-      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-      </wicket:message></span><span
-          class="to-top-arrow">&#9650;</span></a>
-    </p>
 
-    <h3 id="q3">
+    <h3 id="q3"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a3')">
       <wicket:message key="troubleshooting.mac.q3.title">
         Why is a simulation with 3D graphics not launching / displaying correctly?
       </wicket:message>
-    </h3>
+    </a></h3>
 
     <!--<div wicket:id="troubleshooting-mac-q3-answer">-->
-    <div>
+    <div class="answer" id="a3">
       <p>
         If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's
         drivers may fix the issue.
@@ -144,21 +133,16 @@
       </p>
     </div>
 
-    <p class="to-top">
-      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-      </wicket:message></span><span
-          class="to-top-arrow">&#9650;</span></a>
-    </p>
 
-    <h3 id="q4">
+    <h3 id="q4"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a4')">
       <wicket:message key="troubleshooting.mac.q4.title">
         When I open 'Molecule Shapes', 'Plate Tectonics', or 'Molecule Shapes: Basics', I get a dialog saying
         "This simulation was unable to start."
       </wicket:message>
-    </h3>
+    </a></h3>
 
     <!--<div wicket:id="troubleshooting-mac-q4-answer">-->
-    <div>
+    <div class="answer" id="a4">
       <img src="//phet.colorado.edu/images/troubleshooting/unable-to-start-LWJGL.png" alt="Unable to Start Image" width="500"/>
 
       <p>
@@ -180,20 +164,15 @@
       </p>
     </div>
 
-    <p class="to-top">
-      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-      </wicket:message></span><span
-          class="to-top-arrow">&#9650;</span></a>
-    </p>
 
-    <h3 id="q5">
+    <h3 id="q5"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a5')">
       <wicket:message key="troubleshooting.mac.q5.title">
         When I open a Java sim I get a dialog saying the sim "can't be opened because it is from an unidentified developer."
       </wicket:message>
-    </h3>
+    </a></h3>
 
     <!--<div wicket:id="troubleshooting-mac-q5-answer">-->
-    <div>
+    <div class="answer" id="a5">
       <p>
         Gatekeeper, introduced in Mountain Lion (OS X 10.8), is designed to prevent potentially malicious apps from launching.
         When you attempt to launch an app that doesn't meet certain criteria, Gatekeeper will block the launch. To override this,
@@ -217,20 +196,15 @@
 
     </div>
 
-    <p class="to-top">
-      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-      </wicket:message></span><span
-          class="to-top-arrow">&#9650;</span></a>
-    </p>
 
-    <h3 id="q6">
+    <h3 id="q6"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a6')">
       <wicket:message key="troubleshooting.mac.q6.title">
         When I click 'Run Now' from a sim page, nothing happens!
       </wicket:message>
-    </h3>
+    </a></h3>
 
     <!--<div wicket:id="troubleshooting-mac-q6-answer">-->
-    <div>
+    <div class="answer" id="a6">
       <p><strong>Firefox</strong></p>
 
       <p>
@@ -283,11 +257,6 @@
 
     </div>
 
-    <p class="to-top">
-      <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-      </wicket:message></span><span
-          class="to-top-arrow">&#9650;</span></a>
-    </p>
   </div>
 </wicket:panel>
 

@@ -48,3 +48,12 @@ p.to-top a {
 div.rtl .to-top-arrow {
     border: none;
 }
+
+.question {
+    cursor: pointer;
+}
+
+.answer {
+    height: 0px;
+    overflow: hidden;
+}
