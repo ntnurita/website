@@ -31,7 +31,7 @@ public class TroubleshootingMainPanel extends PhetPanel {
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q1-answer", "troubleshooting.main.q1.answer", new Object[]{
-                "href=\"http://www.java.com\""
+                "href=\"https://www.java.com\""
         } ) );
 
 
