@@ -435,6 +435,22 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 3 );
     }};
 
+    public static Sponsor AACT = new LogoSponsor(
+            "AACT",
+            "http://teachchemistry.org/",
+            Images.LOGO_AACT, "padding: 4px;" ) {{
+        setHomeWeight( 2 );
+        setSimWeight( 2 );
+    }};
+
+    public static Sponsor WW_NORTON = new LogoSponsor(
+            "W.W. Norton & Company",
+            "http://books.wwnorton.com/books/subject-detail.aspx?tid=444",
+            Images.LOGO_WW_NORTON, "padding: 4px;" ) {{
+        setHomeWeight( 1 );
+        setSimWeight( 1 );
+    }};
+
     public static Sponsor YOU = new YouSponsor(
             "you",
             null ) {{
@@ -456,25 +472,25 @@ public abstract class Sponsor implements Serializable {
             BITROCK,
             JET_BRAINS,
             EJ_TECHNOLOGIES,
-            IDAHO_DIGITAL_LEARNING,
+//            IDAHO_DIGITAL_LEARNING, // removed at request September 2nd, 2014
             COMPASS_LEARNING,
             LEARNING_COM,
-            WIRELESS_GENERATION,
-            OREGON_DEPARTMENT_OF_EDUCATION,
+//            WIRELESS_GENERATION, // removed at request September 2nd, 2014
+//            OREGON_DEPARTMENT_OF_EDUCATION, // removed at request September 2nd, 2014
             JEFFERSON_COUNTY_VLA,
             CAROLINA_CORP,
 //            KANG_HSUAN, // removed at request Oct 28 2013
             PEARSON,
             PAN_AMERICA,
-            TEXAS_INSTRUMENTS,
-            MCGRAW_HILL,
-            HARK,
+//            TEXAS_INSTRUMENTS, // removed at request September 2nd, 2014
+//            MCGRAW_HILL, // removed at request September 2nd, 2014
+//            HARK, // removed at request September 2nd, 2014
             ZANICHELLI,
-            CYBERNETYX,
+//            CYBERNETYX, // removed at request September 2nd, 2014
 //            GIANCOLI, // removed at request Nov 5 2012, with donation refund?
-            CENGAGE,
-            CNEC,
-            WHRO,
+//            CENGAGE, // removed at request September 2nd, 2014
+//            CNEC, // removed at request September 2nd, 2014
+//            WHRO, // removed at request September 2nd, 2014
             NDLA,
             ZALANDO,
             WHFREEMAN,
@@ -486,6 +502,8 @@ public abstract class Sponsor implements Serializable {
             ECS,
             SCIENCE_4_US,
             CUSTOMER_PARADIGM,
+            AACT,
+            WW_NORTON,
             YOU
     };
 

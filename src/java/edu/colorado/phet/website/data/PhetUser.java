@@ -124,8 +124,8 @@ public class PhetUser implements Serializable, IntId {
         return null;
     }
 
-    public void setPassword( String password ) {
-        setHashedPassword( PhetSession.compatibleHashPassword( password ) );
+    public void setPassword( String password, String email ) {
+        setHashedPassword( PhetSession.saltedPassword( email, password ) );
     }
 
     // if the user has no confirmation (unsubscription) key, create one for them. needs to be run from within a transaction

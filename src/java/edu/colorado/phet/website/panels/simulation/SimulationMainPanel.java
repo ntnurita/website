@@ -87,10 +87,12 @@ public class SimulationMainPanel extends PhetPanel {
     static {
         HTML_SIM_LINK_MAP.put( "acid-base-solutions", "/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html" );
         HTML_SIM_LINK_MAP.put( "balancing-act", "/sims/html/balancing-act/latest/balancing-act_en.html" );
+        HTML_SIM_LINK_MAP.put( "balancing-chemical-equations", "/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html" );
         HTML_SIM_LINK_MAP.put( "balloons", "/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" );
         HTML_SIM_LINK_MAP.put( "beers-law-lab", "/sims/html/beers-law-lab/latest/beers-law-lab_en.html" );
         HTML_SIM_LINK_MAP.put( "build-an-atom", "/sims/html/build-an-atom/latest/build-an-atom_en.html" );
         HTML_SIM_LINK_MAP.put( "concentration", "/sims/html/concentration/latest/concentration_en.html" );
+        HTML_SIM_LINK_MAP.put( "color-vision", "/sims/html/color-vision/latest/color-vision_en.html" );
         HTML_SIM_LINK_MAP.put( "forces-and-motion-basics", "/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" );
         HTML_SIM_LINK_MAP.put( "fraction-matcher", "/sims/html/fraction-matcher/latest/fraction-matcher_en.html" );
         HTML_SIM_LINK_MAP.put( "friction", "/sims/html/friction/latest/friction_en.html" );
@@ -103,6 +105,7 @@ public class SimulationMainPanel extends PhetPanel {
         // NOTE: no original sim for pH Scale: Basics, so it is omitted here
         HTML_SIM_LINK_MAP.put( "resistance-in-a-wire", "/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" );
         HTML_SIM_LINK_MAP.put( "under-pressure", "/sims/html/under-pressure/latest/under-pressure_en.html" );
+        HTML_SIM_LINK_MAP.put( "wave-on-a-string", "/sims/html/wave-on-a-string/latest/wave-on-a-string_en.html" );
     }
 
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010, University of Colorado
+ * Copyright 2014, University of Colorado
  */
 
 package edu.colorado.phet.website.content.troubleshooting;
@@ -13,34 +13,25 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
-public class TroubleshootingFlashPanel extends PhetPanel {
-    public TroubleshootingFlashPanel( String id, PageContext context ) {
+public class TroubleshootingMobilePanel extends PhetPanel {
+    public TroubleshootingMobilePanel( String id, PageContext context ) {
         super( id, context );
-
-        //add( HeaderContributor.forCss( CSS.TROUBLESHOOTING ) );
-
-        add( new LocalizedText( "troubleshooting-flash-intro", "troubleshooting.flash.intro", new Object[] {
-                Linkers.PHET_HELP_LINK
-        } ) );
-
-        add( new LocalizedText( "troubleshooting-flash-q1-answer", "troubleshooting.flash.q1.answer" ) );
-
     }
 
     public static String getKey() {
-        return "troubleshooting.flash";
+        return "troubleshooting.mobile";
     }
 
     public static String getUrl() {
-        return "troubleshooting/flash";
+        return "troubleshooting/mobile";
     }
 
     public static RawLinkable getLinker() {
         return new AbstractLinker() {
             @Override
             public String getRawUrl( PageContext context, PhetRequestCycle cycle ) {
-                if ( DistributionHandler.redirectPageClassToProduction( cycle, TroubleshootingFlashPanel.class ) ) {
-                    return "http://phet.colorado.edu/tech_support/support-flash.php";
+                if ( DistributionHandler.redirectPageClassToProduction( cycle, TroubleshootingMobilePanel.class ) ) {
+                    return "http://phet.colorado.edu/tech_support/support-mobile.php";
                 }
                 else {
                     return super.getRawUrl( context, cycle );

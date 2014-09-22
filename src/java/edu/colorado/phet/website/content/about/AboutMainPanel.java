@@ -4,32 +4,15 @@
 
 package edu.colorado.phet.website.content.about;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
-import org.hibernate.Session;
-
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.authentication.PhetSession;
-import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.ResearchPanel;
 import edu.colorado.phet.website.content.media.TechAwardPage;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
-import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
-import edu.colorado.phet.website.util.hibernate.HibernateTask;
-import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
@@ -39,6 +22,20 @@ public class AboutMainPanel extends PhetPanel {
 
         // add linkers
         add( TechAwardPage.getLinker().getLink( "tech-award-link", context, getPhetCycle() ) );
+
+        add( new LocalizedText( "about-p1", "about.p1", new Object[] {
+                ResearchPanel.getLinker().getHref( context, getPhetCycle() )
+        } ) );
+
+        add( new LocalizedText( "about-p2", "about.p2" ) );
+
+        add( new LocalizedText( "about-p3", "about.p3", new Object[] {
+                AboutLegendPanel.getLinker().getHref( context, getPhetCycle() )
+        } ) );
+
+        add( new LocalizedText( "about-p4", "about.p4", new Object[] {
+                IndexPage.getLinker().getHref( context, getPhetCycle() )
+        } ) );
     }
     @Override
     protected void onBeforeRender() {
@@ -46,6 +43,7 @@ public class AboutMainPanel extends PhetPanel {
         ((PhetMenuPage) this.getPage()).hideSocialBookmarkButtons();
         ((PhetMenuPage) this.getPage()).setContentWidth(1120);
     }
+
     public static String getKey() {
         return "about";
     }

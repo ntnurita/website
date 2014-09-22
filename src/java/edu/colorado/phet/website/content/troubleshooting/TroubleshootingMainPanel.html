@@ -1,495 +1,228 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] TroubleshootingMainPanel</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-    </wicket:remove>
+  <title>[PREVIEW] TroubleshootingMainPanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
 </head>
 <body>
 
 <wicket:panel>
-    <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
+  <script type="text/javascript" src="/js/expandable-text.js"></script>
 
-        <p wicket:id="troubleshooting-main-intro">
-            This page will help you solve some of the problems people commonly have running our programs. If you can't
-            solve
-            your problem here, please notify us by email at the following address:
-            <a href="mailto:phethelp@colorado.edu?Subject=Help"><span class="red">phethelp@colorado.edu</span></a>.
-        </p>
+  <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
-        <ul class="content-points">
-            <li><a href="#" wicket:id="to-java">
-                <wicket:message key="troubleshooting.main.java">Java Installation and Troubleshooting</wicket:message>
-            </a></li>
-            <li><a href="#" wicket:id="to-flash">
-                <wicket:message key="troubleshooting.main.flash">Flash Installation and Troubleshooting</wicket:message>
-            </a></li>
-            <li><a href="#" wicket:id="to-javascript">
-                <wicket:message key="troubleshooting.main.javascript">
-                    JavaScript Troubleshooting (note: this is for your browser, not the simulations)
-                </wicket:message>
-            </a></li>
-        </ul>
+    <p wicket:id="troubleshooting-main-intro">
+      This page will help you solve some of the problems people commonly have running our programs. If you can't
+      solve
+      your problem here, please notify us by email at the following address:
+      <a href="mailto:phethelp@colorado.edu?Subject=Help"><span class="red">phethelp@colorado.edu</span></a>.
+    </p>
 
-        <h2>
-            <wicket:message key="troubleshooting.main.commonIssues">Common Troubleshooting Issues</wicket:message>
-        </h2>
+    <ul class="content-points">
+      <li><a href="#" wicket:id="to-mac">
+        <wicket:message key="troubleshooting.main.mac">Mac</wicket:message>
+      </a></li>
+      <li><a href="#" wicket:id="to-windows">
+        <wicket:message key="troubleshooting.main.windows">Windows</wicket:message>
+      </a></li>
+      <li><a href="#" wicket:id="to-mobile">
+        <wicket:message key="troubleshooting.main.mobile">Tablets/Mobile Devices</wicket:message>
+      </a></li>
+    </ul>
 
-        <div id="faq">
-            <ul id="nav">
-                <li class="faq"><a href="#q1">
-                    <wicket:message key="troubleshooting.main.q1.title">
-                        Why can I run some of the simulations but not all?
-                    </wicket:message>
-                </a></li>
+    <h2>
+      <wicket:message key="troubleshooting.main.commonIssues">Common Troubleshooting Issues</wicket:message>
+    </h2>
 
-                <li class="faq"><a href="#q4">
-                    <wicket:message key="troubleshooting.main.q4.title">
-                        I use Internet Explorer and the simulations do not run on my computer.
-                    </wicket:message>
-                </a></li>
 
-                <li class="faq"><a href="#q5">
-                    <wicket:message key="troubleshooting.main.q5.title">
-                        Why don't Flash simulations run on my computer?
-                    </wicket:message>
-                </a></li>
+    <h3 id="q1"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a1')">
+      <wicket:message key="troubleshooting.main.q1.title">Why can I run some of the simulations but not all?
+      </wicket:message>
+    </a></h3>
 
-                <li class="faq"><a href="#q7">
-                    <wicket:message key="troubleshooting.main.q7.title">
-                        I have Windows 2000 and can run Flash simulations but the Java based simulations do not work.
-                    </wicket:message>
-                </a></li>
+    <div class="answer" id="a1" wicket:id="troubleshooting-main-q1-answer">
+      <p>Some of our simulations are Java Web Start based applications and others use Macromedia's Flash player.
+        Flash
+        comes with most computers while Java Web Start is a free application that can be downloaded from Sun
+        Microsystems. To run the Java-based simulations you must have Java version 1.5 or higher installed on
+        your computer.
+      </p>
 
-                <li class="faq"><a href="#q8">
-                    <wicket:message key="troubleshooting.main.q8.title">
-                        Why do PhET simulations run slower on my laptop than on a desktop?
-                    </wicket:message>
-                </a></li>
+      <p>To download the latest version of Java, please visit: <a href="#">https://www.java.com</a>.
+      </p>
+    </div>
 
-                <li class="faq"><a href="#q9">
-                    <wicket:message key="troubleshooting.main.q9.title">
-                        Why does my computer crash when I run one of the simulations that has sound?
-                    </wicket:message>
-                </a>
-                </li>
 
-                <li class="faq"><a href="#q11">
-                    <wicket:message key="troubleshooting.main.q11.title">
-                        I have downloaded and installed the PhET Offline Website Installer, and I get a warning on every
-                        page. Why?
-                    </wicket:message>
-                </a></li>
+    <h3 id="q5"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a5')">
+      <wicket:message key="troubleshooting.main.q5.title">
+        Why don't Flash simulations run on my computer?
+      </wicket:message>
+    </a></h3>
 
-                <li class="faq"><a href="#q12">
-                    <wicket:message key="troubleshooting.main.q12.title">
-                        When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says
-                        "The
-                        application's digital signature has been verified. Do you want to run the application?" (or
-                        something
-                        similar). What does this mean?
-                    </wicket:message>
-                </a></li>
+    <div class="answer" id="a5" wicket:id="troubleshooting-main-q5-answer">
+      <p><strong>QuickTime™ and Flash™ compatibility</strong></p>
 
-                <li class="faq"><a href="#q13">
-                    <wicket:message key="troubleshooting.main.q13.title">
-                        (MAC users) When I click "run now" to start the simulation all I get is a text file that opens?
-                    </wicket:message>
-                </a></li>
+      <p>It has come to our attention that some of our users are unable to use our Flash-based simulations due to
+        a
+        compatibility issue between Apple Computer's QuickTime&trade; and the Flash&trade; player. Some users
+        have
+        reported that uninstalling QuickTime resolves the issue.
+      </p>
 
-                <li class="faq"><a href="#q14">
-                    <wicket:message key="troubleshooting.main.q14.title">
-                        Why can't I completely uninstall the PhET sims that I downloaded from my Windows computer?
-                    </wicket:message>
-                </a></li>
+      <p>We are aware that this is not an acceptable solution and are working to resolve this issue. If you are
+        experiencing this problem, please contact us at at
+        <a href="mailto:phethelp@colorado.edu?Subject=Flash%20Simulations">phethelp@colorado.edu</a>
+        and regularly check back here for more information.</p>
+    </div>
 
-                <li class="faq"><a href="#q18">
-                    <wicket:message key="troubleshooting.main.q18.title">
-                        Why do some foreign language characters show up as empty boxes?
-                    </wicket:message>
-                </a></li>
 
-                <li class="faq"><a href="#3d-driver">
-                    <wicket:message key="troubleshooting.main.q19.title">
-                        Why is a simulation with 3D graphics not launching / displaying correctly?
-                    </wicket:message>
-                </a></li>
-            </ul>
-        </div>
-        <br/>
-        <br/>
+    <h3 id="q8"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a8')">
+      <wicket:message key="troubleshooting.main.q8.title">
+        Why do PhET simulations run slower on my laptop than on a desktop?
+      </wicket:message>
+    </a></h3>
+    <div class="answer" id="a8" wicket:id="troubleshooting-main-q8-answer">
+      <p>On some laptop computers, simulations may appear to run much slower than anticipated and/or exhibit
+        unexpected
+        graphics problems. This may be due to power management settings that affect how the computer's graphics
+        system
+        runs and can be corrected by either a) changing the computer's power management configuration, or b)
+        using the
+        laptop computer while plugged in to an AC power source.</p>
 
-        <h3 id="q1">
-            <wicket:message key="troubleshooting.main.q1.title">Why can I run some of the simulations but not all?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q1-answer">
-            <p>Some of our simulations are Java Web Start based applications and others use Macromedia's Flash player.
-                Flash
-                comes with most computers while Java Web Start is a free application that can be downloaded from Sun
-                Microsystems. To run the Java-based simulations you must have Java version 1.5 or higher installed on
-                your
-                computer.
-            </p>
+      <p>Many laptop computers are configured to reduce the amount of battery power used by the graphics/video
+        system
+        while the computer is running on battery power. If you must use the laptop while it is not plugged in,
+        we
+        suggest changing your computer's power management settings to "maximize performance" while unplugged.
+        This
+        should ensure that the graphics system runs at its peak speed. The location of this setting varies from
+        one
+        manufacturer to the next and we suggest contacting your computer vendor if you have difficulty locating
+        it.
+        Please contact us at <a href="mailto:phethelp@colorado.edu?Subject=Laptop%20Performance%20Issues">phethelp@colorado.edu</a>
+        if you continue to encounter problems.</p>
+    </div>
 
-            <p><a href="#">Learn about Java installation and Troubleshooting here</a>.
-            </p>
-        </div>
 
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
+    <h3 id="q9"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a9')">
+      <wicket:message key="troubleshooting.main.q9.title">
+        Why does my computer crash when I run one of the simulations that has sound?
+      </wicket:message>
+    </a></h3>
+    <div class="answer" id="a9" wicket:id="troubleshooting-main-q9-answer">
+      <p>Simulations that use sound can be unstable when run on computers using old device driver software. If you
+        are
+        encountering crashes or other undesirable behavior with any of our simulations that use sound, we advise
+        updating your sound drivers, as this may solve the problem. For assistance with updating your sound
+        drivers,
+        contact your computer vendor or audio hardware manufacturer. Contact us at
+        <a href="mailto:phethelp@colorado.edu?Subject=Sound%20Issues">phethelp@colorado.edu</a> if you continue
+        to
+        encounter difficulty. </p>
+    </div>
 
-        <h3 id="q4">
-            <wicket:message key="troubleshooting.main.q4.title">
-                I use Internet Explorer and the simulations do not run on my computer.
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q4-answer">
-            <p>We <strong>strongly</strong> recommend you use the latest version of Internet Explorer (IE8).</p>
 
-            <p><strong>Internet Explorer Security Settings</strong></p>
+    <h3 id="q11"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a11')">
+      <wicket:message key="troubleshooting.main.q11.title">
+        I have downloaded and installed the PhET Offline Website Installer, and I get a warning on every page.
+        Why?
+      </wicket:message>
+    </a></h3>
+    <div class="answer" id="a11" wicket:id="troubleshooting-main-q11-answer">
+      <p>The <a href="#">PhET Offline Website Installer</a> creates a local copy of the
+        current
+        version of the PhET website on your computer. When you access this locally installed copy, your computer
+        will
+        use your default browser, which for many people is Internet Explorer. If the security settings are set
+        to their
+        default values, you may get an error that says <em>"To help protect your security, Internet Explorer has
+          restricted this webpage from running scripts or ActiveX controls that could access your computer.
+          Click here
+          for options..."</em> (or something similar). This is a security feature of Internet Explorer version
+        6 and
+        later, and is meant to warn users about running active content locally. The PhET simulations present no
+        danger
+        to your computer, and running them locally is no different than running them from the web site.
+      </p>
 
-            <p>Some installations of Internet Explorer, particularly under Windows XP SP2, have default security
-                settings which
-                can impede some aspects of how your locally installed PhET interface functions. For the best user
-                experience
-                while using our simulations installed on your computer, we recommend following the steps below:</p>
+      <p>If you wish to disable this warning, you can do so by adjusting your browser's security settings. For IE
+        versions
+        6 and 7, the way to do this is to go into Tools->Internet Options->Advanced, find the "Security"
+        heading, and
+        check "Allow active content to run in files on My Computer". Note that you will need to restart Internet
+        Explorer to get this change to take effect. You should only do this if feel confident that there is no
+        other
+        off-line content that you may run on your computer that could be malicious.
+      </p>
 
-            <ol>
-                <li>In Internet Explorer on your local workstation, choose Tools &gt; Internet Options.</li>
-                <li>Choose the Advanced tab, then scroll to the Security section.</li>
+      <p>
+        Alternatively, you could use a different browser (such as Firefox) that does not have this issue.
+      </p>
+    </div>
 
-                <li>Enable "Allow active content to run in files on my computer".</li>
-                <li>Choose OK.</li>
-            </ol>
-        </div>
 
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
+    <h3 id="q12"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a12')">
+      <wicket:message key="troubleshooting.main.q12.title">
+        When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says "The
+        application's digital signature has been verified. Do you want to run the application?" (or something
+        similar).
+        What does this mean?
+      </wicket:message>
+    </a></h3>
+    <div class="answer" id="a12" wicket:id="troubleshooting-main-q12-answer">
+      <p>The PhET simulations that are distributed with the installer include a "digital certificate" that
+        verifies that
+        these simulations were actually created by PhET. This is a security measure that helps to prevent an
+        unscrupulous individual from creating applications that claim to be produced by PhET but are not. If the
+        certificate acceptance dialog says that the publisher is "PhET, University of Colorado", and the dialog
+        also
+        says that the signature was validated by a trusted source, you can have a high degree of confidence that
+        the
+        application was produced by the PhET team.</p>
 
-        <h3 id="q5">
-            <wicket:message key="troubleshooting.main.q5.title">
-                Why don't Flash simulations run on my computer?
-            </wicket:message>
-        </h3>
+      <p>On most systems, it is possible to permanently accept the PhET certificate and thereby prevent this
+        dialog from
+        appearing each time a simulation is run locally. Most Windows and Max OSX systems have a check box on
+        the
+        certificate acceptance dialog that says "Always trust content from this publisher". Checking this box
+        will
+        configure your system in such a way that the dialog will no longer appear when starting up PhET
+        simulations.</p>
+    </div>
 
-        <div wicket:id="troubleshooting-main-q5-answer">
-            <p><strong>QuickTime™ and Flash™ compatibility</strong></p>
 
-            <p>It has come to our attention that some of our users are unable to use our Flash-based simulations due to
-                a
-                compatibility issue between Apple Computer's QuickTime&trade; and the Flash&trade; player. Some users
-                have
-                reported that uninstalling QuickTime resolves the issue.
-            </p>
+    <h3 id="q18"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a18')">
+      <wicket:message key="troubleshooting.main.q18.title">
+        Why do some foreign language characters show up as empty boxes?
+      </wicket:message>
+    </a></h3>
+    <div class="answer" id="a18" wicket:id="troubleshooting-main-q18-answer">
+      <p>Some characters from non-English languages will show up as empty squares when the proper fonts are not
+        installed. Below are instructions to install additional language support for various operating
+        systems:</p>
+      <ul>
+        <li>Windows 2000 / XP: <a href="http://support.microsoft.com/kb/177561">http://support.microsoft.com/kb/177561</a>
+        </li>
+        <li>Windows Vista: <a
+            href="http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files">http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files</a>
+        </li>
+        <li>Windows 7: <a
+            href="http://support.microsoft.com/kb/972813">http://support.microsoft.com/kb/972813</a></li>
+        <li>OS X: <a href="http://support.apple.com/kb/DL1123?viewlocale=en_US">http://support.apple.com/kb/DL1123?viewlocale=en_US</a>
+        </li>
+      </ul>
+    </div>
 
-            <p>We are aware that this is not an acceptable solution and are working to resolve this issue. If you are
-                experiencing this problem, please contact us at at
-                <a href="mailto:phethelp@colorado.edu?Subject=Flash%20Simulations">phethelp@colorado.edu</a>
-                and regularly check back here for more information.</p>
-        </div>
 
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q7">
-            <wicket:message key="troubleshooting.main.q7.title">
-                I have Windows 2000 and can run Flash simulations but the Java based simulations do not work.
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q7-answer">
-            <p>Some Windows 2000 systems have been reported to lack part of the necessary Java configuration. These
-                systems will
-                typically start our Flash-based simulations reliably, but will appear to do nothing when launching our
-                Java-based
-                simulations.</p>
-
-            <p><strong>To resolve this situation, please perform the following steps:</strong></p>
-
-            <ol>
-                <li>From the desktop or start menu, open "My Computer"</li>
-
-                <li>Click on the "Folder Options" item in the "Tools" menu</li>
-                <li>Click on the "File Types" tab at the top of the window that appears</li>
-                <li>Locate "JNLP" in the "extensions" column, and click once on it to select the item</li>
-                <li>Click on the "change" button</li>
-                <li>When asked to choose which program to use to open JNLP files, select "Browse"</li>
-                <li>
-                    Locate the program "javaws" or "javaws.exe" in your Java installation folder (typically "C:\Program
-                    Files\Java\j2re1.xxxx\javaws", where "xxxx" is a series of numbers indicating the software version;
-                    choose
-                    the latest version)
-                </li>
-
-                <li>Select the program file and then click "Open" to use the "javaws" program to open JNLP files.</li>
-            </ol>
-
-            <p>Java-based simulations should now function properly.</p>
-
-            <p>Please contact us by email at <a href="mailto:phethelp@colorado.edu?Subject=Windows%202000%20Issues">phethelp@colorado.edu</a>
-                if you have any further difficulties.</p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q8">
-            <wicket:message key="troubleshooting.main.q8.title">
-                Why do PhET simulations run slower on my laptop than on a desktop?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q8-answer">
-            <p>On some laptop computers, simulations may appear to run much slower than anticipated and/or exhibit
-                unexpected
-                graphics problems. This may be due to power management settings that affect how the computer's graphics
-                system
-                runs and can be corrected by either a) changing the computer's power management configuration, or b)
-                using the
-                laptop computer while plugged in to an AC power source.</p>
-
-            <p>Many laptop computers are configured to reduce the amount of battery power used by the graphics/video
-                system
-                while the computer is running on battery power. If you must use the laptop while it is not plugged in,
-                we
-                suggest changing your computer's power management settings to "maximize performance" while unplugged.
-                This
-                should ensure that the graphics system runs at its peak speed. The location of this setting varies from
-                one
-                manufacturer to the next and we suggest contacting your computer vendor if you have difficulty locating
-                it.
-                Please contact us at <a href="mailto:phethelp@colorado.edu?Subject=Laptop%20Performance%20Issues">phethelp@colorado.edu</a>
-                if you continue to encounter problems.</p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q9">
-            <wicket:message key="troubleshooting.main.q9.title">
-                Why does my computer crash when I run one of the simulations that has sound?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q9-answer">
-            <p>Simulations that use sound can be unstable when run on computers using old device driver software. If you
-                are
-                encountering crashes or other undesirable behavior with any of our simulations that use sound, we advise
-                updating your sound drivers, as this may solve the problem. For assistance with updating your sound
-                drivers,
-                contact your computer vendor or audio hardware manufacturer. Contact us at
-                <a href="mailto:phethelp@colorado.edu?Subject=Sound%20Issues">phethelp@colorado.edu</a> if you continue
-                to
-                encounter difficulty. </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q11">
-            <wicket:message key="troubleshooting.main.q11.title">
-                I have downloaded and installed the PhET Offline Website Installer, and I get a warning on every page.
-                Why?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q11-answer">
-            <p>The <a href="#">PhET Offline Website Installer</a> creates a local copy of the
-                current
-                version of the PhET website on your computer. When you access this locally installed copy, your computer
-                will
-                use your default browser, which for many people is Internet Explorer. If the security settings are set
-                to their
-                default values, you may get an error that says <em>"To help protect your security, Internet Explorer has
-                    restricted this webpage from running scripts or ActiveX controls that could access your computer.
-                    Click here
-                    for options..."</em> (or something similar). This is a security feature of Internet Explorer version
-                6 and
-                later, and is meant to warn users about running active content locally. The PhET simulations present no
-                danger
-                to your computer, and running them locally is no different than running them from the web site.
-            </p>
-
-            <p>If you wish to disable this warning, you can do so by adjusting your browser's security settings. For IE
-                versions
-                6 and 7, the way to do this is to go into Tools->Internet Options->Advanced, find the "Security"
-                heading, and
-                check "Allow active content to run in files on My Computer". Note that you will need to restart Internet
-                Explorer to get this change to take effect. You should only do this if feel confident that there is no
-                other
-                off-line content that you may run on your computer that could be malicious.
-            </p>
-
-            <p>
-                Alternatively, you could use a different browser (such as Firefox) that does not have this issue.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q12">
-            <wicket:message key="troubleshooting.main.q12.title">
-                When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says "The
-                application's digital signature has been verified. Do you want to run the application?" (or something
-                similar).
-                What does this mean?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q12-answer">
-            <p>The PhET simulations that are distributed with the installer include a "digital certificate" that
-                verifies that
-                these simulations were actually created by PhET. This is a security measure that helps to prevent an
-                unscrupulous individual from creating applications that claim to be produced by PhET but are not. If the
-                certificate acceptance dialog says that the publisher is "PhET, University of Colorado", and the dialog
-                also
-                says that the signature was validated by a trusted source, you can have a high degree of confidence that
-                the
-                application was produced by the PhET team.</p>
-
-            <p>On most systems, it is possible to permanently accept the PhET certificate and thereby prevent this
-                dialog from
-                appearing each time a simulation is run locally. Most Windows and Max OSX systems have a check box on
-                the
-                certificate acceptance dialog that says "Always trust content from this publisher". Checking this box
-                will
-                configure your system in such a way that the dialog will no longer appear when starting up PhET
-                simulations.</p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q13">
-            <wicket:message key="troubleshooting.main.q13.title">
-                (MAC users) When I click "run now" to start the simulation all I get is a text file that opens?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q13-answer">
-            <p>This problem will affect mac users who recently installed Apple's "Java for Mac OS X 10.5 Update 4". The
-                update
-                will typically be done via Software Update, or automatically. After installing this update, the problem
-                appears:
-                clicking on JNLP files in Safari or FireFox caused the JNLP file to open in TextEdit, instead of
-                starting Java
-                Web Start. </p>
-
-            <p> The fix is:<br/>
-                1. Go to http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4<br/>
-                2. Click Download to download a .dmg file<br/>
-                3. When the .dmg has downloaded, double-click on it (if it doesn't mount automatically)<br/>
-                4. Quit all applications<br/>
-                5. Run the update installer
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q14">
-            <wicket:message key="troubleshooting.main.q14.title">
-                Why can't I completely uninstall the PhET sims that I downloaded from my Windows computer?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q14-answer">
-            <p>
-                When a Java Web Start simulation is run in Windows, it is added to the list of programs in Control Panel
-                -> Add or Remove Programs. Due to a problem in Java Web Start, sometimes the item may remain in the list
-                even after the simulation has been removed, and Windows may report "Unable to completely uninstall
-                application". More information about this issue can be found at
-                <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221">http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6946221</a>,
-                and the producers of Java have acknowledged
-                the problem and reported that they plan to fix it in an upcoming version of Java.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="q18">
-            <wicket:message key="troubleshooting.main.q18.title">
-                Why do some foreign language characters show up as empty boxes?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q18-answer">
-            <p>Some characters from non-English languages will show up as empty squares when the proper fonts are not
-                installed. Below are instructions to install additional language support for various operating
-                systems:</p>
-            <ul>
-                <li>Windows 2000 / XP: <a href="http://support.microsoft.com/kb/177561">http://support.microsoft.com/kb/177561</a>
-                </li>
-                <li>Windows Vista: <a
-                        href="http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files">http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files</a>
-                </li>
-                <li>Windows 7: <a
-                        href="http://support.microsoft.com/kb/972813">http://support.microsoft.com/kb/972813</a></li>
-                <li>OS X: <a href="http://support.apple.com/kb/DL1123?viewlocale=en_US">http://support.apple.com/kb/DL1123?viewlocale=en_US</a>
-                </li>
-            </ul>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="3d-driver">
-            <wicket:message key="troubleshooting.main.q19.title">
-                Why is a simulation with 3D graphics not launching / displaying correctly?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q19-answer">
-            <p>If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's drivers may fix the
-                issue.</p>
-
-            <p>For Windows XP / Vista / 7:</p>
-            <ol>
-                <li>Press the Win + R keys.</li>
-                <li>ype "DxDiag" and press enter.</li>
-                <li>After the diagnostic tool opens, the video card name and manufacturer will be listed in the Display tab under Device.</li>
-                <li>Go to the driver manufacturer's website to find an up-to-date driver. The most common video card manufacturers are <a
-                        href="http://www.nvidia.com/Download/Find.aspx?lang=en-us">Nvidia</a>, <a
-                        href="http://support.amd.com/us/Pages/AMDSupportHub.aspx">AMD</a>, and <a href="http://downloadcenter.intel.com/default.aspx">Intel</a>
-                </li>
-                <li>Follow all instructions to download and install the latest driver, then restart your computer.</li>
-            </ol>
-            <p>For Macs:</p>
-            <ul>
-                <li>Updating the video card driver can be done through the normal software update process (Available from the Apple menu => Software
-                    Update)
-                </li>
-            </ul>
-        </div>
-
-        <p class="to-top">
-            <a href="#faq_top"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <br/>
-        <br/>
-        <br/></div>
+    <br/>
+    <br/>
+    <br/></div>
 
 </wicket:panel>
 
