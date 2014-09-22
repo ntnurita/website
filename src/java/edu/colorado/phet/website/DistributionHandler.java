@@ -21,10 +21,10 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavascriptPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMacPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMobilePanel;
+import edu.colorado.phet.website.content.troubleshooting.TroubleshootingWindowsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -190,9 +190,9 @@ public class DistributionHandler {
             DonatePanel.class,
             FullInstallPanel.class,
             ResearchPanel.class,
-            TroubleshootingFlashPanel.class,
-            TroubleshootingJavaPanel.class,
-            TroubleshootingJavascriptPanel.class,
+            TroubleshootingMacPanel.class,
+            TroubleshootingWindowsPanel.class,
+            TroubleshootingMobilePanel.class,
             TroubleshootingMainPanel.class,
             WorkshopsPanel.class
     };

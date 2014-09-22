@@ -20,8 +20,6 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.ResearchPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingFlashPanel;
-import edu.colorado.phet.website.content.troubleshooting.TroubleshootingJavaPanel;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
@@ -46,9 +44,7 @@ public class AboutMainPanel extends PhetPanel {
         } ) );
 
         add( new LocalizedText( "about-p4", "about.p4", new Object[] {
-                IndexPage.getLinker().getHref( context, getPhetCycle() ),
-                TroubleshootingJavaPanel.getLinker().getHref( context, getPhetCycle() ),
-                TroubleshootingFlashPanel.getLinker().getHref( context, getPhetCycle() )
+                IndexPage.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
         final List<PhetUser> members = new LinkedList<PhetUser>();
