@@ -23,6 +23,10 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.p3", "The text surrounded with <a {0}> and </a> will be linked to a page about PhET's rating system." );
         addString( "about.p4", "The text surrounded with <a {0}> and </a> will be linked to the main PhET site, and the text surrounded with <a {1}> and </a> will be linked to a page about Java technical support, and text surrounded with <a {2}> and </a> will be linked to a page about Flash technical support." );
 
+        addString( "about.source-code.p1", "The text surrounded with <a {0}> and </a> will be linked to the main PhET github page, the text surrounded with <a {1}> and </a> will be linked to the PhET Development Overview document, and the text surrounded with <a {2}> and </a> will be linked to the Developing Interactive Simulations in HTML5 Google Group." );
+        addString( "about.source-code.p2" );
+        addString( "about.source-code.p3", "The text surrounded with <a {0}> and </a> will be linked to the PhET Source Code document" );
+
         addString( "about.source-code.header" );
         addString( "about.source-code.browseOnline.header" );
         addString( "about.source-code.browseOnline.visitUrlStep", "{0} will be replaced by a link to our source code" );
