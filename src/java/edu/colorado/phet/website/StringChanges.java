@@ -42,22 +42,27 @@ public class StringChanges {
         StringUtils.addString( session, "about.p4", "All PhET simulations are freely available from the <a {0}>PhET website</a> and are easy to use and incorporate into the classroom. They are written in Java and Flash, and can be run using a standard web browser as long as Flash and Java are installed." );
 
         StringUtils.addString( session, "about.source-code.HTML5.header", "HTML5 Source Code" );
-        StringUtils.addString( session, "about.source-code.java-flash.header", "Java/Flash/Flex Source Code" );
+
+        StringUtils.deleteString( session, "about.source-code.java-flash.header" );
+        StringUtils.addString( session, "about.source-code.java-flash.header", "Java/Flash/Flex Source Code (Legacy)" );
 
         StringUtils.deleteString( session, "about.source-code.p1" );
-        StringUtils.addString( session, "about.source-code.p1", "The PhET HTML5 and Javascript source code lives on <a {0}>GitHub</a>. " +
-                                                                "For instructions on getting your machine set up to develop with simulations using the PhET libraries, " +
-                                                                "take a look at our <a {1}>PhET Development Overview document</a> or " +
-                                                                "join in the discussion at our <a {2}>" +
-                                                                "Developing Interactive Simulations in HTML5 Google Group</a>." );
+        StringUtils.deleteString( session, "about.source-code.p2" );
+        StringUtils.deleteString( session, "about.source-code.p3" );
+        StringUtils.deleteString( session, "about.source-code.p4" );
 
-        StringUtils.addString( session, "about.source-code.p2", "This video is a quick guide to getting started developing with PhET on Windows. First, this video shows how to clone " +
+        StringUtils.addString( session, "about.source-code.p1", "Since 2013, the PhET sims have been developed in HTML5, which is the language we recommend." );
+
+        StringUtils.addString( session, "about.source-code.p2", "The PhET HTML5 and Javascript source code lives on <a {0}>the PhET GitHub page</a>. " +
+                                                                "For instructions on getting your machine set up to develop simulations using the PhET libraries, " +
+                                                                "take a look at our PhET Development Overview document:" );
+
+        StringUtils.addString( session, "about.source-code.p3", "Or join in the discussion at our Developing Interactive Simulations in HTML5 Google Group:" );
+        StringUtils.addString( session, "about.source-code.p4", "This video is a quick guide to getting started developing with PhET on Windows. First, this video shows how to clone " +
                                                                 "the PhET Libraries from GitHub. Next, it shows how to download and run a web server on your development machine. " +
-                                                                "Finally, it shows how to launch an example simulation provided by PhET to test that everything is working nicely" );
-
-        StringUtils.addString( session, "about.source-code.p3", "The PhET Java, Flash, and Flex source code lives in a Subversion repository. For instructions on how to browse the " +
-                                                                "source code online or checkout the Subversion repository, see our <a {0}>PhET Source Code document</a>." );
-
+                                                                "Finally, it shows how to launch an example simulation provided by PhET to test that everything is working nicely." );
+        StringUtils.addString( session, "about.source-code.p5", "The PhET Java, Flash, and Flex source code lives in a Subversion repository. For instructions on how to browse the " +
+                                                                "source code online or checkout the Subversion repository refer to our Legacy Java/Flash/Flex Source Code Document:" );
         session.close();
     }
 

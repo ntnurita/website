@@ -17,18 +17,15 @@ public class AboutSourceCodePanel extends PhetPanel {
     public AboutSourceCodePanel( String id, PageContext context ) {
         super( id, context );
 
-        add( new LocalizedText( "about-source-code-p1", "about.source-code.p1", new Object[]{
-                "href=\"https://github.com/phetsims\"",
-                "href=\"http://bit.ly/phet-development-overview\"",
-                "href=\"https://groups.google.com/forum/?hl=en#!forum/developing-interactive-simulations-in-html5\""
+        add( new LocalizedText( "about-source-code-p1", "about.source-code.p1" ) );
+
+        add( new LocalizedText( "about-source-code-p2", "about.source-code.p2", new Object[] {
+                "href=\"https://github.com/phetsims\""
         } ) );
 
-        add( new LocalizedText( "about-source-code-p2", "about.source-code.p2" ) );
-
-        add( new LocalizedText( "about-source-code-p3", "about.source-code.p3", new Object[]{
-                "href=\"http://bit.ly/phet-sourcecode\""
-        } ) );
-
+        add( new LocalizedText( "about-source-code-p3", "about.source-code.p3" ) );
+        add( new LocalizedText( "about-source-code-p4", "about.source-code.p4" ) );
+        add( new LocalizedText( "about-source-code-p5", "about.source-code.p5" ) );
     }
 
     public static String getKey() {
