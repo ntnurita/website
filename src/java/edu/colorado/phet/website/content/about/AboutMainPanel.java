@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.content.about;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.content.ResearchPanel;
 import edu.colorado.phet.website.content.forteachers.ForTeachersPanel;
 import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.panels.sponsor.SponsorsPanel;
@@ -23,6 +24,7 @@ public class AboutMainPanel extends ForTeachersPanel {
         add( TechAwardPage.getLinker().getLink( "tech-award-link", context, getPhetCycle() ) );
         add( AboutSourceCodePanel.getLinker().getLink( "source-code-link", context, getPhetCycle() ) );
         add( AboutSponsorsPanel.getLinker().getLink( "sponsors-link", context, getPhetCycle() ) );
+        add( ResearchPanel.getLinker().getLink( "research-link", context, getPhetCycle() ) );
     }
 
     public static String getKey() {
