@@ -25,33 +25,30 @@
           <td valign="top" style="padding-right:20px">
             <h2>Who we are</h2>
             <p align="left"><img src="/images/phet-photo-2012.jpg" alt="" width="520" height="322" /></p>
-            <p align="left"><strong><em><u>Back Row: </u></em></strong>Kathy Dessau, Stephanie Chasteen, Linda Wellman, John Blanco, Ariel Paul, Sam Reid, Jesse Witbrod, Noah Podolefsky, Emily Moore, Noah Finkelstein<br />
-              <strong><em><u>Front Row: </u></em></strong>Oliver Nix, Trish Loeblein, Michael Dubson, Kathy Perkins, Jonathan Olson, Robert Parson, Karina Hensberry, Julia Chamberlain, Chris Malley</p>
-            <p><strong><br />
-              The PhET Team</strong></p>
-            <ul>
-              <li>Ariel Paul - Simulation Development Coordinator</li>
-              <li>Bryce Gruneich - title </li>
-              <li>Carl Wieman - Founder</li>
-              <li>Chris Malley - Consultant / Software Engineer</li>
-              <li>Emily Moore - Research Scientist and Research Coordinator</li>
-              <li>Jesse Witbrod - Administrative Assistant</li>
-              <li>John Blanco - Software Engineer </li>
-              <li>Jonathan Olson - Software Engineer</li>
-              <li>Julia Chamberlain - Research Associate</li>
-              <li>Karina Hensberry - Research Associate</li>
-              <li>Kathy Li Dessau - Assoc. Director, Marketing and Development</li>
-              <li>Kathy Perkins - Director</li>
-              <li>Linda Wellmann - Administrative Assistant</li>
-              <li>Michael Dubson - Physics Content Specialist / Software Engineer</li>
-              <li>Noah Finkelstein - Physics Content Specialist</li>
-              <li>Oliver Nix - Project Coordinator and PhEThelp Contact</li>
-              <li>Robert Parson - Chemistry Content Specialist</li>
-              <li>Sam Reid - Software Engineer</li>
-              <li>Sarah McKagan - Consultant</li>
-              <li>Stephanie Chasteen - Consultant</li>
-              <li>Trish Loeblein - K-12 Specialist</li>
-              <li>Yuen-ying Carpenter - Research Associate</li>
+            <p align="left"><strong><em><u>Back Row</u></em></strong>: Kathy Dessau, Stephanie Chasteen, Linda Wellman, John Blanco, Ariel Paul, Sam Reid, Jesse Witbrod, Noah Podolefsky, Emily Moore, Noah Finkelstein<br />
+              <strong><em><u>Front Row</u></em></strong>: Oliver Nix, Trish Loeblein, Michael Dubson, Kathy Perkins, Jonathan Olson, Robert Parson, Karina Hensberry, Julia Chamberlain, Chris Malley</p>
+
+            <h4>
+              <wicket:message key="about.contact.phetTeam">The PhET Team</wicket:message>
+            </h4>
+
+            <ul id="people">
+              <li wicket:id="person">
+                <span wicket:id="name"></span> - <span wicket:id="title"></span>
+                <wicket:enclosure child="show-admin">
+                  <table style="width: 100%; margin-left: 15px;">
+                    <tr>
+                      <td style="width: 30%;">Primary phone:</td>
+                      <td wicket:id="primary-phone"></td>
+                    </tr>
+                    <tr>
+                      <td style="width: 30%;">Secondary phone:</td>
+                      <td wicket:id="secondary-phone"></td>
+                    </tr>
+                  </table>
+                  <span wicket:id="show-admin"></span>
+                </wicket:enclosure>
+              </li>
             </ul>
             <div>
               <div> </div>
