@@ -86,6 +86,7 @@ public class SimulationMainPanel extends PhetPanel {
 
     static {
         HTML_SIM_LINK_MAP.put( "acid-base-solutions", "/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html" );
+        HTML_SIM_LINK_MAP.put( "area-builder", "/sims/html/area-builder/latest/area-builder_en.html" );
         HTML_SIM_LINK_MAP.put( "balancing-act", "/sims/html/balancing-act/latest/balancing-act_en.html" );
         HTML_SIM_LINK_MAP.put( "balancing-chemical-equations", "/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html" );
         HTML_SIM_LINK_MAP.put( "balloons", "/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" );
