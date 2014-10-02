@@ -17,10 +17,6 @@ public class ResearchPanel extends PhetPanel {
     public ResearchPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( new LocalizedText( "research-additional", "research.additional", new Object[]{
-                "href=\"/publications/PhET%20Look%20and%20Feel.pdf\""
-        } ) );
-
         add( new LocalizedText( "research-top", "research.top" ) );
 
         add( new LocalizedText( "research-intro", "research.intro", new Object[] {
