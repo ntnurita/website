@@ -162,6 +162,15 @@ public class StringChanges {
         StringUtils.deleteString( session, "about.p4" );
         StringUtils.addString( session, "about.p4", "All PhET simulations are freely available from the <a {0}>PhET website</a> and are easy to use and incorporate into the classroom. They are written in Java and Flash, and can be run using a standard web browser as long as Flash and Java are installed." );
 
+        // update research strings
+
+        StringUtils.deleteString( session, "research.intro" );
+        StringUtils.addString( session, "research.intro", "The PhET simulation design principles are based on research on how students learn (Bransford et al., 2000) and from our simulation " +
+                                                          "interviews (see <a {0}>PhET Design Process</a>). Between four and six think-aloud style interviews " +
+                                                          "with individual students are done with each simulation. These interviews provide a rich data source for studying interface design and " +
+                                                          "student learning. The <a {1}>PhET Look and Feel</a> briefly describes our interface design " +
+                                                          "principles and a complete discussion is found in the pair of papers by <a {2}>Adams et al., 2008</a>." );
+
         session.close();
     }
 
