@@ -17,7 +17,7 @@ div.index-holder {
 #index-animated-screenshot-holder {
     width: 300px;
     height: 200px;
-    float: left;
+    float: right;
     border: 1px solid #cccccc;
 }
 
@@ -30,7 +30,6 @@ div.index-holder {
 #index-middle-div {
     position: relative;
     height: 222px;
-    background-image: url('../images/home-background-1.png');
     background-position: bottom left;
     background-repeat: no-repeat;
 }

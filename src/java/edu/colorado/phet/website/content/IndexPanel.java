@@ -63,18 +63,18 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * sponsors
         *----------------------------------------------------------------------------*/
-        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
-        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
-        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
+//        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
+//        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
+//        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
 
         /*---------------------------------------------------------------------------*
         * tech award area
         *----------------------------------------------------------------------------*/
-        add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle", new Object[] {
-                TechAwardPage.getLinker().getHref( context, getPhetCycle() )
-        } ) );
+//        add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle", new Object[] {
+//                TechAwardPage.getLinker().getHref( context, getPhetCycle() )
+//        } ) );
 
-        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
+//        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
 
         // logo
         Link techAwardTitleLink2 = TechAwardPage.getLinker().getLink( "techAwardLink2", context, getPhetCycle() );
@@ -84,18 +84,18 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * social links
         *----------------------------------------------------------------------------*/
-        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
-                "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
-        } ) );
-        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[] {
-                "<img class=\"index-social-image\" src=\"/images/icons/social/twitter.png\" alt=\"Twitter icon\" width=\"16\" height=\"16\"/>"
-        } ) );
-        add( new LocalizedText( "blog-text", "home.blogText" ) );
-        add( InitialSubscribePage.getLinker().getLink( "subscribe-link", context, getPhetCycle() ) );
+//        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
+//                "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
+//        } ) );
+//        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[] {
+//                "<img class=\"index-social-image\" src=\"/images/icons/social/twitter.png\" alt=\"Twitter icon\" width=\"16\" height=\"16\"/>"
+//        } ) );
+//        add( new LocalizedText( "blog-text", "home.blogText" ) );
+//        add( InitialSubscribePage.getLinker().getLink( "subscribe-link", context, getPhetCycle() ) );
 
-        add( new LocalizedText( "index-main-text", "home.subheader", new Object[] {
-                ResearchPanel.getLinker().getHref( context, getPhetCycle() )
-        } ) );
+//        add( new LocalizedText( "index-main-text", "home.subheader", new Object[] {
+//                ResearchPanel.getLinker().getHref( context, getPhetCycle() )
+//        } ) );
 
         addWithId( CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
 
