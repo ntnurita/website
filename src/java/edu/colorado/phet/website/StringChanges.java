@@ -63,6 +63,10 @@ public class StringChanges {
                                                                 "Finally, it shows how to launch an example simulation provided by PhET to test that everything is working nicely." );
         StringUtils.addString( session, "about.source-code.p5", "The PhET Java, Flash, and Flex source code lives in a Subversion repository. For instructions on how to browse the " +
                                                                 "source code online or checkout the Subversion repository refer to our Legacy Java/Flash/Flex Source Code Document:" );
+
+        StringUtils.deleteString( session, "home.playWithSims" );
+        StringUtils.addString( session, "home.playWithSims", "Play with Simulations" );
+
         session.close();
     }
 
