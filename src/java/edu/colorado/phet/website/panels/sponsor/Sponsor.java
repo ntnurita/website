@@ -389,7 +389,7 @@ public abstract class Sponsor implements Serializable {
 
     public static Sponsor PI = new LogoSponsor(
             "Physik Instrumente",
-            "http://www.pi-usa.us/",
+            "http://www.pi-usa.us/products/Microscopy_Imaging/Precision_Microscope_Stage.php?onl_phet",
             Images.LOGO_PI, "padding: 0px;" ) {{
         setHomeWeight( 2 );
         setSimWeight( 2 );
