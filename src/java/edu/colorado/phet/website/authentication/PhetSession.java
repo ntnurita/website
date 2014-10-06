@@ -38,8 +38,13 @@ public class PhetSession extends WebSession {
         super( request );
     }
 
-    public static boolean passwordEquals( String hashedPassword, String password ) {
-        return hashedPassword.equals( compatibleHashPassword( password ) );
+    public static boolean passwordEquals( PhetUser user, String password ) {
+        if ( user.getHashedPassword().equals( compatibleHashPassword( password ) ) ) {
+            return true;
+        }
+        else {
+            return user.getHashedPassword().equals( saltedPassword( user.getEmail(), password ) );
+        }
     }
 
     /**
@@ -79,16 +84,34 @@ public class PhetSession extends WebSession {
     private PhetUser getAuthenticatedUser( PhetRequestCycle currentCycle, final String username, final String password ) {
         Result<PhetUser> result = HibernateUtils.resultCatchTransaction( currentCycle.getHibernateSession(), new Task<PhetUser>() {
             public PhetUser run( org.hibernate.Session session ) {
-                String compatibleHash = compatibleHashPassword( password );
+
+                String depreciatedHash = compatibleHashPassword( password ); // old method of hashing without salt
+                String saltedHash = saltedPassword( username, password );    // new method of hashing with salt
 
                 // TODO: possibly create an index for this operation?
+                // first try to find the user with the new style of hashed password with a salt
                 Query query = session.createQuery( "select u from PhetUser as u where (u.email = :email and u.hashedPassword = :compatiblePassword)" );
                 query.setString( "email", username );
-                query.setString( "compatiblePassword", compatibleHash );
+                query.setString( "compatiblePassword", saltedHash );
 
+                // if that doesn't find a user, try the depreciated version of hashing
                 PhetUser user = (PhetUser) query.uniqueResult();
                 if ( user == null ) {
-                    throw new TaskException( "User does not exist", Level.DEBUG );
+                    Query query2 = session.createQuery( "select u from PhetUser as u where (u.email = :email and u.hashedPassword = :compatiblePassword)" );
+                    query2.setString( "email", username );
+                    query2.setString( "compatiblePassword", depreciatedHash );
+                    user = (PhetUser) query2.uniqueResult();
+
+                    // if that doesn't work, the user isn't found
+                    if ( user == null ) {
+                        throw new TaskException( "User does not exist", Level.DEBUG );
+                    }
+                    // if the user is found using the old style of hashing, update their hashed password
+                    else
+                    {
+                        user.setHashedPassword( saltedHash );
+                        session.update( user );
+                    }
                 }
                 user.ensureHasConfirmationKey( session );
                 if ( !user.isConfirmed() ) {
@@ -123,6 +146,27 @@ public class PhetSession extends WebSession {
         }
 
         //return base64Encode( new String( bytes ) );
+        return hexEncode( bytes );
+    }
+
+    public static String saltedPassword( final String email, final String password ) {
+        byte[] bytes;
+        String salt = email.substring( 0, 5 );
+        try {
+            MessageDigest digest = MessageDigest.getInstance( "MD5" );
+            digest.reset();
+            digest.update( ( password + salt ).getBytes( "UTF-8" ) );
+            bytes = digest.digest();
+        }
+        catch ( NoSuchAlgorithmException e ) {
+            e.printStackTrace();
+            throw new RuntimeException( "No such algorithm", e );
+        }
+        catch ( UnsupportedEncodingException e ) {
+            e.printStackTrace();
+            throw new RuntimeException( e );
+        }
+
         return hexEncode( bytes );
     }
 
