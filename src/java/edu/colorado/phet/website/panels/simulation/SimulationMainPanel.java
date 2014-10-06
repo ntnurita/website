@@ -426,6 +426,12 @@ public class SimulationMainPanel extends PhetPanel {
             add( new Label( "mac-req", "Macromedia Flash 9 or later" ) );
             add( new Label( "linux-req", "Macromedia Flash 9 or later" ) );
         }
+        else if ( simulation.getSimulation().isHTML() ) {
+            // TODO handle html requirements
+//            add( new Label( "windows-req", "Macromedia Flash 9 or later" ) );
+//            add( new Label( "mac-req", "Macromedia Flash 9 or later" ) );
+//            add( new Label( "linux-req", "Macromedia Flash 9 or later" ) );
+        }
         else {
             add( new InvisibleComponent( "windows-req" ) );
             add( new InvisibleComponent( "mac-req" ) );

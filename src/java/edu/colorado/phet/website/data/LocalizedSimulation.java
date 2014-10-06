@@ -40,11 +40,11 @@ public class LocalizedSimulation implements Serializable, IntId {
         if ( sim.isJava() ) {
             str += ".jnlp";
         }
-        else if ( sim.isFlash() ) {
+        else if ( sim.isFlash() || sim.isHTML() ) {
             str += ".html";
         }
         else {
-            throw new RuntimeException( "Handle more than java and flash" );
+            throw new RuntimeException( "Handle more than java, flash, and HTML" );
         }
         return str;
     }
@@ -56,8 +56,11 @@ public class LocalizedSimulation implements Serializable, IntId {
         if ( sim.isJava() || sim.isFlash() ) {
             str += ".jar";
         }
+        else if ( sim.isHTML() ) {
+            // TODO
+        }
         else {
-            throw new RuntimeException( "Handle more than java and flash" );
+            throw new RuntimeException( "Handle more than java, flash, and HTML" );
         }
         return str;
     }

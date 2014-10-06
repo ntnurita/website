@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class Project implements Serializable, IntId {
 
     public static final int TYPE_JAVA = 0; // NOTE: update metadata code if you add another type
     public static final int TYPE_FLASH = 1;
+    public static final int TYPE_HTML = 2;
 
     private int id;
     private String name;
@@ -161,7 +163,7 @@ public class Project implements Serializable, IntId {
         try {
             FileUtils.copyRecursive( projectRoot, backupDir );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
             return false;
         }
@@ -220,8 +222,19 @@ public class Project implements Serializable, IntId {
                         }
                     } ).length > 0;
 
-                    int type = hasSWF ? TYPE_FLASH : TYPE_JAVA;
-                    syncLogger.debug( "detecting project type as: " + ( type == TYPE_JAVA ? "java" : "flash" ) );
+                    int type;
+                    String debugType;
+                    File latestHTMLVersionDirectory = getLatestHTMLDirectory( projectRoot );
+                    if ( latestHTMLVersionDirectory != null ) {
+                        type = TYPE_HTML;
+                        debugType = "HTML";
+                    }
+                    else {
+                        type = hasSWF ? TYPE_FLASH : TYPE_JAVA;
+                        debugType = hasSWF ? "flash" : "java";
+                    }
+
+                    syncLogger.debug( "detecting project type as: " + debugType );
 
                     List plist = session.createQuery( "select p from Project as p where p.name = :name" ).setString( "name", projectName ).list();
                     if ( plist.size() > 1 ) {
@@ -243,31 +256,42 @@ public class Project implements Serializable, IntId {
                         projectDirty = true;
                     }
 
-                    ProjectPropertiesFile projectProperties = project.getProjectPropertiesFile( docRoot );
-                    if ( project.versionMajor != projectProperties.getMajorVersion() ) {
-                        syncLogger.info( "Updating Major to " + projectProperties.getMajorVersion() );
-                        project.setVersionMajor( projectProperties.getMajorVersion() );
-                        projectDirty = true;
+                    if ( type == TYPE_HTML ) {
+                        project.setVersionMajor( 0 );
+                        project.setVersionMinor( 0 );
+                        project.setVersionDev( 0 );
+                        project.setVersionRevision( 0 );
+                        project.setVersionTimestamp( 0 );
+                        // do something else here?
+                        // not sure what fields to add to the project for HTML sims
                     }
-                    if ( project.versionMinor != projectProperties.getMinorVersion() ) {
-                        syncLogger.info( "Updating Minor to " + projectProperties.getMinorVersion() );
-                        project.setVersionMinor( projectProperties.getMinorVersion() );
-                        projectDirty = true;
-                    }
-                    if ( project.versionDev != projectProperties.getDevVersion() ) {
-                        syncLogger.info( "Updating Dev to " + projectProperties.getDevVersion() );
-                        project.setVersionDev( projectProperties.getDevVersion() );
-                        projectDirty = true;
-                    }
-                    if ( project.versionRevision != projectProperties.getSVNVersion() ) {
-                        syncLogger.info( "Updating Revision to " + projectProperties.getSVNVersion() );
-                        project.setVersionRevision( projectProperties.getSVNVersion() );
-                        projectDirty = true;
-                    }
-                    if ( project.versionTimestamp != projectProperties.getVersionTimestamp() ) {
-                        syncLogger.info( "Updating Timestamp to " + projectProperties.getVersionTimestamp() );
-                        project.setVersionTimestamp( projectProperties.getVersionTimestamp() );
-                        projectDirty = true;
+                    else {
+                        ProjectPropertiesFile projectProperties = project.getProjectPropertiesFile( docRoot );
+                        if ( project.versionMajor != projectProperties.getMajorVersion() ) {
+                            syncLogger.info( "Updating Major to " + projectProperties.getMajorVersion() );
+                            project.setVersionMajor( projectProperties.getMajorVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionMinor != projectProperties.getMinorVersion() ) {
+                            syncLogger.info( "Updating Minor to " + projectProperties.getMinorVersion() );
+                            project.setVersionMinor( projectProperties.getMinorVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionDev != projectProperties.getDevVersion() ) {
+                            syncLogger.info( "Updating Dev to " + projectProperties.getDevVersion() );
+                            project.setVersionDev( projectProperties.getDevVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionRevision != projectProperties.getSVNVersion() ) {
+                            syncLogger.info( "Updating Revision to " + projectProperties.getSVNVersion() );
+                            project.setVersionRevision( projectProperties.getSVNVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionTimestamp != projectProperties.getVersionTimestamp() ) {
+                            syncLogger.info( "Updating Timestamp to " + projectProperties.getVersionTimestamp() );
+                            project.setVersionTimestamp( projectProperties.getVersionTimestamp() );
+                            projectDirty = true;
+                        }
                     }
 
                     // used so we know which simulations we have already encountered
@@ -630,12 +654,31 @@ public class Project implements Serializable, IntId {
         return builder.toString();
     }
 
+    public static File getLatestHTMLDirectory( File projectRoot ) {
+        File[] htmlVersionDirectories = projectRoot.listFiles( new FilenameFilter() {
+            public boolean accept( File file, String s ) {
+                return file.isDirectory();
+            }
+        } );
+        Arrays.sort( htmlVersionDirectories );
+        if ( htmlVersionDirectories.length > 0 ) {
+            return htmlVersionDirectories[htmlVersionDirectories.length - 1];
+        }
+        else {
+            return null;
+        }
+    }
+
     public boolean isJava() {
         return getType() == 0;
     }
 
     public boolean isFlash() {
         return getType() == 1;
+    }
+
+    public boolean isHTML() {
+        return getType() == 2;
     }
 
     // getters and setters
