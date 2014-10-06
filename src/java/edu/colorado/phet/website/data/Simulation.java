@@ -137,7 +137,12 @@ public class Simulation implements Serializable, IntId {
     }
 
     public String getImageUrl() {
-        return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+        if ( isHTML() ) {
+            return "/sims/" + getProject().getName() + "/" + getProject().getVersionString() + "/" + getName() + "-screenshot.png";
+        }
+        else {
+            return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+        }
     }
 
     public WebImage getThumbnail() {

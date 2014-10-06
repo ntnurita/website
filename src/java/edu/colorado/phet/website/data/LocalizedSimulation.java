@@ -59,12 +59,18 @@ public class LocalizedSimulation implements Serializable, IntId {
     public String getDownloadUrl() {
         Simulation sim = getSimulation();
         Project project = sim.getProject();
-        String str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
+        String str;
+        if ( sim.isHTML() ) {
+            str = "/sims/" + project.getName() + "/" + sim.getProject().getVersionString() + "/" + sim.getName() + "_" + getLocaleString();
+        }
+        else {
+            str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
+        }
         if ( sim.isJava() || sim.isFlash() ) {
             str += ".jar";
         }
         else if ( sim.isHTML() ) {
-            // TODO
+            str += ".html";
         }
         else {
             throw new RuntimeException( "Handle more than java, flash, and HTML" );
