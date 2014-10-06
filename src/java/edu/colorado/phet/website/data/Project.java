@@ -66,6 +66,9 @@ public class Project implements Serializable, IntId {
     }
 
     public String getVersionString() {
+        if ( isHTML() ) {
+            return getVersionMajor() + "." + getVersionMinor() + "." + getVersionDev();
+        }
         String ret = "";
         ret += getVersionMajor();
         ret += ".";
@@ -97,6 +100,10 @@ public class Project implements Serializable, IntId {
 
     private File getSimulationJARFile( File docRoot, String simulationName, Locale locale ) {
         return new File( getProjectRoot( docRoot ), simulationName + "_" + LocaleUtils.localeToString( locale ) + ".jar" );
+    }
+
+    private File getSimulationHTMLFile( File docRoot, String simulationName, Locale locale ) {
+        return new File( getLatestHTMLDirectory( getProjectRoot( docRoot ) ), simulationName + "_" + LocaleUtils.localeToString( locale ) + ".html" );
     }
 
     public File getChangelogFile( File docRoot ) {
@@ -257,13 +264,12 @@ public class Project implements Serializable, IntId {
                     }
 
                     if ( type == TYPE_HTML ) {
-                        project.setVersionMajor( 0 );
-                        project.setVersionMinor( 0 );
-                        project.setVersionDev( 0 );
+                        String[] versionNumbers = latestHTMLVersionDirectory.getName().split( "\\." );
+                        project.setVersionMajor( Integer.parseInt( versionNumbers[0] ) );
+                        project.setVersionMinor( Integer.parseInt( versionNumbers[1] ) );
+                        project.setVersionDev( Integer.parseInt( versionNumbers[2] ) );
                         project.setVersionRevision( 0 );
                         project.setVersionTimestamp( 0 );
-                        // do something else here?
-                        // not sure what fields to add to the project for HTML sims
                     }
                     else {
                         ProjectPropertiesFile projectProperties = project.getProjectPropertiesFile( docRoot );
@@ -307,8 +313,14 @@ public class Project implements Serializable, IntId {
                     Set<Simulation> missedSimulations = new HashSet<Simulation>( project.getSimulations() );
                     Set<LocalizedSimulation> missedLocalizedSimulations = new HashSet<LocalizedSimulation>();
 
-
-                    Document document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, projectName + ".xml" ) ) );
+                    Document document;
+                    if ( type == TYPE_HTML ) {
+                        String unqualifiedName = projectName.substring( 5 );
+                        document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, unqualifiedName + ".xml" ) ) );
+                    }
+                    else {
+                        document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, projectName + ".xml" ) ) );
+                    }
                     NodeList simulationNodes = document.getElementsByTagName( "simulation" );
 
                     for ( int i = 0; i < simulationNodes.getLength(); i++ ) {
@@ -333,9 +345,10 @@ public class Project implements Serializable, IntId {
 
                         syncLogger.debug( "Reading localized simulation XML for: " + simName + " - " + simLocaleString + " - " + simTitle );
 
-                        if ( !project.getSimulationJARFile( docRoot, simName, simLocale ).exists() ) {
+                        if ( !project.getSimulationJARFile( docRoot, simName, simLocale ).exists() &&
+                             !project.getSimulationHTMLFile( docRoot, simName, simLocale ).exists() ) {
                             syncLogger.warn( "Project: " + projectName + " sim: " + simName + ", locale: " + simLocaleString );
-                            syncLogger.warn( "Simulation JAR file does not exist for specified XML entry. Most likely not deployed yet" );
+                            syncLogger.warn( "Simulation JAR or HTML file does not exist for specified XML entry. Most likely not deployed yet" );
                             syncLogger.warn( "Skipping" );
                             continue;
                         }
@@ -657,10 +670,12 @@ public class Project implements Serializable, IntId {
     public static File getLatestHTMLDirectory( File projectRoot ) {
         File[] htmlVersionDirectories = projectRoot.listFiles( new FilenameFilter() {
             public boolean accept( File file, String s ) {
-                return file.isDirectory();
+                // For some reason the xml file is passing the isDirectory test?
+                return file.isDirectory() && !s.endsWith( "xml" );
             }
         } );
         Arrays.sort( htmlVersionDirectories );
+        System.out.println( Arrays.toString( htmlVersionDirectories ) );
         if ( htmlVersionDirectories.length > 0 ) {
             return htmlVersionDirectories[htmlVersionDirectories.length - 1];
         }
