@@ -2,27 +2,18 @@
 
 package edu.colorado.phet.website.content.forteachers;
 
-import org.apache.log4j.Logger;
-import org.apache.wicket.Component;
-
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.wicket.IComponentFactory;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 /**
  * Displays a vertical list of social bookmarking service icons
  */
 public class TipsRighthandMenu extends PhetPanel {
 
-    private static final Logger logger = Logger.getLogger( TipsRighthandMenu.class.getName() );
-
     public TipsRighthandMenu( String id, final PageContext context, final String bookmarkableUrl ) {
 		super(id, context);
-
-        logger.info( "STRING = " + bookmarkableUrl );
 
 		add( new StaticImage( "planningToUsePhet", "forTeachers.planningToUsePhet".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
 		add( new StaticImage( "usingPhetInLecture", "forTeachers.usingPhetInLecture".equalsIgnoreCase(bookmarkableUrl) ? Images.DOWNARROW : Images.BLANK, "downarrow") );
