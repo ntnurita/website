@@ -1,162 +1,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] AboutSourceCodepanel</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-    </wicket:remove>
+  <title>[PREVIEW] AboutSourceCodepanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
 </head>
 <body style="width: 525px;">
 
 <wicket:panel>
-    <div wicket:message="dir:language.dir" class="about-source-code standard-content">
-        <h2 id="q1">
-            <wicket:message key="about.source-code.header">Where can I get the source code for the PhET simulations?
-            </wicket:message>
-        </h2>
+  <div wicket:message="dir:language.dir" class="about-source-code standard-content">
+    <h2>
+      <wicket:message key="about.source-code.header">Where can I get the source code for the PhET simulations?
+      </wicket:message>
+    </h2>
 
-        <h3>
-            <wicket:message key="about.source-code.browseOnline.header">
-                To browse PhET source code online
-            </wicket:message>
-        </h3>
+    <p wicket:id="about-source-code-p1">
+      Since 2013, the PhET sims have been developed in HTML5, which is the language we recommend.
+    </p>
 
-        <ol>
-            <li wicket:id="browseOnline-visitUrlStep">Visit the URL <a
-                    href="https://phet.unfuddle.com/a#/repositories/23262/browse?path=/trunk">https://phet.unfuddle.com/a#/repositories/23262/browse?path=/trunk</a>
-            </li>
-            <li wicket:id="browseOnline-loginStep">Enter username=guest and password=guest</li>
-        </ol>
+    <h3>
+      <wicket:message key="about.source-code.HTML5.header">
+        HTML5 Source Code
+      </wicket:message>
+    </h3>
 
-        <h3>
-            <wicket:message key="about.source-code.navigating.header">Navigating our source code</wicket:message>
-        </h3>
+    <p wicket:id="about-source-code-p2">
+      The PhET HTML5 and Javascript source code lives on <a href="#">the PhET GitHub page</a>.
+      For instructions on getting your machine set up to develop simulations using the PhET libraries,
+      take a look at our PhET Development Overview document:
+    </p>
 
-        <p>
-            <wicket:message key="about.source-code.navigating.structureReadme">
-                README.txt describes the main folder structure. Simulations can be found under these folders:
-            </wicket:message>
-        </p>
+    <strong><a href="http://bit.ly/phet-development-overview">PhET Development Overview</a></strong>
 
-        <ul>
-            <li>
-                <wicket:message key="about.source-code.navigating.javaSims">
-                    Java simulations: simulations-java/simulations
-                </wicket:message>
-            </li>
-            <li>
-                <wicket:message key="about.source-code.navigating.flashSims">
-                    Flash simulations: simulations-flash/simulations
-                </wicket:message>
-            </li>
-            <li>
-                <wicket:message key="about.source-code.navigating.flexSims">
-                    Flex simulations: simulations-flex/simulations
-                </wicket:message>
-            </li>
-        </ul>
+    <p wicket:id="about-source-code-p3">
+      Or join in the discussion at our Developing Interactive Simulations in HTML5 Google Group:
+    </p>
 
-        <p>
-            <wicket:message key="about.source-code.navigating.projectOrganization">
-                PhET simulations are organized into projects, each of which can contain one or more related simulations.
-                For example, the "nuclear-physics" project contains 4 simulations, including "Alpha Decay" and
-                "Radioactive Dating Game".
-            </wicket:message>
-        </p>
+    <strong><a href="https://groups.google.com/forum/?hl=en#!forum/developing-interactive-simulations-in-html5">
+      Developing Interactive Simulations in HTML5 Google Group
+    </a></strong>
 
-        <h3>
-            <wicket:message key="about.source-code.prerequisites.header">Software Prerequisites</wicket:message>
-        </h3>
+    <br/><br/>
 
-        <p>
-            <wicket:message key="about.source-code.prerequisites.requirements">
-                The following software is required to build PhET simulations from source code:
-            </wicket:message>
-        </p>
+    <h3>
+      <wicket:message key="about.source-code.video.header">
+        Getting started with HTML5 sim development video
+      </wicket:message>
+    </h3>
 
-        <ul>
-            <li>
-                <wicket:message key="about.source-code.prerequisites.java">Java simulations: Java JDK 5+</wicket:message>
-            </li>
-            <li>
-                <wicket:message key="about.source-code.prerequisites.flash">Flash simulations: Java JDK 5+ and Flash CS4+</wicket:message>
-            </li>
-            <li>
-                <wicket:message key="about.source-code.prerequisites.flex">Flex simulations: Java JDK 5+ and Flex 3 (3.4 or later)</wicket:message>
-            </li>
-        </ul>
+    <p wicket:id="about-source-code-p4">
+      This video is a quick guide to getting started developing with PhET on Windows. First, this video shows how to clone
+      the PhET Libraries from GitHub. Next, it shows how to download and run a web server on your development machine.
+      Finally, it shows how to launch an example simulation provided by PhET to test that everything is working nicely.
+    </p>
 
-        <h3 wicket:id="checkout-header">
-            To checkout PhET's source code repository using <a href="http://subversion.apache.org/">Subversion</a> on
-            the command-line
-        </h3>
+    <strong><a href="https://www.youtube.com/watch?v=V8Jw2Qx-1gE">Watch the video on youtube</a></strong>
 
-        <p>
-            <wicket:message key="about.source-code.checkout.useTheFollowing">Use the following command:</wicket:message>
-        </p>
+    <br/><br/>
 
-        <pre class="source-code">svn checkout https://phet.unfuddle.com/svn/phet_svn/trunk trunk --username guest --password guest</pre>
+    <h3>
+      <wicket:message key="about.source-code.java-flash.header">
+        Java/Flash/Flex Source Code (Legacy)
+      </wicket:message>
+    </h3>
 
-        <p>
-            <wicket:message key="about.source-code.checkout.result">
-                This will put all files in a folder named "trunk" -- it will take a while, so please be patient.
-            </wicket:message>
-        </p>
+    <p wicket:id="about-source-code-p5">
+      The PhET Java, Flash, and Flex source code lives in a Subversion repository. For instructions on how to browse the
+      source code online or checkout the Subversion repository refer to our Legacy Java/Flash/Flex Source Code Document:
+    </p>
 
-        <h3 wicket:id="build-and-run">
-            To build and run PhET simulations using the <em>PhET Build GUI</em>
-        </h3>
+    <strong><a href="http://bit.ly/phet-sourcecode">Legacy Java/Flash/Flex Source Code Document</a>.</strong>
 
-        <p>
-            <wicket:message key="about.source-code.buildAndRun.instructions">
-                Check out our source code with the instructions above, and then run one of these two scripts depending
-                on your operating system:
-            </wicket:message>
-        </p>
-
-        <dl>
-            <dt>
-                <wicket:message key="about.source-code.buildAndRun.windows">Windows:</wicket:message>
-            </dt>
-            <dd>build-tools/build.bat</dd>
-            <dt>
-                <wicket:message key="about.source-code.buildAndRun.macLinux">Mac, Linux:</wicket:message>
-            </dt>
-            <dd>build-tools/build.sh</dd>
-        </dl>
-
-        <h3 wicket:id="using-pbg">Using the <em>PhET Build GUI</em></h3>
-
-        <p style="text-align: center;">
-            <img src="/images/screenshots/phet-build-gui.png" alt="PhET Build GUI screenshot"/>
-        </p>
-
-        <ol>
-            <li wicket:id="pbg-building-flash-flex">
-                For building Flash/Flex simulations, please download <a href="/templates/build-local.properties">build-local.properties</a>
-                to trunk/build-tools/build-local.properties, and replace relevant paths with your own.
-            </li>
-            <li>
-                <wicket:message key="about.source-code.usingPBG.browseProjects">
-                    Browse through and select the project (listed on the left) that contains the simulation you are looking for.
-                </wicket:message>
-            </li>
-            <li>
-                <wicket:message key="about.source-code.usingPBG.selectSimulationLocale">
-                    Select the simulation and/or locale
-                </wicket:message>
-            </li>
-            <li>
-                <wicket:message key="about.source-code.usingPBG.pressTest">
-                    Press "Test". Be patient, since it can take several minutes to compile and launch the simulation.
-                </wicket:message>
-            </li>
-        </ol>
-
-    </div>
+  </div>
 </wicket:panel>
 
 </body>

@@ -163,7 +163,6 @@ public class StringChanges {
         StringUtils.addString( session, "about.p4", "All PhET simulations are freely available from the <a {0}>PhET website</a> and are easy to use and incorporate into the classroom. They are written in Java and Flash, and can be run using a standard web browser as long as Flash and Java are installed." );
 
         // update research strings
-
         StringUtils.deleteString( session, "research.intro" );
         StringUtils.addString( session, "research.intro", "The PhET simulation design principles are based on research on how students learn (Bransford et al., 2000) and from our simulation " +
                                                           "interviews (see <a {0}>PhET Design Process</a>). Between four and six think-aloud style interviews " +
@@ -171,6 +170,28 @@ public class StringChanges {
                                                           "student learning. The <a {1}>PhET Look and Feel</a> briefly describes our interface design " +
                                                           "principles and a complete discussion is found in the pair of papers by <a {2}>Adams et al., 2008</a>." );
 
+        StringUtils.addString( session, "about.source-code.HTML5.header", "HTML5 Source Code" );
+
+        StringUtils.deleteString( session, "about.source-code.java-flash.header" );
+        StringUtils.addString( session, "about.source-code.java-flash.header", "Java/Flash/Flex Source Code (Legacy)" );
+
+        StringUtils.deleteString( session, "about.source-code.p1" );
+        StringUtils.deleteString( session, "about.source-code.p2" );
+        StringUtils.deleteString( session, "about.source-code.p3" );
+        StringUtils.deleteString( session, "about.source-code.p4" );
+
+        StringUtils.addString( session, "about.source-code.p1", "Since 2013, the PhET sims have been developed in HTML5, which is the language we recommend." );
+
+        StringUtils.addString( session, "about.source-code.p2", "The PhET HTML5 and Javascript source code lives on <a {0}>the PhET GitHub page</a>. " +
+                                                                "For instructions on getting your machine set up to develop simulations using the PhET libraries, " +
+                                                                "take a look at our PhET Development Overview document:" );
+
+        StringUtils.addString( session, "about.source-code.p3", "Or join in the discussion at our Developing Interactive Simulations in HTML5 Google Group:" );
+        StringUtils.addString( session, "about.source-code.p4", "This video is a quick guide to getting started developing with PhET on Windows. First, this video shows how to clone " +
+                                                                "the PhET Libraries from GitHub. Next, it shows how to download and run a web server on your development machine. " +
+                                                                "Finally, it shows how to launch an example simulation provided by PhET to test that everything is working nicely." );
+        StringUtils.addString( session, "about.source-code.p5", "The PhET Java, Flash, and Flex source code lives in a Subversion repository. For instructions on how to browse the " +
+                                                                "source code online or checkout the Subversion repository refer to our Legacy Java/Flash/Flex Source Code Document:" );
         session.close();
     }
 
