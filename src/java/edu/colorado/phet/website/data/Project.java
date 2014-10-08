@@ -111,7 +111,12 @@ public class Project implements Serializable, IntId {
     }
 
     public RawLinkable getRawChangelogLinker() {
-        return new RawLinker( "/sims/" + name + "/changes.txt" );
+        if ( this.isHTML() ) {
+            return new RawLinker( "/sims/" + name + "/" + getVersionString() + "/changes.txt" );
+        }
+        else {
+            return new RawLinker( "/sims/" + name + "/changes.txt" );
+        }
     }
 
     private void appendWarning( StringBuilder builder, String message ) {
