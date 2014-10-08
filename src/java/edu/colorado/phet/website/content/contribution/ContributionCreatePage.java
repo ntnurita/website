@@ -24,6 +24,8 @@ public class ContributionCreatePage extends PhetRegularPage {
     public ContributionCreatePage( PageParameters parameters ) {
         super( parameters );
 
+        setContentWidth( 1120 );
+
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.submit" ) );
 
         verifySignedIn();

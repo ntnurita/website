@@ -237,8 +237,7 @@ div.rtl .text-right-classic {
 
 #skipNav {
     position: absolute;
-    left: -9999px;
-    width: 9000px;
+    opacity: 0;
     font-size: 1px;
     letter-spacing: -1px;
 }
@@ -323,4 +322,12 @@ pre {
 .tech-award-page-link {
     text-decoration: none;
     color: #000;
+}
+
+.teacher-ideas {
+    width: 650px;
+}
+
+.workshops {
+    width: 650px;
 }

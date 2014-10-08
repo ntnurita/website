@@ -193,6 +193,27 @@ public abstract class SocialBookmarkService implements Serializable {
             return "delicious";
         }
     };
+    public static final SocialBookmarkService YOUTUBE = new SocialBookmarkService() {
+        @Override
+        public String getIconPath() {
+            return "/images/icons/social/16/youtube.png";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+            return 96;
+        }
+
+        @Override
+        public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
+            return "https://www.youtube.com/channel/UCMRZ0-ci4ifGBF1bJvrcDRQ";
+        }
+
+        @Override
+        public String getName() {
+            return "youtube";
+        }
+    };
 
     public static final List<SocialBookmarkService> SERVICES = new LinkedList<SocialBookmarkService>();
 
@@ -203,5 +224,6 @@ public abstract class SocialBookmarkService implements Serializable {
         SERVICES.add( DIGG );
         SERVICES.add( REDDIT );
         SERVICES.add( DELICIOUS );
+        SERVICES.add( YOUTUBE );
     }
 }

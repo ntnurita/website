@@ -5,12 +5,14 @@
 package edu.colorado.phet.website.templates;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 
 import edu.colorado.phet.website.DistributionHandler;
@@ -19,11 +21,15 @@ import edu.colorado.phet.website.cache.CacheableUrlStaticPanel;
 import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawBodyLabel;
+import edu.colorado.phet.website.content.forteachers.ForTeachersPanel;
+import edu.colorado.phet.website.content.forteachers.TipsRighthandMenu;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.translation.TranslationUrlStrategy;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
+import edu.colorado.phet.website.util.wicket.IComponentFactory;
+import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 public class StaticPage extends PhetRegularPage {
 
@@ -36,6 +42,22 @@ public class StaticPage extends PhetRegularPage {
             String path = parameters.getString( TranslationUrlStrategy.PATH );
 
             final Class panelClass = panelMap.get( path );
+
+            // set content width the the CONTENT_WIDTH field of the panel if it exists
+            try {
+                Field contentWidth = panelClass.getField( "CONTENT_WIDTH" );
+                if ( contentWidth.getType().equals( int.class ) ) {
+                    setContentWidth( contentWidth.getInt( null ) );
+                }
+            }
+            catch( NoSuchFieldException e ) {
+                // do nothing, not every panel will have a field CONTENT_WIDTH
+            }
+
+            // don't show the social bookmarks for ForTeachers subclasses to make room for the right hand menu
+            if ( panelClass.getSuperclass().equals( ForTeachersPanel.class ) ) {
+                hideSocialBookmarkButtons();
+            }
 
             // determine whether it is cacheable or not
             boolean cacheable = false;

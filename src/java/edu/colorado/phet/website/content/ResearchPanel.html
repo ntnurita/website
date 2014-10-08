@@ -1,358 +1,343 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] ResearchPanel</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
-    </wicket:remove>
-    <wicket:head>
-        <style type="text/css">
-            .research-question {
-                margin: 0 50px;
-                font-weight: bold;
-                font-size: 14px;
-            }
+  <title>[PREVIEW] ResearchPanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
+  <wicket:head>
+    <style type="text/css">
+      .research-question {
+        margin: 0 50px;
+        font-weight: bold;
+        font-size: 14px;
+      }
 
-            .research-answer {
-                text-indent: 50px;
-                margin: 0 50px;
-            }
+      .research-answer {
+        text-indent: 50px;
+        margin: 0 50px;
+      }
 
-            .research p {
-                margin-left: 50px;
-                margin-right: 50px;
-            }
+      .research p {
+        margin-left: 50px;
+        margin-right: 50px;
+      }
 
-            .publication-title {
-                text-decoration: underline;
-            }
-        </style>
-    </wicket:head>
+      .publication-title {
+        text-decoration: underline;
+      }
+    </style>
+  </wicket:head>
 </head>
 <body>
 
 <wicket:panel>
-    <div class="research standard-content" wicket:message="dir:language.dir">
 
-        <span wicket:id="research-top">
-            PhET conducts research on both the <strong>design</strong> and <strong>use</strong> of interactive
-            simulations to better understand:
-        </span>
-        <ol>
-            <li>
-                <wicket:message key="research.understand.1">
-                    Which characteristics make these tools effective for learning and why
-                </wicket:message>
-            </li>
-            <li>
-                <wicket:message key="research.understand.2">
-                    How students engage and interact with these tools to learn, and what influences this process
-                </wicket:message>
-            </li>
-            <li>
-                <wicket:message key="research.understand.3">
-                    When, how, and why these tools are effective in a variety of learning environments
-                </wicket:message>
-            </li>
-        </ol>
-        <div wicket:id="research-intro">
-            The PhET simulation design principles are based on research on how students learn (Bransford et al., 2000)
-            and from our simulation interviews (see <a href="/publications/phet_design_process.pdf" rel="external">PhET
-            Design
-            Process</a>). Between four and six think-aloud style interviews with individual students are done with each
-            simulation. These interviews provide a rich data source for studying interface design and student learning.
-            The <a href="/publications/PhET%20Look%20and%20Feel.pdf" rel="external">PhET Look and Feel</a> briefly
-            describes our
-            interface design principles and a complete discussion is found in the pair of papers by <a href="#pub_1">Adams
-            et al., 2008</a>.
-        </div>
-        <p>
-            Bransford, J.D., Brown, A. L. And Cocking, R. R. (2000). <em>How People Learn, Brain, Mind, Experience, and
-            School</em>. Washington, D.C.: National Academy Press
-        </p>
-
-        <h2>
-            <wicket:message key="research.commonQuestions">Research answers to commonly asked questions:
-            </wicket:message>
-        </h2>
-
-        <div class="research-question">
-            <wicket:message key="research.question.1.title">
-                "Can PhET sims replace real lab equipment?"
-            </wicket:message>
-        </div>
-        <div class="research-answer" wicket:id="research-question-1-answer">
-            Our studies have shown that PhET sims are more effective for conceptual understanding; however, there are
-            many
-            goals of hands-on labs that simulations do not address. For example, specific skills relating to the
-            functioning
-            of equipment. Depending on the goals of your laboratory, it may be more effective to use just sims or a
-            combination of sims and real equipment
-        </div>
+  <div class="research standard-content" wicket:message="dir:language.dir"><span><strong><em><br/>
+    PhET: Research and Development: </em></strong><em>How PhET simulations are designed, and the research process of refining the simulations to best
+    promote learning. (<a href="//phet.colorado.edu/files/video/PhET_RnD_Final_122712_720HD.mov" type="application/octet-stream">Download
+      Video</a>)</em><br/>
+      <br/>
+        <iframe width="520" height="293" src="http://www.youtube.com/embed/qdeHagIeyrc" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
         <br/>
-
-        <div class="research-question">
-            <wicket:message key="research.question.2.title">
-                "Do students learn if I just tell them to go home and play with a sim?"
-            </wicket:message>
-        </div>
-        <div class="research-answer" wicket:id="research-question-2-answer">
-            Most students do not have the necessary drive to spend time playing with a science simulation (they're fun,
-            but
-            not that fun) on their own time unless there is a <em>direct</em> motivation such as their grade. This is
-            one of
-            the reasons we are pursuing the project of how to best integrate sims into homework.
-        </div>
         <br/>
+      <span wicket:id="research-top">
+        PhET conducts research on both the <strong>design</strong> and <strong>use</strong> of interactive simulations to better understand:</span>
+      </span>
+    <ol>
+      <li>
+        <wicket:message key="research.understand.1">
+          Which characteristics make these tools effective for learning and why
+        </wicket:message>
+      </li>
+      <li>
+        <wicket:message key="research.understand.2">
+          How students engage and interact with these tools to learn, and what influences this process
+        </wicket:message>
+      </li>
+      <li>
+        <wicket:message key="research.understand.3">
+          When, how, and why these tools are effective in a variety of learning environments
+        </wicket:message>
+      </li>
+    </ol>
+    <div wicket:id="research-intro">The PhET simulation design principles are based on research on how students learn (Bransford et al., 2000) and from our simulation
+      interviews (see <a rel="external" href="/publications/phet_design_process.pdf">PhET Design Process</a>). Between four and six think-aloud style interviews
+      with individual students are done with each simulation. These interviews provide a rich data source for studying interface design and
+      student learning. The <a rel="external" href="/publications/PhET%20Look%20and%20Feel.pdf">PhET Look and Feel</a> briefly describes our interface design
+      principles and a complete discussion is found in the pair of papers by <a href="#pub_1">Adams et al., 2008</a>.
+    </div>
+    <h2>
+      <wicket:message key="research.commonQuestions">
+        Research answers to commonly asked questions:
+      </wicket:message>
+    </h2>
 
-        <div class="research-question">
-            <wicket:message key="research.question.3.title">
-                "Where is the best place to use PhET sims in my course?"
-            </wicket:message>
-        </div>
-        <div class="research-answer" wicket:id="research-question-3-answer">
-            We have found PhET sims to be very effective in lecture, in class activities, lab and homework. They are
-            designed with minimal text so that they can easily be integrated into every aspect of a course.
-        </div>
+    <div class="research-question">
+      <wicket:message key="research.question.1.title">
+        "Can PhET sims replace real lab equipment?"
+      </wicket:message>
+    </div>
+    <div class="research-answer" wicket:id="research-question-1-answer">Our studies have shown that PhET sims are more effective for conceptual understanding; however, there are many
+      goals of hands-on labs that simulations do not address. For example, specific skills relating to the functioning of equipment. Depending on
+      the goals of your laboratory, it may be more effective to use just sims or a combination of sims and real equipment
+    </div>
+    <br/>
 
-        <h2>
-            <wicket:message key="research.immediateInterests">Our immediate interests are:</wicket:message>
-        </h2>
+    <div class="research-question">
+      <wicket:message key="research.question.2.title">
+        "Do students learn if I just tell them to go home and play with a sim?"
+      </wicket:message>
+    </div>
+    <div class="research-answer" wicket:id="research-question-2-answer">Most students do not have the necessary drive to spend time playing with a science simulation (they're fun, but
+      not that fun) on their own time unless there is a <em>direct</em> motivation such as their grade. This is one of the reasons we are pursuing
+      the project of how to best integrate sims into homework.
+    </div>
+    <br/>
 
-        <p wicket:id="research-interest-analogy">
-            <strong>Use of analogy to construct understanding:</strong> Students use analogies in sims to make sense of
-            unfamiliar phenomena. Representations play a key role in student use of analogy.
-        </p>
+    <div class="research-question">
+      <wicket:message key="research.question.3.title">
+        "Where is the best place to use PhET sims in my course?"
+      </wicket:message>
+    </div>
+    <div class="research-answer" wicket:id="research-question-3-answer">We have found PhET sims to be very effective in lecture, in class activities, lab and homework. They are designed
+      with minimal text so that they can easily be integrated into every aspect of a course.
+    </div>
 
-        <p wicket:id="research-interest-norms">
-            <strong>Simulations as tools for changing classroom norms:</strong> Sims are shaped by socio-cultural norms
-            of
-            science, but can also be used to change the traditional norms of how students engage in the classroom.
-        </p>
+    <h2>
+      <wicket:message key="research.immediateInterests">
+        Our immediate interests are:
+      </wicket:message>
+    </h2>
 
-        <p wicket:id="research-interest-exploration">
-            <strong>Specific features of sims that promote learning and engaged exploration:</strong> Our design
-            principles
-            identify key characteristics of sims that make them productive tools for student engagement. Now we wish to
-            study
-            in detail how each feature impacts student understanding.
-        </p>
+    <p wicket:id="research-interest-analogy"><strong>Use of analogy to construct understanding:</strong> Students use analogies in sims to make sense of unfamiliar phenomena.
+      Representations play a key role in student use of analogy.</p>
 
-        <p wicket:id="research-interest-homework">
-            <strong>Integrating simulations into homework:</strong> Simulations have unique features that are not
-            available in
-            most learning tools (interactivity, animation, dynamic feedback, allow for productive exploration)
-        </p>
+    <p wicket:id="research-interest-norms"><strong>Simulations as tools for changing classroom norms:</strong> Sims are shaped by socio-cultural norms of science, but can also be
+      used to change the traditional norms of how students engage in the classroom.</p>
 
-        <p wicket:id="research-interest-chemistry">
-            <strong>Effectiveness of Chemistry simulations:</strong> We have just begun investigating the envelope of
-            where and
-            how chemistry simulations can be effective learning tools.
-        </p>
+    <p wicket:id="research-interest-exploration"><strong>Specific features of sims that promote learning and engaged exploration:</strong> Our design principles identify key
+      characteristics of sims that make them productive tools for student engagement. Now we wish to study in detail how each feature impacts
+      student understanding.</p>
 
-        <h2>
-            <wicket:message key="research.publicationsAndPresentations">Publications and Presentations</wicket:message>
-        </h2>
+    <p wicket:id="research-interest-homework"><strong>Integrating simulations into homework:</strong> Simulations have unique features that are not available in most learning tools
+      (interactivity, animation, dynamic feedback, allow for productive exploration)</p>
 
-        <ul>
-            <li><a href="#design"><wicket:message key="research.publications.design">Important features for effective simulation design (predominantly interview data)</wicket:message></a></li>
-            <li><a href="#use"><wicket:message key="research.publications.use">Research on In-Class Use</wicket:message></a></li>
-            <li><a href="#sims"><wicket:message key="research.publications.sims">About PhET Simulations</wicket:message></a></li>
-            <li><a href="#perceptions"><wicket:message key="research.publications.perceptions">Students Perceptions About Learning</wicket:message></a></li>
-            <li><a href="#other"><wicket:message key="research.publications.other">Other Work by PhET Researchers</wicket:message></a></li>
-        </ul>
+    <p wicket:id="research-interest-chemistry"><strong>Effectiveness of Chemistry simulations:</strong> We have just begun investigating the envelope of where and how chemistry
+      simulations can be effective learning tools.</p>
 
-        <h3 id="design">
-            <wicket:message key="research.publications.design">
-                Important features for effective simulation design (predominantly interview data)
-            </wicket:message>
-        </h3>
-        <ul class="content-points">
-            <li>
-                <div class="research">
+    <h2>
+      <wicket:message key="research.publicationsAndPresentations">
+        Publications and Presentations
+      </wicket:message>
+    </h2>
+
+    <ul>
+      <li><a href="#design"><wicket:message key="research.publications.design">Important features for effective simulation design (predominantly interview data)</wicket:message></a></li>
+      <li><a href="#use"><wicket:message key="research.publications.use">Research on in-class use</wicket:message></a></li>
+      <li><a href="#sims"><wicket:message key="research.publications.sims">About PhET sims</wicket:message></a></li>
+      <li><a href="#perceptions"><wicket:message key="research.publications.perceptions">Students Perceptions About Learning</wicket:message></a></li>
+      <li><a href="#other"><wicket:message key="research.publications.other">Other Work by PhET Researchers</wicket:message></a></li>
+    </ul>
+
+    <h3 id="design">
+      <wicket:message key="research.publications.design">
+        Important features for effective simulation design (predominantly interview data)
+      </wicket:message>
+    </h3>
+    <ul class="content-points">
+      <li>
+        <div class="research">
                     <span class="title"><a
-                            href="http://pubs.acs.org/doi/abs/10.1021/bk-2013-1142.ch005 " rel="external">
-                        Insights from using PhET's design principles for interactive chemistry simulations
+                        href="http://pubs.acs.org/doi/abs/10.1021/bk-2013-1142.ch005 " rel="external">
+                      Insights from using PhET's design principles for interactive chemistry simulations
                     </a></span>,
 
-                    <span class="authors">Lancaster, K. V., Moore, E. B., Parson, R., &amp; Perkins, K.</span>,
-                    <span class="publication_name">In J. Suits &amp; M. Sanger, M. (Eds.), Pedagogic Roles of Animations and Simulations in Chemistry Courses</span>,
-                    <span class="publication_lookup">(97-126). ACS	Symposium Series</span>,
-                    <span class="publication_date">2013</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Lancaster, K. V., Moore, E. B., Parson, R., &amp; Perkins, K.</span>,
+          <span class="publication_name">In J. Suits &amp; M. Sanger, M. (Eds.), Pedagogic Roles of Animations and Simulations in Chemistry Courses</span>,
+          <span class="publication_lookup">(97-126). ACS    Symposium Series</span>,
+          <span class="publication_date">2013</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a
-                            href="http://dx.doi.org/10.1063/1.4789712" rel="external">Guiding without feeling guided: implicit scaffolding through interactive simulation design</a></span>,
-                    <span class="authors">Paul, A., Podolefsky, N., &amp; Perkins, K.</span>,
-                    <span class="publication_name">Proceedings of the 2012 Physics Education Research Conference, 1513</span>,
-                    <span class="publication_lookup">pp. 302-305</span>,
-                    <span class="publication_date">2013</span>.
-                </div>
-            </li>
+                        href="http://dx.doi.org/10.1063/1.4789712" rel="external">Guiding without feeling guided: implicit scaffolding through
+                      interactive simulation design</a></span>,
+          <span class="authors">Paul, A., Podolefsky, N., &amp; Perkins, K.</span>,
+          <span class="publication_name">Proceedings of the 2012 Physics Education Research Conference, 1513</span>,
+          <span class="publication_lookup">pp. 302-305</span>,
+          <span class="publication_date">2013</span>.
+        </div>
+      </li>
 
-            <li>
-                <div class="research">
-                    <span class="title">PhET interactive simulations: Using implicit scaffolding to support productive inquiry learning</span>,
-                    <span class="authors">Perkins, K., &amp; Moore, E.</span>,
-                    <span class="publication_name">Proceedings from EARLI SIG 20 Conference on Computer-Supported Inquiry Learning</span>,
-                    <span class="publication_date">2012</span>.
-                </div>
-            </li>
+      <li>
+        <div class="research">
+          <span class="title">PhET interactive simulations: Using implicit scaffolding to support productive inquiry learning</span>,
+          <span class="authors">Perkins, K., &amp; Moore, E.</span>,
+          <span class="publication_name">Proceedings from EARLI SIG 20 Conference on Computer-Supported Inquiry Learning</span>,
+          <span class="publication_date">2012</span>.
+        </div>
+      </li>
 
-            <li>
-                <div class="research">
+      <li>
+        <div class="research">
                     <span class="title"><a
-                            href="http://link.aps.org/doi/10.1103/PhysRevSTPER.6.020117 " rel="external">
-                        Factors promoting engaged exploration with computer simulations
+                        href="http://link.aps.org/doi/10.1103/PhysRevSTPER.6.020117 " rel="external">
+                      Factors promoting engaged exploration with computer simulations
                     </a></span>,
 
-                    <span class="authors">N. S. Podolefsky, K. K. Perkins, and W. K. Adams</span>,
-                    <span class="publication_name">Phys. Rev. ST Phys. Educ.</span>,
-                    <span class="publication_lookup">Res. 6, 020117</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">N. S. Podolefsky, K. K. Perkins, and W. K. Adams</span>,
+          <span class="publication_name">Phys. Rev. ST Phys. Educ.</span>,
+          <span class="publication_lookup">Res. 6, 020117</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a
-                            href="http://dx.doi.org/10.1063/1.3515215" rel="external">Characterizing Complexity of Computer Simulations and Implications for Student Learning</a></span>,
-                    <span class="authors">Podolefsky, N. S., Adams, W. K., Lancaster, K., Perkins, K. K., Singh, C., Sabella, M., &amp; Rebello, S.</span>,
-                    <span class="publication_name">In AIP Conference Proceedings</span>,
-                    <span class="publication_lookup">Vol. 1289, No. 1, p. 257</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title">Student engagement and learning with PhET interactive simulations</span>,
-                    <span class="authors">Adams, W. K.</span>,
-                    <span class="publication_name">Il Nuovo Cimento C: Multimedia in Physics Teaching and Learning - MPTL14</span>,
-                    <span class="publication_lookup">Vol 33, no. 3, pp. 21-32</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
+                        href="http://dx.doi.org/10.1063/1.3515215" rel="external">Characterizing Complexity of Computer Simulations and Implications
+                      for Student Learning</a></span>,
+          <span class="authors">Podolefsky, N. S., Adams, W. K., Lancaster, K., Perkins, K. K., Singh, C., Sabella, M., &amp; Rebello, S.</span>,
+          <span class="publication_name">In AIP Conference Proceedings</span>,
+          <span class="publication_lookup">Vol. 1289, No. 1, p. 257</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+          <span class="title">Student engagement and learning with PhET interactive simulations</span>,
+          <span class="authors">Adams, W. K.</span>,
+          <span class="publication_name">Il Nuovo Cimento C: Multimedia in Physics Teaching and Learning - MPTL14</span>,
+          <span class="publication_lookup">Vol 33, no. 3, pp. 21-32</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
 
 
-            <li>
-                <div class="research">
+      <li>
+        <div class="research">
                     <span class="title"><span class="publication-title">
-                    <a href="http://dx.doi.org/10.1063/1.3266723" rel="external">Computer simulations to classrooms: tools for change</a></span></span>,
+                    <a href="http://dx.doi.org/10.1063/1.3266723" rel="external">Computer simulations to classrooms: tools for
+                      change</a></span></span>,
 
-                    <span class="authors">N. S. Podolefsky, K. K. Perkins and W. K. Adams</span>,
-                    <span class="publication_name">2009 Physics Education Research - Conference Proceedings. AIP Press</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">N. S. Podolefsky, K. K. Perkins and W. K. Adams</span>,
+          <span class="publication_name">2009 Physics Education Research - Conference Proceedings. AIP Press</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><span class="publication-title">
-                        <a href="http://dx.doi.org/10.1063/1.3266722" rel="external">Student Choices when Learning with Computer Simulations</a></span></span>,
+                        <a href="http://dx.doi.org/10.1063/1.3266722" rel="external">Student Choices when Learning with Computer
+                          Simulations</a></span></span>,
 
-                    <span class="authors">N. S. Podolefsky, K. K. Perkins and W. K. Adams</span>,
-                    <span class="publication_name">2009 Physics Education Research - Conference Proceedings. AIP Press</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">N. S. Podolefsky, K. K. Perkins and W. K. Adams</span>,
+          <span class="publication_name">2009 Physics Education Research - Conference Proceedings. AIP Press</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1119/1.2885199">
-                        Developing and Researching PhET simulations for Teaching Quantum Mechanics</a></span>,
+                      Developing and Researching PhET simulations for Teaching Quantum Mechanics</a></span>,
 
-                    <span class="authors">S. B. McKagan, K. K. Perkins, M. Dubson, C. Malley, S. Reid, R. LeMaster, and C. E. Wieman</span>,
-                    <span class="publication_name">American Journal of Physics</span>,
-                    <span class="publication_lookup"> 76, 406 </span>,
-                    <span class="publication_date">May 2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">S. B. McKagan, K. K. Perkins, M. Dubson, C. Malley, S. Reid, R. LeMaster, and C. E. Wieman</span>,
+          <span class="publication_name">American Journal of Physics</span>,
+          <span class="publication_lookup"> 76, 406 </span>,
+          <span class="publication_date">May 2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://www.editlib.org/p/24364/">
-                        A Study of Educational Simulations Part II - Interface Design
+                      A Study of Educational Simulations Part II - Interface Design
                     </a></span>,
 
-                    <span class="authors">W. K. Adams, S. Reid, R. LeMaster, S. B. McKagan, K. K. Perkins, M. Dubson and C. E. Wieman</span>,
-                    <span class="publication_name">Journal of Interactive Learning Research</span>,
-                    <span class="publication_lookup"> 19(4),  551-577 </span>,
-                    <span class="publication_date">October 2008</span>.
+          <span class="authors">W. K. Adams, S. Reid, R. LeMaster, S. B. McKagan, K. K. Perkins, M. Dubson and C. E. Wieman</span>,
+          <span class="publication_name">Journal of Interactive Learning Research</span>,
+          <span class="publication_lookup"> 19(4),  551-577 </span>,
+          <span class="publication_date">October 2008</span>.
 
-                </div>
+        </div>
 
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://www.colorado.edu/physics/EducationIssues/Adams_Dissertation.htm">Chapter 2: Simulation Interviews and Studies</a></span>,
-                    <span class="authors">Adams, W.</span>,
-                    <span class="publication_name">Doctoral Dissertation</span>,
-                    <span class="publication_lookup">University of Colorado at Boulder</span>,
-                    <span class="publication_date">July 2008</span>.
-                </div>
-            </li>
-            <li id="pub_1">
-                <div class="research">
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://www.colorado.edu/physics/EducationIssues/Adams_Dissertation.htm">Chapter 2:
+                Simulation Interviews and Studies</a></span>,
+          <span class="authors">Adams, W.</span>,
+          <span class="publication_name">Doctoral Dissertation</span>,
+          <span class="publication_lookup">University of Colorado at Boulder</span>,
+          <span class="publication_date">July 2008</span>.
+        </div>
+      </li>
+      <li id="pub_1">
+        <div class="research">
                     <span class="title"><a rel="external" href="http://www.editlib.org/p/24230">
-                        A Study of Educational Simulations Part I - Engagement and Learning
+                      A Study of Educational Simulations Part I - Engagement and Learning
                     </a></span>,
 
                     <span class="authors">
                         W. K. Adams, S. Reid, R. LeMaster, S. B. McKagan, K. K. Perkins, M. Dubson and C. E. Wieman
                     </span>,
-                    <span class="publication_name">Journal of Interactive Learning Research</span>,
-                    <span class="publication_lookup"> 19(3), 397-419 </span>,
-                    <span class="publication_date">July 2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="publication_name">Journal of Interactive Learning Research</span>,
+          <span class="publication_lookup"> 19(3), 397-419 </span>,
+          <span class="publication_date">July 2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://phet.colorado.edu/web-pages/publications/PERC_Interview_Guidance.pdf">
-                        What Levels of Guidance Promote Engaged Exploration with Interactive Simulations?</a></span>,
+                      What Levels of Guidance Promote Engaged Exploration with Interactive Simulations?</a></span>,
 
-                    <span class="authors">W. K. Adams, A. Paulson and C. E. Wieman</span>,
-                    <span class="publication_name">PERC Proceedings</span>,
-                    <span class="publication_date">2009</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://www.colorado.edu/physics/EducationIssues/Adams_Dissertation.htm">What levels of guidance promote engaged exploration with interactive simulations?</a></span>,
-                    <span class="authors">Adams, W. K., Paulson, A., &amp; Wieman, C. E.</span>,
-                    <span class="publication_name">AIP Conference Proceedings</span>,
-                    <span class="publication_lookup">1064, 59</span>,
-                    <span class="publication_date">2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">W. K. Adams, A. Paulson and C. E. Wieman</span>,
+          <span class="publication_name">PERC Proceedings</span>,
+          <span class="publication_date">2009</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://www.colorado.edu/physics/EducationIssues/Adams_Dissertation.htm">What levels of
+                guidance promote engaged exploration with interactive simulations?</a></span>,
+          <span class="authors">Adams, W. K., Paulson, A., &amp; Wieman, C. E.</span>,
+          <span class="publication_name">AIP Conference Proceedings</span>,
+          <span class="publication_lookup">1064, 59</span>,
+          <span class="publication_date">2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://www.cdjh.hc.edu.tw/PhET2010/publications/Simulation%20Design%20AAPT%2004.pdf">
-                        Research-Based Design Features of Web-based Simulations</a></span>,
+                      Research-Based Design Features of Web-based Simulations</a></span>,
 
-                    <span class="authors">W. K. Adams, N. D. Finkelstein, S. Reid, M. Dubson, N. Podolefsky, C. E. Wieman, R. LeMaster</span>,
-                    <span class="publication_name">Talk presented at AAPT Summer Meeting</span>,
-                    <span class="publication_date">2004</span>.
-                </div>
-            </li>
-        </ul>
+          <span class="authors">W. K. Adams, N. D. Finkelstein, S. Reid, M. Dubson, N. Podolefsky, C. E. Wieman, R. LeMaster</span>,
+          <span class="publication_name">Talk presented at AAPT Summer Meeting</span>,
+          <span class="publication_date">2004</span>.
+        </div>
+      </li>
+    </ul>
 
-        <h3 id="use">
-            <wicket:message key="research.publications.use">Research on in-class use</wicket:message>
-        </h3>
-        <ul class="content-points">
-            <li>
-                <div class="research">
-                    <span class="title">Assessing the implicit scaffolding design framework: Effectiveness of the Build a Molecule simulation</span>,
-
-                    <span class="authors">Emily B. Moore, and Katherine K. Perkins</span>,
-                    <span class="publication_name">NARST 2014: Awakening Dialogues - Advancing Science Education Research Practices and Policies.Proceedings of the National Association for Research in Science Teaching, Annual International Conference. National Association for Research in Science Teaching</span>,
-                    <span class="publication_date">in press</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+    <h3 id="use">
+      <wicket:message key="research.publications.use">
+        Research on in-class use
+      </wicket:message>
+    </h3>
+    <ul class="content-points">
+      <li>
+        <div class="research">
+          <span class="title">Assessing the implicit scaffolding design framework: Effectiveness of the Build a Molecule simulation</span>,
+          <span class="authors">Emily B. Moore, and Katherine K. Perkins</span>,
+          <span class="publication_name">NARST 2014: Awakening Dialogues - Advancing Science Education Research Practices and Policies.Proceedings of the National Association for Research in Science Teaching, Annual International Conference. National Association for Research in Science Teaching</span>,
+          <span class="publication_date">in press</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://jotlt.indiana.edu/article/view/3507">Tools for high-tech tool use: A framework and heuristics for using interactive simulations</a></span>,
 
@@ -365,505 +350,519 @@
             <li>
                 <div class="research">
                     <span class="title"><a rel="external"
-                                           href="http://dx.doi.org/10.1039/C3RP20157K">Interactive simulations as implicit support for guided-inquiry</a></span>,
+                                           href="http://dx.doi.org/10.1039/C3RP20157K">Interactive simulations as implicit support for
+                      guided-inquiry</a></span>,
 
-                    <span class="authors">Moore, E. B., Herzog, T. A., &amp; Perkins, K. K.</span>,
-                    <span class="publication_name">Chemistry Education Research and Practice, 14(3)</span>,
-                    <span class="publication_lookup">257-268</span>,
-                    <span class="publication_date">2013</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Moore, E. B., Herzog, T. A., &amp; Perkins, K. K.</span>,
+          <span class="publication_name">Chemistry Education Research and Practice, 14(3)</span>,
+          <span class="publication_lookup">257-268</span>,
+          <span class="publication_date">2013</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
-                                           href="http://dx.doi.org/10.1063/1.4789713">Affordances of play for student agency and student-centered pedagogy</a></span>,
+                                           href="http://dx.doi.org/10.1063/1.4789713">Affordances of play for student agency and student-centered
+                      pedagogy</a></span>,
 
-                    <span class="authors">Podolefsky, N. S., Rehn, D., &amp; Perkins, K. K. </span>,
-                    <span class="publication_name">American Institute of Physics Conference Series</span>,
-                    <span class="publication_lookup">Vol. 1513, pp. 306-309</span>,
-                    <span class="publication_date">2013</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Podolefsky, N. S., Rehn, D., &amp; Perkins, K. K. </span>,
+          <span class="publication_name">American Institute of Physics Conference Series</span>,
+          <span class="publication_lookup">Vol. 1513, pp. 306-309</span>,
+          <span class="publication_date">2013</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
-                                           href="http://dx.doi.org/10.1063/1.3680053">Towards research-based strategies for using PhET simulations in middle school physical science classes</a></span>,
+                                           href="http://dx.doi.org/10.1063/1.3680053">Towards research-based strategies for using PhET simulations in
+                      middle school physical science classes</a></span>,
 
-                    <span class="authors">Perkins, K., Moore, E., Podolefsky, N., Lancaster, K., &amp; Denison, C.</span>,
-                    <span class="publication_name">2011 PERC Proceedings, AIP Press 1413(1)</span>,
-                    <span class="publication_lookup">295-298</span>,
-                    <span class="publication_date">2012</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Perkins, K., Moore, E., Podolefsky, N., Lancaster, K., &amp; Denison, C.</span>,
+          <span class="publication_name">2011 PERC Proceedings, AIP Press 1413(1)</span>,
+          <span class="publication_lookup">295-298</span>,
+          <span class="publication_date">2012</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1119/1.3361987">
-                        Teaching Physics using PhET Simulations</a></span>,
+                      Teaching Physics using PhET Simulations</a></span>,
 
-                    <span class="authors">C. Wieman, W. Adams, P. Loeblein, and K. Perkins</span>,
-                    <span class="publication_name">The Physics Teacher</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">C. Wieman, W. Adams, P. Loeblein, and K. Perkins</span>,
+          <span class="publication_name">The Physics Teacher</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1119/1.2978181">
-                        A Research-Based Curriculum for Teaching the Photoelectric Effect</a></span>,
+                      A Research-Based Curriculum for Teaching the Photoelectric Effect</a></span>,
 
-                    <span class="authors">S. B. McKagan, W. Handley, K. K. Perkins, and C. E. Wieman</span>,
-                    <span class="publication_name">American Journal of Physics</span>,
-                    <span class="publication_lookup">77, 87</span>,
-                    <span class="publication_date">January 2009</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">S. B. McKagan, W. Handley, K. K. Perkins, and C. E. Wieman</span>,
+          <span class="publication_name">American Journal of Physics</span>,
+          <span class="publication_lookup">77, 87</span>,
+          <span class="publication_date">January 2009</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title">
                         Innovative teaching to promote innovative thinking: How technology can help</span>,
 
-                    <span class="authors">S. B. McKagan, W. Handley, K. K. Perkins, and C. E. Wieman</span>,
-                    <span class="publication_name">Education for Innovation: Implications for India, China, and America, R.L. DaHann and K.M. Narayan (eds), Sense Publishers, The Netherlands</span>,
-                    <span class="publication_date">2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <a href="http://dx.doi.org/10.1063/1.2508707" rel="external"><span class="title">
+          <span class="authors">S. B. McKagan, W. Handley, K. K. Perkins, and C. E. Wieman</span>,
+          <span class="publication_name">Education for Innovation: Implications for India, China, and America, R.L. DaHann and K.M. Narayan (eds), Sense Publishers, The Netherlands</span>,
+          <span class="publication_date">2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+          <a href="http://dx.doi.org/10.1063/1.2508707" rel="external"><span class="title">
                         Assessing the Effectiveness of a Computer Simulation in Introductory Undergraduate Environments</span></a>,
 
-                    <span class="authors">Keller, C. J., Finkelstein, N. D., Perkins, K. K., &amp; Pollock, S. J.</span>,
-                    <span class="publication_name">2006 PERC Proceedings, AIP Conf. Proc. 883, 121</span>,
-                    <span class="publication_date">2007</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title">Assessing the Use of a Computer Simulation in Introductory College Physics Classroom Environments</span>,
+          <span class="authors">Keller, C. J., Finkelstein, N. D., Perkins, K. K., &amp; Pollock, S. J.</span>,
+          <span class="publication_name">2006 PERC Proceedings, AIP Conf. Proc. 883, 121</span>,
+          <span class="publication_date">2007</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+          <span class="title">Assessing the Use of a Computer Simulation in Introductory College Physics Classroom Environments</span>,
 
-                    <span class="authors">Keller, C.</span>,
-                    <span class="publication_name">Master's Thesis, University of Colorado at Boulder</span>,
-                    <span class="publication_date">2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Keller, C.</span>,
+          <span class="publication_name">Master's Thesis, University of Colorado at Boulder</span>,
+          <span class="publication_date">2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1063/1.2177035">
-                        Assessing the effectiveness of a computer simulation in conjunction with Tutorials in
-                        Introductory
-                        Physics in undergraduate physics recitations</a></span>,
+                      Assessing the effectiveness of a computer simulation in conjunction with Tutorials in
+                      Introductory
+                      Physics in undergraduate physics recitations</a></span>,
 
-                    <span class="authors">C. J. Keller, N.D. Finkelstein, K. K. Perkins, and S. J. Pollock</span>,
-                    <span class="publication_name">PERC Proceedings</span>,
-                    <span class="publication_date">2005</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://jolt.merlot.org/vol2no3/finkelstein.htm">High-tech tools for teaching physics: The Physics Education Technology project</a></span>,
+          <span class="authors">C. J. Keller, N.D. Finkelstein, K. K. Perkins, and S. J. Pollock</span>,
+          <span class="publication_name">PERC Proceedings</span>,
+          <span class="publication_date">2005</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://jolt.merlot.org/vol2no3/finkelstein.htm">High-tech tools for teaching physics: The
+                Physics Education Technology project</a></span>,
 
-                    <span class="authors">Finkelstein, N., Adams, W., Keller, C., Perkins, K., &amp; Wieman, C.</span>,
-                    <span class="publication_name">Journal of Online Learning and Teaching, 2(3)</span>,
-                    <span class="publication_date">2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://dx.doi.org/10.1103/PhysRevSTPER.1.010103">When learning about the real world is better done virtually: A study of substituting	computer simulations for laboratory equipment</a></span>,
+          <span class="authors">Finkelstein, N., Adams, W., Keller, C., Perkins, K., &amp; Wieman, C.</span>,
+          <span class="publication_name">Journal of Online Learning and Teaching, 2(3)</span>,
+          <span class="publication_date">2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://dx.doi.org/10.1103/PhysRevSTPER.1.010103">When learning about the real world is
+                better done virtually: A study of substituting computer simulations for laboratory equipment</a></span>,
 
-                    <span class="authors">Finkelstein, N., Adams, W., Keller, C., Kohl, P., Perkins, K., Podolefsky, N., et al.</span>,
-                    <span class="publication_name">Physical Review Special Topics - Physics Education Research, 1(1), 1.010103</span>,
-                    <span class="publication_date">2005</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Finkelstein, N., Adams, W., Keller, C., Kohl, P., Perkins, K., Podolefsky, N., et al.</span>,
+          <span class="publication_name">Physical Review Special Topics - Physics Education Research, 1(1), 1.010103</span>,
+          <span class="publication_date">2005</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1063/1.2084711">
-                        Can Computer Simulations Replace Real Equipment in Undergraduate Laboratories?</a></span>,
+                      Can Computer Simulations Replace Real Equipment in Undergraduate Laboratories?</a></span>,
 
-                    <span class="authors">N. D. Finkelstein, K. K. Perkins, W. Adams, P. Kohl, and N. Podolefsky</span>,
-                    <span class="publication_name">PERC Proceedings</span>,
-                    <span class="publication_date">2005</span>.
-                </div>
-            </li>
-        </ul>
+          <span class="authors">N. D. Finkelstein, K. K. Perkins, W. Adams, P. Kohl, and N. Podolefsky</span>,
+          <span class="publication_name">PERC Proceedings</span>,
+          <span class="publication_date">2005</span>.
+        </div>
+      </li>
+    </ul>
 
-        <h3 id="sims">
-            <wicket:message key="research.publications.sims">About PhET sims</wicket:message>
-        </h3>
-        <ul class="content-points">
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://www.igi-global.com/chapter/phet-interactive-simulations/77480">PhET Interactive Simulations: New Tools to Achieve Common Core Mathematics Standards</a></span>,
+    <h3 id="sims">
+      <wicket:message key="research.publications.sims">About PhET sims</wicket:message>
+    </h3>
+    <ul class="content-points">
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://www.igi-global.com/chapter/phet-interactive-simulations/77480">PhET Interactive
+                Simulations: New Tools to Achieve Common Core Mathematics Standards</a></span>,
 
-                    <span class="authors">Hensberry, K. K. R., Paul, A. J., Moore, E. B., Podolefsky, N. S., Perkins, K. K.</span>,
-                    <span class="publication_name">D. Polly (Ed.) Common Core Mathematics Standards and Implementing Digital Technologies (147-167)</span>,
-                    <span class="publication_lookup">Hershey, PA: IGI Global</span>,
-                    <span class="publication_date">2013</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://www.igi-global.com/chapter/phet-interactive-simulations/77480">Creating effective interactive tools for learning: Insights from the PhET Interactive Simulations Project</a></span>,
+          <span class="authors">Hensberry, K. K. R., Paul, A. J., Moore, E. B., Podolefsky, N. S., Perkins, K. K.</span>,
+          <span class="publication_name">D. Polly (Ed.) Common Core Mathematics Standards and Implementing Digital Technologies (147-167)</span>,
+          <span class="publication_lookup">Hershey, PA: IGI Global</span>,
+          <span class="publication_date">2013</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://www.igi-global.com/chapter/phet-interactive-simulations/77480">Creating effective
+                interactive tools for learning: Insights from the PhET Interactive Simulations Project</a></span>,
 
-                    <span class="authors">Perkins, K. K., Podolefsky, N. S., Lancaster, K., &amp; Moore, E.</span>,
-                    <span class="publication_name">B. Wilson &amp; T. Amiel (Eds.)</span>,
-                    <span class="publication_lookup">pp. 436-441</span>,
-                    <span class="publication_date">2012	</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://dx.doi.org/10.1063/1.3266723">Computer simulations to classrooms: tools for change</a></span>,
+          <span class="authors">Perkins, K. K., Podolefsky, N. S., Lancaster, K., &amp; Moore, E.</span>,
+          <span class="publication_name">B. Wilson &amp; T. Amiel (Eds.)</span>,
+          <span class="publication_lookup">pp. 436-441</span>,
+          <span class="publication_date">2012   </span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://dx.doi.org/10.1063/1.3266723">Computer simulations to classrooms: tools for
+                change</a></span>,
 
-                    <span class="authors">Podolefsky, N. S., Perkins, K. K., &amp; Adams, W. K.</span>,
-                    <span class="publication_name">Proceedings of the 2009 Physics Education Research Conference</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Podolefsky, N. S., Perkins, K. K., &amp; Adams, W. K.</span>,
+          <span class="publication_name">Proceedings of the 2009 Physics Education Research Conference</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1117/12.862030">
-                        An interactive optical tweezer simulation for science education</a></span>,
+                      An interactive optical tweezer simulation for science education</a></span>,
 
                     <span class="authors">
                         T. T. Perkins, C. V. Malley, M. Dubson, and K. K. Perkins
                     </span>,
-                    <span class="publication_name">Proc. of SPIE Vol. 7762</span>,
-                    <span class="publication_lookup">776215</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://learningcenter.nsta.org/product_detail.aspx?id=10.2505/4/tst10_077_07_46">Sims for science: Powerful tools to support inquiry-based teaching</a></span>,
+          <span class="publication_name">Proc. of SPIE Vol. 7762</span>,
+          <span class="publication_lookup">776215</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://learningcenter.nsta.org/product_detail.aspx?id=10.2505/4/tst10_077_07_46">Sims for
+                science: Powerful tools to support inquiry-based teaching</a></span>,
 
-                    <span class="authors">Perkins, K. K., Loeblein, P. J., &amp; Dessau, K. L.</span>,
-                    <span class="publication_name">Science Teacher, 77(7)</span>,
-                    <span class="publication_lookup">46-51</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://www.ccce.divched.org/">PhET Interactive Simulations: New tools for teaching and learning chemistry</a></span>,
+          <span class="authors">Perkins, K. K., Loeblein, P. J., &amp; Dessau, K. L.</span>,
+          <span class="publication_name">Science Teacher, 77(7)</span>,
+          <span class="publication_lookup">46-51</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://www.ccce.divched.org/">PhET Interactive Simulations: New tools for teaching and
+                learning chemistry</a></span>,
 
-                    <span class="authors">Perkins, K. K., Lancaster, K., Loeblein, P. J., Parson, R., &amp; Podolefsky, N. S.</span>,
-                    <span class="publication_name">Newsletter: Using Computers in Chemical Education</span>,
-                    <span class="publication_lookup">1-8</span>,
-                    <span class="publication_date">2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Perkins, K. K., Lancaster, K., Loeblein, P. J., Parson, R., &amp; Podolefsky, N. S.</span>,
+          <span class="publication_name">Newsletter: Using Computers in Chemical Education</span>,
+          <span class="publication_lookup">1-8</span>,
+          <span class="publication_date">2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1007/s10956-010-9275-y">
-                        Making On-Line Science Course Materials Easily Translatable and Accessible WorldWide: Challenges
-                        and
-                        Solutions</a></span>,
+                      Making On-Line Science Course Materials Easily Translatable and Accessible WorldWide: Challenges
+                      and
+                      Solutions</a></span>,
 
                     <span class="authors">
                         W. K. Adams, H. Alhadlaq, C. V. Malley, K. K. Perkins, J. B. Olson, F Alshaya,
                         S. Alabdulkareem, C. E. Wieman
                     </span>,
-                    <span class="publication_name">Il Nuovo Cimento C: Multimedia in Physics Teaching and Learning - MPTL14, Vol 33, no. 3, pp. 113-119</span>,
-                    <span class="publication_date">2009</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+              <span
+                  class="publication_name">Il Nuovo Cimento C: Multimedia in Physics Teaching and Learning - MPTL14, Vol 33, no. 3, pp. 113-119</span>,
+          <span class="publication_date">2009</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1119/1.3274368">
-                        Laptops and Diesel Generators: Introducing PhET Simulations to Teachers in Uganda</a></span>,
+                      Laptops and Diesel Generators: Introducing PhET Simulations to Teachers in Uganda</a></span>,
 
-                    <span class="authors">Sam McKagan</span>,
-                    <span class="publication_name">The Physics Teacher</span>,
-                    <span class="publication_lookup">48, 63-66</span>,
-                    <span class="publication_date">January 2010</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title">Student Choices when Learning with Computer Simulations</span>,
+          <span class="authors">Sam McKagan</span>,
+          <span class="publication_name">The Physics Teacher</span>,
+          <span class="publication_lookup">48, 63-66</span>,
+          <span class="publication_date">January 2010</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+          <span class="title">Student Choices when Learning with Computer Simulations</span>,
 
-                    <span class="authors">Podolefsky, N. S., Adams, W. K., &amp; Wieman, C. E.</span>,
-                    <span class="publication_name">Proceedings of the 2009 Physics Education Research Conference</span>,
-                    <span class="publication_date">2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Podolefsky, N. S., Adams, W. K., &amp; Wieman, C. E.</span>,
+          <span class="publication_name">Proceedings of the 2009 Physics Education Research Conference</span>,
+          <span class="publication_date">2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1126/science.1161948">
-                        PhET: Simulations That Enhance Learning</a></span>,
+                      PhET: Simulations That Enhance Learning</a></span>,
 
-                    <span class="authors">C.E. Wieman, W.K. Adams, K.K. Perkins</span>,
-                    <span class="publication_name">Science</span>,
-                    <span class="publication_lookup"> 322/682-683 </span>,
-                    <span class="publication_date">October 2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">C.E. Wieman, W.K. Adams, K.K. Perkins</span>,
+          <span class="publication_name">Science</span>,
+          <span class="publication_lookup"> 322/682-683 </span>,
+          <span class="publication_date">October 2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1119/1.2815365">
-                        Oersted Medal Lecture 2007: Interactive simulations for teaching physics: What works, what
-                        doesn't, and
-                        why</a></span>,
+                      Oersted Medal Lecture 2007: Interactive simulations for teaching physics: What works, what
+                      doesn't, and
+                      why</a></span>,
 
-                    <span class="authors">C.E. Wieman, K.K. Perkins, W.K. Adams</span>,
-                    <span class="publication_name">American Journal of Physics</span>,
-                    <span class="publication_lookup"> 76, 393 </span>,
-                    <span class="publication_date">May 2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">C.E. Wieman, K.K. Perkins, W.K. Adams</span>,
+          <span class="publication_name">American Journal of Physics</span>,
+          <span class="publication_lookup"> 76, 393 </span>,
+          <span class="publication_date">May 2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1007/s10956-010-9275-y">
-                        Making Science Simulations and Websites Easily Translatable and Available Worldwide: Challenges
-                        and Solutions</a></span>,
+                      Making Science Simulations and Websites Easily Translatable and Available Worldwide: Challenges
+                      and Solutions</a></span>,
 
                     <span class="authors">
                         W. K. Adams, H. Alhadlaq, C. V. Malley, K. K. Perkins, J. B. Olson, F. Alshaya, S. Alabdulkareem, and C. E. Wieman
                     </span>,
-                    <span class="publication_name">Journal of Science Education and Technology</span>,
-                    <span class="publication_lookup">accepted</span>,
-                    <span class="publication_date">2010 online; 2012 in print</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="publication_name">Journal of Science Education and Technology</span>,
+          <span class="publication_lookup">accepted</span>,
+          <span class="publication_date">2010 online; 2012 in print</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1038/nphys283">
-                        A Powerful Tool For Teaching Science</a></span>,
+                      A Powerful Tool For Teaching Science</a></span>,
 
-                    <span class="authors">C. E. Wieman and K. K. Perkins</span>,
-                    <span class="publication_name">Nature Physics</span>,
-                    <span class="publication_lookup"> p. 290-292 </span>,
-                    <span class="publication_date">May 2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">C. E. Wieman and K. K. Perkins</span>,
+          <span class="publication_name">Nature Physics</span>,
+          <span class="publication_lookup"> p. 290-292 </span>,
+          <span class="publication_date">May 2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1119/1.2150754">
-                        PhET: Interactive Simulations for Teaching and Learning Physics</a></span>,
+                      PhET: Interactive Simulations for Teaching and Learning Physics</a></span>,
 
                     <span class="authors">
                         Katherine Perkins, Wendy Adams, Michael Dubson, Noah Finkelstein, Sam Reid, Carl Wieman, Ron LeMaster
                     </span>,
-                    <span class="publication_name">The Physics Teacher</span>,
-                    <span class="publication_lookup"> 44(1), 18 </span>,
-                    <span class="publication_date">2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="publication_name">The Physics Teacher</span>,
+          <span class="publication_lookup"> 44(1), 18 </span>,
+          <span class="publication_date">2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1063/1.2155756">
-                        Transforming Physics Education</a></span>,
+                      Transforming Physics Education</a></span>,
 
-                    <span class="authors">C. E. Wieman and K. K. Perkins</span>,
-                    <span class="publication_name">Physics Today</span>,
-                    <span class="publication_date">November 2005</span>.
+          <span class="authors">C. E. Wieman and K. K. Perkins</span>,
+          <span class="publication_name">Physics Today</span>,
+          <span class="publication_date">November 2005</span>.
                     <span class="publication_pdflink">
                         (<a href="/publications/PhysicsTodayFinal.pdf">pdf</a>)
                     </span>
-                </div>
-            </li>
-            <li>
-                <div class="research">
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://www.iop.org/EJ/article/0031-9120/40/1/M04/pe5_1_m04.pdf">
-                        Free On-line Resource Connects Real-life Phenomena to Science</a></span>,
+                      Free On-line Resource Connects Real-life Phenomena to Science</a></span>,
 
-                    <span class="authors">K. K. Perkins and C. E. Wieman</span>,
-                    <span class="publication_name">Physics Education</span>,
-                    <span class="publication_lookup">p. 93-95</span>,
-                    <span class="publication_date">January 2005</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">K. K. Perkins and C. E. Wieman</span>,
+          <span class="publication_name">Physics Education</span>,
+          <span class="publication_lookup">p. 93-95</span>,
+          <span class="publication_date">January 2005</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="/publications/phet_aapt_04.pdf">
-                        The Physics Education Technology Project: A New Suite of Physics Simulations</a></span>,
+                      The Physics Education Technology Project: A New Suite of Physics Simulations</a></span>,
 
-                    <span class="authors">K. K. Perkins, W. K. Adams, N. Finkelstein, R. LeMaster, S. Reid, M. Dubson, N. Podolefsky, K. Beck and C. Wieman</span>,
-                    <span class="publication_name">Poster Presented at AAPT Summer Meeting</span>,
-                    <span class="publication_date">2004</span>.
-                </div>
+              <span
+                  class="authors">K. K. Perkins, W. K. Adams, N. Finkelstein, R. LeMaster, S. Reid, M. Dubson, N. Podolefsky, K. Beck and C. Wieman</span>,
+          <span class="publication_name">Poster Presented at AAPT Summer Meeting</span>,
+          <span class="publication_date">2004</span>.
+        </div>
 
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title">Incorporating Simulations in the classroom-A survey of Research Results from the Physics Education Technology Project</span>,
+      </li>
+      <li>
+        <div class="research">
+          <span class="title">Incorporating Simulations in the classroom-A survey of Research Results from the Physics Education Technology Project</span>,
 
-                    <span class="authors">Perkins, K. K., Adams, W. K., Finkelstein, N. D., Dubson, M., Reid, S., LeMaster, R., &amp; Wieman, C. E.</span>,
-                    <span class="publication_name">Talk presented at the American Association of Physics Teachers Summer Meeting</span>,
-                    <span class="publication_date">2004</span>.
-                </div>
-            </li>
-        </ul>
+          <span class="authors">Perkins, K. K., Adams, W. K., Finkelstein, N. D., Dubson, M., Reid, S., LeMaster, R., &amp; Wieman, C. E.</span>,
+          <span class="publication_name">Talk presented at the American Association of Physics Teachers Summer Meeting</span>,
+          <span class="publication_date">2004</span>.
+        </div>
+      </li>
+    </ul>
 
-        <h3 id="perceptions">
-            <wicket:message key="research.publications.perceptions">Students Perceptions About Learning</wicket:message>
-        </h3>
-        <ul class="content-points">
-            <li>
-                <div class="research">
+    <h3 id="perceptions">
+      <wicket:message key="research.publications.perceptions">Students Perceptions About Learning</wicket:message>
+    </h3>
+    <ul class="content-points">
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1103/PhysRevSTPER.4.020103">
-                        A deeper look at student learning of quantum mechanics: the case of tunneling</a></span>,
+                      A deeper look at student learning of quantum mechanics: the case of tunneling</a></span>,
 
-                    <span class="authors">S. B. McKagan, K. K. Perkins, and C. E. Wieman</span>,
-                    <span class="publication_name">Physical Review Special Topics: PER</span>,
-                    <span class="publication_lookup"> 4, 020103 </span>,
-                    <span class="publication_date">October 2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">S. B. McKagan, K. K. Perkins, and C. E. Wieman</span>,
+          <span class="publication_name">Physical Review Special Topics: PER</span>,
+          <span class="publication_lookup"> 4, 020103 </span>,
+          <span class="publication_date">October 2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1103/PhysRevSTPER.4.010103">
-                        Why we should teach the Bohr model and how to teach it effectively</a></span>,
+                      Why we should teach the Bohr model and how to teach it effectively</a></span>,
 
-                    <span class="authors">S. B. McKagan, K. K. Perkins, and C. E. Wieman</span>,
-                    <span class="publication_name">Physical Review Special Topics: PER</span>,
-                    <span class="publication_lookup"> 4, 010103 </span>,
-                    <span class="publication_date">March 2008</span>.
-                </div>
+          <span class="authors">S. B. McKagan, K. K. Perkins, and C. E. Wieman</span>,
+          <span class="publication_name">Physical Review Special Topics: PER</span>,
+          <span class="publication_lookup"> 4, 010103 </span>,
+          <span class="publication_date">March 2008</span>.
+        </div>
 
-            </li>
-            <li>
-                <div class="research">
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1103/PhysRevSTPER.4.020106">
-                        Students know what physicists believe, but they don't agree: A study using the CLASS survey</a></span>,
+                      Students know what physicists believe, but they don't agree: A study using the CLASS survey</a></span>,
 
-                    <span class="authors">Kara E. Gray, Wendy K. Adams, Carl E. Wieman, and Katherine K. Perkins</span>,
-                    <span class="publication_name">Physical Review Special Topics</span>,
-                    <span class="publication_date">November 2008</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Kara E. Gray, Wendy K. Adams, Carl E. Wieman, and Katherine K. Perkins</span>,
+          <span class="publication_name">Physical Review Special Topics</span>,
+          <span class="publication_date">November 2008</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1063/1.2508685">
-                        Reforming a large lecture modern physics course for engineering majors using a PER-based design</a></span>,
+                      Reforming a large lecture modern physics course for engineering majors using a PER-based design</a></span>,
 
-                    <span class="authors">S. B. McKagan, K. K. Perkins, and C. E. Wieman</span>,
-                    <span class="publication_name">Proceedings of the 2006 Physics Education Research Conference, Vol. 883, pp. 34-37</span>,
-                    <span class="publication_date">2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">S. B. McKagan, K. K. Perkins, and C. E. Wieman</span>,
+          <span class="publication_name">Proceedings of the 2006 Physics Education Research Conference, Vol. 883, pp. 34-37</span>,
+          <span class="publication_date">2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external"
                                            href="http://dx.doi.org/10.1103/PhysRevSTPER.2.010101">
-                        A new instrument for measuring student beliefs about physics and learning physics: the Colorado
-                        Learning
-                        Attitudes about Science Survey</a></span>,
+                      A new instrument for measuring student beliefs about physics and learning physics: the Colorado
+                      Learning
+                      Attitudes about Science Survey</a></span>,
 
-                    <span class="authors">W. K. Adams, K. K. Perkins, N. Podolefsky, M. Dubson, N. D. Finkelstein and C. E. Wieman</span>,
-                    <span class="publication_name">Phys. Rev. ST Phys. Educ. Res. 2, 010101</span>,
-                    <span class="publication_date">2006</span>.
-                </div>
+          <span class="authors">W. K. Adams, K. K. Perkins, N. Podolefsky, M. Dubson, N. D. Finkelstein and C. E. Wieman</span>,
+          <span class="publication_name">Phys. Rev. ST Phys. Educ. Res. 2, 010101</span>,
+          <span class="publication_date">2006</span>.
+        </div>
 
-            </li>
-            <li>
-                <div class="research">
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1063/1.2177042">
-                        Towards characterizing the relationship between students' interest in and their beliefs about
-                        physics</a></span>,
+                      Towards characterizing the relationship between students' interest in and their beliefs about
+                      physics</a></span>,
 
-                    <span class="authors">K.K. Perkins, M.M. Gratny, W.K. Adams, N.D. Finkelstein and C.E. Wieman</span>,
-                    <span class="publication_name">AIP Conference Proceedings, Vol. 818, p. 137</span>,
-                    <span class="publication_date">2005</span>.
-                </div>
+          <span class="authors">K.K. Perkins, M.M. Gratny, W.K. Adams, N.D. Finkelstein and C.E. Wieman</span>,
+          <span class="publication_name">AIP Conference Proceedings, Vol. 818, p. 137</span>,
+          <span class="publication_date">2005</span>.
+        </div>
 
-            </li>
-            <li>
-                <div class="research">
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1063/1.2084697">
-                        The Design and Validation of the Colorado Learning Attitudes about Science Survey</a></span>,
+                      The Design and Validation of the Colorado Learning Attitudes about Science Survey</a></span>,
 
-                    <span class="authors">W. K. Adams, K. K. Perkins, M. Dubson, N. D. Finkelstein and C. E. Wieman</span>,
-                    <span class="publication_name">2004 Physics Education Research Conference, Vol. 790, pp.45-48</span>,
-                    <span class="publication_date">2004</span>.
-                </div>
+          <span class="authors">W. K. Adams, K. K. Perkins, M. Dubson, N. D. Finkelstein and C. E. Wieman</span>,
+          <span class="publication_name">2004 Physics Education Research Conference, Vol. 790, pp.45-48</span>,
+          <span class="publication_date">2004</span>.
+        </div>
 
-            </li>
-            <li>
-                <div class="research">
+      </li>
+      <li>
+        <div class="research">
                     <span class="title"><a rel="external" href="http://dx.doi.org/10.1063/1.2084701">
-                        Correlating Student Beliefs With Student Learning Using The Colorado Learning Attitudes about
-                        Science
-                        Survey</a></span>,
+                      Correlating Student Beliefs With Student Learning Using The Colorado Learning Attitudes about
+                      Science
+                      Survey</a></span>,
 
-                    <span class="authors">K. K. Perkins, W. K. Adams, N. D. Finkelstein, S. J. Pollock, and C. E. Wieman</span>,
-                    <span class="publication_name">AIP Conference Proceedings (Vol. 790, p. 61). IOP INSTITUTE OF PHYSICS PUBLISHING LTD</span>,
-                    <span class="publication_date">2004</span>.
-                </div>
-            </li>
-        </ul>
+          <span class="authors">K. K. Perkins, W. K. Adams, N. D. Finkelstein, S. J. Pollock, and C. E. Wieman</span>,
+          <span class="publication_name">AIP Conference Proceedings (Vol. 790, p. 61). IOP INSTITUTE OF PHYSICS PUBLISHING LTD</span>,
+          <span class="publication_date">2004</span>.
+        </div>
+      </li>
+    </ul>
 
-        <h3 id="other">
-            <wicket:message key="research.publications.other">Other Work by PhET Researchers</wicket:message>
-        </h3>
-        <ul class="content-points">
-            <li>
-                <div class="research">
+    <h3 id="other">
+      <wicket:message key="research.publications.other">Other Work by PhET Researchers</wicket:message>
+    </h3>
+    <ul class="content-points">
+      <li>
+        <div class="research">
                 <span class="title"><a rel="external"
                                        href="http://dx.doi.org/10.1063/1.3680054">
-                    Context dependence of teacher practices in middle school science (pp. 299-302)</a></span>,
+                  Context dependence of teacher practices in middle school science (pp. 299-302)</a></span>,
 
-                    <span class="authors">Podolefsky, N. S., &amp; Perkins, K. K.</span>,
-                    <span class="publication_name">Proceedings of the 2011 Physics Education Research Conference. AIP Conference Proceedings, 1413(1), 299-302</span>,
-                    <span class="publication_date">2012</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">Podolefsky, N. S., &amp; Perkins, K. K.</span>,
+          <span class="publication_name">Proceedings of the 2011 Physics Education Research Conference. AIP Conference Proceedings, 1413(1), 299-302</span>,
+          <span class="publication_date">2012</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                 <span class="title"><a rel="external"
                                        href="http://arxiv.org/abs/physics/0608244">
-                    Exploring Student Understanding of Energy through the Quantum Mechanics Conceptual Survey</a></span>,
+                  Exploring Student Understanding of Energy through the Quantum Mechanics Conceptual Survey</a></span>,
 
-                    <span class="authors">S. B. McKagan and C. E. Wieman</span>,
-                    <span class="publication_name">PERC Proceedings 2005</span>,
-                    <span class="publication_date">2006</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">S. B. McKagan and C. E. Wieman</span>,
+          <span class="publication_name">PERC Proceedings 2005</span>,
+          <span class="publication_date">2006</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                 <span class="title"><a rel="external"
                                        href="http://dx.doi.org/10.1119/1.1845987">
-                    The surprising impact of seat location on student performance
+                  The surprising impact of seat location on student performance
                 </a></span>,
 
-                    <span class="authors">K. K. Perkins and C. E. Wieman</span>,
-                    <span class="publication_name">The Physics Teacher</span>,
-                    <span class="publication_lookup"> 43, p. 30-33 </span>,
-                    <span class="publication_date">2005</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
-                    <span class="title"><a rel="external" href="http://dx.doi.org/10.1119/1.1888096">Minimize Your Mistakes by Learning from Those of Others</a></span>,
+          <span class="authors">K. K. Perkins and C. E. Wieman</span>,
+          <span class="publication_name">The Physics Teacher</span>,
+          <span class="publication_lookup"> 43, p. 30-33 </span>,
+          <span class="publication_date">2005</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
+              <span class="title"><a rel="external" href="http://dx.doi.org/10.1119/1.1888096">Minimize Your Mistakes by Learning from Those of
+                Others</a></span>,
 
-                    <span class="authors">C. E. Wieman</span>,
-                    <span class="publication_name">The Physics Teacher</span>,
-                    <span class="publication_lookup"> 43, 30 </span>,
-                    <span class="publication_date">2005</span>.
-                </div>
-            </li>
-            <li>
-                <div class="research">
+          <span class="authors">C. E. Wieman</span>,
+          <span class="publication_name">The Physics Teacher</span>,
+          <span class="publication_lookup"> 43, 30 </span>,
+          <span class="publication_date">2005</span>.
+        </div>
+      </li>
+      <li>
+        <div class="research">
                 <span class="title"><a rel="external" href="/publications/Dubson-AAPT-2004.pdf">
-                    Should a Fortran-savvy educator learn Java, Flash, both, or neither?</a></span>,
+                  Should a Fortran-savvy educator learn Java, Flash, both, or neither?</a></span>,
 
-                    <span class="authors">M. Dubson</span>,
-                    <span class="publication_name">Talk presented at AAPT Summer Meeting</span>,
-                    <span class="publication_date">2004</span>.
-                </div>
-            </li>
-        </ul>
+          <span class="authors">M. Dubson</span>,
+          <span class="publication_name">Talk presented at AAPT Summer Meeting</span>,
+          <span class="publication_date">2004</span>.
+        </div>
+      </li>
+    </ul>
 
-    </div>
+  </div>
+
 </wicket:panel>
 </body>
 </html>

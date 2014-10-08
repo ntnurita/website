@@ -36,11 +36,19 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
+import edu.colorado.phet.website.content.about.AboutTeamPanel;
 import edu.colorado.phet.website.content.about.HTMLLicensingPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPanel;
 import edu.colorado.phet.website.content.contribution.ContributionManagePage;
+import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
+import edu.colorado.phet.website.content.forteachers.ClickersPanel;
+import edu.colorado.phet.website.content.forteachers.LectureDemoPanel;
+import edu.colorado.phet.website.content.forteachers.LectureOverviewPanel;
+import edu.colorado.phet.website.content.forteachers.PlanningPanel;
+import edu.colorado.phet.website.content.forteachers.TipsPanel;
+import edu.colorado.phet.website.content.forteachers.VirtualWorkshopPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
@@ -52,10 +60,12 @@ import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMacPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMobilePanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingWindowsPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
+import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.util.AbstractCategoryListener;
@@ -107,21 +117,34 @@ public class NavMenu implements Serializable {
         addMajorLocation( simulations );
 
         NavLocation forTeachers = new NavLocation( null, "teacherIdeas", TeacherIdeasPanel.getLinker() ) {{
-            NavLocation teacherIdeasBrowse = new NavLocation( this, "teacherIdeas.browse", ContributionBrowsePage.getLinker() );
-            addLocation( teacherIdeasBrowse );
-            addChild( teacherIdeasBrowse );
+            // Nav Locations
 
-            NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
-            addLocation( workshops );
-            addChild( workshops );
+            // Planning to Use PhET
+            NavLocation planningPanel = new NavLocation( this, "forTeachers.planningToUsePhet", PlanningPanel.getLinker() );
+            addLocation(planningPanel);
 
-            NavLocation teacherIdeasSubmit = new NavLocation( this, "teacherIdeas.submit", ContributionCreatePage.getLinker() );
-            addLocation( teacherIdeasSubmit );
-            addChild( teacherIdeasSubmit );
+            // Using PhET in Lecture
+            NavLocation usingPhetInLecturePanel = new NavLocation( this, "forTeachers.usingPhetInLecture", LectureOverviewPanel.getLinker() );
+            addLocation(usingPhetInLecturePanel);
 
-            NavLocation teacherIdeasManage = new NavLocation( this, "teacherIdeas.manage", ContributionManagePage.getLinker() );
-            addLocation( teacherIdeasManage );
-            addChild( teacherIdeasManage );
+            // PhET as an (Interactive) Lecture Demonstration
+            NavLocation lectureDemoPanel = new NavLocation( this, "forTeachers.lectureDemo", LectureDemoPanel.getLinker() );
+            addLocation(lectureDemoPanel);
+
+            // Using PhET with Clickers and Peer Instruction
+            NavLocation clickersDemoPanel = new NavLocation( this, "forTeachers.clickersDemo", ClickersPanel.getLinker() );
+            addLocation(clickersDemoPanel);
+
+            // Designing Effective Activities for use in K12
+            NavLocation activitiesDesignPanel = new NavLocation( this, "forTeachers.activitesDesign", ActivitiesdesignPanel.getLinker() );
+            addLocation(activitiesDesignPanel);
+
+            // Take a Virtual PhET Workshop
+            NavLocation virtualWorkshopPanel = new NavLocation( this, "forTeachers.virtualWorkshop", VirtualWorkshopPanel.getLinker() );
+            addLocation(virtualWorkshopPanel);
+
+            NavLocation exampleWorkshops = new NavLocation( this, "exampleworkshops", ExampleWorkshopsPanel.getLinker() );
+            addLocation(exampleWorkshops);
 
             NavLocation teacherIdeasEdit = new NavLocation( this, "teacherIdeas.edit", ContributionBrowsePage.getLinker() );
             addLocation( teacherIdeasEdit );
@@ -131,11 +154,38 @@ public class NavMenu implements Serializable {
 
             NavLocation aboutLegend = new NavLocation( this, "about.legend", AboutLegendPanel.getLinker() );
             addLocation( aboutLegend );
-            addChild( aboutLegend );
+//            addChild( aboutLegend );
 
             // orphan!
             NavLocation classroomUse = new NavLocation( this, "for-teachers.classroom-use", ClassroomUsePanel.getLinker() );
             addLocation( classroomUse );
+
+            // Nav Locations with addChild - this determines order or links appearing in sidebar
+
+            // Tips for Using PhET
+            NavLocation tipsForUsingPhetPanel = new NavLocation( this, "forTeachers.tipsForUsingPhet", TipsPanel.getLinker() );
+            addLocation( tipsForUsingPhetPanel );
+            addChild( tipsForUsingPhetPanel );
+
+            // Browse Activities
+            NavLocation teacherIdeasBrowse = new NavLocation( this, "teacherIdeas.browse", ContributionBrowsePage.getLinker() );
+            addLocation( teacherIdeasBrowse );
+            addChild( teacherIdeasBrowse );
+
+            // Submit an Activity
+            NavLocation teacherIdeasSubmit = new NavLocation( this, "teacherIdeas.submit", ContributionCreatePage.getLinker() );
+            addLocation( teacherIdeasSubmit );
+            addChild( teacherIdeasSubmit );
+
+            // My Activities
+            NavLocation teacherIdeasManage = new NavLocation( this, "teacherIdeas.manage", ContributionManagePage.getLinker() );
+            addLocation( teacherIdeasManage );
+            addChild( teacherIdeasManage );
+
+            // Workshops
+            NavLocation workshops = new NavLocation( this, "workshops", WorkshopsPanel.getLinker() );
+            addLocation( workshops );
+            addChild( workshops );
         }};
         addMajorLocation( forTeachers );
 
@@ -196,6 +246,10 @@ public class NavMenu implements Serializable {
         NavLocation about = new NavLocation( null, "about", AboutMainPanel.getLinker() );
         addMajorLocation( about );
 
+        NavLocation aboutTeam = new NavLocation( about, "about.team", AboutTeamPanel.getLinker() );
+        addLocation( aboutTeam );
+        about.addChild( aboutTeam );
+        
         NavLocation aboutSourceCode = new NavLocation( about, "about.source-code", AboutSourceCodePanel.getLinker() );
         addLocation( aboutSourceCode );
         about.addChild( aboutSourceCode );
