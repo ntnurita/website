@@ -122,6 +122,9 @@ public class Simulation implements Serializable, IntId {
      */
     public String getThumbnailUrl() {
         // NOTE: this is relied upon to be relative!
+        if ( isHTML() ) {
+            return "/sims/" + getProject().getName() + "/" + getProject().getVersionString() + "/" + getName() + "-128.png";
+        }
 
         // improved-quality PNG version of the thumbnail
         String pngUrl = "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.png";
