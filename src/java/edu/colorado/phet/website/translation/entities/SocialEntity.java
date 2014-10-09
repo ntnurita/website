@@ -20,6 +20,7 @@ public class SocialEntity extends TranslationEntity {
         addString( "social.digg.tooltip" );
         addString( "social.reddit.tooltip" );
         addString( "social.delicious.tooltip" );
+        addString( "social.youtube.tooltip" );
 
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
