@@ -20,178 +20,135 @@ public class StringChanges {
 
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
-        StringUtils.deleteString( session, "clickersDemo" );
-        StringUtils.deleteString( session,"lectureDemo");
-        StringUtils.deleteString( session, "nav.clickersDemo" );
-        StringUtils.deleteString( session,"nav.lectureDemo");
-        StringUtils.deleteString( session, "nav.clickersDemo.title" );
-        StringUtils.deleteString( session,"nav.lectureDemo.title");
-        StringUtils.deleteString( session, "clickersDemo.title" );
-        StringUtils.deleteString( session,"lectureDemo.title");
 
-        StringUtils.deleteString( session, "nav.workshopFacilitatorsGuide" );
-        StringUtils.deleteString( session, "nav.tipsForUsingPhet" );
-        StringUtils.deleteString( session, "nav.planningToUsePhet" );
-        StringUtils.deleteString( session, "nav.usingPhetInLecture" );
-        StringUtils.deleteString( session, "nav.lectureDemo" );
-        StringUtils.deleteString( session, "nav.clickersDemo" );
-        StringUtils.deleteString( session, "nav.activitesDesign" );
-        StringUtils.deleteString( session, "nav.virtualWorkshop" );
+        StringUtils.addString( session, "troubleshooting.mac.q1.title", "When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says " +
 
-        StringUtils.addString( session, "nav.forTeachers.workshopFacilitatorsGuide", "PhET Workshop Facilitators Guide");
-        StringUtils.addString( session, "nav.forTeachers.tipsForUsingPhet", "Tips for Using PhET" );
-        StringUtils.addString( session, "nav.forTeachers.planningToUsePhet", "Planning to Use PhET" );
-        StringUtils.addString( session, "nav.forTeachers.usingPhetInLecture", "Using PhET in Lecture" );
-        StringUtils.addString( session, "nav.forTeachers.lectureDemo", " Interactive Lecture Demonstrations" );
-        StringUtils.addString( session, "nav.forTeachers.clickersDemo", "Using PhET with Clickers" );
-        StringUtils.addString( session, "nav.forTeachers.activitesDesign", "Designing Effective Activities for use in K12" );
-        StringUtils.addString( session, "nav.forTeachers.virtualWorkshop", "Take a Virtual PhET Workshop" );
+                                                                         "(or something similar). What does this mean?" );
+        StringUtils.addString( session, "troubleshooting.mac.q2.title", "When I click \"run now\" to start the simulation all I get is a text file that opens?" );
+        StringUtils.addString( session, "troubleshooting.mac.q3.title", "Why is a simulation with 3D graphics not launching / displaying correctly?" );
+        StringUtils.addString( session, "troubleshooting.mac.q4.title", "When I open 'Molecule Shapes', 'Plate Tectonics', or 'Molecule Shapes: Basics', I get a dialog saying " +
+                                                                        "\"This simulation was unable to start.\"" );
+        StringUtils.addString( session, "troubleshooting.mac.q5.title", "When I open a Java sim I get a dialog saying the sim \"can't be opened because it is from an unidentified developer.\"" );
+        StringUtils.addString( session, "troubleshooting.mac.q6.title", "When I click 'Run Now' from a sim page, nothing happens!" );
 
-        StringUtils.deleteString( session, "nav.workshopFacilitatorsGuide.title" );
-        StringUtils.deleteString( session, "nav.tipsForUsingPhet.title" );
-        StringUtils.deleteString( session, "nav.planningToUsePhet.title" );
-        StringUtils.deleteString( session, "nav.usingPhetInLecture.title" );
-        StringUtils.deleteString( session, "nav.lectureDemo.title" );
-        StringUtils.deleteString( session, "nav.clickersDemo.title" );
-        StringUtils.deleteString( session, "nav.activitesDesign.title" );
-        StringUtils.deleteString( session, "nav.virtualWorkshop.title" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q1.answer" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q2.answer" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q3.answer" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q4.answer" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q5.answer" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q6.answer.firefox" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q6.answer.chrome" );
+        StringUtils.deleteString( session, "troubleshooting.mac.q6.answer.safari" );
 
-        StringUtils.deleteString( session, "nav.forTeachers.workshopFacilitatorsGuide.title");
-        StringUtils.deleteString( session, "nav.forTeachers.tipsForUsingPhet.title" );
-        StringUtils.deleteString( session, "nav.forTeachers.planningToUsePhet.title" );
-        StringUtils.deleteString( session, "nav.forTeachers.usingPhetInLecture.title" );
-        StringUtils.deleteString( session, "nav.forTeachers.lectureDemo.title" );
-        StringUtils.deleteString( session, "nav.forTeachers.clickersDemo.title" );
-        StringUtils.deleteString( session, "nav.forTeachers.activitesDesign.title" );
-        StringUtils.deleteString( session, "nav.forTeachers.virtualWorkshop.title" );
+        StringUtils.addString( session, "troubleshooting.mac.q1.answer", "<p> " +
+                                                                        "The PhET simulations that are distributed with the installer include a \"digital certificate\" that verifies that " +
+                                                                        "these simulations were actually created by PhET. This is a security measure that helps to prevent an unscrupulous " +
+                                                                        "individual from creating applications that claim to be produced by PhET but are not. If the certificate acceptance " +
+                                                                        "dialog says that the publisher is \"PhET, University of Colorado\", and the dialog also says that the signature was " +
+                                                                        "validated by a trusted source, you can have a high degree of confidence that the application was produced by the " +
+                                                                        "PhET team. " +
+                                                                        "</p> " +
+                                                                        "<p> " +
+                                                                        "On most systems, it is possible to permanently accept the PhET certificate and thereby prevent this dialog from " +
+                                                                        "appearing each time a simulation is run locally. Most Windows and Max OSX systems have a check box on the certificate " +
+                                                                        "acceptance dialog that says \"Always trust content from this publisher\". Checking this box will configure your system " +
+                                                                        "in such a way that the dialog will no longer appear when starting up PhET simulations. " +
+                                                                        "</p>" );
 
-        // remove un-prefixed for-teachers strings
-        StringUtils.deleteString( session, "workshopFacilitatorsGuide.title" );
-        StringUtils.deleteString( session, "tipsForUsingPhet.title" );
-        StringUtils.deleteString( session, "planningToUsePhet.title" );
-        StringUtils.deleteString( session, "usingPhetInLecture.title" );
-        StringUtils.deleteString( session, "lectureDemo.title" );
-        StringUtils.deleteString( session, "clickersDemo.title" );
-        StringUtils.deleteString( session, "activitesDesign.title" );
-        StringUtils.deleteString( session, "virtualWorkshop.title" );
+        StringUtils.addString( session, "troubleshooting.mac.q2.answer", "<p> " +
+                                                                         "This problem will affect mac users who recently installed Apple's \"Java for Mac OS X 10.5 Update 4\". The update will " +
+                                                                         "typically be done via Software Update, or automatically. After installing this update, the problem appears: clicking " +
+                                                                         "on JNLP files in Safari or FireFox caused the JNLP file to open in TextEdit, instead of starting Java Web Start. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "The fix is:<br/> " +
+                                                                         "1. Go to <a href=\"http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4\">http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4</a><br/> " +
+                                                                         "2. Click Download to download a .dmg file<br/> " +
+                                                                         "3. When the .dmg has downloaded, double.click on it (if it doesn't mount automatically)<br/> " +
+                                                                         "4. Quit all applications<br/> " +
+                                                                         "5. Run the update installer " +
+                                                                         "</p>" );
 
-        // add prefixed for-teachers strings
-        StringUtils.addString( session, "forTeachers.workshopFacilitatorsGuide.title", "PhET Workshop Facilitators Guide");
-        StringUtils.addString( session, "forTeachers.tipsForUsingPhet.title", "Tips for Using PhET" );
-        StringUtils.addString( session, "forTeachers.planningToUsePhet.title", "Planning to Use PhET" );
-        StringUtils.addString( session, "forTeachers.usingPhetInLecture.title", "Using PhET in Lecture" );
-        StringUtils.addString( session, "forTeachers.lectureDemo.title", " Interactive Lecture Demonstrations" );
-        StringUtils.addString( session, "forTeachers.clickersDemo.title", "Using PhET with Clickers" );
-        StringUtils.addString( session, "forTeachers.activitesDesign.title", "Designing Effective Activities for use in K12" );
-        StringUtils.addString( session, "forTeachers.virtualWorkshop.title", "Take a Virtual PhET Workshop" );
+        StringUtils.addString( session, "troubleshooting.mac.q3.answer", "<p> " +
+                                                                         "If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's " +
+                                                                         "drivers may fix the issue. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "Updating the video card driver can be done through the normal software update process (Available from the Apple menu " +
+                                                                         "=> Software Update) " +
+                                                                         "</p>" );
 
-        StringUtils.addString( session, "nav.exampleworkshops", "Example Workshops" );
-        StringUtils.addString( session, "exampleworkshops.title", "Example Workshops" );
+        StringUtils.addString( session, "troubleshooting.mac.q4.answer", "<p> " +
+                                                                         "'Molecule Shapes', 'Plate Tectonics', and 'Molecule Shapes: Basics' rely on advanced graphics libraries (LWJGL) " +
+                                                                         "that many OS and Java combinations don't support. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "It shows up on ALL Mac OS X 10.8, many 10.6 and 10.7 computers. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "Unfortunately, at this time the incompatibility problem is out of our hands and unless Oracle or Apple address this " +
+                                                                         "issue, it is unlikely the sim will run successfully. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "We are hoping incompatibilities like this will be a thing of the past once we move most of our sims to HTML5. " +
+                                                                         "</p>" );
 
-        StringUtils.addString( session, "nav.about.team", "People" );
-        StringUtils.addString( session, "about.team.title", "People" );
+        StringUtils.addString( session, "troubleshooting.mac.q5.answer", "<p> " +
+                                                                         "Gatekeeper, introduced in Mountain Lion (OS X 10.8), is designed to prevent potentially malicious apps from launching. " +
+                                                                         "When you attempt to launch an app that doesn't meet certain criteria, Gatekeeper will block the launch. To override this, " +
+                                                                         "you can modify Gatekeeper's default settings (but we don't always recommend it), or explicitly right/control.click the " +
+                                                                         "application and choose Open. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "1. Download the .jar file for each sim you would like to use. (Or download all of them)<br/> " +
+                                                                         "2. In Finder, Control-click or right click the icon of the sim.<br/> " +
+                                                                         "3. Select Open from the top of contextual menu that appears.<br/> " +
+                                                                         "4. Click Open in the dialog box. If prompted, enter an administrator name and password.<br/> " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "The other option is to go into preferences and change the security settings: " +
+                                                                         "System Preferences>Security and Privacy>General> Change 'Allow applications downloaded from' to \"Anywhere\"> Accept prompt \"Allow From " +
+                                                                         "Anywhere\" " +
+                                                                         "We don't advise this because it disables Gatekeeper. It is generally safer to maintain Gatekeeper and individually open the files. " +
+                                                                         "</p>" );
 
-        // delete unused strings
-        StringUtils.deleteString( session, "contribution.view.creativecommons" );
-        StringUtils.deleteString( session, "contribution.edit.creativeCommons" );
-        StringUtils.deleteString( session, "nav.exampleworkshops.title" );
-        StringUtils.deleteString( session, "exampleworkshops" );
-        StringUtils.deleteString( session, "virtualWorkshop" );
-        StringUtils.deleteString( session, "activitesDesign" );
-        StringUtils.deleteString( session, "usingPhetInLecture" );
-        StringUtils.deleteString( session, "planningToUsePhet" );
-        StringUtils.deleteString( session, "workshopFacilitatorsGuide" );
-        StringUtils.deleteString( session, "about.team" );
+        StringUtils.addString( session, "troubleshooting.mac.q6.answer.firefox", "<p><strong>Firefox</strong></p> " +
+                                                                                 "<p> " +
+                                                                                 "When opening a sim in Firefox, a dialog will popup asking you what Firefox should do with the file. Click Open with " +
+                                                                                 "Java Web Start (default). " +
+                                                                                 "</p> " +
+                                                                                 "<p> " +
+                                                                                 "If you then receive a message saying the sim \"can't be opened because it is from an unidentified developer.\" Proceed " +
+                                                                                 "with the instructions in the appropriate FAQ and download the .jar file for that sim. " +
+                                                                                 "</p>" );
 
-        // change navigation strings on home screen
-        StringUtils.overwriteString( session, "home.workshops", "Workshops / Materials", "Workshops" );
+        StringUtils.addString( session, "troubleshooting.mac.q6.answer.chrome", "<p><strong>Chrome</strong></p> " +
+                                                                                "<p> " +
+                                                                                "  When opening a sim in Chrome, the browser will automatically ask to either Discard or Keep the file. " +
+                                                                                "  The prompt pops up at the bottom of the screen. " +
+                                                                                "</p> {0}" +
+                                                                                "<p> " +
+                                                                                "Click 'Keep'. You will then have an icon displaying the newly " +
+                                                                                "downloaded file. Click this to run the sim. " +
+                                                                                "</p>{1}" +
+                                                                                "<p> " +
+                                                                                "If you then receive a message saying the sim \"can't be opened because it is from an unidentified developer.\" Proceed " +
+                                                                                "with the instructions in the appropriate FAQ and download the .jar file for that sim. " +
+                                                                                "</p>");
 
-        StringUtils.deleteString( session, "home.submitActivity" );
-        StringUtils.addString( session, "home.submitActivity", "Share your Activities" );
+        StringUtils.addString( session, "troubleshooting.mac.q6.answer.safari", "<p><strong>Safari</strong></p> " +
+                                                                                "<p> " +
+                                                                                "When opening a sim in Safari, the browser will automatically download the .jnlp file after clicking \"Run Now\". " +
+                                                                                "However, no notification is given. Click the Downloads {0}" +
+                                                                                "button to show recent downloads. Click the latest .jnlp file " +
+                                                                                "to run the sim. " +
+                                                                                "</p>{1}" +
+                                                                                "<p> " +
+                                                                                "If you then receive a message saying the sim \"can't be opened because it is from an unidentified developer.\" Proceed " +
+                                                                                "with the instructions in the appropriate FAQ and download the .jar file for that sim. " +
+                                                                                "</p>");
 
-        StringUtils.deleteString( session, "nav.teacherIdeas.submit" );
-        StringUtils.addString( session, "nav.teacherIdeas.submit", "Share your Activities" );
 
-        // remove strings from TeacherIdeasPanel b/c the translation was scraped for now
-        StringUtils.deleteString( session, "teacherIdeas.browseSection" );
-        StringUtils.deleteString( session, "teacherIdeas.contributeSection" );
-        StringUtils.deleteString( session, "teacherIdeas.adviceSection" );
-        StringUtils.deleteString( session, "teacherIdeas.guidelinesSection" );
-        StringUtils.deleteString( session, "teacherIdeas.guidelines" );
-        StringUtils.deleteString( session, "teacherIdeas.exampleSection" );
-        StringUtils.deleteString( session, "teacherIdeas.examples" );
-        StringUtils.deleteString( session, "teacherIdeas.examples" );
-        StringUtils.deleteString( session, "teacherIdeas.examples" );
-        StringUtils.deleteString( session, "teacherIdeas.welcome" );
-        StringUtils.deleteString( session, "teacherIdeas.start" );
-        StringUtils.deleteString( session, "teacherIdeas.contribute" );
-
-        StringUtils.deleteString( session, "teacherIdeas.examples.highSchool" );
-        StringUtils.deleteString( session, "teacherIdeas.examples.modernPhysics" );
-        StringUtils.deleteString( session, "teacherIdeas.examples.everydayPhysics" );
-
-        // add validation string for cc license
-        StringUtils.addString( session, "contribution.edit.validation.mustHaveLicense", "Activities will not be accepted unless you agree to use the Creative Commons license" );
-
-        //  StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
-
-        // Strings recently added from master branch
-        StringUtils.addString( session, "research.publications.other", "Other Work by PhET Researchers" );
-        StringUtils.addString( session, "nav.html.licensing", "HTML5 Licensing" );
-        StringUtils.addString( session, "html.licensing.title", "HTML5 Simulation Licensing Information" );
-        StringUtils.addString( session, "html.licensing.comingSoon", "Information coming soon, please contact {0}." );
-
-        // update titles of browse and submit activities pages
-        StringUtils.deleteString( session, "contribution.create.pageTitle" );
-        StringUtils.deleteString( session, "contribution.search.title" );
-        StringUtils.addString( session, "contribution.create.pageTitle", "Share your Activities" );
-        StringUtils.addString( session, "contribution.search.title", "Browse Activities" );
-
-        // add strings for new trouble shooting pages
-        StringUtils.addString( session, "nav.troubleshooting.mac", "Mac" );
-        StringUtils.addString( session, "troubleshooting.mac.title", "Troubleshooting Mac" );
-        StringUtils.addString( session, "nav.troubleshooting.windows", "Windows" );
-        StringUtils.addString( session, "troubleshooting.windows.title", "Troubleshooting Windows" );
-        StringUtils.addString( session, "nav.troubleshooting.mobile", "Tablets/Mobile Devices" );
-        StringUtils.addString( session, "troubleshooting.mobile.title", "Troubleshooting Tablets/Mobile Devices" );
-
-        // update some troubleshooting strings
-        StringUtils.deleteString( session, "troubleshooting.main.q1.answer" );
-        StringUtils.addString( session, "troubleshooting.main.q1.answer", "<p>Some of our simulations are Java Web Start based applications and others use Macromedia's Flash player. Flash comes with most computers while Java Web Start is a free application that can be downloaded from Sun Microsystems. To run the Java-based simulations you must have Java version 1.5 or higher installed on your computer.</p><p>To download the latest version of Java, please visit: <a {0}>https://www.java.com</a>.</p>" );
-
-        StringUtils.deleteString( session, "about.p4" );
-        StringUtils.addString( session, "about.p4", "All PhET simulations are freely available from the <a {0}>PhET website</a> and are easy to use and incorporate into the classroom. They are written in Java and Flash, and can be run using a standard web browser as long as Flash and Java are installed." );
-
-        // update research strings
-        StringUtils.deleteString( session, "research.intro" );
-        StringUtils.addString( session, "research.intro", "The PhET simulation design principles are based on research on how students learn (Bransford et al., 2000) and from our simulation " +
-                                                          "interviews (see <a {0}>PhET Design Process</a>). Between four and six think-aloud style interviews " +
-                                                          "with individual students are done with each simulation. These interviews provide a rich data source for studying interface design and " +
-                                                          "student learning. The <a {1}>PhET Look and Feel</a> briefly describes our interface design " +
-                                                          "principles and a complete discussion is found in the pair of papers by <a {2}>Adams et al., 2008</a>." );
-
-        StringUtils.addString( session, "about.source-code.HTML5.header", "HTML5 Source Code" );
-
-        StringUtils.deleteString( session, "about.source-code.java-flash.header" );
-        StringUtils.addString( session, "about.source-code.java-flash.header", "Java/Flash/Flex Source Code (Legacy)" );
-
-        StringUtils.deleteString( session, "about.source-code.p1" );
-        StringUtils.deleteString( session, "about.source-code.p2" );
-        StringUtils.deleteString( session, "about.source-code.p3" );
-        StringUtils.deleteString( session, "about.source-code.p4" );
-
-        StringUtils.addString( session, "about.source-code.p1", "Since 2013, the PhET sims have been developed in HTML5, which is the language we recommend." );
-
-        StringUtils.addString( session, "about.source-code.p2", "The PhET HTML5 and Javascript source code lives on <a {0}>the PhET GitHub page</a>. " +
-                                                                "For instructions on getting your machine set up to develop simulations using the PhET libraries, " +
-                                                                "take a look at our PhET Development Overview document:" );
-
-        StringUtils.addString( session, "about.source-code.p3", "Or join in the discussion at our Developing Interactive Simulations in HTML5 Google Group:" );
-        StringUtils.addString( session, "about.source-code.p4", "This video is a quick guide to getting started developing with PhET on Windows. First, this video shows how to clone " +
-                                                                "the PhET Libraries from GitHub. Next, it shows how to download and run a web server on your development machine. " +
-                                                                "Finally, it shows how to launch an example simulation provided by PhET to test that everything is working nicely." );
-        StringUtils.addString( session, "about.source-code.p5", "The PhET Java, Flash, and Flex source code lives in a Subversion repository. For instructions on how to browse the " +
-                                                                "source code online or checkout the Subversion repository refer to our Legacy Java/Flash/Flex Source Code Document:" );
         session.close();
     }
 
