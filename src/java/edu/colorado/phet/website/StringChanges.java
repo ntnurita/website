@@ -240,6 +240,21 @@ public class StringChanges {
                                                                              "<li>Follow all instructions to download and install the latest driver, then restart your computer.</li> " +
                                                                              "</ol>" );
 
+
+        StringUtils.addString( session, "troubleshooting.mobile.p1", "The original PhET Java sims cannot run on Chromebooks, tablets like iPad or Android, or mobile phones. This is due to " +
+                                                                     "their lack of support for Java. To resolve this problem we are re-programming the simulations to HTML5, which is " +
+                                                                     "compatible with tablet devices, Chromebooks, and PC's." );
+        StringUtils.addString( session, "troubleshooting.mobile.p2", "See our new HTML5 sims here: {0}" );
+        StringUtils.addString( session, "troubleshooting.mobile.p3", "Sim compatibility, by device: {0}" );
+        StringUtils.addString( session, "troubleshooting.mobile.p4", "Or watch a video about our new HTML5 efforts: {0}" );
+        StringUtils.addString( session, "troubleshooting.mobile.p5", "The HTML5 interface is entirely web-based and will be easily embedded into any type of software that embeds HTML5 code." );
+        StringUtils.addString( session, "troubleshooting.mobile.p6", "The plan is to port most of the sims eventually to HTML5, but there are likely a lot of less popular sims that will not " +
+                                                                     "be ported. It may be several years before the majority of PhET sims are converted to HTML5.This is because porting the " +
+                                                                     "sims to HTML5 is very expensive for us - it basically involves re-writing all of the code. Donations to the program are " +
+                                                                     "helping and we are looking to apply for grants that would allow us to do more conversions (and write new sims in HTML5)." );
+        StringUtils.addString( session, "troubleshooting.mobile.p7", "These next-generation simulations will not only be touch and tablet optimized but will also eventually include additional " +
+                                                                     "improvements such as enhanced data input-output capabilities to support 3rd party customization." );
+
         session.close();
     }
 
