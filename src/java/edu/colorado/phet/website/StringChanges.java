@@ -22,7 +22,6 @@ public class StringChanges {
         Session session = HibernateUtils.getInstance().openSession();
 
         StringUtils.addString( session, "troubleshooting.mac.q1.title", "When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says " +
-
                                                                          "(or something similar). What does this mean?" );
         StringUtils.addString( session, "troubleshooting.mac.q2.title", "When I click \"run now\" to start the simulation all I get is a text file that opens?" );
         StringUtils.addString( session, "troubleshooting.mac.q3.title", "Why is a simulation with 3D graphics not launching / displaying correctly?" );
@@ -148,6 +147,98 @@ public class StringChanges {
                                                                                 "with the instructions in the appropriate FAQ and download the .jar file for that sim. " +
                                                                                 "</p>");
 
+        StringUtils.addString( session, "troubleshooting.windows.q1.title", "When I attempt to open a Java sim, Windows will try to open the sim with a program other than Java (Word, " +
+                                                                            "Internet Explorer, etc.) or give me the message \"This XML file does not appear to have any style information " +
+                                                                            "associated with it.\"");
+
+        StringUtils.addString( session, "troubleshooting.windows.q2.title", "I am using Windows 8, when I try to open the sim I get a dialog asking me to find an app to run the sim." );
+        StringUtils.addString( session, "troubleshooting.windows.q3.title", "I have Windows 2000 and can run Flash simulations but the Java based simulations do not work." );
+        StringUtils.addString( session, "troubleshooting.windows.q4.title", "Why can't I completely uninstall the PhET sims that I downloaded from my Windows computer?" );
+        StringUtils.addString( session, "troubleshooting.windows.q5.title", "Why is a simulation with 3D graphics not launching / displaying correctly?" );
+
+        StringUtils.addString( session, "troubleshooting.windows.q1.answer", "<p> " +
+                                                                            "Sometimes, the Java file associations can become broken. Follow these steps to re-associate both '.jnlp' and " +
+                                                                            "'.jar' files to use Java: " +
+                                                                            "</p> " +
+                                                                            "<p> " +
+                                                                            "1.  Download both a '.jar' and '.jnlp' from our website - \"Download\" and \"Run Now\", respectively.<br/> " +
+                                                                            "2.  For each file, right click and choose 'Open With...\"<br/> " +
+                                                                            "3.  Select \"Choose Default Program\"<br/> " +
+                                                                            "4.  Check the \"Always use the selected program to open this kind of file\"<br/> " +
+                                                                            "5.  Click the \"Browse...\" button<br/> " +
+                                                                            "6.  For ',jnlp' select \"JavaWS.exe\" (located here on a default installation: C:\\Program Files (x86)\\Java\\jre7\\bin\\) " +
+                                                                            "    For '.jar' select \"Java.exe\"<br/> " +
+                                                                            "7.  Click \"Open\".<br/> " +
+                                                                            "8.  Click \"OK\"<br/> " +
+                                                                            "9.  The '.jnlp'/ '.jar' file should now open in Java.<br/> " +
+                                                                            "</p>" );
+
+        StringUtils.addString( session, "troubleshooting.windows.q2.answer", "<p> " +
+                                                                             "There are two versions of Windows 8: 'RT' and 'Pro'. All of our simulations will work on a 'Pro' operating system. " +
+                                                                             "The 'RT' version of Windows 8 doesn't allow Java to be installed, but you can use our new HTML5 simulations as well " +
+                                                                             "as our Flash simulations. If you have the 'Pro' version of Windows 8, you can go here to install Java: " +
+                                                                             "http://www.java.com/en/ and once that it finished you should be able to run all of the simulations. " +
+                                                                             "</p> " +
+                                                                             "<p> " +
+                                                                             "The two versions of Windows 8 provide very different possibilities in terms of accessibility. You can find your " +
+                                                                             "Windows version <a href=\"http://windows.microsoft.com/en-us/windows/which-operating-system\">http://windows.microsoft.com/en-us/windows/which-operating-system</a> " +
+                                                                             "</p> " +
+                                                                             "<p> " +
+                                                                             "If you still encounter problems on the 'Pro' version after verifying that Java installed, it may be that the file " +
+                                                                             "associations are not correctly pointing to Java to open '.jar' and '.jnlp' files. Please follow the instructions " +
+                                                                             "above to re-associate the files with Java. " +
+                                                                             "</p>" );
+
+        StringUtils.addString( session, "troubleshooting.windows.q3.answer", "<p>Some Windows 2000 systems have been reported to lack part of the necessary Java configuration. These " +
+                                                                             "systems will " +
+                                                                             "typically start our Flash-based simulations reliably, but will appear to do nothing when launching our " +
+                                                                             "Java-based " +
+                                                                             "simulations.</p> " +
+                                                                             " " +
+                                                                             "<p><strong>To resolve this situation, please perform the following steps:</strong></p> " +
+                                                                             " " +
+                                                                             "<ol> " +
+                                                                             "<li>From the desktop or start menu, open \"My Computer\"</li> " +
+                                                                             " " +
+                                                                             "<li>Click on the \"Folder Options\" item in the \"Tools\" menu</li> " +
+                                                                             "<li>Click on the \"File Types\" tab at the top of the window that appears</li> " +
+                                                                             "<li>Locate \"JNLP\" in the \"extensions\" column, and click once on it to select the item</li> " +
+                                                                             "<li>Click on the \"change\" button</li> " +
+                                                                             "<li>When asked to choose which program to use to open JNLP files, select \"Browse\"</li> " +
+                                                                             "<li> " +
+                                                                             "Locate the program \"javaws\" or \"javaws.exe\" in your Java installation folder (typically \"C:\\Program " +
+                                                                             "Files\\Java\\j2re1.xxxx\\javaws\", where \"xxxx\" is a series of numbers indicating the software version; " +
+                                                                             "choose " +
+                                                                             "the latest version) " +
+                                                                             "</li> " +
+                                                                             " " +
+                                                                             "<li>Select the program file and then click \"Open\" to use the \"javaws\" program to open JNLP files.</li> " +
+                                                                             "</ol> " +
+                                                                             " " +
+                                                                             "<p>Java-based simulations should now function properly.</p> " +
+                                                                             " " +
+                                                                             "<p>Please contact us by email at <a {0}>phethelp@colorado.edu</a> " +
+                                                                             "if you have any further difficulties.</p>" );
+        StringUtils.addString( session, "troubleshooting.windows.q4.answer", "<p> " +
+                                                                             "When a Java Web Start simulation is run in Windows, it is added to the list of programs in Control Panel " +
+                                                                             "-> Add or Remove Programs. Due to a problem in Java Web Start, sometimes the item may remain in the list " +
+                                                                             "even after the simulation has been removed, and Windows may report \"Unable to completely uninstall " +
+                                                                             "application\". More information about this issue can be found at " +
+                                                                             "{0}, " +
+                                                                             "and the producers of Java have acknowledged " +
+                                                                             "the problem and reported that they plan to fix it in an upcoming version of Java. " +
+                                                                             "</p>" );
+        StringUtils.addString( session, "troubleshooting.windows.q5.answer", "<p>If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's drivers may fix the issue.</p> " +
+                                                                             " " +
+                                                                             "<p>For Windows XP / Vista / 7:</p> " +
+                                                                             "<ol> " +
+                                                                             "<li>Press the Win + R keys.</li> " +
+                                                                             "<li>type \"DxDiag\" and press enter.</li> " +
+                                                                             "<li>After the diagnostic tool opens, the video card name and manufacturer will be listed in the Display tab under Device.</li> " +
+                                                                             "<li>Go to the driver manufacturer's website to find an up-to-date driver. The most common video card manufacturers are {0}, {1}, and {2} " +
+                                                                             "</li> " +
+                                                                             "<li>Follow all instructions to download and install the latest driver, then restart your computer.</li> " +
+                                                                             "</ol>" );
 
         session.close();
     }
