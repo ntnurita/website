@@ -29,6 +29,9 @@ public class AboutPhetEntity extends TranslationEntity {
         addString( "about.source-code.p4" );
         addString( "about.source-code.p5" );
 
+        addString( "about.source-code.java-flash.header" );
+        addString( "about.source-code.HTML5.header" );
+
         addString( "about.source-code.header" );
         addString( "about.source-code.browseOnline.header" );
         addString( "about.source-code.browseOnline.visitUrlStep", "{0} will be replaced by a link to our source code" );

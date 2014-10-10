@@ -255,6 +255,52 @@ public class StringChanges {
         StringUtils.addString( session, "troubleshooting.mobile.p7", "These next-generation simulations will not only be touch and tablet optimized but will also eventually include additional " +
                                                                      "improvements such as enhanced data input-output capabilities to support 3rd party customization." );
 
+        StringUtils.addString( session, "troubleshooting.mac.faqs", "FAQs" );
+        StringUtils.addString( session, "troubleshooting.windows.faqs", "FAQs" );
+
+
+
+
+        StringUtils.deleteString( session, "troubleshooting.java.faqs" );
+        StringUtils.deleteString( session, "troubleshooting.java.intro" );
+        StringUtils.deleteString( session, "troubleshooting.flash.intro" );
+        StringUtils.deleteString( session, "troubleshooting.flash.blankWindow" );
+        StringUtils.deleteString( session, "troubleshooting.flash.olderVersions" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q1.no" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.faqs" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q1.yes" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q1.title" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q2.title" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q3.title" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q4.title" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q5.title" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q2.answer" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q3.answer" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.intro" );
+        StringUtils.deleteString( session, "troubleshooting.flash.toRun" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q4.answer" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.q5.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q1.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q2.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q3.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q4.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q5.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q6.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q7.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q8.title" );
+        StringUtils.deleteString( session, "troubleshooting.java.q1.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q2.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q3.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q4.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q5.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q6.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q7.answer" );
+        StringUtils.deleteString( session, "troubleshooting.java.q8.answer" );
+        StringUtils.deleteString( session, "troubleshooting.flash.q1.title" );
+        StringUtils.deleteString( session, "troubleshooting.flash.q1.answer" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.notify" );
+        StringUtils.deleteString( session, "troubleshooting.javascript.notJava" );
+
         session.close();
     }
 

@@ -85,6 +85,12 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.forTeachers.activitesDesign" );
         addString( "nav.forTeachers.virtualWorkshop" );
 
+        // add troubleshooting nav strings
+        addString( "nav.troubleshooting.mac" );
+        addString( "nav.troubleshooting.windows" );
+        addString( "nav.troubleshooting.mobile" );
+        addString( "nav.troubleshooting.javaSecurity" );
+
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
                             HashSet<NavLocation> locations = new HashSet<NavLocation>();
