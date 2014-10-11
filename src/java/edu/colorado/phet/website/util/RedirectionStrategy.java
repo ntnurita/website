@@ -289,6 +289,7 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         *----------------------------------------------------------------------------*/
 
         simMap.put( "Alpha_Decay", "alpha-decay" );
+        simMap.put( "Area_Builder", "area-builder" );
         simMap.put( "Arithmetic", "arithmetic" );
         simMap.put( "Atomic_Interactions", "atomic-interactions" );
         simMap.put( "Balloons_and_Buoyancy", "balloons-and-buoyancy" );

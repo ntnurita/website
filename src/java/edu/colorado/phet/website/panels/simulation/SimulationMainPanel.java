@@ -86,7 +86,7 @@ public class SimulationMainPanel extends PhetPanel {
 
     static {
         HTML_SIM_LINK_MAP.put( "acid-base-solutions", "/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html" );
-        HTML_SIM_LINK_MAP.put( "area-builder", "/sims/html/area-builder/latest/area-builder_en.html" );
+        // NOTE: no original sim for Area Builder, so it is omitted here
         HTML_SIM_LINK_MAP.put( "balancing-act", "/sims/html/balancing-act/latest/balancing-act_en.html" );
         HTML_SIM_LINK_MAP.put( "balancing-chemical-equations", "/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html" );
         HTML_SIM_LINK_MAP.put( "balloons", "/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html" );
@@ -111,6 +111,8 @@ public class SimulationMainPanel extends PhetPanel {
 
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {
         super( id, context );
+
+        System.out.println("TITLE " + simulation.getTitle());
 
         String simulationVersionString = simulation.getSimulation().getProject().getVersionString();
 
@@ -267,6 +269,8 @@ public class SimulationMainPanel extends PhetPanel {
         * translations
         *----------------------------------------------------------------------------*/
 
+        System.out.println("before translation");
+
         List<LocalizedSimulation> simulations = HibernateUtils.getLocalizedSimulationsMatching( getHibernateSession(), null, simulation.getSimulation().getName(), null );
         HibernateUtils.orderSimulations( simulations, context.getLocale() );
 
@@ -307,7 +311,6 @@ public class SimulationMainPanel extends PhetPanel {
             }
         };
         add( simulationList );
-
         /*---------------------------------------------------------------------------*
         * run / download links
         *----------------------------------------------------------------------------*/
@@ -426,6 +429,12 @@ public class SimulationMainPanel extends PhetPanel {
             add( new Label( "mac-req", "Macromedia Flash 9 or later" ) );
             add( new Label( "linux-req", "Macromedia Flash 9 or later" ) );
         }
+        // TODO handle html requirements
+//        else if ( simulation.getSimulation().isHTML() ) {
+//            add( new Label( "windows-req", "Web browser with Javascript enabled" ) );
+//            add( new Label( "mac-req", "Web browser with Javascript enabled" ) );
+//            add( new Label( "linux-req", "Web browser with Javascript enabled" ) );
+//        }
         else {
             add( new InvisibleComponent( "windows-req" ) );
             add( new InvisibleComponent( "mac-req" ) );
