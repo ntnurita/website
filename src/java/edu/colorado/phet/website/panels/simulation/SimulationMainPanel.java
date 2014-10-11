@@ -269,8 +269,6 @@ public class SimulationMainPanel extends PhetPanel {
         * translations
         *----------------------------------------------------------------------------*/
 
-        System.out.println("before translation");
-
         List<LocalizedSimulation> simulations = HibernateUtils.getLocalizedSimulationsMatching( getHibernateSession(), null, simulation.getSimulation().getName(), null );
         HibernateUtils.orderSimulations( simulations, context.getLocale() );
 
