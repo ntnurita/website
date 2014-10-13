@@ -70,7 +70,7 @@ public class LocalizedSimulation implements Serializable, IntId {
             str += ".jar";
         }
         else if ( sim.isHTML() ) {
-            str += ".html";
+            str += ".html?download";
         }
         else {
             throw new RuntimeException( "Handle more than java, flash, and HTML" );
