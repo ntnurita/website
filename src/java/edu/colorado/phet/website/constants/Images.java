@@ -11,6 +11,7 @@ import edu.colorado.phet.website.util.ImageHandle;
  */
 public class Images {
     public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo-117.svg", true ); // NOTE: don't switch without changing the SVG/PNG switcher
+    public static final ImageHandle PHET_AIRPLANE = new ImageHandle( "/images/phet-airplane.svg", true );
     public static final ImageHandle PHET_LOGO_YELLOW = new ImageHandle( "/images/phet-logo-yellow.png", true );
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
     public static final ImageHandle CU_LOGO_HALF = new ImageHandle( "/images/cu-logo-half.png", true );

@@ -6,6 +6,7 @@ package edu.colorado.phet.website.content;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
 
 import edu.colorado.phet.website.DistributionHandler;
@@ -77,9 +78,9 @@ public class IndexPanel extends PhetPanel {
 //        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
 
         // logo
-        Link techAwardTitleLink2 = TechAwardPage.getLinker().getLink( "techAwardLink2", context, getPhetCycle() );
-        techAwardTitleLink2.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_COMBINED, null ) );
-        add( techAwardTitleLink2 );
+        Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
+        techAwardTitleLink.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS, null ) );
+        add( techAwardTitleLink );
 
         /*---------------------------------------------------------------------------*
         * social links
@@ -97,7 +98,9 @@ public class IndexPanel extends PhetPanel {
 //                ResearchPanel.getLinker().getHref( context, getPhetCycle() )
 //        } ) );
 
-        addWithId( CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
+        Link playSimsLink = CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() );
+        playSimsLink.add( new StaticImage( "phet-airplane", Images.PHET_AIRPLANE, null ) );
+        addWithId( playSimsLink , PLAY_SIMS_ID );
 
         Link runOurSimsLink = RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() );
         runOurSimsLink.add( new LocalizedText( "run-our-sims-label", getPhetCycle().isOfflineInstaller() ? "home.help" : "home.runOurSims" ) );
