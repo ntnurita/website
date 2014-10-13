@@ -86,42 +86,50 @@
           </wicket:message>
         </a>
       </dt>
-      <wicket:enclosure child="browse-activities-link">
+        <wicket:enclosure child="tipsforusingphet-link">
+          <dd>
+            <a href="#" wicket:id="tipsforusingphet-link">
+              <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+              <wicket:message key="tipsForUsingPhet">Tips for Using PhET</wicket:message>
+            </a>
+          </dd>
+        </wicket:enclosure>
+        <wicket:enclosure child="browse-activities-link">
+          <dd>
+            <a href="#" wicket:id="browse-activities-link">
+              <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+              <wicket:message key="home.browseActivities">
+                Browse Activities
+              </wicket:message>
+            </a>
+          </dd>
+        </wicket:enclosure>
         <dd>
-          <a href="#" wicket:id="browse-activities-link">
+          <a href="#" wicket:id="submit-activity-link" id="home-submit-activity-link">
             <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.browseActivities">
-              Browse Activities
-            </wicket:message>
+            <wicket:message key="home.submitActivity">Contribute Activities</wicket:message>
           </a>
         </dd>
-      </wicket:enclosure>
-      <dd>
-        <a href="#" wicket:id="submit-activity-link" id="home-submit-activity-link">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.submitActivity">Contribute Activities</wicket:message>
-        </a>
-      </dd>
-      <dd>
-        <a href="#" wicket:id="workshops-link">
-          <img id="green-arrow-image" src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.workshops">Workshops and Materials</wicket:message>
-        </a>
-      </dd>
-      <dd style="margin-top: 1em;">
-        <a href="#" wicket:id="translate-sims-link">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.translateSimulations">Translate simulations</wicket:message>
-        </a>
-      </dd>
-      <dd>
-        <wicket:enclosure>
-          <a href="#" wicket:id="test-translation">
-            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.translateWebsite">Translate the website</wicket:message>
+        <dd>
+          <a href="#" wicket:id="workshops-link">
+            <img id="green-arrow-image" src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+            <wicket:message key="home.workshops">Workshops and Materials</wicket:message>
           </a>
-        </wicket:enclosure>
-      </dd>
+        </dd>
+        <dd style="margin-top: 1em;">
+          <a href="#" wicket:id="translate-sims-link">
+            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+            <wicket:message key="home.translateSimulations">Translate simulations</wicket:message>
+          </a>
+        </dd>
+        <dd>
+          <wicket:enclosure>
+            <a href="#" wicket:id="test-translation">
+              <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+              <wicket:message key="home.translateWebsite">Translate the website</wicket:message>
+            </a>
+          </wicket:enclosure>
+        </dd>
     </dl>
 
     <dl>
