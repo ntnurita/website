@@ -84,7 +84,8 @@ public class ChangePasswordPanel extends PhetPanel {
                     }
 
                     public void validate( Form<?> form ) {
-                        if ( !PhetSession.passwordEquals( PhetSession.get().getUser().getHashedPassword(), currentPasswordTextField.getInput() ) ) {
+                        PhetUser user = PhetSession.get().getUser();
+                        if ( !PhetSession.passwordEquals( user, currentPasswordTextField.getInput() ) ) {
                             error( currentPasswordTextField, "changePassword.validation.incorrectPassword" );
                         }
                     }
@@ -120,7 +121,7 @@ public class ChangePasswordPanel extends PhetPanel {
                 public boolean run( Session session ) {
                     PhetUser user = (PhetUser) session.load( PhetUser.class, userToChange.getId() );
                     savedUser[0] = user;
-                    user.setPassword( newPasswordTextField.getModelObject() );
+                    user.setPassword( newPasswordTextField.getModelObject(), user.getEmail() );
                     user.setConfirmed( true );
                     session.update( user );
                     return true;
@@ -128,7 +129,7 @@ public class ChangePasswordPanel extends PhetPanel {
             } );
             logger.debug( "Finished hibernate: success = " + success );
             if ( success ) {
-                userToChange.setPassword( newPasswordTextField.getModelObject() );
+                userToChange.setPassword( newPasswordTextField.getModelObject(), userToChange.getEmail() );
 
                 if ( !PhetSession.get().isSignedIn() ) {
                     PhetSession.get().setUser( savedUser[0] );

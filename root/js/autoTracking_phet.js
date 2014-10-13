@@ -3,7 +3,7 @@ var simIdentifier = ''; // No identifier for now
 
 function listenToClicks() {
     var domains    = ["phet.colorado.edu"];
-    var fileTypes  = [".doc",".xls",".exe",".zip",".pdf",".mp3",".bin"];
+    var fileTypes  = [".doc",".xls",".exe",".zip",".pdf",".mp3",".bin",".mp4",".mov",".ppt"];
 
     if (document.getElementsByTagName) {
         var aTags = document.getElementsByTagName('a');

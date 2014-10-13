@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.content.troubleshooting;
 
+import edu.colorado.phet.common.phetcommon.view.util.ImageLoader;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.constants.Linkers;
@@ -17,16 +18,25 @@ public class TroubleshootingMacPanel extends PhetPanel {
     public TroubleshootingMacPanel( String id, PageContext context ) {
         super( id, context );
 
-        // add( new LocalizedText( "intro", "troubleshooting.mac.intro", new Object[] {
-        //         new Linkers.HelpMailer().getHref( context, getPhetCycle() )
-        // } ) );
+//        add( new LocalizedText( "intro", "troubleshooting.mac.intro", new Object[] {
+//                 new Linkers.HelpMailer().getHref( context, getPhetCycle() )
+//        } ) );
 
-//        add( new LocalizedText( "troubleshooting-mac-q1-answer", "troubleshooting.mac.q1.answer" ) );
-//        add( new LocalizedText( "troubleshooting-mac-q2-answer", "troubleshooting.mac.q2.answer" ) );
-//        add( new LocalizedText( "troubleshooting-mac-q3-answer", "troubleshooting.mac.q3.answer" ) );
-//        add( new LocalizedText( "troubleshooting-mac-q4-answer", "troubleshooting.mac.q4.answer" ) );
-//        add( new LocalizedText( "troubleshooting-mac-q5-answer", "troubleshooting.mac.q5.answer" ) );
-//        add( new LocalizedText( "troubleshooting-mac-q6-answer", "troubleshooting.mac.q6.answer" ) );
+        add( new LocalizedText( "troubleshooting-mac-q1-answer", "troubleshooting.mac.q1.answer" ) );
+        add( new LocalizedText( "troubleshooting-mac-q2-answer", "troubleshooting.mac.q2.answer" ) );
+        add( new LocalizedText( "troubleshooting-mac-q3-answer", "troubleshooting.mac.q3.answer" ) );
+        add( new LocalizedText( "troubleshooting-mac-q4-answer", "troubleshooting.mac.q4.answer" ) );
+        add( new LocalizedText( "troubleshooting-mac-q5-answer", "troubleshooting.mac.q5.answer" ) );
+
+        add( new LocalizedText( "troubleshooting-mac-q6-answer-firefox", "troubleshooting.mac.q6.answer.firefox" ) );
+        add( new LocalizedText( "troubleshooting-mac-q6-answer-chrome", "troubleshooting.mac.q6.answer.chrome", new Object[] {
+                "<img src=\"//phet.colorado.edu/images/troubleshooting/file-can-harm-computer.png\" alt=\"File can harm computer image\" width=\"300\"/>",
+                "<img src=\"//phet.colorado.edu/images/troubleshooting/newly-downloaded-icon.png\" alt=\"Newly downloaded image\" width=\"200\"/>"
+        } ) );
+        add( new LocalizedText( "troubleshooting-mac-q6-answer-safari", "troubleshooting.mac.q6.answer.safari", new Object[] {
+                "<img src=\"//phet.colorado.edu/images/troubleshooting/downloads-button.png\" alt=\"Downloads icon\" height=\"15\"/>",
+                "<img src=\"//phet.colorado.edu/images/troubleshooting/downloads-menu.png\" alt=\"Downloads menu image\" width=\"300\"/>"
+        } ) );
 
     }
 

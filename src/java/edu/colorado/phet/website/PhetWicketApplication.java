@@ -77,6 +77,7 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
+import edu.colorado.phet.website.content.about.AboutTeamPanel;
 import edu.colorado.phet.website.content.about.HTMLLicensingPanel;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
@@ -89,6 +90,13 @@ import edu.colorado.phet.website.content.contribution.ContributionNominationSucc
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.contribution.ContributionSuccessPage;
 import edu.colorado.phet.website.content.contribution.NominateContributionPage;
+import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
+import edu.colorado.phet.website.content.forteachers.ClickersPanel;
+import edu.colorado.phet.website.content.forteachers.LectureDemoPanel;
+import edu.colorado.phet.website.content.forteachers.LectureOverviewPanel;
+import edu.colorado.phet.website.content.forteachers.PlanningPanel;
+import edu.colorado.phet.website.content.forteachers.TipsPanel;
+import edu.colorado.phet.website.content.forteachers.VirtualWorkshopPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
@@ -108,10 +116,12 @@ import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMacPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
+import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMobilePanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingWindowsPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
+import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
 import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.menu.NavMenu;
@@ -150,8 +160,8 @@ import edu.colorado.phet.website.util.SearchUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 /**
- * Main entry and configuration point for the Wicket-based PhET website. Initializes pages (and the mappings), along
- * with many other things.
+ * Main entry and configuration point for the Wicket-based PhET website.
+ * Initializes pages (and the mappings), along with many other things.
  */
 public class PhetWicketApplication extends WebApplication {
 
@@ -161,19 +171,34 @@ public class PhetWicketApplication extends WebApplication {
     private static PhetWicketApplication instance = null;
 
     // TODO: flesh out and improve thread-safeness of translations part
-    private List<Translation> translations = new LinkedList<Translation>(); // NOTE: seems to be NON-ENGLISH translations TODO make this include English, and handle correctly
+    private List<Translation> translations = new LinkedList<Translation>(); // NOTE:
+    // seems
+    // to
+    // be
+    // NON-ENGLISH
+    // translations
+    // TODO
+    // make
+    // this
+    // include
+    // English,
+    // and
+    // handle
+    // correctly
 
-    private static final Logger logger = Logger.getLogger( PhetWicketApplication.class.getName() );
+    private static final Logger logger = Logger
+            .getLogger( PhetWicketApplication.class.getName() );
 
     /**
-     * We have a list of data server DNS names that are essentially aliases to phetsims. These should be used when a
-     * large number of separate files need to be downloaded (like sim thumbnails) for speed increases.
+     * We have a list of data server DNS names that are essentially aliases to
+     * phetsims. These should be used when a large number of separate files need
+     * to be downloaded (like sim thumbnails) for speed increases.
      */
     public static final String[] DATA_SERVERS = new String[]{
-            "phet-data1.colorado.edu",
-            "phet-data2.colorado.edu"
-//            "phet-data3.colorado.edu", // use these later if we determine that it helps performance. DNS was hitting us too hard
-//            "phet-data4.colorado.edu"
+            "phet-data1.colorado.edu", "phet-data2.colorado.edu"
+            // "phet-data3.colorado.edu", // use these later if we determine that it
+            // helps performance. DNS was hitting us too hard
+            // "phet-data4.colorado.edu"
     };
 
     /**
@@ -197,27 +222,44 @@ public class PhetWicketApplication extends WebApplication {
         setupJulSfl4j();
 
         if ( getConfigurationType().equals( Application.DEPLOYMENT ) ) {
-//            Logger.getLogger( "edu.colorado.phet.website" ).setLevel( Level.WARN );
+            // Logger.getLogger( "edu.colorado.phet.website" ).setLevel(
+            // Level.WARN );
         }
-        // do not override development. instead use log4j.properties debugging level. -JO
-//        else {
-//            Logger.getLogger( "edu.colorado.phet.website" ).setLevel( Level.INFO );
-//        }
+        // do not override development. instead use log4j.properties debugging
+        // level. -JO
+        // else {
+        // Logger.getLogger( "edu.colorado.phet.website" ).setLevel( Level.INFO
+        // );
+        // }
 
         websiteProperties = new WebsiteProperties( getServletContext() );
 
         // set up error pages
-        getApplicationSettings().setPageExpiredErrorPage( SessionExpiredPage.class );
+        getApplicationSettings().setPageExpiredErrorPage(
+                SessionExpiredPage.class );
         getApplicationSettings().setAccessDeniedPage( ErrorPage.class );
         getApplicationSettings().setInternalErrorPage( ErrorPage.class );
 
-        // add static pages, that are accessed through reflection. this is used so that separate page AND panel classes
+        // add static pages, that are accessed through reflection. this is used
+        // so that separate page AND panel classes
         // are not needed for each visual page.
-        // NOTE: do this before adding StaticPage into the mapper. Checked, and violation will result in a fatal error. 
+        // NOTE: do this before adding StaticPage into the mapper. Checked, and
+        // violation will result in a fatal error.
         StaticPage.addPanel( TroubleshootingMainPanel.class );
         StaticPage.addPanel( GeneralFAQPanel.class );
         StaticPage.addPanel( AboutMainPanel.class );
         StaticPage.addPanel( WorkshopsPanel.class );
+        StaticPage.addPanel( WorkshopFacilitatorsGuidePanel.class );
+
+        StaticPage.addPanel( ActivitiesdesignPanel.class );
+        StaticPage.addPanel( ExampleWorkshopsPanel.class );
+        StaticPage.addPanel( ClickersPanel.class );
+        StaticPage.addPanel( LectureDemoPanel.class );
+        StaticPage.addPanel( LectureOverviewPanel.class );
+        StaticPage.addPanel( PlanningPanel.class );
+        StaticPage.addPanel( TipsPanel.class );
+        StaticPage.addPanel( VirtualWorkshopPanel.class );
+
         StaticPage.addPanel( RunOurSimulationsPanel.class );
         StaticPage.addPanel( FullInstallPanel.class );
         StaticPage.addPanel( OneAtATimePanel.class );
@@ -233,7 +275,9 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( AboutSponsorsPanel.class );
         StaticPage.addPanel( TeacherIdeasPanel.class );
         StaticPage.addPanel( ContributionGuidelinesPanel.class );
-        StaticPage.addPanel( DonatePanel.class ); // english donation page redirecting to https://donatenow.networkforgood.org/1437859
+        StaticPage.addPanel( DonatePanel.class ); // english donation page
+        // redirecting to
+        // https://donatenow.networkforgood.org/1437859
         StaticPage.addPanel( ForTranslatorsPanel.class );
         StaticPage.addPanel( TranslationUtilityPanel.class );
         StaticPage.addPanel( AboutNewsPanel.class );
@@ -243,13 +287,20 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( ChangePasswordSuccessPanel.class );
         StaticPage.addPanel( StayConnectedPanel.class );
         StaticPage.addPanel( FaqTestPage.class );
+
+        StaticPage.addPanel( AboutTeamPanel.class );
+        // NOTE: Adding another static panel? Make sure it's cached properly by
+        // Varnish
+
         StaticPage.addPanel( HTMLLicensingPanel.class );
         // NOTE: Adding another static panel? Make sure it's cached properly by Varnish
 
         // create a url mapper, and add the page classes to it
         mapper = new PhetUrlMapper();
         HTML5Page.addToMapper( mapper );
-        ByGradeLevelPage.addToMapper( mapper ); // always add this before CategoryPage so it can display the icons
+        ByGradeLevelPage.addToMapper( mapper ); // always add this before
+        // CategoryPage so it can
+        // display the icons
         CategoryPage.addToMapper( mapper );
         SimulationPage.addToMapper( mapper );
         SimulationChangelogPage.addToMapper( mapper );
@@ -300,17 +351,21 @@ public class PhetWicketApplication extends WebApplication {
         initializeTranslations();
         mount( new PhetUrlStrategy( "en", mapper ) );
         for ( Translation translation : translations ) {
-            mount( new PhetUrlStrategy( LocaleUtils.localeToString( translation.getLocale() ), mapper ) );
+            mount( new PhetUrlStrategy( LocaleUtils.localeToString( translation
+                                                                            .getLocale() ), mapper ) );
         }
         mount( new TranslationUrlStrategy( "translation", mapper ) );
 
         mountBookmarkablePage( "admin/main", AdminMainPage.class );
         mountBookmarkablePage( "admin/deploy", DeployProjectPage.class );
-        mountBookmarkablePage( "admin/deploy-translation", DeployTranslationPage.class );
+        mountBookmarkablePage( "admin/deploy-translation",
+                               DeployTranslationPage.class );
         mountBookmarkablePage( "admin/deploy-resource", DeployResourcePage.class );
-        mountBookmarkablePage( "admin/new-installer", AdminNewInstallerPage.class );
+        mountBookmarkablePage( "admin/new-installer",
+                               AdminNewInstallerPage.class );
         mountBookmarkablePage( "admin/tech-docs", TechnicalDocPage.class );
-        mountBookmarkablePage( "admin/translation-docs", TranslationDocPage.class );
+        mountBookmarkablePage( "admin/translation-docs",
+                               TranslationDocPage.class );
 
         mountBookmarkablePage( "2013/the-future-of-phet", TheFutureOfPhet.class );
 
@@ -331,24 +386,27 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "services/varnish-health-check", HealthCheck.class );
         mountBookmarkablePage( "services/nagios-health-check", HealthCheck.class );
         mountBookmarkablePage( "services/general-health-check", HealthCheck.class );
-//        mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
+        // mountBookmarkablePage( "services/github-push", GithubEmailHook.class );
         mountBookmarkablePage( "autocomplete", Autocomplete.class );
         mountBookmarkablePage( "robots.txt", RobotsTxtPage.class );
         mountBookmarkablePage( "metadata-dump.xml", MetadataDump.class );
 
         // FOR XSS TESTING
-        //mountBookmarkablePage( "xsstest", PreventXSSTest.class );
+        // mountBookmarkablePage( "xsstest", PreventXSSTest.class );
 
         // For nested for mtesting
         mountBookmarkablePage( "nested-form-test", NestedFormTest.class );
         mountBookmarkablePage( "changelog-test", PublicChangelogTest.class );
 
-        // this will remove the default string resource loader. essentially this new one has better locale-handling,
-        // so that if a string is not found for a more specific locale (es_MX), it would try "es", then the default
+        // this will remove the default string resource loader. essentially this
+        // new one has better locale-handling,
+        // so that if a string is not found for a more specific locale (es_MX),
+        // it would try "es", then the default
         // properties file
         // NOTE: This may break in Wicket 1.4 (hopefully fixed?)
         assert ( getResourceSettings().getStringResourceLoaders().size() == 1 );
-        getResourceSettings().addStringResourceLoader( 0, new ClassStringResourceLoader( PhetWicketApplication.class ) );
+        getResourceSettings().addStringResourceLoader( 0,
+                                                       new ClassStringResourceLoader( PhetWicketApplication.class ) );
 
         // initialize the navigation menu
         menu = new NavMenu();
@@ -359,18 +417,35 @@ public class PhetWicketApplication extends WebApplication {
         mount( new HybridUrlCodingStrategy( "/error", ErrorPage.class ) );
         mount( new HybridUrlCodingStrategy( "/error/404", NotFoundPage.class ) );
         mount( new HybridUrlCodingStrategy( "/activities", BlankPage.class ) );
-        mount( new HybridUrlCodingStrategy( "/uptime-check", BlankPage.class ) ); // landing page for checking that the PhET site is up
+        mount( new HybridUrlCodingStrategy( "/uptime-check", BlankPage.class ) ); // landing
+        // page
+        // for
+        // checking
+        // that
+        // the
+        // PhET
+        // site
+        // is
+        // up
 
         logger.info( "Running as: " + getConfigurationType() );
-        logger.debug( "Detected phet-document-root: " + getWebsiteProperties().getPhetDocumentRoot().getAbsolutePath() );
-
+        try {
+            logger.debug( "Detected phet-document-root: "
+                          + getWebsiteProperties().getPhetDocumentRoot()
+                    .getAbsolutePath() );
+        }
+        catch( Exception e ) {
+            e.printStackTrace();
+        }
         NotificationHandler.initialize( websiteProperties );
 
         SearchUtils.initialize();
 
-        SchedulerService.initialize( this, PhetLocalizer.get() ); // start up cron4j jobs
+        SchedulerService.initialize( this, PhetLocalizer.get() ); // start up
+        // cron4j jobs
 
-        BuildLocalProperties.initFromPropertiesFile( getWebsiteProperties().getBuildLocalPropertiesFile() );
+        BuildLocalProperties.initFromPropertiesFile( getWebsiteProperties()
+                                                             .getBuildLocalPropertiesFile() );
 
         setInstallerTimestampFromFile();
 
@@ -380,13 +455,14 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     private void setupJulSfl4j() {
-        java.util.logging.Logger rootLogger = LogManager.getLogManager().getLogger( "" );
+        java.util.logging.Logger rootLogger = LogManager.getLogManager()
+                .getLogger( "" );
         rootLogger.setLevel( java.util.logging.Level.ALL );
         Handler[] handlers = rootLogger.getHandlers();
         for ( Handler handler : handlers ) {
             rootLogger.removeHandler( handler );
         }
-        //SLF4JBridgeHandler.install();
+        // SLF4JBridgeHandler.install();
         SLF4JBridgeHandler handler = new SLF4JBridgeHandler();
         LogManager.getLogManager().getLogger( "" ).addHandler( handler );
         handler.setLevel( java.util.logging.Level.ALL );
@@ -394,7 +470,8 @@ public class PhetWicketApplication extends WebApplication {
 
     private void setInstallerTimestampFromFile() {
         try {
-            File propsFile = new File( getWebsiteProperties().getPhetDocumentRoot(), "installer/version.properties" );
+            File propsFile = new File( getWebsiteProperties()
+                                               .getPhetDocumentRoot(), "installer/version.properties" );
             Properties props = new Properties();
             FileInputStream stream = new FileInputStream( propsFile );
             try {
@@ -417,23 +494,25 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     public boolean isDeployment() {
-        return getConfigurationType().equals( Application.DEPLOYMENT );
+        return getConfigurationType().equals( Application.DEVELOPMENT );
     }
 
     public boolean isDevelopment() {
         return getConfigurationType().equals( Application.DEVELOPMENT );
     }
 
-    /*---------------------------------------------------------------------------*
-    * server-specific configuration locations
-    *----------------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------------*
+     * server-specific configuration locations
+	 *----------------------------------------------------------------------------*/
 
     public File getActivitiesRoot() {
-        return new File( getWebsiteProperties().getPhetDownloadRoot(), "activities" );
+        return new File( getWebsiteProperties().getPhetDownloadRoot(),
+                         "activities" );
     }
 
     public File getTeachersGuideRoot() {
-        return new File( getWebsiteProperties().getPhetDownloadRoot(), "teachers-guide" );
+        return new File( getWebsiteProperties().getPhetDownloadRoot(),
+                         "teachers-guide" );
     }
 
     public File getSimulationsRoot() {
@@ -449,28 +528,30 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     public String getTeachersGuideLocation() {
-        return getWebsiteProperties().getPhetDownloadLocation() + "/teachers-guide";
+        return getWebsiteProperties().getPhetDownloadLocation()
+               + "/teachers-guide";
     }
 
     public WebsiteProperties getWebsiteProperties() {
         return websiteProperties;
     }
 
-    /*---------------------------------------------------------------------------*
-    * supported locales and translations
-    *----------------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------------*
+	 * supported locales and translations
+	 *----------------------------------------------------------------------------*/
 
     private PhetLocales supportedLocales = PhetLocales.getInstance();
 
     public PhetLocales getSupportedLocales() {
-//        if ( supportedLocales == null ) {
-//            supportedLocales = PhetLocales.getInstance();
-//        }
+        // if ( supportedLocales == null ) {
+        // supportedLocales = PhetLocales.getInstance();
+        // }
         return supportedLocales;
     }
 
     private synchronized void initializeTranslations() {
-        org.hibernate.Session session = HibernateUtils.getInstance().openSession();
+        org.hibernate.Session session = HibernateUtils.getInstance()
+                .openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -499,7 +580,8 @@ public class PhetWicketApplication extends WebApplication {
     private synchronized void sortTranslations() {
         Collections.sort( translations, new Comparator<Translation>() {
             public int compare( Translation a, Translation b ) {
-                return a.getLocale().getDisplayName().compareTo( b.getLocale().getDisplayName() );
+                return a.getLocale().getDisplayName()
+                        .compareTo( b.getLocale().getDisplayName() );
             }
         } );
     }
@@ -520,7 +602,8 @@ public class PhetWicketApplication extends WebApplication {
 
     public synchronized List<Locale> getAllVisibleTranslationLocales() {
         List<Locale> ret = new LinkedList<Locale>();
-        ret.add( WebsiteConstants.ENGLISH ); // TODO: refactor translations to include English!
+        ret.add( WebsiteConstants.ENGLISH ); // TODO: refactor translations to
+        // include English!
         for ( Translation translation : translations ) {
             ret.add( translation.getLocale() );
         }
@@ -556,23 +639,27 @@ public class PhetWicketApplication extends WebApplication {
     // TODO: separate out translation parts into another area?
     private List<TranslationChangeListener> translationChangeListeners = new LinkedList<TranslationChangeListener>();
 
-    public synchronized void addTranslationChangeListener( TranslationChangeListener listener ) {
+    public synchronized void addTranslationChangeListener(
+            TranslationChangeListener listener ) {
         translationChangeListeners.add( listener );
     }
 
-    public synchronized void removeTranslationChangeListener( TranslationChangeListener listener ) {
+    public synchronized void removeTranslationChangeListener(
+            TranslationChangeListener listener ) {
         translationChangeListeners.remove( listener );
     }
 
     private synchronized void notifyTranslationChangeListeners() {
         // make a copy before for modification during traversal avoidance
-        for ( TranslationChangeListener listener : new LinkedList<TranslationChangeListener>( translationChangeListeners ) ) {
+        for ( TranslationChangeListener listener : new LinkedList<TranslationChangeListener>(
+                translationChangeListeners ) ) {
             listener.onChange();
         }
     }
 
     public synchronized void addTranslation( Translation translation ) {
-        String localeString = LocaleUtils.localeToString( translation.getLocale() );
+        String localeString = LocaleUtils.localeToString( translation
+                                                                  .getLocale() );
         logger.info( "Adding translation for " + localeString );
         getResourceSettings().getLocalizer().clearCache();
         translations.add( translation );
@@ -583,7 +670,8 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     public synchronized void removeTranslation( Translation translation ) {
-        String localeString = LocaleUtils.localeToString( translation.getLocale() );
+        String localeString = LocaleUtils.localeToString( translation
+                                                                  .getLocale() );
         logger.info( "Removing translation for " + localeString );
         getResourceSettings().getLocalizer().clearCache();
         int oldNumTranslations = translations.size();
@@ -594,7 +682,8 @@ public class PhetWicketApplication extends WebApplication {
             }
         }
         if ( translations.size() != oldNumTranslations - 1 ) {
-            throw new RuntimeException( "Did not correctly remove old translation" );
+            throw new RuntimeException(
+                    "Did not correctly remove old translation" );
         }
         unmount( localeString );
         sortTranslations();
@@ -629,7 +718,8 @@ public class PhetWicketApplication extends WebApplication {
             SchedulerService.destroy(); // stop cron4j jobs first
             SearchUtils.destroy();
 
-            logger.info( HibernateUtils.getInstance().getCache().getClass().getCanonicalName() );
+            logger.info( HibernateUtils.getInstance().getCache().getClass()
+                                 .getCanonicalName() );
         }
         catch( Exception e ) {
             logger.error( e );
@@ -645,11 +735,13 @@ public class PhetWicketApplication extends WebApplication {
     }
 
     public boolean isProductionServer() {
-        return websiteProperties.getWebHostname().equals( getProductionServerName() );
+        return websiteProperties.getWebHostname().equals(
+                getProductionServerName() );
     }
 
     public boolean isTestingServer() {
-        return websiteProperties.getWebHostname().equals( getTestingServerName() );
+        return websiteProperties.getWebHostname()
+                .equals( getTestingServerName() );
     }
 
     public static interface TranslationChangeListener {

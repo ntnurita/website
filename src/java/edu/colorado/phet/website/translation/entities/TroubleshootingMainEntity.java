@@ -16,9 +16,9 @@ public class TroubleshootingMainEntity extends TranslationEntity {
     public TroubleshootingMainEntity() {
         addString( "troubleshooting.main.title" );
         addString( "troubleshooting.main.intro" );
-        addString( "troubleshooting.main.java" );
-        addString( "troubleshooting.main.flash" );
-        addString( "troubleshooting.main.javascript" );
+        addString( "troubleshooting.main.mac" );
+        addString( "troubleshooting.main.windows" );
+        addString( "troubleshooting.main.mobile" );
         addString( "troubleshooting.main.faqs" );
         addString( "troubleshooting.main.commonIssues" );
         addString( "troubleshooting.top" );
@@ -67,6 +67,60 @@ public class TroubleshootingMainEntity extends TranslationEntity {
 
         addString( "faq.mobileDevices.title" );
         addString( "faq.mobileDevices.answer" );
+
+        addString( "troubleshooting.mac.q1.title" );
+        addString( "troubleshooting.mac.q1.answer" );
+        addString( "troubleshooting.mac.q2.title" );
+        addString( "troubleshooting.mac.q2.answer" );
+        addString( "troubleshooting.mac.q3.title" );
+        addString( "troubleshooting.mac.q3.answer" );
+        addString( "troubleshooting.mac.q4.title" );
+        addString( "troubleshooting.mac.q4.answer" );
+        addString( "troubleshooting.mac.q5.title" );
+        addString( "troubleshooting.mac.q5.answer" );
+        addString( "troubleshooting.mac.q6.title" );
+        addString( "troubleshooting.mac.q6.answer.firefox" );
+        addString( "troubleshooting.mac.q6.answer.chrome" );
+        addString( "troubleshooting.mac.q6.answer.safari" );
+        addString( "troubleshooting.mac.faqs" );
+
+        addString( "troubleshooting.windows.q1.title" );
+        addString( "troubleshooting.windows.q1.answer" );
+        addString( "troubleshooting.windows.q2.title" );
+        addString( "troubleshooting.windows.q2.answer" );
+        addString( "troubleshooting.windows.q3.title" );
+        addString( "troubleshooting.windows.q3.answer" );
+        addString( "troubleshooting.windows.q4.title" );
+        addString( "troubleshooting.windows.q4.answer" );
+        addString( "troubleshooting.windows.q5.title" );
+        addString( "troubleshooting.windows.q5.answer" );
+        addString( "troubleshooting.windows.faqs" );
+
+        addString( "troubleshooting.mobile.p1" );
+        addString( "troubleshooting.mobile.p2" );
+        addString( "troubleshooting.mobile.p3" );
+        addString( "troubleshooting.mobile.p4" );
+        addString( "troubleshooting.mobile.p5" );
+        addString( "troubleshooting.mobile.p6" );
+        addString( "troubleshooting.mobile.p7" );
+
+        addString( "troubleshooting.mac.title" );
+        addString( "troubleshooting.windows.title" );
+        addString( "troubleshooting.mobile.title" );
+
+        addString( "troubleshooting.javaSecurity.title" );
+        addString( "troubleshooting.javaSecurity.monitoring" );
+        addString( "troubleshooting.javaSecurity.upgradeStep" );
+        addString( "troubleshooting.javaSecurity.disableStep" );
+        addString( "troubleshooting.javaSecurity.downloadStep" );
+        addString( "troubleshooting.javaSecurity.questions" );
+        addString( "troubleshooting.javaSecurity.thankyou" );
+        addString( "troubleshooting.javaSecurity.readNow" );
+        addString( "troubleshooting.javaSecurity.javaAdvisory" );
+        addString( "troubleshooting.javaSecurity.pleaseRead" );
+        addString( "troubleshooting.javaSecurity.steps" );
+        addString( "troubleshooting.javaSecurity.intro" );
+        addString( "troubleshooting.javaSecurity.localInstallation" );
 
         addString( "nav.breadcrumb.faqs" );
         addString( "troubleshooting.main.licensingRequirements" );

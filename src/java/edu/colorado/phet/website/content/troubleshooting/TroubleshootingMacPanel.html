@@ -27,8 +27,7 @@
       </wicket:message>
     </a></h3>
 
-    <!--<div wicket:id="troubleshooting-mac-q1-answer">-->
-    <div class="answer" id="a1">
+    <div wicket:id="troubleshooting-mac-q1-answer" class="answer" id="a1">
       <p>
         The PhET simulations that are distributed with the installer include a "digital certificate" that verifies that
         these simulations were actually created by PhET. This is a security measure that helps to prevent an unscrupulous
@@ -53,8 +52,7 @@
       </wicket:message>
     </a></h3>
 
-    <!--<div wicket:id="troubleshooting-mac-q2-answer">-->
-    <div class="answer" id="a2">
+    <div wicket:id="troubleshooting-mac-q2-answer" class="answer" id="a2">
       <p>
         This problem will affect mac users who recently installed Apple's "Java for Mac OS X 10.5 Update 4". The update will
         typically be done via Software Update, or automatically. After installing this update, the problem appears: clicking
@@ -78,8 +76,7 @@
       </wicket:message>
     </a></h3>
 
-    <!--<div wicket:id="troubleshooting-mac-q3-answer">-->
-    <div class="answer" id="a3">
+    <div wicket:id="troubleshooting-mac-q3-answer" class="answer" id="a3">
       <p>
         If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's
         drivers may fix the issue.
@@ -99,27 +96,28 @@
       </wicket:message>
     </a></h3>
 
-    <!--<div wicket:id="troubleshooting-mac-q4-answer">-->
     <div class="answer" id="a4">
       <img src="//phet.colorado.edu/images/troubleshooting/unable-to-start-LWJGL.png" alt="Unable to Start Image" width="500"/>
 
-      <p>
-        'Molecule Shapes', 'Plate Tectonics', and 'Molecule Shapes: Basics' rely on advanced graphics libraries (LWJGL)
-        that many OS and Java combinations don't support.
-      </p>
+      <div wicket:id="troubleshooting-mac-q4-answer">
+        <p>
+          'Molecule Shapes', 'Plate Tectonics', and 'Molecule Shapes: Basics' rely on advanced graphics libraries (LWJGL)
+          that many OS and Java combinations don't support.
+        </p>
 
-      <p>
-        It shows up on ALL Mac OS X 10.8, many 10.6 and 10.7 computers.
-      </p>
+        <p>
+          It shows up on ALL Mac OS X 10.8, many 10.6 and 10.7 computers.
+        </p>
 
-      <p>
-        Unfortunately, at this time the incompatibility problem is out of our hands and unless Oracle or Apple address this
-        issue, it is unlikely the sim will run successfully.
-      </p>
+        <p>
+          Unfortunately, at this time the incompatibility problem is out of our hands and unless Oracle or Apple address this
+          issue, it is unlikely the sim will run successfully.
+        </p>
 
-      <p>
-        We are hoping incompatibilities like this will be a thing of the past once we move most of our sims to HTML5.
-      </p>
+        <p>
+          We are hoping incompatibilities like this will be a thing of the past once we move most of our sims to HTML5.
+        </p>
+      </div>
     </div>
 
 
@@ -129,8 +127,7 @@
       </wicket:message>
     </a></h3>
 
-    <!--<div wicket:id="troubleshooting-mac-q5-answer">-->
-    <div class="answer" id="a5">
+    <div wicket:id="troubleshooting-mac-q5-answer" class="answer" id="a5">
       <p>
         Gatekeeper, introduced in Mountain Lion (OS X 10.8), is designed to prevent potentially malicious apps from launching.
         When you attempt to launch an app that doesn't meet certain criteria, Gatekeeper will block the launch. To override this,
@@ -157,61 +154,66 @@
 
     <h3 id="q6"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a6')">
       <wicket:message key="troubleshooting.mac.q6.title">
-        When I click 'Run Now' from a sim page, nothing happens!
+        When I click 'Run Now' from a sim page, nothing happens! + akafhadkfjhakdf
       </wicket:message>
     </a></h3>
 
-    <!--<div wicket:id="troubleshooting-mac-q6-answer">-->
     <div class="answer" id="a6">
-      <p><strong>Firefox</strong></p>
+      <div wicket:id="troubleshooting-mac-q6-answer-firefox">
+        <p><strong>Firefox</strong></p>
 
-      <p>
-        When opening a sim in Firefox, a dialog will popup asking you what Firefox should do with the file. Click Open with
-        Java Web Start (default).
-      </p>
+        <p>
+          When opening a sim in Firefox, a dialog will popup asking you what Firefox should do with the file. Click Open with
+          Java Web Start (default).
+        </p>
 
-      <p>
-        If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
-        with the instructions in the appropriate FAQ and download the .jar file for that sim.
-      </p>
+        <p>
+          If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
+          with the instructions in the appropriate FAQ and download the .jar file for that sim.
+        </p>
+      </div>
 
-      <p><strong>Chrome</strong></p>
+      <div wicket:id="troubleshooting-mac-q6-answer-chrome">
+        <p><strong>Chrome</strong></p>
 
-      <p>
-        When opening a sim in Chrome, the browser will automatically ask to either Discard or Keep the file.
-        The prompt pops up at the bottom of the screen.
-      </p>
+        <p>
+          When opening a sim in Chrome, the browser will automatically ask to either Discard or Keep the file.
+          The prompt pops up at the bottom of the screen.
+        </p>
 
-      <img src="//phet.colorado.edu/images/troubleshooting/file-can-harm-computer.png" alt="File can harm computer image" width="300"/>
+        <img src="//phet.colorado.edu/images/troubleshooting/file-can-harm-computer.png" alt="File can harm computer image" width="300"/>
 
-      <p>
-        Click 'Keep'. You will then have an icon displaying the newly
-        downloaded file. Click this to run the sim.
-      </p>
+        <p>
+          Click 'Keep'. You will then have an icon displaying the newly
+          downloaded file. Click this to run the sim.
+        </p>
 
-      <img src="//phet.colorado.edu/images/troubleshooting/newly-downloaded-icon.png" alt="Newly downloaded image" width="200"/>
+        <img src="//phet.colorado.edu/images/troubleshooting/newly-downloaded-icon.png" alt="Newly downloaded image" width="200"/>
 
-      <p>
-        If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
-        with the instructions in the appropriate FAQ and download the .jar file for that sim.
-      </p>
+        <p>
+          If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
+          with the instructions in the appropriate FAQ and download the .jar file for that sim.
+        </p>
+      </div>
 
-      <p><strong>Safari</strong></p>
+      <div wicket:id="troubleshooting-mac-q6-answer-safari">
+        <p><strong>Safari</strong></p>
 
-      <p>
-        When opening a sim in Safari, the browser will automatically download the .jnlp file after clicking "Run Now".
-        However, no notification is given. Click the Downloads
-        <img src="//phet.colorado.edu/images/troubleshooting/downloads-button.png" alt="Downloads icon" height="15"/>
-        button to show recent downloads. Click the latest .jnlp file
-        to run the sim.
-      </p>
+        <p>
+          When opening a sim in Safari, the browser will automatically download the .jnlp file after clicking "Run Now".
+          However, no notification is given. Click the Downloads
+          <img src="//phet.colorado.edu/images/troubleshooting/downloads-button.png" alt="Downloads icon" height="15"/>
+          button to show recent downloads. Click the latest .jnlp file
+          to run the sim.
+        </p>
 
-      <img src="//phet.colorado.edu/images/troubleshooting/downloads-menu.png" alt="Downloads menu image" width="300"/>
+        <img src="//phet.colorado.edu/images/troubleshooting/downloads-menu.png" alt="Downloads menu image" width="300"/>
 
-      <p>
-        If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
-        with the instructions in the appropriate FAQ and download the .jar file for that sim.
-      </p>
+        <p>
+          If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
+          with the instructions in the appropriate FAQ and download the .jar file for that sim.
+        </p>
+      </div>
 
     </div>
 

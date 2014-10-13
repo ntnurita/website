@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -44,6 +45,7 @@ public class Project implements Serializable, IntId {
 
     public static final int TYPE_JAVA = 0; // NOTE: update metadata code if you add another type
     public static final int TYPE_FLASH = 1;
+    public static final int TYPE_HTML = 2;
 
     private int id;
     private String name;
@@ -64,6 +66,9 @@ public class Project implements Serializable, IntId {
     }
 
     public String getVersionString() {
+        if ( isHTML() ) {
+            return getVersionMajor() + "." + getVersionMinor() + "." + getVersionDev();
+        }
         String ret = "";
         ret += getVersionMajor();
         ret += ".";
@@ -97,12 +102,24 @@ public class Project implements Serializable, IntId {
         return new File( getProjectRoot( docRoot ), simulationName + "_" + LocaleUtils.localeToString( locale ) + ".jar" );
     }
 
+    private File getSimulationHTMLFile( File docRoot, String simulationName, Locale locale ) {
+        return new File( getLatestHTMLDirectory( getProjectRoot( docRoot ) ), simulationName + "_" + LocaleUtils.localeToString( locale ) + ".html" );
+    }
+
     public File getChangelogFile( File docRoot ) {
+        if ( isHTML() ) {
+            return new File( getProjectRoot( docRoot ) + "/" + getVersionString(), "changes.txt" );
+        }
         return new File( getProjectRoot( docRoot ), "changes.txt" );
     }
 
     public RawLinkable getRawChangelogLinker() {
-        return new RawLinker( "/sims/" + name + "/changes.txt" );
+        if ( this.isHTML() ) {
+            return new RawLinker( "/sims/" + name + "/" + getVersionString() + "/changes.txt" );
+        }
+        else {
+            return new RawLinker( "/sims/" + name + "/changes.txt" );
+        }
     }
 
     private void appendWarning( StringBuilder builder, String message ) {
@@ -161,7 +178,7 @@ public class Project implements Serializable, IntId {
         try {
             FileUtils.copyRecursive( projectRoot, backupDir );
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             e.printStackTrace();
             return false;
         }
@@ -220,8 +237,19 @@ public class Project implements Serializable, IntId {
                         }
                     } ).length > 0;
 
-                    int type = hasSWF ? TYPE_FLASH : TYPE_JAVA;
-                    syncLogger.debug( "detecting project type as: " + ( type == TYPE_JAVA ? "java" : "flash" ) );
+                    int type;
+                    String debugType;
+                    File latestHTMLVersionDirectory = getLatestHTMLDirectory( projectRoot );
+                    if ( latestHTMLVersionDirectory != null ) {
+                        type = TYPE_HTML;
+                        debugType = "HTML";
+                    }
+                    else {
+                        type = hasSWF ? TYPE_FLASH : TYPE_JAVA;
+                        debugType = hasSWF ? "flash" : "java";
+                    }
+
+                    syncLogger.debug( "detecting project type as: " + debugType );
 
                     List plist = session.createQuery( "select p from Project as p where p.name = :name" ).setString( "name", projectName ).list();
                     if ( plist.size() > 1 ) {
@@ -243,31 +271,41 @@ public class Project implements Serializable, IntId {
                         projectDirty = true;
                     }
 
-                    ProjectPropertiesFile projectProperties = project.getProjectPropertiesFile( docRoot );
-                    if ( project.versionMajor != projectProperties.getMajorVersion() ) {
-                        syncLogger.info( "Updating Major to " + projectProperties.getMajorVersion() );
-                        project.setVersionMajor( projectProperties.getMajorVersion() );
-                        projectDirty = true;
+                    if ( type == TYPE_HTML ) {
+                        String[] versionNumbers = latestHTMLVersionDirectory.getName().split( "\\." );
+                        project.setVersionMajor( Integer.parseInt( versionNumbers[0] ) );
+                        project.setVersionMinor( Integer.parseInt( versionNumbers[1] ) );
+                        project.setVersionDev( Integer.parseInt( versionNumbers[2] ) );
+                        project.setVersionRevision( 0 );
+                        project.setVersionTimestamp( 0 );
                     }
-                    if ( project.versionMinor != projectProperties.getMinorVersion() ) {
-                        syncLogger.info( "Updating Minor to " + projectProperties.getMinorVersion() );
-                        project.setVersionMinor( projectProperties.getMinorVersion() );
-                        projectDirty = true;
-                    }
-                    if ( project.versionDev != projectProperties.getDevVersion() ) {
-                        syncLogger.info( "Updating Dev to " + projectProperties.getDevVersion() );
-                        project.setVersionDev( projectProperties.getDevVersion() );
-                        projectDirty = true;
-                    }
-                    if ( project.versionRevision != projectProperties.getSVNVersion() ) {
-                        syncLogger.info( "Updating Revision to " + projectProperties.getSVNVersion() );
-                        project.setVersionRevision( projectProperties.getSVNVersion() );
-                        projectDirty = true;
-                    }
-                    if ( project.versionTimestamp != projectProperties.getVersionTimestamp() ) {
-                        syncLogger.info( "Updating Timestamp to " + projectProperties.getVersionTimestamp() );
-                        project.setVersionTimestamp( projectProperties.getVersionTimestamp() );
-                        projectDirty = true;
+                    else {
+                        ProjectPropertiesFile projectProperties = project.getProjectPropertiesFile( docRoot );
+                        if ( project.versionMajor != projectProperties.getMajorVersion() ) {
+                            syncLogger.info( "Updating Major to " + projectProperties.getMajorVersion() );
+                            project.setVersionMajor( projectProperties.getMajorVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionMinor != projectProperties.getMinorVersion() ) {
+                            syncLogger.info( "Updating Minor to " + projectProperties.getMinorVersion() );
+                            project.setVersionMinor( projectProperties.getMinorVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionDev != projectProperties.getDevVersion() ) {
+                            syncLogger.info( "Updating Dev to " + projectProperties.getDevVersion() );
+                            project.setVersionDev( projectProperties.getDevVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionRevision != projectProperties.getSVNVersion() ) {
+                            syncLogger.info( "Updating Revision to " + projectProperties.getSVNVersion() );
+                            project.setVersionRevision( projectProperties.getSVNVersion() );
+                            projectDirty = true;
+                        }
+                        if ( project.versionTimestamp != projectProperties.getVersionTimestamp() ) {
+                            syncLogger.info( "Updating Timestamp to " + projectProperties.getVersionTimestamp() );
+                            project.setVersionTimestamp( projectProperties.getVersionTimestamp() );
+                            projectDirty = true;
+                        }
                     }
 
                     // used so we know which simulations we have already encountered
@@ -283,8 +321,14 @@ public class Project implements Serializable, IntId {
                     Set<Simulation> missedSimulations = new HashSet<Simulation>( project.getSimulations() );
                     Set<LocalizedSimulation> missedLocalizedSimulations = new HashSet<LocalizedSimulation>();
 
-
-                    Document document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, projectName + ".xml" ) ) );
+                    Document document;
+                    if ( type == TYPE_HTML ) {
+                        String unqualifiedName = projectName.substring( 5 );
+                        document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, unqualifiedName + ".xml" ) ) );
+                    }
+                    else {
+                        document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, projectName + ".xml" ) ) );
+                    }
                     NodeList simulationNodes = document.getElementsByTagName( "simulation" );
 
                     for ( int i = 0; i < simulationNodes.getLength(); i++ ) {
@@ -309,9 +353,10 @@ public class Project implements Serializable, IntId {
 
                         syncLogger.debug( "Reading localized simulation XML for: " + simName + " - " + simLocaleString + " - " + simTitle );
 
-                        if ( !project.getSimulationJARFile( docRoot, simName, simLocale ).exists() ) {
+                        if ( !project.getSimulationJARFile( docRoot, simName, simLocale ).exists() &&
+                             !project.getSimulationHTMLFile( docRoot, simName, simLocale ).exists() ) {
                             syncLogger.warn( "Project: " + projectName + " sim: " + simName + ", locale: " + simLocaleString );
-                            syncLogger.warn( "Simulation JAR file does not exist for specified XML entry. Most likely not deployed yet" );
+                            syncLogger.warn( "Simulation JAR or HTML file does not exist for specified XML entry. Most likely not deployed yet" );
                             syncLogger.warn( "Skipping" );
                             continue;
                         }
@@ -630,12 +675,32 @@ public class Project implements Serializable, IntId {
         return builder.toString();
     }
 
+    public static File getLatestHTMLDirectory( File projectRoot ) {
+        File[] htmlVersionDirectories = projectRoot.listFiles( new FilenameFilter() {
+            public boolean accept( File file, String s ) {
+                // For some reason the xml file is passing the isDirectory test?
+                return file.isDirectory() && !s.endsWith( "xml" );
+            }
+        } );
+        Arrays.sort( htmlVersionDirectories );
+        if ( htmlVersionDirectories.length > 0 ) {
+            return htmlVersionDirectories[htmlVersionDirectories.length - 1];
+        }
+        else {
+            return null;
+        }
+    }
+
     public boolean isJava() {
         return getType() == 0;
     }
 
     public boolean isFlash() {
         return getType() == 1;
+    }
+
+    public boolean isHTML() {
+        return getType() == 2;
     }
 
     // getters and setters

@@ -43,6 +43,7 @@ public class Contribution implements Serializable, DataListener, IntId {
     private String description;
     private int duration; // minutes
     private boolean answersIncluded;
+    private boolean creativeCommons;
     private String contactEmail;
     private String authorOrganization;
     private Date dateCreated;
@@ -390,6 +391,14 @@ public class Contribution implements Serializable, DataListener, IntId {
 
     public void setAnswersIncluded( boolean answersIncluded ) {
         this.answersIncluded = answersIncluded;
+    }
+
+    public boolean isCreativeCommons() {
+        return creativeCommons;
+    }
+
+    public void setCreativeCommons( boolean creativeCommons ) {
+        this.creativeCommons = creativeCommons;
     }
 
     public String getContactEmail() {

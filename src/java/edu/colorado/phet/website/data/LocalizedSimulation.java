@@ -36,15 +36,22 @@ public class LocalizedSimulation implements Serializable, IntId {
     public String getRunUrl() {
         Simulation sim = getSimulation();
         Project project = sim.getProject();
-        String str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
+        String str;
+        if ( sim.isHTML() ) {
+            str = "/sims/" + project.getName() + "/" + sim.getProject().getVersionString() + "/" + sim.getName() + "_" + getLocaleString();
+        }
+        else {
+            str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
+        }
+
         if ( sim.isJava() ) {
             str += ".jnlp";
         }
-        else if ( sim.isFlash() ) {
+        else if ( sim.isFlash() || sim.isHTML() ) {
             str += ".html";
         }
         else {
-            throw new RuntimeException( "Handle more than java and flash" );
+            throw new RuntimeException( "Handle more than java, flash, and HTML" );
         }
         return str;
     }
@@ -52,12 +59,21 @@ public class LocalizedSimulation implements Serializable, IntId {
     public String getDownloadUrl() {
         Simulation sim = getSimulation();
         Project project = sim.getProject();
-        String str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
+        String str;
+        if ( sim.isHTML() ) {
+            str = "/sims/" + project.getName() + "/" + sim.getProject().getVersionString() + "/" + sim.getName() + "_" + getLocaleString();
+        }
+        else {
+            str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
+        }
         if ( sim.isJava() || sim.isFlash() ) {
             str += ".jar";
         }
+        else if ( sim.isHTML() ) {
+            str += ".html?download";
+        }
         else {
-            throw new RuntimeException( "Handle more than java and flash" );
+            throw new RuntimeException( "Handle more than java, flash, and HTML" );
         }
         return str;
     }

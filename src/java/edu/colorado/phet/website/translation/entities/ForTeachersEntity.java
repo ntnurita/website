@@ -15,18 +15,6 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 public class ForTeachersEntity extends TranslationEntity {
     public ForTeachersEntity() {
         addString( "teacherIdeas.title" );
-        addString( "teacherIdeas.welcome" );
-        addString( "teacherIdeas.browseSection" );
-        addString( "teacherIdeas.start" );
-        addString( "teacherIdeas.contributeSection" );
-        addString( "teacherIdeas.contribute" );
-        addString( "teacherIdeas.adviceSection" );
-        addString( "teacherIdeas.guidelinesSection" );
-        addString( "teacherIdeas.guidelines" );
-        addString( "teacherIdeas.exampleSection" );
-        addString( "teacherIdeas.examples.highSchool" );
-        addString( "teacherIdeas.examples.modernPhysics" );
-        addString( "teacherIdeas.examples.everydayPhysics" );
 
         addString( "teacherIdeas.guide.title" );
         addString( "teacherIdeas.guide.authors" );
@@ -48,6 +36,15 @@ public class ForTeachersEntity extends TranslationEntity {
         addString( "teacherIdeas.guide.diagramReasoning" );
         addString( "teacherIdeas.guide.monitorUnderstanding.title" );
         addString( "teacherIdeas.guide.monitorUnderstanding" );
+
+        addString( "forTeachers.workshopFacilitatorsGuide.title" );
+        addString( "forTeachers.tipsForUsingPhet.title" );
+        addString( "forTeachers.planningToUsePhet.title" );
+        addString( "forTeachers.usingPhetInLecture.title" );
+        addString( "forTeachers.lectureDemo.title" );
+        addString( "forTeachers.clickersDemo.title" );
+        addString( "forTeachers.activitesDesign.title" );
+        addString( "forTeachers.virtualWorkshop.title" );
 
         addString( "for-teachers.classroom-use.title" );
 

@@ -122,6 +122,9 @@ public class Simulation implements Serializable, IntId {
      */
     public String getThumbnailUrl() {
         // NOTE: this is relied upon to be relative!
+        if ( isHTML() ) {
+            return "/sims/" + getProject().getName() + "/" + getProject().getVersionString() + "/" + getName() + "-128.png";
+        }
 
         // improved-quality PNG version of the thumbnail
         String pngUrl = "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.png";
@@ -137,7 +140,12 @@ public class Simulation implements Serializable, IntId {
     }
 
     public String getImageUrl() {
-        return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+        if ( isHTML() ) {
+            return "/sims/" + getProject().getName() + "/" + getProject().getVersionString() + "/" + getName() + "-screenshot.png";
+        }
+        else {
+            return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+        }
     }
 
     public WebImage getThumbnail() {
@@ -155,6 +163,8 @@ public class Simulation implements Serializable, IntId {
                 return (int) ( new File( projectRoot, project.getName() + "_all.jar" ) ).length() / 1000;
             case Project.TYPE_FLASH:
                 return (int) ( new File( projectRoot, name + "_en.jar" ) ).length() / 1024;
+            case Project.TYPE_HTML:
+                return (int) ( new File( Project.getLatestHTMLDirectory( projectRoot ), name + "_en.html" ).length() / 1024 );
             default:
                 throw new RuntimeException( "Simulation type not handled? type = " + getType() );
         }
@@ -174,6 +184,10 @@ public class Simulation implements Serializable, IntId {
 
     public boolean isFlash() {
         return getType() == 1;
+    }
+
+    public boolean isHTML() {
+        return getType() == 2;
     }
 
     public GradeLevel getMinGradeLevel() {

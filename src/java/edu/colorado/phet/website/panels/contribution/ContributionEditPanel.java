@@ -235,6 +235,8 @@ public class ContributionEditPanel extends PhetPanel {
 
         private LocaleDropDownChoice localeChoice;
 
+//        private CheckBox creativeCommonsCheckbox;
+
         public ContributionForm( String id ) {
             super( id );
 
@@ -274,6 +276,9 @@ public class ContributionEditPanel extends PhetPanel {
             add( durationChoice );
 
             add( new CheckBox( "answersIncluded" ) );
+
+//            creativeCommonsCheckbox = new CheckBox( "creativeCommons" );
+//            add( creativeCommonsCheckbox );
 
             localeChoice = new LocaleDropDownChoice( "locale", context );
             add( localeChoice );
@@ -343,6 +348,9 @@ public class ContributionEditPanel extends PhetPanel {
                     if ( levelManager.getValues().isEmpty() ) {
                         error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
                     }
+//                    if ( !creativeCommonsCheckbox.getConvertedInput() ) {
+//                        error( creativeCommonsCheckbox, "contribution.edit.validation.mustHaveLicense" );
+//                    }
                 }
             } );
 
@@ -366,6 +374,7 @@ public class ContributionEditPanel extends PhetPanel {
                     // pull out values
                     int duration = ( (DurationItem) durationChoice.getModelObject() ).getDuration();
                     boolean answers = getModelObject().isAnswersIncluded();
+                    boolean creativeCommons = getModelObject().isCreativeCommons();
                     Locale locale = localeChoice.getLocale() == null ? WebsiteConstants.ENGLISH : localeChoice.getLocale();
 
                     //Contribution contribution;

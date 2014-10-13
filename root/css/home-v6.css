@@ -347,3 +347,7 @@ div.practices dd a:hover {
   position:relative;
   top:1px;
 }
+
+.pdf-icon::after {
+    content: url("/images/pdficon_small.png");
+}

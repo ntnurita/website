@@ -178,6 +178,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.validation.mustHaveFiles" );
         addString( "contribution.edit.validation.mustHaveTypes" );
         addString( "contribution.edit.validation.mustHaveLevels" );
+        addString( "contribution.edit.validation.mustHaveLicense" );
         addString( "contribution.edit.validation.fileType" );
         addString( "contribution.edit.validation.pleaseCorrect" );
 

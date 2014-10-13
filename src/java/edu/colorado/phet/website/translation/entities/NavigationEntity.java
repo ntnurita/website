@@ -20,6 +20,7 @@ import edu.colorado.phet.website.panels.SideNavMenu;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -40,6 +41,8 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.teacherIdeas" );
         addString( "nav.teacherIdeas.browse" );
         addString( "nav.teacherIdeas.submit" );
+        addString( "nav.exampleworkshops" );
+
         addString( "nav.teacherIdeas.edit" );
         addString( "nav.teacherIdeas.manage" );
         addString( "nav.teacherIdeas.guide" );
@@ -68,8 +71,26 @@ public class NavigationEntity extends TranslationEntity {
         addString( "nav.about.contact" );
         addString( "nav.about.who-we-are" );
         addString( "nav.about.licensing" );
+        addString( "nav.about.team" );
         addString( "nav.html.licensing" );
         addString( "nav.sponsors" );
+
+        // add for teachers strings
+        addString( "nav.forTeachers.workshopFacilitatorsGuide" );
+        addString( "nav.forTeachers.tipsForUsingPhet" );
+        addString( "nav.forTeachers.planningToUsePhet" );
+        addString( "nav.forTeachers.usingPhetInLecture" );
+        addString( "nav.forTeachers.lectureDemo" );
+        addString( "nav.forTeachers.clickersDemo" );
+        addString( "nav.forTeachers.activitesDesign" );
+        addString( "nav.forTeachers.virtualWorkshop" );
+
+        // add troubleshooting nav strings
+        addString( "nav.troubleshooting.mac" );
+        addString( "nav.troubleshooting.windows" );
+        addString( "nav.troubleshooting.mobile" );
+        addString( "nav.troubleshooting.javaSecurity" );
+
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
                             HashSet<NavLocation> locations = new HashSet<NavLocation>();

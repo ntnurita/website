@@ -23,6 +23,9 @@ import edu.colorado.phet.website.content.about.AboutMainPanel;
 import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
+import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
+import edu.colorado.phet.website.content.contribution.ContributionPage;
+import edu.colorado.phet.website.content.forteachers.TipsPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
 import edu.colorado.phet.website.content.getphet.RunOurSimulationsPanel;
@@ -30,7 +33,7 @@ import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
-import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
+import edu.colorado.phet.website.content.workshops.WorkshopsPanel;	
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
@@ -129,6 +132,7 @@ public class IndexPanel extends PhetPanel {
 
         add( DonatePanel.getLinker().getLink( "support-phet-link", context, getPhetCycle() ) );
         add( TranslationUtilityPanel.getLinker().getLink( "translate-sims-link", context, getPhetCycle() ) );
+       
 
         add( AboutMainPanel.getLinker().getLink( "about-general", context, getPhetCycle() ) );
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );
@@ -172,7 +176,7 @@ public class IndexPanel extends PhetPanel {
         if ( DistributionHandler.redirectActivities( (PhetRequestCycle) getRequestCycle() ) ) {
             add( new RawLink( "activities-link", "http://phet.colorado.edu/teacher_ideas/index.php" ) );
             add( new RawLink( "browse-activities-link", "http://phet.colorado.edu/teacher_ideas/browse.php" ) );
-            add( new RawLink( "submit-activity-link", "http://phet.colorado.edu/teacher_ideas/index.php" ) );
+            add( new RawLink( "submit-activity-link", "http://phet.colorado.edu/en/for-teachers/submit-activity" ) );
         }
         else {
             add( TeacherIdeasPanel.getLinker().getLink( "activities-link", context, getPhetCycle() ) );
@@ -182,7 +186,9 @@ public class IndexPanel extends PhetPanel {
             else {
                 add( ContributionBrowsePage.getLinker().getLink( "browse-activities-link", context, getPhetCycle() ) );
             }
-            add( TeacherIdeasPanel.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
+
+            add( TipsPanel.getLinker().getLink( "tipsforusingphet-link", context, getPhetCycle() ) );
+            add( ContributionCreatePage.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
         }
 
         if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
