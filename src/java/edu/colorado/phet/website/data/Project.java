@@ -107,6 +107,9 @@ public class Project implements Serializable, IntId {
     }
 
     public File getChangelogFile( File docRoot ) {
+        if ( isHTML() ) {
+            return new File( getProjectRoot( docRoot ) + "/" + getVersionString(), "changes.txt" );
+        }
         return new File( getProjectRoot( docRoot ), "changes.txt" );
     }
 
