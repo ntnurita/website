@@ -680,7 +680,6 @@ public class Project implements Serializable, IntId {
             }
         } );
         Arrays.sort( htmlVersionDirectories );
-        System.out.println( Arrays.toString( htmlVersionDirectories ) );
         if ( htmlVersionDirectories.length > 0 ) {
             return htmlVersionDirectories[htmlVersionDirectories.length - 1];
         }

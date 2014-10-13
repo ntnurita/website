@@ -112,8 +112,6 @@ public class SimulationMainPanel extends PhetPanel {
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {
         super( id, context );
 
-        System.out.println("TITLE " + simulation.getTitle());
-
         String simulationVersionString = simulation.getSimulation().getProject().getVersionString();
 
         add( new Label( "simulation-main-title", simulation.getTitle() ) );
