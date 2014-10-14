@@ -397,26 +397,32 @@
 
             <table class="system-requirements-table">
                 <tr>
-                    <th>Windows</th>
-                    <th>Macintosh</th>
-                    <th>Linux</th>
+                    <th wicket:id="column1-header">Windows</th>
+                    <th wicket:id="column2-header">Macintosh</th>
+                    <th wicket:id="column3-header">Linux</th>
+                    <th wicket:id="column4-header"></th>
                 </tr>
                 <tr>
                     <td>
-                        Microsoft Windows
-                        <br/>
-                        XP/Vista/7
-                        <br/>
-                        <span wicket:id="windows-req">Sun Java 1.5.0_15 or later</span>
+                        <wicket:enclosure child="column1-list">
+                            <div wicket:id="column1-list"><span wicket:id="column1-item">An item</span><br/></div>
+                        </wicket:enclosure>
                     </td>
                     <td>
-                        OS 10.5 or later
-                        <br/>
-                        <span wicket:id="mac-req">Apple Java 1.5.0_19 or later</span>
+                        <wicket:enclosure child="column2-list">
+                            <div wicket:id="column2-list"><span wicket:id="column2-item">An item</span><br/></div>
+                        </wicket:enclosure>
                     </td>
                     <td>
-                        <span wicket:id="linux-req">Sun Java 1.5.0_15 or later</span>
+                        <wicket:enclosure child="column3-list">
+                            <div wicket:id="column3-list"><span wicket:id="column3-item">An item</span><br/></div>
+                        </wicket:enclosure>
                     </td>
+                    <wicket:enclosure child="column4-list">
+                        <td>
+                            <div wicket:id="column4-list"><span wicket:id="column4-item">An item</span><br/></div>
+                        </td>
+                    </wicket:enclosure>
                 </tr>
             </table>
 
