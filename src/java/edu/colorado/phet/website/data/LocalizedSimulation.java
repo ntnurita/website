@@ -38,7 +38,7 @@ public class LocalizedSimulation implements Serializable, IntId {
         Project project = sim.getProject();
         String str;
         if ( sim.isHTML() ) {
-            str = "/sims/" + project.getName() + "/" + sim.getProject().getVersionString() + "/" + sim.getName() + "_" + getLocaleString();
+            str = "/sims/" + project.getName() + "/latest/" + sim.getName() + "_" + getLocaleString();
         }
         else {
             str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();
@@ -61,7 +61,7 @@ public class LocalizedSimulation implements Serializable, IntId {
         Project project = sim.getProject();
         String str;
         if ( sim.isHTML() ) {
-            str = "/sims/" + project.getName() + "/" + sim.getProject().getVersionString() + "/" + sim.getName() + "_" + getLocaleString();
+            str = "/sims/" + project.getName() + "/latest/" + sim.getName() + "_" + getLocaleString();
         }
         else {
             str = "/sims/" + project.getName() + "/" + sim.getName() + "_" + getLocaleString();

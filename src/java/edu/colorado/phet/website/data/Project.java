@@ -108,14 +108,14 @@ public class Project implements Serializable, IntId {
 
     public File getChangelogFile( File docRoot ) {
         if ( isHTML() ) {
-            return new File( getProjectRoot( docRoot ) + "/" + getVersionString(), "changes.txt" );
+            return new File( getProjectRoot( docRoot ) + "/latest", "changes.txt" );
         }
         return new File( getProjectRoot( docRoot ), "changes.txt" );
     }
 
     public RawLinkable getRawChangelogLinker() {
         if ( this.isHTML() ) {
-            return new RawLinker( "/sims/" + name + "/" + getVersionString() + "/changes.txt" );
+            return new RawLinker( "/sims/" + name + "/latest/changes.txt" );
         }
         else {
             return new RawLinker( "/sims/" + name + "/changes.txt" );
