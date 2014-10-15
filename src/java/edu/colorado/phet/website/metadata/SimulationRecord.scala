@@ -60,7 +60,14 @@ class SimulationRecord(str: String) {
   *----------------------------------------------------------------------------*/
   def simPageLink = ( xml \ "simPageLink" ).text
 
-  def thumbnailLink = "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-thumbnail.jpg"
+  def thumbnailLink = {
+    if ( isHTML ) {
+      "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-128.png"
+    }
+    else {
+      "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-thumbnail.jpg"
+    }
+  }
 
   def screenshotLink = "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-screenshot.png"
 
@@ -73,7 +80,14 @@ class SimulationRecord(str: String) {
     }
   }
 
-  def downloadUrl(language: String): String = simulationBase + "_" + language + ".jar"
+  def downloadUrl(language: String): String = {
+    if ( isHTML ) {
+      simulationBase + "_" + language + ".html"
+    }
+    else {
+      simulationBase + "_" + language + ".jar"
+    }
+  }
 
   /*---------------------------------------------------------------------------*
   * technology
