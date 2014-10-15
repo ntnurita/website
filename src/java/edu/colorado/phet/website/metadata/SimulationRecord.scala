@@ -60,9 +60,9 @@ class SimulationRecord(str: String) {
   *----------------------------------------------------------------------------*/
   def simPageLink = ( xml \ "simPageLink" ).text
 
-  def thumbnailLink = "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName + "-thumbnail.jpg"
+  def thumbnailLink = "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-thumbnail.jpg"
 
-  def screenshotLink = "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName + "-screenshot.png"
+  def screenshotLink = "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-screenshot.png"
 
   def runNowUrl(language: String): String = {
     if ( isJava ) {
@@ -84,6 +84,8 @@ class SimulationRecord(str: String) {
 
   def isFlash = technology == "1"
 
+  def isHTML = technology == "2"
+
   def mimeTypes: Seq[String] = {
     val result = new ListBuffer[String]
     if ( isJava ) {
@@ -96,7 +98,11 @@ class SimulationRecord(str: String) {
     result += "text/html" // the main sim page with resources / etc
   }
 
-  def englishSoftwareRequirements: String = if ( isJava ) "Sun Java 1.5.0_15 or later" else "Adobe Flash 9 or later"
+  def englishSoftwareRequirements: String = {
+    if ( isJava ) "Sun Java 1.5.0_15 or later"
+    else if ( isFlash ) "Adobe Flash 9 or later"
+    else "Internet Explorer 9+, Safari 6.1 and up, latest versions of Firefox, or latest version of Chrome"
+  }
 
   def kilobytes = Integer.parseInt(( xml \ "filesize" \ "@kilobytes" ).text)
 
@@ -126,11 +132,18 @@ class SimulationRecord(str: String) {
 
   def minorVersion = ( xml \ "version" \ "@minor" ).text
 
+  def devVersion = ( xml \ "version" \ "@dev" ).text
+
   def revisionVersion = ( xml \ "version" \ "@revision" ).text
 
   def timestampVersion = ( xml \ "version" \ "@timestamp" ).text
 
-  def versionString = majorVersion + "." + minorVersion + ( if ( minorVersion.length() < 2 ) "0" else "" )
+  def versionString = {
+    if ( isHTML )
+      List( majorVersion, minorVersion, devVersion ).mkString( "." )
+    else
+      majorVersion + "." + minorVersion + ( if ( minorVersion.length() < 2 ) "0" else "" )
+  }
 
   /*---------------------------------------------------------------------------*
   * credits
@@ -173,7 +186,14 @@ class SimulationRecord(str: String) {
   * implementation
   *----------------------------------------------------------------------------*/
 
-  def simulationBase = "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName
+  def simulationBase = {
+    if ( isHTML ) {
+      "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName
+    }
+    else {
+      "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName
+    }
+  }
 
   /**
    * Given a node with contained "string" elements, return the text within the English "string" element
