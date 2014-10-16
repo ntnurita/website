@@ -13,6 +13,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
+import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -129,6 +132,15 @@ public class SimulationMainPanel extends PhetPanel {
         link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
         } ) ) );
+        if ( simulation.getSimulation().isHTML() ) {
+            WebMarkupContainer html5Badge = new WebMarkupContainer( "html5-badge" );
+            link.add ( html5Badge );
+            html5Badge.add( new SimpleAttributeModifier( "class", "sim-badge-html" ) );
+            html5Badge.add( new SimpleAttributeModifier( "style", "left: 284px" ) );
+        }
+        else {
+            link.add( new InvisibleComponent( "html5-badge" ) );
+        }
         add( link );
 
 
