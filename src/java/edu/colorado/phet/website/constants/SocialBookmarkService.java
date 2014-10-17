@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.links.RawLinker;
 
@@ -18,6 +19,8 @@ import edu.colorado.phet.website.util.links.RawLinker;
  * digg models). They have two main things: an icon and a way to get a link to bookmark a specific URL.
  */
 public abstract class SocialBookmarkService implements Serializable {
+    private static int ICON_SIZE = 32;
+
     /**
      * @return Path to image icon. Relative from server root. Starts with slash
      */
@@ -62,15 +65,61 @@ public abstract class SocialBookmarkService implements Serializable {
         return URLEncoder.encode( URLEncoder.encode( str, "UTF-8" ), "UTF-8" );
     }
 
-    public static final SocialBookmarkService FACEBOOK = new SocialBookmarkService() {
+    public static final SocialBookmarkService BLOG = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/16/facebook.png";
+            return "/images/icons/social/new/blog-icon.svg";
         }
 
         @Override
         public int getSpriteOffset() {
-            return 0;
+            return ICON_SIZE * 0;
+        }
+
+        @Override
+        public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
+            return "//phet.colorado.edu/blog";
+        }
+
+        @Override
+        public String getName() {
+            return "blog";
+        }
+    };
+
+    public static final SocialBookmarkService NEWSLETTER = new SocialBookmarkService() {
+        @Override
+        public String getIconPath() {
+            return "/images/icons/social/new/mail-icon.svg";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+            return ICON_SIZE * 1;
+        }
+
+        @Override
+        public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
+            return "/en/subscribe"; // this should be a linker I think, but we have no context here
+        }
+
+        @Override
+        public String getName() {
+            return "newletter";
+        }
+    };
+
+    public static final SocialBookmarkService FACEBOOK = new SocialBookmarkService() {
+        @Override
+        public String getIconPath() {
+//            return "/images/icons/social/16/facebook.png";
+            return "/images/icons/social/new/fb.png";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+//            return 0;
+            return ICON_SIZE * 2;
         }
 
         @Override
@@ -87,12 +136,12 @@ public abstract class SocialBookmarkService implements Serializable {
     public static final SocialBookmarkService TWITTER = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/16/twitter.png";
+            return "/images/icons/social/new/twitter.png";
         }
 
         @Override
         public int getSpriteOffset() {
-            return 16;
+            return ICON_SIZE * 4;
         }
 
         @Override
@@ -196,12 +245,12 @@ public abstract class SocialBookmarkService implements Serializable {
     public static final SocialBookmarkService YOUTUBE = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/16/youtube.png";
+            return "/images/icons/social/new/youtube.png";
         }
 
         @Override
         public int getSpriteOffset() {
-            return 96;
+            return ICON_SIZE * 3;
         }
 
         @Override
@@ -215,15 +264,46 @@ public abstract class SocialBookmarkService implements Serializable {
         }
     };
 
+    public static final SocialBookmarkService PINTEREST = new SocialBookmarkService() {
+        @Override
+        public String getIconPath() {
+            return "/images/icons/social/new/pinterest.png";
+        }
+
+        @Override
+        public int getSpriteOffset() {
+            return ICON_SIZE * 4;
+        }
+
+        @Override
+        public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
+            return "https://www.pinterest.com";
+        }
+
+        @Override
+        public String getName() {
+            return "pinterest";
+        }
+    };
+
     public static final List<SocialBookmarkService> SERVICES = new LinkedList<SocialBookmarkService>();
 
+//    static {
+//        SERVICES.add( FACEBOOK );
+//        SERVICES.add( TWITTER );
+//        SERVICES.add( STUMBLE_UPON );
+//        SERVICES.add( DIGG );
+//        SERVICES.add( REDDIT );
+//        SERVICES.add( DELICIOUS );
+//        SERVICES.add( YOUTUBE );
+//    }
+
     static {
+        SERVICES.add( BLOG );
+        SERVICES.add( NEWSLETTER );
         SERVICES.add( FACEBOOK );
-        SERVICES.add( TWITTER );
-        SERVICES.add( STUMBLE_UPON );
-        SERVICES.add( DIGG );
-        SERVICES.add( REDDIT );
-        SERVICES.add( DELICIOUS );
         SERVICES.add( YOUTUBE );
+        SERVICES.add( TWITTER );
+        SERVICES.add( PINTEREST );
     }
 }
