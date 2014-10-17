@@ -14,7 +14,7 @@
 <wicket:panel>
   <div id="main-content" class="index-content" wicket:message="dir:language.dir">
     <div id="index-middle-div">
-      <div id="left-index" style="text-align: center; float: left; width: 350px; height: 220px">
+      <div id="left-index" style="text-align: center; float: left; width: 325px; height: 220px">
         <h2><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</h2>
 
         <a class="play-wth-sims-button" href="#" wicket:id="play-sims-link">
@@ -29,6 +29,10 @@
 
       <div id="index-animated-screenshot-holder" wicket:id="rotator-panel">
       </div>
+
+      <wicket:enclosure child="social-bookmark-panel">
+        <div style="position: absolute; top: 0px; left: 700px;" wicket:id="social-bookmark-panel"></div>
+      </wicket:enclosure>
     </div>
   </div>
 

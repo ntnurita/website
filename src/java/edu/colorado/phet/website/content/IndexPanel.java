@@ -44,6 +44,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.RotatorFallbackPanel;
 import edu.colorado.phet.website.panels.RotatorPanel;
+import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.panels.SurveySplashPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
@@ -84,6 +85,13 @@ public class IndexPanel extends PhetPanel {
         Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
         techAwardTitleLink.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS, null ) );
         add( techAwardTitleLink );
+
+        // add social icons
+        add( WicketUtils.componentIf( true, "social-bookmark-panel", new IComponentFactory<Component>() {
+            public Component create( String id ) {
+                return new SocialBookmarkPanel( "social-bookmark-panel", context, "", "home.title" );
+            }
+        } ) );
 
         /*---------------------------------------------------------------------------*
         * social links
