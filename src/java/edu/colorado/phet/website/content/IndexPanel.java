@@ -4,11 +4,14 @@
 
 package edu.colorado.phet.website.content;
 
+import java.util.LinkedList;
+
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -71,13 +74,6 @@ public class IndexPanel extends PhetPanel {
 
     public IndexPanel( String id, final PageContext context ) {
         super( id, context );
-
-        /*---------------------------------------------------------------------------*
-        * sponsors
-        *----------------------------------------------------------------------------*/
-//        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
-//        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
-//        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
 
         /*---------------------------------------------------------------------------*
         * tech award area
@@ -219,6 +215,17 @@ public class IndexPanel extends PhetPanel {
 //            }
         }
 
+        /*---------------------------------------------------------------------------*
+        * sponsors
+        *----------------------------------------------------------------------------*/
+        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
+        add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
+        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
+        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
+
+        /*---------------------------------------------------------------------------*
+        * footer social icons
+        *----------------------------------------------------------------------------*/
         ListView socialFooter = new ListView<SocialBookmarkService>( "social-footer-list", SocialBookmarkService.SERVICES ) {
             private boolean isFirst = true; // the first link should have no left separator like the others
 
@@ -241,7 +248,6 @@ public class IndexPanel extends PhetPanel {
                 }} );
             }
         };
-
         add( socialFooter );
 
         add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );

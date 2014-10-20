@@ -90,6 +90,7 @@ public class Images {
     public static final ImageHandle LOGO_CUSTOMER_PARADIGM = new ImageHandle( "/images/support/customer-paradigm-small.png", true );
     public static final ImageHandle LOGO_AACT = new ImageHandle( "/images/support/AACT-small.png", true );
     public static final ImageHandle LOGO_WW_NORTON = new ImageHandle( "/images/support/wwnorton-small.png", true );
+    public static final ImageHandle LOGO_MOORE= new ImageHandle( "/images/support/moore-foundation.jpg", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_SMALL = new ImageHandle( "/images/logos/tech-awards-logo-100x32.png", true );

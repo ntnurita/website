@@ -122,16 +122,15 @@ div.index-holder {
 
 .sponsor {
     height: 70px;
-    width: 100px;
+    width: 25%;
     margin-right: 10px;
     text-align: center;
     font-size: 10px;
 }
 
-td.sponsor {
-    vertical-align: top;
-
-}
+/*td.sponsor {*/
+    /*vertical-align: top;*/
+/*}*/
 
 .sponsor a {
     text-decoration: none;
