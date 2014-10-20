@@ -346,6 +346,26 @@ div.practices dd a:hover {
   top: 1px;
 }
 
+.footer-link {
+  display: inline;
+  border-left: 2px solid;
+  padding: 0 5px;
+  border-color: grey;
+  text-decoration: none;
+}
+
+.first-footer-link {
+  border-left: none;
+  padding-left: 0;
+}
+
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
 .pdf-icon::after {
     content: url("/images/pdficon_small.png");
 }

@@ -261,9 +261,19 @@
             This is the credits line for the translation.
         </div>
 
-            <span wicket:id="translation-links" style="padding-bottom: 5px;">
-                Translation links go here
-            </span>
+        <span wicket:id="translation-links" style="padding-bottom: 5px;">
+            Translation links go here
+        </span>
+
+        <wicket:enclosure child="social-footer-list">
+            <div style="padding: 10px 0">
+                <span wicket:id="social-footer-list">
+                    <a wicket:id="link" rel="external,nofollow" target="_blank">
+                        <span wicket:id="label">Item</span><img wicket:id="icon"/>
+                    </a>
+                </span>
+            </div>
+        </wicket:enclosure>
 
         <div class="copyright">&copy; 2013 University of Colorado. <a href="#" wicket:id="some-rights-link">
             <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>

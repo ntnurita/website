@@ -4,10 +4,16 @@
 
 package edu.colorado.phet.website.content;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.cache.EventDependency;
@@ -16,6 +22,7 @@ import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.SocialBookmarkService;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.about.AboutContactPanel;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
@@ -211,6 +218,31 @@ public class IndexPanel extends PhetPanel {
                 add( new RotatorPanel( "rotator-panel", context ) );
 //            }
         }
+
+        ListView socialFooter = new ListView<SocialBookmarkService>( "social-footer-list", SocialBookmarkService.SERVICES ) {
+            private boolean isFirst = true; // the first link should have no left separator like the others
+
+            protected void populateItem( ListItem<SocialBookmarkService> item ) {
+                final SocialBookmarkService mark = item.getModelObject();
+                Link link = mark.getLinker( "", "home.title" ).getLink( "link", context, getPhetCycle() );
+                link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
+                if ( isFirst ) {
+                    link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link first-footer-link" ) ) );
+                    isFirst = false;
+                }
+                else {
+                    link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link" ) ) );
+                }
+                item.add( link );
+                link.add( new Label( "label", mark.getFooterLabel() ) );
+                link.add( new WebMarkupContainer( "icon" ) {{
+                    add( new AttributeModifier( "class", true, new Model<String>( "footer-icon" ) ) );
+                    add( new AttributeModifier( "src", true, new Model<String>( mark.getIconPath() ) ) );
+                }} );
+            }
+        };
+
+        add( socialFooter );
 
         add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
 

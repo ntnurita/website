@@ -32,6 +32,10 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public abstract int getSpriteOffset();
 
+    public String getFooterLabel() {
+        return getName();
+    };
+
     /**
      * Get the URL to use for bookmarking.
      *
@@ -85,6 +89,11 @@ public abstract class SocialBookmarkService implements Serializable {
         public String getName() {
             return "blog";
         }
+
+        @Override
+        public String getFooterLabel() {
+            return "our blog";
+        }
     };
 
     public static final SocialBookmarkService NEWSLETTER = new SocialBookmarkService() {
@@ -105,7 +114,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getName() {
-            return "newletter";
+            return "newsletter";
         }
     };
 
@@ -124,12 +133,20 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
+            if ( title == "home.title" ) {
+                return "http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall";
+            }
             return "http://www.facebook.com/sharer.php?u=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&t=" + URLEncoder.encode( title, "UTF-8" );
         }
 
         @Override
         public String getName() {
             return "facebook";
+        }
+
+        @Override
+        public String getFooterLabel() {
+            return "find us";
         }
     };
 
@@ -146,12 +163,20 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
+            if ( title == "home.title" ) {
+                return "http://twitter.com/PhETSims";
+            }
             return "https://twitter.com/share?url=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&text=" + URLEncoder.encode( title, "UTF-8" );
         }
 
         @Override
         public String getName() {
             return "twitter";
+        }
+
+        @Override
+        public String getFooterLabel() {
+            return "follow us";
         }
     };
 
@@ -175,6 +200,11 @@ public abstract class SocialBookmarkService implements Serializable {
         public String getName() {
             return "stumbleupon";
         }
+
+        @Override
+        public String getFooterLabel() {
+            return "stumble upon us";
+        }
     };
 
     public static final SocialBookmarkService DIGG = new SocialBookmarkService() {
@@ -197,6 +227,7 @@ public abstract class SocialBookmarkService implements Serializable {
         public String getName() {
             return "digg";
         }
+
     };
 
     public static final SocialBookmarkService REDDIT = new SocialBookmarkService() {
@@ -262,6 +293,11 @@ public abstract class SocialBookmarkService implements Serializable {
         public String getName() {
             return "youtube";
         }
+
+        @Override
+        public String getFooterLabel() {
+            return "watch us";
+        }
     };
 
     public static final SocialBookmarkService PINTEREST = new SocialBookmarkService() {
@@ -283,6 +319,11 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getName() {
             return "pinterest";
+        }
+
+        @Override
+        public String getFooterLabel() {
+            return "pin us";
         }
     };
 
