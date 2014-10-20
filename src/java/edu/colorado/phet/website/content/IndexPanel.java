@@ -83,7 +83,7 @@ public class IndexPanel extends PhetPanel {
 
         // logo
         Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
-        techAwardTitleLink.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS, null ) );
+        techAwardTitleLink.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_SMALL, null ) );
         add( techAwardTitleLink );
 
         // add social icons

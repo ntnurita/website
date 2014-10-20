@@ -92,6 +92,7 @@ public class Images {
     public static final ImageHandle LOGO_WW_NORTON = new ImageHandle( "/images/support/wwnorton-small.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
+    public static final ImageHandle LOGO_TECH_AWARDS_SMALL = new ImageHandle( "/images/logos/tech-awards-logo-100x32.png", true );
 
     
     public static final ImageHandle DOWNARROW = new ImageHandle( "/images/arrow-right.gif", true );

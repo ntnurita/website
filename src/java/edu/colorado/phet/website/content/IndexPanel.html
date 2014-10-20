@@ -4,252 +4,271 @@
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-  <title wicket:id="page-title">Wicket Prototype Index Page</title>
-  <wicket:remove>
-    <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
-  </wicket:remove>
+    <title wicket:id="page-title">Wicket Prototype Index Page</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css" href="../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
 </head>
 <body>
 
 <wicket:panel>
-  <div id="main-content" class="index-content" wicket:message="dir:language.dir">
-    <div id="index-middle-div">
-      <div id="left-index" style="text-align: center; float: left; width: 325px; height: 220px">
-        <h2><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</h2>
+    <div id="main-content" class="index-content" wicket:message="dir:language.dir">
+        <div id="index-middle-div">
 
-        <a class="play-wth-sims-button" href="#" wicket:id="play-sims-link">
-          <div>
-              <div style="font-size: 20px; width: 70%; float: left; text-align: left;">
-                <wicket:message key="home.playWithSims">Play with Simulations</wicket:message>
-              </div>
-              <div style="float: right;">
-                <img src="#" alt="PhET Airplane" wicket:id="phet-airplane"/>
-              </div>
-          </div>
-        </a>
+            <div id="left-index" style="text-align: center; float: left; width: 325px; height: 220px">
 
-        <a href="#" wicket:id="techAwardLink" style="text-decoration: none; position: absolute; bottom: 0px; left: 100px">
-          <img src="#" wicket:id="award-logo"/>
-        </a>
-      </div>
+                <table height="100%">
+                    <tr>
+                        <td>
+                            <div style="font-size:20px"><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="play-wth-sims-button" href="#" wicket:id="play-sims-link">
+                                <div>
+                                    <div style="font-size: 20px; width: 70%; float: left; text-align: left;">
+                                        <wicket:message key="home.playWithSims">Play with Simulations</wicket:message>
+                                    </div>
+                                    <div style="float: right;">
+                                        <img src="#" alt="PhET Airplane" wicket:id="phet-airplane"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
 
-      <div id="index-animated-screenshot-holder" wicket:id="rotator-panel">
-      </div>
+                    <!--extra table row to make spacing correct-->
+                    <tr><td></td></tr>
 
-      <wicket:enclosure child="social-bookmark-panel">
-        <div style="position: absolute; top: 0px; left: 700px;" wicket:id="social-bookmark-panel"></div>
-      </wicket:enclosure>
+                    <tr>
+                        <td>
+                            <a href="#" wicket:id="techAwardLink">
+                                <img src="#" wicket:id="award-logo"/>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div id="index-animated-screenshot-holder" wicket:id="rotator-panel">
+            </div>
+
+            <wicket:enclosure child="social-bookmark-panel">
+                <div style="position: absolute; top: 0px; left: 700px;" wicket:id="social-bookmark-panel"></div>
+            </wicket:enclosure>
+        </div>
     </div>
-  </div>
 
-  <div class="practices">
-    <dl class="get-phet-links">
-      <dt>
-        <a href="#" wicket:id="run-our-sims-link">
-          <span wicket:id="run-our-sims-label"></span>
-          <!--<wicket:message key="home.runOurSims">How to Run Simulations</wicket:message>-->
-        </a>
-      </dt>
-      <wicket:enclosure child="on-line-link">
-        <dd>
-          <a href="#" wicket:id="on-line-link">
-            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.onLine">On Line</wicket:message>
-          </a>
-        </dd>
-      </wicket:enclosure>
-      <wicket:enclosure child="full-install-link">
-        <dd>
-          <a href="#" wicket:id="full-install-link">
-            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.fullInstallation">Full Installation</wicket:message>
-          </a>
-        </dd>
-      </wicket:enclosure>
-      <wicket:enclosure child="one-at-a-time-link">
-        <dd>
-          <a href="#" wicket:id="one-at-a-time-link">
-            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.oneAtATime">One at a Time</wicket:message>
-          </a>
-        </dd>
-      </wicket:enclosure>
-      <dd style="margin-top: 1em;">
-        <a href="#" wicket:id="troubleshooting-link">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.troubleshooting">Troubleshooting</wicket:message>
-        </a>
-      </dd>
-      <dd>
-        <a href="#" wicket:id="faqs-link">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.faqs">Frequently Asked Questions</wicket:message>
-        </a>
-      </dd>
-    </dl>
+    <div class="practices">
+        <dl class="get-phet-links">
+            <dt>
+                <a href="#" wicket:id="run-our-sims-link">
+                    <span wicket:id="run-our-sims-label"></span>
+                    <!--<wicket:message key="home.runOurSims">How to Run Simulations</wicket:message>-->
+                </a>
+            </dt>
+            <wicket:enclosure child="on-line-link">
+                <dd>
+                    <a href="#" wicket:id="on-line-link">
+                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                        <wicket:message key="home.onLine">On Line</wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <wicket:enclosure child="full-install-link">
+                <dd>
+                    <a href="#" wicket:id="full-install-link">
+                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                        <wicket:message key="home.fullInstallation">Full Installation</wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <wicket:enclosure child="one-at-a-time-link">
+                <dd>
+                    <a href="#" wicket:id="one-at-a-time-link">
+                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                        <wicket:message key="home.oneAtATime">One at a Time</wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <dd style="margin-top: 1em;">
+                <a href="#" wicket:id="troubleshooting-link">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.troubleshooting">Troubleshooting</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a href="#" wicket:id="faqs-link">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.faqs">Frequently Asked Questions</wicket:message>
+                </a>
+            </dd>
+        </dl>
 
-    <dl>
-      <dt>
-        <a href="#" wicket:id="activities-link">
-          <wicket:message key="home.teacherIdeasAndActivities">
-            For Teachers
-          </wicket:message>
-        </a>
-      </dt>
-        <wicket:enclosure child="tipsforusingphet-link">
-          <dd>
-            <a href="#" wicket:id="tipsforusingphet-link">
-              <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-              <wicket:message key="tipsForUsingPhet">Tips for Using PhET</wicket:message>
-            </a>
-          </dd>
-        </wicket:enclosure>
-        <wicket:enclosure child="browse-activities-link">
-          <dd>
-            <a href="#" wicket:id="browse-activities-link">
-              <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-              <wicket:message key="home.browseActivities">
-                Browse Activities
-              </wicket:message>
-            </a>
-          </dd>
-        </wicket:enclosure>
-        <dd>
-          <a href="#" wicket:id="submit-activity-link" id="home-submit-activity-link">
-            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.submitActivity">Contribute Activities</wicket:message>
-          </a>
-        </dd>
-        <dd>
-          <a href="#" wicket:id="workshops-link">
-            <img id="green-arrow-image" src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.workshops">Workshops and Materials</wicket:message>
-          </a>
-        </dd>
-        <dd style="margin-top: 1em;">
-          <a href="#" wicket:id="translate-sims-link">
-            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-            <wicket:message key="home.translateSimulations">Translate simulations</wicket:message>
-          </a>
-        </dd>
-        <dd>
-          <wicket:enclosure>
-            <a href="#" wicket:id="test-translation">
-              <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-              <wicket:message key="home.translateWebsite">Translate the website</wicket:message>
-            </a>
-          </wicket:enclosure>
-        </dd>
-    </dl>
+        <dl>
+            <dt>
+                <a href="#" wicket:id="activities-link">
+                    <wicket:message key="home.teacherIdeasAndActivities">
+                        For Teachers
+                    </wicket:message>
+                </a>
+            </dt>
+            <wicket:enclosure child="tipsforusingphet-link">
+                <dd>
+                    <a href="#" wicket:id="tipsforusingphet-link">
+                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                        <wicket:message key="tipsForUsingPhet">Tips for Using PhET</wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <wicket:enclosure child="browse-activities-link">
+                <dd>
+                    <a href="#" wicket:id="browse-activities-link">
+                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                        <wicket:message key="home.browseActivities">
+                            Browse Activities
+                        </wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <dd>
+                <a href="#" wicket:id="submit-activity-link" id="home-submit-activity-link">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.submitActivity">Contribute Activities</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a href="#" wicket:id="workshops-link">
+                    <img id="green-arrow-image" src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.workshops">Workshops and Materials</wicket:message>
+                </a>
+            </dd>
+            <dd style="margin-top: 1em;">
+                <a href="#" wicket:id="translate-sims-link">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.translateSimulations">Translate simulations</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <wicket:enclosure>
+                    <a href="#" wicket:id="test-translation">
+                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                        <wicket:message key="home.translateWebsite">Translate the website</wicket:message>
+                    </a>
+                </wicket:enclosure>
+            </dd>
+        </dl>
 
-    <dl>
-      <dt>
-        <a href="#" wicket:id="about-general">
-          <wicket:message key="home.about">About</wicket:message>
-        </a>
-      </dt>
-      <dd>
-        <a href="#" wicket:id="about-news">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.about.news">What's New?</wicket:message>
-        </a>
-      </dd>
-      <dd>
-        <a href="#" wicket:id="about-phet">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.about.phet">About PhET</wicket:message>
-        </a>
-      </dd>
-      <dd>
-        <a href="#" wicket:id="about-contact">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.about.contact">Contact Us</wicket:message>
-        </a>
-      </dd>
-      <dd style="margin-top: 1em;">
-        <a href="#" wicket:id="support-phet-link">
-          <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-          <wicket:message key="home.donate">Donate</wicket:message>
-        </a>
-      </dd>
-    </dl>
+        <dl>
+            <dt>
+                <a href="#" wicket:id="about-general">
+                    <wicket:message key="home.about">About</wicket:message>
+                </a>
+            </dt>
+            <dd>
+                <a href="#" wicket:id="about-news">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.about.news">What's New?</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a href="#" wicket:id="about-phet">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.about.phet">About PhET</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a href="#" wicket:id="about-contact">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.about.contact">Contact Us</wicket:message>
+                </a>
+            </dd>
+            <dd style="margin-top: 1em;">
+                <a href="#" wicket:id="support-phet-link">
+                    <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <wicket:message key="home.donate">Donate</wicket:message>
+                </a>
+            </dd>
+        </dl>
 
-    <dl class="last">
-      <dt>
-        <a href="#" wicket:id="sponsors-general">
-          <wicket:message key="home.about.phetSupportedBy">PhET is supported by...</wicket:message>
-        </a>
-      </dt>
-      <dd style="padding: 0 10px 5px; min-height: 70px;" id="featured-sponsor-dd">
-        <!-- here we use a table with invisible elements with a specific height to mimic the min-height for a table -->
-        <table cellpadding="0" cellspacing="0" style="margin: 0; padding: 0; width: 100%; height: 100%;">
-          <tr>
-            <td style="margin: 0; padding: 0;">
-              <div style="height: 70px; width: 0;"></div>
-            </td>
-            <td style="margin: 0; padding: 0; text-align: center; vertical-align:middle;">
-              <div id="featured-sponsor-spot" style="display: none;"></div>
-              <script type="text/javascript">
-                //<![CDATA[
-                (function() {
-                  var r = Math.random() * phetHomeSponsors.totalWeight;
-                  var i;
-                  for ( i = 0; i <= phetHomeSponsors.sponsors.length; i++ ) {
-                    r -= phetHomeSponsors.sponsors[i].weight;
-                    if ( r <= 0 ) {
-                      break;
-                    }
-                  }
-                  var html = phetHomeSponsors.sponsors[i].html;
-                  document.getElementById( 'featured-sponsor-spot' ).innerHTML = html;
-                  document.getElementById( 'featured-sponsor-spot' ).style.display = "block";
-                })();
-                //]]>
-              </script>
-              <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
-                (function() {
-                  var greenArrowSrc = document.getElementById( "green-arrow-image" ).src;
-                  // 0x2F is a slash, to fool the httrack ripper
-                  var lastIndex = Math.max( greenArrowSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), greenArrowSrc.lastIndexOf( "\\" ) );
-                  var newImagesDirectory = greenArrowSrc.substring( 0, lastIndex );
-                  document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
-                })();
-              </script>
-              <noscript>
-                <div wicket:id="featured-sponsor-panel"></div>
-              </noscript>
-            </td>
-            <td style="margin: 0; padding: 0;">
-              <div style="height: 70px; width: 0;"></div>
-            </td>
-          </tr>
-        </table>
-      </dd>
-      <dd style="text-align: center;">
-        <span wicket:id="other-sponsors"></span>
-      </dd>
-    </dl>
+        <dl class="last">
+            <dt>
+                <a href="#" wicket:id="sponsors-general">
+                    <wicket:message key="home.about.phetSupportedBy">PhET is supported by...</wicket:message>
+                </a>
+            </dt>
+            <dd style="padding: 0 10px 5px; min-height: 70px;" id="featured-sponsor-dd">
+                <!-- here we use a table with invisible elements with a specific height to mimic the min-height for a table -->
+                <table cellpadding="0" cellspacing="0" style="margin: 0; padding: 0; width: 100%; height: 100%;">
+                    <tr>
+                        <td style="margin: 0; padding: 0;">
+                            <div style="height: 70px; width: 0;"></div>
+                        </td>
+                        <td style="margin: 0; padding: 0; text-align: center; vertical-align:middle;">
+                            <div id="featured-sponsor-spot" style="display: none;"></div>
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                (function() {
+                                    var r = Math.random() * phetHomeSponsors.totalWeight;
+                                    var i;
+                                    for ( i = 0; i <= phetHomeSponsors.sponsors.length; i++ ) {
+                                        r -= phetHomeSponsors.sponsors[i].weight;
+                                        if ( r <= 0 ) {
+                                            break;
+                                        }
+                                    }
+                                    var html = phetHomeSponsors.sponsors[i].html;
+                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = html;
+                                    document.getElementById( 'featured-sponsor-spot' ).style.display = "block";
+                                })();
+                                //]]>
+                            </script>
+                            <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
+                                (function() {
+                                    var greenArrowSrc = document.getElementById( "green-arrow-image" ).src;
+                                    // 0x2F is a slash, to fool the httrack ripper
+                                    var lastIndex = Math.max( greenArrowSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), greenArrowSrc.lastIndexOf( "\\" ) );
+                                    var newImagesDirectory = greenArrowSrc.substring( 0, lastIndex );
+                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
+                                })();
+                            </script>
+                            <noscript>
+                                <div wicket:id="featured-sponsor-panel"></div>
+                            </noscript>
+                        </td>
+                        <td style="margin: 0; padding: 0;">
+                            <div style="height: 70px; width: 0;"></div>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dd style="text-align: center;">
+                <span wicket:id="other-sponsors"></span>
+            </dd>
+        </dl>
+        <div class="clear">
+        </div>
+    </div>
+
     <div class="clear">
+
     </div>
-  </div>
 
-  <div class="clear">
-
-  </div>
-
-  <div class="index-footer" style="text-align: center; padding-top: 5px; font-size: 12px;">
-    <div wicket:id="translation-credits" style="margin-bottom: 5px;" class="translation-credits">
-      This is the credits line for the translation.
-    </div>
+    <div class="index-footer" style="text-align: center; padding-top: 5px; font-size: 12px;">
+        <div wicket:id="translation-credits" style="margin-bottom: 5px;" class="translation-credits">
+            This is the credits line for the translation.
+        </div>
 
             <span wicket:id="translation-links" style="padding-bottom: 5px;">
                 Translation links go here
             </span>
 
-    <div class="copyright">&copy; 2013 University of Colorado. <a href="#" wicket:id="some-rights-link">
-      <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
-    </a></div>
-  </div>
+        <div class="copyright">&copy; 2013 University of Colorado. <a href="#" wicket:id="some-rights-link">
+            <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
+        </a></div>
+    </div>
 
 </wicket:panel>
 
