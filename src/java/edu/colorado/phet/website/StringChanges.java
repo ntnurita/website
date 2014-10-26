@@ -25,6 +25,9 @@ public class StringChanges {
         StringUtils.addString( session, "social.newsletter.tooltip", "Subscribe to our newsletter" );
         StringUtils.addString( session, "social.pinterest.tooltip", "Pinterest" );
 
+        StringUtils.deleteString( session, "home.playWithSims" );
+        StringUtils.addString( session, "home.playWithSims", "Play with Simulations" );
+
         session.close();
     }
 

@@ -12,6 +12,126 @@
 <body>
 
 <wicket:panel>
+    <script>
+        var switchVideo;
+
+        document.addEventListener( 'DOMContentLoaded', function() {
+            var sourceIndex = 0;
+            var sourceFiles = [
+                { source: '/files/rotator/BA1.mov', title: 'Balancing Act' }
+//                { source: 'http://phet.colorado.edu/files/video/PhET_Activities_Designing_FINAL_v4_HDweb.mp4', title: 'Balancing Act' }
+            ];
+
+            var videos = [];
+            var sources = [];
+
+            var container = document.getElementById( 'video-container' );
+            var simName = document.getElementById( 'sim-name' );
+
+            var timer; // setInterval for changing videos
+            var switchable = true; // whether or not the switch video buttons are enabled (they get disabled while animating)
+            var currentIndex = 0; // index of the current video and source
+
+            // add the video elements in divs
+            for ( var i = 0; i < 3; i++ ) {
+                videos.push( document.createElement( 'video' ) );
+                videos[i].setAttribute( 'width', '100%' );
+                videos[i].setAttribute( 'height', '100%' );
+                videos[i].setAttribute( 'muted', '' );
+
+                sources.push( document.createElement( 'source' ) );
+                sources[i].setAttribute( 'type', 'video/mp4' );
+
+                videos[i].appendChild( sources[i] );
+
+                var div = document.createElement( 'div' );
+                var widthValue = (i === 0) ? 0 : (i === 1) ? 100 : -100;
+                div.setAttribute( 'class', 'box' );
+                div.setAttribute( 'style', 'margin-top: 0; ' +
+                                           'position: absolute; ' +
+                                           'width: 100%; ' +
+                                           'height: 100%; ' +
+                                           'left: ' + widthValue + '%;' );
+                div.appendChild( videos[i] );
+
+                container.appendChild( div );
+            }
+
+            switchVideo = function( direction ) {
+                if ( !switchable ) {
+                    return;
+                }
+                switchable = false;
+
+                currentIndex = ( direction === 'left' ) ? ( currentIndex + 1 ) % 3 : ( currentIndex - 1 );
+                if ( currentIndex < 0 ) {
+                    currentIndex += 3;
+                }
+
+                if ( direction === 'left' ) {
+                    $( '.box' ).each( function() {
+                        console.log( $( this ).offset().left );
+                        if ( $( this ).offset().left < $( '#video-container' ).offset().left ) {
+                            $( this ).css( 'left', '100%' );
+                        }
+                        else if ( $( this ).offset().left >= $( '#video-container' ).offset().left + $( '#video-container' ).width() ) {
+                            $( this ).animate( {
+                                left: '0%'
+                            }, 1000 );
+                        }
+                        else {
+                            $( this ).animate( {
+                                left: '-100%'
+                            }, 1000 );
+                        }
+                    } );
+                }
+                else {
+                    $( '.box' ).each( function() {
+                        console.log( $( this ).offset().left );
+                        if ( $( this ).offset().left < $( '#video-container' ).offset().left ) {
+                            $( this ).animate( {
+                                left: '0%'
+                            }, 1000 );
+                        }
+                        else if ( $( this ).offset().left >= $( '#video-container' ).offset().left + $( '#video-container' ).width() ) {
+                            $( this ).css( 'left', '-100%' );
+                        }
+                        else {
+                            $( this ).animate( {
+                                left: '100%'
+                            }, 1000 );
+                        }
+                    } );
+                }
+
+                // setup and start the next video
+                sourceIndex = ( sourceIndex + 1 ) % sourceFiles.length;
+                sources[currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].source );
+                simName.innerHTML = sourceFiles[sourceIndex].title;
+                videos[currentIndex].load();
+                videos[currentIndex].play();
+
+                // restart the timer
+                clearInterval( timer );
+                timer = setInterval( function() {switchVideo( 'left' );}, 5000 );
+
+                // set a timeout to ensure the button can't be pressed while animating
+                setTimeout( function() {switchable = true;}, 1000 );
+            };
+
+            // start the first video
+            sources[currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].source );
+            simName.innerHTML = sourceFiles[sourceIndex].title;
+            videos[currentIndex].play();
+
+            // switch videos every 5 seconds
+            timer = setInterval( function() {switchVideo( 'left' );}, 5000 );
+
+        }, false );
+
+    </script>
+
     <div id="main-content" class="index-content" wicket:message="dir:language.dir">
         <div id="index-middle-div">
 
@@ -39,7 +159,9 @@
                     </tr>
 
                     <!--extra table row to make spacing correct-->
-                    <tr><td><br/></td></tr>
+                    <tr>
+                        <td><br/></td>
+                    </tr>
 
                     <tr>
                         <td>
@@ -52,11 +174,18 @@
 
             </div>
 
-            <div id="index-animated-screenshot-holder" wicket:id="rotator-panel">
+            <div id="index-animated-screenshot-holder">
+                <div id="video-container">
+                </div>
+                <div id="controls-container">
+                    <span class="left-right-buttons" style="float: left;" onclick="switchVideo('left');">&lt</span>
+                    <span id="sim-name">Example</span>
+                    <span class="left-right-buttons" style="float: right;" onclick="switchVideo('right');">&gt</span>
+                </div>
             </div>
 
             <wicket:enclosure child="social-bookmark-panel">
-                <div style="position: absolute; top: 0px; left: 700px;" wicket:id="social-bookmark-panel"></div>
+                <div style="position: absolute; top: 10px; left: 700px;" wicket:id="social-bookmark-panel"></div>
             </wicket:enclosure>
         </div>
     </div>

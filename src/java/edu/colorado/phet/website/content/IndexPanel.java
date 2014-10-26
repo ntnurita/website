@@ -202,18 +202,18 @@ public class IndexPanel extends PhetPanel {
             add( ContributionCreatePage.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
         }
 
-        if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
-            add( new RotatorFallbackPanel( "rotator-panel", context ) );
-        }
-        else {
-            // show the survey if we would show the rotator AND we are in an English translation (since it's English-only text)
-//            if ( !getPhetCycle().isInstaller() && context.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
-//                add( new SurveySplashPanel( "rotator-panel", context ) );
-//            }
-//            else {
-                add( new RotatorPanel( "rotator-panel", context ) );
-//            }
-        }
+//        if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
+//            add( new RotatorFallbackPanel( "rotator-panel", context ) );
+//        }
+//        else {
+//            // show the survey if we would show the rotator AND we are in an English translation (since it's English-only text)
+////            if ( !getPhetCycle().isInstaller() && context.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
+////                add( new SurveySplashPanel( "rotator-panel", context ) );
+////            }
+////            else {
+//                add( new RotatorPanel( "rotator-panel", context ) );
+////            }
+//        }
 
         /*---------------------------------------------------------------------------*
         * sponsors
