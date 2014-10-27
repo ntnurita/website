@@ -17,9 +17,9 @@
 
         document.addEventListener( 'DOMContentLoaded', function() {
             var sourceIndex = 0;
+            var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
             var sourceFiles = [
-                { sources: ['/files/rotator/BA1.mov', '/files/rotator/BA1.oggtheora.ogv'], title: 'Balancing Act' }
-//                { source: 'http://phet.colorado.edu/files/video/PhET_Activities_Designing_FINAL_v4_HDweb.mp4', title: 'Balancing Act' }
+                { sources: ['/files/rotator/BA1.mov', '/files/rotator/BA1.oggtheora.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act' }
             ];
 
             var videos = [];
@@ -35,8 +35,6 @@
             // add the video elements in divs
             for ( var i = 0; i < 3; i++ ) {
                 videos.push( document.createElement( 'video' ) );
-//                videos[i].setAttribute( 'width', '100%' );
-//                videos[i].setAttribute( 'height', '100%' );
                 // using width and height 100% doesn't work in FF, so its hardcoded here
                 videos[i].setAttribute( 'width', '325px' );
                 videos[i].setAttribute( 'height', '213px' );
@@ -114,6 +112,7 @@
                 sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
                 sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
                 simName.innerHTML = sourceFiles[sourceIndex].title;
+                simName.setAttribute( 'href', locale + sourceFiles[sourceIndex].link );
                 videos[currentIndex].load();
                 videos[currentIndex].play();
 
@@ -129,6 +128,7 @@
             sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
             sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
             simName.innerHTML = sourceFiles[sourceIndex].title;
+            simName.setAttribute( 'href', locale + sourceFiles[sourceIndex].link );
             videos[currentIndex].play();
 
             // switch videos every 5 seconds
@@ -185,7 +185,7 @@
                 </div>
                 <div id="controls-container">
                     <span class="left-right-buttons" style="float: left;" onclick="switchVideo('left');">&lt</span>
-                    <span id="sim-name">Example</span>
+                    <a id="sim-name"></a>
                     <span class="left-right-buttons" style="float: right;" onclick="switchVideo('right');">&gt</span>
                 </div>
             </div>
