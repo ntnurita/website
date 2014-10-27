@@ -75,16 +75,7 @@ public class IndexPanel extends PhetPanel {
     public IndexPanel( String id, final PageContext context ) {
         super( id, context );
 
-        /*---------------------------------------------------------------------------*
-        * tech award area
-        *----------------------------------------------------------------------------*/
-//        add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle", new Object[] {
-//                TechAwardPage.getLinker().getHref( context, getPhetCycle() )
-//        } ) );
-
-//        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
-
-        // logo
+        // tech award logo
         Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
         techAwardTitleLink.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_SMALL, null ) );
         add( techAwardTitleLink );
@@ -95,22 +86,6 @@ public class IndexPanel extends PhetPanel {
                 return new SocialBookmarkPanel( "social-bookmark-panel", context, "", "home.title" );
             }
         } ) );
-
-        /*---------------------------------------------------------------------------*
-        * social links
-        *----------------------------------------------------------------------------*/
-//        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
-//                "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
-//        } ) );
-//        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[] {
-//                "<img class=\"index-social-image\" src=\"/images/icons/social/twitter.png\" alt=\"Twitter icon\" width=\"16\" height=\"16\"/>"
-//        } ) );
-//        add( new LocalizedText( "blog-text", "home.blogText" ) );
-//        add( InitialSubscribePage.getLinker().getLink( "subscribe-link", context, getPhetCycle() ) );
-
-//        add( new LocalizedText( "index-main-text", "home.subheader", new Object[] {
-//                ResearchPanel.getLinker().getHref( context, getPhetCycle() )
-//        } ) );
 
         Link playSimsLink = CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() );
         playSimsLink.add( new StaticImage( "phet-airplane", Images.PHET_AIRPLANE, null ) );
@@ -231,7 +206,12 @@ public class IndexPanel extends PhetPanel {
 
             protected void populateItem( ListItem<SocialBookmarkService> item ) {
                 final SocialBookmarkService mark = item.getModelObject();
-                Link link = mark.getLinker( "", "home.title" ).getLink( "link", context, getPhetCycle() );
+                Link link;
+                if ( mark.getName() == "newsletter" ) {
+                    link = InitialSubscribePage.getLinker().getLink( "link", context, getPhetCycle() );
+                } else {
+                    link = mark.getLinker( "", "home.title" ).getLink( "link", context, getPhetCycle() );
+                }
                 link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
                 if ( isFirst ) {
                     link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link first-footer-link" ) ) );
@@ -241,7 +221,7 @@ public class IndexPanel extends PhetPanel {
                     link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link" ) ) );
                 }
                 item.add( link );
-                link.add( new Label( "label", mark.getFooterLabel() ) );
+                link.add( new LocalizedText( "label", mark.getFooterLabel() ) );
                 link.add( new WebMarkupContainer( "icon" ) {{
                     add( new AttributeModifier( "class", true, new Model<String>( "footer-icon" ) ) );
                     add( new AttributeModifier( "src", true, new Model<String>( mark.getIconPath() ) ) );

@@ -28,6 +28,18 @@ public class StringChanges {
         StringUtils.deleteString( session, "home.playWithSims" );
         StringUtils.addString( session, "home.playWithSims", "Play with Simulations" );
 
+        StringUtils.deleteString( session, "home.facebookText" );
+        StringUtils.deleteString( session, "home.twitterText" );
+        StringUtils.deleteString( session, "home.blogText" );
+        StringUtils.deleteString( session, "home.subheader" );
+
+        StringUtils.addString( session, "home.blogText", "our blog" );
+        StringUtils.addString( session, "home.newsletterText", "newsletter" );
+        StringUtils.addString( session, "home.facebookText", "find us" );
+        StringUtils.addString( session, "home.youtubeText", "watch us" );
+        StringUtils.addString( session, "home.twitterText", "follow us" );
+        StringUtils.addString( session, "home.pinterestText", "pin us" );
+
         session.close();
     }
 

@@ -13,6 +13,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.constants.SocialBookmarkService;
+import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.util.PageContext;
 
 /**
@@ -28,7 +29,12 @@ public class SocialBookmarkPanel extends PhetPanel {
             @Override
             protected void populateItem( ListItem<SocialBookmarkService> item ) {
                 final SocialBookmarkService mark = item.getModelObject();
-                Link link = mark.getLinker( bookmarkableUrl, bookmarkableTitle ).getLink( "link", context, getPhetCycle() );
+                Link link;
+                if ( mark.getName() == "newsletter" ) {
+                    link = InitialSubscribePage.getLinker().getLink( "link", context, getPhetCycle() );
+                } else {
+                    link = mark.getLinker( bookmarkableUrl, bookmarkableTitle ).getLink( "link", context, getPhetCycle() );
+                }
                 link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
                 item.add( link );
                 link.add( new WebMarkupContainer( "icon" ) {{

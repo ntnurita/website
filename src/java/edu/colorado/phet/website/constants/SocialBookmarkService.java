@@ -81,7 +81,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            return "//phet.colorado.edu/blog";
+            return "/blog";
         }
 
         @Override
@@ -91,7 +91,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getFooterLabel() {
-            return "our blog";
+            return "home.blogText";
         }
     };
 
@@ -108,25 +108,28 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            return "/en/subscribe"; // this should be a linker I think, but we have no context here
+            return ""; // this is is not a normal share URL, but a linker, so it is handled in SocialBookmarkPanel
         }
 
         @Override
         public String getName() {
             return "newsletter";
         }
+
+        @Override
+        public String getFooterLabel() {
+            return "home.newsletterText";
+        }
     };
 
     public static final SocialBookmarkService FACEBOOK = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-//            return "/images/icons/social/16/facebook.png";
             return "/images/icons/social/new/fb.png";
         }
 
         @Override
         public int getSpriteOffset() {
-//            return 0;
             return ICON_SIZE * 2;
         }
 
@@ -145,7 +148,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getFooterLabel() {
-            return "find us";
+            return "home.facebookText";
         }
     };
 
@@ -175,7 +178,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getFooterLabel() {
-            return "follow us";
+            return "home.twitterText";
         }
     };
 
@@ -251,7 +254,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getFooterLabel() {
-            return "watch us";
+            return "home.youtubeText";
         }
     };
 
@@ -278,7 +281,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getFooterLabel() {
-            return "pin us";
+            return "home.pinterestText";
         }
     };
 
