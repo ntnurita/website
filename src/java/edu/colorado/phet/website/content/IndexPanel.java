@@ -226,7 +226,7 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * footer social icons
         *----------------------------------------------------------------------------*/
-        ListView socialFooter = new ListView<SocialBookmarkService>( "social-footer-list", SocialBookmarkService.SERVICES ) {
+        ListView socialFooter = new ListView<SocialBookmarkService>( "social-footer-list", SocialBookmarkService.HOMEPAGE_SERVICES ) {
             private boolean isFirst = true; // the first link should have no left separator like the others
 
             protected void populateItem( ListItem<SocialBookmarkService> item ) {

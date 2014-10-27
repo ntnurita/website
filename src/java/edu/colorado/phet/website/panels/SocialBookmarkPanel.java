@@ -2,6 +2,8 @@
 
 package edu.colorado.phet.website.panels;
 
+import java.util.List;
+
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.link.Link;
@@ -20,7 +22,9 @@ public class SocialBookmarkPanel extends PhetPanel {
     public SocialBookmarkPanel( String id, final PageContext context, final String bookmarkableUrl, final String bookmarkableTitle ) {
         super( id, context );
 
-        add( new ListView<SocialBookmarkService>( "social-list", SocialBookmarkService.SERVICES ) {
+        List<SocialBookmarkService> services = ( bookmarkableUrl == "" ) ? SocialBookmarkService.HOMEPAGE_SERVICES : SocialBookmarkService.SERVICES;
+
+        add( new ListView<SocialBookmarkService>( "social-list", services ) {
             @Override
             protected void populateItem( ListItem<SocialBookmarkService> item ) {
                 final SocialBookmarkService mark = item.getModelObject();

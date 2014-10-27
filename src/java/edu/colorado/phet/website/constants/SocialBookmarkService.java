@@ -10,7 +10,6 @@ import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.List;
 
-import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.links.RawLinker;
 
@@ -183,7 +182,7 @@ public abstract class SocialBookmarkService implements Serializable {
     public static final SocialBookmarkService STUMBLE_UPON = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/16/stumbleupon.png";
+            return "/images/icons/social/new/stumble-upon.png";
         }
 
         @Override
@@ -207,33 +206,10 @@ public abstract class SocialBookmarkService implements Serializable {
         }
     };
 
-    public static final SocialBookmarkService DIGG = new SocialBookmarkService() {
-        @Override
-        public String getIconPath() {
-            return "/images/icons/social/16/digg.png";
-        }
-
-        @Override
-        public int getSpriteOffset() {
-            return 48;
-        }
-
-        @Override
-        public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            return "http://digg.com/submit?phase=2&url=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&title=" + URLEncoder.encode( title, "UTF-8" );
-        }
-
-        @Override
-        public String getName() {
-            return "digg";
-        }
-
-    };
-
     public static final SocialBookmarkService REDDIT = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/16/reddit.png";
+            return "/images/icons/social/new/reddit.png";
         }
 
         @Override
@@ -252,27 +228,6 @@ public abstract class SocialBookmarkService implements Serializable {
         }
     };
 
-    public static final SocialBookmarkService DELICIOUS = new SocialBookmarkService() {
-        @Override
-        public String getIconPath() {
-            return "/images/icons/social/16/delicious.png";
-        }
-
-        @Override
-        public int getSpriteOffset() {
-            return 80;
-        }
-
-        @Override
-        public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            return "https://secure.delicious.com/login?jump=http%3A%2F%2Fwww.delicious.com%2Fsave%3Furl%3Dhttp%253A%252F%252Fphet.colorado.edu" + doubleEncode( relativeUrl ) + "%26title%3D" + doubleEncode( title );
-        }
-
-        @Override
-        public String getName() {
-            return "delicious";
-        }
-    };
     public static final SocialBookmarkService YOUTUBE = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
@@ -327,24 +282,22 @@ public abstract class SocialBookmarkService implements Serializable {
         }
     };
 
+    public static final List<SocialBookmarkService> HOMEPAGE_SERVICES = new LinkedList<SocialBookmarkService>();
     public static final List<SocialBookmarkService> SERVICES = new LinkedList<SocialBookmarkService>();
 
-//    static {
-//        SERVICES.add( FACEBOOK );
-//        SERVICES.add( TWITTER );
-//        SERVICES.add( STUMBLE_UPON );
-//        SERVICES.add( DIGG );
-//        SERVICES.add( REDDIT );
-//        SERVICES.add( DELICIOUS );
-//        SERVICES.add( YOUTUBE );
-//    }
-
     static {
-        SERVICES.add( BLOG );
-        SERVICES.add( NEWSLETTER );
+        HOMEPAGE_SERVICES.add( BLOG );
+        HOMEPAGE_SERVICES.add( NEWSLETTER );
+        HOMEPAGE_SERVICES.add( FACEBOOK );
+        HOMEPAGE_SERVICES.add( YOUTUBE );
+        HOMEPAGE_SERVICES.add( TWITTER );
+        HOMEPAGE_SERVICES.add( PINTEREST );
+
         SERVICES.add( FACEBOOK );
         SERVICES.add( YOUTUBE );
         SERVICES.add( TWITTER );
         SERVICES.add( PINTEREST );
+        SERVICES.add( STUMBLE_UPON );
+        SERVICES.add( REDDIT );
     }
 }
