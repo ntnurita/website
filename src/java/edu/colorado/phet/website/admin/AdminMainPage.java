@@ -281,7 +281,8 @@ public class AdminMainPage extends AdminPage {
                         String[] emails = new String[]{
                                 "olsonsjc@gmail.com",
                                 "katherine.perkins@colorado.edu",
-                                "Kathryn.Dessau@colorado.edu"
+                                "Kathryn.Dessau@colorado.edu",
+                                "aaron.s.davis@colorado.edu"
                         };
                         for ( String email : emails ) {
                             PhetUser user = (PhetUser) session.createQuery( "select u from PhetUser as u where u.email = :email" ).setString( "email", email ).uniqueResult();
