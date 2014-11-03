@@ -40,8 +40,8 @@ div.index-holder {
     top: 213px;
     /*top: 183px;*/
     width: 100%;
-    height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 35px;
     font-size: 20px;
     text-align: center;
     vertical-align: middle;
@@ -53,6 +53,11 @@ div.index-holder {
     background-color: rgb(140,140,140);
     height: 100%;
     cursor: pointer;
+    width: 20px;
+}
+
+.left-right-img {
+    margin-top: 5px;
 }
 
 #right-middle {
@@ -62,8 +67,7 @@ div.index-holder {
 }
 
 #index-middle-div {
-    /*position: relative;*/
-    height: 243px;
+    height: 248px;
 }
 
 #index-header {

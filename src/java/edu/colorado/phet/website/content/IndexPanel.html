@@ -19,7 +19,8 @@
             var sourceIndex = 0;
             var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
             var sourceFiles = [
-                { sources: ['/files/rotator/BA1.mov', '/files/rotator/BA1.oggtheora.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act' }
+                { sources: ['/files/rotator/BA.mov', '/files/rotator/BA.ogg'], title: 'Balancing Act', link: 'simulation/balancing-act' },
+                { sources: ['/files/rotator/WoS.mov', '/files/rotator/WoS.ogg'], title: 'Wave on a String', link: 'simulation/wave-on-a-string' }
             ];
 
             var videos = [];
@@ -42,8 +43,8 @@
 
                 sources.push( document.createElement( 'source' ) );
                 sources.push( document.createElement( 'source' ) );
-                sources[2 * i].setAttribute( 'type', 'video/mp4' );
-                sources[2 * i + 1].setAttribute( 'type', 'video/ogg' );
+//                sources[2 * i].setAttribute( 'type', 'video/mp4' );
+//                sources[2 * i + 1].setAttribute( 'type', 'video/ogg' );
 
                 videos[i].appendChild( sources[2 * i] );
                 videos[i].appendChild( sources[2 * i + 1] );
@@ -170,9 +171,13 @@
                 <div id="video-container">
                 </div>
                 <div id="controls-container">
-                    <span class="left-right-buttons" style="float: left;" onclick="switchVideo('left');">&lt</span>
+                    <span class="left-right-buttons" style="float: left;" onclick="switchVideo('left');">
+                        <img class="left-right-img" src="/images/icons/left.png" alt="<">
+                    </span>
                     <a id="sim-name" target="_blank"></a>
-                    <span class="left-right-buttons" style="float: right;" onclick="switchVideo('right');">&gt</span>
+                    <span class="left-right-buttons" style="float: right;" onclick="switchVideo('right');">
+                        <img class="left-right-img" src="/images/icons/right.png" alt=">">
+                    </span>
                 </div>
             </div>
 
