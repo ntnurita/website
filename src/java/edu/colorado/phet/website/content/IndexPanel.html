@@ -112,7 +112,9 @@
                 sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
                 sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
                 simName.innerHTML = sourceFiles[sourceIndex].title;
-                simName.setAttribute( 'href', locale + sourceFiles[sourceIndex].link );
+                var href = locale + sourceFiles[sourceIndex].link;
+                simName.setAttribute( 'href', href );
+                document.getElementById('video-container').onclick = function() { window.open( href ); };
                 videos[currentIndex].load();
                 videos[currentIndex].play();
 
@@ -128,7 +130,9 @@
             sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
             sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
             simName.innerHTML = sourceFiles[sourceIndex].title;
-            simName.setAttribute( 'href', locale + sourceFiles[sourceIndex].link );
+            var href = locale + sourceFiles[sourceIndex].link;
+            simName.setAttribute( 'href', href );
+            document.getElementById('video-container').onclick = function() { window.open( href ); };
             videos[currentIndex].play();
 
             // switch videos every 5 seconds
@@ -185,13 +189,13 @@
                 </div>
                 <div id="controls-container">
                     <span class="left-right-buttons" style="float: left;" onclick="switchVideo('left');">&lt</span>
-                    <a id="sim-name"></a>
+                    <a id="sim-name" target="_blank"></a>
                     <span class="left-right-buttons" style="float: right;" onclick="switchVideo('right');">&gt</span>
                 </div>
             </div>
 
             <wicket:enclosure child="social-bookmark-panel">
-                <div style="position: absolute; top: 10px; left: 700px;" wicket:id="social-bookmark-panel"></div>
+                <div style="position: absolute; top: 10px; left: 717px;" wicket:id="social-bookmark-panel"></div>
             </wicket:enclosure>
         </div>
     </div>
