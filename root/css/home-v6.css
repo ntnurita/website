@@ -17,7 +17,7 @@ div.index-holder {
 #index-animated-screenshot-holder {
     position: absolute;
     width: 325px;
-    height: 243px;
+    height: 100%;
     display: inline-block;
     /*border: 1px solid #cccccc;*/
 }
@@ -63,7 +63,7 @@ div.index-holder {
 
 #index-middle-div {
     /*position: relative;*/
-    height: 222px;
+    height: 243px;
 }
 
 #index-header {

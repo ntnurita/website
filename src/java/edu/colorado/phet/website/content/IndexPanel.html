@@ -114,7 +114,7 @@
                 simName.innerHTML = sourceFiles[sourceIndex].title;
                 var href = locale + sourceFiles[sourceIndex].link;
                 simName.setAttribute( 'href', href );
-                document.getElementById('video-container').onclick = function() { window.open( href ); };
+                document.getElementById( 'video-container' ).onclick = function() { window.open( href ); };
                 videos[currentIndex].load();
                 videos[currentIndex].play();
 
@@ -132,7 +132,7 @@
             simName.innerHTML = sourceFiles[sourceIndex].title;
             var href = locale + sourceFiles[sourceIndex].link;
             simName.setAttribute( 'href', href );
-            document.getElementById('video-container').onclick = function() { window.open( href ); };
+            document.getElementById( 'video-container' ).onclick = function() { window.open( href ); };
             videos[currentIndex].play();
 
             // switch videos every 5 seconds
@@ -145,42 +145,24 @@
     <div id="main-content" class="index-content" wicket:message="dir:language.dir">
         <div id="index-middle-div">
 
-            <div id="left-index" style="text-align: center; float: left; width: 325px; height: 220px">
+            <div id="left-index" style="text-align: center; float: left; width: 350px; height: 100%; display: table;">
 
-                <table height="100%">
-                    <tr>
-                        <td>
-                            <div style="font-size:20px"><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a class="play-wth-sims-button" href="#" wicket:id="play-sims-link">
-                                <div>
-                                    <div style="font-size: 20px; width: 70%; float: left; text-align: left;">
-                                        <wicket:message key="home.playWithSims">Play with Simulations</wicket:message>
-                                    </div>
-                                    <div style="float: right;">
-                                        <img src="#" alt="PhET Airplane" wicket:id="phet-airplane"/>
-                                    </div>
-                                </div>
-                            </a>
-                        </td>
-                    </tr>
+                <div style="font-size:20px"><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</div>
 
-                    <!--extra table row to make spacing correct-->
-                    <tr>
-                        <td><br/></td>
-                    </tr>
+                <a class="play-wth-sims-button" href="#" wicket:id="play-sims-link" style="margin-top: 30px">
+                    <div>
+                        <div style="font-size: 20px; width: 70%; float: left; text-align: left;">
+                            <wicket:message key="home.playWithSims">Play with Simulations</wicket:message>
+                        </div>
+                        <div style="float: right;">
+                            <img src="#" alt="PhET Airplane" wicket:id="phet-airplane"/>
+                        </div>
+                    </div>
+                </a>
 
-                    <tr>
-                        <td>
-                            <a href="#" wicket:id="techAwardLink">
-                                <img src="#" wicket:id="award-logo"/>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
+                <a href="#" wicket:id="techAwardLink" style="display: table-row; vertical-align: bottom; height: 1px;">
+                    <img src="#" wicket:id="award-logo"/>
+                </a>
 
             </div>
 
