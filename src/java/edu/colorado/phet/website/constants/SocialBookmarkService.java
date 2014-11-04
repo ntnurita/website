@@ -271,7 +271,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            return "https://www.pinterest.com";
+            return "http://www.pinterest.com/PhETSims";
         }
 
         @Override
