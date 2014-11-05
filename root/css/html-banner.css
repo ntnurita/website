@@ -117,6 +117,7 @@ div.rtl .html-banner-container .html-banner-html {
     text-align: center;
     line-height: 25px;
     border-radius: 8px;
+    cursor: pointer;
     /*box-shadow: 3px 3px 10px 0 rgba(10,40,10,0.5);*/
 
     background: rgb(249,243,127); /* Old browsers */
