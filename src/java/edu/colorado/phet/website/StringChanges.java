@@ -40,6 +40,15 @@ public class StringChanges {
         StringUtils.addString( session, "home.twitterText", "follow us" );
         StringUtils.addString( session, "home.pinterestText", "pin us" );
 
+        StringUtils.deleteString( session, "html5.tryOurNewHTML5Sims" );
+        StringUtils.addString( session, "html5.tryOurNewHTML5Sims", "HTML5 Sims" );
+
+        StringUtils.deleteString( session, "html5.crowdfundedProjects" );
+        StringUtils.addString( session, "html5.crowdfundedProjects", "Donate:" );
+
+        StringUtils.deleteString( session, "html5.bringCCK" );
+        StringUtils.addString( session, "html5.bringCCK", "Build HTML5 Circuit Sim" );
+
         session.close();
     }
 
