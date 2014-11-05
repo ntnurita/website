@@ -109,58 +109,42 @@ div.rtl .html-banner-container .html-banner-html {
 .html-banner-container .html-banner-button {
     display: block;
     position: absolute;
-    width: 180px;
+    width: 150px;
     height: 25px;
-    color: white;
-    /*background-color: #279e2c;*/
-    /*background-color: #4e609e;*/
-    /*background-color: #3f48a1;*/
-    /*background-color: #3aa125;*/
-    font-size: 13px;
+    color: black;
+    border: 1px solid rgba(0,0,0,0.25);
+    font-size: 10px;
     text-align: center;
     line-height: 25px;
     border-radius: 8px;
-    box-shadow: 3px 3px 10px 0 rgba(10,40,10,0.5);
+    /*box-shadow: 3px 3px 10px 0 rgba(10,40,10,0.5);*/
 
-    /*rgb(249,243,127)*/
-    /*rgb(246,238,75)*/
-    /*rgb(246,238,75)*/
-    /*rgb(216,208,17)*/
-
-    background: #8fc134; /* Old browsers */
-    background: #8bdd04; /* Old browsers */
-    background: #73ae17; /* Old browsers */
-    background: #56840a; /* Old browsers */
-    background: -moz-linear-gradient(top,  #8fc134 0%, #8bdd04 10%, #73ae17 30%, #56840a 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8fc134), color-stop(10%,#8bdd04), color-stop(30%,#73ae17), color-stop(100%,#56840a)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #8fc134 0%,#8bdd04 10%,#73ae17 30%,#56840a 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #8fc134 0%,#8bdd04 10%,#73ae17 30%,#56840a 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #8fc134 0%,#8bdd04 10%,#73ae17 30%,#56840a 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #8fc134 0%,#8bdd04 10%,#73ae17 30%,#56840a 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc134', endColorstr='#56840a',GradientType=0 ); /* IE6-9 */
+    background: rgb(249,243,127); /* Old browsers */
+    background: rgb(246,238,75); /* Old browsers */
+    background: rgb(216,208,17); /* Old browsers */
+    background: -webkit-linear-gradient(left, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* Standard syntax */
 }
 
 .html-banner-container .html-banner-button:hover {
-    background: #81ad2e; /* Old browsers */
-    background: #7cc904; /* Old browsers */
-    background: #659a17; /* Old browsers */
-    background: #48700a; /* Old browsers */
-    background: -moz-linear-gradient(top,  #81ad2e 0%, #7cc904 10%, #659a17 30%, #48700a 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#81ad2e), color-stop(10%,#7cc904), color-stop(30%,#659a17), color-stop(100%,#48700a)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #81ad2e 0%,#7cc904 10%,#659a17 30%,#48700a 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #81ad2e 0%,#7cc904 10%,#659a17 30%,#48700a 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #81ad2e 0%,#7cc904 10%,#659a17 30%,#48700a 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #81ad2e 0%,#7cc904 10%,#659a17 30%,#48700a 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#81ad2e', endColorstr='#48700a',GradientType=0 ); /* IE6-9 */
+    background: rgb(249,243,157); /* Old browsers */
+    background: rgb(246,238,125); /* Old browsers */
+    background: rgb(216,208,67); /* Old browsers */
+    background: -webkit-linear-gradient(left, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* Standard syntax */
 }
 
 .html-banner-container .html-banner-teach-with-phet {
-    right: -80px;
+    right: -20px;
     top: 12px;
 }
 
 .html-banner-container .html-banner-cck {
-    right: 120px;
+    right: 150px;
     top: 12px;
 }
 
