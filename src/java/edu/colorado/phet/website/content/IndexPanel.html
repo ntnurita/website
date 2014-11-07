@@ -19,8 +19,8 @@
             var sourceIndex = 0;
             var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
             var sourceFiles = [
-                { sources: ['/files/js-rotator/BA.mp4', '/files/js-rotator/BA.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act' },
-                { sources: ['/files/js-rotator/WoS.mp4', '/files/js-rotator/WoS.ogv'], title: 'Wave on a String', link: 'simulation/wave-on-a-string' }
+                { sources: ['/files/rotator/BA.mp4', '/files/rotator/BA.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act' },
+                { sources: ['/files/rotator/WoS.mp4', '/files/rotator/WoS.ogv'], title: 'Wave on a String', link: 'simulation/wave-on-a-string' }
             ];
 
             var videos = [];
@@ -48,6 +48,8 @@
 
                 videos[i].appendChild( sources[2 * i] );
                 videos[i].appendChild( sources[2 * i + 1] );
+                var text = document.createTextNode('Your browser does not support the video tag');
+                videos[i].appendChild( text );
 
                 var div = document.createElement( 'div' );
                 var widthValue = (i === 0) ? 0 : (i === 1) ? 100 : -100;
