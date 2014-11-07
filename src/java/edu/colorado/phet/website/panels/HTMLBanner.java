@@ -20,6 +20,6 @@ public class HTMLBanner extends PhetPanel {
 
         Link link = HTML5Page.getLinker().getLink( "html-banner-link", context, getPhetCycle() );
         add( link );
-        link.add( new StaticImage( "html-banner-image", WebImage.get( Images.HTML5_LOGO_80 ), null ) );
+        link.add( new StaticImage( "html-banner-image", WebImage.get( Images.HTML5_LOGO_40 ), null ) );
     }
 }
