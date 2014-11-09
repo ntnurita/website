@@ -38,6 +38,8 @@ public class TroubleshootingMacPanel extends PhetPanel {
                 "<img src=\"//phet.colorado.edu/images/troubleshooting/downloads-menu.png\" alt=\"Downloads menu image\" width=\"300\"/>"
         } ) );
 
+        add( new LocalizedText( "troubleshooting-mac-q7-answer", "troubleshooting.mac.q7.answer" ) );
+
     }
 
     public static String getKey() {

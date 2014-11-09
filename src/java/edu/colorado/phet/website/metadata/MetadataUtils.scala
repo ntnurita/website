@@ -177,7 +177,7 @@ object MetadataUtils {
       <project id={project.getId.toString} name={project.getName}/>
       <simulation id={sim.getId.toString} name={sim.getName}/>
       <technology type={project.getType.toString}/>
-      <version major={project.getVersionMajor.toString} minor={project.getVersionMinor.toString} revision={project.getVersionRevision.toString} timestamp={project.getVersionTimestamp.toString}/>
+      <version major={project.getVersionMajor.toString} minor={project.getVersionMinor.toString} dev={project.getVersionDev.toString} revision={project.getVersionRevision.toString} timestamp={project.getVersionTimestamp.toString}/>
       <filesize kilobytes={sim.getKilobytes.toString}/>
       <credits designTeam={convertNewlinesToPipes(sim.getDesignTeam)} libraries={convertNewlinesToPipes(sim.getLibraries)} thanksTo={convertNewlinesToPipes(sim.getThanksTo)}/>
       <flags underConstruction={sim.isUnderConstruction.toString} guidanceRecommended={sim.isGuidanceRecommended.toString} classroomTested={sim.isClassroomTested.toString}/>

@@ -13,6 +13,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
+import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -94,6 +97,7 @@ public class SimulationMainPanel extends PhetPanel {
         HTML_SIM_LINK_MAP.put( "build-an-atom", "/sims/html/build-an-atom/latest/build-an-atom_en.html" );
         HTML_SIM_LINK_MAP.put( "concentration", "/sims/html/concentration/latest/concentration_en.html" );
         HTML_SIM_LINK_MAP.put( "color-vision", "/sims/html/color-vision/latest/color-vision_en.html" );
+        HTML_SIM_LINK_MAP.put( "faradays-law", "/sims/html/faradays-law/latest/faradays-law_en.html" );
         HTML_SIM_LINK_MAP.put( "forces-and-motion-basics", "/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" );
         HTML_SIM_LINK_MAP.put( "fraction-matcher", "/sims/html/fraction-matcher/latest/fraction-matcher_en.html" );
         HTML_SIM_LINK_MAP.put( "friction", "/sims/html/friction/latest/friction_en.html" );
@@ -129,6 +133,15 @@ public class SimulationMainPanel extends PhetPanel {
         link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
         } ) ) );
+        if ( simulation.getSimulation().isHTML() ) {
+            WebMarkupContainer html5Badge = new WebMarkupContainer( "html5-badge" );
+            link.add ( html5Badge );
+            html5Badge.add( new SimpleAttributeModifier( "class", "sim-badge-html" ) );
+            html5Badge.add( new SimpleAttributeModifier( "style", "left: 284px" ) );
+        }
+        else {
+            link.add( new InvisibleComponent( "html5-badge" ) );
+        }
         add( link );
 
 
@@ -415,26 +428,94 @@ public class SimulationMainPanel extends PhetPanel {
         * system requirements
         *----------------------------------------------------------------------------*/
 
+        /*
+         * Requirements are laid out in 3 columns for java/flash sims and 4 columns for
+         * HTML sims. Depending on the sim type, different content gets added to each
+         * column.
+         */
+        List<String> column1 = new LinkedList<String>();
+        List<String> column2 = new LinkedList<String>();
+        List<String> column3 = new LinkedList<String>();
+        List<String> column4 = new LinkedList<String>();
+
+        // column headers for java/flash sims
+        if ( !simulation.getSimulation().isHTML() ) {
+            add( new Label( "column1-header", "Windows" ) );
+            add( new Label( "column2-header", "Macintosh" ) );
+            add( new Label( "column3-header", "Linux" ) );
+            add( new InvisibleComponent( "column4-header" ) );
+
+            column1.add( "Microsoft Windows" );
+            column1.add( "XP/Vista/7" );
+
+            column2.add( "OS 10.5 or later" );
+        }
+        // column headers for HTML sims
+        else {
+            add( new Label( "column1-header", "Windows 7+ PCs" ) );
+            add( new Label( "column2-header", "Mac OS 10.7+ PCs" ) );
+            add( new Label( "column3-header", "iPad and iPad Mini with iOS" ) );
+            add( new Label( "column4-header", "Chromebook with Chrome OS" ) );
+        }
+
+        // column content for different sim types
         if ( simulation.getSimulation().isJava() ) {
-            add( new Label( "windows-req", "Sun Java 1.5.0_15 or later" ) );
-            add( new Label( "mac-req", "Sun Java 1.5.0_19 or later" ) );
-            add( new Label( "linux-req", "Sun Java 1.5.0_15 or later" ) );
+            column1.add( "Sun Java 1.5.0_15 or later" );
+            column2.add( "Sun Java 1.5.0_19 or later" );
+            column3.add( "Sun Java 1.5.0_15 or later" );
         }
         else if ( simulation.getSimulation().isFlash() ) {
-            add( new Label( "windows-req", "Macromedia Flash 9 or later" ) );
-            add( new Label( "mac-req", "Macromedia Flash 9 or later" ) );
-            add( new Label( "linux-req", "Macromedia Flash 9 or later" ) );
+            column1.add( "Macromedia Flash 9 or later" );
+            column2.add( "Macromedia Flash 9 or later" );
+            column3.add( "Macromedia Flash 9 or later" );
         }
-        // TODO handle html requirements
-//        else if ( simulation.getSimulation().isHTML() ) {
-//            add( new Label( "windows-req", "Web browser with Javascript enabled" ) );
-//            add( new Label( "mac-req", "Web browser with Javascript enabled" ) );
-//            add( new Label( "linux-req", "Web browser with Javascript enabled" ) );
-//        }
+        else if ( simulation.getSimulation().isHTML() ) {
+            column1.add( "Internet Explorer 9+" );
+            column1.add( "latest versions of Chrome and Firefox" );
+            column2.add( "Safari 6.1 and up" );
+            column2.add( "latest versions of Chrome and Firefox" );
+            column3.add( "latest version of Safari" );
+            column4.add( "latest version of Chrome" );
+        }
+
+        // Add a list view for each column
+        ListView column1View = new ListView<String>( "column1-list", column1 ) {
+            protected void populateItem( ListItem<String> item ) {
+                String str = item.getModelObject();
+                item.add( new Label( "column1-item", str ) );
+            }
+        };
+        add( column1View );
+
+        ListView column2View = new ListView<String>( "column2-list", column2 ) {
+            protected void populateItem( ListItem<String> item ) {
+                String str = item.getModelObject();
+                item.add( new Label( "column2-item", str ) );
+            }
+        };
+        add( column2View );
+
+        ListView column3View = new ListView<String>( "column3-list", column3 ) {
+            protected void populateItem( ListItem<String> item ) {
+                String str = item.getModelObject();
+                item.add( new Label( "column3-item", str ) );
+            }
+        };
+        add( column3View );
+
+        // show column4 only for HTML sims
+        if ( simulation.getSimulation().isHTML() ) {
+            ListView column4View = new ListView<String>( "column4-list", column4 ) {
+                protected void populateItem( ListItem<String> item ) {
+                    String str = item.getModelObject();
+                    item.add( new Label( "column4-item", str ) );
+                }
+            };
+            add( column4View );
+        }
         else {
-            add( new InvisibleComponent( "windows-req" ) );
-            add( new InvisibleComponent( "mac-req" ) );
-            add( new InvisibleComponent( "linux-req" ) );
+            // column 4 is invisible for legacy sims
+            add( new InvisibleComponent( "column4-list" ) );
         }
 
         // so we don't emit an empty <table></table> that isn't XHTML Strict compatible

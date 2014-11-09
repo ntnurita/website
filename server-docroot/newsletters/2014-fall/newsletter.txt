@@ -1,0 +1,91 @@
+Fall 2014 Newsletter - PhET Interactive Simulations (http://phet.colorado.edu)
+
+*** Find More Resources at the New "For Teachers" Page (http://phet.colorado.edu/en/for-teachers)
+
+Looking for resources to help you use PhET in your classroom?
+Want to watch seasoned instructors using PhET and hear their ideas?
+
+We are excited to launch an updated "For Teachers" section, including videos, downloadable tip sheets,
+and course alignment guides for K12 and college instructors.
+
+Find resources on:
+    Planning to Use PhET (http://phet.colorado.edu/en/for-teachers/planningToUsePhet)
+    Using PhET in Lecture: An Overview (http://phet.colorado.edu/en/for-teachers/usingPhetInLecture)
+    Interactive Lecture Demonstrations (http://phet.colorado.edu/en/for-teachers/lectureDemo)
+    Using PhET with Clickers (http://phet.colorado.edu/en/for-teachers/clickersDemo)
+    Designing PhET Activities for the K12 Classroom (http://phet.colorado.edu/en/for-teachers/activitesDesign)
+    Take a Virtual PhET Workshop (http://phet.colorado.edu/en/for-teachers/virtualWorkshop)
+
+*** Featured HTML5 Simulation: Balancing Chemical Equations (http://phet.colorado.edu/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html)
+
+We're excited about the new HTML5 Balancing Chemical Equations -with new layout and design updates that support
+touch-screen environments. Explore and discover how you know if a chemical equation is balanced. Then, play a game to
+test your ideas!
+
+Students learn to:
+    Balance a chemical equation.
+    Recognize that the number of atoms of each element is conserved in a chemical reaction.
+    Describe the difference between coefficients and subscripts in a chemical equation.
+    Translate from symbolic to molecular representations of matter.
+
+    Thanks to the new American Association of Chemistry Teachers organization for their generous donation to help bring
+    this simulation to HTML5.
+
+*** And, Just For Software Developers
+
+Our educational HTML5 libraries are open source and ready to use for your development projects. We've created a new guide
+to help you start developing with PhET libraries at http://bit.ly/phet-development-overview along with a getting-started
+video: https://www.youtube.com/watch?v=V8Jw2Qx-1gE
+
+Learn how to:
+    Check out the PhET HTML5 libraries and simulations from GitHub
+    Create new simulations
+    Understand & customize code for our simulations
+    Submit bug fixes for our simulations
+    Embed a PhET simulation in your own website
+    Use powerful libraries for rendering, audio, touch/mouse/pen input, geometry, MVC, UI and more.
+    Communicate with PhET developers and others developing with PhET libraries
+
+*** In the HTML5 Pipeline:
+Recently Released:
+    Area Builder (http://phet.colorado.edu/sims/html/area-builder/latest/area-builder_en.html)
+    Balancing Chemical Equations (http://phet.colorado.edu/sims/html/balancing-chemical-equations/latest/balancing-chemical-equations_en.html)
+    Color Vision (http://phet.colorado.edu/sims/html/color-vision/latest/color-vision_en.html)
+    Fraction Matcher (http://phet.colorado.edu/sims/html/fraction-matcher/latest/fraction-matcher_en.html)
+    Graphing Lines (http://phet.colorado.edu/sims/html/graphing-lines/latest/graphing-lines_en.html)
+    Wave on a String (http://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_en.html)
+Coming Soon:
+    Arithmetic
+    Energy Skate Park: Basics
+    Gravity and Orbits
+    Molecule Shapes
+    Pendulum Lab
+    Reactants, Products and Leftovers
+
+
+*** Upcoming Events:
+
+iNACOL 2014 Conference (http://www.inacol.org/symposium-2014/)
+Palm Springs, CA
+November 4-7, 2014
+
+NSTA 2015 National Conference (http://www.nsta.org/conferences/national.aspx)
+Chicago, IL
+March 12-15, 2015
+
+NCTM 2015 Research Conference (http://www.nctm.org/researchconf/)
+Boston, MA
+April 13-15, 2015
+
+
+*** Feedback or Suggestions?
+
+If you have any ideas, please let us know at phethelp@colorado.edu.
+
+Thank you American Association of Chemistry Teachers (http://www.teachchemistry.org) for bringing Balancing Chemical
+Equations to HTML5.
+
+You received this e-mail because you signed up at our website at http://phet.colorado.edu or email us at
+phethelp@colorado.edu. To opt out of these newsletters, please click on this link: @UNSUBSCRIBE@ or copy and paste the text into your browser.
+
+PhET Interactive Simulations | University of Colorado 390 UCB | Boulder, CO 80309-0390

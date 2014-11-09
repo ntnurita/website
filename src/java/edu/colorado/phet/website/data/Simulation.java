@@ -123,7 +123,7 @@ public class Simulation implements Serializable, IntId {
     public String getThumbnailUrl() {
         // NOTE: this is relied upon to be relative!
         if ( isHTML() ) {
-            return "/sims/" + getProject().getName() + "/" + getProject().getVersionString() + "/" + getName() + "-128.png";
+            return "/sims/" + getProject().getName() + "/latest/" + getName() + "-128.png";
         }
 
         // improved-quality PNG version of the thumbnail
@@ -141,7 +141,7 @@ public class Simulation implements Serializable, IntId {
 
     public String getImageUrl() {
         if ( isHTML() ) {
-            return "/sims/" + getProject().getName() + "/" + getProject().getVersionString() + "/" + getName() + "-screenshot.png";
+            return "/sims/" + getProject().getName() + "/latest/" + getName() + "-screenshot.png";
         }
         else {
             return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";

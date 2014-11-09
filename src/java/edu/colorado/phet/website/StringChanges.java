@@ -49,6 +49,18 @@ public class StringChanges {
         StringUtils.deleteString( session, "html5.bringCCK" );
         StringUtils.addString( session, "html5.bringCCK", "Build HTML5 Circuit Sim" );
 
+        StringUtils.addString( session, "troubleshooting.mac.q7.title", "When I click \"run now\" my computer asks me which application to use to open the file, but Java isn’t listed." );
+        StringUtils.addString( session, "troubleshooting.mac.q7.answer", "<p> " +
+                                                                         "In order to open a '.jnlp' file (the type of file used for “run now”), you will need to use Java Web Start. Java Web Start is part of " +
+                                                                         "the default Java installation. " +
+                                                                         "</p> " +
+                                                                         "<p> " +
+                                                                         "When you are prompted with the dialog asking for the app to use to open the file, click \"Choose program\", your finder window should " +
+                                                                         "open. Press Cmd-Shift-G to open the go to folder. Paste this folder: /System/Library/CoreServices " +
+                                                                         "This is where Java Web Start should be located on default mac installation. There should be an executable called 'Java-Web-Start'. " +
+                                                                         "Select this app. " +
+                                                                         "</p>" );
+
         session.close();
     }
 
