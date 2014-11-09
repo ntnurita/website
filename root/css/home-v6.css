@@ -398,6 +398,7 @@ div.practices dd a:hover {
   height: 16px;
   padding-left: 10px;
   vertical-align: middle;
+  border: none;
 }
 
 .pdf-icon::after {

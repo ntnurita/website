@@ -18,13 +18,15 @@
         document.addEventListener( 'DOMContentLoaded', function() {
             var sourceIndex = 0;
             var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
+            var path = '/files/rotator/';
             var sourceFiles = [
-                { sources: ['/files/rotator/BA.mp4', '/files/rotator/BA.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act' },
-                { sources: ['/files/rotator/WoS.mp4', '/files/rotator/WoS.ogv'], title: 'Wave on a String', link: 'simulation/wave-on-a-string' }
+                { sources: [path + 'BA.mp4', path + 'BA.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act', fallback: path + 'BA-frame.jpg' },
+                { sources: [path + 'WoS.mp4', path + 'WoS.ogv'], title: 'Wave on a String', link: 'simulation/wave-on-a-string', fallback: path + 'WoS-frame.jpg' }
             ];
 
             var videos = [];
             var sources = [];
+            var fallbackImages = [];
 
             var container = document.getElementById( 'video-container' );
             var simName = document.getElementById( 'sim-name' );
@@ -35,6 +37,15 @@
 
             // add the video elements in divs
             for ( var i = 0; i < 3; i++ ) {
+                var div = document.createElement( 'div' );
+                var widthValue = (i === 0) ? 0 : (i === 1) ? 100 : -100;
+                div.setAttribute( 'class', 'box' );
+                div.setAttribute( 'style', 'margin-top: 0; ' +
+                                           'position: absolute; ' +
+                                           'width: 100%; ' +
+                                           'height: 100%; ' +
+                                           'left: ' + widthValue + '%;' );
+
                 videos.push( document.createElement( 'video' ) );
                 // using width and height 100% doesn't work in FF, so its hardcoded here
                 videos[i].setAttribute( 'width', '325px' );
@@ -46,19 +57,14 @@
                 sources[2 * i].setAttribute( 'type', 'video/mp4' );
                 sources[2 * i + 1].setAttribute( 'type', 'video/ogg' );
 
+                fallbackImages.push( document.createElement( 'img' ) );
+                fallbackImages[i].setAttribute( 'width', '325px' );
+                fallbackImages[i].setAttribute( 'height', '213px' );
+
                 videos[i].appendChild( sources[2 * i] );
                 videos[i].appendChild( sources[2 * i + 1] );
-                var text = document.createTextNode('Your browser does not support the video tag');
-                videos[i].appendChild( text );
+                videos[i].appendChild( fallbackImages[i] );
 
-                var div = document.createElement( 'div' );
-                var widthValue = (i === 0) ? 0 : (i === 1) ? 100 : -100;
-                div.setAttribute( 'class', 'box' );
-                div.setAttribute( 'style', 'margin-top: 0; ' +
-                                           'position: absolute; ' +
-                                           'width: 100%; ' +
-                                           'height: 100%; ' +
-                                           'left: ' + widthValue + '%;' );
                 div.appendChild( videos[i] );
 
                 container.appendChild( div );
@@ -112,14 +118,17 @@
 
                 // setup and start the next video
                 sourceIndex = ( sourceIndex + 1 ) % sourceFiles.length;
+
                 sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
                 sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
+                fallbackImages[currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].fallback );
+                videos[currentIndex].setAttribute( 'poster', sourceFiles[sourceIndex].fallback );
+                videos[currentIndex].load();
+                videos[currentIndex].play();
                 simName.innerHTML = sourceFiles[sourceIndex].title;
                 var href = locale + sourceFiles[sourceIndex].link;
                 simName.setAttribute( 'href', href );
                 document.getElementById( 'video-container' ).onclick = function() { window.open( href ); };
-                videos[currentIndex].load();
-                videos[currentIndex].play();
 
                 // restart the timer
                 clearInterval( timer );
@@ -132,11 +141,13 @@
             // start the first video
             sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
             sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
+            fallbackImages[currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].fallback );
+            videos[currentIndex].setAttribute( 'poster', sourceFiles[sourceIndex].fallback );
+            videos[currentIndex].play();
             simName.innerHTML = sourceFiles[sourceIndex].title;
             var href = locale + sourceFiles[sourceIndex].link;
             simName.setAttribute( 'href', href );
             document.getElementById( 'video-container' ).onclick = function() { window.open( href ); };
-            videos[currentIndex].play();
 
             // switch videos every 5 seconds
             timer = setInterval( function() {switchVideo( 'left' );}, 5000 );
