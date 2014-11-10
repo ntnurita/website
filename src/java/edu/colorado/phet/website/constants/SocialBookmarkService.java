@@ -125,7 +125,7 @@ public abstract class SocialBookmarkService implements Serializable {
     public static final SocialBookmarkService FACEBOOK = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/new/fb-circle.png";
+            return "/images/icons/social/new/facebook.svg";
         }
 
         @Override
