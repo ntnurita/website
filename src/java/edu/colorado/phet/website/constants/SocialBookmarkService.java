@@ -125,7 +125,7 @@ public abstract class SocialBookmarkService implements Serializable {
     public static final SocialBookmarkService FACEBOOK = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/new/fb.png";
+            return "/images/icons/social/new/fb-circle.png";
         }
 
         @Override
@@ -234,7 +234,7 @@ public abstract class SocialBookmarkService implements Serializable {
     public static final SocialBookmarkService YOUTUBE = new SocialBookmarkService() {
         @Override
         public String getIconPath() {
-            return "/images/icons/social/new/youtube.png";
+            return "/images/icons/social/new/you-tube-circle.png";
         }
 
         @Override

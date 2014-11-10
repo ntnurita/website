@@ -12,13 +12,15 @@
 <body>
 
 <wicket:panel>
-    <a class="html-banner-container" href="#" wicket:id="html-banner-link">
+    <span class="html-banner-container">
         <span class="html-banner-logo">
-            <img class="html-banner-image" src="../../../../../../../root/images/HTML5_Badge_40_clean.svg" wicket:id="html-banner-image" alt="HTML5" width="40px" height="40px"/>
-            <span class="html-banner-html">HTML</span>
-            <span class="html-banner-simsText">
-                <wicket:message key="html5.tryOurNewHTML5Sims">HTML5 Sims</wicket:message>
-            </span>
+            <a href="#" wicket:id="html-banner-link">
+                <img class="html-banner-image" src="../../../../../../../root/images/HTML5_Badge_40_clean.svg" wicket:id="html-banner-image" alt="HTML5" width="40px" height="40px"/>
+                <span class="html-banner-html">HTML</span>
+                <span class="html-banner-simsText">
+                    <wicket:message key="html5.tryOurNewHTML5Sims">HTML5 Sims</wicket:message>
+                </span>
+            </a>
             <span class="html-banner-crowdfundText">
                 <wicket:message key="html5.crowdfundedProjects">Donate:</wicket:message>
             </span>
@@ -29,7 +31,7 @@
                 <wicket:message key="html5.bringCCK">Build HTML5 Circuit Sim</wicket:message>
             </span>
         </span>
-    </a>
+    </span>
 </wicket:panel>
 
 </body>

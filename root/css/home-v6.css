@@ -46,7 +46,7 @@ div.index-holder {
     text-align: center;
     vertical-align: middle;
     background-color: rgb(204,204,204);
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .left-right-buttons {
