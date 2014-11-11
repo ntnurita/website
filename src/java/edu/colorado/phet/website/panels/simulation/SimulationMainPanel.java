@@ -98,6 +98,7 @@ public class SimulationMainPanel extends PhetPanel {
         HTML_SIM_LINK_MAP.put( "concentration", "/sims/html/concentration/latest/concentration_en.html" );
         HTML_SIM_LINK_MAP.put( "color-vision", "/sims/html/color-vision/latest/color-vision_en.html" );
         HTML_SIM_LINK_MAP.put( "faradays-law", "/sims/html/faradays-law/latest/faradays-law_en.html" );
+        HTML_SIM_LINK_MAP.put( "energy-skate-park-basics", "/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_en.html" );
         HTML_SIM_LINK_MAP.put( "forces-and-motion-basics", "/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html" );
         HTML_SIM_LINK_MAP.put( "fraction-matcher", "/sims/html/fraction-matcher/latest/fraction-matcher_en.html" );
         HTML_SIM_LINK_MAP.put( "friction", "/sims/html/friction/latest/friction_en.html" );
