@@ -118,25 +118,18 @@ div.rtl .html-banner-container .html-banner-html {
     line-height: 25px;
     border-radius: 8px;
     cursor: pointer;
-    /*box-shadow: 3px 3px 10px 0 rgba(10,40,10,0.5);*/
-
-    background: rgb(249,243,127); /* Old browsers */
-    background: rgb(246,238,75); /* Old browsers */
-    background: rgb(216,208,17); /* Old browsers */
-    background: -webkit-linear-gradient(left, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(left, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(left, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, rgb(249,243,127) 0%, rgb(246,238,75) 15%, rgb(246,238,75) 85%, rgb(216,208,17) 100%); /* Standard syntax */
+    box-shadow: 0 1px 0 rgba(0,0,0,.08),inset -2px 2px 3px rgba(255,255,255,.67),inset 2px -2px 2px rgba(0,0,0,.2);
+    background: rgb(246,238,75);
 }
 
 .html-banner-container .html-banner-button:hover {
-    background: rgb(249,243,157); /* Old browsers */
-    background: rgb(246,238,125); /* Old browsers */
-    background: rgb(216,208,67); /* Old browsers */
-    background: -webkit-linear-gradient(left, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(left, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(left, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, rgb(249,243,157) 0%, rgb(246,238,125) 15%, rgb(246,238,125) 85%, rgb(216,208,67) 100%); /* Standard syntax */
+    background: rgb(249,244,147);
+}
+
+.html-banner-container .html-banner-button:active {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .html-banner-container .html-banner-teach-with-phet {
