@@ -156,6 +156,14 @@ public class Simulation implements Serializable, IntId {
         return WebImage.get( getImageUrl(), false );
     }
 
+    public WebImage getHTMLImage() {
+        return WebImage.get( "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-screenshot.png", false );
+    }
+
+    public WebImage getHTMLThumbnail() {
+        return WebImage.get( "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-128.png", false );
+    }
+
     public int detectSimKilobytes( File docRoot ) {
         File projectRoot = project.getProjectRoot( docRoot );
         switch( getType() ) {

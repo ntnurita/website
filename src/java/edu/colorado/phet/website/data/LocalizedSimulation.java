@@ -79,7 +79,7 @@ public class LocalizedSimulation implements Serializable, IntId {
     }
 
     public String getClickToLaunchSnippet( String launchText ) {
-        WebImage screenshot = getSimulation().getImage();
+        WebImage screenshot = ( getSimulation().isHTML() ) ? getSimulation().getHTMLImage() : getSimulation().getImage();
         int width = screenshot.hasDimension() ? screenshot.getWidth() : 300; // defaults if we cannot detect
         int height = screenshot.hasDimension() ? screenshot.getHeight() : 200; // defaults if we cannot detect
         int subWidth = width * 2 / 3; // probably 200

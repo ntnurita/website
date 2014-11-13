@@ -69,6 +69,7 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
+import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
@@ -131,7 +132,9 @@ public class SimulationMainPanel extends PhetPanel {
         }
 
         RawLink link = simulation.getRunLink( "simulation-main-link-run-main" );
-        link.add( new StaticImage( "simulation-main-screenshot", simulation.getSimulation().getImage(), StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
+
+        WebImage image = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLImage() : simulation.getSimulation().getImage();
+        link.add( new StaticImage( "simulation-main-screenshot", image, StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
         } ) ) );
         if ( simulation.getSimulation().isHTML() ) {
