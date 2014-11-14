@@ -15,14 +15,29 @@
     <script>
         var switchVideo;
 
+        // list all videos here
+        var simVideos = [
+            { title: 'Balancing Act', path: 'balancing-act' },
+            { title: 'Color Vision', path: 'color-vision' },
+            { title: 'Energy Skate Park Basics', path: 'energy-skate-park-basics' },
+            { title: 'Faraday\'s Law', path: 'faradays-law' },
+            { title: 'Friction', path: 'friction' },
+            { title: 'John Travoltage', path: 'john-travoltage' },
+            { title: 'Wave on a String', path: 'wave-on-a-string' }
+        ];
+
         document.addEventListener( 'DOMContentLoaded', function() {
             var sourceIndex = 0;
             var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
-            var path = '/files/rotator/';
-            var sourceFiles = [
-                { sources: [path + 'BA.mp4', path + 'BA.ogv'], title: 'Balancing Act', link: 'simulation/balancing-act', fallback: path + 'BA-frame.jpg' },
-                { sources: [path + 'WoS.mp4', path + 'WoS.ogv'], title: 'Wave on a String', link: 'simulation/wave-on-a-string', fallback: path + 'WoS-frame.jpg' }
-            ];
+            var sourceFiles = [];
+            for ( var i = 0; i < simVideos.length; i++ ) {
+                var prefix = '/files/rotator/' + simVideos[i].path;
+                sourceFiles.push( {
+                    sources: [prefix + '.mp4', prefix + '.ogv'],
+                    title: simVideos[i].title,
+                    link: 'simulation/' + simVideos[i].path,
+                    fallback: prefix + '.jpg' } );
+            }
 
             var videos = [];
             var sources = [];
