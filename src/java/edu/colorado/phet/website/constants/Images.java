@@ -99,6 +99,8 @@ public class Images {
     public static final ImageHandle BY_LEVEL_MIDDLE_SCHOOL = new ImageHandle( "/images/by-level/middle-school.png", true );
     public static final ImageHandle BY_LEVEL_HIGH_SCHOOL = new ImageHandle( "/images/by-level/high-school.png", true );
     public static final ImageHandle BY_LEVEL_UNIVERSITY = new ImageHandle( "/images/by-level/university.png", true );
+    public static final ImageHandle BY_DEVICE_IPAD = new ImageHandle( "/images/by-device/ipad.png", true );
+    public static final ImageHandle BY_DEVICE_CHROMEBOOK = new ImageHandle( "/images/by-device/chromebook.png", true );
 
     /*---------------------------------------------------------------------------*
     * contributed images
