@@ -212,7 +212,7 @@ public class IndexPanel extends PhetPanel {
                 } else {
                     link = mark.getLinker( "", "home.title" ).getLink( "link", context, getPhetCycle() );
                 }
-                link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
+                link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getHomePageTooltipLocalizationKey() ) ) ); // tooltip
                 if ( isFirst ) {
                     link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link first-footer-link" ) ) );
                     isFirst = false;
