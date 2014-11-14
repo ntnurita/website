@@ -51,6 +51,10 @@ public abstract class SocialBookmarkService implements Serializable {
         return "social." + getName() + ".tooltip";
     }
 
+    public String getHomePageTooltipLocalizationKey() {
+        return "social.homepage." + getName() + ".tooltip";
+    }
+
     public RawLinker getLinker( String relativeUrl, String title ) {
         try {
             return new RawLinker( getShareUrl( relativeUrl, title ) );

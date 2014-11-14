@@ -23,7 +23,8 @@ public class SocialBookmarkPanel extends PhetPanel {
     public SocialBookmarkPanel( String id, final PageContext context, final String bookmarkableUrl, final String bookmarkableTitle ) {
         super( id, context );
 
-        List<SocialBookmarkService> services = ( bookmarkableUrl == "" ) ? SocialBookmarkService.HOMEPAGE_SERVICES : SocialBookmarkService.SERVICES;
+        final boolean onHomePage = ( bookmarkableUrl == "" );
+        List<SocialBookmarkService> services = ( onHomePage ) ? SocialBookmarkService.HOMEPAGE_SERVICES : SocialBookmarkService.SERVICES;
 
         add( new ListView<SocialBookmarkService>( "social-list", services ) {
             @Override
@@ -35,7 +36,8 @@ public class SocialBookmarkPanel extends PhetPanel {
                 } else {
                     link = mark.getLinker( bookmarkableUrl, bookmarkableTitle ).getLink( "link", context, getPhetCycle() );
                 }
-                link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getTooltipLocalizationKey() ) ) ); // tooltip
+                String toolTipKey = ( onHomePage ) ? mark.getHomePageTooltipLocalizationKey() : mark.getTooltipLocalizationKey();
+                link.add( new AttributeModifier( "title", true, new ResourceModel( toolTipKey ) ) ); // tooltip
                 item.add( link );
                 link.add( new WebMarkupContainer( "icon" ) {{
                     add( new AttributeModifier( "style", true, new Model<String>( "display: block; width: 28px; height: 28px; border: none;" ) ) );

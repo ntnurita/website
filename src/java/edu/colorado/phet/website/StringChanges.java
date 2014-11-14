@@ -67,6 +67,13 @@ public class StringChanges {
         StringUtils.addString( session, "nav.chromebook", "Chromebook" );
         StringUtils.addString( session, "nav.by-device", "By Device" );
 
+        StringUtils.addString( session, "social.homepage.blog.tooltip", "Visit our blog" );
+        StringUtils.addString( session, "social.homepage.newsletter.tooltip", "Subscribe to our newsletter" );
+        StringUtils.addString( session, "social.homepage.facebook.tooltip", "Find us on Facebook" );
+        StringUtils.addString( session, "social.homepage.youtube.tooltip", "Watch us on Youtube" );
+        StringUtils.addString( session, "social.homepage.twitter.tooltip", "Follow us on Twitter" );
+        StringUtils.addString( session, "social.homepage.pinterest.tooltip", "Pin us" );
+
         session.close();
     }
 
