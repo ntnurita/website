@@ -20,6 +20,7 @@ import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.attributes.ClassAppender;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
@@ -67,7 +68,8 @@ public class SimulationDisplayPanel extends PhetPanel {
                 int dataServerIndex = simulation.getId() % dataServers.length;
                 final String dataServer = dataServers[dataServerIndex];
 
-                link.add( new StaticImage( "thumbnail", simulation.getSimulation().getThumbnail(), alt ) {{
+                WebImage thumbnail = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLThumbnail() : simulation.getSimulation().getThumbnail();
+                link.add( new StaticImage( "thumbnail", thumbnail, alt ) {{
                     setOutputMarkupId( true );
                     setMarkupId( "simulation-display-thumbnail-" + simulation.getSimulation().getName() );
                     setDataServer( dataServer );

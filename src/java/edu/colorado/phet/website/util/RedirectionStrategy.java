@@ -273,6 +273,8 @@ public class RedirectionStrategy implements IRequestTargetUrlCodingStrategy {
         categoryMap.put( "Middle_School_", "by-level/middle-school" );
         categoryMap.put( "High_School_", "by-level/high-school" );
         categoryMap.put( "University_", "by-level/university" );
+        categoryMap.put( "iPad/Tablet", "by-device/ipad-tablet" );
+        categoryMap.put( "Chromebook", "by-device/chromebook" );
         categoryMap.put( "Cutting_Edge_Research", "cutting-edge-research" );
 
         // grandfathered because they are still linked. all_sims is handled lower, to handle without the 'category' prefix

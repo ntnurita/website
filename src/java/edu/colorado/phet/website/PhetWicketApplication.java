@@ -104,6 +104,7 @@ import edu.colorado.phet.website.content.media.MediaImagesPage;
 import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.media.WorldPhotosPage;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
+import edu.colorado.phet.website.content.simulations.ByDevicePage;
 import edu.colorado.phet.website.content.simulations.ByGradeLevelPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.HTML5Page;
@@ -299,6 +300,7 @@ public class PhetWicketApplication extends WebApplication {
         mapper = new PhetUrlMapper();
         HTML5Page.addToMapper( mapper );
         ByGradeLevelPage.addToMapper( mapper ); // always add this before
+        ByDevicePage.addToMapper( mapper ); // always add this before
         // CategoryPage so it can
         // display the icons
         CategoryPage.addToMapper( mapper );

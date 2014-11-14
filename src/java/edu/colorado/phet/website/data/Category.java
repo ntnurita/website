@@ -66,6 +66,7 @@ public class Category implements Serializable, IntId {
     private Category parent;
 
     public static final String BY_LEVEL_CATEGORY_NAME = "by-level";
+    public static final String BY_DEVICE_NAME = "by-device";
     public static final String NEW_CATEGORY_NAME = "new";
 
     /*---------------------------------------------------------------------------*
@@ -76,6 +77,18 @@ public class Category implements Serializable, IntId {
     public static final String MIDDLE_SCHOOL = "middle-school";
     public static final String HIGH_SCHOOL = "high-school";
     public static final String UNIVERSITY = "university";
+
+    /*---------------------------------------------------------------------------*
+    * device category names
+    *----------------------------------------------------------------------------*/
+
+    public static final String IPAD_TABLET = "ipad-tablet";
+    public static final String CHROMEBOOK = "chromebook";
+
+    private static final Set<String> DEVICE_CATEGORY_NAMES = new HashSet<String>() {{
+        add( IPAD_TABLET );
+        add( CHROMEBOOK );
+    }};
 
     private static final Set<String> GRADE_LEVEL_CATEGORY_NAMES = new HashSet<String>() {{
         add( ELEMENTARY_SCHOOL );
@@ -237,6 +250,13 @@ public class Category implements Serializable, IntId {
      */
     public boolean isGradeLevelCategory() {
         return GRADE_LEVEL_CATEGORY_NAMES.contains( getName() );
+    }
+
+    /**
+     * @return Whether this category also represents a by-device category (iPad, etc.)
+     */
+    public boolean isDeviceCategory() {
+        return DEVICE_CATEGORY_NAMES.contains( getName() );
     }
 
     @Override

@@ -10,6 +10,8 @@ import org.hibernate.Session;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
+import com.navnorth.learningregistry.util.StringUtil;
+
 /**
  * Contains strings that have been addedor modified since the last production deployment. If strings by those key names
  * don't exist they will be created.
@@ -60,6 +62,10 @@ public class StringChanges {
                                                                          "This is where Java Web Start should be located on default mac installation. There should be an executable called 'Java-Web-Start'. " +
                                                                          "Select this app. " +
                                                                          "</p>" );
+
+        StringUtils.addString( session, "nav.ipad-tablet", "iPad/Tablet" );
+        StringUtils.addString( session, "nav.chromebook", "Chromebook" );
+        StringUtils.addString( session, "nav.by-device", "By Device" );
 
         session.close();
     }
