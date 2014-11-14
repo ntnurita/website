@@ -6,7 +6,6 @@ package edu.colorado.phet.website.content.simulations;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.model.StringResourceModel;
 
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.menu.NavLocation;
@@ -30,9 +29,8 @@ public class ByGradeLevelPage extends PhetRegularPage {
 
         initializeLocation( location );
         setTitle( StringUtils.messageFormat( getLocalizer().getString( "simulationDisplay.title", this ), new Object[] {
-                new StringResourceModel( location.getLocalizationKey(), this, null )
+                getPhetLocalizer().getString( location.getLocalizationKey(), this )
         } ) );
-//        addTitle( new StringResourceModel( "simulationDisplay.title", this, null, new Object[]{new StringResourceModel( location.getLocalizationKey(), this, null )} ) );
 
         this.getPhetCycle().setMinutesToCache( 15 );
     }
