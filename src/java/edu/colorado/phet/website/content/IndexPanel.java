@@ -193,10 +193,10 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * sponsors
         *----------------------------------------------------------------------------*/
-        add( new StaticImage( "nsf-logo", Images.LOGO_NSF, null ) );
-        add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
+        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_FRONT_PAGE, null ) );
+        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_LARGE, null ) );
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
-        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
+        add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
 
         /*---------------------------------------------------------------------------*
         * footer social icons
