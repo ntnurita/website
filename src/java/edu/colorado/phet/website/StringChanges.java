@@ -72,7 +72,9 @@ public class StringChanges {
         StringUtils.addString( session, "social.homepage.facebook.tooltip", "Find us on Facebook" );
         StringUtils.addString( session, "social.homepage.youtube.tooltip", "Watch us on Youtube" );
         StringUtils.addString( session, "social.homepage.twitter.tooltip", "Follow us on Twitter" );
-        StringUtils.addString( session, "social.homepage.pinterest.tooltip", "Pin us" );
+        StringUtils.addString( session, "social.homepage.pinterest.tooltip", "Pin us on Pinterest" );
+
+        StringUtils.addString( session, "donation-banner.html5.tooltip", "Go to HTML5 Sims" );
 
         session.close();
     }

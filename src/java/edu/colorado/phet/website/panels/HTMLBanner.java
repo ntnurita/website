@@ -3,7 +3,9 @@
 package edu.colorado.phet.website.panels;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
@@ -20,6 +22,7 @@ public class HTMLBanner extends PhetPanel {
 
         Link link = HTML5Page.getLinker().getLink( "html-banner-link", context, getPhetCycle() );
         add( link );
+        link.add( new AttributeModifier( "title", true, new ResourceModel( "donation-banner.html5.tooltip" ) ) ); // tooltip
         link.add( new StaticImage( "html-banner-image", WebImage.get( Images.HTML5_LOGO_40 ), null ) );
     }
 }
