@@ -143,7 +143,7 @@
                 simName.innerHTML = sourceFiles[sourceIndex].title;
                 var href = locale + sourceFiles[sourceIndex].link;
                 simName.setAttribute( 'href', href );
-                document.getElementById( 'video-container' ).onclick = function() { window.open( href ); };
+                document.getElementById( 'video-container' ).onclick = function() { window.location.href = href; };
 
                 // restart the timer
                 clearInterval( timer );
@@ -162,7 +162,7 @@
             simName.innerHTML = sourceFiles[sourceIndex].title;
             var href = locale + sourceFiles[sourceIndex].link;
             simName.setAttribute( 'href', href );
-            document.getElementById( 'video-container' ).onclick = function() { window.open( href ); };
+            document.getElementById( 'video-container' ).onclick = function() { window.location.href = href; };
 
             // switch videos every 5 seconds
             timer = setInterval( function() {switchVideo( 'left' );}, 5000 );
@@ -202,7 +202,7 @@
                     <span class="left-right-buttons" style="float: left;" onclick="switchVideo('right');">
                         <img class="left-right-img" src="/images/icons/left.png" alt="<">
                     </span>
-                    <a id="sim-name" target="_blank"></a>
+                    <a id="sim-name"></a>
                     <span class="left-right-buttons" style="float: right;" onclick="switchVideo('left');">
                         <img class="left-right-img" src="/images/icons/right.png" alt=">">
                     </span>
