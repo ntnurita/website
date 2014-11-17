@@ -407,11 +407,14 @@ div.practices dd a:hover {
 }
 
 .footer-link {
-  display: inline;
   border-left: 2px solid;
-  padding: 0 5px;
   border-color: grey;
   text-decoration: none;
+  padding-left: 8px;
+  padding-right: 4px;
+  height: 16px;
+  line-height: 16px;
+  display: inline-block;
 }
 
 .first-footer-link {
@@ -422,8 +425,7 @@ div.practices dd a:hover {
 .footer-icon {
   width: 16px;
   height: 16px;
-  padding-left: 10px;
-  vertical-align: middle;
+  vertical-align: bottom;
   border: none;
 }
 

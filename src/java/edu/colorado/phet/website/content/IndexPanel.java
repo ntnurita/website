@@ -208,7 +208,7 @@ public class IndexPanel extends PhetPanel {
             protected void populateItem( ListItem<SocialBookmarkService> item ) {
                 final SocialBookmarkService mark = item.getModelObject();
                 Link link;
-                if ( mark.getName() == "newsletter" ) {
+                if ( mark.getName().equals( "newsletter" ) ) {
                     link = InitialSubscribePage.getLinker().getLink( "link", context, getPhetCycle() );
                 } else {
                     link = mark.getLinker( "", "home.title" ).getLink( "link", context, getPhetCycle() );

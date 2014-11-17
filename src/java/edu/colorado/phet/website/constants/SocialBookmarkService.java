@@ -33,7 +33,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public String getFooterLabel() {
         return getName();
-    };
+    }
 
     /**
      * Get the URL to use for bookmarking.
