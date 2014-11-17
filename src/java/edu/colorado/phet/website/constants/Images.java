@@ -49,10 +49,10 @@ public class Images {
 
     public static final ImageHandle LOGO_HEWLETT = new ImageHandle( "/images/support/hewlett-logo.jpg", true );
     public static final ImageHandle LOGO_HEWLETT_SMALL = new ImageHandle( "/images/support/hewlett-logo-small.jpg", true );
-    public static final ImageHandle LOGO_HEWLETT_FRONT_PAGE = new ImageHandle( "/images/support/hewlett-logo-front-page.gif", true );
+//    public static final ImageHandle LOGO_HEWLETT_FRONT_PAGE = new ImageHandle( "/images/support/hewlett-logo-web.gif", true );
     public static final ImageHandle LOGO_ODF_COMBINED_SMALL = new ImageHandle( "/images/support/odf-combined-130.png", true );
     public static final ImageHandle LOGO_NSF = new ImageHandle( "/images/support/nsf-logo.gif", true );
-    public static final ImageHandle LOGO_NSF_LARGE = new ImageHandle( "/images/support/nsf1.gif", true );
+//    public static final ImageHandle LOGO_NSF_FRONT_PAGE = new ImageHandle( "/images/support/nsf1-web.gif", true );
     public static final ImageHandle LOGO_NSF_SMALL = new ImageHandle( "/images/support/nsf-logo-small.gif", true );
     public static final ImageHandle LOGO_ECSME = new ImageHandle( "/images/support/ERCSME-combined-logo-regular.png", true );
     public static final ImageHandle LOGO_ERCSME_SMALL = new ImageHandle( "/images/support/ERCSME-combined-logo-small.png", true );

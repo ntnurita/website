@@ -194,10 +194,22 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * sponsors
         *----------------------------------------------------------------------------*/
-        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_FRONT_PAGE, null ) );
-        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_LARGE, null ) );
+//        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_FRONT_PAGE, null ) );
+//        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_FRONT_PAGE, null ) );
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
         add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
+
+        // I tried resizing these in photoshop and it looked horrible
+        // Somehow the browser does a much better job
+        add( new WebMarkupContainer( "nsf-logo" ) {{
+            add( new AttributeModifier( "width", true, new Model<String>( "60px" ) ) );
+            add( new AttributeModifier( "src", true, new Model<String>( "/images/support/nsf1.gif" ) ) );
+        }} );
+
+        add( new WebMarkupContainer( "hewlett-logo" ) {{
+            add( new AttributeModifier( "width", true, new Model<String>( "132px" ) ) );
+            add( new AttributeModifier( "src", true, new Model<String>( "/images/support/hewlett-logo-full-res.gif" ) ) );
+        }} );
 
         /*---------------------------------------------------------------------------*
         * footer social icons
