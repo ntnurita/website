@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.content;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 
 import org.apache.wicket.AttributeModifier;
@@ -229,8 +230,11 @@ public class IndexPanel extends PhetPanel {
             }
         };
         add( socialFooter );
-
-        add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
+        add( new WebMarkupContainer( "copyright" ) {{
+            int year = Calendar.getInstance().get( Calendar.YEAR );
+            add ( new Label( "copyright-label", "© " + year + " University of Colorado. ") );
+            add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
+        }} );
 
         addDependency( new EventDependency() {
             private IChangeListener stringListener;

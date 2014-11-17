@@ -463,9 +463,12 @@
             </div>
         </wicket:enclosure>
 
-        <div class="copyright">&copy; 2013 University of Colorado. <a href="#" wicket:id="some-rights-link">
-            <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
-        </a></div>
+        <div class="copyright" wicket:id="copyright">
+            <span wicket:id="copyright-label">&copy; 2014 University of Colorado. </span>
+            <a href="#" wicket:id="some-rights-link">
+                <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
+            </a>
+        </div>
     </div>
 
 </wicket:panel>
