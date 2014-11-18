@@ -199,11 +199,11 @@ public class IndexPanel extends PhetPanel {
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
         add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
 
-        // I tried resizing these in photoshop and it looked horrible
-        // Somehow the browser does a much better job
+        // I tried resizing these in Photoshop and it looked horrible
+        // Somehow the browsers do a much better job
         add( new WebMarkupContainer( "nsf-logo" ) {{
             add( new AttributeModifier( "width", true, new Model<String>( "60px" ) ) );
-            add( new AttributeModifier( "src", true, new Model<String>( "/images/support/nsf1.gif" ) ) );
+            add( new AttributeModifier( "src", true, new Model<String>( "/images/support/nsf-full-res.gif" ) ) );
         }} );
 
         add( new WebMarkupContainer( "hewlett-logo" ) {{
