@@ -7,6 +7,7 @@ package edu.colorado.phet.website.menu;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -22,6 +23,8 @@ import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
 
 public class NavMenuList extends PhetPanel {
+
+    private static final Logger logger = Logger.getLogger( NavMenuList.class.getName() );
 
     public NavMenuList( String id, final PageContext context, List<NavLocation> locations, final Collection<NavLocation> currentLocations, final int level ) {
         super( id, context );
@@ -39,6 +42,10 @@ public class NavMenuList extends PhetPanel {
 
                 if ( currentLocations != null ) {
                     for ( NavLocation currentLocation : currentLocations ) {
+                        if ( currentLocation == null ) {
+                            logger.warn( "currentLocation is null in NavMenuList: " + item.getModelObject().toString() );
+                            break;
+                        }
                         if ( !open ) {
                             open = currentLocation.isUnderLocation( location );
                         }
