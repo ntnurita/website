@@ -86,7 +86,7 @@ div.rtl #page-header-search {
 
 div.rtl #page-header-cu {
     right: auto !important;
-    left: 0 !important;
+    left: 23px !important;
 }
 
 #page-header-logo img {

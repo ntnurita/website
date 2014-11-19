@@ -63,17 +63,17 @@
 
 .html-banner-simsText[dir="rtl"] {
     right: inherit;
-    left: 50px;
+    left: 60px;
 }
 
 .html-banner-image[dir="rtl"] {
     right: inherit;
-    left: -4px;
+    left: 18px;
 }
 
 .html-banner-html[dir="rtl"] {
     right: inherit;
-    left: -2px;
+    left: 20px;
 }
 
 div.rtl .html-banner-container .html-banner-image {
