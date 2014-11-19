@@ -76,6 +76,9 @@ public class StringChanges {
 
         StringUtils.addString( session, "donation-banner.html5.tooltip", "Go to HTML5 Sims" );
 
+        StringUtils.deleteString( session, "home.simulationsDelivered" );
+        StringUtils.addString( session, "home.simulationsDelivered", "Over 200 million simulations delivered" );
+
         session.close();
     }
 
