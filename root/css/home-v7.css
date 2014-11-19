@@ -407,8 +407,7 @@ div.practices dd a:hover {
 }
 
 .footer-link {
-  border-left: 2px solid;
-  border-color: grey;
+  border-left: 2px solid grey;
   text-decoration: none;
   padding-left: 8px;
   padding-right: 4px;
@@ -420,6 +419,18 @@ div.practices dd a:hover {
 .first-footer-link {
   border-left: none;
   padding-left: 0;
+}
+
+.footer-link[dir="rtl"] {
+    border-left: none;
+    border-right: 2px solid grey;
+    padding-left: 4px;
+    padding-right: 8px;
+}
+
+.first-footer-link[dir="rtl"] {
+    border-right: none;
+    padding-right: 0;
 }
 
 .footer-icon {
