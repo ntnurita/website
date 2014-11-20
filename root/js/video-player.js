@@ -1,3 +1,7 @@
+/**
+ * Uses three animated divs to create a video player carousel
+ */
+
 var switchVideo;
 
 // list all videos here
@@ -12,10 +16,12 @@ var simVideos = [
 ];
 
 document.addEventListener( 'DOMContentLoaded', function() {
-  var sourceIndex = 0;
+  var sourceIndex = 0; // index into simVideos
   var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
   var sourceFiles = [];
   var i;
+
+  // create an object for each video with links to the videos, title, link, and fallback image
   for ( i = 0; i < simVideos.length; i++ ) {
     var prefix = '/files/rotator/' + simVideos[i].path;
     sourceFiles.push( {
@@ -34,7 +40,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
   var timer; // setInterval for changing videos
   var switchable = true; // whether or not the switch video buttons are enabled (they get disabled while animating)
-  var currentIndex = 0; // index of the current video and source
+  var currentIndex = 0; // index of the current video player
 
   // add the video elements in divs
   for ( i = 0; i < 3; i++ ) {
@@ -70,12 +76,17 @@ document.addEventListener( 'DOMContentLoaded', function() {
     container.appendChild( div );
   }
 
+  /**
+   * Switch the video in the carousel by animating the div to slide over and changing the video source
+   * @param direction the direction that the carousel should slide
+   */
   switchVideo = function( direction ) {
     if ( !switchable ) {
-      return;
+      return; // don't allow the video to be switched during animation
     }
     switchable = false;
 
+    // currentIndex is the index of the div to be animated. Only three divs are needed to provide a smooth animation
     currentIndex = ( direction === 'left' ) ? ( currentIndex + 1 ) % 3 : ( currentIndex - 1 );
     if ( currentIndex < 0 ) {
       currentIndex += 3;
@@ -98,7 +109,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
         }
       } );
     }
-    else {
+    else { // direction === right
       $( '.box' ).each( function() {
         if ( $( this ).offset().left < $( '#video-container' ).offset().left ) {
           $( this ).animate( {
@@ -117,7 +128,10 @@ document.addEventListener( 'DOMContentLoaded', function() {
     }
 
     // setup and start the next video
-    sourceIndex = ( sourceIndex + 1 ) % sourceFiles.length;
+    sourceIndex = ( direction === 'left' ) ? ( sourceIndex + 1 ) % sourceFiles.length : ( sourceIndex - 1 );
+    if ( sourceIndex < 0 ) {
+      sourceIndex += sourceFiles.length;
+    }
 
     sources[2 * currentIndex].setAttribute( 'src', sourceFiles[sourceIndex].sources[0] );
     sources[2 * currentIndex + 1].setAttribute( 'src', sourceFiles[sourceIndex].sources[1] );
