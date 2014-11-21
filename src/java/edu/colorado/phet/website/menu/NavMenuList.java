@@ -44,7 +44,7 @@ public class NavMenuList extends PhetPanel {
                     for ( NavLocation currentLocation : currentLocations ) {
                         if ( currentLocation == null ) {
                             logger.warn( "currentLocation is null in NavMenuList: " + item.getModelObject().toString() );
-                            break;
+                            continue;
                         }
                         if ( !open ) {
                             open = currentLocation.isUnderLocation( location );
