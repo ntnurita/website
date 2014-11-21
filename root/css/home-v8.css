@@ -19,7 +19,11 @@ div.index-holder {
     width: 325px;
     height: 100%;
     display: inline-block;
-    /*border: 1px solid #cccccc;*/
+}
+
+#interactive-sims {
+    font-size: 20px;
+    font-family: "Helvetica Neue", "Arial Narrow", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 #left-index {
