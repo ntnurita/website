@@ -39,6 +39,9 @@ public class StringChanges {
         StringUtils.addString( session, "nav.chromebook", "Chromebook" );
         StringUtils.addString( session, "nav.by-device", "By Device" );
 
+        StringUtils.deleteString( session, "installer.mostUpToDate" );
+        StringUtils.addString( session, "installer.mostUpToDate", "Created {0,date,short}. Updates available <a {1}>online</a>." );
+
         session.close();
     }
 
