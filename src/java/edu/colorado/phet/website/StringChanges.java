@@ -78,6 +78,9 @@ public class StringChanges {
 
         StringUtils.deleteString( session, "home.simulationsDelivered" );
         StringUtils.addString( session, "home.simulationsDelivered", "Over 200 million simulations delivered" );
+        
+        StringUtils.deleteString( session, "installer.mostUpToDate" );
+        StringUtils.addString( session, "installer.mostUpToDate", "Created {0,date,short}. Updates available <a {1}>online</a>." );
 
         session.close();
     }
