@@ -123,6 +123,7 @@ public class IndexPanel extends PhetPanel {
 
         add( AboutMainPanel.getLinker().getLink( "about-general", context, getPhetCycle() ) );
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );
+        add( ResearchPanel.getLinker().getLink( "research-on-phet", context, getPhetCycle() ) );
         add( AboutNewsPanel.getLinker().getLink( "about-news", context, getPhetCycle() ) );
         add( AboutContactPanel.getLinker().getLink( "about-contact", context, getPhetCycle() ) );
         add( new LocalizedText( "other-sponsors", "home.about.alongWithOurSponsors", new Object[] {

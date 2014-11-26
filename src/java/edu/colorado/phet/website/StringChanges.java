@@ -82,6 +82,8 @@ public class StringChanges {
         StringUtils.deleteString( session, "installer.mostUpToDate" );
         StringUtils.addString( session, "installer.mostUpToDate", "Created {0,date,short}. Updates available <a {1}>online</a>." );
 
+        StringUtils.addString( session, "home.about.research", "Research on PhET" );
+
         session.close();
     }
 
