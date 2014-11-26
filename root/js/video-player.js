@@ -27,7 +27,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
     sourceFiles.push( {
       sources: [prefix + '.mp4', prefix + '.ogv'],
       title: simVideos[i].title,
-      link: 'simulation/' + simVideos[i].path,
+      link: ( simVideos[i].path === 'john-travoltage' ) ? 'simulation/travoltage' : 'simulation/' + simVideos[i].path,
       fallback: prefix + '.jpg' } );
   }
 
