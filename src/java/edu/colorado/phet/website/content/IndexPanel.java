@@ -233,6 +233,10 @@ public class IndexPanel extends PhetPanel {
                 else {
                     link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link" ) ) );
                 }
+                // phetLinks (blog and newsletter) should not open in a new tab, but other links should
+                if ( !mark.isPhetLink() ) {
+                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external,nofollow" ) ) );
+                }
                 item.add( link );
                 link.add( new LocalizedText( "label", mark.getFooterLabel() ) );
                 link.add( new WebMarkupContainer( "icon" ) {{

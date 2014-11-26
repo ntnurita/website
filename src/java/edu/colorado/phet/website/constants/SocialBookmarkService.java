@@ -14,10 +14,12 @@ import edu.colorado.phet.website.util.ImageHandle;
 import edu.colorado.phet.website.util.links.RawLinker;
 
 /**
- * Model of a social bookmarking service (like sharing for Facebook, tweeting links, or the more classic delicious /
- * digg models). They have two main things: an icon and a way to get a link to bookmark a specific URL.
+ * Model of a social bookmarking service (like sharing for Facebook, tweeting links).
+ * They have two main things: an icon and a way to get a link to bookmark a specific URL.
  */
 public abstract class SocialBookmarkService implements Serializable {
+
+    public abstract boolean isPhetLink(); // true for links to Phet's own social media, the blog and the newsletter
 
     /**
      * @return Path to image icon. Relative from server root. Starts with slash
@@ -67,6 +69,9 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public static final SocialBookmarkService BLOG = new SocialBookmarkService() {
         @Override
+        public boolean isPhetLink() { return true; }
+
+        @Override
         public String getIconPath() {
             return "/images/icons/social/new/blog-icon.svg";
         }
@@ -89,6 +94,9 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public static final SocialBookmarkService NEWSLETTER = new SocialBookmarkService() {
         @Override
+        public boolean isPhetLink() { return true; }
+
+        @Override
         public String getIconPath() {
             return "/images/icons/social/new/mail-icon.svg";
         }
@@ -110,6 +118,9 @@ public abstract class SocialBookmarkService implements Serializable {
     };
 
     public static final SocialBookmarkService FACEBOOK = new SocialBookmarkService() {
+        @Override
+        public boolean isPhetLink() { return false; }
+
         @Override
         public String getIconPath() {
             return "/images/icons/social/new/facebook.svg";
@@ -136,6 +147,9 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public static final SocialBookmarkService TWITTER = new SocialBookmarkService() {
         @Override
+        public boolean isPhetLink() { return false; }
+
+        @Override
         public String getIconPath() {
             return "/images/icons/social/new/twitter.png";
         }
@@ -161,6 +175,9 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public static final SocialBookmarkService STUMBLE_UPON = new SocialBookmarkService() {
         @Override
+        public boolean isPhetLink() { return false; }
+
+        @Override
         public String getIconPath() {
             return "/images/icons/social/new/stumble-upon.png";
         }
@@ -183,6 +200,9 @@ public abstract class SocialBookmarkService implements Serializable {
 
     public static final SocialBookmarkService REDDIT = new SocialBookmarkService() {
         @Override
+        public boolean isPhetLink() { return false; }
+
+        @Override
         public String getIconPath() {
             return "/images/icons/social/new/reddit.png";
         }
@@ -199,6 +219,9 @@ public abstract class SocialBookmarkService implements Serializable {
     };
 
     public static final SocialBookmarkService YOUTUBE = new SocialBookmarkService() {
+        @Override
+        public boolean isPhetLink() { return false; }
+
         @Override
         public String getIconPath() {
             return "/images/icons/social/new/you-tube-circle.png";
@@ -221,6 +244,9 @@ public abstract class SocialBookmarkService implements Serializable {
     };
 
     public static final SocialBookmarkService PINTEREST = new SocialBookmarkService() {
+        @Override
+        public boolean isPhetLink() { return false; }
+
         @Override
         public String getIconPath() {
             return "/images/icons/social/new/pinterest.png";

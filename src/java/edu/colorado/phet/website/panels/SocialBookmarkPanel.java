@@ -31,13 +31,18 @@ public class SocialBookmarkPanel extends PhetPanel {
             protected void populateItem( ListItem<SocialBookmarkService> item ) {
                 final SocialBookmarkService mark = item.getModelObject();
                 Link link;
-                if ( mark.getName() == "newsletter" ) {
+                if ( mark.getName().equals( "newsletter" ) ) {
                     link = InitialSubscribePage.getLinker().getLink( "link", context, getPhetCycle() );
                 } else {
                     link = mark.getLinker( bookmarkableUrl, bookmarkableTitle ).getLink( "link", context, getPhetCycle() );
                 }
                 String toolTipKey = ( onHomePage ) ? mark.getHomePageTooltipLocalizationKey() : mark.getTooltipLocalizationKey();
                 link.add( new AttributeModifier( "title", true, new ResourceModel( toolTipKey ) ) ); // tooltip
+
+                // phetLinks (blog and newsletter) should not open in a new tab, but other links should
+                if ( !mark.isPhetLink() ) {
+                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external,nofollow" ) ) );
+                }
                 item.add( link );
                 link.add( new WebMarkupContainer( "icon" ) {{
                     add( new AttributeModifier( "style", true, new Model<String>( "display: block; width: 28px; height: 28px; border: none;" ) ) );
