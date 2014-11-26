@@ -18,18 +18,11 @@ import edu.colorado.phet.website.util.links.RawLinker;
  * digg models). They have two main things: an icon and a way to get a link to bookmark a specific URL.
  */
 public abstract class SocialBookmarkService implements Serializable {
-    private static int ICON_SIZE = 32;
 
     /**
      * @return Path to image icon. Relative from server root. Starts with slash
      */
     public abstract String getIconPath();
-
-    public String getSpritePath() {
-        return "/images/icons/social-sprite.png";
-    }
-
-    public abstract int getSpriteOffset();
 
     public String getFooterLabel() {
         return getName();
@@ -79,11 +72,6 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
-        public int getSpriteOffset() {
-            return ICON_SIZE * 0;
-        }
-
-        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return "/blog";
         }
@@ -106,11 +94,6 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
-        public int getSpriteOffset() {
-            return ICON_SIZE * 1;
-        }
-
-        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return ""; // this is is not a normal share URL, but a linker, so it is handled in SocialBookmarkPanel
         }
@@ -130,11 +113,6 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getIconPath() {
             return "/images/icons/social/new/facebook.svg";
-        }
-
-        @Override
-        public int getSpriteOffset() {
-            return ICON_SIZE * 2;
         }
 
         @Override
@@ -163,11 +141,6 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
-        public int getSpriteOffset() {
-            return ICON_SIZE * 4;
-        }
-
-        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             if ( title == "home.title" ) {
                 return "http://twitter.com/PhETSims";
@@ -193,11 +166,6 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
-        public int getSpriteOffset() {
-            return 32;
-        }
-
-        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return "http://www.stumbleupon.com/submit?url=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&title=" + URLEncoder.encode( title, "UTF-8" );
         }
@@ -220,11 +188,6 @@ public abstract class SocialBookmarkService implements Serializable {
         }
 
         @Override
-        public int getSpriteOffset() {
-            return 64;
-        }
-
-        @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
             return "http://www.reddit.com/login?dest=%2Fsubmit%3Furl%3Dhttp%3A%2F%2Fhttp%253A%252F%252Fphet.colorado.edu" + doubleEncode( relativeUrl ) + "%26title%3D" + doubleEncode( title );
         }
@@ -239,11 +202,6 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getIconPath() {
             return "/images/icons/social/new/you-tube-circle.png";
-        }
-
-        @Override
-        public int getSpriteOffset() {
-            return ICON_SIZE * 3;
         }
 
         @Override
@@ -266,11 +224,6 @@ public abstract class SocialBookmarkService implements Serializable {
         @Override
         public String getIconPath() {
             return "/images/icons/social/new/pinterest.png";
-        }
-
-        @Override
-        public int getSpriteOffset() {
-            return ICON_SIZE * 4;
         }
 
         @Override
