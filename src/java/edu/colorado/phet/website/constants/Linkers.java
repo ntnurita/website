@@ -26,7 +26,7 @@ public class Linkers {
 
     public static final RawLinkable PHET_DESIGN_PROCESS_PDF = new RawLinker( "/publications/phet_design_process.pdf" );
     public static final RawLinkable PHET_LOOK_AND_FEEL_PDF = new RawLinker( "/publications/PhET%20Look%20and%20Feel.pdf" );
-    public static final RawLinkable CONTRIBUTION_GUIDELINES_PDF = new RawLinker( "/publications/activities-guide/contribution-guidelines.pdf" );
+    public static final RawLinkable CONTRIBUTION_GUIDELINES_PDF = new RawLinker( "/files/guides/Activities/PhetGuideActivityDoc_v8-final.pdf" );
 
     /*---------------------------------------------------------------------------*
     * social
