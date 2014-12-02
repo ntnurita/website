@@ -4,8 +4,10 @@
 
 package edu.colorado.phet.website.content.contribution;
 
+import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
@@ -14,6 +16,9 @@ public class ContributionGuidelinesPanel extends PhetPanel {
         super( id, context );
 
         //add( HeaderContributor.forCss( CSS.CONTRIBUTION_MAIN ) );
+        add( new LocalizedText( "example-activities", "teacherIdeas.guide.similarActivities", new Object[] {
+                ContributionBrowsePage.getLinker().getHref( context, getPhetCycle() )
+        } ) );
 
     }
 
