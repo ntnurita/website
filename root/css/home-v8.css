@@ -447,3 +447,16 @@ div.practices dd a:hover {
 .pdf-icon::after {
     content: url("/images/pdficon_small.png");
 }
+
+.box {
+    margin-top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+}
+
+.sim-video {
+    width: 325px;
+    height: 213px;
+}
