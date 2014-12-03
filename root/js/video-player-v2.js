@@ -15,6 +15,14 @@ var simVideos = [
   { title: 'Wave on a String', link: 'simulation/wave-on-a-string' }
 ];
 
+// force safari to reload page instead of saving the old state when users press 'back'
+// this prevents the video from coming up as blank until the carousel shifts
+window.onpageshow = function( event ) {
+  if ( event.persisted ) {
+    window.location.reload()
+  }
+};
+
 document.addEventListener( 'DOMContentLoaded', function() {
   var ANIMATE_MILLISECONDS = 1000;
   var INTERVAL_LENGTH = 5000;
