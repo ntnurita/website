@@ -13,12 +13,14 @@ import edu.colorado.phet.website.util.PhetRequestCycle;
 public class IndexEntity extends TranslationEntity {
     public IndexEntity() {
         addString( "home.header" );
-        addString( "home.subheader" );
         addString( "home.playWithSims" );
         addString( "home.simulationsDelivered" );
-        addString( "home.facebookText", "{0} will be replaced with a small Facebook icon" );
-        addString( "home.twitterText", "{0} will be replaced with a small Twitter icon" );
+        addString( "home.facebookText"  );
+        addString( "home.twitterText" );
         addString( "home.blogText" );
+        addString( "home.newsletterText" );
+        addString( "home.youtubeText" );
+        addString( "home.pinterestText" );
         addString( "home.subscribeToNewsletter" );
         addString( "home.stayConnected" );
 
@@ -48,6 +50,7 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.about.contact" );
         addString( "home.about.sponsors" );
         addString( "home.about.phetSupportedBy" );
+        addString( "home.about.research" );
         addString( "home.about.alongWithOurSponsors" );
 
         addPreview( new PhetPanelFactory() {

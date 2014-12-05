@@ -84,6 +84,13 @@ public class StringChanges {
 
         StringUtils.addString( session, "home.about.research", "Research on PhET" );
 
+        StringUtils.deleteString( session, "social.digg.tooltip" );
+        StringUtils.deleteString( session, "social.delicious.tooltip" );
+
+        // strings that need updating on current master too
+//        StringUtils.deleteString( session, "nav.tools" );
+//        StringUtils.deleteString( session, "nav.applications" );
+
         session.close();
     }
 
