@@ -1,56 +1,75 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
-	xml:lang="en" lang="en">
+      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xml:lang="en" lang="en">
 <head>
-<title>[PREVIEW] Virtual Workshop Panel</title>
-<wicket:remove>
-	<link rel="stylesheet" type="text/css"
-		href="../../../../../../../../root/css/preview.css" />
-</wicket:remove>
+    <title>[PREVIEW] Virtual Workshop Panel</title>
+    <wicket:remove>
+        <link rel="stylesheet" type="text/css"
+              href="../../../../../../../../root/css/preview.css"/>
+    </wicket:remove>
 
 </head>
 <body>
-	<wicket:panel>
-		<div>
-			<div class="teacher-ideas standard-content" wicket:message="dir:language.dir">
-				<table width="880" border="0">
-					<tr>
-						<td width="539" valign="top" style="padding-right: 20px">
-							<h3>Take a Virtual PhET Workshop:</h3>
-							<p>For teachers interested in using PhET simulations, this
-								video guides you through an edited version of a half-day
-								workshop on PhET, including discussion questions that you may
-								use in a small group setting. Focused on K-12.</p> <br />
-							<p>
-								<iframe width="520" height="293"
-									src="//www.youtube.com/embed/mEe3lD5l0dc" frameborder="0"
-									allowfullscreen="allowfullscreen"></iframe>
-								<br clear="all" />
-							</p> <br /> <strong><a
-								href="//phet.colorado.edu/workshops/PhET-Virtual-Workshop.zip">Download
-									slides and handouts that were used in this workshop</a></strong><a
-							href="//phet.colorado.edu/workshops/PhET-Virtual-Workshop.zip"></a>
-							(zip, 9.4 MB)
-							<p>
-								<strong>More recently updated slides and handouts are
-									on our <a href="#" wicket:id="workshops-link"><u>Workshop Page</u></a>
-								</strong>
-								</p>
-								</td>
-						<td width="331" valign="top"><wicket:enclosure
-								child="righthand-menu-panel">
-								<div class="righthandMenu-div" wicket:id="righthand-menu-panel"></div>
-							</wicket:enclosure></td>
-					</tr>
-				</table>
-			</div>
-		</div>
+<wicket:panel>
+    <div>
+        <div class="teacher-ideas standard-content" wicket:message="dir:language.dir">
+            <table width="880" border="0">
+                <tr>
+                    <td width="539" valign="top" style="padding-right: 20px">
+                        <h3>K12 teacher workshop</h3>
+
+                        <p>For teachers interested in using PhET simulations, this
+                            video guides you through an edited version of a half-day
+                            workshop on PhET, including discussion questions that you may
+                            use in a small group setting. Focused on K-12.</p> <br/>
+
+                        <p>
+                            <iframe width="520" height="293"
+                                    src="//www.youtube.com/embed/mEe3lD5l0dc" frameborder="0"
+                                    allowfullscreen="allowfullscreen"></iframe>
+                            <br clear="all"/>
+                        </p>
+                        <br/> <strong><a href="//phet.colorado.edu/workshops/PhET-Virtual-Workshop.zip">Download
+                        slides and handouts that were used in this workshop</a></strong>
+                        (zip, 9.4 MB)
+                        <p>
+                            <strong>More recently updated slides and handouts are
+                                on our <a href="#" wicket:id="workshops-link"><u>Workshop Page</u></a>
+                            </strong>
+                        </p>
+
+                        <br/>
+                        <h3>College physics teacher workshop</h3>
+
+                        <p>
+                            <iframe width="520" height="293"
+                                    src="//www.youtube.com/embed/Aw1HT9hMqIw"
+                                    frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                            <br clear="all"/>
+                        </p>
+                        <p>Provided courtesy of <a href="http://physport.org/nfw" target="_blank">PhysPort</a></p>
+                        <br/>
+                        <strong><a href="https://dl.dropboxusercontent.com/u/783982/Dubson-handouts-NFW-2014.zip">Download
+                            slides and handouts that were used in this workshop</a></strong>
+                        (zip, 5.6 MB)
+                        <p>
+
+                    </td>
+                    <td width="331" valign="top">
+                        <wicket:enclosure
+                            child="righthand-menu-panel">
+                            <div class="righthandMenu-div" wicket:id="righthand-menu-panel"></div>
+                        </wicket:enclosure>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 
-
-	</wicket:panel>
+</wicket:panel>
 
 </body>
 </html>
