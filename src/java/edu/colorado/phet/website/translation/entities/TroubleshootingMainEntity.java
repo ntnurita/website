@@ -82,6 +82,8 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "troubleshooting.mac.q6.answer.firefox" );
         addString( "troubleshooting.mac.q6.answer.chrome" );
         addString( "troubleshooting.mac.q6.answer.safari" );
+        addString( "troubleshooting.mac.q7.title" );
+        addString( "troubleshooting.mac.q7.answer" );
         addString( "troubleshooting.mac.faqs" );
 
         addString( "troubleshooting.windows.q1.title" );

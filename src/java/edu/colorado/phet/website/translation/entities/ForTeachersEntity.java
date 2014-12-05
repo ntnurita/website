@@ -17,6 +17,8 @@ public class ForTeachersEntity extends TranslationEntity {
         addString( "teacherIdeas.title" );
 
         addString( "teacherIdeas.guide.title" );
+        addString( "teacherIdeas.guide.subtitle" );
+        addString( "teacherIdeas.guide.similarActivities" );
         addString( "teacherIdeas.guide.authors" );
         addString( "teacherIdeas.guide.date" );
         addString( "teacherIdeas.guide.integration" );
@@ -32,8 +34,6 @@ public class ForTeachersEntity extends TranslationEntity {
         addString( "teacherIdeas.guide.collaborativeActivities" );
         addString( "teacherIdeas.guide.minimalDirections.title" );
         addString( "teacherIdeas.guide.minimalDirections" );
-        addString( "teacherIdeas.guide.diagramReasoning.title" );
-        addString( "teacherIdeas.guide.diagramReasoning" );
         addString( "teacherIdeas.guide.monitorUnderstanding.title" );
         addString( "teacherIdeas.guide.monitorUnderstanding" );
 
