@@ -27,7 +27,19 @@ document.addEventListener( 'DOMContentLoaded', function() {
   var ANIMATE_MILLISECONDS = 1000;
   var INTERVAL_LENGTH = 5000;
   var sourceIndex = 0; // index into simVideos
-  var locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
+
+  var installerPath = 'index.html';
+  var isInstallerBuild = window.location.pathname.indexOf( installerPath ) > -1;
+  var locale;
+  if ( isInstallerBuild ) {
+    var splitPath = window.location.pathname.split( '/' );
+    var localeRegex = /^.{2}$|^.{2}_.{2}$/;
+    locale = 'file://' + window.location.pathname.replace( installerPath, localeRegex.test( splitPath[splitPath.length - 2] ) ?
+                                                                          splitPath[splitPath.length - 2] + '/' : 'en/' );
+  }
+  else {
+    locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
+  }
 
   // set the first video to be in focus
   document.getElementById( 'box0' ).setAttribute( 'style', 'left: 0%' );
@@ -113,7 +125,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
     videos[sourceIndex].play();
     simName.innerHTML = simVideos[sourceIndex].title;
-    var href = locale + simVideos[sourceIndex].link;
+    var href = locale + simVideos[sourceIndex].link + ( isInstallerBuild ? '.html' : '' );
     simName.setAttribute( 'href', href );
     document.getElementById( 'video-container' ).onclick = function() { window.location.href = href; };
 
@@ -127,7 +139,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
   videos[sourceIndex].play();
   simName.innerHTML = simVideos[sourceIndex].title;
-  var href = locale + simVideos[sourceIndex].link;
+  var href = locale + simVideos[sourceIndex].link + ( isInstallerBuild ? '.html' : '' );
   simName.setAttribute( 'href', href );
   document.getElementById( 'video-container' ).onclick = function() { window.location.href = href; };
 
