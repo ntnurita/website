@@ -241,11 +241,30 @@ div.rtl .text-right-classic {
     background-color: #eeeeee;
 }
 
-#skipNav {
+/*#skipNav {*/
+    /*position: absolute;*/
+    /*opacity: 0;*/
+    /*font-size: 1px;*/
+    /*letter-spacing: -1px;*/
+/*}*/
+
+/* see http://stackoverflow.com/questions/6280399/skip-links-not-working-in-chrome */
+#skipNav a {
     position: absolute;
-    opacity: 0;
-    font-size: 1px;
-    letter-spacing: -1px;
+    top: -40px;
+    left: 0;
+    background:transparent;
+    -webkit-transition: top 1s ease-out, background 1s linear;
+    transition: top 1s ease-out, background 1s linear;
+    z-index: 100
+}
+#skipNav a:focus {
+    position:absolute;
+    left: 0;
+    top: 0;
+    background: #F1B82D;
+    -webkit-transition: top .1s ease-in, background .5s linear;
+    transition: top .1s ease-in, background .5s linear
 }
 
 div.copyright {
