@@ -24,6 +24,12 @@ body {
     top: 0;
 }
 
+#search-submit-id {
+    border: 0;
+    border-radius: 4px;
+    background-color: white;
+}
+
 /* Place the "50 million sims delivered" or whatnot message in the top of the logo */
 #page-header-sims-served {
     position: absolute;
