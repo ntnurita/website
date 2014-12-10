@@ -243,6 +243,12 @@ public class IndexPanel extends PhetPanel {
                 link.add( new WebMarkupContainer( "icon" ) {{
                     add( new AttributeModifier( "class", true, new Model<String>( "footer-icon" ) ) );
                     add( new AttributeModifier( "src", true, new Model<String>( mark.getIconPath() ) ) );
+                    if ( !mark.isPhetLink() ) {
+                        add( new AttributeModifier( "alt", true, new Model<String>( mark.getName() ) ) );
+                    }
+                    else {
+                        add( new AttributeModifier( "alt", true, new Model<String>( " " ) ) );
+                    }
                 }} );
             }
         };
