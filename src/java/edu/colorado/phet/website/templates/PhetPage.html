@@ -64,8 +64,7 @@
 <div id="page-header" wicket:message="class:language.dir">
     <div id="page-header-container">
         <div id="page-header-logo">
-            <a href="#" wicket:id="page-header-home-link">
-                <!--<img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo.gif"-->
+            <a href="#" wicket:id="page-header-home-link" style="color: white;"> <!--white color for FF focus outline-->
                 <img wicket:id="page-header-logo-image" src="../../../../../../../root/images/phet-logo-117.svg"
                      alt="PhET Logo" title="Go to the PhET home page" class="header-logo-image"
                      width="223" height="106" id="phet-logo-main-image"/>
@@ -74,7 +73,11 @@
         <div id="page-header-sims-served">
             <span wicket:id="sim-count">Over 110 million simulations delivered</span>
         </div>
-        <a href="http://www.colorado.edu" target="_blank" style="display: inline-block"><img id="page-header-cu" style="border: none" wicket:id="page-header-cu-logo" src="../../../../../../../root/images/cu-logo-half.png" alt="University of Colorado Logo" width="150" height="77"/></a>
+        <div id="page-header-cu">
+            <a href="http://www.colorado.edu" target="_blank" style="display: inline-block; color: white">
+                <img wicket:id="page-header-cu-logo" src="../../../../../../../root/images/cu-logo-half.png" alt="University of Colorado Logo" width="150" height="77"/>
+            </a>
+        </div>
         <div id="page-header-search" wicket:id="search-panel">
             <form action="/en/search" method="get">
                 <div>

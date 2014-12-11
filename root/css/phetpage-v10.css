@@ -6,8 +6,6 @@ body {
 }
 
 #page-header {
-    /*background: url('../images/header_BG.gif') left top repeat-x;*/
-    /*background: url('../images/header_BG-yellow.png') left top repeat-x;*/
     background-color: #2a326a;
     height: 127px;
 }
@@ -85,9 +83,7 @@ div.rtl #page-header-search {
     position: absolute;
     right: 19px;
     top: 25px;
-    color: #fff;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: 16px;
+    border: none;
 }
 
 div.rtl #page-header-cu {
