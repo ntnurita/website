@@ -17,8 +17,8 @@
 <wicket:panel>
     <form method="get" wicket:id="search-form" id="search-form" class="autocompleteOff">
         <div>
-            <label for="search-text-id" style="display: none;">
-                <wicket:message key="search.search">Search</wicket:message>
+            <label for="search-text-id" class="hidden">
+                <wicket:message key="search.label">Search the PhET Website</wicket:message>
             </label>
             <input type="text" size="15" name="q" class="always-enabled acInput" id="search-text-id"/>
             <input type="submit" value="Go" wicket:message="title:search.clickSearch,value:search.search"

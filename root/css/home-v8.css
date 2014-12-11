@@ -466,3 +466,11 @@ div.practices dd a:hover {
     width: 325px;
     height: 213px;
 }
+
+/* we can't use display: none because of screen readers */
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
