@@ -8,7 +8,6 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.cache.CacheableUrlStaticPanel;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.panels.NewsChangelogPanel;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
@@ -21,8 +20,6 @@ public class AboutNewsPanel extends PhetPanel implements CacheableUrlStaticPanel
         super( id, context );
 
         add( new StaticImage( "newsletter-screenshot", WebImage.get( Images.NEWSLETTER_SPRING_14 ), "Screenshot of the Spring 2014 PhET newsletter" ) );
-
-        add( new NewsChangelogPanel( "news-changelog-panel", context ) );
     }
 
     public static String getKey() {
