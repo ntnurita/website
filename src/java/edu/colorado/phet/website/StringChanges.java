@@ -74,15 +74,15 @@ public class StringChanges {
 //
 //        StringUtils.addString( session, "teacherIdeas.guide.similarActivities", "Want to find activities that exemplify these strategies? Look for Gold Star activities when browsing activities at <a {0}>http://phet.colorado.edu/en/for-teachers/browse-activities</a>." );
 
-        StringUtils.deleteString( session, "nav.tools" );
-        StringUtils.deleteString( session, "nav.applications" );
-        StringUtils.deleteString( session, "nav.by device" );
-        StringUtils.deleteString( session, "nav.ipad tablet" );
-        StringUtils.deleteString( session, "troubleshooting.main.java" );
-        StringUtils.deleteString( session, "troubleshooting.main.flash" );
-        StringUtils.deleteString( session, "troubleshooting.main.javascript" );
-        StringUtils.deleteString( session, "teacherIdeas.guide.diagramReasoning.title" );
-        StringUtils.deleteString( session, "teacherIdeas.guide.diagramReasoning" );
+//        StringUtils.deleteString( session, "nav.tools" );
+//        StringUtils.deleteString( session, "nav.applications" );
+//        StringUtils.deleteString( session, "nav.by device" );
+//        StringUtils.deleteString( session, "nav.ipad tablet" );
+//        StringUtils.deleteString( session, "troubleshooting.main.java" );
+//        StringUtils.deleteString( session, "troubleshooting.main.flash" );
+//        StringUtils.deleteString( session, "troubleshooting.main.javascript" );
+//        StringUtils.deleteString( session, "teacherIdeas.guide.diagramReasoning.title" );
+//        StringUtils.deleteString( session, "teacherIdeas.guide.diagramReasoning" );
 
         session.close();
     }
