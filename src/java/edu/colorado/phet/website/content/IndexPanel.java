@@ -195,20 +195,18 @@ public class IndexPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * sponsors
         *----------------------------------------------------------------------------*/
-//        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_FRONT_PAGE, null ) );
-//        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_FRONT_PAGE, null ) );
         add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
         add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
 
         // I tried resizing these in Photoshop and it looked horrible
         // Somehow the browsers do a much better job
         add( new WebMarkupContainer( "nsf-logo" ) {{
-            add( new AttributeModifier( "width", true, new Model<String>( "60px" ) ) );
+            add( new AttributeModifier( "width", true, new Model<String>( "60" ) ) );
             add( new AttributeModifier( "src", true, new Model<String>( "/images/support/nsf-full-res.gif" ) ) );
         }} );
 
         add( new WebMarkupContainer( "hewlett-logo" ) {{
-            add( new AttributeModifier( "width", true, new Model<String>( "132px" ) ) );
+            add( new AttributeModifier( "width", true, new Model<String>( "132" ) ) );
             add( new AttributeModifier( "src", true, new Model<String>( "/images/support/hewlett-logo-full-res.gif" ) ) );
         }} );
 
@@ -236,7 +234,7 @@ public class IndexPanel extends PhetPanel {
                 }
                 // phetLinks (blog and newsletter) should not open in a new tab, but other links should
                 if ( !mark.isPhetLink() ) {
-                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external,nofollow" ) ) );
+                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external nofollow" ) ) );
                 }
                 item.add( link );
                 link.add( new LocalizedText( "label", mark.getFooterLabel() ) );

@@ -23,7 +23,7 @@ public class SocialBookmarkPanel extends PhetPanel {
     public SocialBookmarkPanel( String id, final PageContext context, final String bookmarkableUrl, final String bookmarkableTitle ) {
         super( id, context );
 
-        final boolean onHomePage = ( bookmarkableUrl == "" );
+        final boolean onHomePage = ( bookmarkableUrl.equals( "" ) );
         List<SocialBookmarkService> services = ( onHomePage ) ? SocialBookmarkService.HOMEPAGE_SERVICES : SocialBookmarkService.SERVICES;
 
         add( new ListView<SocialBookmarkService>( "social-list", services ) {
@@ -41,12 +41,13 @@ public class SocialBookmarkPanel extends PhetPanel {
 
                 // phetLinks (blog and newsletter) should not open in a new tab, but other links should
                 if ( !mark.isPhetLink() ) {
-                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external,nofollow" ) ) );
+                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external nofollow" ) ) );
                 }
                 item.add( link );
                 link.add( new WebMarkupContainer( "icon" ) {{
                     add( new AttributeModifier( "style", true, new Model<String>( "display: block; width: 28px; height: 28px; border: none;" ) ) );
                     add( new AttributeModifier( "src", true, new Model<String>( mark.getIconPath() ) ) );
+                    add( new AttributeModifier( "alt", true, new Model<String>( " " ) ) ); // not needed since link title is read by screen readers
                 }} );
                 //link.add( new StaticImage( "icon", mark.getIconHandle(), null ) ); // for now, don't replace the alt attribute
             }
