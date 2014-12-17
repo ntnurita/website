@@ -73,7 +73,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getIconPath() {
-            return "/images/icons/social/new/blog-icon.svg";
+            return "/images/icons/social/new/blog-icon.png";
         }
 
         @Override
@@ -98,7 +98,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getIconPath() {
-            return "/images/icons/social/new/mail-icon.svg";
+            return "/images/icons/social/new/mail-icon.png";
         }
 
         @Override
@@ -123,12 +123,12 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getIconPath() {
-            return "/images/icons/social/new/facebook.svg";
+            return "/images/icons/social/new/facebook.png";
         }
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            if ( title == "home.title" ) {
+            if ( title.equals( "home.title" ) ) {
                 return "http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall";
             }
             return "http://www.facebook.com/sharer.php?u=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&t=" + URLEncoder.encode( title, "UTF-8" );
@@ -156,7 +156,7 @@ public abstract class SocialBookmarkService implements Serializable {
 
         @Override
         public String getShareUrl( String relativeUrl, String title ) throws UnsupportedEncodingException {
-            if ( title == "home.title" ) {
+            if ( title.equals( "home.title" ) ) {
                 return "http://twitter.com/PhETSims";
             }
             return "https://twitter.com/share?url=http%3A%2F%2Fphet.colorado.edu" + URLEncoder.encode( relativeUrl, "UTF-8" ) + "&text=" + URLEncoder.encode( title, "UTF-8" );

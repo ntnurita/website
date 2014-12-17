@@ -1,5 +1,5 @@
 /**
- * Uses three animated divs to create a video player carousel
+ * Uses animated divs to create a video player carousel
  */
 
 var switchVideo;
@@ -23,7 +23,19 @@ window.onpageshow = function( event ) {
   }
 };
 
-document.addEventListener( 'DOMContentLoaded', function() {
+if ( document.addEventListener ) {
+  document.addEventListener( 'DOMContentLoaded', runVideoScript, false );
+}
+// for IE8
+else {
+  document.onreadystatechange = function() {
+    if ( document.readyState === 'complete' ) {
+      runVideoScript();
+    }
+  }
+}
+
+function runVideoScript() {
   var ANIMATE_MILLISECONDS = 1000;
   var INTERVAL_LENGTH = 5000;
   var sourceIndex = 0; // index into simVideos
@@ -41,10 +53,8 @@ document.addEventListener( 'DOMContentLoaded', function() {
     locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
   }
 
-  // set the first video to be in focus
-  document.getElementById( 'box0' ).setAttribute( 'style', 'left: 0%' );
-
-  var videos = document.getElementsByClassName( 'sim-video' );
+  // don't use getElementsByClassName if not supported
+  var videos = ( document.getElementsByClassName ) ? document.getElementsByClassName( 'sim-video' ) : false;
   var container = document.getElementById( 'video-container' );
   var simName = document.getElementById( 'sim-name' );
 
@@ -123,7 +133,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
       sourceIndex += simVideos.length;
     }
 
-    videos[sourceIndex].play();
+    videos && videos[sourceIndex].play();
     simName.innerHTML = simVideos[sourceIndex].title;
     var href = locale + simVideos[sourceIndex].link + ( isInstallerBuild ? '.html' : '' );
     simName.setAttribute( 'href', href );
@@ -137,7 +147,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
     setTimeout( function() {switchable = true;}, ANIMATE_MILLISECONDS );
   };
 
-  videos[sourceIndex].play();
+  videos && videos[sourceIndex].play();
   simName.innerHTML = simVideos[sourceIndex].title;
   var href = locale + simVideos[sourceIndex].link + ( isInstallerBuild ? '.html' : '' );
   simName.setAttribute( 'href', href );
@@ -145,5 +155,4 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
   // switch videos every 5 seconds
   timer = setInterval( function() {switchVideo( 'left' );}, INTERVAL_LENGTH );
-
-}, false );
+}
