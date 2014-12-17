@@ -46,10 +46,12 @@ public class StringChanges {
         StringUtils.addString( session, "html5.tryOurNewHTML5Sims", "HTML5 Sims" );
 
         StringUtils.deleteString( session, "html5.crowdfundedProjects" );
-        StringUtils.addString( session, "html5.crowdfundedProjects", "Donate:" );
+        StringUtils.addString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:" );
+
+        StringUtils.addString( session, "html5.donateToday", "Donate Today" );
 
         StringUtils.deleteString( session, "html5.bringCCK" );
-        StringUtils.addString( session, "html5.bringCCK", "Build HTML5 Circuit Sim" );
+        StringUtils.deleteString( session, "html5.buildTeachWithPhet" );
 
         StringUtils.addString( session, "troubleshooting.mac.q7.title", "When I click \"run now\" my computer asks me which application to use to open the file, but Java isn’t listed." );
         StringUtils.addString( session, "troubleshooting.mac.q7.answer", "<p> " +
