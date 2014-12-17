@@ -8,9 +8,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.MessagingException;
@@ -18,6 +22,8 @@ import javax.mail.MessagingException;
 import org.apache.log4j.Logger;
 
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
+import edu.colorado.phet.common.phetcommon.util.FunctionalUtils;
+import edu.colorado.phet.common.phetcommon.util.function.Function1;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.util.EmailUtils;
@@ -32,6 +38,7 @@ public class NewsletterSender {
     private String subject;
     private String fromAddress;
     private String replyTo;
+    private Map<String,Boolean> ignoreEmails;
 
     // whether newsletters should also be sent when users subscribe
     private boolean automated;
@@ -62,6 +69,14 @@ public class NewsletterSender {
             rawText = FileUtils.loadFileAsString( new File( properties.getProperty( "bodyPlainTextFile" ) ) );
             rawBody = FileUtils.loadFileAsString( new File( properties.getProperty( "bodyFile" ) ) );
 
+            // allow ignoring certain emails
+            File ignoreListFile = new File( properties.getProperty( "ignore-list" ) );
+            ignoreEmails = new HashMap<String,Boolean>();
+            if ( ignoreListFile.exists() ) {
+                for ( String email : Arrays.asList( FileUtils.loadFileAsString( ignoreListFile ).split( "\n" ) ) ) {
+                    ignoreEmails.put( email, true );
+                }
+            }
 
 //            for ( String imageFilename : properties.getProperty( "images" ).split( " " ) ) {
 //                File imageFile = new File( imageFilename );
@@ -84,6 +99,13 @@ public class NewsletterSender {
     }
 
     public boolean sendNewsletters( List<PhetUser> users ) {
+        // filter out user emails that are to be ignored
+        users = FunctionalUtils.filter( users, new Function1<PhetUser, Boolean>() {
+            public Boolean apply( PhetUser phetUser ) {
+                return !ignoreEmails.containsKey( phetUser.getEmail() );
+            }
+        } );
+
         // sort all of them
         Collections.sort( users, new Comparator<PhetUser>() {
             public int compare( PhetUser a, PhetUser b ) {
@@ -102,7 +124,7 @@ public class NewsletterSender {
 
                 // throttle newsletter sending
                 try {
-                    Thread.sleep( 300 );
+                    Thread.sleep( 1500 );
                 }
                 catch ( InterruptedException e ) {
                     e.printStackTrace();
