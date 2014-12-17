@@ -13,7 +13,7 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import com.navnorth.learningregistry.util.StringUtil;
 
 /**
- * Contains strings that have been addedor modified since the last production deployment. If strings by those key names
+ * Contains strings that have been added or modified since the last production deployment. If strings by those key names
  * don't exist they will be created.
  */
 public class StringChanges {
@@ -78,9 +78,8 @@ public class StringChanges {
 
         StringUtils.addString( session, "donation-banner.html5.tooltip", "Go to HTML5 Sims" );
 
-        StringUtils.deleteString( session, "home.simulationsDelivered" );
-        StringUtils.addString( session, "home.simulationsDelivered", "Over 200 million simulations delivered" );
-        
+        StringUtils.overwriteString( session, "home.simulationsDelivered", "Over 110 million simulations delivered", "Over {0} million simulations delivered" );
+
         StringUtils.deleteString( session, "installer.mostUpToDate" );
         StringUtils.addString( session, "installer.mostUpToDate", "Created {0,date,short}. Updates available <a {1}>online</a>." );
 

@@ -83,6 +83,8 @@ public abstract class PhetPage extends WebPage implements Stylable {
 
     private Long initStart;
 
+    private static final int NUM_SIMS_DELIVERED = 200; // in millions
+
     private static final Logger logger = Logger.getLogger( PhetPage.class.getName() );
 
     public PhetPage( PageParameters parameters ) {
@@ -163,7 +165,9 @@ public abstract class PhetPage extends WebPage implements Stylable {
         // visual display
         if ( addTemplateBindings ) {
 
-            add( new LocalizedText( "sim-count", "home.simulationsDelivered" ) );
+            add( new LocalizedText( "sim-count", "home.simulationsDelivered", new Object[] {
+                    NUM_SIMS_DELIVERED
+            } ) );
 
             // TODO: refactor static images to a single location, so paths / names can be quickly changed
             Link link = IndexPage.getLinker().getLink( "page-header-home-link", getPageContext(), getPhetCycle() );

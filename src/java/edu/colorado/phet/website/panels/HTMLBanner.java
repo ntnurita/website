@@ -9,6 +9,7 @@ import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.simulations.HTML5Page;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.WebImage;
@@ -19,6 +20,8 @@ public class HTMLBanner extends PhetPanel {
 
     public HTMLBanner( String id, final PageContext context ) {
         super( id, context );
+
+        add( DonatePanel.getLinker().getLink( "donate-link", context, getPhetCycle() ) );
 
         Link link = HTML5Page.getLinker().getLink( "html-banner-link", context, getPhetCycle() );
         add( link );

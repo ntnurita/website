@@ -14,7 +14,7 @@ public class IndexEntity extends TranslationEntity {
     public IndexEntity() {
         addString( "home.header" );
         addString( "home.playWithSims" );
-        addString( "home.simulationsDelivered" );
+        addString( "home.simulationsDelivered", "{0} will be replaced by the current number of sims delivered" );
         addString( "home.facebookText"  );
         addString( "home.twitterText" );
         addString( "home.blogText" );
