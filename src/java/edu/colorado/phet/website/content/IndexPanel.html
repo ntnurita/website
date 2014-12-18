@@ -261,10 +261,10 @@
                             </script>
                             <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
                                 (function() {
-                                    var greenArrowSrc = document.getElementById( "green-arrow-image" ).src;
+                                    var phetLogoSrc = document.getElementById( "phet-logo-main-image" ).src;
                                     // 0x2F is a slash, to fool the httrack ripper
-                                    var lastIndex = Math.max( greenArrowSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), greenArrowSrc.lastIndexOf( "\\" ) );
-                                    var newImagesDirectory = greenArrowSrc.substring( 0, lastIndex );
+                                    var lastIndex = Math.max( phetLogoSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), phetLogoSrc.lastIndexOf( "\\" ) );
+                                    var newImagesDirectory = phetLogoSrc.substring( 0, lastIndex );
                                     document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
                                 })();
                             </script>
