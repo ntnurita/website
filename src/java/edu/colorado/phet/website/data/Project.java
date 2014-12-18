@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.data;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
@@ -239,8 +240,7 @@ public class Project implements Serializable, IntId {
 
                     int type;
                     String debugType;
-                    File latestHTMLVersionDirectory = getLatestHTMLDirectory( projectRoot );
-                    if ( latestHTMLVersionDirectory != null ) {
+                    if ( projectRoot.getAbsolutePath().contains( "sims/html" ) ) {
                         type = TYPE_HTML;
                         debugType = "HTML";
                     }
@@ -249,7 +249,7 @@ public class Project implements Serializable, IntId {
                         debugType = hasSWF ? "flash" : "java";
                     }
 
-                    syncLogger.debug( "detecting project type as: " + debugType );
+                    syncLogger.debug( "detecting project with root" + projectRoot + " type as: " + debugType );
 
                     List plist = session.createQuery( "select p from Project as p where p.name = :name" ).setString( "name", projectName ).list();
                     if ( plist.size() > 1 ) {
@@ -272,10 +272,16 @@ public class Project implements Serializable, IntId {
                     }
 
                     if ( type == TYPE_HTML ) {
+                        File latestHTMLVersionDirectory = getLatestHTMLDirectory( projectRoot );
                         String[] versionNumbers = latestHTMLVersionDirectory.getName().split( "\\." );
-                        project.setVersionMajor( Integer.parseInt( versionNumbers[0] ) );
-                        project.setVersionMinor( Integer.parseInt( versionNumbers[1] ) );
-                        project.setVersionDev( Integer.parseInt( versionNumbers[2] ) );
+                        try {
+                            project.setVersionMajor( Integer.parseInt( versionNumbers[0] ) );
+                            project.setVersionMinor( Integer.parseInt( versionNumbers[1] ) );
+                            project.setVersionDev( Integer.parseInt( versionNumbers[2] ) );
+                        }
+                        catch ( NumberFormatException e ) {
+                            logger.warn( "Number format exception parsing directory name: " + latestHTMLVersionDirectory.getName() );
+                        }
                         project.setVersionRevision( 0 );
                         project.setVersionTimestamp( 0 );
                     }
@@ -323,125 +329,140 @@ public class Project implements Serializable, IntId {
 
                     Document document;
                     if ( type == TYPE_HTML ) {
-                        String unqualifiedName = projectName.substring( 5 );
-                        document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, unqualifiedName + ".xml" ) ) );
+                        try {
+                            String unqualifiedName = projectName.substring( 5 );
+                            try {
+                                document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, unqualifiedName + ".xml" ) ) );
+                            }
+                            catch ( FileNotFoundException e ) {
+                                logger.warn( "file " + unqualifiedName + " not found" );
+                                document = null;
+                            }
+                        }
+                        catch ( StringIndexOutOfBoundsException e ) {
+                            logger.error( "project name: '" + projectName + "' has type html but no html/ prefix" );
+                            document = null;
+                        }
                     }
                     else {
                         document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, projectName + ".xml" ) ) );
                     }
-                    NodeList simulationNodes = document.getElementsByTagName( "simulation" );
 
-                    for ( int i = 0; i < simulationNodes.getLength(); i++ ) {
-                        Element element = (Element) simulationNodes.item( i );
+                    if (document != null ) {
+                        NodeList simulationNodes = document.getElementsByTagName( "simulation" );
 
-                        String simName = element.getAttribute( "name" );
-                        String simLocaleString = element.getAttribute( "locale" );
-                        Node titleChild = element.getElementsByTagName( "title" ).item( 0 );
+                        for ( int i = 0; i < simulationNodes.getLength(); i++ ) {
+                            Element element = (Element) simulationNodes.item( i );
 
-                        // need to check for the degenerate case where the title was translated to the empty string.
-                        String simTitle;
-                        if ( titleChild != null && titleChild.getChildNodes().getLength() > 0 ) {
-                            simTitle = titleChild.getChildNodes().item( 0 ).getNodeValue();
-                        }
-                        else {
-                            // if there is no title, reset to the simulation name
-                            simTitle = simName;
-                        }
+                            String simName = element.getAttribute( "name" );
+                            String simLocaleString = element.getAttribute( "locale" );
+                            Node titleChild = element.getElementsByTagName( "title" ).item( 0 );
 
-
-                        Locale simLocale = LocaleUtils.stringToLocale( simLocaleString );
-
-                        syncLogger.debug( "Reading localized simulation XML for: " + simName + " - " + simLocaleString + " - " + simTitle );
-
-                        if ( !project.getSimulationJARFile( docRoot, simName, simLocale ).exists() &&
-                             !project.getSimulationHTMLFile( docRoot, simName, simLocale ).exists() ) {
-                            syncLogger.warn( "Project: " + projectName + " sim: " + simName + ", locale: " + simLocaleString );
-                            syncLogger.warn( "Simulation JAR or HTML file does not exist for specified XML entry. Most likely not deployed yet" );
-                            syncLogger.warn( "Skipping" );
-                            continue;
-                        }
-
-                        // pick or create the simulation
-                        Simulation simulation;
-                        if ( simulationCache.containsKey( simName ) ) {
-                            // we've already obtained the simulation
-                            simulation = simulationCache.get( simName );
-                        }
-                        else {
-                            // we need to either grab or create the simulation
-                            List slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
-                            if ( slist.size() > 1 ) {
-                                throw new RuntimeException( "Multiple simulations per one name? BAD THINGS! Fix that database!" );
+                            // need to check for the degenerate case where the title was translated to the empty string.
+                            String simTitle;
+                            if ( titleChild != null && titleChild.getChildNodes().getLength() > 0 ) {
+                                simTitle = titleChild.getChildNodes().item( 0 ).getNodeValue();
                             }
-                            if ( slist.isEmpty() ) {
-                                syncLogger.info( "Cannot find a simulation for " + simName + ", will create one" );
-                                simulation = new Simulation();
-                                simulation.setName( simName );
-                                simulation.setProject( project );
-                                simulation.setDesignTeam( "" );
-                                simulation.setLibraries( "" );
-                                simulation.setThanksTo( "" );
-                                simulation.setUnderConstruction( false );
-                                simulation.setGuidanceRecommended( false );
-                                simulation.setClassroomTested( false );
-                                simulation.setSimulationVisible( false );
-                                simulation.setHasCreativeCommonsAttributionLicense( true ); // new sims should generally have this set
-                                simulation.setFaqVisible( false );
-                                simulation.setLowGradeLevel( GradeLevel.ELEMENTARY_SCHOOL );
-                                simulation.setHighGradeLevel( GradeLevel.UNIVERSITY );
-                                createdSims.add( simulation );
-                                simulationCache.put( simName, simulation );
-                                englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
-                                englishStringsToAdd.put( simulation.getLearningGoalsKey(), Simulation.DEFAULT_LEARNING_GOALS );
+                            else {
+                                // if there is no title, reset to the simulation name
+                                simTitle = simName;
+                            }
+
+
+                            Locale simLocale = LocaleUtils.stringToLocale( simLocaleString );
+
+                            syncLogger.debug( "Reading localized simulation XML for: " + simName + " - " + simLocaleString + " - " + simTitle );
+
+                            if ( !project.getSimulationJARFile( docRoot, simName, simLocale ).exists() &&
+                                 !project.getSimulationHTMLFile( docRoot, simName, simLocale ).exists() ) {
+                                syncLogger.warn( "Project: " + projectName + " sim: " + simName + ", locale: " + simLocaleString );
+                                syncLogger.warn( "Simulation JAR or HTML file does not exist for specified XML entry. Most likely not deployed yet" );
+                                syncLogger.warn( "Skipping" );
+                                continue;
+                            }
+
+                            // pick or create the simulation
+                            Simulation simulation;
+                            if ( simulationCache.containsKey( simName ) ) {
+                                // we've already obtained the simulation
+                                simulation = simulationCache.get( simName );
+                            }
+                            else {
+                                // we need to either grab or create the simulation
+                                List slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
+                                if ( slist.size() > 1 ) {
+                                    throw new RuntimeException( "Multiple simulations per one name? BAD THINGS! Fix that database!" );
+                                }
+                                if ( slist.isEmpty() ) {
+                                    syncLogger.info( "Cannot find a simulation for " + simName + ", will create one" );
+                                    simulation = new Simulation();
+                                    simulation.setName( simName );
+                                    simulation.setProject( project );
+                                    simulation.setDesignTeam( "" );
+                                    simulation.setLibraries( "" );
+                                    simulation.setThanksTo( "" );
+                                    simulation.setUnderConstruction( false );
+                                    simulation.setGuidanceRecommended( false );
+                                    simulation.setClassroomTested( false );
+                                    simulation.setSimulationVisible( false );
+                                    simulation.setHasCreativeCommonsAttributionLicense( true ); // new sims should generally have this set
+                                    simulation.setFaqVisible( false );
+                                    simulation.setLowGradeLevel( GradeLevel.ELEMENTARY_SCHOOL );
+                                    simulation.setHighGradeLevel( GradeLevel.UNIVERSITY );
+                                    createdSims.add( simulation );
+                                    simulationCache.put( simName, simulation );
+                                    englishStringsToAdd.put( simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION );
+                                    englishStringsToAdd.put( simulation.getLearningGoalsKey(), Simulation.DEFAULT_LEARNING_GOALS );
+                                    projectDirty = true;
+                                }
+                                else {
+                                    simulation = (Simulation) slist.get( 0 );
+                                    simulationCache.put( simName, simulation );
+                                    missedSimulations.remove( simulation );
+                                    nonCreatedSims.add( simulation );
+                                    syncLogger.debug( "Found simulation " + simulation.getName() );
+                                    if ( simulation.getProject().getId() != project.getId() ) {
+                                        syncLogger.warn( "Found simulation " + simulation.getName() + " specified with a different project " + simulation.getProject().getName() + " instead of " + project.getName() + "." );
+                                        syncLogger.warn( "Modifying to match the current project (with type)" );
+                                        syncLogger.warn( "This may be caused by creating a new simulation. If so, ignore the above two messages" );
+                                        simulation.setProject( project );
+                                    }
+                                    missedLocalizedSimulations.addAll( simulation.getLocalizedSimulations() );
+                                }
+                            }
+
+                            simulation.setKilobytes( simulation.detectSimKilobytes( docRoot ) );
+
+                            List llist = new LinkedList();
+                            if ( !createdSims.contains( simulation ) ) {
+                                llist = session.createQuery( "select ls from LocalizedSimulation as ls where ls.locale = :locale and ls.simulation = :simulation" )
+                                        .setLocale( "locale", simLocale ).setEntity( "simulation", simulation ).list();
+                            }
+                            if ( llist.size() > 1 ) {
+                                throw new RuntimeException( "Multiple localized simulations per one locale and simulation? BAD THINGS! Fix that database!" );
+                            }
+
+                            if ( llist.isEmpty() ) {
+                                syncLogger.info( "Creating lsim for " + simulation.getName() + " with locale " + simLocaleString + " and title " + simTitle );
+                                LocalizedSimulation lsim = new LocalizedSimulation();
+                                createdLSims.add( lsim );
+                                lsim.setSimulation( simulation );
+                                lsim.setTitle( simTitle );
+                                lsim.setLocale( simLocale );
                                 projectDirty = true;
                             }
                             else {
-                                simulation = (Simulation) slist.get( 0 );
-                                simulationCache.put( simName, simulation );
-                                missedSimulations.remove( simulation );
-                                nonCreatedSims.add( simulation );
-                                syncLogger.debug( "Found simulation " + simulation.getName() );
-                                if ( simulation.getProject().getId() != project.getId() ) {
-                                    syncLogger.warn( "Found simulation " + simulation.getName() + " specified with a different project " + simulation.getProject().getName() + " instead of " + project.getName() + "." );
-                                    syncLogger.warn( "Modifying to match the current project (with type)" );
-                                    syncLogger.warn( "This may be caused by creating a new simulation. If so, ignore the above two messages" );
-                                    simulation.setProject( project );
+                                LocalizedSimulation lsim = (LocalizedSimulation) llist.get( 0 );
+                                missedLocalizedSimulations.remove( lsim );
+                                if ( !lsim.getTitle().equals( simTitle ) ) {
+                                    syncLogger.info( "Changing lsim title for " + lsim.getSimulation().getName() + " and locale " + simLocaleString + " from '" + lsim.getTitle() + "' to '" + simTitle + "'" );
+                                    lsim.setTitle( simTitle );
+                                    modifiedLSims.add( lsim );
+                                    projectDirty = true;
                                 }
-                                missedLocalizedSimulations.addAll( simulation.getLocalizedSimulations() );
                             }
-                        }
 
-                        simulation.setKilobytes( simulation.detectSimKilobytes( docRoot ) );
-
-                        List llist = new LinkedList();
-                        if ( !createdSims.contains( simulation ) ) {
-                            llist = session.createQuery( "select ls from LocalizedSimulation as ls where ls.locale = :locale and ls.simulation = :simulation" )
-                                    .setLocale( "locale", simLocale ).setEntity( "simulation", simulation ).list();
                         }
-                        if ( llist.size() > 1 ) {
-                            throw new RuntimeException( "Multiple localized simulations per one locale and simulation? BAD THINGS! Fix that database!" );
-                        }
-
-                        if ( llist.isEmpty() ) {
-                            syncLogger.info( "Creating lsim for " + simulation.getName() + " with locale " + simLocaleString + " and title " + simTitle );
-                            LocalizedSimulation lsim = new LocalizedSimulation();
-                            createdLSims.add( lsim );
-                            lsim.setSimulation( simulation );
-                            lsim.setTitle( simTitle );
-                            lsim.setLocale( simLocale );
-                            projectDirty = true;
-                        }
-                        else {
-                            LocalizedSimulation lsim = (LocalizedSimulation) llist.get( 0 );
-                            missedLocalizedSimulations.remove( lsim );
-                            if ( !lsim.getTitle().equals( simTitle ) ) {
-                                syncLogger.info( "Changing lsim title for " + lsim.getSimulation().getName() + " and locale " + simLocaleString + " from '" + lsim.getTitle() + "' to '" + simTitle + "'" );
-                                lsim.setTitle( simTitle );
-                                modifiedLSims.add( lsim );
-                                projectDirty = true;
-                            }
-                        }
-
                     }
 
                     for ( Simulation simulation : missedSimulations ) {
@@ -676,10 +697,12 @@ public class Project implements Serializable, IntId {
     }
 
     public static File getLatestHTMLDirectory( File projectRoot ) {
+        if ( !projectRoot.getAbsolutePath().contains( "sims/html" ) ) {
+            return null;
+        }
         File[] htmlVersionDirectories = projectRoot.listFiles( new FilenameFilter() {
             public boolean accept( File file, String s ) {
-                // For some reason the xml file is passing the isDirectory test?
-                return file.isDirectory() && !s.endsWith( "xml" );
+                return s.matches( "\\d+\\.\\d+\\.\\d+" );
             }
         } );
         Arrays.sort( htmlVersionDirectories );
