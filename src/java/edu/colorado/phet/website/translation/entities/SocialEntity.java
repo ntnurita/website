@@ -17,10 +17,18 @@ public class SocialEntity extends TranslationEntity {
         addString( "social.facebook.tooltip" );
         addString( "social.twitter.tooltip" );
         addString( "social.stumbleupon.tooltip" );
-        addString( "social.digg.tooltip" );
         addString( "social.reddit.tooltip" );
-        addString( "social.delicious.tooltip" );
         addString( "social.youtube.tooltip" );
+        addString( "social.blog.tooltip" );
+        addString( "social.newsletter.tooltip" );
+        addString( "social.pinterest.tooltip" );
+
+        addString( "social.homepage.facebook.tooltip" );
+        addString( "social.homepage.twitter.tooltip" );
+        addString( "social.homepage.youtube.tooltip" );
+        addString( "social.homepage.blog.tooltip" );
+        addString( "social.homepage.newsletter.tooltip" );
+        addString( "social.homepage.pinterest.tooltip" );
 
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {

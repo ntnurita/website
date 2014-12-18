@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
@@ -12,323 +12,346 @@
 <body>
 
 <wicket:panel>
+    <script type="text/javascript" src="/js/video-player-v4.js"></script>
+
     <div id="main-content" class="index-content" wicket:message="dir:language.dir">
         <div id="index-middle-div">
-            <div id="index-animated-screenshot-holder" wicket:id="rotator-panel">
-            </div>
-            <div id="right-middle">
-                <div id="index-header">
-                    <wicket:message key="home.header">Interactive Science Simulations</wicket:message>
-                </div>
-                <div id="index-main-text" wicket:id="index-main-text">
-                    Fun, interactive TEST, research-based simulations of physical phenomena from the PhET project at the
-                    University of Colorado.
-                </div>
-                <div class="pws-holder" dir="ltr">
-                    <table class="pws-table" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td class="pws-left">
+            <div id="left-index" wicket:message="dir:language.dir">
 
-                            </td>
-                            <td class="pws-middle">
-                                <a href="#" wicket:id="play-sims-link">
-                                    <wicket:message key="home.playWithSims">Play with sims... &gt;</wicket:message>
-                                </a>
-                            </td>
-                            <td class="pws-right">
+                <div id="interactive-sims"><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</div>
 
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <a class="play-with-sims-button" href="#" wicket:id="play-sims-link" style="margin-top: 30px">
+                    <div>
+                        <div style="font-size: 20px; width: 70%; float: left; text-align: left;">
+                            <wicket:message key="home.playWithSims">Play with Simulations</wicket:message>
+                        </div>
+                        <div style="float: right;">
+                            <img src="#" alt=" " style="border: none" wicket:id="phet-airplane"/>
+                        </div>
+                    </div>
+                </a>
 
-                <div id="sponsors" class="ie6sponsors">
-                    <table cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td style="width: 30px"></td>
-                            <td style="width: 100px" class="sponsor">
-                                <a href="http://www.nsf.gov/" wicket:message="dir:language.dir" rel="external">
-                                    <img wicket:id="nsf-logo"
-                                         src="../../../../../../../root/images/support/nsf-logo-small.gif"
-                                         alt="NSF Logo"/>
-                                    <br/>
-                                    National Science Foundation
-                                </a>
-                            </td>
-                            <td style="width: 120px" class="sponsor">
-                                <a href="http://www.hewlett.org/" wicket:message="dir:language.dir" rel="external">
-                                    <img wicket:id="hewlett-logo"
-                                         src="../../../../../../../root/images/support/hewlett-logo-small.jpg"
-                                         alt="Hewlett Foundation logo"/>
-                                    The William and Flora Hewlett Foundation
-                                </a>
-                            </td>
-                            <td style="width: 130px;" class="sponsor">
-                                <a href="http://www.odf.org/" wicket:message="dir:language.dir" rel="external" style="margin-left: 10px;">
-                                    <img wicket:id="odf-logo"
-                                         src="../../../../../../../root/images/support/odf-combined-130.png"
-                                         alt="O'Donnell Foundation logo"/>
-                                    The O'Donnell Foundation
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; font-size: 16px;margin: 13px auto 5px; width: 430px;">
-            <div style="float: left; margin-top: 9px;">
-                <div style="text-align: center;" wicket:id="techAwardText">
-                       Recipient of <a href="#">The Tech Award 2011</a>
-                </div>
-                <div style="text-align: center; font-size: 10px; font-style: italic;">
-                    <span wicket:id="techAwardSubtitle">honoring technology benefitting humanity</span>
-                </div>
+                <a href="#" wicket:id="techAwardLink" style="display: table-row; vertical-align: bottom; height: 1px;">
+                    <img style="border: none" src="#" wicket:id="award-logo" alt="The Tech Awards"/>
+                </a>
             </div>
 
-            <a href="#" wicket:id="techAwardLink2" style="text-decoration: none;">
-                <img src="../../../../../../../root/images/logos/tech-awards-combined-160x51.png" wicket:id="award-logo"
-                     style="vertical-align: middle; float: right; border: none;" alt="Tech Awards"/>
-            </a>
+            <div id="index-animated-screenshot-holder">
+                <div id="video-container">
+                    <div class="box" id="box0" style="left: 0%">
+                        <video class="sim-video" poster="/files/rotator/balancing-act.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/balancing-act.mp4" />
+                            <source type="video/ogg" src="/files/rotator/balancing-act.ogv" />
+                            <img width="325" height="213" src="/files/rotator/balancing-act.jpg" alt="Balancing Act Image" />
+                        </video>
+                    </div>
+                    <div class="box" id="box1">
+                        <video class="sim-video" poster="/files/rotator/color-vision.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/color-vision.mp4" />
+                            <source type="video/ogg" src="/files/rotator/color-vision.ogv" />
+                            <img width="325" height="213" src="/files/rotator/color-vision.jpg" alt="Color Vision Image" />
+                        </video>
+                    </div>
+                    <div class="box" id="box2">
+                        <video class="sim-video" poster="/files/rotator/energy-skate-park-basics.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/energy-skate-park-basics.mp4" />
+                            <source type="video/ogg" src="/files/rotator/energy-skate-park-basics.ogv" />
+                            <img width="325" height="213" src="/files/rotator/energy-skate-park-basics.jpg" alt="Energy Skate Park Basics Image" />
+                        </video>
+                    </div>
+                    <div class="box" id="box3">
+                        <video class="sim-video" poster="/files/rotator/faradays-law.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/faradays-law.mp4" />
+                            <source type="video/ogg" src="/files/rotator/faradays-law.ogv" />
+                            <img width="325" height="213" src="/files/rotator/faradays-law.jpg" alt="Faraday's Law Image" />
+                        </video>
+                    </div>
+                    <div class="box" id="box4">
+                        <video class="sim-video" poster="/files/rotator/friction.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/friction.mp4" />
+                            <source type="video/ogg" src="/files/rotator/friction.ogv" />
+                            <img width="325" height="213" src="/files/rotator/friction.jpg" alt="Friction Image" />
+                        </video>
+                    </div>
+                    <div class="box" id="box5">
+                        <video class="sim-video" poster="/files/rotator/john-travoltage.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/john-travoltage.mp4" />
+                            <source type="video/ogg" src="/files/rotator/john-travoltage.ogv" />
+                            <img width="325" height="213" src="/files/rotator/john-travoltage.jpg" alt="John Travoltage Image" />
+                        </video>
+                    </div>
+                    <div class="box" id="box6">
+                        <video class="sim-video" poster="/files/rotator/wave-on-a-string.jpg" tabindex="-1">
+                            <source type="video/mp4" src="/files/rotator/wave-on-a-string.mp4" />
+                            <source type="video/ogg" src="/files/rotator/wave-on-a-string.ogv" />
+                            <img width="325" height="213" src="/files/rotator/wave-on-a-string.jpg" alt="Wave on a String Image" />
+                        </video>
+                    </div>
+                </div>
+                <div id="controls-container">
+                    <span class="left-right-buttons" style="float: left;" onclick="switchVideo('right');">
+                        <img class="left-right-img" src="/images/icons/left.png" alt="<">
+                    </span>
+                    <a id="sim-name" tabindex="-1"></a>
+                    <span class="left-right-buttons" style="float: right;" onclick="switchVideo('left');">
+                        <img class="left-right-img" src="/images/icons/right.png" alt=">">
+                    </span>
+                </div>
+            </div>
 
-            <div style="clear: both;"></div>
+            <wicket:enclosure child="social-bookmark-panel">
+                <div id="social-icons" wicket:id="social-bookmark-panel" wicket:message="dir:language.dir"></div>
+            </wicket:enclosure>
         </div>
+    </div>
 
-        <div style="text-align: center; font-size: 11px; vertical-align:middle; position: relative; top: 13px;">
-            <a href="http://www.facebook.com/pages/PhET-Interactive-Simulations/161503243888932?v=wall"
-               wicket:id="facebook-text"
-               rel="external">
-                Join us on <img class="index-social-image"
-                                src="../../../../../../../root/images/icons/social/facebook.png" alt="Facebook icon"
-                                width="16" height="16"/>
-            </a> &nbsp;|&nbsp;
-            <a href="http://twitter.com/PhETSims" wicket:id="twitter-text"
-               rel="external">
-                Follow us on <img class="index-social-image"
-                                  src="../../../../../../../root/images/icons/social/twitter.png" alt="Twitter icon"
-                                  width="16" height="16"/>
-            </a> &nbsp;|&nbsp;
-            <a href="/blog/" wicket:id="blog-text"
-               rel="external">
-                Read our blog
-            </a> &nbsp;|&nbsp;
-            <a href="#" wicket:id="subscribe-link">
-                <wicket:message key="home.subscribeToNewsletter">Subscribe to our newsletter</wicket:message>
-            </a>
-        </div>
-
-        <div class="practices">
-            <dl class="get-phet-links">
-                <dt>
-                    <a href="#" wicket:id="run-our-sims-link">
-                        <span wicket:id="run-our-sims-label"></span>
-                        <!--<wicket:message key="home.runOurSims">How to Run Simulations</wicket:message>-->
-                    </a>
-                </dt>
-                <wicket:enclosure child="on-line-link">
-                    <dd>
-                        <a href="#" wicket:id="on-line-link">
-                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                            <wicket:message key="home.onLine">On Line</wicket:message>
-                        </a>
-                    </dd>
-                </wicket:enclosure>
-                <wicket:enclosure child="full-install-link">
-                    <dd>
-                        <a href="#" wicket:id="full-install-link">
-                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                            <wicket:message key="home.fullInstallation">Full Installation</wicket:message>
-                        </a>
-                    </dd>
-                </wicket:enclosure>
-                <wicket:enclosure child="one-at-a-time-link">
-                    <dd>
-                        <a href="#" wicket:id="one-at-a-time-link">
-                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                            <wicket:message key="home.oneAtATime">One at a Time</wicket:message>
-                        </a>
-                    </dd>
-                </wicket:enclosure>
-                <dd style="margin-top: 1em;">
-                    <a href="#" wicket:id="troubleshooting-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.troubleshooting">Troubleshooting</wicket:message>
+    <div class="practices">
+        <dl class="get-phet-links">
+            <dt>
+                <a href="#" wicket:id="run-our-sims-link">
+                    <span wicket:id="run-our-sims-label"></span>
+                    <!--<wicket:message key="home.runOurSims">How to Run Simulations</wicket:message>-->
+                </a>
+            </dt>
+            <wicket:enclosure child="on-line-link">
+                <dd>
+                    <a class="circle-arrow-link" href="#" wicket:id="on-line-link">
+                        <wicket:message key="home.onLine">On Line</wicket:message>
                     </a>
                 </dd>
+            </wicket:enclosure>
+            <wicket:enclosure child="full-install-link">
                 <dd>
-                    <a href="#" wicket:id="faqs-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.faqs">Frequently Asked Questions</wicket:message>
+                    <a class="circle-arrow-link" href="#" wicket:id="full-install-link">
+                        <wicket:message key="home.fullInstallation">Full Installation</wicket:message>
                     </a>
                 </dd>
-            </dl>
-
-            <dl>
-                <dt>
-                    <a href="#" wicket:id="activities-link">
-                        <wicket:message key="home.teacherIdeasAndActivities">
-                            For Teachers
-                        </wicket:message>
-                    </a>
-                </dt>
+            </wicket:enclosure>
+            <wicket:enclosure child="one-at-a-time-link">
                 <dd>
-                    <a href="#" wicket:id="tipsforusingphet-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
+                    <a class="circle-arrow-link" href="#" wicket:id="one-at-a-time-link">
+                        <wicket:message key="home.oneAtATime">One at a Time</wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <dd style="margin-top: 1em;">
+                <a class="circle-arrow-link" href="#" wicket:id="troubleshooting-link">
+                    <wicket:message key="home.troubleshooting">Troubleshooting</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="faqs-link">
+                    <wicket:message key="home.faqs">Frequently Asked Questions</wicket:message>
+                </a>
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>
+                <a href="#" wicket:id="activities-link">
+                    <wicket:message key="home.teacherIdeasAndActivities">
+                        For Teachers
+                    </wicket:message>
+                </a>
+            </dt>
+            <wicket:enclosure child="tipsforusingphet-link">
+                <dd>
+                    <a class="circle-arrow-link" href="#" wicket:id="tipsforusingphet-link">
                         <wicket:message key="tipsForUsingPhet">Tips for Using PhET</wicket:message>
                     </a>
                 </dd>
-                <wicket:enclosure child="browse-activities-link">
-                    <dd>
-                        <a href="#" wicket:id="browse-activities-link">
-                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                            <wicket:message key="home.browseActivities">
-                                Browse Activities
-                            </wicket:message>
-                        </a>
-                    </dd>
+            </wicket:enclosure>
+            <wicket:enclosure child="browse-activities-link">
+                <dd>
+                    <a class="circle-arrow-link" href="#" wicket:id="browse-activities-link">
+                        <wicket:message key="home.browseActivities">
+                            Browse Activities
+                        </wicket:message>
+                    </a>
+                </dd>
+            </wicket:enclosure>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="submit-activity-link" id="home-submit-activity-link">
+                    <wicket:message key="home.submitActivity">Contribute Activities</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="workshops-link">
+                    <wicket:message key="home.workshops">Workshops and Materials</wicket:message>
+                </a>
+            </dd>
+            <dd style="margin-top: 1em;">
+                <a class="circle-arrow-link" href="#" wicket:id="translate-sims-link">
+                    <wicket:message key="home.translateSimulations">Translate simulations</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <wicket:enclosure>
+                    <a class="circle-arrow-link" href="#" wicket:id="test-translation">
+                        <wicket:message key="home.translateWebsite">Translate the website</wicket:message>
+                    </a>
                 </wicket:enclosure>
-                <dd>
-                    <a href="#" wicket:id="submit-activity-link" id="home-submit-activity-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.submitActivity">Share your Activities</wicket:message>
-                    </a>
-                </dd>
-                <dd>
-                    <a href="#" wicket:id="workshops-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.workshops">Workshops</wicket:message>
-                    </a>
-                </dd>
+            </dd>
+        </dl>
 
-                <dd style="margin-top: 1em;">
-                    <a href="#" wicket:id="translate-sims-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.translateSimulations">Translate simulations</wicket:message>
-                    </a>
-                </dd>
-                <dd>
-                    <wicket:enclosure>
-                        <a href="#" wicket:id="test-translation">
-                            <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                            <wicket:message key="home.translateWebsite">Translate the website</wicket:message>
-                        </a>
-                    </wicket:enclosure>
-                </dd>
-            </dl>
+        <dl>
+            <dt>
+                <a href="#" wicket:id="about-general">
+                    <wicket:message key="home.about">About</wicket:message>
+                </a>
+            </dt>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="about-news">
+                    <wicket:message key="home.about.news">What's New?</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="about-phet">
+                    <wicket:message key="home.about.phet">About PhET</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="research-on-phet">
+                    <wicket:message key="home.about.research">Research on PhET</wicket:message>
+                </a>
+            </dd>
+            <dd>
+                <a class="circle-arrow-link" href="#" wicket:id="about-contact">
+                    <wicket:message key="home.about.contact">Contact Us</wicket:message>
+                </a>
+            </dd>
+            <dd style="margin-top: 1em;">
+                <a class="circle-arrow-link" href="#" wicket:id="support-phet-link">
+                    <wicket:message key="home.donate">Donate</wicket:message>
+                </a>
+            </dd>
+        </dl>
 
-            <dl>
-                <dt>
-                    <a href="#" wicket:id="about-general">
-                        <wicket:message key="home.about">About</wicket:message>
-                    </a>
-                </dt>
-                <dd>
-                    <a href="#" wicket:id="about-news">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.about.news">What's New?</wicket:message>
-                    </a>
-                </dd>
-                <dd>
-                    <a href="#" wicket:id="about-phet">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.about.phet">About PhET</wicket:message>
-                    </a>
-                </dd>
-                <dd>
-                    <a href="#" wicket:id="about-contact">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.about.contact">Contact Us</wicket:message>
-                    </a>
-                </dd>
-                <dd style="margin-top: 1em;">
-                    <a href="#" wicket:id="support-phet-link">
-                        <img src="/images/circleArrow_Icon.gif" alt="Green arrow" width="14" height="13"/>
-                        <wicket:message key="home.donate">Donate</wicket:message>
-                    </a>
-                </dd>
-            </dl>
-
-            <dl class="last">
-                <dt>
-                    <a href="#" wicket:id="sponsors-general">
-                        <wicket:message key="home.about.phetSupportedBy">PhET is supported by...</wicket:message>
-                    </a>
-                </dt>
-                <dd style="padding: 0 10px 5px; min-height: 70px;" id="featured-sponsor-dd">
-                    <!-- here we use a table with invisible elements with a specific height to mimic the min-height for a table -->
-                    <table cellpadding="0" cellspacing="0" style="margin: 0; padding: 0; width: 100%; height: 100%;">
-                        <tr>
-                            <td style="margin: 0; padding: 0;">
-                                <div style="height: 70px; width: 0;"></div>
-                            </td>
-                            <td style="margin: 0; padding: 0; text-align: center; vertical-align:middle;">
-                                <div id="featured-sponsor-spot" style="display: none;"></div>
-                                <script type="text/javascript">
-                                    //<![CDATA[
-                                    (function() {
-                                        var r = Math.random() * phetHomeSponsors.totalWeight;
-                                        var i;
-                                        for ( i = 0; i <= phetHomeSponsors.sponsors.length; i++ ) {
-                                            r -= phetHomeSponsors.sponsors[i].weight;
-                                            if ( r <= 0 ) {
-                                                break;
-                                            }
+        <dl class="last">
+            <dt>
+                <a href="#" wicket:id="sponsors-general">
+                    <wicket:message key="home.about.phetSupportedBy">PhET is supported by...</wicket:message>
+                </a>
+            </dt>
+            <dd style="padding: 0 10px 5px; min-height: 70px;" id="featured-sponsor-dd">
+                <!-- here we use a table with invisible elements with a specific height to mimic the min-height for a table -->
+                <table style="margin: 0; padding: 0; width: 100%; height: 100%; border-spacing: 0;" >
+                    <tr>
+                        <td style="margin: 0; padding: 0;">
+                            <div style="height: 70px; width: 0;"></div>
+                        </td>
+                        <td style="margin: 0; padding: 0; text-align: center; vertical-align:middle;">
+                            <div id="featured-sponsor-spot" style="display: none;"></div>
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                (function() {
+                                    var r = Math.random() * phetHomeSponsors.totalWeight;
+                                    var i;
+                                    for ( i = 0; i <= phetHomeSponsors.sponsors.length; i++ ) {
+                                        r -= phetHomeSponsors.sponsors[i].weight;
+                                        if ( r <= 0 ) {
+                                            break;
                                         }
-                                        var html = phetHomeSponsors.sponsors[i].html;
-                                        document.getElementById( 'featured-sponsor-spot' ).innerHTML = html;
-                                        document.getElementById( 'featured-sponsor-spot' ).style.display = "block";
-                                    })();
-                                    //]]>
-                                </script>
-                                <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
-                                    (function() {
-                                        var phetLogoSrc = document.getElementById( "phet-logo-main-image" ).src;
-                                        // 0x2F is a slash, to fool the httrack ripper
-                                        var lastIndex = Math.max( phetLogoSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), phetLogoSrc.lastIndexOf( "\\" ) );
-                                        var newImagesDirectory = phetLogoSrc.substring( 0, lastIndex );
-                                        document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
-                                    })();
-                                </script>
-                                <noscript>
-                                    <div wicket:id="featured-sponsor-panel"></div>
-                                </noscript>
-                            </td>
-                            <td style="margin: 0; padding: 0;">
-                                <div style="height: 70px; width: 0;"></div>
-                            </td>
-                        </tr>
-                    </table>
-                </dd>
-                <dd style="text-align: center;">
-                    <span wicket:id="other-sponsors"></span>
-                </dd>
-            </dl>
-            <div class="clear">
-
-            </div>
-        </div>
-
+                                    }
+                                    var html = phetHomeSponsors.sponsors[i].html;
+                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = html;
+                                    document.getElementById( 'featured-sponsor-spot' ).style.display = "block";
+                                })();
+                                //]]>
+                            </script>
+                            <script type="text/javascript" wicket:id="featured-sponsor-installer-js">
+                                (function() {
+                                    var greenArrowSrc = document.getElementById( "green-arrow-image" ).src;
+                                    // 0x2F is a slash, to fool the httrack ripper
+                                    var lastIndex = Math.max( greenArrowSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), greenArrowSrc.lastIndexOf( "\\" ) );
+                                    var newImagesDirectory = greenArrowSrc.substring( 0, lastIndex );
+                                    document.getElementById( 'featured-sponsor-spot' ).innerHTML = document.getElementById( 'featured-sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
+                                })();
+                            </script>
+                            <noscript>
+                                <div wicket:id="featured-sponsor-panel"></div>
+                            </noscript>
+                        </td>
+                        <td style="margin: 0; padding: 0;">
+                            <div style="height: 70px; width: 0;"></div>
+                        </td>
+                    </tr>
+                </table>
+            </dd>
+            <dd style="text-align: center;">
+                <span wicket:id="other-sponsors"></span>
+            </dd>
+        </dl>
         <div class="clear">
-
-        </div>
-
-        <div class="index-footer" style="text-align: center; padding-top: 5px; font-size: 12px;">
-            <div wicket:id="translation-credits" style="margin-bottom: 5px;" class="translation-credits">
-                This is the credits line for the translation.
-            </div>
-
-            <span wicket:id="translation-links" style="padding-bottom: 5px;">
-                Translation links go here
-            </span>
-
-            <div class="copyright">&copy; 2013 University of Colorado. <a href="#" wicket:id="some-rights-link">
-                <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
-            </a></div>
         </div>
     </div>
+
+    <div class="clear">
+    </div>
+
+    <div>
+        <table style="width: 745px;">
+            <tr>
+                <td class="sponsor">
+                    <a href="http://www.hewlett.org/" wicket:message="dir:language.dir" rel="external">
+                        <img wicket:id="hewlett-logo"
+                             src="../../../../../../../root/images/support/hewlett-logo-front-page.gif"
+                             alt="Hewlett Foundation"/>
+                    </a>
+                </td>
+                <td class="sponsor">
+                    <a href="http://www.nsf.gov/" wicket:message="dir:language.dir" rel="external">
+                        <img wicket:id="nsf-logo"
+                             src="../../../../../../../root/images/support/nsf-full-res.gif"
+                             alt="National Science Foundation"/>
+                    </a>
+                </td>
+                <td class="sponsor">
+                    <a href="http://www.odf.org/" wicket:message="dir:language.dir" rel="external">
+                        <img wicket:id="odf-logo"
+                             src="../../../../../../../root/images/support/odf-combined-130.png"
+                             alt="O'Donnell Foundation"/>
+                    </a>
+                </td>
+                <td class="sponsor">
+                    <a href="http://www.moore.org/" wicket:message="dir:language.dir" rel="external">
+                        <img wicket:id="moore-logo"
+                             src="../../../../../../../root/images/support/moore-foundation.jpg"
+                             alt="Moore Foundation"/>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="index-footer" style="text-align: center; padding-top: 5px; font-size: 12px;">
+        <div wicket:id="translation-credits" style="margin-bottom: 5px;" class="translation-credits">
+            This is the credits line for the translation.
+        </div>
+
+        <span wicket:id="translation-links" style="padding-bottom: 5px;">
+            Translation links go here
+        </span>
+
+        <wicket:enclosure child="social-footer-list">
+            <div style="padding: 10px 0" wicket:message="dir:language.dir">
+                <span wicket:id="social-footer-list">
+                    <a wicket:id="link" wicket:message="dir:language.dir">
+                        <span wicket:id="label">Item</span>&nbsp;<img wicket:id="icon"/>
+                    </a>
+                </span>
+            </div>
+        </wicket:enclosure>
+
+        <div class="copyright" wicket:id="copyright">
+            <span wicket:id="copyright-label">&copy; 2014 University of Colorado. </span>
+            <a href="#" wicket:id="some-rights-link">
+                <wicket:message key="footer.someRightsReserved">Some rights reserved.</wicket:message>
+            </a>
+        </div>
+    </div>
+
 </wicket:panel>
 
 </body>
 </html>
-

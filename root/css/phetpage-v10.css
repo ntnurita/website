@@ -6,8 +6,6 @@ body {
 }
 
 #page-header {
-    /*background: url('../images/header_BG.gif') left top repeat-x;*/
-    /*background: url('../images/header_BG-yellow.png') left top repeat-x;*/
     background-color: #2a326a;
     height: 127px;
 }
@@ -22,6 +20,12 @@ body {
     height: 127px;
     left: 0;
     top: 0;
+}
+
+#search-submit-id {
+    border: 0;
+    border-radius: 4px;
+    background-color: white;
 }
 
 /* Place the "50 million sims delivered" or whatnot message in the top of the logo */
@@ -77,16 +81,14 @@ div.rtl #page-header-search {
 
 #page-header-cu {
     position: absolute;
-    right: 0;
+    right: 19px;
     top: 25px;
-    color: #fff;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: 16px;
+    border: none;
 }
 
 div.rtl #page-header-cu {
     right: auto !important;
-    left: 0 !important;
+    left: 23px !important;
 }
 
 #page-header-logo img {
@@ -235,11 +237,30 @@ div.rtl .text-right-classic {
     background-color: #eeeeee;
 }
 
-#skipNav {
+/*#skipNav {*/
+    /*position: absolute;*/
+    /*opacity: 0;*/
+    /*font-size: 1px;*/
+    /*letter-spacing: -1px;*/
+/*}*/
+
+/* see http://stackoverflow.com/questions/6280399/skip-links-not-working-in-chrome */
+#skipNav a {
     position: absolute;
-    opacity: 0;
-    font-size: 1px;
-    letter-spacing: -1px;
+    top: -40px;
+    left: 0;
+    background:transparent;
+    -webkit-transition: top 1s ease-out, background 1s linear;
+    transition: top 1s ease-out, background 1s linear;
+    z-index: 100
+}
+#skipNav a:focus {
+    position:absolute;
+    left: 0;
+    top: 0;
+    background: #F1B82D;
+    -webkit-transition: top .1s ease-in, background .5s linear;
+    transition: top .1s ease-in, background .5s linear
 }
 
 div.copyright {

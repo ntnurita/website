@@ -11,11 +11,13 @@ import edu.colorado.phet.website.util.ImageHandle;
  */
 public class Images {
     public static final ImageHandle PHET_LOGO = new ImageHandle( "/images/phet-logo-117.svg", true ); // NOTE: don't switch without changing the SVG/PNG switcher
+    public static final ImageHandle PHET_AIRPLANE = new ImageHandle( "/images/phet-airplane.svg", true );
     public static final ImageHandle PHET_LOGO_YELLOW = new ImageHandle( "/images/phet-logo-yellow.png", true );
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
     public static final ImageHandle CU_LOGO_HALF = new ImageHandle( "/images/cu-logo-half.png", true );
 
     public static final ImageHandle HTML5_LOGO_80 = new ImageHandle( "/images/HTML5_Badge_80_clean.svg", true );
+    public static final ImageHandle HTML5_LOGO_40 = new ImageHandle( "/images/HTML5_Badge_40_clean.svg", true );
     public static final ImageHandle HTML5_VIDEO_THUMBNAIL_220 = new ImageHandle( "/images/creating-next-generation-phet-sims-220.png", true );
 
     public static final ImageHandle TRANSLATION_UTILITY_SMALL = new ImageHandle( "/images/screenshots/translation-utility-small.png", true );
@@ -47,8 +49,10 @@ public class Images {
 
     public static final ImageHandle LOGO_HEWLETT = new ImageHandle( "/images/support/hewlett-logo.jpg", true );
     public static final ImageHandle LOGO_HEWLETT_SMALL = new ImageHandle( "/images/support/hewlett-logo-small.jpg", true );
+//    public static final ImageHandle LOGO_HEWLETT_FRONT_PAGE = new ImageHandle( "/images/support/hewlett-logo-web.gif", true );
     public static final ImageHandle LOGO_ODF_COMBINED_SMALL = new ImageHandle( "/images/support/odf-combined-130.png", true );
     public static final ImageHandle LOGO_NSF = new ImageHandle( "/images/support/nsf-logo.gif", true );
+//    public static final ImageHandle LOGO_NSF_FRONT_PAGE = new ImageHandle( "/images/support/nsf1-web.gif", true );
     public static final ImageHandle LOGO_NSF_SMALL = new ImageHandle( "/images/support/nsf-logo-small.gif", true );
     public static final ImageHandle LOGO_ECSME = new ImageHandle( "/images/support/ERCSME-combined-logo-regular.png", true );
     public static final ImageHandle LOGO_ERCSME_SMALL = new ImageHandle( "/images/support/ERCSME-combined-logo-small.png", true );
@@ -89,8 +93,10 @@ public class Images {
     public static final ImageHandle LOGO_CUSTOMER_PARADIGM = new ImageHandle( "/images/support/customer-paradigm-small.png", true );
     public static final ImageHandle LOGO_AACT = new ImageHandle( "/images/support/AACT-small.png", true );
     public static final ImageHandle LOGO_WW_NORTON = new ImageHandle( "/images/support/wwnorton-small.png", true );
+    public static final ImageHandle LOGO_MOORE= new ImageHandle( "/images/support/moore-foundation.jpg", true );
     public static final ImageHandle LOGO_TECH_AWARDS_COMBINED = new ImageHandle( "/images/logos/tech-awards-combined-160x51.png", true );
     public static final ImageHandle LOGO_TECH_AWARDS = new ImageHandle( "/images/logos/tech-awards-logo-150x48.png", true );
+    public static final ImageHandle LOGO_TECH_AWARDS_SMALL = new ImageHandle( "/images/logos/tech-awards-logo-100x32.png", true );
 
     
     public static final ImageHandle DOWNARROW = new ImageHandle( "/images/arrow-right.gif", true );

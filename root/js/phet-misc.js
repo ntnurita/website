@@ -76,3 +76,11 @@ $( document ).ready( function () {
     }
   }
 } );
+
+// fix skip to main content links for chrome
+// see http://stackoverflow.com/questions/6280399/skip-links-not-working-in-chrome
+$(document).ready(function () {
+  $("#skipper").click(function () {
+    $('#main-content').attr('tabIndex', -1).focus();
+  });
+});

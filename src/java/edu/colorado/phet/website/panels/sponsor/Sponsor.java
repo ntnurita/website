@@ -458,6 +458,14 @@ public abstract class Sponsor implements Serializable {
         setSimWeight( 3 );
     }};
 
+    public static Sponsor MOORE_FOUNDATION = new LogoSponsor(
+            "Moore Foundation",
+            "http://www.moore.org/",
+            Images.LOGO_MOORE, "padding 4px;" ) {{
+        setHomeWeight( 0 );
+        setSimWeight( 0 );
+    }};
+
     public static Random random = new Random();
 
     // NOTE: on adding a sponsor, do we need to update the installer to rip the image?

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
@@ -12,28 +12,25 @@
 <body>
 
 <wicket:panel>
-    <a class="html-banner-container" href="#" wicket:id="html-banner-link">
-        <span class="html-banner-logo">
-            <img class="html-banner-image" src="../../../../../../../root/images/HTML5_Badge_80_clean.svg" wicket:id="html-banner-image" alt="HTML5"/>
-            <span class="html-banner-html">HTML</span>
-            <span class="html-banner-simsText">
-                <wicket:message key="html5.tryOurNewHTML5Sims">TRY OUR NEW HTML5 SIMS</wicket:message>
+    <span class="html-banner-container">
+        <span id="html-banner-content">
+            <span class="html-banner-crowdfundText" wicket:message="dir:language.dir">
+                <wicket:message key="html5.crowdfundedProjects">Support PhET's Annual Campaign</wicket:message>
             </span>
-            <span class="html-banner-crowdfund">
-                <span class="html-banner-crowdfundText">
-                    <wicket:message key="html5.crowdfundedProjects">Donate now:</wicket:message>
+            <a href="#" tabindex="0" target="_blank" wicket:id="donate-link"
+                class="html-banner-button" wicket:message="dir:language.dir">
+                <wicket:message key="html5.donateToday">Donate Today</wicket:message>
+            </a>
+            <a href="#" wicket:id="html-banner-link" id="html-banner-link" wicket:message="dir:language.dir">
+                <img class="html-banner-image" src="../../../../../../../root/images/HTML5_Badge_40_clean.svg" wicket:id="html-banner-image"
+                     wicket:message="dir:language.dir" alt=" " width="40" height="40"/>
+                <span class="html-banner-html" wicket:message="dir:language.dir">HTML</span>
+                <span class="html-banner-simsText" wicket:message="dir:language.dir">
+                    <wicket:message key="html5.tryOurNewHTML5Sims">HTML5 Sims</wicket:message>
                 </span>
-                <span class="html-banner-teach-with-phet html-banner-button" onclick="javascript:location.href='http://www.crowdrise.com/helpbuildteachwithphet';return false;">
-                    <wicket:message key="html5.buildTeachWithPhet">Build "Teach with PhET"</wicket:message>
-                </span>
-                <span class="html-banner-cck html-banner-button" onclick="javascript:location.href='http://www.crowdrise.com/PhETHTML5CCKSimulation';return false;">
-                    <wicket:message key="html5.bringCCK">Bring Circuit Sim to iPad</wicket:message>
-                </span>
-                <span class="html-banner-separator">
-                </span>
-            </span>
+            </a>
         </span>
-    </a>
+    </span>
 </wicket:panel>
 
 </body>

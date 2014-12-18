@@ -4,9 +4,20 @@
 
 package edu.colorado.phet.website.content;
 
+import java.util.Calendar;
+import java.util.LinkedList;
+
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.cache.EventDependency;
@@ -15,6 +26,7 @@ import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.SocialBookmarkService;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.about.AboutContactPanel;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
@@ -43,6 +55,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.RotatorFallbackPanel;
 import edu.colorado.phet.website.panels.RotatorPanel;
+import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.panels.SurveySplashPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
@@ -63,44 +76,21 @@ public class IndexPanel extends PhetPanel {
     public IndexPanel( String id, final PageContext context ) {
         super( id, context );
 
-        /*---------------------------------------------------------------------------*
-        * sponsors
-        *----------------------------------------------------------------------------*/
-        add( new StaticImage( "nsf-logo", Images.LOGO_NSF_SMALL, null ) );
-        add( new StaticImage( "hewlett-logo", Images.LOGO_HEWLETT_SMALL, null ) );
-        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
+        // tech award logo
+        Link techAwardTitleLink = TechAwardPage.getLinker().getLink( "techAwardLink", context, getPhetCycle() );
+        techAwardTitleLink.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_SMALL, null ) );
+        add( techAwardTitleLink );
 
-        /*---------------------------------------------------------------------------*
-        * tech award area
-        *----------------------------------------------------------------------------*/
-        add( new LocalizedText( "techAwardText", "award.techAward2011.homeTitle", new Object[] {
-                TechAwardPage.getLinker().getHref( context, getPhetCycle() )
+        // add social icons
+        add( WicketUtils.componentIf( true, "social-bookmark-panel", new IComponentFactory<Component>() {
+            public Component create( String id ) {
+                return new SocialBookmarkPanel( "social-bookmark-panel", context, "", "home.title" );
+            }
         } ) );
 
-        add( new LocalizedText( "techAwardSubtitle", "award.techAward2011.homeSubtitle" ) );
-
-        // logo
-        Link techAwardTitleLink2 = TechAwardPage.getLinker().getLink( "techAwardLink2", context, getPhetCycle() );
-        techAwardTitleLink2.add( new StaticImage( "award-logo", Images.LOGO_TECH_AWARDS_COMBINED, null ) );
-        add( techAwardTitleLink2 );
-
-        /*---------------------------------------------------------------------------*
-        * social links
-        *----------------------------------------------------------------------------*/
-        add( new LocalizedText( "facebook-text", "home.facebookText", new Object[] {
-                "<img class=\"index-social-image\" src=\"/images/icons/social/facebook.png\" alt=\"Facebook icon\" width=\"16\" height=\"16\"/>"
-        } ) );
-        add( new LocalizedText( "twitter-text", "home.twitterText", new Object[] {
-                "<img class=\"index-social-image\" src=\"/images/icons/social/twitter.png\" alt=\"Twitter icon\" width=\"16\" height=\"16\"/>"
-        } ) );
-        add( new LocalizedText( "blog-text", "home.blogText" ) );
-        add( InitialSubscribePage.getLinker().getLink( "subscribe-link", context, getPhetCycle() ) );
-
-        add( new LocalizedText( "index-main-text", "home.subheader", new Object[] {
-                ResearchPanel.getLinker().getHref( context, getPhetCycle() )
-        } ) );
-
-        addWithId( CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() ), PLAY_SIMS_ID );
+        Link playSimsLink = CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() );
+        playSimsLink.add( new StaticImage( "phet-airplane", Images.PHET_AIRPLANE, null ) );
+        addWithId( playSimsLink , PLAY_SIMS_ID );
 
         Link runOurSimsLink = RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() );
         runOurSimsLink.add( new LocalizedText( "run-our-sims-label", getPhetCycle().isOfflineInstaller() ? "home.help" : "home.runOurSims" ) );
@@ -133,6 +123,7 @@ public class IndexPanel extends PhetPanel {
 
         add( AboutMainPanel.getLinker().getLink( "about-general", context, getPhetCycle() ) );
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );
+        add( ResearchPanel.getLinker().getLink( "research-on-phet", context, getPhetCycle() ) );
         add( AboutNewsPanel.getLinker().getLink( "about-news", context, getPhetCycle() ) );
         add( AboutContactPanel.getLinker().getLink( "about-contact", context, getPhetCycle() ) );
         add( new LocalizedText( "other-sponsors", "home.about.alongWithOurSponsors", new Object[] {
@@ -188,20 +179,83 @@ public class IndexPanel extends PhetPanel {
             add( ContributionCreatePage.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
         }
 
-        if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
-            add( new RotatorFallbackPanel( "rotator-panel", context ) );
-        }
-        else {
-            // show the survey if we would show the rotator AND we are in an English translation (since it's English-only text)
-//            if ( !getPhetCycle().isInstaller() && context.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
-//                add( new SurveySplashPanel( "rotator-panel", context ) );
-//            }
-//            else {
-                add( new RotatorPanel( "rotator-panel", context ) );
-//            }
-        }
+//        if ( DistributionHandler.showRotatorFallback( getPhetCycle() ) ) {
+//            add( new RotatorFallbackPanel( "rotator-panel", context ) );
+//        }
+//        else {
+//            // show the survey if we would show the rotator AND we are in an English translation (since it's English-only text)
+////            if ( !getPhetCycle().isInstaller() && context.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
+////                add( new SurveySplashPanel( "rotator-panel", context ) );
+////            }
+////            else {
+//                add( new RotatorPanel( "rotator-panel", context ) );
+////            }
+//        }
 
-        add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
+        /*---------------------------------------------------------------------------*
+        * sponsors
+        *----------------------------------------------------------------------------*/
+        add( new StaticImage( "odf-logo", Images.LOGO_ODF_COMBINED_SMALL, null ) );
+        add( new StaticImage( "moore-logo", Images.LOGO_MOORE, null ) );
+
+        // I tried resizing these in Photoshop and it looked horrible
+        // Somehow the browsers do a much better job
+        add( new WebMarkupContainer( "nsf-logo" ) {{
+            add( new AttributeModifier( "width", true, new Model<String>( "60" ) ) );
+            add( new AttributeModifier( "src", true, new Model<String>( "/images/support/nsf-full-res.gif" ) ) );
+        }} );
+
+        add( new WebMarkupContainer( "hewlett-logo" ) {{
+            add( new AttributeModifier( "width", true, new Model<String>( "132" ) ) );
+            add( new AttributeModifier( "src", true, new Model<String>( "/images/support/hewlett-logo-full-res.gif" ) ) );
+        }} );
+
+        /*---------------------------------------------------------------------------*
+        * footer social icons
+        *----------------------------------------------------------------------------*/
+        ListView socialFooter = new ListView<SocialBookmarkService>( "social-footer-list", SocialBookmarkService.HOMEPAGE_SERVICES ) {
+            private boolean isFirst = true; // the first link should have no left separator like the others
+
+            protected void populateItem( ListItem<SocialBookmarkService> item ) {
+                final SocialBookmarkService mark = item.getModelObject();
+                Link link;
+                if ( mark.getName().equals( "newsletter" ) ) {
+                    link = InitialSubscribePage.getLinker().getLink( "link", context, getPhetCycle() );
+                } else {
+                    link = mark.getLinker( "", "home.title" ).getLink( "link", context, getPhetCycle() );
+                }
+                link.add( new AttributeModifier( "title", true, new ResourceModel( mark.getHomePageTooltipLocalizationKey() ) ) ); // tooltip
+                if ( isFirst ) {
+                    link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link first-footer-link" ) ) );
+                    isFirst = false;
+                }
+                else {
+                    link.add( new AttributeModifier( "class", true, new Model<String>( "footer-link" ) ) );
+                }
+                // phetLinks (blog and newsletter) should not open in a new tab, but other links should
+                if ( !mark.isPhetLink() ) {
+                    link.add( new AttributeModifier( "rel", true, new Model<String>( "external nofollow" ) ) );
+                }
+                item.add( link );
+                link.add( new LocalizedText( "label", mark.getFooterLabel() ) );
+                link.add( new WebMarkupContainer( "icon" ) {{
+                    add( new AttributeModifier( "class", true, new Model<String>( "footer-icon" ) ) );
+                    add( new AttributeModifier( "src", true, new Model<String>( mark.getIconPath() ) ) );
+                    if ( !mark.isPhetLink() ) {
+                        add( new AttributeModifier( "alt", true, new Model<String>( mark.getName() ) ) );
+                    }
+                    else {
+                        add( new AttributeModifier( "alt", true, new Model<String>( " " ) ) );
+                    }
+                }} );
+            }
+        };
+        add( socialFooter );
+        add( new WebMarkupContainer( "copyright" ) {{
+            int year = Calendar.getInstance().get( Calendar.YEAR );
+            add ( new Label( "copyright-label", "© " + year + " University of Colorado. ") );
+            add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", context, getPhetCycle() ) );
+        }} );
 
         addDependency( new EventDependency() {
             private IChangeListener stringListener;
