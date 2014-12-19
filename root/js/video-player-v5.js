@@ -55,6 +55,23 @@ function runVideoScript() {
 
   // don't use getElementsByClassName if not supported
   var videos = ( document.getElementsByClassName ) ? document.getElementsByClassName( 'sim-video' ) : false;
+
+  // replace videos with images on iPhone or iPod
+  if ( videos && ( ( navigator.userAgent.match( /iPhone/i ) ) || ( navigator.userAgent.match( /iPod/i ) ) ) ) {
+    var divs = document.getElementsByClassName( 'box' );
+    for ( var i = 0; i < divs.length; i++ ) {
+      var video = divs[i].children[0];
+      for ( var j = 0; j < video.children.length; j++ ) {
+        if ( video.children[j].tagName === 'IMG' ) {
+          var img = video.children[j];
+        }
+      }
+      divs[i].removeChild( video );
+      divs[i].appendChild( img );
+    }
+    videos = false;
+  }
+
   var container = document.getElementById( 'video-container' );
   var simName = document.getElementById( 'sim-name' );
 
