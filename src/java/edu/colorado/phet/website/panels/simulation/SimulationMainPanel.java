@@ -110,6 +110,7 @@ public class SimulationMainPanel extends PhetPanel {
         HTML_SIM_LINK_MAP.put( "ohms-law", "/sims/html/ohms-law/latest/ohms-law_en.html" );
         HTML_SIM_LINK_MAP.put( "ph-scale", "/sims/html/ph-scale/latest/ph-scale_en.html" );
         // NOTE: no original sim for pH Scale: Basics, so it is omitted here
+        HTML_SIM_LINK_MAP.put( "reactants-products-and-leftovers", "/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html" );
         HTML_SIM_LINK_MAP.put( "resistance-in-a-wire", "/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html" );
         HTML_SIM_LINK_MAP.put( "under-pressure", "/sims/html/under-pressure/latest/under-pressure_en.html" );
         HTML_SIM_LINK_MAP.put( "wave-on-a-string", "/sims/html/wave-on-a-string/latest/wave-on-a-string_en.html" );
