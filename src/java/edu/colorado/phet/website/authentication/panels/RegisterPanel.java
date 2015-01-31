@@ -66,7 +66,7 @@ public class RegisterPanel extends PhetPanel {
     public final class RegisterForm extends Form {
         private static final long serialVersionUID = 1L;
 
-        private final ValueMap properties = new ValueMap();
+        private final ValueMap properties = new ValueMap( "receiveEmail=true" );
 
         public RegisterForm( final String id ) {
             super( id );
