@@ -12,13 +12,15 @@
 <body>
 
 <wicket:panel>
-    <script type="text/javascript" src="/js/video-player-v5.js"></script>
+    <script type="text/javascript" src="/js/video-player-v6.js"></script>
 
     <div id="main-content" class="index-content" wicket:message="dir:language.dir">
         <div id="index-middle-div">
             <div id="left-index" wicket:message="dir:language.dir">
 
-                <div id="interactive-sims"><strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH</div>
+                <div id="interactive-sims" wicket:id="interactive-simulations">
+                    <strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH
+                </div>
 
                 <a class="play-with-sims-button" href="#" wicket:id="play-sims-link" style="margin-top: 30px">
                     <div>
@@ -43,6 +45,7 @@
                             <source type="video/mp4" src="/files/rotator/balancing-act.mp4" />
                             <source type="video/ogg" src="/files/rotator/balancing-act.ogv" />
                             <img width="325" height="213" src="/files/rotator/balancing-act.jpg" alt="Balancing Act Image" />
+                            <wicket:message key="home.balancingAct">Balancing Act</wicket:message>
                         </video>
                     </div>
                     <div class="box" id="box1">
@@ -50,6 +53,7 @@
                             <source type="video/mp4" src="/files/rotator/color-vision.mp4" />
                             <source type="video/ogg" src="/files/rotator/color-vision.ogv" />
                             <img width="325" height="213" src="/files/rotator/color-vision.jpg" alt="Color Vision Image" />
+                            <wicket:message key="home.colorVision">Color Vision</wicket:message>
                         </video>
                     </div>
                     <div class="box" id="box2">
@@ -57,6 +61,7 @@
                             <source type="video/mp4" src="/files/rotator/energy-skate-park-basics.mp4" />
                             <source type="video/ogg" src="/files/rotator/energy-skate-park-basics.ogv" />
                             <img width="325" height="213" src="/files/rotator/energy-skate-park-basics.jpg" alt="Energy Skate Park Basics Image" />
+                            <wicket:message key="home.energySkateParkBasics">Energy Skate Park Basics</wicket:message>
                         </video>
                     </div>
                     <div class="box" id="box3">
@@ -64,6 +69,7 @@
                             <source type="video/mp4" src="/files/rotator/faradays-law.mp4" />
                             <source type="video/ogg" src="/files/rotator/faradays-law.ogv" />
                             <img width="325" height="213" src="/files/rotator/faradays-law.jpg" alt="Faraday's Law Image" />
+                            <wicket:message key="home.faradaysLaw">Faraday's Law</wicket:message>
                         </video>
                     </div>
                     <div class="box" id="box4">
@@ -71,6 +77,7 @@
                             <source type="video/mp4" src="/files/rotator/friction.mp4" />
                             <source type="video/ogg" src="/files/rotator/friction.ogv" />
                             <img width="325" height="213" src="/files/rotator/friction.jpg" alt="Friction Image" />
+                            <wicket:message key="home.friction">Friction</wicket:message>
                         </video>
                     </div>
                     <div class="box" id="box5">
@@ -78,6 +85,7 @@
                             <source type="video/mp4" src="/files/rotator/john-travoltage.mp4" />
                             <source type="video/ogg" src="/files/rotator/john-travoltage.ogv" />
                             <img width="325" height="213" src="/files/rotator/john-travoltage.jpg" alt="John Travoltage Image" />
+                            <wicket:message key="home.johnTravoltage">John Travoltage</wicket:message>
                         </video>
                     </div>
                     <div class="box" id="box6">
@@ -85,6 +93,7 @@
                             <source type="video/mp4" src="/files/rotator/wave-on-a-string.mp4" />
                             <source type="video/ogg" src="/files/rotator/wave-on-a-string.ogv" />
                             <img width="325" height="213" src="/files/rotator/wave-on-a-string.jpg" alt="Wave on a String Image" />
+                            <wicket:message key="home.waveOnAString">Wave on a String</wicket:message>
                         </video>
                     </div>
                 </div>

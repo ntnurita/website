@@ -6,13 +6,13 @@ var switchVideo;
 
 // list all videos here
 var simVideos = [
-  { title: 'Balancing Act', link: 'simulation/balancing-act' },
-  { title: 'Color Vision', link: 'simulation/color-vision' },
-  { title: 'Energy Skate Park Basics', link: 'simulation/energy-skate-park-basics' },
-  { title: 'Faraday\'s Law', link: 'simulation/faradays-law' },
-  { title: 'Friction', link: 'simulation/friction' },
-  { title: 'John Travoltage', link: 'simulation/travoltage' },
-  { title: 'Wave on a String', link: 'simulation/wave-on-a-string' }
+  { link: 'simulation/balancing-act' },
+  { link: 'simulation/color-vision' },
+  { link: 'simulation/energy-skate-park-basics' },
+  { link: 'simulation/faradays-law' },
+  { link: 'simulation/friction' },
+  { link: 'simulation/travoltage' },
+  { link: 'simulation/wave-on-a-string' }
 ];
 
 // force safari to reload page instead of saving the old state when users press 'back'
@@ -22,18 +22,6 @@ window.onpageshow = function( event ) {
     window.location.reload()
   }
 };
-
-if ( document.addEventListener ) {
-  document.addEventListener( 'DOMContentLoaded', runVideoScript, false );
-}
-// for IE8
-else {
-  document.onreadystatechange = function() {
-    if ( document.readyState === 'complete' ) {
-      runVideoScript();
-    }
-  }
-}
 
 function runVideoScript() {
   var ANIMATE_MILLISECONDS = 1000;
@@ -53,13 +41,17 @@ function runVideoScript() {
     locale = ( window.location.pathname === '/' ) ? '/en/' : window.location.pathname;
   }
 
-  // don't use getElementsByClassName if not supported
-  var videos = ( document.getElementsByClassName ) ? document.getElementsByClassName( 'sim-video' ) : false;
+  var videos = $( '.sim-video' );
+
+  var i;
+  for ( i = 0; i < videos.length; i++ ) {
+    simVideos[i].title = $.trim( $( videos[i] ).text() );
+  }
 
   // replace videos with images on iPhone or iPod
-  if ( videos && ( ( navigator.userAgent.match( /iPhone/i ) ) || ( navigator.userAgent.match( /iPod/i ) ) ) ) {
+  if ( navigator.userAgent.match( /iPhone/i ) || navigator.userAgent.match( /iPod/i ) ) {
     var divs = document.getElementsByClassName( 'box' );
-    for ( var i = 0; i < divs.length; i++ ) {
+    for ( i = 0; i < divs.length; i++ ) {
       var video = divs[i].children[0];
       for ( var j = 0; j < video.children.length; j++ ) {
         if ( video.children[j].tagName === 'IMG' ) {
@@ -77,6 +69,9 @@ function runVideoScript() {
 
   var timer; // setInterval for changing videos
   var switchable = true; // whether or not the switch video buttons are enabled (they get disabled while animating)
+
+  var testVideo = document.createElement( 'video' );
+  var videoSupport = ( testVideo.play ) ? true : false; // true is HTML5 video is supported
 
   /**
    * Switch the video in the carousel by animating the div to slide over and changing the video source
@@ -150,7 +145,7 @@ function runVideoScript() {
       sourceIndex += simVideos.length;
     }
 
-    videos && videos[sourceIndex].play();
+    videoSupport && videos[sourceIndex].play();
     simName.innerHTML = simVideos[sourceIndex].title;
     var href = locale + simVideos[sourceIndex].link + ( isInstallerBuild ? '.html' : '' );
     simName.setAttribute( 'href', href );
@@ -164,7 +159,7 @@ function runVideoScript() {
     setTimeout( function() {switchable = true;}, ANIMATE_MILLISECONDS );
   };
 
-  videos && videos[sourceIndex].play();
+  videoSupport && videos[sourceIndex].play();
   simName.innerHTML = simVideos[sourceIndex].title;
   var href = locale + simVideos[sourceIndex].link + ( isInstallerBuild ? '.html' : '' );
   simName.setAttribute( 'href', href );
@@ -173,3 +168,11 @@ function runVideoScript() {
   // switch videos every 5 seconds
   timer = setInterval( function() {switchVideo( 'left' );}, INTERVAL_LENGTH );
 }
+
+// wait until jquery has loaded to run the script
+var interval = setInterval( function() {
+  if ( typeof $ !== 'undefined' ) {
+    clearInterval( interval );
+    runVideoScript();
+  }
+}, 100 );

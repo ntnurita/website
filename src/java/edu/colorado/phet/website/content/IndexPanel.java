@@ -5,14 +5,11 @@
 package edu.colorado.phet.website.content;
 
 import java.util.Calendar;
-import java.util.LinkedList;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.image.Image;
-import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -35,7 +32,6 @@ import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
-import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.forteachers.TipsPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.getphet.OneAtATimePanel;
@@ -44,7 +40,7 @@ import edu.colorado.phet.website.content.media.TechAwardPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
-import edu.colorado.phet.website.content.workshops.WorkshopsPanel;	
+import edu.colorado.phet.website.content.workshops.WorkshopsPanel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
@@ -53,10 +49,7 @@ import edu.colorado.phet.website.data.util.HibernateEventListener;
 import edu.colorado.phet.website.data.util.IChangeListener;
 import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.panels.PhetPanel;
-import edu.colorado.phet.website.panels.RotatorFallbackPanel;
-import edu.colorado.phet.website.panels.RotatorPanel;
 import edu.colorado.phet.website.panels.SocialBookmarkPanel;
-import edu.colorado.phet.website.panels.SurveySplashPanel;
 import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.FeaturedSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
@@ -95,6 +88,8 @@ public class IndexPanel extends PhetPanel {
         Link runOurSimsLink = RunOurSimulationsPanel.getLinker().getLink( "run-our-sims-link", context, getPhetCycle() );
         runOurSimsLink.add( new LocalizedText( "run-our-sims-label", getPhetCycle().isOfflineInstaller() ? "home.help" : "home.runOurSims" ) );
         add( runOurSimsLink );
+
+        add( new LocalizedText( "interactive-simulations", "home.interactiveSimulations" ) );
 
         add( WicketUtils.componentIf( !getPhetCycle().isOfflineInstaller(), "on-line-link", new IComponentFactory<Component>() {
             public Component create( String id ) {

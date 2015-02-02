@@ -23,6 +23,16 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
+        StringUtils.addString( session, "home.interactiveSimulations", "<strong>INTERACTIVE</strong> SIMULATIONS<br/>FOR SCIENCE AND MATH" );
+
+        StringUtils.addString( session, "home.balancingAct", "Balancing Act" );
+        StringUtils.addString( session, "home.colorVision", "Color Vision" );
+        StringUtils.addString( session, "home.energySkateParkBasics", "Energy Skate Part Basics" );
+        StringUtils.addString( session, "home.faradaysLaw", "Faraday's Law" );
+        StringUtils.addString( session, "home.friction", "Friction" );
+        StringUtils.addString( session, "home.johnTravoltage", "John Travoltage" );
+        StringUtils.addString( session, "home.waveOnAString", "Wave on a String" );
+
         session.close();
     }
 

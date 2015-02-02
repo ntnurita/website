@@ -14,6 +14,7 @@ public class IndexEntity extends TranslationEntity {
     public IndexEntity() {
         addString( "home.header" );
         addString( "home.playWithSims" );
+        addString( "home.interactiveSimulations" );
         addString( "home.simulationsDelivered", "{0} will be replaced by the current number of sims delivered" );
         addString( "home.facebookText"  );
         addString( "home.twitterText" );
@@ -23,6 +24,14 @@ public class IndexEntity extends TranslationEntity {
         addString( "home.pinterestText" );
         addString( "home.subscribeToNewsletter" );
         addString( "home.stayConnected" );
+
+        addString( "home.balancingAct" );
+        addString( "home.colorVision" );
+        addString( "home.energySkateParkBasics" );
+        addString( "home.faradaysLaw" );
+        addString( "home.friction" );
+        addString( "home.johnTravoltage" );
+        addString( "home.waveOnAString" );
 
         addString( "home.runOurSims" );
         addString( "home.help" );
