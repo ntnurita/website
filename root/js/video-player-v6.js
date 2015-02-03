@@ -50,6 +50,7 @@ function runVideoScript() {
 
   // replace videos with images on iPhone or iPod
   if ( navigator.userAgent.match( /iPhone/i ) || navigator.userAgent.match( /iPod/i ) ) {
+    videoSupport = false; // video is not used on iPhone
     var divs = document.getElementsByClassName( 'box' );
     for ( i = 0; i < divs.length; i++ ) {
       var video = divs[i].children[0];
