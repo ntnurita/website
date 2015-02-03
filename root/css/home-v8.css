@@ -87,6 +87,10 @@ div.index-holder {
     color: blue;
 }
 
+#sim-name:visited {
+    color: rgb(85, 26, 139);
+}
+
 .left-right-buttons {
     background-color: rgb(140,140,140);
     height: 100%;
