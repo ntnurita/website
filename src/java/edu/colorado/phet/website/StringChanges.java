@@ -33,6 +33,9 @@ public class StringChanges {
         StringUtils.addString( session, "home.johnTravoltage", "John Travoltage" );
         StringUtils.addString( session, "home.waveOnAString", "Wave on a String" );
 
+        StringUtils.addString( session, "nav.forTeachers.facilitatingActivities", "Facilitating PhET Activities for the K12 Classroom" );
+        StringUtils.addString( session, "forTeachers.facilitatingActivities.title", "Facilitating PhET Activities for the K12 Classroom" );
+
         session.close();
     }
 

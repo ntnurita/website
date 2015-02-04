@@ -44,6 +44,7 @@ import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPane
 import edu.colorado.phet.website.content.contribution.ContributionManagePage;
 import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
 import edu.colorado.phet.website.content.forteachers.ClickersPanel;
+import edu.colorado.phet.website.content.forteachers.FacilitatingActivitiesPanel;
 import edu.colorado.phet.website.content.forteachers.LectureDemoPanel;
 import edu.colorado.phet.website.content.forteachers.LectureOverviewPanel;
 import edu.colorado.phet.website.content.forteachers.PlanningPanel;
@@ -138,6 +139,10 @@ public class NavMenu implements Serializable {
             // Designing Effective Activities for use in K12
             NavLocation activitiesDesignPanel = new NavLocation( this, "forTeachers.activitesDesign", ActivitiesdesignPanel.getLinker() );
             addLocation(activitiesDesignPanel);
+
+            // Facilitating PhET Activities for the K12 Classroom
+            NavLocation facilitatingActivitiesPanel = new NavLocation( this, "forTeachers.facilitatingActivities", FacilitatingActivitiesPanel.getLinker() );
+            addLocation(facilitatingActivitiesPanel);
 
             // Take a Virtual PhET Workshop
             NavLocation virtualWorkshopPanel = new NavLocation( this, "forTeachers.virtualWorkshop", VirtualWorkshopPanel.getLinker() );

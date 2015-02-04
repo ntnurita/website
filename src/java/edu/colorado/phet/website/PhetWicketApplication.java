@@ -92,6 +92,7 @@ import edu.colorado.phet.website.content.contribution.ContributionSuccessPage;
 import edu.colorado.phet.website.content.contribution.NominateContributionPage;
 import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
 import edu.colorado.phet.website.content.forteachers.ClickersPanel;
+import edu.colorado.phet.website.content.forteachers.FacilitatingActivitiesPanel;
 import edu.colorado.phet.website.content.forteachers.LectureDemoPanel;
 import edu.colorado.phet.website.content.forteachers.LectureOverviewPanel;
 import edu.colorado.phet.website.content.forteachers.PlanningPanel;
@@ -253,6 +254,7 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( WorkshopFacilitatorsGuidePanel.class );
 
         StaticPage.addPanel( ActivitiesdesignPanel.class );
+        StaticPage.addPanel( FacilitatingActivitiesPanel.class );
         StaticPage.addPanel( ExampleWorkshopsPanel.class );
         StaticPage.addPanel( ClickersPanel.class );
         StaticPage.addPanel( LectureDemoPanel.class );
