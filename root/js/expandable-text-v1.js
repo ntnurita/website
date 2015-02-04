@@ -16,7 +16,7 @@ function toggleMe( id ) {
       var h = e.offsetHeight;
       var sh = e.scrollHeight;
       if ( h < sh ) {
-        h += 10;
+        h += 20;
       }
       else {
         clearInterval( expandInterval );
@@ -30,7 +30,7 @@ function toggleMe( id ) {
     var retractInterval = setInterval( function() {
       var h = e.offsetHeight;
       if ( h > 0 ) {
-        h -= 10;
+        h -= 20;
       }
       else {
         e.style.height = "0px";

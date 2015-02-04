@@ -159,6 +159,7 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.PhetUrlStrategy;
 import edu.colorado.phet.website.util.SearchUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.webgl.WebglDisabledPage;
 
 /**
  * Main entry and configuration point for the Wicket-based PhET website.
@@ -370,6 +371,8 @@ public class PhetWicketApplication extends WebApplication {
                                TranslationDocPage.class );
 
         mountBookmarkablePage( "2013/the-future-of-phet", TheFutureOfPhet.class );
+
+        mountBookmarkablePage( "webgl-disabled-page", WebglDisabledPage.class );
 
         // services
         mountBookmarkablePage( "services/phet-info", PhetInfoServicePage.class );
