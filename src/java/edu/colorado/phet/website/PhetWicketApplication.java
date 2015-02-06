@@ -65,7 +65,6 @@ import edu.colorado.phet.website.content.ResearchPanel;
 import edu.colorado.phet.website.content.RobotsTxtPage;
 import edu.colorado.phet.website.content.SessionExpiredPage;
 import edu.colorado.phet.website.content.SponsorListPage;
-import edu.colorado.phet.website.content.StayConnectedPanel;
 import edu.colorado.phet.website.content.TeachWithPhetDemoPage;
 import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.content.TheFutureOfPhet;
@@ -287,7 +286,6 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( UgandaWorkshopsPanel.class );
         StaticPage.addPanel( UgandaWorkshopPhotosPanel.class );
         StaticPage.addPanel( ChangePasswordSuccessPanel.class );
-        StaticPage.addPanel( StayConnectedPanel.class );
         StaticPage.addPanel( FaqTestPage.class );
 
         StaticPage.addPanel( AboutTeamPanel.class );
