@@ -14,20 +14,6 @@ body {
     background: url('../images/header_BG.gif') left top repeat-x;
 }
 
-#page-header-logo {
-    position: absolute;
-    width: 242px;
-    height: 127px;
-    left: 0;
-    top: 0;
-}
-
-#search-submit-id {
-    border: 0;
-    border-radius: 4px;
-    background-color: white;
-}
-
 /* Place the "50 million sims delivered" or whatnot message in the top of the logo */
 #page-header-sims-served {
     position: absolute;
@@ -50,9 +36,49 @@ div.rtl #page-header-logo {
 }
 
 .header-logo-image {
-    /*background-color: #18388c;*/
     position: relative;
     top: 8px;
+}
+
+.white-focus:focus {
+    outline: none;
+    border: 1px solid white;
+    margin: -1px;
+    -webkit-box-shadow: 0px 0px 4px 0px white;
+    box-shadow: 0px 0px 4px 0px white;
+}
+
+#sign-in-link:focus {
+    outline: none;
+    border: 1px solid white;
+    -webkit-box-shadow: 0px 0px 4px 0px white;
+    box-shadow: 0px 0px 4px 0px white;
+}
+
+#search-submit-id {
+    border: 2px solid #2a326a;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.search-focus {
+    border: 2px inset white;
+}
+
+#search-submit-id:focus {
+    outline: none;
+    border: 2px solid orange;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 12px 0px orange;
+    box-shadow: 0px 0px 12px 0px orange;
+}
+
+.search-focus:focus {
+    outline: none;
+    border: 3px solid orange;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 0px 12px 0px orange;
+    box-shadow: 0px 0px 12px 0px orange;
 }
 
 #page-header-search {
