@@ -152,5 +152,6 @@ public abstract class TranslationEntity implements Serializable {
         cachedEntities.add( new NewsletterEntity() );
         cachedEntities.add( new MiscellaneousEntity() );
         cachedEntities.add( new AwardsEntity() );
+        cachedEntities.add( new WebglDisabledEntity() );
     }
 }
