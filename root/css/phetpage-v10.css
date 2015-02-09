@@ -48,7 +48,7 @@ div.rtl #page-header-logo {
     box-shadow: 0px 0px 4px 0px white;
 }
 
-#sign-in-link:focus {
+.sign-in-links:focus {
     outline: none;
     border: 1px solid white;
     -webkit-box-shadow: 0px 0px 4px 0px white;

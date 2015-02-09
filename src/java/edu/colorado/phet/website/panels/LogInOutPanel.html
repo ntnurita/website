@@ -12,7 +12,7 @@
 <body>
 
 <wicket:panel>
-    <a wicket:id="sign-in">
+    <a wicket:id="sign-in" class="sign-in-links">
         <wicket:message key="session.loginRegister">Sign in / Register</wicket:message>
     </a>
     <wicket:enclosure child="sign-out">
@@ -20,14 +20,14 @@
             <li><em wicket:id="current-email"></em></li>
             <li class="loginout-spacer">|</li>
             <wicket:enclosure child="admin-link">
-                <li><a href="#" wicket:id="admin-link">Administration</a></li>
+                <li><a class="sign-in-links" href="#" wicket:id="admin-link">Administration</a></li>
                 <li class="loginout-spacer">|</li>
             </wicket:enclosure>
-            <li><a wicket:id="edit-profile">
+            <li><a class="sign-in-links" wicket:id="edit-profile">
                 <wicket:message key="session.editProfile">Edit profile</wicket:message>
             </a></li>
             <li class="loginout-spacer">|</li>
-            <li><a wicket:id="sign-out">
+            <li><a class="sign-in-links" wicket:id="sign-out">
                 <wicket:message key="session.logout">Sign out</wicket:message>
             </a></li>
         </ul>
