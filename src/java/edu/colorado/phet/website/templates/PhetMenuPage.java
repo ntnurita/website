@@ -73,11 +73,7 @@ public abstract class PhetMenuPage extends PhetPage {
         }
         //add( HeaderContributor.forCss( CSS.MENU_PAGE ) );
 
-        add( new WebMarkupContainer( "copyright" ) {{
-            int year = Calendar.getInstance().get( Calendar.YEAR );
-            add ( new Label( "copyright-label", "© " + year + " University of Colorado. ") );
-            add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
-        }} );
+        addCopyright();
 
         checkNavLocationParameters( parameters );
 

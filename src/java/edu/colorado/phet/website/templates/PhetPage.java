@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.templates;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,6 +36,7 @@ import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.IndexPage;
+import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
 import edu.colorado.phet.website.content.simulations.HTML5Page;
 import edu.colorado.phet.website.data.Translation;
@@ -268,6 +270,17 @@ public abstract class PhetPage extends WebPage implements Stylable {
 //            add( new DonationBannerRegularPanel( "html-banner", getPageContext() ) );
             add( new HTMLBanner( "html-banner", getPageContext() ) );
         }
+    }
+
+    /**
+     * Add a copyright footer that auto-updates the year
+     */
+    public void addCopyright() {
+        add( new WebMarkupContainer( "copyright" ) {{
+            int year = Calendar.getInstance().get( Calendar.YEAR );
+            add ( new Label( "copyright-label", "© " + year + " University of Colorado. ") );
+            add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
+        }} );
     }
 
     public Locale getMyLocale() {
