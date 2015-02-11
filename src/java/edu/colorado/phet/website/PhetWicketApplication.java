@@ -116,9 +116,9 @@ import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMacPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
-import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMobilePanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingWindowsPanel;
+import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
@@ -132,6 +132,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.Autocomplete;
+import edu.colorado.phet.website.services.CheckLogin;
 import edu.colorado.phet.website.services.EnglishSummaryExportCSV;
 import edu.colorado.phet.website.services.HealthCheck;
 import edu.colorado.phet.website.services.IQityExportCSV;
@@ -373,6 +374,7 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "2013/the-future-of-phet", TheFutureOfPhet.class );
 
         mountBookmarkablePage( "webgl-disabled-page", WebglRedirectPage.class );
+        mountBookmarkablePage( "check-login", CheckLogin.class );
 
         // services
         mountBookmarkablePage( "services/phet-info", PhetInfoServicePage.class );
