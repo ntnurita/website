@@ -21,9 +21,9 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
-        StringUtils.deleteString( session, "simulationMainPanel.version" );
-        StringUtils.deleteString( session, "simulationMainPanel.kilobytes" );
-        StringUtils.addString( session, "simulationMainPanel.version", "Version {0}" );
+//        StringUtils.deleteString( session, "simulationMainPanel.version" );
+//        StringUtils.deleteString( session, "simulationMainPanel.kilobytes" );
+//        StringUtils.addString( session, "simulationMainPanel.version", "Version {0}" );
 
 
         session.close();
