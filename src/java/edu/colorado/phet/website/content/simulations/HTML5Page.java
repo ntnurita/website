@@ -63,7 +63,7 @@ public class HTML5Page extends PhetPage {
         }
         //add( HeaderContributor.forCss( CSS.MENU_PAGE ) );
 
-        add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
+        addCopyright();
 
         this.getPhetCycle().setMinutesToCache( 15 );
     }

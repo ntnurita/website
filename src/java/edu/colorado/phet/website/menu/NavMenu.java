@@ -26,7 +26,6 @@ import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.ForTranslatorsPanel;
 import edu.colorado.phet.website.content.IndexPage;
 import edu.colorado.phet.website.content.ResearchPanel;
-import edu.colorado.phet.website.content.StayConnectedPanel;
 import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.content.TranslationUtilityPanel;
 import edu.colorado.phet.website.content.about.AboutContactPanel;
@@ -193,9 +192,6 @@ public class NavMenu implements Serializable {
             addChild( workshops );
         }};
         addMajorLocation( forTeachers );
-
-        NavLocation stayConnected = new NavLocation( null, "stayConnected", StayConnectedPanel.getLinker() );
-        addMajorLocation( stayConnected );
 
         NavLocation getPhet = new NavLocation( null, "get-phet", RunOurSimulationsPanel.getLinker() );
         addMajorLocation( getPhet );

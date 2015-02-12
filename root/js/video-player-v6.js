@@ -48,6 +48,9 @@ function runVideoScript() {
     simVideos[i].title = $.trim( $( videos[i] ).text() );
   }
 
+  var testVideo = document.createElement( 'video' );
+  var videoSupport = ( testVideo.play ) ? true : false; // true is HTML5 video is supported
+
   // replace videos with images on iPhone or iPod
   if ( navigator.userAgent.match( /iPhone/i ) || navigator.userAgent.match( /iPod/i ) ) {
     videoSupport = false; // video is not used on iPhone
@@ -70,9 +73,6 @@ function runVideoScript() {
 
   var timer; // setInterval for changing videos
   var switchable = true; // whether or not the switch video buttons are enabled (they get disabled while animating)
-
-  var testVideo = document.createElement( 'video' );
-  var videoSupport = ( testVideo.play ) ? true : false; // true is HTML5 video is supported
 
   /**
    * Switch the video in the carousel by animating the div to slide over and changing the video source

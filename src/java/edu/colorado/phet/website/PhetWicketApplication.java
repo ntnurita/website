@@ -65,7 +65,6 @@ import edu.colorado.phet.website.content.ResearchPanel;
 import edu.colorado.phet.website.content.RobotsTxtPage;
 import edu.colorado.phet.website.content.SessionExpiredPage;
 import edu.colorado.phet.website.content.SponsorListPage;
-import edu.colorado.phet.website.content.StayConnectedPanel;
 import edu.colorado.phet.website.content.TeachWithPhetDemoPage;
 import edu.colorado.phet.website.content.TeacherIdeasPanel;
 import edu.colorado.phet.website.content.TheFutureOfPhet;
@@ -118,9 +117,9 @@ import edu.colorado.phet.website.content.troubleshooting.GeneralFAQPanel;
 import edu.colorado.phet.website.content.troubleshooting.JavaSecurity;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMacPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMainPanel;
-import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingMobilePanel;
 import edu.colorado.phet.website.content.troubleshooting.TroubleshootingWindowsPanel;
+import edu.colorado.phet.website.content.workshops.ExampleWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopPhotosPanel;
 import edu.colorado.phet.website.content.workshops.UgandaWorkshopsPanel;
 import edu.colorado.phet.website.content.workshops.WorkshopFacilitatorsGuidePanel;
@@ -134,6 +133,7 @@ import edu.colorado.phet.website.newsletter.InitialSubscribePage;
 import edu.colorado.phet.website.newsletter.UnsubscribeLandingPage;
 import edu.colorado.phet.website.notification.NotificationHandler;
 import edu.colorado.phet.website.services.Autocomplete;
+import edu.colorado.phet.website.services.CheckLogin;
 import edu.colorado.phet.website.services.EnglishSummaryExportCSV;
 import edu.colorado.phet.website.services.HealthCheck;
 import edu.colorado.phet.website.services.IQityExportCSV;
@@ -160,6 +160,8 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.PhetUrlStrategy;
 import edu.colorado.phet.website.util.SearchUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.webgl.WebglDisabledPage;
+import edu.colorado.phet.website.webgl.WebglRedirectPage;
 
 /**
  * Main entry and configuration point for the Wicket-based PhET website.
@@ -288,7 +290,6 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( UgandaWorkshopsPanel.class );
         StaticPage.addPanel( UgandaWorkshopPhotosPanel.class );
         StaticPage.addPanel( ChangePasswordSuccessPanel.class );
-        StaticPage.addPanel( StayConnectedPanel.class );
         StaticPage.addPanel( FaqTestPage.class );
 
         StaticPage.addPanel( AboutTeamPanel.class );
@@ -341,6 +342,7 @@ public class PhetWicketApplication extends WebApplication {
         WorldPhotosPage.addToMapper( mapper );
         MediaImagesPage.addToMapper( mapper );
         TeachWithPhetDemoPage.addToMapper( mapper );
+        WebglDisabledPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );
@@ -372,6 +374,9 @@ public class PhetWicketApplication extends WebApplication {
                                TranslationDocPage.class );
 
         mountBookmarkablePage( "2013/the-future-of-phet", TheFutureOfPhet.class );
+
+        mountBookmarkablePage( "webgl-disabled-page", WebglRedirectPage.class );
+        mountBookmarkablePage( "check-login", CheckLogin.class );
 
         // services
         mountBookmarkablePage( "services/phet-info", PhetInfoServicePage.class );

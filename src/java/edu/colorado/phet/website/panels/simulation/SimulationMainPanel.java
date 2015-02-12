@@ -154,10 +154,6 @@ public class SimulationMainPanel extends PhetPanel {
         add( new LocalizedText( "simulation-main-description", simulation.getSimulation().getDescriptionKey() ) );
         add( new LocalizedText( "simulationMainPanel.version", "simulationMainPanel.version", new Object[]{
                 HtmlUtils.encode( simulationVersionString ),
-                SimulationChangelogPage.getLinker( simulation ).getHref( context, getPhetCycle() )
-        } ) );
-        add( new LocalizedText( "simulationMainPanel.kilobytes", "simulationMainPanel.kilobytes", new Object[]{
-                simulation.getSimulation().getKilobytes()
         } ) );
 
         {

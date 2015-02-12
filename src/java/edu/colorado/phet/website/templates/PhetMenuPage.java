@@ -4,12 +4,15 @@
 
 package edu.colorado.phet.website.templates;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.authentication.AuthenticatedPage;
@@ -70,7 +73,7 @@ public abstract class PhetMenuPage extends PhetPage {
         }
         //add( HeaderContributor.forCss( CSS.MENU_PAGE ) );
 
-        add( AboutLicensingPanel.getLinker().getLink( "some-rights-link", getPageContext(), getPhetCycle() ) );
+        addCopyright();
 
         checkNavLocationParameters( parameters );
 
