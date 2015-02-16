@@ -18,6 +18,8 @@
 <body>
 
 <wicket:panel>
+    <script type="text/javascript" src="/js/expandable-text-v1.js"></script>
+
     <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope="itemscope" itemtype="http://schema.org/SoftwareApplication">
 
         <!-- educationalAlignment ! teaches for mingradelevel and maxgradelevel -->
@@ -253,32 +255,36 @@
             <!--</div>-->
             <a id="content"></a><a id="teaching-resources"></a>
 
-            <h2 wicket:message="id:style.simulation-main-panel-content-header-clear">
+            <!--<h2 wicket:message="id:style.simulation-main-panel-content-header-clear">-->
+            <h2 id="about-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('about')">
                 <wicket:message key="simulationMainPanel.about">About</wicket:message>
             </h2>
 
-            <wicket:enclosure child="topic-list">
+            <div id="about" class="answer">
+
+                <wicket:enclosure child="topic-list">
+                    <h3>
+                        <wicket:message key="simulationMainPanel.topics">Topics</wicket:message>
+                    </h3>
+                    <ul>
+                        <li wicket:id="topic-list">
+                            <span wicket:id="topic-label" itemprop="keywords">
+                            </span>
+                        </li>
+                    </ul>
+                </wicket:enclosure>
+
                 <h3>
-                    <wicket:message key="simulationMainPanel.topics">Topics</wicket:message>
+                    <wicket:message key="simulationMainPanel.description">Description</wicket:message>
                 </h3>
-                <ul>
-                    <li wicket:id="topic-list">
-                        <span wicket:id="topic-label" itemprop="keywords">
-                        </span>
-                    </li>
-                </ul>
-            </wicket:enclosure>
 
-            <h3>
-                <wicket:message key="simulationMainPanel.description">Description</wicket:message>
-            </h3>
-
-            <span wicket:id="simulation-main-description" itemprop="description about">
-                Play with one or two pendulums and discover how the period of a simple pendulum depends on the
-                length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
-                measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
-                the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
-            </span>
+                <span wicket:id="simulation-main-description" itemprop="description about">
+                    Play with one or two pendulums and discover how the period of a simple pendulum depends on the
+                    length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
+                    measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
+                    the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
+                </span>
+            </div>
 
             <div style="display: none;">
                 <!-- TODO get rid of this part -->
@@ -296,197 +302,197 @@
                 </wicket:enclosure>
             </div>
 
-            <h2 wicket:message="id:style.simulation-main-panel-content-header-clear">
+            <h2 id="for-teachers-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('for-teachers')">
                 <wicket:message key="simulationMainPanel.forTeachers">For Teachers</wicket:message>
             </h2>
 
-            <wicket:enclosure child="learning-goals">
+            <div id="for-teachers" class="answer">
+                <wicket:enclosure child="learning-goals">
+                    <h3>
+                        <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
+                    </h3>
+                    <ul>
+                        <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
+                    </ul>
+                </wicket:enclosure>
+
+                <!--<wicket:enclosure child="faq-text">-->
+                    <!--<a id="faq"></a>-->
+
+                    <!--<h3>-->
+                        <!--<wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>-->
+                    <!--</h3>-->
+                    <!--<div wicket:id="faq-text" class="teachers-tips-holder">-->
+                        <!--This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).-->
+                    <!--</div>-->
+                <!--</wicket:enclosure>-->
+
+                <wicket:enclosure child="guide-text">
+                    <a id="tips-for-teachers"></a>
+                    <h3>
+                        <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
+                    </h3>
+                    <div wicket:id="guide-text" class="teachers-tips-holder">
+                        The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
+                        team.
+                    </div>
+                </wicket:enclosure>
+
+                <a id="teaching-ideas"></a>
+
                 <h3>
-                    <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
+                    <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
                 </h3>
-                <ul>
-                    <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
-                </ul>
-            </wicket:enclosure>
 
-            <!--<wicket:enclosure child="faq-text">-->
-                <!--<a id="faq"></a>-->
+                <wicket:enclosure child="contributions-panel">
 
-                <!--<h3>-->
-                    <!--<wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>-->
-                <!--</h3>-->
-                <!--<div wicket:id="faq-text" class="teachers-tips-holder">-->
-                    <!--This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).-->
-                <!--</div>-->
-            <!--</wicket:enclosure>-->
+                    <div wicket:id="contributions-panel" class="simulation-contributions-pane"></div>
 
-            <wicket:enclosure child="guide-text">
-                <a id="tips-for-teachers"></a>
-                <h3>
-                    <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
-                </h3>
-                <div wicket:id="guide-text" class="teachers-tips-holder">
-                    The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
-                    team.
+                </wicket:enclosure>
+
+                <p style="text-align: center;" wicket:id="submit-a">You can <a href="#">submit your own ideas and
+                    activities</a></p>
+            </div>
+
+            <wicket:enclosure child="simulation-main-translation-list">
+                <h2 id="translations-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('translations')">
+                    <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
+                </h2>
+                <div id="translation" class="answer">
+                    <table class="translations-table">
+                        <tr>
+                            <th>
+                                <wicket:message key="simulationMainPanel.language">Language</wicket:message>
+                            </th>
+                            <th>
+                                <wicket:message key="simulationMainPanel.languageTranslated">Language (Translated)
+                                </wicket:message>
+                            </th>
+                            <th>
+                                <wicket:message key="simulationMainPanel.simulationTitleTranslated">Simulation Title
+                                </wicket:message>
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr wicket:id="simulation-main-translation-list" class="simulation-main-translation-list">
+                            <td>
+                                <a href="#" wicket:id="language-link-1">
+                                    <span wicket:id="simulation-main-translation-locale-name">Pig Latin</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" wicket:id="language-link-2">
+                                    <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
+                                </a>
+                            </td>
+                            <td>
+                                <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
+                            </td>
+                            <td>
+                                <a href="#" wicket:id="simulation-main-translation-link" rel="external"
+                                   class="sim-run-now-play">
+                                    <wicket:message key="simulations.translated.runNow">Run Now</wicket:message>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" wicket:id="simulation-main-translation-download" class="sim-download-disk">
+                                    <wicket:message key="simulations.translated.download">Download</wicket:message>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </wicket:enclosure>
 
-            <a id="teaching-ideas"></a>
-
-            <h3>
-                <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
-            </h3>
-
-            <wicket:enclosure child="contributions-panel">
-
-                <div wicket:id="contributions-panel" class="simulation-contributions-pane"></div>
-
-            </wicket:enclosure>
-
-            <p style="text-align: center;" wicket:id="submit-a">You can <a href="#">submit your own ideas and
-                activities</a></p>
-
             <wicket:enclosure child="related-simulations-panel">
-                <a id="related-simulations"></a>
-
-                <h2>
+                <h2 id="related-sims-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('related-sims')">
                     <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
                 </h2>
-                <div wicket:id="related-simulations-panel" style="margin: 0; padding: 0; margin-bottom: -15px;"></div>
+                <div id="related-sims" class="answer" wicket:id="related-simulations-panel" style="margin: 0; padding: 0; margin-bottom: -15px;"></div>
             </wicket:enclosure>
 
-            <a id="translated-versions"></a>
-
-            <h2>
-                <wicket:message key="simulationMainPanel.translatedVersions">Translated versions</wicket:message>
-            </h2>
-
-            <wicket:enclosure child="simulation-main-translation-list">
-                <table class="translations-table">
-                    <tr>
-                        <th>
-                            <wicket:message key="simulationMainPanel.language">Language</wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="simulationMainPanel.languageTranslated">Language (Translated)
-                            </wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="simulationMainPanel.simulationTitleTranslated">Simulation Title
-                            </wicket:message>
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr wicket:id="simulation-main-translation-list" class="simulation-main-translation-list">
-                        <td>
-                            <a href="#" wicket:id="language-link-1">
-                                <span wicket:id="simulation-main-translation-locale-name">Pig Latin</span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#" wicket:id="language-link-2">
-                                <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
-                            </a>
-                        </td>
-                        <td>
-                            <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
-                        </td>
-                        <td>
-                            <a href="#" wicket:id="simulation-main-translation-link" rel="external"
-                               class="sim-run-now-play">
-                                <wicket:message key="simulations.translated.runNow">Run Now</wicket:message>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#" wicket:id="simulation-main-translation-download" class="sim-download-disk">
-                                <wicket:message key="simulations.translated.download">Download</wicket:message>
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-            </wicket:enclosure>
-
-            <a id="software-requirements"></a>
-
-            <h2>
+            <h2 id="requirements-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('requirements')">
                 <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
             </h2>
 
-            <table class="system-requirements-table">
-                <tr>
-                    <th wicket:id="column1-header">Windows</th>
-                    <th wicket:id="column2-header">Macintosh</th>
-                    <th wicket:id="column3-header">Linux</th>
-                    <th wicket:id="column4-header"></th>
-                </tr>
-                <tr>
-                    <td>
-                        <wicket:enclosure child="column1-list">
-                            <div wicket:id="column1-list"><span wicket:id="column1-item">An item</span><br/></div>
-                        </wicket:enclosure>
-                    </td>
-                    <td>
-                        <wicket:enclosure child="column2-list">
-                            <div wicket:id="column2-list"><span wicket:id="column2-item">An item</span><br/></div>
-                        </wicket:enclosure>
-                    </td>
-                    <td>
-                        <wicket:enclosure child="column3-list">
-                            <div wicket:id="column3-list"><span wicket:id="column3-item">An item</span><br/></div>
-                        </wicket:enclosure>
-                    </td>
-                    <wicket:enclosure child="column4-list">
+            <div id="requirements" class="answer">
+                <table class="system-requirements-table">
+                    <tr>
+                        <th wicket:id="column1-header">Windows</th>
+                        <th wicket:id="column2-header">Macintosh</th>
+                        <th wicket:id="column3-header">Linux</th>
+                        <th wicket:id="column4-header"></th>
+                    </tr>
+                    <tr>
                         <td>
-                            <div wicket:id="column4-list"><span wicket:id="column4-item">An item</span><br/></div>
+                            <wicket:enclosure child="column1-list">
+                                <div wicket:id="column1-list"><span wicket:id="column1-item">An item</span><br/></div>
+                            </wicket:enclosure>
                         </td>
-                    </wicket:enclosure>
-                </tr>
-            </table>
+                        <td>
+                            <wicket:enclosure child="column2-list">
+                                <div wicket:id="column2-list"><span wicket:id="column2-item">An item</span><br/></div>
+                            </wicket:enclosure>
+                        </td>
+                        <td>
+                            <wicket:enclosure child="column3-list">
+                                <div wicket:id="column3-list"><span wicket:id="column3-item">An item</span><br/></div>
+                            </wicket:enclosure>
+                        </td>
+                        <wicket:enclosure child="column4-list">
+                            <td>
+                                <div wicket:id="column4-list"><span wicket:id="column4-item">An item</span><br/></div>
+                            </td>
+                        </wicket:enclosure>
+                    </tr>
+                </table>
 
-            <a id="credits"></a>
+            </div>
 
-            <h2>
+            <h2 id="credits-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('credits')">
                 <wicket:message key="simulationMainPanel.credits">Credits</wicket:message>
             </h2>
 
-            <table class="credits-table">
-                <tr>
-                    <th>
-                        <wicket:message key="simulationMainPanel.designTeam">Design Team</wicket:message>
-                    </th>
-                    <th>
-                        <wicket:message key="simulationMainPanel.thirdPartyLibraries">Third-party Libraries
-                        </wicket:message>
-                    </th>
-                    <th>
-                        <wicket:message key="simulationMainPanel.thanksTo">Thanks To</wicket:message>
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <wicket:enclosure child="design-list">
-                            <ul>
-                                <li wicket:id="design-list"><span wicket:id="design-item">A person</span></li>
-                            </ul>
-                        </wicket:enclosure>
-                    </td>
-                    <td>
-                        <wicket:enclosure child="library-list">
-                            <ul>
-                                <li wicket:id="library-list"><span wicket:id="library-item">Some library</span></li>
-                            </ul>
-                        </wicket:enclosure>
-                    </td>
-                    <td>
-                        <wicket:enclosure child="thanks-list">
-                            <ul>
-                                <li wicket:id="thanks-list"><span wicket:id="thanks-item">Everyone</span></li>
-                            </ul>
-                        </wicket:enclosure>
-                    </td>
-                </tr>
-            </table>
+            <div id="credits" class="answer">
+                <table class="credits-table">
+                    <tr>
+                        <th>
+                            <wicket:message key="simulationMainPanel.designTeam">Design Team</wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="simulationMainPanel.thirdPartyLibraries">Third-party Libraries
+                            </wicket:message>
+                        </th>
+                        <th>
+                            <wicket:message key="simulationMainPanel.thanksTo">Thanks To</wicket:message>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <wicket:enclosure child="design-list">
+                                <ul>
+                                    <li wicket:id="design-list"><span wicket:id="design-item">A person</span></li>
+                                </ul>
+                            </wicket:enclosure>
+                        </td>
+                        <td>
+                            <wicket:enclosure child="library-list">
+                                <ul>
+                                    <li wicket:id="library-list"><span wicket:id="library-item">Some library</span></li>
+                                </ul>
+                            </wicket:enclosure>
+                        </td>
+                        <td>
+                            <wicket:enclosure child="thanks-list">
+                                <ul>
+                                    <li wicket:id="thanks-list"><span wicket:id="thanks-item">Everyone</span></li>
+                                </ul>
+                            </wicket:enclosure>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </wicket:panel>

@@ -31,6 +31,7 @@ div.rtl .simulation-main-image-panel {
 
 .simulation-main-table {
     padding-bottom: 10px;
+    border-bottom: 1px solid #c60;
 }
 
 .simulation-main-description {
@@ -51,19 +52,22 @@ div.rtl .simulation-main-image-panel {
 }
 
 .simulation-main-container h2 {
-    color: #cc6600;
+    /*color: #cc6600;*/
+    color: black;
+    text-decoration: none;
     font-size: 15px;
     font-weight: bold;
     text-transform: uppercase;
     font-variant: small-caps;
     letter-spacing: 1px;
-    margin: 10px 0 5px;
-    padding-top: 5px;
-    border-top: 1px solid #cc6600;
+    /*margin: 10px 0 5px;*/
+    /*padding-top: 5px;*/
+    /*border-top: 1px solid #cc6600;*/
 }
 
 .simulation-main-container h3 {
-    color: #15337f;
+    /*color: #15337f;*/
+    color: rgb(50,152,166);
     font-size: 16px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -342,4 +346,16 @@ body#offline-installer-body .sim-download {
     background-image: url('../images/arrow-down.gif');
     background-position: left center;
     background-repeat: no-repeat;
+}
+
+.triangle-down {
+    background-image: url('/images/icons/triangle-down.png');
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+.triangle-right {
+    background-image: url('/images/icons/triangle-right.png');
+    background-repeat: no-repeat;
+    padding-left: 20px;
 }

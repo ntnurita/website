@@ -320,7 +320,14 @@ public class SimulationMainPanel extends PhetPanel {
                 WicketUtils.highlightListItem( item );
             }
         };
-        add( simulationList );
+
+        if ( otherLocalizedSimulations.size() > 0 ) {
+            add( simulationList );
+        }
+        else {
+            add( new InvisibleComponent( "simulation-main-translation-list" ) );
+
+        }
         /*---------------------------------------------------------------------------*
         * run / download links
         *----------------------------------------------------------------------------*/
