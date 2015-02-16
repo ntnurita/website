@@ -25,6 +25,13 @@ public class StringChanges {
         StringUtils.addString( session, "webglDisabled.mac", "Mac" );
         StringUtils.addString( session, "webglDisabled.mobile", "Mobile" );
 
+//        StringUtils.deleteString( session, "simulationMainPanel.teachingResources" );
+//        StringUtils.deleteString( session, "simulationMainPanel.mainTopics" );
+
+        StringUtils.addString( session, "simulationMainPanel.about", "About" );
+        StringUtils.addString( session, "simulationMainPanel.topics", "Topics" );
+        StringUtils.addString( session, "simulationMainPanel.description", "Description" );
+
         session.close();
     }
 

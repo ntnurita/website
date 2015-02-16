@@ -15,6 +15,7 @@ import edu.colorado.phet.website.panels.simulation.SimulationMainPanel;
 import edu.colorado.phet.website.translation.PhetPanelFactory;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class SimulationMainEntity extends TranslationEntity {
@@ -74,6 +75,11 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationDisplay.thumbnailView" );
 
         addString( "changelog.backToSimulation" );
+
+        // html5 sim page redesign
+        addString( "simulationMainPanel.about" );
+        addString( "simulationMainPanel.topics" );
+        addString( "simulationMainPanel.description" );
 
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {

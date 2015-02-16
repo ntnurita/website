@@ -170,12 +170,6 @@
                     </div>
                 </td>
                 <td class="simulation-main-description">
-            <span wicket:id="simulation-main-description" itemprop="description about">
-                Play with one or two pendulums and discover how the period of a simple pendulum depends on the
-                length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
-                measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
-                the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
-            </span>
 
                     <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
                         <a class="simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
@@ -251,12 +245,12 @@
             <a id="content"></a><a id="teaching-resources"></a>
 
             <h2 wicket:message="id:style.simulation-main-panel-content-header-clear">
-                <wicket:message key="simulationMainPanel.teachingResources">Teaching Resources</wicket:message>
+                <wicket:message key="simulationMainPanel.about">About</wicket:message>
             </h2>
 
             <wicket:enclosure child="topic-list">
                 <h3>
-                    <wicket:message key="simulationMainPanel.mainTopics">Main Topics</wicket:message>
+                    <wicket:message key="simulationMainPanel.topics">Topics</wicket:message>
                 </h3>
                 <ul>
                     <li wicket:id="topic-list">
@@ -265,6 +259,17 @@
                     </li>
                 </ul>
             </wicket:enclosure>
+
+            <h3>
+                <wicket:message key="simulationMainPanel.description">Description</wicket:message>
+            </h3>
+
+            <span wicket:id="simulation-main-description" itemprop="description about">
+                Play with one or two pendulums and discover how the period of a simple pendulum depends on the
+                length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
+                measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
+                the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
+            </span>
 
             <div style="display: none;">
                 <!-- TODO get rid of this part -->
