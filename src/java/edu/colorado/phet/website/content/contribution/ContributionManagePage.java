@@ -6,6 +6,7 @@ package edu.colorado.phet.website.content.contribution;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.protocol.https.RequireHttps;
 
 import edu.colorado.phet.website.panels.contribution.ContributionManagePanel;
 import edu.colorado.phet.website.templates.PhetRegularPage;
@@ -14,6 +15,7 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
+@RequireHttps
 public class ContributionManagePage extends PhetRegularPage {
 
     private static final Logger logger = Logger.getLogger( ContributionManagePage.class.getName() );
