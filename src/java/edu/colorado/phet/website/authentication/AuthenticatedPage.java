@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.protocol.https.RequireHttps;
 
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.menu.NavLocation;
@@ -20,6 +21,7 @@ import edu.colorado.phet.website.util.PhetUrlStrategy;
 /**
  * Class and methods for requiring authentication (user log in) before viewing a page
  */
+@RequireHttps
 public class AuthenticatedPage extends PhetPage {
 
     private static final Logger logger = Logger.getLogger( AuthenticatedPage.class.getName() );
