@@ -80,6 +80,8 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.about" );
         addString( "simulationMainPanel.topics" );
         addString( "simulationMainPanel.description" );
+        addString( "simulationMainPanel.forTeachers" );
+        addString( "simulationMainPanel.activities" );
 
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {

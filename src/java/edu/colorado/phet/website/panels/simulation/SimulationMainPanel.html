@@ -171,6 +171,15 @@
                 </td>
                 <td class="simulation-main-description">
 
+                    <wicket:enclosure child="top-topic-list">
+                        <ul>
+                            <li wicket:id="top-topic-list">
+                        <span wicket:id="top-topic-label" itemprop="keywords">
+                        </span>
+                            </li>
+                        </ul>
+                    </wicket:enclosure>
+
                     <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
                         <a class="simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
                             <wicket:message key="donate.donateNowBang">Donate Now!</wicket:message>
@@ -212,36 +221,36 @@
             </tr>
         </table>
         <div>
-            <div class="see-below">
-                <h3>
-                    <wicket:message key="simulationMainPanel.seeBelow">See Below</wicket:message>
-                </h3>
-                <ul class="see-below-links">
-                    <wicket:enclosure child="related-simulations-visible">
-                        <li><a href="#related-simulations">
-                            <wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">
-                                Related Sims &gt;&gt;
-                            </wicket:message>
-                        </a></li>
-                        <span wicket:id="related-simulations-visible"></span>
-                    </wicket:enclosure>
-                    <li><a href="#translated-versions">
-                        <wicket:message key="simulationMainPanel.seeBelow.translatedVersions">
-                            Translated Versions &gt;&gt;
-                        </wicket:message>
-                    </a></li>
-                    <li><a href="#software-requirements">
-                        <wicket:message key="simulationMainPanel.seeBelow.softwareRequirements">
-                            Software Requirements &gt;&gt;
-                        </wicket:message>
-                    </a></li>
-                    <li><a href="#credits">
-                        <wicket:message key="simulationMainPanel.seeBelow.credits">
-                            Credits &gt;&gt;
-                        </wicket:message>
-                    </a></li>
-                </ul>
-            </div>
+            <!--<div class="see-below">-->
+                <!--<h3>-->
+                    <!--<wicket:message key="simulationMainPanel.seeBelow">See Below</wicket:message>-->
+                <!--</h3>-->
+                <!--<ul class="see-below-links">-->
+                    <!--<wicket:enclosure child="related-simulations-visible">-->
+                        <!--<li><a href="#related-simulations">-->
+                            <!--<wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">-->
+                                <!--Related Sims &gt;&gt;-->
+                            <!--</wicket:message>-->
+                        <!--</a></li>-->
+                        <!--<span wicket:id="related-simulations-visible"></span>-->
+                    <!--</wicket:enclosure>-->
+                    <!--<li><a href="#translated-versions">-->
+                        <!--<wicket:message key="simulationMainPanel.seeBelow.translatedVersions">-->
+                            <!--Translated Versions &gt;&gt;-->
+                        <!--</wicket:message>-->
+                    <!--</a></li>-->
+                    <!--<li><a href="#software-requirements">-->
+                        <!--<wicket:message key="simulationMainPanel.seeBelow.softwareRequirements">-->
+                            <!--Software Requirements &gt;&gt;-->
+                        <!--</wicket:message>-->
+                    <!--</a></li>-->
+                    <!--<li><a href="#credits">-->
+                        <!--<wicket:message key="simulationMainPanel.seeBelow.credits">-->
+                            <!--Credits &gt;&gt;-->
+                        <!--</wicket:message>-->
+                    <!--</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
             <a id="content"></a><a id="teaching-resources"></a>
 
             <h2 wicket:message="id:style.simulation-main-panel-content-header-clear">
@@ -287,6 +296,10 @@
                 </wicket:enclosure>
             </div>
 
+            <h2 wicket:message="id:style.simulation-main-panel-content-header-clear">
+                <wicket:message key="simulationMainPanel.forTeachers">For Teachers</wicket:message>
+            </h2>
+
             <wicket:enclosure child="learning-goals">
                 <h3>
                     <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
@@ -296,16 +309,16 @@
                 </ul>
             </wicket:enclosure>
 
-            <wicket:enclosure child="faq-text">
-                <a id="faq"></a>
+            <!--<wicket:enclosure child="faq-text">-->
+                <!--<a id="faq"></a>-->
 
-                <h3>
-                    <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
-                </h3>
-                <div wicket:id="faq-text" class="teachers-tips-holder">
-                    This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
-                </div>
-            </wicket:enclosure>
+                <!--<h3>-->
+                    <!--<wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>-->
+                <!--</h3>-->
+                <!--<div wicket:id="faq-text" class="teachers-tips-holder">-->
+                    <!--This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).-->
+                <!--</div>-->
+            <!--</wicket:enclosure>-->
 
             <wicket:enclosure child="guide-text">
                 <a id="tips-for-teachers"></a>
@@ -321,7 +334,7 @@
             <a id="teaching-ideas"></a>
 
             <h3>
-                <wicket:message key="simulationMainPanel.teachingIdeas">Teaching Ideas</wicket:message>
+                <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
             </h3>
 
             <wicket:enclosure child="contributions-panel">

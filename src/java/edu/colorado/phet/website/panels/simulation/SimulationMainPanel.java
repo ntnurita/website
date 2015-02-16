@@ -396,6 +396,19 @@ public class SimulationMainPanel extends PhetPanel {
             }
         }
 
+        // top three topics listed at the top of the page
+        ListView topTopicList = new ListView<Keyword>( "top-topic-list", topics.subList( 0, 3 ) ) {
+            protected void populateItem( ListItem<Keyword> item ) {
+                Keyword keyword = item.getModelObject();
+                item.add( new RawLabel( "top-topic-label", new ResourceModel( keyword.getKey() ) ) );
+            }
+        };
+        add( topTopicList );
+        if ( topics.isEmpty() ) {
+            topTopicList.setVisible( false );
+        }
+
+        // topic list under the about section
         ListView topicList = new ListView<Keyword>( "topic-list", topics ) {
             protected void populateItem( ListItem<Keyword> item ) {
                 Keyword keyword = item.getModelObject();
@@ -560,11 +573,11 @@ public class SimulationMainPanel extends PhetPanel {
         List<LocalizedSimulation> relatedSimulations = getRelatedSimulations( simulation );
         if ( relatedSimulations.isEmpty() ) {
             add( new InvisibleComponent( "related-simulations-panel" ) );
-            add( new InvisibleComponent( "related-simulations-visible" ) );
+//            add( new InvisibleComponent( "related-simulations-visible" ) );
         }
         else {
             add( new SimulationDisplayPanel( "related-simulations-panel", context, relatedSimulations ) );
-            add( new RawBodyLabel( "related-simulations-visible", "" ) ); // visible but shows nothing, so the related simulations "see below" shows up
+//            add( new RawBodyLabel( "related-simulations-visible", "" ) ); // visible but shows nothing, so the related simulations "see below" shows up
         }
 
         /*---------------------------------------------------------------------------*
@@ -744,15 +757,15 @@ public class SimulationMainPanel extends PhetPanel {
         * FAQ
         *----------------------------------------------------------------------------*/
 
-        if ( simulation.getSimulation().isFaqVisible() && simulation.getSimulation().getFaqList() != null ) {
-            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[]{
-                    SimulationFAQPage.getLinker( simulation ).getHref( context, getPhetCycle() ),
-                    simulation.getSimulation().getFaqList().getPDFLinker( getMyLocale() ).getHref( context, getPhetCycle() )
-            } ) );
-        }
-        else {
-            add( new InvisibleComponent( "faq-text" ) );
-        }
+//        if ( simulation.getSimulation().isFaqVisible() && simulation.getSimulation().getFaqList() != null ) {
+//            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[]{
+//                    SimulationFAQPage.getLinker( simulation ).getHref( context, getPhetCycle() ),
+//                    simulation.getSimulation().getFaqList().getPDFLinker( getMyLocale() ).getHref( context, getPhetCycle() )
+//            } ) );
+//        }
+//        else {
+//            add( new InvisibleComponent( "faq-text" ) );
+//        }
 
         /*---------------------------------------------------------------------------*
         * metadata

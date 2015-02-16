@@ -27,10 +27,13 @@ public class StringChanges {
 
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingResources" );
 //        StringUtils.deleteString( session, "simulationMainPanel.mainTopics" );
+//        StringUtils.deleteString( session, "simulationMainPanel.teachingIdeas" );
 
         StringUtils.addString( session, "simulationMainPanel.about", "About" );
         StringUtils.addString( session, "simulationMainPanel.topics", "Topics" );
         StringUtils.addString( session, "simulationMainPanel.description", "Description" );
+        StringUtils.addString( session, "simulationMainPanel.forTeachers", "For Teachers" );
+        StringUtils.addString( session, "simulationMainPanel.activities", "Activities" );
 
         session.close();
     }
