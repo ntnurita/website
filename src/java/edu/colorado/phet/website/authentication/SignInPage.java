@@ -9,7 +9,6 @@ import java.net.URLEncoder;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.protocol.https.RequireHttps;
 
 import edu.colorado.phet.website.authentication.panels.SignInPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
@@ -22,7 +21,6 @@ import edu.colorado.phet.website.util.links.RawLinkable;
  * The page to send people to if they need to sign in. Specify a destination that they will be taken to after signing
  * in (even after registering)
  */
-@RequireHttps
 public class SignInPage extends PhetMenuPage {
 
     public static final String SIGN_IN_PATH = "sign-in";
