@@ -46,7 +46,7 @@ public class TranslateLanguagePage extends TranslationPage {
         super( parameters );
 
         if ( !PhetSession.get().isSignedIn() ) {
-            throw new RestartResponseAtInterceptPageException( SignInPage.class );
+            throwRedirectException();
         }
 
         locale = LocaleUtils.stringToLocale( parameters.getString( TRANSLATION_LOCALE ) );

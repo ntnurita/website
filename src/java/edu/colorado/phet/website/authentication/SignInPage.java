@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.RedirectToUrlException;
 
 import edu.colorado.phet.website.authentication.panels.SignInPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
@@ -28,6 +29,13 @@ public class SignInPage extends PhetMenuPage {
 
     public SignInPage( PageParameters parameters ) {
         super( parameters );
+
+        // redirect to the page with HTTPS if they have come using HTTP
+        if ( !getPhetCycle().isOriginalSecure() ) {
+            String url = SignInPage.getLinker( this.getFullPath() ).getRawUrl( getPageContext(), getPhetCycle() );
+            String[] urlAndQuery = url.split( "\\?" );
+            throw new RedirectToUrlException( urlAndQuery[0] + "?dest=/" );
+        }
 
         String destination = null;
 

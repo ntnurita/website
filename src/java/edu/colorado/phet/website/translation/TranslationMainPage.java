@@ -36,7 +36,7 @@ public class TranslationMainPage extends TranslationPage {
         super( parameters );
 
         if ( !PhetSession.get().isSignedIn() ) {
-            throw new RestartResponseAtInterceptPageException( SignInPage.class );
+            throwRedirectException();
         }
 
         final List<Translation> translations = new LinkedList<Translation>();

@@ -6,8 +6,10 @@ package edu.colorado.phet.website.authentication;
 
 import java.util.Collection;
 
+import org.apache.http.client.RedirectException;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.RedirectToUrlException;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 
 import edu.colorado.phet.website.data.PhetUser;
@@ -28,9 +30,8 @@ public class AuthenticatedPage extends PhetPage {
         super( parameters );
 
         if ( !PhetSession.get().isSignedIn() ) {
-            throw new RestartResponseAtInterceptPageException( SignInPage.class );
+            throwRedirectException();
         }
-
     }
 
     /**

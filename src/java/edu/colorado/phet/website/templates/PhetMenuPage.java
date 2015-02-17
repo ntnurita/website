@@ -16,6 +16,7 @@ import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.authentication.AuthenticatedPage;
+import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
@@ -29,6 +30,7 @@ import edu.colorado.phet.website.panels.TranslationLinksPanel;
 import edu.colorado.phet.website.panels.sponsor.SponsorsPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.PhetUrlStrategy;
 import edu.colorado.phet.website.util.wicket.IComponentFactory;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 
@@ -86,7 +88,9 @@ public abstract class PhetMenuPage extends PhetPage {
      */
     protected void verifySignedIn() {
         if ( initializedLocations ) {
-            AuthenticatedPage.checkSignedIn( navLocations, getPageContext() );
+            // TODO: figure out how to keep the nav locations on when signing in without using RestartResponseAtInterceptPageException
+            super.verifySignedIn();
+//            AuthenticatedPage.checkSignedIn( navLocations, getPageContext() );
         }
         else {
             super.verifySignedIn();
