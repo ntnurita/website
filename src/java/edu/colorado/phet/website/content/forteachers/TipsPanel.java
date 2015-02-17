@@ -27,6 +27,7 @@ public class TipsPanel extends ForTeachersPanel {
          add( LectureDemoPanel.getLinker().getLink( "lecture-demo-link", context, getPhetCycle() ) );
          add( ClickersPanel.getLinker().getLink( "clickers-demo-link", context, getPhetCycle() ) );
          add( ActivitiesdesignPanel.getLinker().getLink( "activities-design-link", context, getPhetCycle() ) );
+         add( FacilitatingActivitiesPanel.getLinker().getLink( "facilitating-activities-link", context, getPhetCycle() ) );
          add( VirtualWorkshopPanel.getLinker().getLink( "virtual-workshop-link", context, getPhetCycle() ) );
     }
 

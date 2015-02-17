@@ -44,6 +44,7 @@ public class ForTeachersEntity extends TranslationEntity {
         addString( "forTeachers.lectureDemo.title" );
         addString( "forTeachers.clickersDemo.title" );
         addString( "forTeachers.activitesDesign.title" );
+        addString( "forTeachers.facilitatingActivities.title" );
         addString( "forTeachers.virtualWorkshop.title" );
 
         addString( "for-teachers.classroom-use.title" );
