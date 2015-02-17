@@ -107,25 +107,20 @@
                         <a class="sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
                             <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
                         </a>
-                        <a class="sim-run-now sim-button" href="#" wicket:id="run-online-link" itemprop="url">
-                            <wicket:message key="simulationMainPanel.runOnline">Run Now!</wicket:message>
-                        </a>
 
-                        <wicket:enclosure child="html-button">
-                            <div style="clear: both; width: 100%; height: 0; padding: 0; margin: 0; padding-bottom: 12px;"></div>
-                            <div style="text-align: center;" wicket:id="html-button">
-                                <a class="simStyleOrange sim-button" href="#" target="_blank" wicket:id="html-link">
-                                    <wicket:message key="simulationMainPanel.runHTML">Run in HTML5</wicket:message>
-                                </a><br/>
-                                <div style="margin-top: 3px;"><wicket:message key="simulationMainPanel.worksInBrowsersTablets">works in browsers/tablets</wicket:message></div>
-                            </div>
-                        </wicket:enclosure>
+                        <!--<wicket:enclosure child="html-button">-->
+                            <!--<div style="clear: both; width: 100%; height: 0; padding: 0; margin: 0; padding-bottom: 12px;"></div>-->
+                            <!--<div style="text-align: center;" wicket:id="html-button">-->
+                                <!--<a class="simStyleOrange sim-button" href="#" target="_blank" wicket:id="html-link">-->
+                                    <!--<wicket:message key="simulationMainPanel.runHTML">Run in HTML5</wicket:message>-->
+                                <!--</a><br/>-->
+                                <!--<div style="margin-top: 3px;"><wicket:message key="simulationMainPanel.worksInBrowsersTablets">works in browsers/tablets</wicket:message></div>-->
+                            <!--</div>-->
+                        <!--</wicket:enclosure>-->
 
-                        <div style="clear: both; width: 100%; height: 0; padding: 0; margin: 0; padding-top: 2px;"></div>
-                        <span class="sim-version" wicket:id="simulationMainPanel.version" itemprop="version softwareVersion">Version: 2.0</span>
                         <a class="sim-embed sim-button" href="#" wicket:id="embed-button"
                            onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
-                            <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
+                            &lt; / &gt; <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
                         </a>
 
                         <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
@@ -171,7 +166,7 @@
                         </div>
                     </div>
                 </td>
-                <td class="simulation-main-description">
+                <td class="simulation-main-description" style="margin-top: 0">
 
                     <wicket:enclosure child="top-topic-list">
                         <ul>
@@ -222,37 +217,10 @@
                 </td>
             </tr>
         </table>
-        <div>
-            <!--<div class="see-below">-->
-                <!--<h3>-->
-                    <!--<wicket:message key="simulationMainPanel.seeBelow">See Below</wicket:message>-->
-                <!--</h3>-->
-                <!--<ul class="see-below-links">-->
-                    <!--<wicket:enclosure child="related-simulations-visible">-->
-                        <!--<li><a href="#related-simulations">-->
-                            <!--<wicket:message key="simulationMainPanel.seeBelow.relatedSimulations">-->
-                                <!--Related Sims &gt;&gt;-->
-                            <!--</wicket:message>-->
-                        <!--</a></li>-->
-                        <!--<span wicket:id="related-simulations-visible"></span>-->
-                    <!--</wicket:enclosure>-->
-                    <!--<li><a href="#translated-versions">-->
-                        <!--<wicket:message key="simulationMainPanel.seeBelow.translatedVersions">-->
-                            <!--Translated Versions &gt;&gt;-->
-                        <!--</wicket:message>-->
-                    <!--</a></li>-->
-                    <!--<li><a href="#software-requirements">-->
-                        <!--<wicket:message key="simulationMainPanel.seeBelow.softwareRequirements">-->
-                            <!--Software Requirements &gt;&gt;-->
-                        <!--</wicket:message>-->
-                    <!--</a></li>-->
-                    <!--<li><a href="#credits">-->
-                        <!--<wicket:message key="simulationMainPanel.seeBelow.credits">-->
-                            <!--Credits &gt;&gt;-->
-                        <!--</wicket:message>-->
-                    <!--</a></li>-->
-                <!--</ul>-->
-            <!--</div>-->
+        <div class="simulation-main-content">
+            <div class="other-sim-page" wicket:id="other-sim-page">
+
+            </div>
             <a id="content"></a><a id="teaching-resources"></a>
 
             <!--<h2 wicket:message="id:style.simulation-main-panel-content-header-clear">-->
@@ -278,12 +246,14 @@
                     <wicket:message key="simulationMainPanel.description">Description</wicket:message>
                 </h3>
 
-                <span wicket:id="simulation-main-description" itemprop="description about">
+                <p class="sim-description" wicket:id="simulation-main-description" itemprop="description about">
                     Play with one or two pendulums and discover how the period of a simple pendulum depends on the
                     length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
                     measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
                     the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
-                </span>
+                </p>
+
+                <span class="sim-version" wicket:id="simulationMainPanel.version" itemprop="version softwareVersion">Version: 2.0</span>
             </div>
 
             <div style="display: none;">
@@ -333,8 +303,8 @@
                         <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
                     </h3>
                     <div wicket:id="guide-text" class="teachers-tips-holder">
-                        The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
-                        team.
+                        <p class="sim-description">The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
+                        team.</p>
                     </div>
                 </wicket:enclosure>
 
@@ -358,7 +328,7 @@
                 <h2 id="translations-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('translations')">
                     <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
                 </h2>
-                <div id="translation" class="answer">
+                <div id="translations" class="answer">
                     <table class="translations-table">
                         <tr>
                             <th>
@@ -409,7 +379,7 @@
                 <h2 id="related-sims-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('related-sims')">
                     <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
                 </h2>
-                <div id="related-sims" class="answer" wicket:id="related-simulations-panel" style="margin: 0; padding: 0; margin-bottom: -15px;"></div>
+                <div id="related-sims" class="answer" wicket:id="related-simulations-panel"></div>
             </wicket:enclosure>
 
             <h2 id="requirements-header" class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('requirements')">

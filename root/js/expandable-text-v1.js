@@ -8,12 +8,14 @@
 function toggleMe( id ) {
   var e = document.getElementById( id );
   var thisElement = document.getElementById( id + '-header' );
+  var newClass;
   if ( !e || window['answer_' + id] ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
     window['answer_' + id] = true;
-    thisElement.className.replace( 'right', 'down' );
+    newClass = thisElement.className.replace( 'right', 'down' );
+    thisElement.className = newClass;
     var expandInterval = setInterval( function() {
       var h = e.offsetHeight;
       var sh = e.scrollHeight;
@@ -29,7 +31,8 @@ function toggleMe( id ) {
   }
   else {
     window['answer_' + id] = true;
-    thisElement.className.replace( 'down', 'right' );
+    newClass = thisElement.className.replace( 'down', 'right' );
+    thisElement.className = newClass;
     var retractInterval = setInterval( function() {
       var h = e.offsetHeight;
       if ( h > 0 ) {

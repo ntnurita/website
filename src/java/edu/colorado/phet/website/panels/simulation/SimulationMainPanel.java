@@ -156,17 +156,17 @@ public class SimulationMainPanel extends PhetPanel {
                 HtmlUtils.encode( simulationVersionString ),
         } ) );
 
-        {
-            String name = simulation.getSimulation().getName();
-            if ( HTML_SIM_LINK_MAP.containsKey( name ) ) {
-                WebMarkupContainer container = new WebMarkupContainer( "html-button" );
-                // TODO: isolate specific HTML5 sim links out!
-                container.add( new RawLink( "html-link", HTML_SIM_LINK_MAP.get( name ) ) );
-                add( container );
-            } else {
-                add( new InvisibleComponent( "html-button" ) );
-            }
-        }
+//        {
+//            String name = simulation.getSimulation().getName();
+//            if ( HTML_SIM_LINK_MAP.containsKey( name ) ) {
+//                WebMarkupContainer container = new WebMarkupContainer( "html-button" );
+//                // TODO: isolate specific HTML5 sim links out!
+//                container.add( new RawLink( "html-link", HTML_SIM_LINK_MAP.get( name ) ) );
+//                add( container );
+//            } else {
+//                add( new InvisibleComponent( "html-button" ) );
+//            }
+//        }
 
         add( DonatePanel.getLinker().getLink( "donate-link", context, getPhetCycle() ) );
 
@@ -331,11 +331,6 @@ public class SimulationMainPanel extends PhetPanel {
         /*---------------------------------------------------------------------------*
         * run / download links
         *----------------------------------------------------------------------------*/
-
-        // TODO: move from direct links to page redirections, so bookmarkables will be minimized
-        RawLink runOnlineLink = simulation.getRunLink( "run-online-link" );
-        add( runOnlineLink );
-
         RawLink downloadLink = simulation.getDownloadLink( "run-offline-link" );
         add( downloadLink );
 
