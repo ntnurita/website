@@ -306,11 +306,10 @@ div.rtl div.rating-holder {
 .other-sim-page {
     float: right;
     background-color: rgb(235,235,235);
-    padding-left: 15px;
-    padding-bottom: 15px;
-    /*border-left: 1px solid #cc6600;*/
-    /*border-bottom: 1px solid #cc6600;*/
-    /*border-top: 1px solid #cc6600;*/
+    display: block;
+    padding: 7px;
+    margin-top: 4px;
+    width: 180px;
 }
 
 /*div.rtl .see-below {*/

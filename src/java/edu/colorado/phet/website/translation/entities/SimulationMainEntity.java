@@ -84,6 +84,9 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.activities" );
         addString( "simulationMainPanel.translations" );
 
+        addString( "simulationMainPanel.originalSim" );
+        addString( "simulationMainPanel.backToHTML" );
+
         addPreview( new PhetPanelFactory() {
                         public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
 

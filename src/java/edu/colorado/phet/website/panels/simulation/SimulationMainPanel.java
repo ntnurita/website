@@ -42,6 +42,7 @@ import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
+import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
@@ -86,7 +87,7 @@ public class SimulationMainPanel extends PhetPanel {
     private static final Logger logger = Logger.getLogger( SimulationMainPanel.class.getName() );
 
     // maps Java/Flash sim names into HTML runnable English URLs. TODO: figure out something better
-    private static final Map<String,String> HTML_SIM_LINK_MAP = new HashMap<String, String>();
+    private static final Map<String, String> HTML_SIM_LINK_MAP = new HashMap<String, String>();
 
     static {
         HTML_SIM_LINK_MAP.put( "acid-base-solutions", "/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html" );
@@ -140,7 +141,7 @@ public class SimulationMainPanel extends PhetPanel {
         } ) ) );
         if ( simulation.getSimulation().isHTML() ) {
             WebMarkupContainer html5Badge = new WebMarkupContainer( "html5-badge" );
-            link.add ( html5Badge );
+            link.add( html5Badge );
             html5Badge.add( new SimpleAttributeModifier( "class", "sim-badge-html" ) );
             html5Badge.add( new SimpleAttributeModifier( "style", "left: 284px" ) );
         }
@@ -356,6 +357,24 @@ public class SimulationMainPanel extends PhetPanel {
                 setOutputMarkupId( true );
             }
         }} );
+
+        /*---------------------------------------------------------------------------*
+        * link to other sim page (i.e. java -> html or html -> java)
+        *----------------------------------------------------------------------------*/
+
+        if ( simulation.getSimulation().isHTML() ) {
+            add ( new WebMarkupContainer( "other-sim-page" ) {{
+                add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_40, "html5 badge" ) );
+                add( new LocalizedText( "other-sim-text", "simulationMainPanel.originalSim" ) );
+            }} );
+        }
+        else {
+            add ( new WebMarkupContainer( "other-sim-page" ) {{
+                add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_40, "html5 badge" ) );
+                add( new LocalizedText( "other-sim-text", "simulationMainPanel.backToHTML" ) );
+            }} );
+        }
+
 
         /*---------------------------------------------------------------------------*
         * keywords / topics
