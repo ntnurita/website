@@ -21,13 +21,8 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
-//        StringUtils.deleteString( session, "simulationMainPanel.version" );
-//        StringUtils.deleteString( session, "simulationMainPanel.kilobytes" );
-//        StringUtils.addString( session, "simulationMainPanel.version", "Version {0}" );
-
-
-        StringUtils.addString( session, "nav.forTeachers.facilitatingActivities", "Facilitating PhET Activities for the K12 Classroom" );
-        StringUtils.addString( session, "forTeachers.facilitatingActivities.title", "Facilitating PhET Activities for the K12 Classroom" );
+        StringUtils.addString( session, "nav.forTeachers.facilitatingActivities", "Facilitating Activities for K12" );
+        StringUtils.addString( session, "forTeachers.facilitatingActivities.title", "Facilitating Activities for K12" );
 
         session.close();
     }
