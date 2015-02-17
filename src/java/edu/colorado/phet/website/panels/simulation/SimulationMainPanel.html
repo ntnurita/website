@@ -105,7 +105,8 @@
                             <span wicket:id="html5-badge"></span>
                         </a>
                         <a class="sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
-                            <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
+                            <img src="/images/icons/download-icon.png" alt=" " style="margin-top: 3px; margin-right: 3px">
+                            <span><wicket:message key="simulationMainPanel.runOffline">Download</wicket:message></span>
                         </a>
 
                         <!--<wicket:enclosure child="html-button">-->
@@ -218,9 +219,9 @@
             </tr>
         </table>
         <div class="simulation-main-content">
-            <a class="other-sim-page" wicket:id="other-sim-page">
+            <a class="other-sim-page" href="#" wicket:id="other-sim-page">
                 <img wicket:id="other-sim-icon" style="float: left;">
-                <span wicket:id="other-sim-text"></span>
+                <span wicket:id="other-sim-text" class="other-sim-link"></span>
             </a>
             <a id="content"></a><a id="teaching-resources"></a>
 

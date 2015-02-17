@@ -18,6 +18,8 @@ public class Images {
 
     public static final ImageHandle HTML5_LOGO_80 = new ImageHandle( "/images/HTML5_Badge_80_clean.svg", true );
     public static final ImageHandle HTML5_LOGO_40 = new ImageHandle( "/images/HTML5_Badge_40_clean.svg", true );
+    public static final ImageHandle HTML5_LOGO_WITH_TEXT = new ImageHandle( "/images/HTML5_Logo_32_drop.png", true );
+    public static final ImageHandle JAVA_LOGO = new ImageHandle( "/images/icons/java-icon.png", true );
     public static final ImageHandle HTML5_VIDEO_THUMBNAIL_220 = new ImageHandle( "/images/creating-next-generation-phet-sims-220.png", true );
 
     public static final ImageHandle TRANSLATION_UTILITY_SMALL = new ImageHandle( "/images/screenshots/translation-utility-small.png", true );

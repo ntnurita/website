@@ -364,13 +364,13 @@ public class SimulationMainPanel extends PhetPanel {
 
         if ( simulation.getSimulation().isHTML() ) {
             add ( new WebMarkupContainer( "other-sim-page" ) {{
-                add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_40, "html5 badge" ) );
+                add( new StaticImage( "other-sim-icon", Images.JAVA_LOGO, "Java Logo" ) );
                 add( new LocalizedText( "other-sim-text", "simulationMainPanel.originalSim" ) );
             }} );
         }
         else {
             add ( new WebMarkupContainer( "other-sim-page" ) {{
-                add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_40, "html5 badge" ) );
+                add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_WITH_TEXT, "HTML5 Badge" ) );
                 add( new LocalizedText( "other-sim-text", "simulationMainPanel.backToHTML" ) );
             }} );
         }

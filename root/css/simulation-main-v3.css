@@ -96,7 +96,7 @@ div.rtl .simulation-main-image-panel {
 
 .sim-button {
     text-decoration: none;
-    font-size: 14px;
+    font-size: 1.167em;
     font-weight: bold;
     color: black;
     padding: 1px 10px;
@@ -105,6 +105,8 @@ div.rtl .simulation-main-image-panel {
     border: 1px solid #99ffff;
     border-right-color: #005577;
     border-bottom-color: #005577;
+    height: 22px;
+    line-height: 22px;
 }
 
 .sim-button:hover {
@@ -310,6 +312,13 @@ div.rtl div.rating-holder {
     padding: 7px;
     margin-top: 4px;
     width: 180px;
+    cursor: pointer;
+}
+
+.other-sim-link {
+    padding-left: 50px;
+    display: block;
+    font-size: 1.25em;
 }
 
 /*div.rtl .see-below {*/

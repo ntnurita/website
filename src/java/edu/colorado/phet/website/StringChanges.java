@@ -36,8 +36,8 @@ public class StringChanges {
         StringUtils.addString( session, "simulationMainPanel.activities", "Activities" );
         StringUtils.addString( session, "simulationMainPanel.translations", "Translations" );
 
-        StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations" );
-        StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version" );
+        StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations >>" );
+        StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version >>" );
 
         session.close();
     }
