@@ -15,14 +15,14 @@ public class CheckLogin extends WebPage {
         if ( user != null ) {
             String username = "\"username\": \"" + user.getName() + "\"";
             String email = "\"email\": \"" + user.getEmail() + "\"";
-            String userId = "\"userId\": \"" + user.getId() + "\"";
-            String signedIn = "\"loggedIn\": \"" + psession.isSignedIn() + "\"";
+            String userId = "\"userId\": " + user.getId();
+            String signedIn = "\"loggedIn\": " + psession.isSignedIn();
             add( new RawLabel( "data", "{ " + username + ", " + userId + ", " + email + ", " + signedIn + " }") {{
                 setRenderBodyOnly( true );
             }} );
         }
         else {
-            add( new RawLabel( "data", "{ \"loggedIn\": \"false\" }" )  {{
+            add( new RawLabel( "data", "{ \"loggedIn\": false }" )  {{
                 setRenderBodyOnly( true );
             }} );
         }
