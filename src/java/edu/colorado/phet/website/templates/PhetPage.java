@@ -13,6 +13,7 @@ import javax.servlet.ServletContext;
 import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.RedirectToUrlException;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
@@ -416,6 +417,11 @@ public abstract class PhetPage extends WebPage implements Stylable {
         }
     }
 
+    public void throwRedirectException() {
+        String url = SignInPage.getLinker( this.getFullPath() ).getRawUrl( getPageContext(), getPhetCycle() );
+        throw new RedirectToUrlException( url );
+    }
+
     @Override
     protected void onAfterRender() {
         super.onAfterRender();
@@ -464,7 +470,10 @@ public abstract class PhetPage extends WebPage implements Stylable {
      * If the user is not signed in, redirect them to the sign-in page.
      */
     protected void verifySignedIn() {
-        AuthenticatedPage.checkSignedIn( getPageContext() );
+        if ( !PhetSession.get().isSignedIn() ) {
+            throwRedirectException();
+        }
+//        AuthenticatedPage.checkSignedIn( getPageContext() );
     }
 
     /**

@@ -36,7 +36,7 @@ public class CollaborationRequestPage extends TranslationPage {
         super( parameters );
 
         if ( !PhetSession.get().isSignedIn() ) {
-            throw new RestartResponseAtInterceptPageException( SignInPage.class );
+            throwRedirectException();
         }
 
         translationId = Integer.parseInt( parameters.getString( TRANSLATION_ID ) );

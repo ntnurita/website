@@ -24,6 +24,8 @@ public class StringChanges {
         StringUtils.addString( session, "webglDisabled.windows", "Windows" );
         StringUtils.addString( session, "webglDisabled.mac", "Mac" );
         StringUtils.addString( session, "webglDisabled.mobile", "Mobile" );
+        StringUtils.addString( session, "nav.forTeachers.facilitatingActivities", "Facilitating Activities for K12" );
+        StringUtils.addString( session, "forTeachers.facilitatingActivities.title", "Facilitating Activities for K12" );
 
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingResources" );
 //        StringUtils.deleteString( session, "simulationMainPanel.mainTopics" );

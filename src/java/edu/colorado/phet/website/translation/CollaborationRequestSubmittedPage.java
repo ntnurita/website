@@ -19,7 +19,7 @@ public class CollaborationRequestSubmittedPage extends TranslationPage {
         super( parameters );
 
         if ( !PhetSession.get().isSignedIn() ) {
-            throw new RestartResponseAtInterceptPageException( SignInPage.class );
+            throwRedirectException();
         }
 
         add( TranslationMainPage.getLinker().getLink( "return", getPageContext(), getPhetCycle() ) );
