@@ -380,3 +380,30 @@ body#offline-installer-body .sim-download {
     padding-left: 20px;
     color: rgb(110,110,110);
 }
+
+#play-sim-icon {
+    position: absolute;
+    left: 100px;
+    top: 49px;
+}
+
+.sim-page-badge {
+    display: block;
+    position: absolute;
+}
+
+.java-badge{
+    background-image: url(../images/icons/java-icon.png);
+    width: 40px;
+    height: 42px;
+    left: 278px;
+    bottom: 0;
+}
+
+.html-badge {
+    background-image: url(../images/HTML5_Logo_32_drop.png);
+    width: 32px;
+    height: 38px;
+    left: 284px;
+    bottom: -3px;
+}

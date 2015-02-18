@@ -98,12 +98,24 @@
                 <td style="width: 300px; vertical-align: top;">
                     <div class="simulation-main-image-panel">
                         <a href="#" wicket:id="simulation-main-link-run-main" rel="external"
-                           class="simulation-main-link-run-main" style="position: relative">
+                           class="simulation-main-link-run-main" style="position: relative; display: inline-block">
                             <img wicket:id="simulation-main-screenshot" class="simulation-main-screenshot"
                                  src="../../../../../../../../template-files/images/arithmetic-screenshot.png"
-                                 width="300" id="simulation-main-screenshot-image" itemprop="image screenshot"/>
+                                 width="300" id="simulation-main-screenshot-image" itemprop="image screenshot"
+                                 onload="adjustPlayButton()" />
+                            <img src="/images/icons/play-sim.png" alt=" " id="play-sim-icon" width="100" height="100">
                             <span wicket:id="html5-badge"></span>
                         </a>
+                        <script type="text/javascript">
+                            function adjustPlayButton() {
+                                var playButton = document.getElementById('play-sim-icon');
+                                var screenShot = document.getElementById('simulation-main-screenshot-image');
+                                var buttonLeft = screenShot.offsetWidth / 2 - playButton.offsetWidth / 2;
+                                var buttonTop = screenShot.offsetHeight / 2 - playButton.offsetHeight / 2;
+                                playButton.style.left = buttonLeft + "px";
+                                playButton.style.top = buttonTop + "px";
+                            }
+                        </script>
                         <a class="sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
                             <img src="/images/icons/download-icon.png" alt=" " style="margin-top: 3px; margin-right: 3px">
                             <span><wicket:message key="simulationMainPanel.runOffline">Download</wicket:message></span>

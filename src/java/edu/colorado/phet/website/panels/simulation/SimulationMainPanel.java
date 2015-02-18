@@ -139,19 +139,17 @@ public class SimulationMainPanel extends PhetPanel {
         link.add( new StaticImage( "simulation-main-screenshot", image, StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
         } ) ) );
+
+        WebMarkupContainer html5Badge = new WebMarkupContainer( "html5-badge" );
+        link.add( html5Badge );
         if ( simulation.getSimulation().isHTML() ) {
-            WebMarkupContainer html5Badge = new WebMarkupContainer( "html5-badge" );
-            link.add( html5Badge );
-            html5Badge.add( new SimpleAttributeModifier( "class", "sim-badge-html" ) );
-            html5Badge.add( new SimpleAttributeModifier( "style", "left: 284px" ) );
+            html5Badge.add( new SimpleAttributeModifier( "class", "sim-page-badge html-badge" ) );
         }
         else {
-            link.add( new InvisibleComponent( "html5-badge" ) );
+            html5Badge.add( new SimpleAttributeModifier( "class", "sim-page-badge java-badge" ) );
         }
         add( link );
 
-
-        //add( new Label( "simulation-main-description", simulation.getDescription() ) );
         add( new LocalizedText( "simulation-main-description", simulation.getSimulation().getDescriptionKey() ) );
         add( new LocalizedText( "simulationMainPanel.version", "simulationMainPanel.version", new Object[]{
                 HtmlUtils.encode( simulationVersionString ),
