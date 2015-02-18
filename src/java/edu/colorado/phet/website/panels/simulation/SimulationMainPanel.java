@@ -747,15 +747,15 @@ public class SimulationMainPanel extends PhetPanel {
         * FAQ
         *----------------------------------------------------------------------------*/
 
-//        if ( simulation.getSimulation().isFaqVisible() && simulation.getSimulation().getFaqList() != null ) {
-//            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[]{
-//                    SimulationFAQPage.getLinker( simulation ).getHref( context, getPhetCycle() ),
-//                    simulation.getSimulation().getFaqList().getPDFLinker( getMyLocale() ).getHref( context, getPhetCycle() )
-//            } ) );
-//        }
-//        else {
-//            add( new InvisibleComponent( "faq-text" ) );
-//        }
+        if ( simulation.getSimulation().isFaqVisible() && simulation.getSimulation().getFaqList() != null ) {
+            add( new LocalizedText( "faq-text", "simulationMainPanel.simulationHasFAQ", new Object[]{
+                    SimulationFAQPage.getLinker( simulation ).getHref( context, getPhetCycle() ),
+                    simulation.getSimulation().getFaqList().getPDFLinker( getMyLocale() ).getHref( context, getPhetCycle() )
+            } ) );
+        }
+        else {
+            add( new InvisibleComponent( "faq-text" ) );
+        }
 
         /*---------------------------------------------------------------------------*
         * metadata

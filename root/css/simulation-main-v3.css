@@ -139,7 +139,6 @@ div.rtl .simulation-main-image-panel {
 }
 
 .teachers-tips-holder {
-    margin: 0 20px;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
 }
@@ -150,14 +149,14 @@ div.rtl .simulation-main-image-panel {
     padding: 0 5px 0 0;
 }
 
-.simulation-contributions-pane {
-    margin-left: 5px;
-}
+/*.simulation-contributions-pane {*/
+    /*margin-left: 5px;*/
+/*}*/
 
-div.rtl .simulation-contributions-pane {
+/*div.rtl .simulation-contributions-pane {*/
 /* leave the other margin? */
-    margin-right: 5px;
-}
+    /*margin-right: 5px;*/
+/*}*/
 
 /* TODO: Clean up this table CSS */
 table.system-requirements-table {
