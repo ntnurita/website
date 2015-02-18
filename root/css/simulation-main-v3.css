@@ -39,7 +39,6 @@ div.rtl .simulation-main-image-panel {
 }
 
 .simulation-main-description {
-    /*line-height: 150%;*/
     vertical-align: top;
     padding: 0;
 }
@@ -56,16 +55,13 @@ div.rtl .simulation-main-image-panel {
 }
 
 .simulation-main-container h2 {
-    /*color: #cc6600;*/
     text-decoration: none;
     font-size: 15px;
     font-weight: bold;
     text-transform: uppercase;
     font-variant: small-caps;
     letter-spacing: 1px;
-    /*margin: 10px 0 5px;*/
-    /*padding-top: 5px;*/
-    /*border-top: 1px solid #cc6600;*/
+    margin: 7px 2px;
 }
 
 .simulation-main-container h3 {
@@ -84,14 +80,6 @@ div.rtl .simulation-main-image-panel {
 .sim-version {
     padding-left: 20px;
     color: rgb(150,150,150);
-}
-
-.sim-kb {
-    float: left;
-    /*clear: left;*/
-    margin-top: 4px;
-    padding: 0.3em;
-    color: #666;
 }
 
 .sim-button {
@@ -143,44 +131,6 @@ div.rtl .simulation-main-image-panel {
     border-right-color: #ffdd33;
     border-bottom-color: #ffdd33;
 }
-
-/*.sim-embed {*/
-    /*float: left;*/
-    /*clear: left;*/
-    /*font-weight: normal;*/
-    /*background-color: #b3e7ff;*/
-    /*border: 1px solid #ccffff;*/
-    /*border-right-color: #7895a1;*/
-    /*border-bottom-color: #7895a1;*/
-/*}*/
-
-/*.sim-embed:hover {*/
-    /*background-color: #99cdff;*/
-/*}*/
-
-/*.sim-embed:active {*/
-    /*border: 1px solid #7895a1;*/
-    /*border-right-color: #ccffff;*/
-    /*border-bottom-color: #ccffff;*/
-/*}*/
-
-/*.sim-run-now {*/
-    /*float: right;*/
-    /*background-color: #1fff01;*/
-    /*border: 1px solid #aaffaa;*/
-    /*border-right-color: #006600;*/
-    /*border-bottom-color: #006600;*/
-/*}*/
-
-/*.sim-run-now:hover {*/
-    /*background-color: #00cc00;*/
-/*}*/
-
-/*.sim-run-now:active {*/
-    /*border: 1px solid #006600;*/
-    /*border-right-color: #aaffaa;*/
-    /*border-bottom-color: #aaffaa;*/
-/*}*/
 
 .keyword-list-holder {
     list-style-type: none;
@@ -265,10 +215,6 @@ table.translations-table th {
     padding-bottom: 3px;
 }
 
-/*table.translations-table td {*/
-    /*vertical-align: top;*/
-/*}*/
-
 table.simulation-main-translations-table {
     margin: 5px 10px 15px;
     width: 505px;
@@ -319,33 +265,6 @@ div.rtl div.rating-holder {
     padding-left: 50px;
     display: block;
     font-size: 1.25em;
-}
-
-/*div.rtl .see-below {*/
-    /*float: left;*/
-    /*padding-left: 0;*/
-    /*padding-right: 15px;*/
-    /*border-left: none;*/
-    /*border-right: 1px solid #cc6600;*/
-/*}*/
-
-/*ul.see-below-links {*/
-    /*padding: 0;*/
-    /*margin: 0;*/
-/*}*/
-
-/*ul.see-below-links li {*/
-    /*list-style: none;*/
-    /*padding: 0;*/
-    /*margin: 0;*/
-/*}*/
-
-/*.see-below a {*/
-    /*text-decoration: none;*/
-/*}*/
-
-body#offline-installer-body .sim-kb {
-    visibility: hidden;
 }
 
 body#offline-installer-body .sim-download {
