@@ -389,7 +389,7 @@ public class SimulationMainPanel extends PhetPanel {
         }
 
         // top three topics listed at the top of the page
-        ListView topTopicList = new ListView<Keyword>( "top-topic-list", topics.subList( 0, 3 ) ) {
+        ListView topTopicList = new ListView<Keyword>( "top-topic-list", topics.subList( 0, Math.min( 3, topics.size() ) ) ) {
             protected void populateItem( ListItem<Keyword> item ) {
                 Keyword keyword = item.getModelObject();
                 item.add( new RawLabel( "top-topic-label", new ResourceModel( keyword.getKey() ) ) );
