@@ -124,8 +124,6 @@ public class SimulationMainPanel extends PhetPanel {
 
         add( new Label( "simulation-main-title", simulation.getTitle() ) );
 
-        //add( HeaderContributor.forCss( CSS.SIMULATION_MAIN ) );
-
         if ( simulation.getLocale().equals( context.getLocale() ) ) {
             add( new InvisibleComponent( "untranslated-sim-text" ) );
         }
@@ -155,23 +153,7 @@ public class SimulationMainPanel extends PhetPanel {
                 HtmlUtils.encode( simulationVersionString ),
         } ) );
 
-//        {
-//            String name = simulation.getSimulation().getName();
-//            if ( HTML_SIM_LINK_MAP.containsKey( name ) ) {
-//                WebMarkupContainer container = new WebMarkupContainer( "html-button" );
-//                // TODO: isolate specific HTML5 sim links out!
-//                container.add( new RawLink( "html-link", HTML_SIM_LINK_MAP.get( name ) ) );
-//                add( container );
-//            } else {
-//                add( new InvisibleComponent( "html-button" ) );
-//            }
-//        }
-
         add( DonatePanel.getLinker().getLink( "donate-link", context, getPhetCycle() ) );
-
-//        SmallOrangeButtonBorder orangeButton = new SmallOrangeButtonBorder( "orange-button", context );
-//        add( orangeButton );
-//        orangeButton.add( DonatePanel.getLinker().getLink( "support-link", context, getPhetCycle() ) );
 
         /*---------------------------------------------------------------------------*
         * rating icons
@@ -223,16 +205,11 @@ public class SimulationMainPanel extends PhetPanel {
             add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
-//            Label visLabel = new Label( "tips-for-teachers-visible", "" );
-//            visLabel.setRenderBodyOnly( true ); // don't make anything appear
-//            add( visLabel );
             hasTeacherTips = true;
         }
         else {
             // make the teachers guide text (and whole section) invisible
             add( new InvisibleComponent( "guide-text" ) );
-//            add( new InvisibleComponent( "tips-for-teachers-visible" ) );
-
             hasTeacherTips = false;
         }
 
@@ -267,13 +244,9 @@ public class SimulationMainPanel extends PhetPanel {
                 }
             } );
             add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
-//            Label visLabel = new Label( "teacher-ideas-visible", "" );
-//            visLabel.setRenderBodyOnly( true ); // don't make anything appear
-//            add( visLabel );
         }
         else {
             add( new InvisibleComponent( "contributions-panel" ) );
-//            add( new InvisibleComponent( "teacher-ideas-visible" ) );
         }
 
         /*---------------------------------------------------------------------------*
@@ -592,11 +565,9 @@ public class SimulationMainPanel extends PhetPanel {
         List<LocalizedSimulation> relatedSimulations = getRelatedSimulations( simulation );
         if ( relatedSimulations.isEmpty() ) {
             add( new InvisibleComponent( "related-simulations-panel" ) );
-//            add( new InvisibleComponent( "related-simulations-visible" ) );
         }
         else {
             add( new SimulationDisplayPanel( "related-simulations-panel", context, relatedSimulations ) );
-//            add( new RawBodyLabel( "related-simulations-visible", "" ) ); // visible but shows nothing, so the related simulations "see below" shows up
         }
 
         /*---------------------------------------------------------------------------*
