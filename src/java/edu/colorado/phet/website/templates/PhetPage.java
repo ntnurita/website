@@ -418,6 +418,8 @@ public abstract class PhetPage extends WebPage implements Stylable {
     }
 
     public void throwRedirectException() {
+        System.out.println( "PATH: " + this.path );
+        System.out.println( "FULL PATH: "  + this.getFullPath() );
         String url = SignInPage.getLinker( this.getFullPath() ).getRawUrl( getPageContext(), getPhetCycle() );
         throw new RedirectToUrlException( url );
     }
