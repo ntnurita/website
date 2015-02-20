@@ -108,6 +108,7 @@ import edu.colorado.phet.website.content.simulations.ByDevicePage;
 import edu.colorado.phet.website.content.simulations.ByGradeLevelPage;
 import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.content.simulations.HTML5Page;
+import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
@@ -308,6 +309,7 @@ public class PhetWicketApplication extends WebApplication {
         // display the icons
         CategoryPage.addToMapper( mapper );
         SimulationPage.addToMapper( mapper );
+        LegacySimulationPage.addToMapper( mapper );
         SimulationChangelogPage.addToMapper( mapper );
         StaticPage.addToMapper( mapper );
         IndexPage.addToMapper( mapper );

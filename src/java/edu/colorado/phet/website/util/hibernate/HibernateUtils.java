@@ -28,6 +28,7 @@ import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.translation.PhetLocalizer;
@@ -71,6 +72,16 @@ public class HibernateUtils {
             sessionFactory.close();
         }
         sessionFactory = null;
+    }
+
+    public static Project getOtherProject( Session session, String simulationName, Project project ) {
+        List<Simulation> sims = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simulationName ).list();
+        for ( Simulation s : sims ) {
+            if ( s.getProject().getId() != project.getId() ) {
+                return s.getProject();
+            }
+        }
+        return null;
     }
 
     public static List<LocalizedSimulation> getLocalizedSimulationsMatching( Session session, String projectName, String simulationName, Locale locale ) {
@@ -170,6 +181,7 @@ public class HibernateUtils {
 
     /**
      * Find the best LocalizedSimulation that matches the given locale and simulation name.
+     *
      * <p/>
      * NOTE: Simulation names should be unique. Matches exact locale, then language, then English.
      * NOTE: Session must be within a transaction
@@ -177,9 +189,10 @@ public class HibernateUtils {
      * @param session    Hibernate session (in a transaction)
      * @param locale     Desired locale
      * @param simulation Simulation name
+     * @param isLegacy   Looks for legacy sim matches if true, otherwise will return an html sim page match if one exists
      * @return The best LocalizedSimulation
      */
-    public static LocalizedSimulation getBestSimulation( Session session, Locale locale, String simulation ) {
+    public static LocalizedSimulation getBestSimulation( Session session, Locale locale, String simulation, boolean isLegacy ) {
         Locale englishLocale = LocaleUtils.stringToLocale( "en" );
         Locale languageLocale = LocaleUtils.stringToLocale( locale.getLanguage() );
         boolean useLanguage = !languageLocale.equals( locale );
@@ -191,33 +204,55 @@ public class HibernateUtils {
             query.setLocale( "lang", languageLocale );
         }
         query.setLocale( "english", englishLocale );
-        List simulations = query.list();
+        List<LocalizedSimulation> simulations = query.list();
 
         if ( simulations.size() == 0 ) {
             return null;
         }
 
         if ( simulations.size() == 1 ) {
-            return (LocalizedSimulation) simulations.get( 0 );
+            return simulations.get( 0 );
+        }
+
+        if ( !isLegacy ) {
+            // Get HTML sims if there are some
+            List<LocalizedSimulation> htmlSimulations = new LinkedList();
+            for ( LocalizedSimulation localizedSim : simulations ) {
+                if ( localizedSim.getSimulation().getProject().getType() == Project.TYPE_HTML ) {
+                    logger.warn( "Found HTML sim" );
+                    htmlSimulations.add( localizedSim );
+                }
+            }
+
+            // HTML sims are returned first
+            if ( htmlSimulations.size() > 0 ) {
+                logger.warn( "Returning HTML sim" );
+                return htmlSimulations.get( 0 );
+            }
         }
 
         if ( simulations.size() <= 3 ) {
-            for ( Object o : simulations ) {
-                if ( ( (LocalizedSimulation) o ).getLocale().equals( locale ) ) {
-                    return (LocalizedSimulation) o;
+            for ( LocalizedSimulation localizedSim : simulations ) {
+                logger.warn( "Simulation title: " + localizedSim.getTitle() + " Project: " + localizedSim.getSimulation().getProject().getName() );
+                if ( localizedSim.getLocale().equals( locale ) ) {
+                    return localizedSim;
                 }
             }
             if ( useLanguage ) {
-                for ( Object o : simulations ) {
-                    if ( ( (LocalizedSimulation) o ).getLocale().equals( languageLocale ) ) {
-                        return (LocalizedSimulation) o;
+                for ( LocalizedSimulation localizedSim : simulations ) {
+                    if ( localizedSim.getLocale().equals( languageLocale ) ) {
+                        return localizedSim;
                     }
                 }
             }
-            return (LocalizedSimulation) simulations.get( 0 );
+            return simulations.get( 0 );
         }
 
         throw new RuntimeException( "WARNING: matches more than 3 simulations!" );
+    }
+
+    public static LocalizedSimulation getBestSimulation( Session session, Locale locale, String simulation ) {
+        return getBestSimulation( session, locale, simulation, true );
     }
 
     public static final String[] SIM_TITLE_IGNORE_WORDS = { "The", "La", "El" };

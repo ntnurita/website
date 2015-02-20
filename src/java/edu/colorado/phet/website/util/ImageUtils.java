@@ -44,6 +44,9 @@ public class ImageUtils {
         catch ( IllegalArgumentException e ) {
             logger.warn( "image file dimension failure (argument) for " + imageFile.getAbsolutePath(), e );
         }
+        catch ( NullPointerException e ) {
+            logger.warn( "Null pointer exception in getImageFileDimension" + imageFile.getAbsolutePath(), e );
+        }
         return null; // unknown
     }
 

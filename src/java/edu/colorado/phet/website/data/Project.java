@@ -279,7 +279,7 @@ public class Project implements Serializable, IntId {
                             project.setVersionMinor( Integer.parseInt( versionNumbers[1] ) );
                             project.setVersionDev( Integer.parseInt( versionNumbers[2] ) );
                         }
-                        catch ( NumberFormatException e ) {
+                        catch( NumberFormatException e ) {
                             logger.warn( "Number format exception parsing directory name: " + latestHTMLVersionDirectory.getName() );
                         }
                         project.setVersionRevision( 0 );
@@ -334,12 +334,12 @@ public class Project implements Serializable, IntId {
                             try {
                                 document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, unqualifiedName + ".xml" ) ) );
                             }
-                            catch ( FileNotFoundException e ) {
+                            catch( FileNotFoundException e ) {
                                 logger.warn( "file " + unqualifiedName + " not found" );
                                 document = null;
                             }
                         }
-                        catch ( StringIndexOutOfBoundsException e ) {
+                        catch( StringIndexOutOfBoundsException e ) {
                             logger.error( "project name: '" + projectName + "' has type html but no html/ prefix" );
                             document = null;
                         }
@@ -348,7 +348,7 @@ public class Project implements Serializable, IntId {
                         document = XMLUtils.toDocument( FileUtils.loadFileAsString( new File( projectRoot, projectName + ".xml" ) ) );
                     }
 
-                    if (document != null ) {
+                    if ( document != null ) {
                         NodeList simulationNodes = document.getElementsByTagName( "simulation" );
 
                         for ( int i = 0; i < simulationNodes.getLength(); i++ ) {
@@ -389,7 +389,11 @@ public class Project implements Serializable, IntId {
                             }
                             else {
                                 // we need to either grab or create the simulation
-                                List slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
+                                List slist = session.createQuery( "select s from Simulation as s where s.name = :name AND s.project = :project" )
+                                        .setString( "name", simName )
+                                        .setInteger( "project", project.getId() )
+                                        .list();
+
                                 if ( slist.size() > 1 ) {
                                     throw new RuntimeException( "Multiple simulations per one name? BAD THINGS! Fix that database!" );
                                 }
@@ -417,6 +421,7 @@ public class Project implements Serializable, IntId {
                                 }
                                 else {
                                     simulation = (Simulation) slist.get( 0 );
+                                    syncLogger.warn( "Found simulation with project " + simulation.getProject().getName() );
                                     simulationCache.put( simName, simulation );
                                     missedSimulations.remove( simulation );
                                     nonCreatedSims.add( simulation );
@@ -511,15 +516,15 @@ public class Project implements Serializable, IntId {
                         session.save( lsim );
                     }
                 }
-                catch ( TransformerException e ) {
+                catch( TransformerException e ) {
                     e.printStackTrace();
                     return false;
                 }
-                catch ( ParserConfigurationException e ) {
+                catch( ParserConfigurationException e ) {
                     e.printStackTrace();
                     return false;
                 }
-                catch ( IOException e ) {
+                catch( IOException e ) {
                     e.printStackTrace();
                     return false;
                 }
@@ -665,7 +670,7 @@ public class Project implements Serializable, IntId {
                     }
                 }
             }
-            catch ( Exception e ) {
+            catch( Exception e ) {
                 e.printStackTrace();
                 logger.warn( "Error matching XML and simulations", e );
                 appendWarning( builder, "Error matching XML and simulations" );

@@ -47,9 +47,11 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
+import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
+import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
 import edu.colorado.phet.website.data.Alignment;
 import edu.colorado.phet.website.data.Keyword;
@@ -119,6 +121,9 @@ public class SimulationMainPanel extends PhetPanel {
 
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {
         super( id, context );
+
+        logger.warn( "LOADING SIMULATION PANEL WITH PROJECT " + simulation.getSimulation().getProject().getName() );
+        Project project = simulation.getSimulation().getProject();
 
         String simulationVersionString = simulation.getSimulation().getProject().getVersionString();
 
@@ -253,7 +258,7 @@ public class SimulationMainPanel extends PhetPanel {
         * translations
         *----------------------------------------------------------------------------*/
 
-        List<LocalizedSimulation> simulations = HibernateUtils.getLocalizedSimulationsMatching( getHibernateSession(), null, simulation.getSimulation().getName(), null );
+        List<LocalizedSimulation> simulations = HibernateUtils.getLocalizedSimulationsMatching( getHibernateSession(), project.getName(), simulation.getSimulation().getName(), null );
         HibernateUtils.orderSimulations( simulations, context.getLocale() );
 
         List<LocalizedSimulation> otherLocalizedSimulations = new LinkedList<LocalizedSimulation>();
@@ -333,17 +338,24 @@ public class SimulationMainPanel extends PhetPanel {
         * link to other sim page (i.e. java -> html or html -> java)
         *----------------------------------------------------------------------------*/
 
-        if ( simulation.getSimulation().isHTML() ) {
-            add ( new WebMarkupContainer( "other-sim-page" ) {{
-                add( new StaticImage( "other-sim-icon", Images.JAVA_LOGO, "Java Logo" ) );
-                add( new LocalizedText( "other-sim-text", "simulationMainPanel.originalSim" ) );
-            }} );
+        final Project alternateSimProject = HibernateUtils.getOtherProject( getHibernateSession(), simulation.getSimulation().getName(), project );
+
+        if ( alternateSimProject != null ) {
+            Link toLegacyLink;
+            if ( simulation.getSimulation().isHTML() ) {
+                toLegacyLink = LegacySimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );
+                toLegacyLink.add( new StaticImage( "other-sim-icon", Images.JAVA_LOGO, "Java Logo" ) );
+                toLegacyLink.add( new LocalizedText( "other-sim-text", "simulationMainPanel.originalSim" ) );
+            }
+            else {
+                toLegacyLink = SimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );
+                toLegacyLink.add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_WITH_TEXT, "HTML5 Badge" ) );
+                toLegacyLink.add( new LocalizedText( "other-sim-text", "simulationMainPanel.backToHTML" ) );
+            }
+            add( toLegacyLink );
         }
         else {
-            add ( new WebMarkupContainer( "other-sim-page" ) {{
-                add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_WITH_TEXT, "HTML5 Badge" ) );
-                add( new LocalizedText( "other-sim-text", "simulationMainPanel.backToHTML" ) );
-            }} );
+            add( new InvisibleComponent( "other-sim-page" ) );
         }
 
 

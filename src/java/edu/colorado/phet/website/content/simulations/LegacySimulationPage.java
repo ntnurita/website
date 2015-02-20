@@ -13,16 +13,16 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 
 /**
- * Main page for simulations
+ * Main page for legacy simulations
  */
-public class SimulationPage extends AbstractSimulationPage {
+public class LegacySimulationPage extends AbstractSimulationPage {
 
-    public SimulationPage( PageParameters parameters ) {
-        super( parameters, false );
+    public LegacySimulationPage( PageParameters parameters ) {
+        super( parameters, true );
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^simulation/([^/]+)$", SimulationPage.class, new String[]{"simulation"} );
+        mapper.addMap( "^simulation/legacy/([^/]+)$", LegacySimulationPage.class, new String[]{"simulation"} );
     }
 
     public static AbstractLinker getLinker( final String projectName, final String simulationName ) {
@@ -30,7 +30,7 @@ public class SimulationPage extends AbstractSimulationPage {
         return new AbstractLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
-                return "simulation/" + simulationName;
+                return "simulation/legacy/" + simulationName;
             }
         };
     }
