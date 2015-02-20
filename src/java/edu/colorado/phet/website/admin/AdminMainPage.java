@@ -64,7 +64,6 @@ public class AdminMainPage extends AdminPage {
 
     public AdminMainPage( PageParameters parameters ) {
         super( parameters );
-        System.out.println( "ADMIN PATH: " + getFullPath() );
 
         add( new SetStringForm( "set-string-form" ) );
 

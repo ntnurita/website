@@ -29,6 +29,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
@@ -404,6 +405,10 @@ public class SearchUtils {
                             ret.add( contribution );
                         }
                         catch ( IOException e ) {
+                            e.printStackTrace();
+                        }
+                        catch ( ObjectNotFoundException e ) {
+                            logger.warn( "ObjectNotFoundException" );
                             e.printStackTrace();
                         }
 
