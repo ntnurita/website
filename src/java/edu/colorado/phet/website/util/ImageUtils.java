@@ -38,14 +38,15 @@ public class ImageUtils {
                 in.close();
             }
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             logger.warn( "image file dimension failure for " + imageFile.getAbsolutePath(), e );
         }
-        catch ( IllegalArgumentException e ) {
+        catch( IllegalArgumentException e ) {
             logger.warn( "image file dimension failure (argument) for " + imageFile.getAbsolutePath(), e );
         }
-        catch ( NullPointerException e ) {
-            logger.warn( "Null pointer exception in getImageFileDimension" + imageFile.getAbsolutePath(), e );
+        catch( NullPointerException e ) {
+            logger.warn( "Null pointer exception in getImageFileDimension for " + imageFile.getAbsolutePath() +
+                         ". Does the image exist on the server?" );
         }
         return null; // unknown
     }
@@ -69,7 +70,7 @@ public class ImageUtils {
                 in.close();
             }
         }
-        catch ( IOException e ) {
+        catch( IOException e ) {
             logger.warn( "image file dimension failure for stream for " + imageName, e );
         }
         return null; // unknown

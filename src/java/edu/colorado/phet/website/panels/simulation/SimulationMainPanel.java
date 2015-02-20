@@ -13,9 +13,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.Component;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
-import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -33,23 +31,19 @@ import org.hibernate.event.PostUpdateEvent;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
-import edu.colorado.phet.website.borders.SmallOrangeButtonBorder;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.components.RawBodyLabel;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
-import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
-import edu.colorado.phet.website.content.simulations.SimulationChangelogPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.content.simulations.TranslatedSimsPage;
@@ -122,7 +116,6 @@ public class SimulationMainPanel extends PhetPanel {
     public SimulationMainPanel( String id, final LocalizedSimulation simulation, final PageContext context ) {
         super( id, context );
 
-        logger.warn( "LOADING SIMULATION PANEL WITH PROJECT " + simulation.getSimulation().getProject().getName() );
         Project project = simulation.getSimulation().getProject();
 
         String simulationVersionString = simulation.getSimulation().getProject().getVersionString();
