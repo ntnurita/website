@@ -455,14 +455,13 @@ public class PhetWicketApplication extends WebApplication {
         SchedulerService.initialize( this, PhetLocalizer.get() ); // start up
         // cron4j jobs
 
-        BuildLocalProperties.initFromPropertiesFile( getWebsiteProperties()
-                                                             .getBuildLocalPropertiesFile() );
+        BuildLocalProperties.initFromPropertiesFile( getWebsiteProperties().getBuildLocalPropertiesFile() );
 
         setInstallerTimestampFromFile();
 
         // if there are new strings that should be added, add them
         StringChanges.checkNewStrings();
-
+        NewSimPagesMigrator.migrateSims();
     }
 
     private void setupJulSfl4j() {
