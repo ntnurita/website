@@ -157,7 +157,14 @@ public class Simulation implements Serializable, IntId {
     }
 
     public WebImage getHTMLImage() {
-        return WebImage.get( "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-screenshot.png", false );
+        String imagePath = "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-screenshot.png";
+        File imageFile = UrlUtils.getDocrootFile( imagePath );
+
+        // use lower resolution image if the higher resolution image doesn't exist
+        if ( !imageFile.exists() ) {
+            imagePath = "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-128.png";
+        }
+        return WebImage.get( imagePath, false );
     }
 
     public WebImage getHTMLThumbnail() {

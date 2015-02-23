@@ -132,6 +132,11 @@ public class SimulationMainPanel extends PhetPanel {
         RawLink link = simulation.getRunLink( "simulation-main-link-run-main" );
 
         WebImage image = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLImage() : simulation.getSimulation().getImage();
+
+        // temporary work around to at least display an image before we have all the correct image files on the server
+        if ( simulation.getSimulation().isHTML() ) {
+            image.getDimension().setSize( 300, 197 );
+        }
         link.add( new StaticImage( "simulation-main-screenshot", image, StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
         } ) ) );
