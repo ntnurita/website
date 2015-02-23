@@ -230,8 +230,7 @@ public class Project implements Serializable, IntId {
                         return false;
                     }
 
-//                    boolean hasSWF = ( new File( projectRoot, projectName + ".swf" ) ).exists();
-                    // this is changed to check for ANY existance of a SWF. If a SWF exists, we are assuming the project is a Flash/Flex project
+                    // this is changed to check for ANY existence of a SWF. If a SWF exists, we are assuming the project is a Flash/Flex project
                     boolean hasSWF = projectRoot.listFiles( new FilenameFilter() {
                         public boolean accept( File file, String s ) {
                             return s.endsWith( ".swf" );
