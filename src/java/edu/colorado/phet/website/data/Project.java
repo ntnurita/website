@@ -36,7 +36,6 @@ import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.flashlauncher.util.XMLUtils;
 import edu.colorado.phet.website.data.util.IntId;
-import edu.colorado.phet.website.panels.lists.SimOrderItem;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -188,10 +187,6 @@ public class Project implements Serializable, IntId {
         return true;
     }
 
-    public static void synchronizeProject( final File docRoot, final Session session, final String projectName, final Logger syncLogger ) {
-        synchronizeProject( docRoot, session, projectName, syncLogger, false );
-    }
-
     /**
      * Synchronizes the in-database projects, simulations, and translations to correspond to the files in the project
      * directory
@@ -202,7 +197,7 @@ public class Project implements Serializable, IntId {
      * @param projectName The project name to synchronize
      */
     public static void synchronizeProject( final File docRoot, final Session session, final String projectName ) {
-        synchronizeProject( docRoot, session, projectName, defaultSyncLogger, false );
+        synchronizeProject( docRoot, session, projectName, defaultSyncLogger );
     }
 
     /**
@@ -215,7 +210,7 @@ public class Project implements Serializable, IntId {
      * @param projectName The project name to synchronize
      * @param syncLogger  The logger to output messages to
      */
-    public static void synchronizeProject( final File docRoot, final Session session, final String projectName, final Logger syncLogger, final boolean htmlMigration ) {
+    public static void synchronizeProject( final File docRoot, final Session session, final String projectName, final Logger syncLogger ) {
 
         syncLogger.info( "Synchronizing project " + projectName + " with docroot " + docRoot.getAbsolutePath() );
 
@@ -331,9 +326,6 @@ public class Project implements Serializable, IntId {
                     Set<Simulation> missedSimulations = new HashSet<Simulation>( project.getSimulations() );
                     Set<LocalizedSimulation> missedLocalizedSimulations = new HashSet<LocalizedSimulation>();
 
-
-                    if ( htmlMigration ) { project.setVisible( true ); }
-
                     Document document;
                     if ( type == TYPE_HTML ) {
                         try {
@@ -390,26 +382,17 @@ public class Project implements Serializable, IntId {
 
                             // pick or create the simulation
                             Simulation simulation;
-                            Simulation legacySim = null;
                             if ( simulationCache.containsKey( simName ) ) {
                                 // we've already obtained the simulation
                                 simulation = simulationCache.get( simName );
                             }
                             else {
                                 // we need to either grab or create the simulation
-                                List<Simulation> slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
+                                List slist = session.createQuery( "select s from Simulation as s where s.name = :name AND s.project = :project" )
+                                        .setString( "name", simName )
+                                        .setInteger( "project", project.getId() )
+                                        .list();
 
-                                // if there id more than one simulation found, one is probably the legacy version
-                                if ( slist.size() > 1 ) {
-                                    for ( Simulation sim : slist ) {
-                                        if ( sim.getProject().getId() != project.getId() ) {
-                                            legacySim = sim;
-                                            slist.remove( sim );
-                                        }
-                                    }
-                                }
-
-                                // if there is still more than one sim, then something is wrong
                                 if ( slist.size() > 1 ) {
                                     throw new RuntimeException( "Multiple simulations per one name? BAD THINGS! Fix that database!" );
                                 }
@@ -436,7 +419,7 @@ public class Project implements Serializable, IntId {
                                     projectDirty = true;
                                 }
                                 else {
-                                    simulation = slist.get( 0 );
+                                    simulation = (Simulation) slist.get( 0 );
                                     syncLogger.warn( "Found simulation with project " + simulation.getProject().getName() );
                                     simulationCache.put( simName, simulation );
                                     missedSimulations.remove( simulation );
@@ -453,24 +436,6 @@ public class Project implements Serializable, IntId {
                             }
 
                             simulation.setKilobytes( simulation.detectSimKilobytes( docRoot ) );
-
-                            if ( htmlMigration ) {
-                                simulation.setSimulationVisible( true );
-
-                                if ( legacySim != null ) {
-                                    simulation.setAlignments( new HashSet( legacySim.getAlignments() ) );
-                                    simulation.setCategories( new HashSet( legacySim.getCategories() ) );
-                                    simulation.setRelatedSimulations( new LinkedList( legacySim.getRelatedSimulations() ) );
-                                    simulation.setScienceLiteracyMapKeys( new HashSet( legacySim.getScienceLiteracyMapKeys() ) );
-                                    simulation.setSecondaryAlignments( new HashSet( legacySim.getSecondaryAlignments() ) );
-                                    simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
-                                    simulation.setLowGradeLevel( legacySim.getLowGradeLevel() );
-                                    simulation.setDesignTeam( legacySim.getDesignTeam() );
-                                    simulation.setThanksTo( legacySim.getThanksTo() );
-                                    simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
-                                    simulation.setGuidanceRecommended( legacySim.isGuidanceRecommended() );
-                                }
-                            }
 
                             List llist = new LinkedList();
                             if ( !createdSims.contains( simulation ) ) {

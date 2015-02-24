@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -52,7 +54,8 @@ public class NewSimPagesMigrator {
         for ( Pair<String, String> pair : sims ) {
             logger.warn( "Attempting to add sim " + pair._2 );
             writeMetaXML( pair._1, pair._2 );
-            Project.synchronizeProject( docRoot, session, "html/" + pair._1, logger, true );
+            Project.synchronizeProject( docRoot, session, "html/" + pair._1 );
+            syncNewProject( session, pair._1 );
         }
 
         session.close();
@@ -74,7 +77,9 @@ public class NewSimPagesMigrator {
                    "</project>";
 
             String dir = docRoot + "/sims/html/" + name;
-            FileUtils.writeString( new File( dir, name + ".xml" ), str );
+            File xmlFile = new File( dir, name + ".xml" );
+            xmlFile.setWritable( true );
+            FileUtils.writeString( xmlFile, str );
         }
         catch( UnsupportedEncodingException e ) {
             e.printStackTrace();
@@ -84,6 +89,57 @@ public class NewSimPagesMigrator {
         }
         catch( IOException e ) {
             e.printStackTrace();
+        }
+    }
+
+    public static void syncNewProject( Session session, String simName ) {
+        List<Simulation> slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
+
+        Simulation simulation = null;
+        Simulation legacySim = null;
+
+        for ( Simulation s : slist ) {
+            if ( s.getProject().getType() == Project.TYPE_HTML ) {
+                simulation = s;
+            }
+            else {
+                legacySim = s;
+            }
+        }
+
+        if ( simulation != null ) {
+            simulation.getProject().setVisible( true );
+            simulation.setSimulationVisible( true );
+        }
+        else {
+            logger.error( "ERROR: No sim of type html found with name " + simName );
+        }
+
+        if ( legacySim == null ) {
+            String legacyName = simName.contains( "travoltage" ) ? "travoltage" : simName.contains( "balloons" ) ? "balloons" : null;
+            List<Simulation> legacyList = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", legacyName ).list();
+            if ( legacyList.size() == 1 ) {
+                legacySim = legacyList.get( 0 );
+            }
+        }
+
+        if ( legacySim != null && simulation != null ) {
+            simulation.setAlignments( new HashSet( legacySim.getAlignments() ) );
+            simulation.setCategories( new HashSet( legacySim.getCategories() ) );
+            simulation.setRelatedSimulations( new LinkedList( legacySim.getRelatedSimulations() ) );
+            simulation.setScienceLiteracyMapKeys( new HashSet( legacySim.getScienceLiteracyMapKeys() ) );
+            simulation.setSecondaryAlignments( new HashSet( legacySim.getSecondaryAlignments() ) );
+            simulation.setTopics( new LinkedList( legacySim.getTopics()) );
+            simulation.setKeywords( new LinkedList( legacySim.getKeywords()) );
+            simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
+            simulation.setLowGradeLevel( legacySim.getLowGradeLevel() );
+            simulation.setDesignTeam( legacySim.getDesignTeam() );
+            simulation.setThanksTo( legacySim.getThanksTo() );
+            simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
+            simulation.setGuidanceRecommended( legacySim.isGuidanceRecommended() );
+        }
+        else {
+            logger.error( "ERROR: No legacy sim found with name " + simName );
         }
     }
 }

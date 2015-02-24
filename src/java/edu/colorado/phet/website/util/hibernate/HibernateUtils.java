@@ -77,7 +77,7 @@ public class HibernateUtils {
     public static Project getOtherProject( Session session, String simulationName, Project project ) {
         List<Simulation> sims = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simulationName ).list();
         for ( Simulation s : sims ) {
-            if ( s.getProject().getId() != project.getId() ) {
+            if ( s.isVisible() && s.getProject().getId() != project.getId() ) {
                 return s.getProject();
             }
         }
