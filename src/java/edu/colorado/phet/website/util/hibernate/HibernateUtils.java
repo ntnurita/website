@@ -218,15 +218,13 @@ public class HibernateUtils {
             // Get HTML sims if there are some
             List<LocalizedSimulation> htmlSimulations = new LinkedList();
             for ( LocalizedSimulation localizedSim : simulations ) {
-                if ( localizedSim.getSimulation().getProject().getType() == Project.TYPE_HTML ) {
-                    logger.warn( "Found HTML sim" );
+                if ( localizedSim.getSimulation().getProject().getType() == Project.TYPE_HTML && localizedSim.getSimulation().isVisible() ) {
                     htmlSimulations.add( localizedSim );
                 }
             }
 
             // HTML sims are returned first
             if ( htmlSimulations.size() > 0 ) {
-                logger.warn( "Returning HTML sim" );
                 return htmlSimulations.get( 0 );
             }
         }
