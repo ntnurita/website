@@ -47,6 +47,7 @@ import edu.colorado.phet.website.translation.PhetLocalizer;
 import edu.colorado.phet.website.util.EmailUtils;
 import edu.colorado.phet.website.util.ImageUtils;
 import edu.colorado.phet.website.util.PDFUtils;
+import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;

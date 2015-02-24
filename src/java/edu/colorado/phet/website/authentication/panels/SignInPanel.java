@@ -105,6 +105,9 @@ public class SignInPanel extends PhetPanel {
 
         public final void onSubmit() {
             if ( destination != null ) {
+                if ( !destination.startsWith( "/" ) ) {
+                    destination = "/";
+                }
                 getPhetCycle().redirectWithSameProtocol( destination );
             }
             else {
