@@ -32,6 +32,14 @@ public abstract class AbstractSimulationPage extends PhetMenuPage {
 
         String flavorName = parameters.getString( "simulation" );
 
+        // this is workaround for the fact that these sims were misnamed in their legacy version so the names don't match
+        if ( flavorName.equals( "balloons" ) && !isLegacy ) {
+            flavorName = "balloons-and-static-electricity";
+        }
+        if ( flavorName.equals( "travoltage" ) && !isLegacy ) {
+            flavorName = "john-travoltage";
+        }
+
         LocalizedSimulation simulation = null;
         Set<NavLocation> locations = new HashSet<NavLocation>();
 

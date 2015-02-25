@@ -138,9 +138,24 @@ public class SimulationListViewPanel extends PhetPanel {
     }
 
     private static void addSimulationsFromCategory( List<LocalizedSimulation> simulations, Locale locale, Category category, Set<Integer> used ) {
+
+        // sims that appear twice must have an html5 version that should be displayed instead of the legacy version
+        Set<String> simsSet = new HashSet<String>();
+        Set<String> simsWithTwoVersions = new HashSet<String>();
+        for ( Object o : category.getSimulations() ) {
+            Simulation sim = (Simulation) o;
+            if ( simsSet.contains( sim.getName() ) ) {
+                simsWithTwoVersions.add( sim.getName() );
+            }
+            simsSet.add( sim.getName() );
+        }
+
         for ( Object o : category.getSimulations() ) {
             Simulation sim = (Simulation) o;
             if ( !sim.isVisible() ) {
+                continue;
+            }
+            if ( simsWithTwoVersions.contains( sim.getName() ) && sim.getProject().getType() != Project.TYPE_HTML ) {
                 continue;
             }
             LocalizedSimulation lsim = HibernateUtils.pickBestTranslation( sim, locale );

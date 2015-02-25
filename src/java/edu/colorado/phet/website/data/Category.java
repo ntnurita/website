@@ -143,6 +143,18 @@ public class Category implements Serializable, IntId {
     }
 
     /**
+     * Add the new HTML5 sim in the simulations list next to the legacy version
+     * @param legacySimulation
+     * @param newSimulation
+     */
+    public void addNewSimVersion( Simulation legacySimulation, Simulation newSimulation ) {
+        if ( !getSimulations().contains( newSimulation ) ) {
+            int index = getSimulations().indexOf( legacySimulation );
+            getSimulations().add( index, newSimulation );
+        }
+    }
+
+    /**
      * NOTE: must be in session transaction!
      *
      * @param session
