@@ -13,6 +13,7 @@ function toggleMe( id ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
+    window.location.hash = '#' + id + '-header';
     window['answer_' + id] = true;
     newClass = thisElement.className.replace( 'right', 'down' );
     thisElement.className = newClass;

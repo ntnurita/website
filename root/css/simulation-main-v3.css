@@ -272,20 +272,20 @@ body#offline-installer-body .sim-download {
 
 .sim-run-now-play {
     padding-left: 10px;
-    background-image: url('../images/control-play.gif');
+    background-image: url(images/control-play.gif);
     background-position: left center;
     background-repeat: no-repeat;
 }
 
 .sim-download-disk {
     padding-left: 14px;
-    background-image: url('../images/arrow-down.gif');
+    background-image: url(images/arrow-down.gif);
     background-position: left center;
     background-repeat: no-repeat;
 }
 
 .triangle-down {
-    background-image: url('/images/icons/triangle-down.png');
+    background-image: url(../images/icons/triangle-down.png);
     background-repeat: no-repeat;
     padding-left: 20px;
     color: black;
@@ -293,7 +293,7 @@ body#offline-installer-body .sim-download {
 }
 
 .triangle-right {
-    background-image: url('/images/icons/triangle-right.png');
+    background-image: url(../images/icons/triangle-right.png);
     background-repeat: no-repeat;
     padding-left: 20px;
     color: rgb(110,110,110);
