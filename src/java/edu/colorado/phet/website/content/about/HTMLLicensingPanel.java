@@ -15,9 +15,9 @@ public class HTMLLicensingPanel extends PhetPanel {
     public HTMLLicensingPanel( String id, PageContext context ) {
         super( id, context );
 
-        add( new LocalizedText( "html-licensing-comingSoon", "html.licensing.comingSoon", new Object[] {
-                Linkers.PHET_HELP_LINK
-        } ) );
+//        add( new LocalizedText( "html-licensing-comingSoon", "html.licensing.comingSoon", new Object[] {
+//                Linkers.PHET_HELP_LINK
+//        } ) );
     }
 
     public static String getKey() {
