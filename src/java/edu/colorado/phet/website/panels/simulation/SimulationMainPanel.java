@@ -133,7 +133,7 @@ public class SimulationMainPanel extends PhetPanel {
 
         WebImage image = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLImage() : simulation.getSimulation().getImage();
 
-        // temporary work around to at least display an image before we have all the correct image files on the server
+        // Set image width to 300px. We have 600px width images on the server so they look good on retina displays
         if ( simulation.getSimulation().isHTML() ) {
             image.getDimension().setSize( 300, 197 );
         }

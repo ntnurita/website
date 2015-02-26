@@ -141,7 +141,7 @@ public class Simulation implements Serializable, IntId {
 
     public String getImageUrl() {
         if ( isHTML() ) {
-            return "/sims/" + getProject().getName() + "/latest/" + getName() + "-screenshot.png";
+            return "/sims/" + getProject().getName() + "/latest/" + getName() + "-600.png";
         }
         else {
             return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
@@ -157,13 +157,7 @@ public class Simulation implements Serializable, IntId {
     }
 
     public WebImage getHTMLImage() {
-        String imagePath = "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-screenshot.png";
-        File imageFile = UrlUtils.getDocrootFile( imagePath );
-
-        // use lower resolution image if the higher resolution image doesn't exist
-        if ( !imageFile.exists() ) {
-            imagePath = "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-128.png";
-        }
+        String imagePath = "/sims/" + getProject().getName() + "/" + project.getVersionString() + "/" + getName() + "-600.png";
         return WebImage.get( imagePath, false );
     }
 
