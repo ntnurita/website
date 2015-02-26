@@ -54,6 +54,7 @@ import edu.colorado.phet.website.data.Keyword;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.TeachersGuide;
+import edu.colorado.phet.website.data.TeachersVideo;
 import edu.colorado.phet.website.data.TranslatedString;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
 import edu.colorado.phet.website.panels.lists.OrderList;
@@ -81,6 +82,7 @@ public class AdminSimPage extends AdminPage {
         int simulationId = parameters.getInt( SIMULATION_ID );
 
         List<TeachersGuide> guides = new LinkedList<TeachersGuide>();
+        List<TeachersVideo> videos = new LinkedList<TeachersVideo>();
 
         localizedSimulations = new LinkedList<LocalizedSimulation>();
         List<Keyword> simKeywords = new LinkedList<Keyword>();
@@ -118,6 +120,12 @@ public class AdminSimPage extends AdminPage {
                     .setEntity( "sim", simulation ).list();
             for ( Object o : tguides ) {
                 guides.add( (TeachersGuide) o );
+            }
+
+            List tvideos = session.createQuery( "select tv from TeachersVideo as tv where tv.simulation = :sim" )
+                    .setEntity( "sim", simulation ).list();
+            for ( Object o : tvideos ) {
+                videos.add( (TeachersVideo) o );
             }
 
             // get related and all other simulations for use with the related simulations area
@@ -228,6 +236,13 @@ public class AdminSimPage extends AdminPage {
             add( new InvisibleComponent( "guide-link" ) );
         }
 
+        if ( !videos.isEmpty() ) {
+            add( videos.get( 0 ).getLinker().getLink( "video-link", getPageContext(), getPhetCycle() ) );
+        }
+        else {
+            add( new InvisibleComponent( "video-link" ) );
+        }
+
         add( new Link( "suggested-related" ) {
             @Override
             public void onClick() {
@@ -238,11 +253,28 @@ public class AdminSimPage extends AdminPage {
 
         add( new FileUploadForm( "upload-guide-form" ) );
 
+        add( new VideoUploadForm( "upload-video-form" ) );
+
         add( new Link( "remove-guide" ) {
             public void onClick() {
                 boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                     public boolean run( Session session ) {
                         session.delete( session.createQuery( "select tg from TeachersGuide as tg where tg.simulation = :sim" )
+                                                .setEntity( "sim", simulation ).uniqueResult() );
+                        return true;
+                    }
+                } );
+                if ( success ) {
+                    setResponsePage( AdminSimsPage.class );
+                }
+            }
+        } );
+
+        add( new Link( "remove-video" ) {
+            public void onClick() {
+                boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                    public boolean run( Session session ) {
+                        session.delete( session.createQuery( "select tv from TeachersVideo as tv where tv.simulation = :sim" )
                                                 .setEntity( "sim", simulation ).uniqueResult() );
                         return true;
                     }
@@ -997,11 +1029,8 @@ public class AdminSimPage extends AdminPage {
 
         public FileUploadForm( String id ) {
             super( id );
-
             add( field = new FileUploadField( "file", new Model<FileUpload>() ) );
-
             setMultiPart( true );
-
         }
 
         @Override
@@ -1052,6 +1081,65 @@ public class AdminSimPage extends AdminPage {
             }
         }
     }
+
+    private class VideoUploadForm extends Form {
+
+        private FileUploadField field;
+
+        public VideoUploadForm( String id ) {
+            super( id );
+            add( field = new FileUploadField( "video-upload", new Model<FileUpload>() ) );
+            setMultiPart( true );
+        }
+
+        @Override
+        protected void onSubmit() {
+            final FileUpload fup = field.getFileUpload();
+            if ( fup != null ) {
+                boolean success = HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+                    public boolean run( Session session ) {
+                        List videos = session.createQuery( "select tg from TeachersVideo as tg where tg.simulation = :sim" )
+                                .setEntity( "sim", simulation ).list();
+
+                        boolean old = !videos.isEmpty();
+                        TeachersVideo video = old ? (TeachersVideo) videos.get( 0 ) : new TeachersVideo();
+
+                        if ( !old ) {
+                            video.setSimulation( simulation );
+                            video.setFilename( TeachersVideo.createFilename( simulation ) );
+                        }
+
+                        File file = video.getFileLocation();
+                        file.getParentFile().mkdirs();
+                        try {
+                            file.createNewFile();
+                            fup.writeTo( file );
+                            video.setSize( (int) file.length() );
+                        }
+                        catch( IOException e ) {
+                            e.printStackTrace();
+                            logger.warn( e );
+                            return false;
+                        }
+
+                        if ( old ) {
+                            session.update( video );
+                        }
+                        else {
+                            session.save( video );
+                        }
+
+                        return true;
+                    }
+                } );
+
+                if ( success ) {
+                    setResponsePage( AdminSimsPage.class );
+                }
+            }
+        }
+    }
+
 
     private class RelatedSimulationsList extends OrderList<SimOrderItem> {
         private int simId;
