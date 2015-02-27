@@ -24,6 +24,26 @@
     top: -23px;
 }
 
+.sim-badge-java {
+    display: block;
+    position: absolute;
+    background-image: url(../images/icons/java-icon-32x34.png);
+    width: 32px;
+    height: 34px;
+    left: 112px;
+    top: -22px;
+}
+
+.sim-badge-flash {
+    display: block;
+    position: absolute;
+    background-image: url(../images/icons/flash-icon-30x32.png);
+    width: 30px;
+    height: 32px;
+    left: 115px;
+    top: -20px;
+}
+
 .simulation-list-thumbnail {
     margin-bottom: 5px;
     box-shadow: 1px 1px 4px rgba(0,0,0,0.4);

@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.behavior.SimpleAttributeModifier;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.repeater.Item;
@@ -74,6 +76,21 @@ public class SimulationDisplayPanel extends PhetPanel {
                     setMarkupId( "simulation-display-thumbnail-" + simulation.getSimulation().getName() );
                     setDataServer( dataServer );
                 }} );
+                WebMarkupContainer badge = new WebMarkupContainer( "badge" );
+                link.add( badge );
+                if ( simulation.getSimulation().isHTML() ) {
+                    badge.add( new SimpleAttributeModifier( "class", "sim-badge-html" ) );
+                }
+                else if ( simulation.getSimulation().isJava() ) {
+                    badge.add( new SimpleAttributeModifier( "class", "sim-badge-java" ) );
+                }
+                else if ( simulation.getSimulation().isFlash() ) {
+                    badge.add( new SimpleAttributeModifier( "class", "sim-badge-flash" ) );
+                }
+                else {
+                    logger.warn( "Simulation " + simulation.getSimulation().getName() + "didn't have a type" );
+                }
+
                 item.add( link );
             }
         };
