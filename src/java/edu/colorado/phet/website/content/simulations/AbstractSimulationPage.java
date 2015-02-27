@@ -1,7 +1,9 @@
 // Copyright 2002-2015, University of Colorado
 package edu.colorado.phet.website.content.simulations;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -27,17 +29,30 @@ public abstract class AbstractSimulationPage extends PhetMenuPage {
 
     private static final Logger logger = Logger.getLogger( SimulationPage.class.getName() );
 
+    /*
+     * Maps from legacy sim names to html sim names and vice versa in the cases where they differ
+     */
+    private static final Map<String, String> LEGACY_TO_CURRENT_SIM_NAME = new HashMap<String, String>();
+    private static final Map<String, String> CURRENT_SIM_NAME_TO_LEGACY = new HashMap<String, String>();
+
+    static {
+        LEGACY_TO_CURRENT_SIM_NAME.put( "balloons", "balloons-and-static-electricity" );
+        LEGACY_TO_CURRENT_SIM_NAME.put( "travoltage", "john-travoltage" );
+
+        CURRENT_SIM_NAME_TO_LEGACY.put( "balloons-and-static-electricity", "balloons" );
+        CURRENT_SIM_NAME_TO_LEGACY.put( "john-travoltage", "travoltage" );
+    }
+
     AbstractSimulationPage( PageParameters parameters, boolean isLegacy ) {
         super( parameters );
 
         String flavorName = parameters.getString( "simulation" );
 
-        // this is workaround for the fact that these sims were misnamed in their legacy version so the names don't match
-        if ( flavorName.equals( "balloons" ) && !isLegacy ) {
-            flavorName = "balloons-and-static-electricity";
+        if ( !isLegacy && LEGACY_TO_CURRENT_SIM_NAME.containsKey( flavorName ) ) {
+            flavorName = LEGACY_TO_CURRENT_SIM_NAME.get( flavorName );
         }
-        if ( flavorName.equals( "travoltage" ) && !isLegacy ) {
-            flavorName = "john-travoltage";
+        if ( isLegacy && CURRENT_SIM_NAME_TO_LEGACY.containsKey( flavorName ) ) {
+            flavorName = CURRENT_SIM_NAME_TO_LEGACY.get( flavorName );
         }
 
         LocalizedSimulation simulation = null;

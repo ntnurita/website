@@ -135,7 +135,12 @@ public class SimulationMainPanel extends PhetPanel {
 
         // Set image width to 300px. We have 600px width images on the server so they look good on retina displays
         if ( simulation.getSimulation().isHTML() ) {
-            image.getDimension().setSize( 300, 197 );
+            if ( image != null ) {
+                image.getDimension().setSize( 300, 197 );
+            }
+            else {
+                logger.warn( "NULL image for simulation: " + simulation.getSimulation().getName() );
+            }
         }
         link.add( new StaticImage( "simulation-main-screenshot", image, StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
