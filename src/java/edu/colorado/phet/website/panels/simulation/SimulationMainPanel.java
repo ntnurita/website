@@ -151,8 +151,11 @@ public class SimulationMainPanel extends PhetPanel {
         if ( simulation.getSimulation().isHTML() ) {
             html5Badge.add( new SimpleAttributeModifier( "class", "sim-page-badge html-badge" ) );
         }
-        else {
+        else if ( simulation.getSimulation().isJava() ) {
             html5Badge.add( new SimpleAttributeModifier( "class", "sim-page-badge java-badge" ) );
+        }
+        else {
+            html5Badge.add( new SimpleAttributeModifier( "class", "sim-page-badge flash-badge" ) );
         }
         add( link );
 
@@ -347,7 +350,12 @@ public class SimulationMainPanel extends PhetPanel {
             Link toLegacyLink;
             if ( simulation.getSimulation().isHTML() ) {
                 toLegacyLink = LegacySimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );
-                toLegacyLink.add( new StaticImage( "other-sim-icon", Images.JAVA_LOGO, "Java Logo" ) );
+                if ( alternateSimProject.isJava() ) {
+                    toLegacyLink.add( new StaticImage( "other-sim-icon", Images.JAVA_LOGO, "Java Logo" ) );
+                }
+                else { // Flash
+                    toLegacyLink.add( new StaticImage( "other-sim-icon", Images.FLASH_LOGO, "Flash Logo" ) );
+                }
                 toLegacyLink.add( new LocalizedText( "other-sim-text", "simulationMainPanel.originalSim" ) );
             }
             else {

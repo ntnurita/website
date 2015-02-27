@@ -318,6 +318,14 @@ body#offline-installer-body .sim-download {
     bottom: 0;
 }
 
+.flash-badge{
+    background-image: url(../images/icons/flash-logo.png);
+    width: 40px;
+    height: 40px;
+    left: 278px;
+    bottom: 0;
+}
+
 .html-badge {
     background-image: url(../images/HTML5_Logo_32_drop.png);
     width: 32px;

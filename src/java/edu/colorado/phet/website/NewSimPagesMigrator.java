@@ -21,6 +21,7 @@ import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.data.util.CategoryChangeHandler;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
@@ -142,6 +143,13 @@ public class NewSimPagesMigrator {
             List<Simulation> legacyList = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", legacyName ).list();
             if ( legacyList.size() == 1 ) {
                 legacySim = legacyList.get( 0 );
+
+                if ( simulation != null ) {
+                    StringUtils.deleteString( session, simulation.getDescriptionKey() );
+                    StringUtils.deleteString( session, simulation.getLearningGoalsKey() );
+                    StringUtils.addString( session, simulation.getDescriptionKey(), StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
+                    StringUtils.addString( session, simulation.getLearningGoalsKey(), StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
+                }
             }
         }
 

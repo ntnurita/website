@@ -32,8 +32,8 @@ public abstract class AbstractSimulationPage extends PhetMenuPage {
     /*
      * Maps from legacy sim names to html sim names and vice versa in the cases where they differ
      */
-    private static final Map<String, String> LEGACY_TO_CURRENT_SIM_NAME = new HashMap<String, String>();
-    private static final Map<String, String> CURRENT_SIM_NAME_TO_LEGACY = new HashMap<String, String>();
+    public static final Map<String, String> LEGACY_TO_CURRENT_SIM_NAME = new HashMap<String, String>();
+    public static final Map<String, String> CURRENT_SIM_NAME_TO_LEGACY = new HashMap<String, String>();
 
     static {
         LEGACY_TO_CURRENT_SIM_NAME.put( "balloons", "balloons-and-static-electricity" );

@@ -26,6 +26,7 @@ import org.hibernate.criterion.Restrictions;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.constants.WebsiteConstants;
+import edu.colorado.phet.website.content.simulations.AbstractSimulationPage;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
@@ -77,6 +78,24 @@ public class HibernateUtils {
     public static Project getOtherProject( Session session, String simulationName, Project project ) {
         List<Simulation> sims = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simulationName ).list();
         for ( Simulation s : sims ) {
+            if ( s.isVisible() && s.getProject().getId() != project.getId() ) {
+                return s.getProject();
+            }
+        }
+
+        // try looking up the sim from the mapping in case it is not found due to a name mismatch between the legacy and html versions
+        if ( AbstractSimulationPage.LEGACY_TO_CURRENT_SIM_NAME.containsKey( simulationName ) ) {
+            simulationName = AbstractSimulationPage.LEGACY_TO_CURRENT_SIM_NAME.get( simulationName );
+        }
+        else if ( AbstractSimulationPage.CURRENT_SIM_NAME_TO_LEGACY.containsKey( simulationName ) ) {
+            simulationName = AbstractSimulationPage.CURRENT_SIM_NAME_TO_LEGACY.get( simulationName );
+        }
+        else {
+            return null;
+        }
+
+        List<Simulation> alternateSims = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simulationName ).list();
+        for ( Simulation s : alternateSims ) {
             if ( s.isVisible() && s.getProject().getId() != project.getId() ) {
                 return s.getProject();
             }
