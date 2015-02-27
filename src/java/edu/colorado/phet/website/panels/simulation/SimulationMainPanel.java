@@ -840,6 +840,10 @@ public class SimulationMainPanel extends PhetPanel {
                 LocalizedSimulation lsim = (LocalizedSimulation) session.load( LocalizedSimulation.class, simulation.getId() );
                 for ( Object o : lsim.getSimulation().getRelatedSimulations() ) {
                     Simulation related = (Simulation) o;
+                    Simulation relatedHTML = related.getHTMLVersion( session );
+                    if ( relatedHTML != null ) {
+                        related = relatedHTML;
+                    }
                     ret.add( related.getBestLocalizedSimulation( getMyLocale() ) );
                 }
             }

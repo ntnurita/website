@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.constants.Licenses;
+import edu.colorado.phet.website.content.simulations.AbstractSimulationPage;
 import edu.colorado.phet.website.data.faq.FAQList;
 import edu.colorado.phet.website.data.util.IntId;
 import edu.colorado.phet.website.metadata.LRETerm;
@@ -83,6 +84,27 @@ public class Simulation implements Serializable, IntId {
 
     public String getLearningGoalsKey() {
         return "simulation." + name + ".learningGoals";
+    }
+
+    /**
+     * @param session - hibernate session
+     * @return The HTML version of the given sim or null
+     */
+    public Simulation getHTMLVersion( Session session ) {
+        String simulationName = getName();
+
+        // try looking up the sim from the mapping in case it is not found due to a name mismatch between the legacy and html versions
+        if ( AbstractSimulationPage.LEGACY_TO_CURRENT_SIM_NAME.containsKey( simulationName ) ) {
+            simulationName = AbstractSimulationPage.LEGACY_TO_CURRENT_SIM_NAME.get( simulationName );
+        }
+
+        List<Simulation> sims = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simulationName ).list();
+        for ( Simulation s : sims ) {
+            if ( s.isVisible() && s.isHTML() ) {
+                return s;
+            }
+        }
+        return null;
     }
 
     /**
