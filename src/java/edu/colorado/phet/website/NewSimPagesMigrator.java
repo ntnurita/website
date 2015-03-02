@@ -12,15 +12,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.ObjectDeletedException;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.FileUtils;
 import edu.colorado.phet.common.phetcommon.util.Pair;
-import edu.colorado.phet.website.data.Alignment;
 import edu.colorado.phet.website.data.Category;
 import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.data.Simulation;
-import edu.colorado.phet.website.data.util.CategoryChangeHandler;
 import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -145,10 +144,15 @@ public class NewSimPagesMigrator {
                 legacySim = legacyList.get( 0 );
 
                 if ( simulation != null ) {
-                    StringUtils.deleteString( session, simulation.getDescriptionKey() );
-                    StringUtils.deleteString( session, simulation.getLearningGoalsKey() );
-                    StringUtils.addString( session, simulation.getDescriptionKey(), StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
-                    StringUtils.addString( session, simulation.getLearningGoalsKey(), StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
+                    try {
+                        StringUtils.deleteString( session, simulation.getDescriptionKey() );
+                        StringUtils.deleteString( session, simulation.getLearningGoalsKey() );
+                        StringUtils.addString( session, simulation.getDescriptionKey(), StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
+                        StringUtils.addString( session, simulation.getLearningGoalsKey(), StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
+                    }
+                    catch( ObjectDeletedException e ) {
+                        logger.warn( "ObjectDeletedException" );
+                    }
                 }
             }
         }
@@ -165,8 +169,8 @@ public class NewSimPagesMigrator {
             simulation.setRelatedSimulations( new LinkedList( legacySim.getRelatedSimulations() ) );
             simulation.setScienceLiteracyMapKeys( new HashSet( legacySim.getScienceLiteracyMapKeys() ) );
             simulation.setSecondaryAlignments( new HashSet( legacySim.getSecondaryAlignments() ) );
-            simulation.setTopics( new LinkedList( legacySim.getTopics()) );
-            simulation.setKeywords( new LinkedList( legacySim.getKeywords()) );
+            simulation.setTopics( new LinkedList( legacySim.getTopics() ) );
+            simulation.setKeywords( new LinkedList( legacySim.getKeywords() ) );
             simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
             simulation.setLowGradeLevel( legacySim.getLowGradeLevel() );
             simulation.setDesignTeam( legacySim.getDesignTeam() );
