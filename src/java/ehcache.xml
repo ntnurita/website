@@ -723,13 +723,6 @@ not perform any function when used with JMX monitors.
            memoryStoreEvictionPolicy="LRU"
             />
 
-    <cache name="edu.colorado.phet.website.data.TeachersVideo"
-           maxElementsInMemory="200"
-           eternal="false"
-           overflowToDisk="false"
-           memoryStoreEvictionPolicy="LRU"
-            />
-
     <cache name="edu.colorado.phet.website.data.NotificationEvent"
            maxElementsInMemory="200"
            eternal="false"

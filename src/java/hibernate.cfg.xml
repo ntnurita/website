@@ -39,7 +39,6 @@
         <mapping resource="edu/colorado/phet/website/data/LocalizedSimulation.hbm.xml"/>
 
         <mapping resource="edu/colorado/phet/website/data/TeachersGuide.hbm.xml"/>
-        <mapping resource="edu/colorado/phet/website/data/TeachersVideo.hbm.xml"/>
 
         <mapping resource="edu/colorado/phet/website/data/Category.hbm.xml"/>
 

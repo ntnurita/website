@@ -525,11 +525,6 @@ public class PhetWicketApplication extends WebApplication {
                          "teachers-guide" );
     }
 
-    public File getTeachersVideoRoot() {
-        return new File( getWebsiteProperties().getPhetDownloadRoot(),
-                         "teachers-video" );
-    }
-
     public File getSimulationsRoot() {
         return new File( getWebsiteProperties().getPhetDocumentRoot(), "sims" );
     }
