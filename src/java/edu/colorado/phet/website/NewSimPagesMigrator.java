@@ -61,20 +61,14 @@ public class NewSimPagesMigrator {
         sims.add( new Pair<String, String>( "under-pressure", "Under Pressure" ) );
         sims.add( new Pair<String, String>( "wave-on-a-string", "Wave on a String" ) );
 
-        boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
-            public boolean run( Session session ) {
-                for ( Pair<String, String> pair : sims ) {
-                    logger.warn( "Attempting to add sim " + pair._2 );
-                    boolean fileWritten = writeMetaXML( pair._1, pair._2 );
-                    if ( fileWritten ) {
-                        Project.synchronizeProject( docRoot, session, "html/" + pair._1 );
-                        syncNewProject( session, pair._1 );
-                    }
-                }
-                return true;
+        for ( Pair<String, String> pair : sims ) {
+            logger.warn( "Attempting to add sim " + pair._2 );
+            boolean fileWritten = writeMetaXML( pair._1, pair._2 );
+            if ( fileWritten ) {
+                Project.synchronizeProject( docRoot, session, "html/" + pair._1 );
+                syncNewProject( session, pair._1 );
             }
-        } );
-
+        }
         session.close();
     }
 
@@ -112,74 +106,84 @@ public class NewSimPagesMigrator {
         return success;
     }
 
-    public static void syncNewProject( Session session, String simName ) {
-        List<Simulation> slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
+    public static void syncNewProject( Session session, final String simName ) {
+        try {
+            boolean success = HibernateUtils.wrapTransaction( session, new HibernateTask() {
+                public boolean run( Session session ) {
+                    List<Simulation> slist = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
 
-        Simulation simulation = null;
-        Simulation legacySim = null;
+                    Simulation simulation = null;
+                    Simulation legacySim = null;
 
-        for ( Simulation s : slist ) {
-            if ( s.getProject().getType() == Project.TYPE_HTML ) {
-                simulation = s;
-            }
-            else {
-                legacySim = s;
-            }
-        }
-
-        if ( simulation != null ) {
-            simulation.getProject().setVisible( true );
-            simulation.setSimulationVisible( true );
-        }
-        else {
-            logger.error( "ERROR: No sim of type html found with name " + simName );
-        }
-
-        if ( legacySim == null ) {
-            String legacyName = simName.contains( "travoltage" ) ? "travoltage" :
-                                simName.contains( "balloons" ) ? "balloons" :
-                                null;
-            List<Simulation> legacyList = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", legacyName ).list();
-            if ( legacyList.size() == 1 ) {
-                legacySim = legacyList.get( 0 );
-
-                if ( simulation != null ) {
-                    try {
-                        StringUtils.deleteString( session, simulation.getDescriptionKey() );
-                        StringUtils.deleteString( session, simulation.getLearningGoalsKey() );
-                        StringUtils.addString( session, simulation.getDescriptionKey(), StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
-                        StringUtils.addString( session, simulation.getLearningGoalsKey(), StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
+                    for ( Simulation s : slist ) {
+                        if ( s.getProject().getType() == Project.TYPE_HTML ) {
+                            simulation = s;
+                        }
+                        else {
+                            legacySim = s;
+                        }
                     }
-                    catch( ObjectDeletedException e ) {
-                        logger.warn( "ObjectDeletedException" );
+
+                    if ( simulation != null ) {
+                        simulation.getProject().setVisible( true );
+                        simulation.setSimulationVisible( true );
                     }
+                    else {
+                        logger.error( "ERROR: No sim of type html found with name " + simName );
+                    }
+
+                    if ( legacySim == null ) {
+                        String legacyName = simName.contains( "travoltage" ) ? "travoltage" :
+                                            simName.contains( "balloons" ) ? "balloons" :
+                                            null;
+                        List<Simulation> legacyList = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", legacyName ).list();
+                        if ( legacyList.size() == 1 ) {
+                            legacySim = legacyList.get( 0 );
+
+                            if ( simulation != null ) {
+                                try {
+                                    StringUtils.deleteString( session, simulation.getDescriptionKey() );
+                                    StringUtils.deleteString( session, simulation.getLearningGoalsKey() );
+                                    StringUtils.addString( session, simulation.getDescriptionKey(), StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
+                                    StringUtils.addString( session, simulation.getLearningGoalsKey(), StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
+                                }
+                                catch( ObjectDeletedException e ) {
+                                    logger.warn( "ObjectDeletedException" );
+                                }
+                            }
+                        }
+                    }
+
+                    if ( legacySim != null && simulation != null ) {
+
+                        for ( Object o : legacySim.getCategories() ) {
+                            Category category = (Category) o;
+                            category.addNewSimVersion( legacySim, simulation );
+                        }
+
+                        simulation.setAlignments( new HashSet( legacySim.getAlignments() ) );
+                        simulation.setCategories( new HashSet( legacySim.getCategories() ) );
+                        simulation.setRelatedSimulations( new LinkedList( legacySim.getRelatedSimulations() ) );
+                        simulation.setScienceLiteracyMapKeys( new HashSet( legacySim.getScienceLiteracyMapKeys() ) );
+                        simulation.setSecondaryAlignments( new HashSet( legacySim.getSecondaryAlignments() ) );
+                        simulation.setTopics( new LinkedList( legacySim.getTopics() ) );
+                        simulation.setKeywords( new LinkedList( legacySim.getKeywords() ) );
+                        simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
+                        simulation.setLowGradeLevel( legacySim.getLowGradeLevel() );
+                        simulation.setDesignTeam( legacySim.getDesignTeam() );
+                        simulation.setThanksTo( legacySim.getThanksTo() );
+                        simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
+                        simulation.setGuidanceRecommended( legacySim.isGuidanceRecommended() );
+                    }
+                    else {
+                        logger.error( "ERROR: No legacy sim found with name " + simName );
+                    }
+                    return true;
                 }
-            }
+            } );
         }
-
-        if ( legacySim != null && simulation != null ) {
-
-            for ( Object o : legacySim.getCategories() ) {
-                Category category = (Category) o;
-                category.addNewSimVersion( legacySim, simulation );
-            }
-
-            simulation.setAlignments( new HashSet( legacySim.getAlignments() ) );
-            simulation.setCategories( new HashSet( legacySim.getCategories() ) );
-            simulation.setRelatedSimulations( new LinkedList( legacySim.getRelatedSimulations() ) );
-            simulation.setScienceLiteracyMapKeys( new HashSet( legacySim.getScienceLiteracyMapKeys() ) );
-            simulation.setSecondaryAlignments( new HashSet( legacySim.getSecondaryAlignments() ) );
-            simulation.setTopics( new LinkedList( legacySim.getTopics() ) );
-            simulation.setKeywords( new LinkedList( legacySim.getKeywords() ) );
-            simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
-            simulation.setLowGradeLevel( legacySim.getLowGradeLevel() );
-            simulation.setDesignTeam( legacySim.getDesignTeam() );
-            simulation.setThanksTo( legacySim.getThanksTo() );
-            simulation.setHighGradeLevel( legacySim.getHighGradeLevel() );
-            simulation.setGuidanceRecommended( legacySim.isGuidanceRecommended() );
-        }
-        else {
-            logger.error( "ERROR: No legacy sim found with name " + simName );
+        catch( ObjectDeletedException e ) {
+            logger.error( "ObjectDeletedException in syncNewProject" );
         }
     }
 }
