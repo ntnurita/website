@@ -1,24 +1,31 @@
-.legal-doc p {
-  font-family: "Times New Roman", Georgia, Serif;
-  padding: 0;
-  margin: 0;
-}
+/*.legal-doc p {*/
+  /*font-family: "Times New Roman", Georgia, Serif;*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+/*}*/
 
-.legal-doc .section {
-  padding-top: 2.5em;
-}
 
-.legal-doc .section:not(.ignore) > *:not(:last-child):not(.ignore) {
-  padding-bottom: 1.5em;
-}
+/*.legal-doc p {*/
+  /*font-family: "Times New Roman", Georgia, Serif;*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+/*}*/
 
-.legal-doc .ignore {
-  padding-bottom: 0;
-}
+/*.legal-doc .section {*/
+  /*padding-top: 2.5em;*/
+/*}*/
 
-.legal-doc .indent {
-  padding-left: 1.25em;
-}
+/*.legal-doc .section:not(.ignore) > *:not(:last-child):not(.ignore) {*/
+  /*padding-bottom: 1.5em;*/
+/*}*/
+
+/*.legal-doc .ignore {*/
+  /*padding-bottom: 0;*/
+/*}*/
+
+/*.legal-doc .indent {*/
+  /*padding-left: 1.25em;*/
+/*}*/
 
 .legal-doc .center {
   text-align: center;
@@ -32,19 +39,23 @@
   font-style: italic;
 }
 
-.legal-doc .und {
-  text-decoration: underline;
+.legal-doc h1 {
+    font-size: 1.5em
 }
 
-.legal-doc ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
+/*.legal-doc .und {*/
+  /*text-decoration: underline;*/
+/*}*/
 
-.legal-doc ul.rom {
-  list-style-type: upper-roman;
-}
+/*.legal-doc ul {*/
+  /*margin-top: 0;*/
+  /*margin-bottom: 0;*/
+/*}*/
 
-.legal-doc ul.lat {
-  list-style-type: upper-latin;
-}
+/*.legal-doc ul.rom {*/
+  /*list-style-type: upper-roman;*/
+/*}*/
+
+/*.legal-doc ul.lat {*/
+  /*list-style-type: upper-latin;*/
+/*}*/
