@@ -1,61 +1,35 @@
-/*.legal-doc p {*/
-  /*font-family: "Times New Roman", Georgia, Serif;*/
-  /*padding: 0;*/
-  /*margin: 0;*/
-/*}*/
-
-
-/*.legal-doc p {*/
-  /*font-family: "Times New Roman", Georgia, Serif;*/
-  /*padding: 0;*/
-  /*margin: 0;*/
-/*}*/
-
-/*.legal-doc .section {*/
-  /*padding-top: 2.5em;*/
-/*}*/
-
-/*.legal-doc .section:not(.ignore) > *:not(:last-child):not(.ignore) {*/
-  /*padding-bottom: 1.5em;*/
-/*}*/
-
-/*.legal-doc .ignore {*/
-  /*padding-bottom: 0;*/
-/*}*/
-
-/*.legal-doc .indent {*/
-  /*padding-left: 1.25em;*/
-/*}*/
-
-.legal-doc .center {
-  text-align: center;
+.html-licensing-panel .section {
+    padding-top: 1.167em;
 }
 
-.legal-doc .bold {
-  font-weight: bold;
+.html-licensing-panel .bold {
+    font-weight: bold;
 }
 
-.legal-doc .slant {
-  font-style: italic;
+.html-licensing-panel .ignore {
+    margin-bottom: 0;
 }
 
-.legal-doc h1 {
-    font-size: 1.5em
+.html-licensing-panel .center {
+    text-align: center;
 }
 
-/*.legal-doc .und {*/
-  /*text-decoration: underline;*/
-/*}*/
+.html-licensing-panel .slant {
+    font-style: italic;
+}
 
-/*.legal-doc ul {*/
-  /*margin-top: 0;*/
-  /*margin-bottom: 0;*/
-/*}*/
+.html-licensing-panel h1 {
+    font-size: 1.5em;
+}
 
-/*.legal-doc ul.rom {*/
-  /*list-style-type: upper-roman;*/
-/*}*/
+.html-licensing-panel h2 {
+    color: rgb(50, 152, 166);
+    font-size: 1.333em;
+    /*margin-top: 30px;*/
+}
 
-/*.legal-doc ul.lat {*/
-  /*list-style-type: upper-latin;*/
-/*}*/
+.html-licensing-panel h3 {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
