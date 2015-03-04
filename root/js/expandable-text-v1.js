@@ -13,6 +13,7 @@ function toggleMe( id ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
+    window.location.hash = '';
     window.location.hash = '#' + id + '-header';
     window['answer_' + id] = true;
     newClass = thisElement.className.replace( 'right', 'down' );
@@ -49,3 +50,14 @@ function toggleMe( id ) {
   }
   return false;
 }
+
+(function() {
+  var interval = setInterval( function() {
+    if ( typeof $ !== 'undefined' ) {
+      $( document ).ready( function() {
+        toggleMe( window.location.hash.replace( '#', '' ).replace( '-header', '' ) );
+      } );
+      clearInterval( interval );
+    }
+  }, 100 );
+})();

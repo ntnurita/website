@@ -313,11 +313,15 @@
                 <wicket:enclosure child="guide-text">
                     <a id="tips-for-teachers"></a>
                     <h3>
-                        <wicket:message key="simulationMainPanel.tipsForTeachers">Tips for Teachers</wicket:message>
+                        <wicket:message key="simulationMainPanel.teacherTips">Teacher Tips</wicket:message>
+                        <wicket:message key="simulationMainPanel.videoPrimer">and Video Primer</wicket:message>
                     </h3>
                     <div wicket:id="guide-text" class="teachers-tips-holder sim-description">
-                        The <a href="#">teacher's guide</a> (pdf) contains tips created by the PhET
-                        team.
+                        Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
+                    </div>
+                    <div>
+                        <iframe wicket:id="video-iframe" width="400" height="225" id="teachers-video-player"
+                                frameborder="0" allowfullscreen="allowfullscreen"></iframe>
                     </div>
                 </wicket:enclosure>
 

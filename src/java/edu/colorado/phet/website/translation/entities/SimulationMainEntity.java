@@ -83,6 +83,8 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.forTeachers" );
         addString( "simulationMainPanel.activities" );
         addString( "simulationMainPanel.translations" );
+        addString( "simulationMainPanel.teacherTips" );
+        addString( "simulationMainPanel.videoPrimer" );
 
         addString( "simulationMainPanel.originalSim" );
         addString( "simulationMainPanel.backToHTML" );

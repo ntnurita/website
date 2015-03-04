@@ -333,3 +333,10 @@ body#offline-installer-body .sim-download {
     left: 284px;
     bottom: -3px;
 }
+
+#teachers-video-player {
+    display: block;
+    margin: 0 auto;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}

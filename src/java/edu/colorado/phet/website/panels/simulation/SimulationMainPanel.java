@@ -224,6 +224,10 @@ public class SimulationMainPanel extends PhetPanel {
             hasTeacherTips = false;
         }
 
+        add( new WebMarkupContainer( "video-iframe" ) {{
+            add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc?list=UUMRZ0-ci4ifGBF1bJvrcDRQ" ) ) );
+        }} );
+
         /*---------------------------------------------------------------------------*
         * contributions
         *----------------------------------------------------------------------------*/
