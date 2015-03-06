@@ -140,15 +140,7 @@ public class SimulationListViewPanel extends PhetPanel {
     private static void addSimulationsFromCategory( List<LocalizedSimulation> simulations, Locale locale, Category category, Set<Integer> used ) {
 
         // sims that appear twice must have an html5 version that should be displayed instead of the legacy version
-        Set<String> simsSet = new HashSet<String>();
-        Set<String> simsWithTwoVersions = new HashSet<String>();
-        for ( Object o : category.getSimulations() ) {
-            Simulation sim = (Simulation) o;
-            if ( simsSet.contains( sim.getName() ) ) {
-                simsWithTwoVersions.add( sim.getName() );
-            }
-            simsSet.add( sim.getName() );
-        }
+        Set<String> simsWithTwoVersions = HibernateUtils.getSimsWithTwoVersions( category.getSimulations() );
 
         for ( Object o : category.getSimulations() ) {
             Simulation sim = (Simulation) o;

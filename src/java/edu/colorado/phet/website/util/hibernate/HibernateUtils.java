@@ -8,9 +8,11 @@ import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -451,15 +453,38 @@ public class HibernateUtils {
         criteria.createCriteria( "project" ).add( Restrictions.eq( "visible", true ) );
         //List sims = session.createQuery( "select s from Simulation as s where s.project.visible = true and s.simulationVisible = true" ).list();
         List sims = criteria.list();
+        Set simsWithTwoVersions = getSimsWithTwoVersions( sims );
         logger.debug( "2" );
         for ( Object sim : sims ) {
             Simulation simulation = (Simulation) sim;
             if ( !simulation.isVisible() ) {
                 continue;
             }
+            if ( simsWithTwoVersions.contains( simulation.getName() ) && simulation.getProject().getType() != Project.TYPE_HTML ) {
+                continue;
+            }
             lsims.add( pickBestTranslation( simulation, locale ) );
         }
         logger.debug( "3" );
+    }
+
+    /**
+     * This method is used when displaying the sims by category to filter out legacy versions
+     * @param simulations A list of Simulations to search through
+     * @return A set of sim names that have multiple version (html and legacy)
+     */
+    public static Set<String> getSimsWithTwoVersions( List simulations ) {
+        // sims that appear twice must have an html5 version
+        Set<String> simsSet = new HashSet<String>();
+        Set<String> simsWithTwoVersions = new HashSet<String>();
+        for ( Object o : simulations ) {
+            Simulation sim = (Simulation) o;
+            if ( simsSet.contains( sim.getName() ) || AbstractSimulationPage.LEGACY_TO_CURRENT_SIM_NAME.containsKey( sim.getName() ) ) {
+                simsWithTwoVersions.add( sim.getName() );
+            }
+            simsSet.add( sim.getName() );
+        }
+        return simsWithTwoVersions;
     }
 
     public static List<LocalizedSimulation> preferredFullSimulationList( Session session, Locale locale ) {
