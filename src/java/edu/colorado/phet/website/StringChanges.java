@@ -162,7 +162,7 @@ public class StringChanges {
                 "simulations, and maintain existing simulations." );
         StringUtils.addString( session, "htmlLicensing.agreementIID.p2", "Commercial users are highly encouraged to " +
                 "support the project and its mission with a tax-deductible donation to PhET. For more " +
-                "information, email <a href=\"mailto:phethelp@colorado.edu\">phethelp@colorado.edu</a> or visit <a " +
+                "information, email <a href=\"mailto:phethelp@colorado.edu\" target=\"_blank\">phethelp@colorado.edu</a> or visit <a " +
                 "href=\"http://phet.colorado.edu/en/donate\">http://phet.colorado.edu/en/donate</a>." );
         StringUtils.addString( session, "htmlLicensing.agreementIIE.header", "E. Third Party Software Credits" );
         StringUtils.addString( session, "htmlLicensing.agreementIIE.p1", "PhET simulations use third-party software. " +
@@ -173,13 +173,13 @@ public class StringChanges {
         StringUtils.addString( session, "htmlLicensing.agreementIIF.p1", "Permissions beyond the scope of these " +
                 "licenses, including licensing for PhET Enhanced HTML Simulation Files or source code assets " +
                 "not identified as openly-licensed in their license files, may be available upon request. Please " +
-                "contact us at <a href=\"mailto:phethelp@colorado.edu\">phethelp@colorado.edu</a>." );
+                "contact us at <a href=\"mailto:phethelp@colorado.edu\" target=\"_blank\">phethelp@colorado.edu</a>." );
         StringUtils.addString( session, "htmlLicensing.agreementIII.header", "III. PHET NAME AND LOGO TRADEMARK" );
         StringUtils.addString( session, "htmlLicensing.agreementIII.p1", "The PhET name and PhET logo are trademarks " +
                 "of The Regents of the University of Colorado, a body corporate. Permission is granted to " +
                 "use the PhET name and PhET logo only for attribution purposes. Use of the PhET name and/or PhET " +
                 "logo for promotional, marketing, or advertising purposes requires a separate license agreement from " +
-                "the University of Colorado. Contact <a href=\"mailto:phethelp@colorado.edu\">" +
+                "the University of Colorado. Contact <a href=\"mailto:phethelp@colorado.edu\" target=\"_blank\">" +
                 "phethelp@colorado.edu</a> to discuss trademark licensing options." );
         StringUtils.addString( session, "htmlLicensing.agreementIV.header", "IV. PRIVACY POLICY" );
         StringUtils.addString( session, "htmlLicensing.agreementIVA.header", "A. Commitment to Individual Privacy" );
@@ -258,7 +258,7 @@ public class StringChanges {
         StringUtils.addString( session, "htmlLicensing.agreementVI.header", "VI. CONTACT US" );
         StringUtils.addString( session, "htmlLicensing.agreementVI.p1", "Please send comments, questions, or " +
                 "concerns regarding this software agreement to " +
-                "<a href=\"mailto:phethelp@colorado.edu\">phethelp@colorado.edu</a>. " +
+                "<a href=\"mailto:phethelp@colorado.edu\" target=\"_blank\">phethelp@colorado.edu</a>. " +
                 "Please do not send attachments with the message." );
 
         session.close();
