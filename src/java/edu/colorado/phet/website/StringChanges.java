@@ -80,16 +80,16 @@ public class StringChanges {
                 "href=\"http://creativecommons.org/licenses/by/4.0/legalcode\" target=\"_blank\">" +
                 "http://creativecommons.org/licenses/by/4.0/legalcode</a>." );
         StringUtils.addString( session, "htmlLicensing.agreementIIA.p3", "The collection of PhET Regular HTML " +
-                "Simulation Files are available to run or download from <a href=\"http://phet.colorado.edu\">" +
-                "http://phet.colorado.edu</a>." );
+                "Simulation Files are available to run or download from " +
+                "<a href=\"http://phet.colorado.edu\">http://phet.colorado.edu</a>." );
         StringUtils.addString( session, "htmlLicensing.agreementIIA.p4", "What does the CC BY 4.0 License mean?" );
         StringUtils.addString( session, "htmlLicensing.agreementIIA.p5", "PhET Regular HTML Simulation Files may be " +
                 "freely used and/or redistributed by third parties (e.g. students, educators, school " +
                 "districts, museums, publishers, vendors, etc.) for non-commercial or commercial purposes." );
         StringUtils.addString( session, "htmlLicensing.agreementIIA.p6", "Any use of a PhET Regular HTML Simulation " +
                 "File under the CC BY 4.0 requires the following attribution: \"PhET Interactive " +
-                "Simulations, University of Colorado Boulder, <a href=\"http://phet.colorado.edu\">" +
-                "http://phet.colorado.edu</a>.\"" );
+                "Simulations, University of Colorado Boulder, " +
+                "<a href=\"http://phet.colorado.edu\">http://phet.colorado.edu</a>.\"" );
         StringUtils.addString( session, "htmlLicensing.agreementIIA.p7", "The CC-BY-4.0 license does <i>not</i> " +
                 "apply to the PhET name and PhET logo, which are trademarks of The Regents of the University " +
                 "of Colorado, a body corporate. See Section III below for additional information regarding how to " +
@@ -121,20 +121,21 @@ public class StringChanges {
                 "</b>is the collection of original simulation specific assets used by a PhET simulation, " +
                 "including but not limited to source code (JavaScript/HTML/CSS), images, audio and text." );
         StringUtils.addString( session, "htmlLicensing.agreementIIC.p2", "PhET licenses PhET HTML Simulation Source " +
-                "Code under the <a href=\"http://opensource.org/licenses/MIT\" target=\"_blank\">MIT Licsnse</a>. " +
+                "Code under the <a href=\"http://opensource.org/licenses/MIT\" target=\"_blank\">MIT License</a>. " +
                 "The full " +
                 "text of the MIT License is available here: <a href=\"http://opensource.org/licenses/MIT\" " +
-                "target=\"_blank\">http://opensource.org/licenses/MIT</a>" );
+                "target=\"_blank\">http://opensource.org/licenses/MIT</a>." );
         StringUtils.addString( session, "htmlLicensing.agreementIIC.p3", "PhET HTML Common Source Code can be " +
-                "accessed at <a href=\"http://github.com/phetsims\" target=\"_blank\"> " +
+                "accessed at <a href=\"http://github.com/phetsims\" target=\"_blank\">" +
                 "http://github.com/phetsims</a>. The license file within the specific PhET HTML Common Source Code " +
                 "repository specifies whether it is available under the MIT License." );
         StringUtils.addString( session, "htmlLicensing.agreementIIC.p4", "What does using the MIT License mean?" );
         StringUtils.addString( session, "htmlLicensing.agreementIIC.p5", "The common source code libraries for PhET " +
                 "HTML Common Source Code are available for use and/or modification. For directions about " +
-                "how to access the source code, go to: <a " +
-                "href=\"http://phet.colorado.edu/about/source-code.php\">http://phet.colorado.edu/about/source-code " +
-                ".php</a>. Anyone can have access to the source code and make modifications. The copyright and " +
+                "how to access the source code, go to: " +
+                "<a href=\"http://phet.colorado.edu/about/source-code.php\">http://phet.colorado" +
+                ".edu/about/source-code.php</a>" + ". Anyone can have access to the " +
+                "source code and make modifications. The copyright and " +
                 "permission notice must be included in all copies or copies of substantial portions of the Software." );
         StringUtils.addString( session, "htmlLicensing.agreementIID.header", "D. Donations" );
         StringUtils.addString( session, "htmlLicensing.agreementIID.p1", "PhET requires ongoing donations, " +
@@ -240,7 +241,6 @@ public class StringChanges {
                 "concerns regarding this software agreement to " +
                 "<a href=\"mailto:phethelp@colorado.edu\">phethelp@colorado.edu</a>. " +
                 "Please do not send attachments with the message." );
-
 
 
 
