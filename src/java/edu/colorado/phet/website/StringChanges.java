@@ -242,6 +242,7 @@ public class StringChanges {
                 "<a href=\"mailto:phethelp@colorado.edu\" target=\"_blank\">phethelp@colorado.edu</a>. " +
                 "Please do not send attachments with the message." );
 
+        StringUtils.addString( session, "htmlLicensing.disclaimer", "Disclaimer: The text of the licensing information below is only legally valid for the English version. Any translations of the licensing information are not legally binding, but instead are provided for the convenience of non-English users." );
 
 
         session.close();
