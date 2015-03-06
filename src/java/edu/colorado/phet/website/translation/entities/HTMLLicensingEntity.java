@@ -85,6 +85,7 @@ public class HTMLLicensingEntity extends TranslationEntity {
         addString( "htmlLicensing.agreementV.p3" );
         addString( "htmlLicensing.agreementVI.header" );
         addString( "htmlLicensing.agreementVI.p1" );
+        addString( "htmlLicensing.disclaimer" );
 
         addPreview(new PhetPanelFactory() {
             public PhetPanel getNewPanel(String id, PageContext context, PhetRequestCycle requestCycle) {
