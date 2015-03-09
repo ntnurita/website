@@ -142,10 +142,8 @@ public class NewSimPagesMigrator {
 
                             if ( simulation != null ) {
                                 try {
-                                    StringUtils.deleteString( session, simulation.getDescriptionKey() );
-                                    StringUtils.deleteString( session, simulation.getLearningGoalsKey() );
-                                    StringUtils.addString( session, simulation.getDescriptionKey(), StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
-                                    StringUtils.addString( session, simulation.getLearningGoalsKey(), StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
+                                    StringUtils.overwriteString( session, simulation.getDescriptionKey(), Simulation.DEFAULT_DESCRIPTION, StringUtils.getEnglishStringDirect( session, legacySim.getDescriptionKey() ) );
+                                    StringUtils.overwriteString( session, simulation.getLearningGoalsKey(), Simulation.DEFAULT_LEARNING_GOALS, StringUtils.getEnglishStringDirect( session, legacySim.getLearningGoalsKey() ) );
                                 }
                                 catch( ObjectDeletedException e ) {
                                     logger.warn( "ObjectDeletedException" );
