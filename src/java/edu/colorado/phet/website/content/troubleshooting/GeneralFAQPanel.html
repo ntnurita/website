@@ -4,373 +4,271 @@
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] TroubleshootingMainPanel</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-    </wicket:remove>
+  <title>[PREVIEW] TroubleshootingMainPanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
+
+
+
 </head>
 <body>
 
 <wicket:panel>
-    <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
+  <!--TODO: Include correctly-->
+  <script type="text/javascript" src="js/expandable-text-v1.js"></script>
+  <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
-        <p wicket:id="faq-header">
-            For troubleshooting problems, please visit our <a href="#">Troubleshooting
-            page</a>.
+    <p wicket:id="faq-header">
+      For troubleshooting problems, please visit our <a href="#">Troubleshooting
+      page</a>.
+    </p>
+
+    <div id="faq">
+      <h2 id="q2-header" class="question triangle-right" href="#q2-header" onclick="return false"
+          onmousedown="return toggleMe('q2')">
+        <wicket:message key="troubleshooting.main.q2.title"> What are the System Requirements for running PhET simulations?</wicket:message>
+      </h2>
+      <div id="q2" class="answer" wicket:id="troubleshooting-main-q2-answer">
+        <p><strong>Windows Systems</strong><br/>
+          Intel Pentium processor<br/>
+          Microsoft Windows 2000/XP/Vista<br/>
+          256MB RAM minimum<br/>
+          Approximately 97 MB available disk space (for full <a
+                  href="#">installation</a>)<br/>
+
+          1024x768 screen resolution or better<br/>
+          Sun Java 1.5.0_15 or later<br/>
+          Macromedia Flash 9 or later<br/>
+          Microsoft Internet Explorer 6 or later, Firefox 2 or later</p>
+
+        <p><strong>Macintosh Systems</strong><br/>
+          G3, G4, G5 or Intel processor<br/>
+
+          OS 10.5 or later<br/>
+          256MB RAM minimum<br/>
+          Approximately 86 MB available disk space (for full <a
+                  href="#">installation</a>)<br/>
+          1024x768 screen resolution or better<br/>
+          Apple Java 1.5.0_19 or later<br/>
+
+          Macromedia Flash 9 or later<br/>
+          Safari 2 or later, Firefox 2 or later</p>
+
+        <p><strong>Linux Systems</strong><br/>
+          Intel Pentium processor<br/>
+          256MB RAM minimum<br/>
+          Approximately 81 MB disk space (for full <a href="#">installation</a>)<br/>
+
+          1024x768 screen resolution or better<br/>
+          Sun Java 1.5.0_15 or later<br/>
+          Macromedia Flash 9 or later<br/>
+          Firefox 2 or later<br/></p>
+
+        <p><strong>Support Software</strong></p>
+
+        <p>Some of our simulations use Java, and some use Flash. Both of these are available as free downloads, and
+          our
+          downloadable <a href="#">PhET Offline Website Installer</a> includes Java for
+          those
+          who need it.</p>
+      </div>
+
+      <h2 id="q6-header" class="question triangle-right" href="#q6-header" onclick="return false"
+          onmousedown="return toggleMe('q6')">
+        <wicket:message key="troubleshooting.main.q6.title">
+          What is the ideal screen resolution to run PhET simulations?
+        </wicket:message>
+      </h2>
+      <div id="q6" class="answer" wicket:id="troubleshooting-main-q6-answer">
+        <p>PhET simulations work best at a screen resolution of 1024 x 768 pixels. (Some of them are written so that
+          they
+          cannot be resized.) At lower resolution (e.g. 800 x 600), all the controls may not fit on your screen.
+          At higher
+          resolution (e.g. 1280 x 1024), you may not be able to make the simulation fill the whole screen, or if
+          you do,
+          it may slow down performance. To change your screen resolution, follow the directions below:</p>
+
+        <p><strong>Windows Vista</strong></p>
+
+        <ol>
+          <li>From Start menu, click on "Control Panel."</li>
+
+          <li>Press "Adjust screen resolution" under "Appearance and Personalization."</li>
+          <li>Use the "Screen resolution" slider to select a resolution and click "OK."</li>
+        </ol>
+
+        <p><strong>Windows 2000/XP</strong></p>
+
+        <ol>
+          <li>From Start menu, click on "Control Panel."</li>
+
+          <li>Double click on "Display" icon.</li>
+          <li>Select the "Settings" tab.</li>
+          <li>Use the "Screen resolution" slider to select a resolution and click "OK."</li>
+        </ol>
+
+        <p><strong>Macintosh</strong></p>
+
+        <ol>
+
+          <li>Open the System Preferences (either from the Dock or from the Apple menu).</li>
+          <li>Open the Displays Panel and choose the Display tab.</li>
+          <li>On the left of the Displays tab you can select one of the Resolutions from the list.</li>
+          <li>Quit or close the System Preferences when done.</li>
+        </ol>
+      </div>
+
+      <h2 id="mobileDevices-header" class="question triangle-right" href="#mobileDevices-header" onclick="return false"
+          onmousedown="return toggleMe('mobileDevices')">
+        <wicket:message key="faq.mobileDevices.title">
+          Can PhET simulations be used on my tablet/iPad/Android devices?
+        </wicket:message>
+      </h2>
+      <div id="mobileDevices" class="answer" wicket:id="mobileDevices-answer">
+        <p>
+          At this time tablet/iPad/Android devices platforms do not fully support Java or Flash, which is required to run PhET
+          simulations.
+        </p>
+        <ul>
+          <li>
+            iPads lack full support of Java and Flash so our sims currently cannot run on the interface. Our sims also aren't
+            developed for touch devices and the mobile devices usually perform very poorly when running our simulations due to lack
+            of processing power.
+          </li>
+          <li>
+            Android devices cannot run full Java programs like PhET sims, just Android Java programs. Flash sims have poor
+            performance and user input response.
+          </li>
+        </ul>
+        <p>
+          In addition to the lack of support for required platforms, porting PhET sims to iPad/ tablet devices is not simply a matter
+          of rewriting the code in another language. PhET sims are designed for devices with a mouse and keyboard. There are certain
+          things that are awkward with a touch screen (like typing, especially when the virtual keyboard covers what you want to look
+          at), right clicking...and some things that are impossible, such as hovering over objects.
         </p>
 
-        <div id="faq">
-            <ul id="nav">
-
-                <li class="faq"><a href="#q2">
-                    <wicket:message key="troubleshooting.main.q2.title">
-                        What are the System Requirements for running PhET simulations?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#q6">
-                    <wicket:message key="troubleshooting.main.q6.title">
-                        What is the ideal screen resolution to run PhET simulations?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#mobileDevices">
-                    <wicket:message key="faq.mobileDevices.title">
-                        Can PhET simulations be used on my tablet/iPad/Android devices?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#q10">
-                    <wicket:message key="troubleshooting.main.q10.title">
-                        I would like to translate PhET Simulations into another Language. Can this be easily done?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#q15">
-                    <wicket:message key="troubleshooting.main.q15.title">
-                        Can I run PhET simulations from a USB drive?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#q16">
-                    <wicket:message key="troubleshooting.main.q16.title">
-                        Where does the name "PhET" come from?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#q17">
-                    <wicket:message key="troubleshooting.main.q17.title">
-                        How can I maximize PhET simulations in a browser?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#embedding">
-                    <wicket:message key="faq.embedding.title">
-                        How do I embed PhET simulations?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#sourceCode">
-                    <wicket:message key="faq.sourceCode.title">
-                        Is the source code available?
-                    </wicket:message>
-                </a></li>
-
-                <li class="faq"><a href="#licensing">
-                    <wicket:message key="troubleshooting.main.licensingRequirements">
-                        What are Licensing requirements?
-                    </wicket:message>
-                </a></li>
-            </ul>
-        </div>
-        <br/>
-        <br/>
-
-        <h3 id="q2">
-            <wicket:message key="troubleshooting.main.q2.title">What are the System Requirements for running PhET
-                simulations?
-            </wicket:message>
-        </h3>
-
-        <div wicket:id="troubleshooting-main-q2-answer">
-            <p><strong>Windows Systems</strong><br/>
-                Intel Pentium processor<br/>
-                Microsoft Windows 2000/XP/Vista<br/>
-                256MB RAM minimum<br/>
-                Approximately 97 MB available disk space (for full <a
-                        href="#">installation</a>)<br/>
-
-                1024x768 screen resolution or better<br/>
-                Sun Java 1.5.0_15 or later<br/>
-                Macromedia Flash 9 or later<br/>
-                Microsoft Internet Explorer 6 or later, Firefox 2 or later</p>
-
-            <p><strong>Macintosh Systems</strong><br/>
-                G3, G4, G5 or Intel processor<br/>
-
-                OS 10.5 or later<br/>
-                256MB RAM minimum<br/>
-                Approximately 86 MB available disk space (for full <a
-                        href="#">installation</a>)<br/>
-                1024x768 screen resolution or better<br/>
-                Apple Java 1.5.0_19 or later<br/>
-
-                Macromedia Flash 9 or later<br/>
-                Safari 2 or later, Firefox 2 or later</p>
-
-            <p><strong>Linux Systems</strong><br/>
-                Intel Pentium processor<br/>
-                256MB RAM minimum<br/>
-                Approximately 81 MB disk space (for full <a href="#">installation</a>)<br/>
-
-                1024x768 screen resolution or better<br/>
-                Sun Java 1.5.0_15 or later<br/>
-                Macromedia Flash 9 or later<br/>
-                Firefox 2 or later<br/></p>
-
-            <p><strong>Support Software</strong></p>
-
-            <p>Some of our simulations use Java, and some use Flash. Both of these are available as free downloads, and
-                our
-                downloadable <a href="#">PhET Offline Website Installer</a> includes Java for
-                those
-                who need it.</p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+        <p>
+          If your school district is considering the purchase of iPads or tablet devices, please understand that PhET simulations will
+          either not function or perform poorly. We recommend laptops or netbooks for using our simulations using our
+          <a href="#q2-header">system
+          requirements</a>.
         </p>
+      </div>
 
-        <h3 id="q6">
-            <wicket:message key="troubleshooting.main.q6.title">
-                What is the ideal screen resolution to run PhET simulations?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q6-answer">
-            <p>PhET simulations work best at a screen resolution of 1024 x 768 pixels. (Some of them are written so that
-                they
-                cannot be resized.) At lower resolution (e.g. 800 x 600), all the controls may not fit on your screen.
-                At higher
-                resolution (e.g. 1280 x 1024), you may not be able to make the simulation fill the whole screen, or if
-                you do,
-                it may slow down performance. To change your screen resolution, follow the directions below:</p>
+      <h2 id="q10-header" class="question triangle-right" href="q10-header" onclick="return false"
+              onmousedown="return toggleMe('q10')">
+        <wicket:message key="troubleshooting.main.q10.title">
+          I would like to translate PhET Simulations into another Language. Can this be easily done?
+        </wicket:message>
+      </h2>
+      <div id="q10" class="answer" wicket:id="troubleshooting-main-q10-answer">
+        <p>The PhET simulations have been written so that they are easily translated to languages other than
+          English. Please
+          <a href="#">click here</a> for more information.</p>
+      </div>
 
-            <p><strong>Windows Vista</strong></p>
-
-            <ol>
-                <li>From Start menu, click on "Control Panel."</li>
-
-                <li>Press "Adjust screen resolution" under "Appearance and Personalization."</li>
-                <li>Use the "Screen resolution" slider to select a resolution and click "OK."</li>
-            </ol>
-
-            <p><strong>Windows 2000/XP</strong></p>
-
-            <ol>
-                <li>From Start menu, click on "Control Panel."</li>
-
-                <li>Double click on "Display" icon.</li>
-                <li>Select the "Settings" tab.</li>
-                <li>Use the "Screen resolution" slider to select a resolution and click "OK."</li>
-            </ol>
-
-            <p><strong>Macintosh</strong></p>
-
-            <ol>
-
-                <li>Open the System Preferences (either from the Dock or from the Apple menu).</li>
-                <li>Open the Displays Panel and choose the Display tab.</li>
-                <li>On the left of the Displays tab you can select one of the Resolutions from the list.</li>
-                <li>Quit or close the System Preferences when done.</li>
-            </ol>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+      <h2 id="q15-header" class="question triangle-right" href="#q15-header" onclick="return false"
+          onmousedown="return toggleMe('q15')">
+        <wicket:message key="troubleshooting.main.q15.title">
+          Can I run PhET simulations from a USB drive?
+        </wicket:message>
+      </h2>
+      <div id="q15" class="answer" wicket:id="troubleshooting-main-q15-answer">
+        <p>
+          Yes, but there are some situations where problems may be encountered. If you only want to run a small
+          number of simulations, the best approach is to download the individual JAR files (i.e. the files that
+          are downloaded when you press the "Download" button on the simulation pages) and save them on your USB
+          drive. This should work under most circumstances. If you want to install all simulations using the
+          Offline Website Installer, there can be some complications. The reason for this is that some of the
+          simulations - specifically the ones that run under Java - have hardcoded path information in their
+          launch files. This is due to a limitation of the Java Network Launching Protocol. This limitation means
+          that if you install the Offline Website Installer to your hard drive and then copy all of the installed
+          files to a USB drive, there is a good chance that many of the simulations will not run. One possible
+          alternative approach is to install the Offline Website Installer directly on to your USB drive. This
+          should work in situations where the USB drive is assigned the same drive designation (e.g. "E:") when
+          attached to a new machine as was assigned when the Offline Website Installer was installed. If the USB
+          drive is assigned a different drive designation, again, many of the simulations will not run.
         </p>
+      </div>
 
-        <h3 id="mobileDevices">
-            <wicket:message key="faq.mobileDevices.title">
-                Can PhET simulations be used on my tablet/iPad/Android devices?
-            </wicket:message>
-        </h3>
-        <div wicket:id="mobileDevices-answer">
-            <p>
-                At this time tablet/iPad/Android devices platforms do not fully support Java or Flash, which is required to run PhET
-                simulations.
-            </p>
-            <ul>
-                <li>
-                    iPads lack full support of Java and Flash so our sims currently cannot run on the interface. Our sims also aren't
-                    developed for touch devices and the mobile devices usually perform very poorly when running our simulations due to lack
-                    of processing power.
-                </li>
-                <li>
-                    Android devices cannot run full Java programs like PhET sims, just Android Java programs. Flash sims have poor
-                    performance and user input response.
-                </li>
-            </ul>
-            <p>
-                In addition to the lack of support for required platforms, porting PhET sims to iPad/ tablet devices is not simply a matter
-                of rewriting the code in another language. PhET sims are designed for devices with a mouse and keyboard. There are certain
-                things that are awkward with a touch screen (like typing, especially when the virtual keyboard covers what you want to look
-                at), right clicking...and some things that are impossible, such as hovering over objects.
-            </p>
-
-            <p>
-                If your school district is considering the purchase of iPads or tablet devices, please understand that PhET simulations will
-                either not function or perform poorly. We recommend laptops or netbooks for using our simulations using our <a href="#q2">system
-                requirements</a>.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+      <h2 id="q16-header" class="question triangle-right" href="#q16-header" onclick="return false"
+          onmousedown="return toggleMe('q16')">
+        <wicket:message key="troubleshooting.main.q16.title">
+          Where does the name &quot;PhET&quot; come from?
+        </wicket:message>
+      </h2>
+      <div id="q16" class="answer" wicket:id="troubleshooting-main-q16-answer">
+        <p>
+          Our project originally focused on physics sims, and was hence named the *Ph*ysics *E*ducation
+          *T*echnology project, or *PhET*. When we branched into chemistry, biology, mathematics and other areas,
+          we decided to keep the name *PhET*, but to no longer describe it as an acronym.
         </p>
+      </div>
 
-        <h3 id="q10">
-            <wicket:message key="troubleshooting.main.q10.title">
-                I would like to translate PhET Simulations into another Language. Can this be easily done?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q10-answer">
-            <p>The PhET simulations have been written so that they are easily translated to languages other than
-                English. Please
-                <a href="#">click here</a> for more information.</p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+      <h2 id="q17-header" class="question triangle-right" href="#q17-header" onclick="return false"
+          onmousedown="return toggleMe('q17')">
+        <wicket:message key="troubleshooting.main.q17.title">
+          How can I maximize PhET simulations in a browser?
+        </wicket:message>
+      </h2>
+      <div id="q17" class="answer" wicket:id="troubleshooting-main-q17-answer">
+        <p>
+          Most browsers have an option to switch into a fullscreen mode. Below are instructions for the most
+          common browsers:
         </p>
+        <ul>
+          <li>Internet Explorer (all versions): Press F11</li>
+          <li>Firefox: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li>
+          <li>Google Chrome: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li>
+          <li>Safari: Fullscreen support with 3rd-party plugins (Mac, Windows)</li>
+          <li>Opera: Press F11 (Windows, Linux)</li>
+        </ul>
+      </div>
 
-        <h3 id="q15">
-            <wicket:message key="troubleshooting.main.q15.title">
-                Can I run PhET simulations from a USB drive?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q15-answer">
-            <p>
-                Yes, but there are some situations where problems may be encountered. If you only want to run a small
-                number of simulations, the best approach is to download the individual JAR files (i.e. the files that
-                are downloaded when you press the "Download" button on the simulation pages) and save them on your USB
-                drive. This should work under most circumstances. If you want to install all simulations using the
-                Offline Website Installer, there can be some complications. The reason for this is that some of the
-                simulations - specifically the ones that run under Java - have hardcoded path information in their
-                launch files. This is due to a limitation of the Java Network Launching Protocol. This limitation means
-                that if you install the Offline Website Installer to your hard drive and then copy all of the installed
-                files to a USB drive, there is a good chance that many of the simulations will not run. One possible
-                alternative approach is to install the Offline Website Installer directly on to your USB drive. This
-                should work in situations where the USB drive is assigned the same drive designation (e.g. "E:") when
-                attached to a new machine as was assigned when the Offline Website Installer was installed. If the USB
-                drive is assigned a different drive designation, again, many of the simulations will not run.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+      <h2 id="embedding-header" class="question triangle-right" href="#embedding-header" onclick="return false"
+          onmousedown="return toggleMe('embedding')">
+        <wicket:message key="faq.embedding.title">
+          How do I embed PhET simulations?
+        </wicket:message>
+      </h2>
+      <div id="embedding" class="answer" wicket:id="faq-embedding-answer">
+        <p>
+          Click the 'Embed' button under the simulation you would like to embed. This will bring up a text box of
+          html code that you can copy and paste in order to embed the sim. Flash sims may be directly embedded or
+          linked via an image to launch the sim. Java sims may only be linked via an image to launch the sim.
         </p>
+      </div>
 
-        <h3 id="q16">
-            <wicket:message key="troubleshooting.main.q16.title">
-                Where does the name &quot;PhET&quot; come from?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q16-answer">
-            <p>
-                Our project originally focused on physics sims, and was hence named the *Ph*ysics *E*ducation
-                *T*echnology project, or *PhET*. When we branched into chemistry, biology, mathematics and other areas,
-                we decided to keep the name *PhET*, but to no longer describe it as an acronym.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+      <h2 id="sourceCode-header" class="question triangle-right" href="#sourceCode-header" onclick="return false"
+          onmousedown="return toggleMe('sourceCode')">
+        <wicket:message key="faq.sourceCode.title">
+          Is the source code available?
+        </wicket:message>
+      </h2>
+      <div id="sourceCode" class="answer" wicket:id="faq-sourceCode-answer">
+        <p>
+          Yes, our source code is freely available. Instructions to download it are on our Source Code page.
         </p>
+      </div>
 
-        <h3 id="q17">
-            <wicket:message key="troubleshooting.main.q17.title">
-                How can I maximize PhET simulations in a browser?
-            </wicket:message>
-        </h3>
-        <div wicket:id="troubleshooting-main-q17-answer">
-            <p>
-                Most browsers have an option to switch into a fullscreen mode. Below are instructions for the most
-                common browsers:
-            </p>
-            <ul>
-                <li>Internet Explorer (all versions): Press F11</li>
-                <li>Firefox: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li>
-                <li>Google Chrome: Press F11 (Windows, Linux), Shift-Command-F (Mac)</li>
-                <li>Safari: Fullscreen support with 3rd-party plugins (Mac, Windows)</li>
-                <li>Opera: Press F11 (Windows, Linux)</li>
-            </ul>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
+      <h2 id="licensing-header" class="question triangle-right" href="#licensing-header" onclick="return false"
+          onmousedown="return toggleMe('licensing')">
+        <wicket:message key="troubleshooting.main.licensingRequirements">
+          What are our Licensing requirements?
+        </wicket:message>
+      </h2>
+      <div id="licensing" class="answer" wicket:id="faq-licensing-answer">
+        <p>
+          Information about our licensing requirements can be found on our Licensing page.
         </p>
+      </div>
 
-        <h3 id="embedding">
-            <wicket:message key="faq.embedding.title">
-                How do I embed PhET simulations?
-            </wicket:message>
-        </h3>
-        <div wicket:id="faq-embedding-answer">
-            <p>
-                Click the 'Embed' button under the simulation you would like to embed. This will bring up a text box of
-                html code that you can copy and paste in order to embed the sim. Flash sims may be directly embedded or
-                linked via an image to launch the sim. Java sims may only be linked via an image to launch the sim.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="sourceCode">
-            <wicket:message key="faq.sourceCode.title">
-                Is the source code available?
-            </wicket:message>
-        </h3>
-        <div wicket:id="faq-sourceCode-answer">
-            <p>
-                Yes, our source code is freely available. Instructions to download it are on our Source Code page.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <h3 id="licensing">
-            <wicket:message key="troubleshooting.main.licensingRequirements">
-                What are our Licensing requirements?
-            </wicket:message>
-        </h3>
-        <div wicket:id="faq-licensing-answer">
-            <p>
-                Information about our licensing requirements can be found on our Licensing page.
-            </p>
-        </div>
-
-        <p class="to-top">
-            <a href="#"><span class="to-top-text"><wicket:message key="troubleshooting.top">top
-            </wicket:message></span><span class="to-top-arrow">&#9650;</span></a>
-        </p>
-
-        <br/>
-        <br/>
-        <br/></div>
-
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
 </wicket:panel>
 
 </body>
