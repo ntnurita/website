@@ -41,6 +41,11 @@ public class SignInPage extends PhetMenuPage {
 
         if ( parameters != null && parameters.containsKey( "dest" ) ) {
             destination = parameters.getString( "dest" );
+
+            // pass the url hash as a query parameter since it is usually not sent to the server
+            if ( parameters.containsKey( "urlHash" ) ) {
+                destination += '#' + parameters.getString( "urlHash" );
+            }
         }
 
         setTitle( getLocalizer().getString( "signIn.title", this ) );
@@ -48,7 +53,6 @@ public class SignInPage extends PhetMenuPage {
         add( new SignInPanel( "sign-in-panel", getPageContext(), destination ) );
 
         hideSocialBookmarkButtons();
-
     }
 
     /**

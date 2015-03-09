@@ -12,7 +12,8 @@
 <body>
 
 <wicket:panel>
-    <a wicket:id="sign-in" class="sign-in-links">
+    <a wicket:id="sign-in" class="sign-in-links"
+       onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">
         <wicket:message key="session.loginRegister">Sign in / Register</wicket:message>
     </a>
     <wicket:enclosure child="sign-out">
