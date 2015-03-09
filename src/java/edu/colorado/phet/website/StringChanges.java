@@ -44,6 +44,8 @@ public class StringChanges {
         StringUtils.addString( session, "simulationMainPanel.teacherTips", "Teacher Tips" );
         StringUtils.addString( session, "simulationMainPanel.videoPrimer", "and Video Primer" );
 
+        StringUtils.addString( session, "simulationMainPanel.signInPrompt", "Please sign in to watch the video primer" );
+
         StringUtils.overwriteString( session, "simulationMainPanel.teachersGuide", "The <a {0} target=\"_blank\">teacher's guide</a> (pdf) contains tips created by the PhET team.", "Overview of sim controls and insights into student thinking (<a {0} target=\"_blank\">Teacher Tips pdf</a>)" );
         
         StringUtils.addString( session, "htmlLicensing.header", "PhET SOFTWARE AGREEMENT<br/>" +

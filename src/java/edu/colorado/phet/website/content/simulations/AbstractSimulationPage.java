@@ -13,6 +13,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.cache.SimplePanelCacheEntry;
 import edu.colorado.phet.website.content.NotFoundPage;
 import edu.colorado.phet.website.data.Category;
@@ -93,11 +94,20 @@ public abstract class AbstractSimulationPage extends PhetMenuPage {
         add( new SimulationPageMetadataPanel( "metadata-tags", getPageContext(), simulation ) );
 
         final LocalizedSimulation finalSim = simulation;
-        PhetPanel simPanel = new SimplePanelCacheEntry( SimulationMainPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
-            public PhetPanel constructPanel( String id, PageContext context ) {
-                return new SimulationMainPanel( id, finalSim, context );
-            }
-        }.instantiate( "simulation-main-panel", getPageContext(), getPhetCycle() );
+
+        PhetPanel simPanel;
+        if ( !PhetSession.get().isSignedIn() ) {
+             simPanel = new SimplePanelCacheEntry( SimulationMainPanel.class, null, getPageContext().getLocale(), getMyPath(), getPhetCycle() ) {
+                public PhetPanel constructPanel( String id, PageContext context ) {
+                    return new SimulationMainPanel( id, finalSim, context );
+                }
+            }.instantiate( "simulation-main-panel", getPageContext(), getPhetCycle() );
+        }
+
+        // don't use cache if the user is signed in so the video player will work
+        else {
+            simPanel = new SimulationMainPanel( "simulation-main-panel", finalSim, getPageContext() );
+        }
 
         add( simPanel );
         setTitle( (String) simPanel.getCacheParameter( "title" ) );

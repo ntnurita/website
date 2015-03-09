@@ -31,6 +31,7 @@ import org.hibernate.event.PostUpdateEvent;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
@@ -117,6 +118,7 @@ public class SimulationMainPanel extends PhetPanel {
         super( id, context );
 
         Project project = simulation.getSimulation().getProject();
+        boolean isHTML = simulation.getSimulation().isHTML();
 
         String simulationVersionString = simulation.getSimulation().getProject().getVersionString();
 
@@ -221,12 +223,33 @@ public class SimulationMainPanel extends PhetPanel {
         else {
             // make the teachers guide text (and whole section) invisible
             add( new InvisibleComponent( "guide-text" ) );
-            hasTeacherTips = false;
+            hasTeacherTips = isHTML; // always show guide
         }
 
+        final boolean signedIn = PhetSession.get().isSignedIn();
+
         add( new WebMarkupContainer( "video-iframe" ) {{
-            add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc?list=UUMRZ0-ci4ifGBF1bJvrcDRQ" ) ) );
+//            if ( signedIn ) {
+                add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc?list=UUMRZ0-ci4ifGBF1bJvrcDRQ" ) ) );
+//            }
+//            else {
+//                add( new AttributeModifier( "src", true, new Model<String>( simulation.getSimulation().getScreenshotURL() ) ) );
+//            }
         }} );
+
+        if ( signedIn ) {
+            add( new InvisibleComponent( "video-block" ) );
+            add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
+                add( new InvisibleComponent( "sign-in-prompt" ) );
+            }} );
+        }
+        else {
+            add( new WebMarkupContainer( "video-block" ) );
+            add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
+                add( new LocalizedText( "sign-in-prompt", "simulationMainPanel.signInPrompt" ) );
+                add( new AttributeModifier( "style", true, new Model<String>( "text-align: center; color: red" ) ) );
+            }} );
+        }
 
         /*---------------------------------------------------------------------------*
         * contributions

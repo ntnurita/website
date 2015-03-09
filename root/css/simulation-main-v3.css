@@ -334,9 +334,27 @@ body#offline-installer-body .sim-download {
     bottom: -3px;
 }
 
-#teachers-video-player {
+#teachers-video-container {
+    position: relative;
+}
+
+.teachers-video-player {
     display: block;
-    margin: 0 auto;
-    padding-top: 1em;
-    padding-bottom: 2em;
+    /*margin: 0 auto;*/
+    margin-top: 2em;
+    margin-bottom: 2em;
+    position: absolute;
+    width: 400px;
+    height: 225px;
+    left: 50%;
+    margin-left: -200px;
+}
+
+#teachers-video-blocker {
+    background: rgba(100, 100, 100, 0.5) url(../images/icons/lock.png) no-repeat center;
+}
+
+.below-teachers-video {
+    position: absolute;
+    top: 300px;
 }

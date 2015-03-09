@@ -319,24 +319,28 @@
                     <div wicket:id="guide-text" class="teachers-tips-holder sim-description">
                         Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
                     </div>
-                    <div>
-                        <iframe wicket:id="video-iframe" width="400" height="225" id="teachers-video-player"
-                                frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </wicket:enclosure>
+
+                <div id="teachers-video-container">
+                    <div wicket:id="sign-in-prompt-div">
+                        <span wicket:id="sign-in-prompt"></span>
                     </div>
-                </wicket:enclosure>
+                    <iframe wicket:id="video-iframe" class="teachers-video-player" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                    <div id="teachers-video-blocker" class="teachers-video-player" wicket:id="video-block"></div>
 
-                <a id="teaching-ideas"></a>
+                    <div class="below-teachers-video">
+                        <h3>
+                            <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
+                        </h3>
 
-                <h3>
-                    <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
-                </h3>
+                        <wicket:enclosure child="contributions-panel">
+                            <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
+                        </wicket:enclosure>
 
-                <wicket:enclosure child="contributions-panel">
-                    <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
-                </wicket:enclosure>
-
-                <p style="text-align: center;" wicket:id="submit-a">You can <a href="#">submit your own ideas and
-                    activities</a></p>
+                        <p style="text-align: center;" wicket:id="submit-a">You can <a href="#">submit your own ideas and
+                            activities</a></p>
+                    </div>
+                </div>
             </div>
 
             <wicket:enclosure child="simulation-main-translation-list">
