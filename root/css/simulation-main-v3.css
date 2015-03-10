@@ -41,6 +41,7 @@ div.rtl .simulation-main-image-panel {
 .simulation-main-description {
     vertical-align: top;
     padding: 0;
+    width: 100%;
 }
 
 .simulation-main-support-button {
