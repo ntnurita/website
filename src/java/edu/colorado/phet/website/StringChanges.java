@@ -42,7 +42,9 @@ public class StringChanges {
         StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version >>" );
 
         StringUtils.addString( session, "simulationMainPanel.teacherTips", "Teacher Tips" );
-        StringUtils.addString( session, "simulationMainPanel.videoPrimer", "and Video Primer" );
+        StringUtils.addString( session, "simulationMainPanel.and", "and" );
+        StringUtils.addString( session, "simulationMainPanel.videoPrimer", "Video Primer" );
+        StringUtils.overwriteString( session, "simulationMainPanel.videoPrimer", "and Video Primer", "Video Primer" );
 
         StringUtils.addString( session, "simulationMainPanel.signInPrompt", "Please sign in to watch the video primer" );
 

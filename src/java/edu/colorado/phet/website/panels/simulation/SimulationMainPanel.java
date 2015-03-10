@@ -215,6 +215,7 @@ public class SimulationMainPanel extends PhetPanel {
             }
         } );
         if ( !guides.isEmpty() ) {
+            add( new LocalizedText( "teacher-tips", "simulationMainPanel.teacherTips" ) );
             add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
@@ -223,40 +224,55 @@ public class SimulationMainPanel extends PhetPanel {
         else {
             // make the teachers guide text (and whole section) invisible
             add( new InvisibleComponent( "guide-text" ) );
-            hasTeacherTips = isHTML; // always show guide
+            add( new InvisibleComponent( "teacher-tips" ) );
+            hasTeacherTips = false;
         }
 
         final boolean signedIn = PhetSession.get().isSignedIn();
+        final boolean hasVideo = isHTML; // for now assume all html sims have a video
 
-        add( new WebMarkupContainer( "video-iframe" ) {{
-//            if ( signedIn ) {
-                add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc?list=UUMRZ0-ci4ifGBF1bJvrcDRQ" ) ) );
-//            }
-//            else {
-//                add( new AttributeModifier( "src", true, new Model<String>( simulation.getSimulation().getScreenshotURL() ) ) );
-//            }
-        }} );
-
-        if ( signedIn ) {
-            add( new InvisibleComponent( "video-block" ) );
-            add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
-                add( new InvisibleComponent( "sign-in-prompt" ) );
-            }} );
+        // add the word "and" between "Teacher Tips" and "Video Primer" only if both are present
+        if ( hasVideo && hasTeacherTips ) {
+            add( new LocalizedText( "and", "simulationMainPanel.and" ) );
         }
         else {
-            add( new WebMarkupContainer( "video-block" ) );
-            add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
-                add( new LocalizedText( "sign-in-prompt", "simulationMainPanel.signInPrompt" ) );
-                add( new AttributeModifier( "style", true, new Model<String>( "text-align: center; color: red" ) ) );
+            add( new InvisibleComponent( "and" ) );
+        }
+
+        if ( hasVideo ) {
+            add( new LocalizedText( "video-primer", "simulationMainPanel.videoPrimer" ) );
+
+            add( new WebMarkupContainer( "video-iframe" ) {{
+                add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc" ) ) );
             }} );
+
+            if ( signedIn ) {
+                add( new InvisibleComponent( "video-block" ) );
+                add( new InvisibleComponent( "sign-in-prompt-div" ) );
+            }
+            else {
+                add( new WebMarkupContainer( "video-block" ) );
+                add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
+                    add( new LocalizedText( "sign-in-prompt", "simulationMainPanel.signInPrompt" ) );
+                    add( new AttributeModifier( "style", true, new Model<String>( "text-align: center; color: red" ) ) );
+                }} );
+            }
+        }
+        else {
+            add( new InvisibleComponent( "video-primer" ) );
+            add( new InvisibleComponent( "video-iframe" ) );
+            add( new InvisibleComponent( "video-block" ) );
+            add( new InvisibleComponent( "sign-in-prompt-div" ) );
         }
 
         /*---------------------------------------------------------------------------*
         * contributions
         *----------------------------------------------------------------------------*/
 
-        if ( DistributionHandler.displayContributions( getPhetCycle() ) ) {
-            final List<Contribution> contributions = new LinkedList<Contribution>();
+        final boolean displayContributions = DistributionHandler.displayContributions( getPhetCycle() );
+        final List<Contribution> contributions = new LinkedList<Contribution>();
+
+        if ( displayContributions ) {
             HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
                 public boolean run( Session session ) {
                     List list = session.createQuery( "select c from Contribution as c where :simulation member of c.simulations and c.approved = true" )
@@ -281,11 +297,24 @@ public class SimulationMainPanel extends PhetPanel {
                     return true;
                 }
             } );
-            add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
         }
-        else {
-            add( new InvisibleComponent( "contributions-panel" ) );
-        }
+
+        // if video is enabled we need to use absolute positioning below the video because it used to layer the lock on top of the video
+        add( new WebMarkupContainer( "below-teachers-video" ) {{
+            if ( hasVideo ) {
+                String px = ( signedIn ) ? "250" : " 275"; // give extra room for the sign in message if not signed in
+                add( new AttributeModifier( "style", true, new Model<String>( "position: absolute; width: 100%; top: " + px + "px;" ) ) );
+            }
+            if ( displayContributions ) {
+                add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
+            }
+            else {
+                add( new InvisibleComponent( "contributions-panel" ) );
+            }
+            add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
+                    ContributionCreatePage.getLinker().getHref( context, getPhetCycle() )
+            } ) );
+        }} );
 
         /*---------------------------------------------------------------------------*
         * translations
@@ -788,10 +817,6 @@ public class SimulationMainPanel extends PhetPanel {
         else {
             add( new InvisibleComponent( "sim-sponsor-installer-js" ) );
         }
-
-        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
-                ContributionCreatePage.getLinker().getHref( context, getPhetCycle() )
-        } ) );
 
         /*---------------------------------------------------------------------------*
         * FAQ
