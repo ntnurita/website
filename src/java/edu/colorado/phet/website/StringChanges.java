@@ -20,7 +20,7 @@ public class StringChanges {
 
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
-        
+
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingResources" );
 //        StringUtils.deleteString( session, "simulationMainPanel.mainTopics" );
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingIdeas" );

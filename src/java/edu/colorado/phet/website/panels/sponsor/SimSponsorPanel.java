@@ -49,7 +49,6 @@ public class SimSponsorPanel extends PhetPanel {
         else {
             add( new LocalizedText( "after-text", "sponsors.sim.andEducators" ) );
         }
-        add( new LocalizedText( "thanks", "sponsors.sim.thanks" ) );
     }
 
     public SimSponsorPanel( String id, final PageContext context, Sponsor sponsor, boolean visible ) {
