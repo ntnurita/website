@@ -23,6 +23,9 @@ div.rtl .simulation-main-image-panel {
 
 .simulation-main-screenshot {
     border: none;
+    -webkit-box-shadow: 15px 15px 50px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow: 15px 15px 50px 0 rgba(0,0,0,0.5);
+    box-shadow: 15px 15px 50px 0 rgba(0,0,0,0.5);
 }
 
 .simulation-main-translation-list {
@@ -89,13 +92,13 @@ div.rtl .simulation-main-image-panel {
     font-weight: bold;
     color: black;
     padding: 1px 10px;
-    margin-top: 4px;
+    margin-top: 12px;
     background-color: #55caff;
     border: 1px solid #99ffff;
     border-right-color: #005577;
     border-bottom-color: #005577;
-    height: 22px;
-    line-height: 22px;
+    height: 20px;
+    line-height: 20px;
 }
 
 .sim-button:hover {
@@ -351,4 +354,11 @@ body#offline-installer-body .sim-download {
 
 #teachers-video-blocker {
     background: rgba(100, 100, 100, 0.5) url(../images/icons/lock.png) no-repeat center;
+}
+
+.download-icon {
+    margin-top: 2px;
+    margin-right: 10px;
+    float: left;
+    height: 17px;
 }
