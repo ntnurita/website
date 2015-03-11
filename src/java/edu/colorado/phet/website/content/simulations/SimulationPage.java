@@ -25,6 +25,10 @@ public class SimulationPage extends AbstractSimulationPage {
         mapper.addMap( "^simulation/([^/]+)$", SimulationPage.class, new String[]{"simulation"} );
     }
 
+    public static AbstractLinker getLinker( final String simName ) {
+        return getLinker( "", simName );
+    }
+
     public static AbstractLinker getLinker( final String projectName, final String simulationName ) {
         // WARNING: don't change without also changing the old URL redirection
         return new AbstractLinker() {
