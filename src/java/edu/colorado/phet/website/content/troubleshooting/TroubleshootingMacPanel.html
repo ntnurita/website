@@ -4,239 +4,240 @@
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] TroubleshootingMacPanel</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-    </wicket:remove>
+  <title>[PREVIEW] TroubleshootingMacPanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
 </head>
 <body>
 
 <wicket:panel>
-    <script type="text/javascript" src="/js/expandable-text-v1.js"></script>
-    <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
+  <script type="text/javascript" src="/js/expandable-text-v1.js"></script>
+  <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
-        <h2 id="faq_top">
-            <wicket:message key="troubleshooting.mac.faqs">FAQs</wicket:message>
-        </h2>
+    <h2 id="faq_top">
+      <wicket:message key="troubleshooting.mac.faqs">FAQs</wicket:message>
+    </h2>
 
-        <h3 id="q1-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q1')">
-            <wicket:message key="troubleshooting.mac.q1.title">
-                When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says
-                "The application's digital signature has been verified. Do you want to run the application?"
-                (or something similar). What does this mean?
-            </wicket:message>
-        </a></h3>
+    <h3 id="q1-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q1')">
+      <wicket:message key="troubleshooting.mac.q1.title">
+        When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says
+        "The application's digital signature has been verified. Do you want to run the application?"
+        (or something similar). What does this mean?
+      </wicket:message>
+    </a></h3>
 
-        <div wicket:id="troubleshooting-mac-q1-answer" class="answer" id="q1">
-            <p>
-                The PhET simulations that are distributed with the installer include a "digital certificate" that verifies that
-                these simulations were actually created by PhET. This is a security measure that helps to prevent an unscrupulous
-                individual from creating applications that claim to be produced by PhET but are not. If the certificate acceptance
-                dialog says that the publisher is "PhET, University of Colorado", and the dialog also says that the signature was
-                validated by a trusted source, you can have a high degree of confidence that the application was produced by the
-                PhET team.
-            </p>
+    <div wicket:id="troubleshooting-mac-q1-answer" class="answer" id="q1">
+      <p>
+        The PhET simulations that are distributed with the installer include a "digital certificate" that verifies that
+        these simulations were actually created by PhET. This is a security measure that helps to prevent an unscrupulous
+        individual from creating applications that claim to be produced by PhET but are not. If the certificate acceptance
+        dialog says that the publisher is "PhET, University of Colorado", and the dialog also says that the signature was
+        validated by a trusted source, you can have a high degree of confidence that the application was produced by the
+        PhET team.
+      </p>
 
-            <p>
-                On most systems, it is possible to permanently accept the PhET certificate and thereby prevent this dialog from
-                appearing each time a simulation is run locally. Most Windows and Max OSX systems have a check box on the certificate
-                acceptance dialog that says "Always trust content from this publisher". Checking this box will configure your system
-                in such a way that the dialog will no longer appear when starting up PhET simulations.
-            </p>
-        </div>
-
-
-        <h3 id="q2-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q2')">
-            <wicket:message key="troubleshooting.mac.q2.title">
-                When I click "run now" to start the simulation all I get is a text file that opens?
-            </wicket:message>
-        </a></h3>
-
-        <div wicket:id="troubleshooting-mac-q2-answer" class="answer" id="q2">
-            <p>
-                This problem will affect mac users who recently installed Apple's "Java for Mac OS X 10.5 Update 4". The update will
-                typically be done via Software Update, or automatically. After installing this update, the problem appears: clicking
-                on JNLP files in Safari or FireFox caused the JNLP file to open in TextEdit, instead of starting Java Web Start.
-            </p>
-
-            <p>
-                The fix is:<br/>
-                1. Go to <a href="http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4">http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4</a><br/>
-                2. Click Download to download a .dmg file<br/>
-                3. When the .dmg has downloaded, double-click on it (if it doesn't mount automatically)<br/>
-                4. Quit all applications<br/>
-                5. Run the update installer
-            </p>
-        </div>
+      <p>
+        On most systems, it is possible to permanently accept the PhET certificate and thereby prevent this dialog from
+        appearing each time a simulation is run locally. Most Windows and Max OSX systems have a check box on the certificate
+        acceptance dialog that says "Always trust content from this publisher". Checking this box will configure your system
+        in such a way that the dialog will no longer appear when starting up PhET simulations.
+      </p>
+    </div>
 
 
-        <h3 id="q3-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q3')">
-            <wicket:message key="troubleshooting.mac.q3.title">
-                Why is a simulation with 3D graphics not launching / displaying correctly?
-            </wicket:message>
-        </a></h3>
+    <h3 id="q2-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q2')">
+      <wicket:message key="troubleshooting.mac.q2.title">
+        When I click "run now" to start the simulation all I get is a text file that opens?
+      </wicket:message>
+    </a></h3>
 
-        <div wicket:id="troubleshooting-mac-q3-answer" class="answer" id="q3">
-            <p>
-                If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's
-                drivers may fix the issue.
-            </p>
+    <div wicket:id="troubleshooting-mac-q2-answer" class="answer" id="q2">
+      <p>
+        This problem will affect mac users who recently installed Apple's "Java for Mac OS X 10.5 Update 4". The update will
+        typically be done via Software Update, or automatically. After installing this update, the problem appears: clicking
+        on JNLP files in Safari or FireFox caused the JNLP file to open in TextEdit, instead of starting Java Web Start.
+      </p>
 
-            <p>
-                Updating the video card driver can be done through the normal software update process (Available from the Apple menu
-                => Software Update)
-            </p>
-        </div>
-
-
-        <h3 id="q4-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q4')">
-            <wicket:message key="troubleshooting.mac.q4.title">
-                When I open 'Molecule Shapes', 'Plate Tectonics', or 'Molecule Shapes: Basics', I get a dialog saying
-                "This simulation was unable to start."
-            </wicket:message>
-        </a></h3>
-
-        <div class="answer" id="q4">
-            <img src="//phet.colorado.edu/images/troubleshooting/unable-to-start-LWJGL.png" alt="Unable to Start Image" width="500"/>
-
-            <div wicket:id="troubleshooting-mac-q4-answer">
-                <p>
-                    'Molecule Shapes', 'Plate Tectonics', and 'Molecule Shapes: Basics' rely on advanced graphics libraries (LWJGL)
-                    that many OS and Java combinations don't support.
-                </p>
-
-                <p>
-                    It shows up on ALL Mac OS X 10.8, many 10.6 and 10.7 computers.
-                </p>
-
-                <p>
-                    Unfortunately, at this time the incompatibility problem is out of our hands and unless Oracle or Apple address this
-                    issue, it is unlikely the sim will run successfully.
-                </p>
-
-                <p>
-                    We are hoping incompatibilities like this will be a thing of the past once we move most of our sims to HTML5.
-                </p>
-            </div>
-        </div>
+      <p>
+        The fix is:<br/>
+        1. Go to <a href="http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4">http://support.apple.com/downloads/Java_for_Mac_OS_X_10_5_Update_4</a><br/>
+        2. Click Download to download a .dmg file<br/>
+        3. When the .dmg has downloaded, double-click on it (if it doesn't mount automatically)<br/>
+        4. Quit all applications<br/>
+        5. Run the update installer
+      </p>
+    </div>
 
 
-        <h3 id="q5-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q5')">
-            <wicket:message key="troubleshooting.mac.q5.title">
-                When I open a Java sim I get a dialog saying the sim "can't be opened because it is from an unidentified developer."
-            </wicket:message>
-        </a></h3>
+    <h3 id="q3-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q3')">
+      <wicket:message key="troubleshooting.mac.q3.title">
+        Why is a simulation with 3D graphics not launching / displaying correctly?
+      </wicket:message>
+    </a></h3>
 
-        <div wicket:id="troubleshooting-mac-q5-answer" class="answer" id="q5">
-            <p>
-                Gatekeeper, introduced in Mountain Lion (OS X 10.8), is designed to prevent potentially malicious apps from launching.
-                When you attempt to launch an app that doesn't meet certain criteria, Gatekeeper will block the launch. To override this,
-                you can modify Gatekeeper's default settings (but we don't always recommend it), or explicitly right/control-click the
-                application and choose Open.
-            </p>
+    <div wicket:id="troubleshooting-mac-q3-answer" class="answer" id="q3">
+      <p>
+        If a simulation that uses 3D graphics is not launching or displaying correctly, updating your video card's
+        drivers may fix the issue.
+      </p>
 
-            <p>
-                1. Download the .jar file for each sim you would like to use. (Or download all of them)<br/>
-                2. In Finder, Control-click or right click the icon of the sim.<br/>
-                3. Select Open from the top of contextual menu that appears.<br/>
-                4. Click Open in the dialog box. If prompted, enter an administrator name and password.<br/>
-            </p>
-
-            <p>
-                The other option is to go into preferences and change the security settings:
-                System Preferences>Security and Privacy>General> Change 'Allow applications downloaded from' to "Anywhere"> Accept prompt "Allow From
-                Anywhere"
-                We don't advise this because it disables Gatekeeper. It is generally safer to maintain Gatekeeper and individually open the files.
-            </p>
-
-        </div>
+      <p>
+        Updating the video card driver can be done through the normal software update process (Available from the Apple menu
+        => Software Update)
+      </p>
+    </div>
 
 
-        <h3 id="q6-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q6')">
-            <wicket:message key="troubleshooting.mac.q6.title">
-                When I click 'Run Now' from a sim page, nothing happens! + akafhadkfjhakdf
-            </wicket:message>
-        </a></h3>
+    <h3 id="q4-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q4')">
+      <wicket:message key="troubleshooting.mac.q4.title">
+        When I open 'Molecule Shapes', 'Plate Tectonics', or 'Molecule Shapes: Basics', I get a dialog saying
+        "This simulation was unable to start."
+      </wicket:message>
+    </a></h3>
 
-        <div class="answer" id="q6">
-            <div wicket:id="troubleshooting-mac-q6-answer-firefox">
-                <p><strong>Firefox</strong></p>
+    <div class="answer" id="q4">
+      <img src="//phet.colorado.edu/images/troubleshooting/unable-to-start-LWJGL.png" alt="Unable to Start Image" width="500"/>
 
-                <p>
-                    When opening a sim in Firefox, a dialog will popup asking you what Firefox should do with the file. Click Open with
-                    Java Web Start (default).
-                </p>
+      <div wicket:id="troubleshooting-mac-q4-answer">
+        <p>
+          'Molecule Shapes', 'Plate Tectonics', and 'Molecule Shapes: Basics' rely on advanced graphics libraries (LWJGL)
+          that many OS and Java combinations don't support.
+        </p>
 
-                <p>
-                    If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
-                    with the instructions in the appropriate FAQ and download the .jar file for that sim.
-                </p>
-            </div>
+        <p>
+          It shows up on ALL Mac OS X 10.8, many 10.6 and 10.7 computers.
+        </p>
 
-            <div wicket:id="troubleshooting-mac-q6-answer-chrome">
-                <p><strong>Chrome</strong></p>
+        <p>
+          Unfortunately, at this time the incompatibility problem is out of our hands and unless Oracle or Apple address this
+          issue, it is unlikely the sim will run successfully.
+        </p>
 
-                <p>
-                    When opening a sim in Chrome, the browser will automatically ask to either Discard or Keep the file.
-                    The prompt pops up at the bottom of the screen.
-                </p>
+        <p>
+          We are hoping incompatibilities like this will be a thing of the past once we move most of our sims to HTML5.
+        </p>
+      </div>
+    </div>
 
-                <img src="//phet.colorado.edu/images/troubleshooting/file-can-harm-computer.png" alt="File can harm computer image" width="300"/>
 
-                <p>
-                    Click 'Keep'. You will then have an icon displaying the newly
-                    downloaded file. Click this to run the sim.
-                </p>
+    <h3 id="q5-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q5')">
+      <wicket:message key="troubleshooting.mac.q5.title">
+        When I open a Java sim I get a dialog saying the sim "can't be opened because it is from an unidentified developer."
+      </wicket:message>
+    </a></h3>
 
-                <img src="//phet.colorado.edu/images/troubleshooting/newly-downloaded-icon.png" alt="Newly downloaded image" width="200"/>
+    <div wicket:id="troubleshooting-mac-q5-answer" class="answer" id="q5">
+      <p>
+        Gatekeeper, introduced in Mountain Lion (OS X 10.8), is designed to prevent potentially malicious apps from launching.
+        When you attempt to launch an app that doesn't meet certain criteria, Gatekeeper will block the launch. To override this,
+        you can modify Gatekeeper's default settings (but we don't always recommend it), or explicitly right/control-click the
+        application and choose Open.
+      </p>
 
-                <p>
-                    If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
-                    with the instructions in the appropriate FAQ and download the .jar file for that sim.
-                </p>
-            </div>
+      <p>
+        1. Download the .jar file for each sim you would like to use. (Or download all of them)<br/>
+        2. In Finder, Control-click or right click the icon of the sim.<br/>
+        3. Select Open from the top of contextual menu that appears.<br/>
+        4. Click Open in the dialog box. If prompted, enter an administrator name and password.<br/>
+      </p>
 
-            <div wicket:id="troubleshooting-mac-q6-answer-safari">
-                <p><strong>Safari</strong></p>
-
-                <p>
-                    When opening a sim in Safari, the browser will automatically download the .jnlp file after clicking "Run Now".
-                    However, no notification is given. Click the Downloads
-                    <img src="//phet.colorado.edu/images/troubleshooting/downloads-button.png" alt="Downloads icon" height="15"/>
-                    button to show recent downloads. Click the latest .jnlp file
-                    to run the sim.
-                </p>
-
-                <img src="//phet.colorado.edu/images/troubleshooting/downloads-menu.png" alt="Downloads menu image" width="300"/>
-
-                <p>
-                    If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
-                    with the instructions in the appropriate FAQ and download the .jar file for that sim.
-                </p>
-            </div>
-
-        </div>
-
-        <h3 id="q7-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q7')">
-            <wicket:message key="troubleshooting.mac.q7.title">
-                When I click "run now" my computer asks me which application to use to open the file, but Java isn’t listed.
-            </wicket:message>
-        </a></h3>
-
-        <div wicket:id="troubleshooting-mac-q7-answer" class="answer" id="q7">
-            <p>
-                In order to open a '.jnlp' file (the type of file used for “run now”), you will need to use Java Web Start. Java Web Start is part of
-                the default Java installation.
-            </p>
-            <p>
-                When you are prompted with the dialog asking for the app to use to open the file, click "Choose program", your finder window should
-                open. Press Cmd-Shift-G to open the go to folder. Paste this folder: /System/Library/CoreServices
-                This is where Java Web Start should be located on default mac installation. There should be an executable called 'Java-Web-Start'.
-                Select this app.
-            </p>
-        </div>
+      <p>
+        The other option is to go into preferences and change the security settings:
+        System Preferences>Security and Privacy>General> Change 'Allow applications downloaded from' to "Anywhere"> Accept prompt "Allow From
+        Anywhere"
+        We don't advise this because it disables Gatekeeper. It is generally safer to maintain Gatekeeper and individually open the files.
+      </p>
 
     </div>
+
+
+    <h3 id="q6-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q6')">
+      <wicket:message key="troubleshooting.mac.q6.title">
+        When I click 'Run Now' from a sim page, nothing happens! + akafhadkfjhakdf
+      </wicket:message>
+    </a></h3>
+
+    <div class="answer" id="q6">
+      <div wicket:id="troubleshooting-mac-q6-answer-firefox">
+        <p><strong>Firefox</strong></p>
+
+        <p>
+          When opening a sim in Firefox, a dialog will popup asking you what Firefox should do with the file. Click Open with
+          Java Web Start (default).
+        </p>
+
+        <p>
+          If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
+          with the instructions in the appropriate FAQ and download the .jar file for that sim.
+        </p>
+      </div>
+
+      <div wicket:id="troubleshooting-mac-q6-answer-chrome">
+        <p><strong>Chrome</strong></p>
+
+        <p>
+          When opening a sim in Chrome, the browser will automatically ask to either Discard or Keep the file.
+          The prompt pops up at the bottom of the screen.
+        </p>
+
+        <img src="//phet.colorado.edu/images/troubleshooting/file-can-harm-computer.png" alt="File can harm computer image" width="300"/>
+
+        <p>
+          Click 'Keep'. You will then have an icon displaying the newly
+          downloaded file. Click this to run the sim.
+        </p>
+
+        <img src="//phet.colorado.edu/images/troubleshooting/newly-downloaded-icon.png" alt="Newly downloaded image" width="200"/>
+
+        <p>
+          If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
+          with the instructions in the appropriate FAQ and download the .jar file for that sim.
+        </p>
+      </div>
+
+      <div wicket:id="troubleshooting-mac-q6-answer-safari">
+        <p><strong>Safari</strong></p>
+
+        <p>
+          When opening a sim in Safari, the browser will automatically download the .jnlp file after clicking "Run Now".
+          However, no notification is given. Click the Downloads
+          <img src="//phet.colorado.edu/images/troubleshooting/downloads-button.png" alt="Downloads icon" height="15"/>
+          button to show recent downloads. Click the latest .jnlp file
+          to run the sim.
+        </p>
+
+        <img src="//phet.colorado.edu/images/troubleshooting/downloads-menu.png" alt="Downloads menu image" width="300"/>
+
+        <p>
+          If you then receive a message saying the sim "can't be opened because it is from an unidentified developer." Proceed
+          with the instructions in the appropriate FAQ and download the .jar file for that sim.
+        </p>
+      </div>
+
+    </div>
+
+    <h3 id="q7-header"><a class="question triangle-right" href="#" onclick="return false" onmousedown="return toggleMe('q7')">
+      <wicket:message key="troubleshooting.mac.q7.title">
+        When I click "run now" my computer asks me which application to use to open the file, but Java isn’t listed.
+      </wicket:message>
+    </a></h3>
+
+    <div wicket:id="troubleshooting-mac-q7-answer" class="answer" id="q7">
+      <p>
+        In order to open a '.jnlp' file (the type of file used for “run now”), you will need to use Java Web Start. Java Web Start is part of
+        the default Java installation.
+      </p>
+
+      <p>
+        When you are prompted with the dialog asking for the app to use to open the file, click "Choose program", your finder window should
+        open. Press Cmd-Shift-G to open the go to folder. Paste this folder: /System/Library/CoreServices
+        This is where Java Web Start should be located on default mac installation. There should be an executable called 'Java-Web-Start'.
+        Select this app.
+      </p>
+    </div>
+
+  </div>
 </wicket:panel>
 
 </body>
