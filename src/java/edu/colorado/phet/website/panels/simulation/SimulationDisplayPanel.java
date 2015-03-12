@@ -79,13 +79,13 @@ public class SimulationDisplayPanel extends PhetPanel {
                 WebMarkupContainer badge = new WebMarkupContainer( "badge" );
                 link.add( badge );
                 if ( simulation.getSimulation().isHTML() ) {
-                    badge.add( new SimpleAttributeModifier( "class", "sim-badge-html" ) );
+                    badge.add( new SimpleAttributeModifier( "class", "sim-display-badge sim-badge-html" ) );
                 }
                 else if ( simulation.getSimulation().isJava() ) {
-                    badge.add( new SimpleAttributeModifier( "class", "sim-badge-java" ) );
+                    badge.add( new SimpleAttributeModifier( "class", "sim-display-badge sim-badge-java" ) );
                 }
                 else if ( simulation.getSimulation().isFlash() ) {
-                    badge.add( new SimpleAttributeModifier( "class", "sim-badge-flash" ) );
+                    badge.add( new SimpleAttributeModifier( "class", "sim-display-badge sim-badge-flash" ) );
                 }
                 else {
                     logger.warn( "Simulation " + simulation.getSimulation().getName() + "didn't have a type" );
