@@ -46,20 +46,31 @@ public class StaticImage extends WebComponent {
      * @param image WebImage
      * @param alt   The alt text for accessibility
      */
-    public StaticImage( String id, WebImage image, String alt ) {
+    public StaticImage( String id, WebImage image, String alt, int width, int height ) {
         super( id );
         this.url = image.getSrc();
         this.alt = alt;
 
-        // TODO: possibly use tag.put below?
-        if ( image.hasDimension() ) {
+        if ( width > 0 && height > 0 ) {
+            add( new AttributeModifier( "width", true, new Model<String>( String.valueOf( width ) ) ) );
+            add( new AttributeModifier( "height", true, new Model<String>( String.valueOf( height ) ) ) );
+        }
+        else if ( image.hasDimension() ) {
             add( new AttributeModifier( "width", true, new Model<String>( String.valueOf( image.getWidth() ) ) ) );
             add( new AttributeModifier( "height", true, new Model<String>( String.valueOf( image.getHeight() ) ) ) );
         }
     }
 
+    public StaticImage( String id, WebImage image, String alt ) {
+        this( id, image, alt, 0, 0 );
+    }
+
     public StaticImage( String id, ImageHandle imageHandle, String alt ) {
         this( id, WebImage.get( imageHandle ), alt );
+    }
+
+    public StaticImage( String id, ImageHandle imageHandle, String alt, int width, int height ) {
+        this( id, WebImage.get( imageHandle ), alt, width, height );
     }
 
     public void setDataServer( String dataServer ) {

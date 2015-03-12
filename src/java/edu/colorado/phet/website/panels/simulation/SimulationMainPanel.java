@@ -407,16 +407,16 @@ public class SimulationMainPanel extends PhetPanel {
             if ( simulation.getSimulation().isHTML() ) {
                 toLegacyLink = LegacySimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );
                 if ( alternateSimProject.isJava() ) {
-                    toLegacyLink.add( new StaticImage( "other-sim-icon", Images.JAVA_LOGO, "Java Logo" ) );
+                    toLegacyLink.add( new StaticImage( "other-sim-icon", Images.JAVA_BADGE, "Java Logo", 44, 44 ) );
                 }
                 else { // Flash
-                    toLegacyLink.add( new StaticImage( "other-sim-icon", Images.FLASH_LOGO, "Flash Logo" ) );
+                    toLegacyLink.add( new StaticImage( "other-sim-icon", Images.FLASH_BADGE, "Flash Logo", 44, 44 ) );
                 }
                 toLegacyLink.add( new LocalizedText( "other-sim-text", "simulationMainPanel.originalSim" ) );
             }
             else {
                 toLegacyLink = SimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );
-                toLegacyLink.add( new StaticImage( "other-sim-icon", Images.HTML5_LOGO_WITH_TEXT, "HTML5 Badge" ) );
+                toLegacyLink.add( new StaticImage( "other-sim-icon", Images.HTML5_BADGE, "HTML5 Badge", 44, 44 ) );
                 toLegacyLink.add( new LocalizedText( "other-sim-text", "simulationMainPanel.backToHTML" ) );
             }
             add( toLegacyLink );
