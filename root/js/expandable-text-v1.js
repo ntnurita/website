@@ -2,7 +2,7 @@
 
 /**
  * Toggle expandable text
- * @param id of the div that will be expanded and retracted on click
+ * @param {string} id - the id of the div that will be expanded and retracted on click
  * @returns {boolean}
  */
 function toggleMe( id ) {
@@ -13,8 +13,6 @@ function toggleMe( id ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
-    window.location.hash = '';
-    window.location.hash = '#' + id + '-header';
     window['answer_' + id] = true;
     newClass = thisElement.className.replace( 'right', 'down' );
     thisElement.className = newClass;
