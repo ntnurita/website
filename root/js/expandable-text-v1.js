@@ -2,10 +2,11 @@
 
 /**
  * Toggle expandable text
- * @param id of the div that will be expanded and retracted on click
+ * @param {string} id - id of the div that will be expanded and retracted on click
+ * @param {boolean} jumpToLocation - true if the page should scroll to the expandable text header as well as expanding
  * @returns {boolean}
  */
-function toggleMe( id ) {
+function toggleMe( id, jumpToLocation ) {
   var e = document.getElementById( id );
   var thisElement = document.getElementById( id + '-header' );
   var newClass;
@@ -13,8 +14,10 @@ function toggleMe( id ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
-    window.location.hash = '';
-    window.location.hash = '#' + id + '-header';
+    if ( jumpToLocation ) {
+      window.location.hash = '';
+      window.location.hash = '#' + id + '-header';
+    }
     window[ 'answer_' + id ] = true;
     newClass = thisElement.className.replace( 'right', 'down' );
     thisElement.className = newClass;
@@ -51,13 +54,6 @@ function toggleMe( id ) {
   return false;
 }
 
-(function() {
-  var interval = setInterval( function() {
-    if ( typeof $ !== 'undefined' ) {
-      $( document ).ready( function() {
-        toggleMe( window.location.hash.replace( '#', '' ).replace( '-header', '' ) );
-      } );
-      clearInterval( interval );
-    }
-  }, 100 );
-})();
+$( document ).ready( function() {
+  toggleMe( window.location.hash.replace( '#', '' ).replace( '-header', '' ), true );
+} );
