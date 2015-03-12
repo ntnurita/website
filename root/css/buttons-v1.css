@@ -43,3 +43,18 @@
     height: 24px;
     background-image: url('../images/small-button-right.gif');
 }
+
+.triangle-down {
+    background-image: url(../images/icons/triangle-down.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    color: black;
+    background-position: 0 2px;
+}
+
+.triangle-right {
+    background-image: url(../images/icons/triangle-right.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    color: rgb(110,110,110);
+}
