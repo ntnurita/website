@@ -587,6 +587,7 @@ public abstract class Sponsor implements Serializable {
         public LogoSponsor( String fullName, String url, ImageHandle imageHandle ) {
             super( fullName, url );
             this.imageHandle = imageHandle;
+            this.imageStyle += "max-height: 110px"; // prevent images from extend top section of sim page
         }
 
         public LogoSponsor( String fullName, String url, ImageHandle imageHandle, String style ) {
