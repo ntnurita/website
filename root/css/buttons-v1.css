@@ -58,3 +58,7 @@
     padding-left: 20px;
     color: rgb(110,110,110);
 }
+
+.expandable-text-link {
+  text-decoration: none;
+}
