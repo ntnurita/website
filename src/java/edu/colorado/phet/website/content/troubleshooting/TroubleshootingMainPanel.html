@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
@@ -12,8 +12,6 @@
 <body>
 
 <wicket:panel>
-  <script type="text/javascript" src="/js/expandable-text-v1.js"></script>
-
   <div class="troubleshooting standard-content" wicket:message="dir:language.dir">
 
     <p wicket:id="troubleshooting-main-intro">
@@ -40,12 +38,13 @@
     </h2>
 
 
-    <h3 id="q1"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a1')">
+    <a class="expandable-text-link" href="#q1-header"><h3 id="q1-header" class="question triangle-right" onclick="return false"
+                            onmousedown="return phet.toggleExpandableText('q1')">
       <wicket:message key="troubleshooting.main.q1.title">Why can I run some of the simulations but not all?
       </wicket:message>
-    </a></h3>
+    </h3></a>
 
-    <div class="answer" id="a1" wicket:id="troubleshooting-main-q1-answer">
+    <div class="answer" id="q1" wicket:id="troubleshooting-main-q1-answer">
       <p>Some of our simulations are Java Web Start based applications and others use Macromedia's Flash player.
         Flash
         comes with most computers while Java Web Start is a free application that can be downloaded from Sun
@@ -58,13 +57,14 @@
     </div>
 
 
-    <h3 id="q5"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a5')">
+    <a class="expandable-text-link" href="#q5-header"><h3 id="q5-header" class="question triangle-right" onclick="return false"
+                            onmousedown="return phet.toggleExpandableText('q5')">
       <wicket:message key="troubleshooting.main.q5.title">
         Why don't Flash simulations run on my computer?
       </wicket:message>
-    </a></h3>
+    </h3></a>
 
-    <div class="answer" id="a5" wicket:id="troubleshooting-main-q5-answer">
+    <div class="answer" id="q5" wicket:id="troubleshooting-main-q5-answer">
       <p><strong>QuickTime™ and Flash™ compatibility</strong></p>
 
       <p>It has come to our attention that some of our users are unable to use our Flash-based simulations due to
@@ -81,12 +81,14 @@
     </div>
 
 
-    <h3 id="q8"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a8')">
+    <a class="expandable-text-link" href="#q8-header"><h3 id="q8-header" class="question triangle-right" onclick="return false"
+                            onmousedown="return phet.toggleExpandableText('q8')">
       <wicket:message key="troubleshooting.main.q8.title">
         Why do PhET simulations run slower on my laptop than on a desktop?
       </wicket:message>
-    </a></h3>
-    <div class="answer" id="a8" wicket:id="troubleshooting-main-q8-answer">
+    </h3></a>
+
+    <div class="answer" id="q8" wicket:id="troubleshooting-main-q8-answer">
       <p>On some laptop computers, simulations may appear to run much slower than anticipated and/or exhibit
         unexpected
         graphics problems. This may be due to power management settings that affect how the computer's graphics
@@ -110,12 +112,14 @@
     </div>
 
 
-    <h3 id="q9"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a9')">
+    <a class="expandable-text-link" href="#q9-header"><h3 id="q9-header" class="question triangle-right" onclick="return false"
+                            onmousedown="return phet.toggleExpandableText('q9')">
       <wicket:message key="troubleshooting.main.q9.title">
         Why does my computer crash when I run one of the simulations that has sound?
       </wicket:message>
-    </a></h3>
-    <div class="answer" id="a9" wicket:id="troubleshooting-main-q9-answer">
+    </h3></a>
+
+    <div class="answer" id="q9" wicket:id="troubleshooting-main-q9-answer">
       <p>Simulations that use sound can be unstable when run on computers using old device driver software. If you
         are
         encountering crashes or other undesirable behavior with any of our simulations that use sound, we advise
@@ -128,13 +132,15 @@
     </div>
 
 
-    <h3 id="q11"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a11')">
+    <a class="expandable-text-link" href="#q11-header"><h3 id="q11-header" class="question triangle-right" onclick="return false"
+                             onmousedown="return phet.toggleExpandableText('q11')">
       <wicket:message key="troubleshooting.main.q11.title">
         I have downloaded and installed the PhET Offline Website Installer, and I get a warning on every page.
         Why?
       </wicket:message>
-    </a></h3>
-    <div class="answer" id="a11" wicket:id="troubleshooting-main-q11-answer">
+    </h3></a>
+
+    <div class="answer" id="q11" wicket:id="troubleshooting-main-q11-answer">
       <p>The <a href="#">PhET Offline Website Installer</a> creates a local copy of the
         current
         version of the PhET website on your computer. When you access this locally installed copy, your computer
@@ -167,15 +173,17 @@
     </div>
 
 
-    <h3 id="q12"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a12')">
+    <a class="expandable-text-link" href="#q12-header"><h3 id="q12-header" class="question triangle-right" onclick="return false"
+                             onmousedown="return phet.toggleExpandableText('q12')">
       <wicket:message key="troubleshooting.main.q12.title">
         When I run simulations from the PhET Offline Website Installer, I am seeing a dialog that says "The
         application's digital signature has been verified. Do you want to run the application?" (or something
         similar).
         What does this mean?
       </wicket:message>
-    </a></h3>
-    <div class="answer" id="a12" wicket:id="troubleshooting-main-q12-answer">
+    </h3></a>
+
+    <div class="answer" id="q12" wicket:id="troubleshooting-main-q12-answer">
       <p>The PhET simulations that are distributed with the installer include a "digital certificate" that
         verifies that
         these simulations were actually created by PhET. This is a security measure that helps to prevent an
@@ -197,12 +205,13 @@
     </div>
 
 
-    <h3 id="q18"><a class="question" href="#" onclick="return false" onmousedown="return toggleMe('a18')">
+    <a class="expandable-text-link" href="#q18-header"><h3 id="q18-header" class="question triangle-right" onclick="return false"
+                             onmousedown="return phet.toggleExpandableText('q18')">
       <wicket:message key="troubleshooting.main.q18.title">
         Why do some foreign language characters show up as empty boxes?
       </wicket:message>
-    </a></h3>
-    <div class="answer" id="a18" wicket:id="troubleshooting-main-q18-answer">
+    </h3></a>
+    <div class="answer" id="q18" wicket:id="troubleshooting-main-q18-answer">
       <p>Some characters from non-English languages will show up as empty squares when the proper fonts are not
         installed. Below are instructions to install additional language support for various operating
         systems:</p>
@@ -210,10 +219,10 @@
         <li>Windows 2000 / XP: <a href="http://support.microsoft.com/kb/177561">http://support.microsoft.com/kb/177561</a>
         </li>
         <li>Windows Vista: <a
-            href="http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files">http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files</a>
+                href="http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files">http://windows.microsoft.com/en-US/windows-vista/How-do-I-get-additional-language-files</a>
         </li>
         <li>Windows 7: <a
-            href="http://support.microsoft.com/kb/972813">http://support.microsoft.com/kb/972813</a></li>
+                href="http://support.microsoft.com/kb/972813">http://support.microsoft.com/kb/972813</a></li>
         <li>OS X: <a href="http://support.apple.com/kb/DL1123?viewlocale=en_US">http://support.apple.com/kb/DL1123?viewlocale=en_US</a>
         </li>
       </ul>
