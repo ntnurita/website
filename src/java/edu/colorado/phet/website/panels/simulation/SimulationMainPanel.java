@@ -402,7 +402,9 @@ public class SimulationMainPanel extends PhetPanel {
 
         final Project alternateSimProject = HibernateUtils.getOtherProject( getHibernateSession(), simulation.getSimulation().getName(), project );
 
-        if ( alternateSimProject != null ) {
+        // TODO: remove this locale check when the translation utility is deployed
+        // For now, sim pages shouldn't have this button if browsing in a non english locale
+        if ( PhetSession.get().getLocale().equals( LocaleUtils.stringToLocale( "en" ) ) && alternateSimProject != null ) {
             Link toLegacyLink;
             if ( simulation.getSimulation().isHTML() ) {
                 toLegacyLink = LegacySimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );
@@ -890,11 +892,16 @@ public class SimulationMainPanel extends PhetPanel {
         HibernateUtils.wrapCatchTransaction( getHibernateSession(), new VoidTask() {
             public void run( Session session ) {
                 LocalizedSimulation lsim = (LocalizedSimulation) session.load( LocalizedSimulation.class, simulation.getId() );
+
+                // TODO: remove this check when translation utility is deployed
+                boolean isEnglish = lsim.getLocale().equals( LocaleUtils.stringToLocale( "en" ) );
                 for ( Object o : lsim.getSimulation().getRelatedSimulations() ) {
                     Simulation related = (Simulation) o;
-                    Simulation relatedHTML = related.getHTMLVersion( session );
-                    if ( relatedHTML != null ) {
-                        related = relatedHTML;
+                    if ( isEnglish ) {
+                        Simulation relatedHTML = related.getHTMLVersion( session );
+                        if ( relatedHTML != null ) {
+                            related = relatedHTML;
+                        }
                     }
                     ret.add( related.getBestLocalizedSimulation( getMyLocale() ) );
                 }

@@ -218,6 +218,12 @@ public class HibernateUtils {
         Locale languageLocale = LocaleUtils.stringToLocale( locale.getLanguage() );
         boolean useLanguage = !languageLocale.equals( locale );
 
+        // TODO: this is a temporary adjustment needed until the translation utility is up and running
+        // For now, we want to show the legacy version if browsing in non-english locales
+        if ( !languageLocale.equals( englishLocale ) ) {
+            isLegacy = true;
+        }
+
         Query query = session.createQuery( "select l from LocalizedSimulation as l, Simulation as s, Project as p where (l.simulation = s AND s.project = p AND s.name = :flavor AND (l.locale = :english OR l.locale = :locale" + ( useLanguage ? " OR l.locale = :lang" : "" ) + "))" );
         query.setString( "flavor", simulation );
         query.setLocale( "locale", locale );

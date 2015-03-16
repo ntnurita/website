@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.hibernate.Session;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLink;
@@ -142,12 +143,19 @@ public class SimulationListViewPanel extends PhetPanel {
         // sims that appear twice must have an html5 version that should be displayed instead of the legacy version
         Set<String> simsWithTwoVersions = HibernateUtils.getSimsWithTwoVersions( category.getSimulations() );
 
+        // TODO: remove this when the translation utility is deployed
+        // For now, other locales should still show the Java sims
+        boolean isEnglish = locale.equals( LocaleUtils.stringToLocale( "en" ) );
+
         for ( Object o : category.getSimulations() ) {
             Simulation sim = (Simulation) o;
             if ( !sim.isVisible() ) {
                 continue;
             }
-            if ( simsWithTwoVersions.contains( sim.getName() ) && sim.getProject().getType() != Project.TYPE_HTML ) {
+            if ( isEnglish && simsWithTwoVersions.contains( sim.getName() ) && sim.getProject().getType() != Project.TYPE_HTML ) {
+                continue;
+            }
+            if ( !isEnglish && simsWithTwoVersions.contains( sim.getName() ) && sim.getProject().getType() == Project.TYPE_HTML ) {
                 continue;
             }
             LocalizedSimulation lsim = HibernateUtils.pickBestTranslation( sim, locale );
