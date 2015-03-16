@@ -25,7 +25,6 @@ public class ContributionCreatePage extends PhetRegularPage {
         super( parameters );
 
         String simName = parameters.getString( "simulation" );
-        System.out.println( simName );
 
         setContentWidth( 1120 );
 
