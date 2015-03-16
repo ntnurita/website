@@ -312,7 +312,7 @@ public class SimulationMainPanel extends PhetPanel {
                 add( new InvisibleComponent( "contributions-panel" ) );
             }
             add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
-                    ContributionCreatePage.getLinker().getHref( context, getPhetCycle() )
+                    ContributionCreatePage.getLinker( "simulation=" + simulation.getSimulation().getName() ).getHref( context, getPhetCycle() )
             } ) );
         }} );
 

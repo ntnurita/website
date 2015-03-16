@@ -24,6 +24,9 @@ public class ContributionCreatePage extends PhetRegularPage {
     public ContributionCreatePage( PageParameters parameters ) {
         super( parameters );
 
+        String simName = parameters.getString( "simulation" );
+        System.out.println( simName );
+
         setContentWidth( 1120 );
 
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.submit" ) );
@@ -32,7 +35,7 @@ public class ContributionCreatePage extends PhetRegularPage {
 
         setTitle( getLocalizer().getString( "contribution.create.pageTitle", this ) );
 
-        add( new ContributionEditPanel( "contribution-edit-panel", getPageContext(), new Contribution() ) );
+        add( new ContributionEditPanel( "contribution-edit-panel", getPageContext(), new Contribution(), simName ) );
 
         add( new LocalizedText( "check-guidelines", "contribution.create.checkGuidelines", new Object[] {
                 ContributionGuidelinesPanel.getLinker().getHref( getPageContext(), getPhetCycle() ),
@@ -51,6 +54,14 @@ public class ContributionCreatePage extends PhetRegularPage {
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
                 return "teaching-resources/submit-activity";
+            }
+        };
+    }
+
+    public static RawLinkable getLinker( final String query ) {
+        return new AbstractLinker() {
+            public String getSubUrl( PageContext context ) {
+                return "teaching-resources/submit-activity?" + query;
             }
         };
     }

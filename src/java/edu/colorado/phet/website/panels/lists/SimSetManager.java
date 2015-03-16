@@ -14,6 +14,7 @@ import java.util.Set;
 
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
@@ -38,8 +39,8 @@ public abstract class SimSetManager implements Serializable {
      */
     public abstract Set getInitialSimulations( Session session );
 
-    public SimSetManager( Session session, final Locale locale ) {
-        simulations = new LinkedList<Simulation>();
+    public SimSetManager( Session session, final Locale locale, Set initialSims ) {
+        simulations = ( initialSims == null || initialSims.size() == 0 ) ? new LinkedList<Simulation>() : new LinkedList<Simulation>( initialSims );
         allSimulations = new LinkedList<Simulation>();
 
         HibernateUtils.wrapTransaction( session, new HibernateTask() {
@@ -63,7 +64,12 @@ public abstract class SimSetManager implements Serializable {
         HibernateUtils.wrapTransaction( session, new HibernateTask() {
             public boolean run( Session session ) {
                 for ( Simulation simulation : allSimulations ) {
-                    titleMap.put( simulation, simulation.getBestLocalizedSimulation( locale ).getTitle() );
+                    LocalizedSimulation sim = simulation.getBestLocalizedSimulation( locale );
+                    String title = sim.getTitle();
+                    if ( sim.getSimulation().isHTML() ) {
+                        title += " (HTML5)";
+                    }
+                    titleMap.put( simulation, title );
                 }
                 return true;
             }

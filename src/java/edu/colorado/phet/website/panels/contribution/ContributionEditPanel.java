@@ -106,6 +106,10 @@ public class ContributionEditPanel extends PhetPanel {
     private FeedbackPanel feedback;
 
     public ContributionEditPanel( String id, PageContext context, Contribution preContribution ) {
+        this( id, context, preContribution, null );
+    }
+
+    public ContributionEditPanel( String id, PageContext context, Contribution preContribution, String simName ) {
         super( id, context );
 
         // TODO: add labels to the form components that aren't easy to label
@@ -124,6 +128,7 @@ public class ContributionEditPanel extends PhetPanel {
         existingFiles = new LinkedList();
         filesToRemove = new LinkedList();
 
+        Set initialSimulations = new HashSet();
         final PhetUser currentUser = PhetSession.get().getUser();
 
         if ( !creating ) {
@@ -160,11 +165,21 @@ public class ContributionEditPanel extends PhetPanel {
             contribution.setAuthorOrganization( currentUser.getOrganization() );
             contribution.setContactEmail( currentUser.getEmail() );
             contribution.setApproved( true );
+
+            if ( simName != null ) {
+                List<Simulation> sims = getHibernateSession().createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
+                for ( Simulation s : sims ) {
+                    if ( s.isVisible() ) {
+                        initialSimulations.add( s );
+                    }
+                }
+                contribution.setSimulations( initialSimulations );
+            }
         }
 
         // initialize selectors
 
-        simManager = new SimSetManager( getHibernateSession(), getLocale() ) {
+        simManager = new SimSetManager( getHibernateSession(), getLocale(), initialSimulations ) {
             @Override
             public Set getInitialSimulations( Session session ) {
                 if ( contribution.getId() != 0 ) {
