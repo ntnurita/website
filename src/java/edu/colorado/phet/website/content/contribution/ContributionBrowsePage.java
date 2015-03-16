@@ -315,13 +315,13 @@ public class ContributionBrowsePage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^for-teachers/browse-activities$", ContributionBrowsePage.class );
+        mapper.addMap( "^teaching-resources/browse-activities$", ContributionBrowsePage.class );
     }
 
     public static RawLinkable getLinker() {
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
-                return "for-teachers/browse-activities";
+                return "teaching-resources/browse-activities";
             }
         };
     }

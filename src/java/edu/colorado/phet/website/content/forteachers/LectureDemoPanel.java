@@ -28,7 +28,7 @@ public class LectureDemoPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/lectureDemo";
+        return "teaching-resources/lectureDemo";
     }
 
     public static RawLinkable getLinker() {

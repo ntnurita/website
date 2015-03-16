@@ -36,7 +36,7 @@ public class ActivitiesdesignPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/activitesDesign";
+        return "teaching-resources/activitesDesign";
     }
 
     public static RawLinkable getLinker() {

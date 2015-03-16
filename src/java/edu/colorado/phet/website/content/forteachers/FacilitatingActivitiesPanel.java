@@ -19,7 +19,7 @@ public class FacilitatingActivitiesPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/facilitatingActivities";
+        return "teaching-resources/facilitatingActivities";
     }
 
     public static RawLinkable getLinker() {

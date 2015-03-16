@@ -26,7 +26,7 @@ public class LectureOverviewPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/usingPhetInLecture";
+        return "teaching-resources/usingPhetInLecture";
     }
 
     public static RawLinkable getLinker() {

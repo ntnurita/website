@@ -23,7 +23,7 @@ public class WorkshopFacilitatorsGuidePanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/workshopFacilitatorsGuide";
+        return "teaching-resources/workshopFacilitatorsGuide";
     }
 
     public static RawLinkable getLinker() {

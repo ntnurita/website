@@ -24,7 +24,7 @@ public class PlanningPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/planningToUsePhet";
+        return "teaching-resources/planningToUsePhet";
     }
 
     public static RawLinkable getLinker() {

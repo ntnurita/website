@@ -20,7 +20,7 @@ public class ClassroomUsePanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/classroom-use";
+        return "teaching-resources/classroom-use";
     }
 
     public static RawLinkable getLinker() {

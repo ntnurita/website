@@ -28,7 +28,7 @@ public class VirtualWorkshopPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/virtualWorkshop";
+        return "teaching-resources/virtualWorkshop";
     }
 
     public static RawLinkable getLinker() {

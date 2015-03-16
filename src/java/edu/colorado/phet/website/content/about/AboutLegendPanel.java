@@ -35,7 +35,7 @@ public class AboutLegendPanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/legend";
+        return "teaching-resources/legend";
     }
 
     public static RawLinkable getLinker() {

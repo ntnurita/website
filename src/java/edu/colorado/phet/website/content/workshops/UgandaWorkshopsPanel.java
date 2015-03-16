@@ -26,7 +26,7 @@ public class UgandaWorkshopsPanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/workshops/uganda";
+        return "teaching-resources/workshops/uganda";
     }
 
     public static RawLinkable getLinker() {

@@ -44,13 +44,13 @@ public class ContributionCreatePage extends PhetRegularPage {
     }
 
     public static void addToMapper( PhetUrlMapper mapper ) {
-        mapper.addMap( "^for-teachers/submit-activity$", ContributionCreatePage.class );
+        mapper.addMap( "^teaching-resources/submit-activity$", ContributionCreatePage.class );
     }
 
     public static RawLinkable getLinker() {
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
-                return "for-teachers/submit-activity";
+                return "teaching-resources/submit-activity";
             }
         };
     }

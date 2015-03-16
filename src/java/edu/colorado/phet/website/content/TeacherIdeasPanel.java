@@ -6,14 +6,10 @@ package edu.colorado.phet.website.content;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 
-import edu.colorado.phet.website.components.LocalizedText;
-import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
-import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPanel;
 import edu.colorado.phet.website.content.forteachers.ActivitiesdesignPanel;
 import edu.colorado.phet.website.content.forteachers.ForTeachersPanel;
 import edu.colorado.phet.website.content.forteachers.TipsPanel;
@@ -60,7 +56,7 @@ public class TeacherIdeasPanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers";
+        return "teaching-resources";
     }
 
     public static RawLinkable getLinker() {

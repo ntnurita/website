@@ -22,7 +22,7 @@ public class UgandaWorkshopPhotosPanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/workshops/uganda-photos";
+        return "teaching-resources/workshops/uganda-photos";
     }
 
     public static RawLinkable getLinker() {

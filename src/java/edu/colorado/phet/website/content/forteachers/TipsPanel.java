@@ -36,7 +36,7 @@ public class TipsPanel extends ForTeachersPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/tipsForUsingPhet";
+        return "teaching-resources/tipsForUsingPhet";
     }
 
     public static RawLinkable getLinker() {

@@ -34,7 +34,7 @@ public class WorkshopsPanel extends PhetPanel {
     }
 
     public static String getUrl() {
-        return "for-teachers/workshops";
+        return "teaching-resources/workshops";
     }
 
     public static RawLinkable getLinker() {
