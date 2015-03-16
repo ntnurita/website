@@ -402,9 +402,7 @@ public class SimulationMainPanel extends PhetPanel {
 
         final Project alternateSimProject = HibernateUtils.getOtherProject( getHibernateSession(), simulation.getSimulation().getName(), project );
 
-        // TODO: remove this locale check when the translation utility is deployed
-        // For now, sim pages shouldn't have this button if browsing in a non english locale
-        if ( PhetSession.get().getLocale().equals( LocaleUtils.stringToLocale( "en" ) ) && alternateSimProject != null ) {
+        if ( alternateSimProject != null ) {
             Link toLegacyLink;
             if ( simulation.getSimulation().isHTML() ) {
                 toLegacyLink = LegacySimulationPage.getLinker( simulation ).getLink( "other-sim-page", context, getPhetCycle() );

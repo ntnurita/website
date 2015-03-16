@@ -1,5 +1,11 @@
 function selectItem( li ) {
-    window.location = li.data[1];
+    // temporary measure to make non english searches default to legacy pages
+    if ( phetLocale !== "en" && li.data[1].indexOf('simulation') > -1 ) {
+        window.location = li.data[1].replace( 'simulation', 'simulation/legacy' );
+    }
+    else {
+        window.location = li.data[1];
+    }
 }
 function htmlEncode( value ) {
     return $( '<div/>' ).text( value ).html();
