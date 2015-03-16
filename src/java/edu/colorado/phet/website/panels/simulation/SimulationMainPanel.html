@@ -116,7 +116,7 @@
                         </script>
                         <a class="sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
                             <img src="/images/icons/download-icon.png" alt=" " class="download-icon">
-                            <span style="float: right"><wicket:message key="simulationMainPanel.runOffline">Download</wicket:message></span>
+                            <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
                         </a>
 
                         <!--<wicket:enclosure child="html-button">-->
@@ -131,7 +131,8 @@
 
                         <a class="sim-embed sim-button" href="#" wicket:id="embed-button"
                            onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
-                            &lt; / &gt; <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
+                          <img src="/images/icons/embed-icon.png" alt=" " class="download-icon">
+                          <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
                         </a>
 
                         <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
@@ -188,7 +189,7 @@
 
                     <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
                         <a class="simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
-                            <wicket:message key="donate.donateNowBang">Donate Now!</wicket:message>
+                            <span><wicket:message key="donate.donateNowBang">Donate</wicket:message></span>
                         </a>
                     </div>
 

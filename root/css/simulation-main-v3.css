@@ -86,18 +86,15 @@ div.rtl .simulation-main-image-panel {
 }
 
 .sim-button {
-    text-decoration: none;
-    font-size: 1.167em;
-    font-weight: bold;
-    color: black;
-    padding: 1px 10px;
+    text-transform: uppercase;
+    font-variant: small-caps;
+    color: white;
+    padding: 5px 10px;
     margin-top: 12px;
-    background-color: #55caff;
-    border: 1px solid #99ffff;
-    border-right-color: #005577;
-    border-bottom-color: #005577;
-    height: 20px;
-    line-height: 20px;
+    background-color: rgb(106,106,106);
+    border-radius: 3px;
+    height: 16px;
+    line-height: 16px;
 }
 
 .sim-button:hover {
@@ -120,9 +117,10 @@ div.rtl .simulation-main-image-panel {
 
 .simStyleOrange {
     background-color: #f17e18;
-    border: 1px solid #ffdd33;
-    border-right-color: #775500;
-    border-bottom-color: #775500;
+    color: black;
+    /*border: 1px solid #ffdd33;*/
+    /*border-right-color: #775500;*/
+    /*border-bottom-color: #775500;*/
 }
 
 .simStyleOrange:hover {
@@ -349,8 +347,7 @@ body#offline-installer-body .sim-download {
 }
 
 .download-icon {
-    margin-top: 2px;
     margin-right: 10px;
     float: left;
-    height: 17px;
+    height: 1.25em;
 }
