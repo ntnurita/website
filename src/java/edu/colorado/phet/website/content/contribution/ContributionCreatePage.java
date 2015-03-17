@@ -24,7 +24,10 @@ public class ContributionCreatePage extends PhetRegularPage {
     public ContributionCreatePage( PageParameters parameters ) {
         super( parameters );
 
+        // these parameters are used to pre-populate the sim that the contribution should reference
         String simName = parameters.getString( "simulation" );
+        String isHTMLString = parameters.getString( "isHTML" );
+        boolean isHTML = Boolean.parseBoolean( isHTMLString );
 
         setContentWidth( 1120 );
 
@@ -34,7 +37,7 @@ public class ContributionCreatePage extends PhetRegularPage {
 
         setTitle( getLocalizer().getString( "contribution.create.pageTitle", this ) );
 
-        add( new ContributionEditPanel( "contribution-edit-panel", getPageContext(), new Contribution(), simName ) );
+        add( new ContributionEditPanel( "contribution-edit-panel", getPageContext(), new Contribution(), simName, isHTML ) );
 
         add( new LocalizedText( "check-guidelines", "contribution.create.checkGuidelines", new Object[] {
                 ContributionGuidelinesPanel.getLinker().getHref( getPageContext(), getPhetCycle() ),

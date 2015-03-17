@@ -106,10 +106,10 @@ public class ContributionEditPanel extends PhetPanel {
     private FeedbackPanel feedback;
 
     public ContributionEditPanel( String id, PageContext context, Contribution preContribution ) {
-        this( id, context, preContribution, null );
+        this( id, context, preContribution, null, false );
     }
 
-    public ContributionEditPanel( String id, PageContext context, Contribution preContribution, String simName ) {
+    public ContributionEditPanel( String id, PageContext context, Contribution preContribution, String simName, boolean isHTML ) {
         super( id, context );
 
         // TODO: add labels to the form components that aren't easy to label
@@ -169,7 +169,8 @@ public class ContributionEditPanel extends PhetPanel {
             if ( simName != null ) {
                 List<Simulation> sims = getHibernateSession().createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simName ).list();
                 for ( Simulation s : sims ) {
-                    if ( s.isVisible() ) {
+                    boolean correctVersion = ( s.isHTML() && isHTML ) || ( !s.isHTML() && !isHTML );
+                    if ( s.isVisible() && correctVersion ) {
                         initialSimulations.add( s );
                     }
                 }
