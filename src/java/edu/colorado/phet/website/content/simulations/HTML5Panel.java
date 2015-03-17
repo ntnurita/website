@@ -2,17 +2,31 @@
 
 package edu.colorado.phet.website.content.simulations;
 
-import org.apache.wicket.markup.html.WebMarkupContainer;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
+import edu.colorado.phet.website.data.LocalizedSimulation;
+import edu.colorado.phet.website.data.Project;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.SocialBookmarkPanel;
+import edu.colorado.phet.website.panels.simulation.SimulationDisplayPanel;
 import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
 import edu.colorado.phet.website.panels.sponsor.Sponsor;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.hibernate.HibernateTask;
+import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class HTML5Panel extends PhetPanel {
 
@@ -40,36 +54,27 @@ public class HTML5Panel extends PhetPanel {
 
         if ( this.getLocale().equals( WebsiteConstants.ENGLISH ) ) {
             add( new InvisibleComponent( "html-translations-coming-soon" ) );
-        } else {
+        }
+        else {
             add( new WebMarkupContainer( "html-translations-coming-soon" ) );
         }
 
-        // add linkers
-        add( SimulationPage.getLinker( "acid-base-solutions" ).getLink( "acid-base-solutions-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "area-builder" ).getLink( "area-builder-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "balancing-act" ).getLink( "balancing-act-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "balancing-chemical-equations" ).getLink( "balancing-chemical-equations-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "balloons-and-static-electricity" ).getLink( "balloons-and-static-electricity-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "beers-law-lab" ).getLink( "beers-law-lab-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "build-an-atom" ).getLink( "build-an-atom-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "color-vision" ).getLink( "color-vision-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "concentration" ).getLink( "concentration-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "energy-skate-park-basics" ).getLink( "energy-skate-park-basics-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "faradays-law" ).getLink( "faradays-law-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "forces-and-motion-basics" ).getLink( "forces-and-motion-basics-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "fraction-matcher" ).getLink( "fraction-matcher-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "friction" ).getLink( "friction-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "graphing-lines" ).getLink( "graphing-lines-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "gravity-force-lab" ).getLink( "gravity-force-lab-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "john-travoltage" ).getLink( "john-travoltage-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "molarity" ).getLink( "molarity-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "ohms-law" ).getLink( "ohms-law-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "ph-scale" ).getLink( "ph-scale-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "ph-scale-basics" ).getLink( "ph-scale-basics-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "reactants-products-and-leftovers" ).getLink( "reactants-products-and-leftovers-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "resistance-in-a-wire" ).getLink( "resistance-in-a-wire-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "under-pressure" ).getLink( "under-pressure-link", context, getPhetCycle() ) );
-        add( SimulationPage.getLinker( "wave-on-a-string" ).getLink( "wave-on-a-string-link", context, getPhetCycle() ) );
+        final List<LocalizedSimulation> simulations = new LinkedList<LocalizedSimulation>();
+
+        HibernateUtils.wrapTransaction( getHibernateSession(), new HibernateTask() {
+            public boolean run( Session session ) {
+                Locale englishLocale = LocaleUtils.stringToLocale( "en" );
+                Query query = session.createQuery( "select l from LocalizedSimulation as l, Simulation as s, Project as p where (l.simulation = s AND s.project.type = :typeID AND l.locale = :english)" );
+                query.setInteger( "typeID", Project.TYPE_HTML );
+                query.setLocale( "english", englishLocale );
+                Set resultSet = new HashSet( query.list() ); // ensure unique results
+                simulations.addAll( resultSet );
+                HibernateUtils.orderSimulations( simulations, englishLocale );
+                return true;
+            }
+        } );
+
+        add( new SimulationDisplayPanel( "simulation-display-panel", context, simulations ) );
 
 //        add( new StaticImage( "html-video-thumbnail", Images.HTML5_VIDEO_THUMBNAIL_220, null ) );
     }

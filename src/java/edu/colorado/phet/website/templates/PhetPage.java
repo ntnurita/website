@@ -257,9 +257,8 @@ public abstract class PhetPage extends WebPage implements Stylable {
             add( new WebMarkupContainer( "js" ) );
         }
 
-
         // hide the banner for the installer, and switch banner type based on the page
-        if ( PhetRequestCycle.get().isOfflineInstaller() || this instanceof HTML5Page ) {
+        if ( PhetRequestCycle.get().isOfflineInstaller() ) {
             add( new InvisibleComponent( "html-banner" ) );
         }
         else if ( this instanceof IndexPage ) {

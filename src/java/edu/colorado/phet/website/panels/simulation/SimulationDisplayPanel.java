@@ -43,6 +43,7 @@ public class SimulationDisplayPanel extends PhetPanel {
         super( id, context );
 
         final boolean isEnglish = PhetSession.get().getLocale().equals( LocaleUtils.stringToLocale( "en" ) );
+        final boolean isHTML5Page = context.getPath().contains( "simulations/category/html" );
 
         SimulationDataProvider simData = new SimulationDataProvider( simulations );
         GridView gridView = new GridView<LocalizedSimulation>( "rows", simData ) {
@@ -56,7 +57,7 @@ public class SimulationDisplayPanel extends PhetPanel {
             protected void populateItem( Item item ) {
                 final LocalizedSimulation simulation = (LocalizedSimulation) item.getModelObject();
                 Link link;
-                if ( isEnglish ) {
+                if ( isEnglish || isHTML5Page ) {
                     link = SimulationPage.getLinker( simulation ).getLink( "simulation-link", context, getPhetCycle() );
                 }
                 else {
