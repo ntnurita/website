@@ -17,8 +17,11 @@ import org.apache.wicket.markup.repeater.data.GridView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.StaticImage;
+import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -39,6 +42,8 @@ public class SimulationDisplayPanel extends PhetPanel {
     public SimulationDisplayPanel( String id, final PageContext context, List<LocalizedSimulation> simulations ) {
         super( id, context );
 
+        final boolean isEnglish = PhetSession.get().getLocale().equals( LocaleUtils.stringToLocale( "en" ) );
+
         SimulationDataProvider simData = new SimulationDataProvider( simulations );
         GridView gridView = new GridView<LocalizedSimulation>( "rows", simData ) {
 
@@ -50,7 +55,13 @@ public class SimulationDisplayPanel extends PhetPanel {
             @Override
             protected void populateItem( Item item ) {
                 final LocalizedSimulation simulation = (LocalizedSimulation) item.getModelObject();
-                Link link = SimulationPage.getLinker( simulation ).getLink( "simulation-link", context, getPhetCycle() );
+                Link link;
+                if ( isEnglish ) {
+                    link = SimulationPage.getLinker( simulation ).getLink( "simulation-link", context, getPhetCycle() );
+                }
+                else {
+                    link = LegacySimulationPage.getLinker( simulation ).getLink( "simulation-link", context, getPhetCycle() );
+                }
                 link.add( new Label( "title", simulation.getTitle() ) );
                 if ( !simulation.getLocale().getLanguage().equals( context.getLocale().getLanguage() ) ) {
                     // sim isn't translated
