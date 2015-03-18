@@ -21,6 +21,7 @@ public class HTML5Page extends PhetRegularPage {
         super( parameters );
 
         setContentWidth( 1120 );
+        hideSocialBookmarkButtons();
 
         add( new HTML5Panel( "html-panel", getPageContext() ) );
 
