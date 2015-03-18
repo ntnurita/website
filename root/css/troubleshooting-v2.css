@@ -16,6 +16,10 @@
     border: 0;
 }
 
+.troubleshooting-subheader {
+    color: #15337f;
+}
+
 p.to-top {
     text-align: right;
     margin: 0;
