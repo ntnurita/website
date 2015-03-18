@@ -376,9 +376,9 @@ public class PhetWicketApplication extends WebApplication {
         mountBookmarkablePage( "2013/the-future-of-phet", TheFutureOfPhet.class );
 
         mountBookmarkablePage( "webgl-disabled-page", WebglRedirectPage.class );
-        mountBookmarkablePage( "check-login", CheckLogin.class );
 
         // services
+        mountBookmarkablePage( "services/check-login", CheckLogin.class );
         mountBookmarkablePage( "services/phet-info", PhetInfoServicePage.class );
         mountBookmarkablePage( "services/phet-info.php", PhetInfoServicePage.class );
         mountBookmarkablePage( "services/sim-jar-redirect", SimJarRedirectPage.class );
