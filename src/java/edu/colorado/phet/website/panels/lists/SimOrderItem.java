@@ -46,7 +46,11 @@ public class SimOrderItem implements SortableListItem, Serializable {
     }
 
     public int compareTo( SortableListItem item, Locale locale ) {
-        return Collator.getInstance( locale ).compare( getDisplayValue(), item.getDisplayValue() );
-        //return getDisplayValue().compareToIgnoreCase( item.getDisplayValue() );
+
+        // append an extra "z" to the titles of legacy sims so that they appear below the HTML5 sims in the dropdown menu
+        // see https://github.com/phetsims/website/issues/99
+        String legacyCompareThis = ( !simulation.isHTML() ) ? "z" : "";
+        String legacyCompareItem = ( !( (SimOrderItem) item ).getSimulation().isHTML() ) ? "z" : "";
+        return Collator.getInstance( locale ).compare( getDisplayValue() + legacyCompareThis, item.getDisplayValue() + legacyCompareItem );
     }
 }
