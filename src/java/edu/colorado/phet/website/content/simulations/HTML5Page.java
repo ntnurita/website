@@ -24,12 +24,12 @@ public class HTML5Page extends PhetRegularPage {
 
         add( new HTML5Panel( "html-panel", getPageContext() ) );
 
-        NavLocation html5location = getNavMenu().getLocationByKey( "html5" );
+        NavLocation location = getNavMenu().getLocationByKey( "new" );
 
-        initializeLocation( html5location );
+        initializeLocation( location );
 
         setTitle( StringUtils.messageFormat( getLocalizer().getString( "simulationDisplay.title", this ), new Object[] {
-                getPhetLocalizer().getString( html5location.getLocalizationKey(), this )
+                getPhetLocalizer().getString( location.getLocalizationKey(), this )
         } ) );
 
         this.getPhetCycle().setMinutesToCache( 15 );
@@ -37,14 +37,14 @@ public class HTML5Page extends PhetRegularPage {
 
     public static void addToMapper( PhetUrlMapper mapper ) {
         // WARNING: don't change without also changing the old URL redirection
-        mapper.addMap( "^simulations/category/html$", HTML5Page.class );
+        mapper.addMap( "^simulations/category/new$", HTML5Page.class );
     }
 
     public static RawLinkable getLinker() {
         // WARNING: don't change without also changing the old URL redirection
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
-                return "simulations/category/html";
+                return "simulations/category/new";
             }
         };
     }
