@@ -17,7 +17,8 @@ public class CheckLogin extends WebPage {
             String email = "\"email\": \"" + user.getEmail() + "\"";
             String userId = "\"userId\": " + user.getId();
             String signedIn = "\"loggedIn\": " + psession.isSignedIn();
-            add( new RawLabel( "data", "{ " + username + ", " + userId + ", " + email + ", " + signedIn + " }") {{
+            String teamMember = "\"teamMember\": " + psession.getUser().isTeamMember();
+            add( new RawLabel( "data", "{ " + username + ", " + userId + ", " + email + ", " + signedIn + ", " + teamMember + " }") {{
                 setRenderBodyOnly( true );
             }} );
         }
