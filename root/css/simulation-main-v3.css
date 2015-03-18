@@ -23,9 +23,9 @@ div.rtl .simulation-main-image-panel {
 
 .simulation-main-screenshot {
     border: none;
-    -webkit-box-shadow: 15px 15px 50px 0 rgba(0,0,0,0.5);
-    -moz-box-shadow: 15px 15px 50px 0 rgba(0,0,0,0.5);
-    box-shadow: 15px 15px 50px 0 rgba(0,0,0,0.5);
+    -webkit-box-shadow: 10px 10px 30px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow: 10px 10px 30px 0 rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 30px 0 rgba(0,0,0,0.5);
 }
 
 .simulation-main-translation-list {
