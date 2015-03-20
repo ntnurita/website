@@ -13,42 +13,26 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
-import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.constants.WebsiteConstants;
-import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.Project;
+import edu.colorado.phet.website.panels.IndexLetterLinks;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.panels.SocialBookmarkPanel;
 import edu.colorado.phet.website.panels.simulation.SimulationDisplayPanel;
-import edu.colorado.phet.website.panels.sponsor.SimSponsorPanel;
-import edu.colorado.phet.website.panels.sponsor.Sponsor;
+import edu.colorado.phet.website.panels.simulation.SimulationIndexPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 
 public class HTML5Panel extends PhetPanel {
 
-    public HTML5Panel( String id, final PageContext context ) {
+    public HTML5Panel( String id, final PageContext context, boolean showIndex ) {
         super( id, context );
 
-        add( DonatePanel.getLinker().getLink( "donate-link", context, getPhetCycle() ) );
-
-        if ( getPhetCycle().isInstaller() ) {
-            add( new WebMarkupContainer( "sim-sponsor-installer-js" ) );
-        }
-        else {
-            add( new InvisibleComponent( "sim-sponsor-installer-js" ) );
-        }
-
-        if ( DistributionHandler.showSimSponsor( getPhetCycle() ) ) {
-            // this gets cached, so it will stay the same for the sim (but will be different for different sims)
-            add( new SimSponsorPanel( "html-sponsor", context, Sponsor.chooseRandomSimSponsor() ) );
-        }
-        else {
-            add( new InvisibleComponent( "html-sponsor" ) );
-        }
+        String pagePath = "simulations/category/new";
 
         add( new SocialBookmarkPanel( "social-bookmark-panel", context, getFullPath( context ), getPhetLocalizer().getString( "nav.html", this ) ) );
 
@@ -69,14 +53,26 @@ public class HTML5Panel extends PhetPanel {
                 query.setLocale( "english", englishLocale );
                 Set resultSet = new HashSet( query.list() ); // ensure unique results
                 simulations.addAll( resultSet );
-                HibernateUtils.orderSimulations( simulations, englishLocale );
                 return true;
             }
         } );
 
-        add( new SimulationDisplayPanel( "simulation-display-panel", context, simulations ) );
+        if ( showIndex ) {
+            HibernateUtils.orderSimulations( simulations, context.getLocale() );
+            SimulationIndexPanel indexPanel = new SimulationIndexPanel( "simulation-display-panel", context, simulations );
+            add( indexPanel );
 
-//        add( new StaticImage( "html-video-thumbnail", Images.HTML5_VIDEO_THUMBNAIL_220, null ) );
+            add( new InvisibleComponent( "to-index-view" ) );
+            add( new RawLink( "to-thumbnail-view", context.getPrefix() + pagePath ) );
+            add( new IndexLetterLinks( "letter-links", context, indexPanel.getLetters() ) );
+        }
+        else {
+            add( new SimulationDisplayPanel( "simulation-display-panel", context, simulations ) );
+
+            add( new RawLink( "to-index-view", context.getPrefix() + pagePath + "/index" ) );
+            add( new InvisibleComponent( "to-thumbnail-view" ) );
+            add( new InvisibleComponent( "letter-links" ) );
+        }
     }
 
 }

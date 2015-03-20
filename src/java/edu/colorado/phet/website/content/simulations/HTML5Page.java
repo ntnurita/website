@@ -5,6 +5,7 @@ package edu.colorado.phet.website.content.simulations;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 
+import edu.colorado.phet.website.content.NotFoundPage;
 import edu.colorado.phet.website.menu.NavLocation;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
@@ -20,10 +21,25 @@ public class HTML5Page extends PhetRegularPage {
     public HTML5Page( final PageParameters parameters ) {
         super( parameters );
 
-        setContentWidth( 1120 );
         hideSocialBookmarkButtons();
 
-        add( new HTML5Panel( "html-panel", getPageContext() ) );
+        boolean showIndex = false;
+
+        // we need to check the "query string" part to see if we will show in "index" mode
+        if ( parameters.containsKey( "query-string" ) ) {
+            logger.debug( "Query string: " + parameters.getString( "query-string" ) );
+            if ( parameters.getString( "query-string" ).equals( "/index" ) ) {
+                showIndex = true;
+            }
+            else {
+                setResponsePage( NotFoundPage.class );
+            }
+        }
+        else {
+            logger.debug( "No query string" );
+        }
+
+        add( new HTML5Panel( "html-panel", getPageContext(), showIndex ) );
 
         NavLocation location = getNavMenu().getLocationByKey( "new" );
 
@@ -39,6 +55,7 @@ public class HTML5Page extends PhetRegularPage {
     public static void addToMapper( PhetUrlMapper mapper ) {
         // WARNING: don't change without also changing the old URL redirection
         mapper.addMap( "^simulations/category/new$", HTML5Page.class );
+        mapper.addMap( "^simulations/category/new(/index)?$", HTML5Page.class, new String[] { "query-string" } );
     }
 
     public static RawLinkable getLinker() {

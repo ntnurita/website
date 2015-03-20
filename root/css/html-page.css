@@ -1,26 +1,16 @@
 /* Copyright 2002-2013, University of Colorado */
 
 .html-page {
-    width: 865px;
-    margin: 0 auto;
 }
 
 .html-breadcrumbs {
     margin: 15px 0;
 }
 
-.html-right-panel {
-    margin-top: 10px;
-    width: 324px;
-    float: right;
-    text-align: center;
-    position: relative;
-}
-
 .html-social-bookmark-panel {
     position: absolute;
-    right: 0;
-    top: 250px;
+    right: -100px;
+    top: 33px;
 }
 
 .html-video-container {
@@ -30,10 +20,12 @@
     background-color: black;
     border: none;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 324px;
 }
 
 .html-video-thumbnail {
-    /*opacity: 0.8;*/
     display: block;
     border: 2px solid black;
 }
@@ -68,17 +60,17 @@
 .html-text-our-new-html5-sims {
     display: block;
     color: black;
-    font-size: 18px;
+    font-size: 1.5em;
     padding: 5px;
     background-color: #eee;
     border: 1px solid #ddd;
     border-top: none;
-    /*background-color: #6acef5;*/
+    width: 312px;
 }
 
 .html-why-html5 {
-    font-size: 18px;
-    margin: 30px auto;
+    font-size: 1.5em;
+    text-align: center;
 }
 
 #html5-features-missing {
