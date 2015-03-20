@@ -216,6 +216,11 @@ public class StringUtils {
         }
     }
 
+    public static String makeUrlHTTPS( String url ) {
+        String server = PhetRequestCycle.get().getServerName();
+        return "https://" + server + url;
+    }
+
     /**
      * Looks up an English string from a translation key and a session, and unescapes common characters
      *

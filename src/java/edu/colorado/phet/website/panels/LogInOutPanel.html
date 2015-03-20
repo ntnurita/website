@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
@@ -12,8 +12,8 @@
 <body>
 
 <wicket:panel>
-    <a wicket:id="sign-in" class="sign-in-links"
-       onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">
+    <a wicket:id="sign-in" class="sign-in-links" id="login-button" href="#">
+       <!--onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">-->
         <wicket:message key="session.loginRegister">Sign in / Register</wicket:message>
     </a>
     <wicket:enclosure child="sign-out">
@@ -33,6 +33,42 @@
             </a></li>
         </ul>
     </wicket:enclosure>
+
+    <div wicket:id="login-form-container" id="login-form" style="display: none;">
+
+        <h2>Sign In</h2>
+
+        <div wicket:id="feedback" class="sign-in-feedback">
+            <ul class="feedbackPanel">
+                <li class="feedbackPanelERROR">
+                    <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
+                </li>
+            </ul>
+        </div>
+
+        <form wicket:id="sign-in-form">
+
+            <input wicket:id="username" type="text" name="email" placeholder="Email address" class="login-form-text"><br/>
+            <input wicket:id="password" type="password" name="password" placeholder="Password" class="login-form-text"><br/>
+
+            <span wicket:id="remember">
+                <input wicket:id="remember-check" id="sign-in-checkbox" type="checkbox" name="checkbox" style="float: left;">
+                <label for="sign-in-checkbox">Remember me</label>
+                <a wicket:id="password-link" href="#" style="float: right;">Forgot password?</a>
+            </span>
+
+            <br/>
+
+            <input type="submit" value="SIGN IN" class="login-form-submit"><br/>
+
+            <span>
+                No account? <a wicket:id="register-link" href="#">Register</a>.
+            </span>
+
+        </form>
+
+    </div>
+
 </wicket:panel>
 
 </body>

@@ -380,3 +380,28 @@ pre {
 .workshops {
     width: 650px;
 }
+
+#login-form {
+    border-radius: 5px;
+    background-color: rgb(243,245,243);
+    padding: 20px;
+    width: 30%;
+}
+
+.login-form-submit {
+    color: white;
+    background-color: rgb(42,50,106);
+    text-align: center;
+    display: block;
+    border: none;
+    margin: 0 auto;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.login-form-text {
+    display: block;
+    margin: 5px auto;
+    width: 90%;
+    padding: 5px;
+}
