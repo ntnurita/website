@@ -205,8 +205,8 @@ public class Contribution implements Serializable, DataListener, IntId {
                     return a.isGoldStar() ? -1 : 1;
                 }
 
-                // sort by creation date. newest first now
-                return -a.getDateCreated().compareTo( b.getDateCreated() );
+                // sort by updated date. newest first now
+                return -a.getDateUpdated().compareTo( b.getDateUpdated() );
             }
         } );
     }
