@@ -65,6 +65,11 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "faq.sourceCode.answer" );
         addString( "faq.licensing.answer" );
 
+        addString( "faq.main.q2.answer.java-flash" );
+        addString( "faq.main.q2.answer.java-flash.header" );
+        addString( "faq.main.q2.answer.html5.header" );
+        addString( "faq.main.q2.answer.html5", "{0} will be replaced by the href to the ipad-tablet page, {1} will be replaced by a mailto link to phethelp, {2} will be replaced by the href to the chromebook page" );
+
         addString( "faq.mobileDevices.title" );
         addString( "faq.mobileDevices.answer" );
 
@@ -127,15 +132,15 @@ public class TroubleshootingMainEntity extends TranslationEntity {
         addString( "nav.breadcrumb.faqs" );
         addString( "troubleshooting.main.licensingRequirements" );
         addPreview( new PhetPanelFactory() {
-                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                            return new TroubleshootingMainPanel( id, context );
-                        }
-                    }, "Troubleshooting (main)" );
+            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                return new TroubleshootingMainPanel( id, context );
+            }
+        }, "Troubleshooting (main)" );
         addPreview( new PhetPanelFactory() {
-                        public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
-                            return new GeneralFAQPanel( id, context );
-                        }
-                    }, "FAQs" );
+            public PhetPanel getNewPanel( String id, PageContext context, PhetRequestCycle requestCycle ) {
+                return new GeneralFAQPanel( id, context );
+            }
+        }, "FAQs" );
     }
 
     public String getDisplayName() {
