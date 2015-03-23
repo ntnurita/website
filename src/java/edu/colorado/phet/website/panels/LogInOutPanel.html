@@ -36,14 +36,17 @@
 
     <div wicket:id="login-form-container" id="login-form" style="display: none;">
 
-        <h2>Sign In</h2>
+        <div class="login-form-header">Sign In</div>
 
-        <div wicket:id="feedback" class="sign-in-feedback">
-            <ul class="feedbackPanel">
-                <li class="feedbackPanelERROR">
-                    <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
-                </li>
-            </ul>
+        <!--<div wicket:id="feedback" class="sign-in-feedback">-->
+            <!--<ul class="feedbackPanel">-->
+                <!--<li class="feedbackPanelERROR">-->
+                    <!--<span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <div id="login-validation-message" style="display: none">
+            <wicket:message key="signIn.validation.failed">An invalid username and/or password has been entered.</wicket:message>
         </div>
 
         <form wicket:id="sign-in-form">

@@ -47,7 +47,7 @@ public class LogInOutPanel extends PhetPanel {
     private TextField username;
     private PasswordTextField password;
 
-    FeedbackPanel feedback;
+//    FeedbackPanel feedback;
 
     /**
      * Whether to remember the user or not.
@@ -90,10 +90,10 @@ public class LogInOutPanel extends PhetPanel {
             add( new InvisibleComponent( "team-member" ) );
         }
 
-        WebMarkupContainer formContainer =  new WebMarkupContainer( "login-form-container" ) {{
-            feedback = new FeedbackPanel( "feedback" );
-            feedback.setVisible( false );
-            add( feedback );
+        WebMarkupContainer formContainer = new WebMarkupContainer( "login-form-container" ) {{
+//            feedback = new FeedbackPanel( "feedback" );
+//            feedback.setVisible( false );
+//            add( feedback );
             add( new SignInForm( "sign-in-form", context ) );
         }};
         add( formContainer );
@@ -134,10 +134,14 @@ public class LogInOutPanel extends PhetPanel {
                 }
 
                 public void validate( Form form ) {
-                    System.out.println("validate called");
+                    System.out.println( "validate called" );
                     if ( !PhetSession.get().signIn( (PhetRequestCycle) getRequestCycle(), username.getInput(), password.getInput() ) ) {
+                        String url = StringUtils.makeUrlAbsolute( path );
+                        url += "?login-failed";
                         System.out.println( "validate error" );
-                        error( password, "signIn.validation.failed" );
+                        throw new RedirectToUrlException( url );
+
+//                        error( password, "signIn.validation.failed" );
                     }
                 }
             } );
@@ -146,7 +150,7 @@ public class LogInOutPanel extends PhetPanel {
         @Override
         protected void onValidate() {
             super.onValidate();
-            feedback.setVisible( feedback.anyMessage() );
+//            feedback.setVisible( feedback.anyMessage() );
         }
 
         public final void onSubmit() {

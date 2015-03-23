@@ -385,7 +385,7 @@ pre {
     border-radius: 5px;
     background-color: rgb(243,245,243);
     padding: 20px;
-    width: 30%;
+    width: 25%;
 }
 
 .login-form-submit {
@@ -394,14 +394,20 @@ pre {
     text-align: center;
     display: block;
     border: none;
-    margin: 0 auto;
+    margin: 10px auto;
     cursor: pointer;
     padding: 10px 15px;
 }
 
 .login-form-text {
     display: block;
-    margin: 5px auto;
-    width: 90%;
+    margin: 0 auto;
+    width: 96%;
     padding: 5px;
+    line-height: 1.667em;
+}
+
+.login-form-header {
+  font-size: 1.75em;
+  margin-bottom: 1em;
 }
