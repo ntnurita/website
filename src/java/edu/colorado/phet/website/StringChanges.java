@@ -21,6 +21,10 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
+        StringUtils.addString( session, "about.accessibility", "Accessibility" );
+        StringUtils.addString( session, "about.accessibility.title", "Accessibility" );
+        StringUtils.addString( session, "nav.about.accessibility", "Accessibility" );
+
         StringUtils.addString( session, "faq.main.q2.answer.java-flash", "<p>The Java and Flash simulations will run on most PC, Mac, and Linux systems. Detailed system requirements for running the original sims are:</p><p><strong>Windows Systems</strong><br/>Intel Pentium processor<br/>Microsoft Windows XP/Vista/7<br/>256MB RAM minimum<br/>Approximately {1} MB available disk space (for full <a {0}>installation</a>)<br/>1024x768 screen resolution or better<br/>Latest version of Oracle Java<br/>Adobe Flash Player 9 or later<br/>Microsoft Internet Explorer 6 or later, Firefox 2 or later</p><p><strong>Macintosh Systems</strong><br/>G3, G4, G5 or Intel processor<br/>OS 10.5 or later<br/>256MB RAM minimum<br/>Approximately {2} MB available disk space (for full <a {0}>installation</a>)<br/>1024x768 screen resolution or better<br/>Latest version of Oracle Java<br/>Adobe Flash Player 9 or later<br/>Safari 2 or later, Firefox 2 or later</p><p><strong>Linux Systems</strong><br/>Intel Pentium processor<br/>256MB RAM minimum<br/>Approximately {3} MB disk space (for full <a {0}>installation</a>)<br/>1024x768 screen resolution or better<br/>Latest version of Oracle Java<br/>Adobe Flash Player 9 or later<br/>Firefox 2 or later<br/></p>" );
         StringUtils.addString( session, "faq.main.q2.answer.java-flash.header", "Java and Flash sims" );
         StringUtils.addString( session, "faq.main.q2.answer.html5.header", "HTML5 sims" );

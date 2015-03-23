@@ -77,6 +77,8 @@ import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.about.AboutTeamPanel;
+import edu.colorado.phet.website.content.about.AccessibilityPage;
+import edu.colorado.phet.website.content.about.AccessibilityPanel;
 import edu.colorado.phet.website.content.about.HTMLLicensingPanel;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
 import edu.colorado.phet.website.content.contribution.ContributionBrowsePage;
@@ -293,10 +295,12 @@ public class PhetWicketApplication extends WebApplication {
         StaticPage.addPanel( FaqTestPage.class );
 
         StaticPage.addPanel( AboutTeamPanel.class );
+
         // NOTE: Adding another static panel? Make sure it's cached properly by
         // Varnish
 
         StaticPage.addPanel( HTMLLicensingPanel.class );
+        StaticPage.addPanel( AccessibilityPanel.class );
         // NOTE: Adding another static panel? Make sure it's cached properly by Varnish
 
         // create a url mapper, and add the page classes to it
@@ -343,6 +347,7 @@ public class PhetWicketApplication extends WebApplication {
         MediaImagesPage.addToMapper( mapper );
         TeachWithPhetDemoPage.addToMapper( mapper );
         WebglDisabledPage.addToMapper( mapper );
+//        AccessibilityPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );
