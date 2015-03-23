@@ -21,7 +21,6 @@ public class StringChanges {
     public static void checkNewStrings() {
         Session session = HibernateUtils.getInstance().openSession();
 
-<<<<<<< HEAD
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingResources" );
 //        StringUtils.deleteString( session, "simulationMainPanel.mainTopics" );
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingIdeas" );
@@ -50,7 +49,7 @@ public class StringChanges {
 
         StringUtils.overwriteString( session, "nav.teacherIdeas", "For Teachers", "Teaching Resources" );
         StringUtils.overwriteString( session, "home.teacherIdeasAndActivities", "For Teachers", "Teaching Resources" );
-        
+
         StringUtils.addString( session, "about.accessibility.title", "Accessibility" );
         StringUtils.addString( session, "nav.about.accessibility", "Accessibility" );
 
