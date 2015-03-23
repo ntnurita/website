@@ -27,5 +27,7 @@ public class HTMLBanner extends PhetPanel {
         add( link );
         link.add( new AttributeModifier( "title", true, new ResourceModel( "donation-banner.html5.tooltip" ) ) ); // tooltip
         link.add( new StaticImage( "html-banner-image", WebImage.get( Images.HTML5_LOGO_40 ), null ) );
+
+        add( HTML5Page.getLinker().getLink( "html-banner-link-button", context, getPhetCycle() ) );
     }
 }
