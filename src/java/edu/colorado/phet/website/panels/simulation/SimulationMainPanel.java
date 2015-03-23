@@ -471,7 +471,7 @@ public class SimulationMainPanel extends PhetPanel {
             column3.add( "Macromedia Flash 9 or later" );
         }
         else if ( simulation.getSimulation().isHTML() ) {
-            column1.add( "Internet Explorer 9+" );
+            column1.add( "Internet Explorer 10+" );
             column1.add( "latest versions of Chrome and Firefox" );
             column2.add( "Safari 6.1 and up" );
             column2.add( "latest versions of Chrome and Firefox" );
