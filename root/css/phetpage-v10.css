@@ -380,3 +380,46 @@ pre {
 .workshops {
     width: 650px;
 }
+
+.phet-button {
+  text-transform: uppercase;
+  font-variant: small-caps;
+  font-weight: bold;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 26px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding: 0 20px;
+  height: 25px;
+  text-decoration: none;
+  color: rgb(50, 50, 50);
+}
+
+.sign-in-button {
+  background: rgb(230,230,230);
+  color: black !important;
+}
+
+.sign-in-button:hover {
+  background: rgb(245,245,245);
+}
+
+.register-button {
+  background: rgb(109,200,241);
+}
+
+.register-button:hover {
+  background: rgb(129,220,251);
+}
+
+.loginout-list a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.loginout-list a:hover {
+  text-decoration: underline;
+}

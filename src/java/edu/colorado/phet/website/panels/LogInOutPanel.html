@@ -12,10 +12,15 @@
 <body>
 
 <wicket:panel>
-    <a wicket:id="sign-in" class="sign-in-links"
-       onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">
-        <wicket:message key="session.loginRegister">Sign in / Register</wicket:message>
-    </a>
+    <wicket:enclosure child="sign-in">
+        <a wicket:id="sign-in" class="phet-button sign-in-button" href="#"
+           onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">
+            <wicket:message key="signIn.submit">Sign in</wicket:message>
+        </a>
+        <a wicket:id="register" class="phet-button register-button" href="#">
+            <wicket:message key="profile.register.submit">Register</wicket:message>
+        </a>
+    </wicket:enclosure>
     <wicket:enclosure child="sign-out">
         <ul class="loginout-list">
             <li><em wicket:id="current-email"></em></li>

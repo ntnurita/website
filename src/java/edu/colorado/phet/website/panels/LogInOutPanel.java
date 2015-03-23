@@ -11,6 +11,7 @@ import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.admin.AdminMainPage;
 import edu.colorado.phet.website.authentication.EditProfilePage;
 import edu.colorado.phet.website.authentication.PhetSession;
+import edu.colorado.phet.website.authentication.RegisterPage;
 import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.authentication.SignOutPage;
 import edu.colorado.phet.website.components.InvisibleComponent;
@@ -41,6 +42,7 @@ public class LogInOutPanel extends PhetPanel {
             addWithId( SignOutPage.getLinker().getLink( "sign-out", context, getPhetCycle() ), SIGN_OUT_ID );
             add( EditProfilePage.getLinker( path ).getLink( "edit-profile", context, getPhetCycle() ) );
             add( new InvisibleComponent( "sign-in" ) );
+            add( new InvisibleComponent( "register" ) );
             add( new Label( "current-email", psession.getUser().getEmail() ) );
             if ( PhetSession.get().getUser().isTeamMember() ) {
                 BookmarkablePageLink link = new BookmarkablePageLink<Void>( "admin-link", AdminMainPage.class );
@@ -58,9 +60,11 @@ public class LogInOutPanel extends PhetPanel {
             add( new InvisibleComponent( "sign-out" ) );
             if ( DistributionHandler.displayLogin( getPhetCycle() ) ) {
                 addWithId( SignInPage.getLinker( path ).getLink( "sign-in", context, getPhetCycle() ), SIGN_IN_ID );
+                add( RegisterPage.getLinker( path ).getLink( "register", context, getPhetCycle() ) );
             }
             else {
                 add( new InvisibleComponent( "sign-in" ) );
+                add( new InvisibleComponent( "register" ) );
             }
             add( new InvisibleComponent( "team-member" ) );
         }
