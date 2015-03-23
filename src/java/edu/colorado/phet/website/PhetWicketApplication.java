@@ -77,7 +77,6 @@ import edu.colorado.phet.website.content.about.AboutNewsPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.about.AboutSponsorsPanel;
 import edu.colorado.phet.website.content.about.AboutTeamPanel;
-import edu.colorado.phet.website.content.about.AccessibilityPage;
 import edu.colorado.phet.website.content.about.AccessibilityPanel;
 import edu.colorado.phet.website.content.about.HTMLLicensingPanel;
 import edu.colorado.phet.website.content.contribution.AddContributionCommentPage;
@@ -349,7 +348,6 @@ public class PhetWicketApplication extends WebApplication {
         MediaImagesPage.addToMapper( mapper );
         TeachWithPhetDemoPage.addToMapper( mapper );
         WebglDisabledPage.addToMapper( mapper );
-//        AccessibilityPage.addToMapper( mapper );
 
         // don't error if a string isn't found
         getResourceSettings().setThrowExceptionOnMissingResource( false );
