@@ -57,12 +57,6 @@
     right: 16px;
 }
 
-.html-banner-simsText[dir="rtl"] {
-    right: inherit;
-    left: 75px;
-    float: right;
-}
-
 .html-banner-image[dir="rtl"] {
     right: inherit;
     left: 18px;
@@ -114,6 +108,12 @@ div.rtl .html-banner-container .html-banner-html {
   float: right;
   background-color: rgb(230,230,230);
   top: 12px;
+}
+
+.html-banner-simsText[dir="rtl"] {
+  right: inherit;
+  left: 75px;
+  float: left;
 }
 
 .html-banner-container .html-banner-simsText:hover {

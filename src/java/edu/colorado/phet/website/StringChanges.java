@@ -50,6 +50,11 @@ public class StringChanges {
         StringUtils.overwriteString( session, "nav.teacherIdeas", "For Teachers", "Teaching Resources" );
         StringUtils.overwriteString( session, "home.teacherIdeasAndActivities", "For Teachers", "Teaching Resources" );
 
+
+        StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:", "Support PhET:" );
+
+
+
         StringUtils.addString( session, "about.accessibility.title", "Accessibility" );
         StringUtils.addString( session, "nav.about.accessibility", "Accessibility" );
 
