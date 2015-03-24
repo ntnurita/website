@@ -24,6 +24,8 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
+import edu.colorado.phet.website.util.links.AuthenticatedLinker;
+import edu.colorado.phet.website.util.links.RawLinkable;
 
 /**
  * The main "website translation" page. Contains a list of translations that a user has access to, plus instructions.
@@ -87,8 +89,8 @@ public class TranslationMainPage extends TranslationPage {
         mapper.addMap( "for-translators/website", TranslationMainPage.class, new String[] { } );
     }
 
-    public static AbstractLinker getLinker() {
-        return new AbstractLinker() {
+    public static RawLinkable getLinker() {
+        return new AuthenticatedLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
                 return "for-translators/website";

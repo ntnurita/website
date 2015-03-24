@@ -4,7 +4,9 @@
 
 package edu.colorado.phet.website.util.links;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.PhetWicketApplication;
 import edu.colorado.phet.website.components.RawLink;
@@ -41,7 +43,12 @@ public abstract class AbstractLinker implements RawLinkable {
     }
 
     public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
-        return new RawLink( id, getRawUrl( context, cycle ) );
+        RawLink link = new RawLink( id, getRawUrl( context, cycle ) );
+        if ( requireHttpsIfAvailable() ) {
+            CharSequence url = link.getURL();
+            link.add( new AttributeModifier( "onclick", true, new Model<String>( "phet.ensureLogin( '" + url + "' ); return false;" ) ) );
+        }
+        return link;
     }
 
     public String getDefaultRawUrl() {

@@ -34,6 +34,7 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.Result;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
+import edu.colorado.phet.website.util.links.AuthenticatedLinker;
 
 public class TranslateLanguagePage extends TranslationPage {
 
@@ -167,7 +168,7 @@ public class TranslateLanguagePage extends TranslationPage {
     }
 
     public static AbstractLinker getLinker() {
-        return new AbstractLinker() {
+        return new AuthenticatedLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
                 return "for-translators/website";

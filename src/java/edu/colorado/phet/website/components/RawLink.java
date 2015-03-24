@@ -31,7 +31,7 @@ public class RawLink extends Link {
     }
 
     @Override
-    protected CharSequence getURL() {
+    public CharSequence getURL() {
         return url;
     }
 

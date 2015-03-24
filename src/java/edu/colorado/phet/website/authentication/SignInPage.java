@@ -16,6 +16,7 @@ import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.links.AbstractLinker;
+import edu.colorado.phet.website.util.links.AuthenticatedLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
 /**
@@ -62,7 +63,7 @@ public class SignInPage extends PhetMenuPage {
      * @return
      */
     public static RawLinkable getLinker( final String destination ) {
-        return new AbstractLinker() {
+        return new AuthenticatedLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
                 try {
@@ -77,11 +78,6 @@ public class SignInPage extends PhetMenuPage {
                     e.printStackTrace();
                     throw new RuntimeException( e );
                 }
-            }
-
-            @Override
-            public boolean requireHttpsIfAvailable() {
-                return true;
             }
         };
     }

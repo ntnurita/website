@@ -13,7 +13,7 @@
 
 <wicket:panel>
     <wicket:enclosure child="sign-in">
-        <a wicket:id="sign-in" class="sign-in-links" id="login-button" href="#">
+        <a wicket:id="sign-in" class="phet-button sign-in-button" id="login-button" href="#">
         <!--onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">-->
             <wicket:message key="signIn.submit">Sign in</wicket:message>
         </a>
@@ -56,6 +56,7 @@
 
         <form wicket:id="sign-in-form">
 
+            <input wicket:id="destination" type="text" name="destination" id="destinationURL" style="display: none;"><br/>
             <input wicket:id="username" type="text" name="email" placeholder="Email address" class="login-form-text"><br/>
             <input wicket:id="password" type="password" name="password" placeholder="Password" class="login-form-text"><br/>
 

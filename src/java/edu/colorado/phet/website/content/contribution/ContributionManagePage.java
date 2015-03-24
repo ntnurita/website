@@ -12,6 +12,7 @@ import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.links.AbstractLinker;
+import edu.colorado.phet.website.util.links.AuthenticatedLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class ContributionManagePage extends PhetRegularPage {
@@ -38,7 +39,7 @@ public class ContributionManagePage extends PhetRegularPage {
     }
 
     public static RawLinkable getLinker() {
-        return new AbstractLinker() {
+        return new AuthenticatedLinker() {
             public String getSubUrl( PageContext context ) {
                 return "teaching-resources/manage-activities";
             }

@@ -1,22 +1,35 @@
+var phet = phet || {};
+
 $( document ).ready( function() {
-  $( '#login-button' ).click( function( e ) {
+  var openLoginDialog = function() {
     $( '#login-form' ).lightbox_me( {
       centered: true,
       onLoad: function() {
         $( '#login-form' ).find( 'input:first' ).focus()
       }
     } );
+  };
+
+  phet.ensureLogin = function( url ) {
+    $.getJSON( "/services/check-login", function( data ) {
+      console.log( url );
+      if ( data['loggedIn'] === false ) {
+        openLoginDialog();
+        $( '#destinationURL' ).val( url );
+      }
+      else {
+        window.location.href = url;
+      }
+    } );
+  };
+
+  $( '#login-button' ).click( function( e ) {
+    openLoginDialog();
     e.preventDefault();
   } );
 
   if ( window.location.search.indexOf( 'login-failed' ) > -1 ) {
-    $( '#login-form' ).lightbox_me( {
-      centered: true,
-      onLoad: function() {
-        $( '#login-form' ).find( 'input:first' ).focus()
-      }
-    } );
-
+    openLoginDialog();
     $( '#login-validation-message' ).css( 'display', 'inherit' );
   }
 } );

@@ -45,6 +45,9 @@ public class LogInOutPanel extends PhetPanel {
 
     private TextField username;
     private PasswordTextField password;
+    private TextField destination;
+
+    private String path;
 
 //    FeedbackPanel feedback;
 
@@ -58,6 +61,9 @@ public class LogInOutPanel extends PhetPanel {
         super( id, context );
 
         final PhetSession psession = PhetSession.get();
+
+        String prefix = ( context.getPath().equals( "" ) ) ? "/" : "/" + context.getLocale() + "/";
+        path = prefix + context.getPath();
 
         String path = getFullPath( context );
 
@@ -108,12 +114,10 @@ public class LogInOutPanel extends PhetPanel {
 
         private final ValueMap properties = new ValueMap();
 
-        private String path;
-
         public SignInForm( final String id, PageContext context ) {
             super( id );
 
-            path = "/" + context.getLocale() + "/" + context.getPath();
+            add( destination = new StringTextField( "destination", new PropertyModel( properties, "destination" ) ) );
 
             add( username = new StringTextField( "username", new PropertyModel( properties, "username" ) ) );
 
@@ -137,13 +141,10 @@ public class LogInOutPanel extends PhetPanel {
                 }
 
                 public void validate( Form form ) {
-                    System.out.println( "validate called" );
                     if ( !PhetSession.get().signIn( (PhetRequestCycle) getRequestCycle(), username.getInput(), password.getInput() ) ) {
                         String url = StringUtils.makeUrlAbsolute( path );
                         url += "?login-failed";
-                        System.out.println( "validate error" );
                         throw new RedirectToUrlException( url );
-
 //                        error( password, "signIn.validation.failed" );
                     }
                 }
@@ -157,7 +158,8 @@ public class LogInOutPanel extends PhetPanel {
         }
 
         public final void onSubmit() {
-            String url = StringUtils.makeUrlHTTPS( path );
+            String dest = destination.getInput();
+            String url = ( dest.isEmpty() ) ? StringUtils.makeUrlHTTPS( path ) : dest;
             throw new RedirectToUrlException( url );
         }
     }

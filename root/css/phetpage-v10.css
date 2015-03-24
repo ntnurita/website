@@ -381,7 +381,6 @@ pre {
     width: 650px;
 }
 
-<<<<<<< HEAD
 #login-form {
     border-radius: 5px;
     background-color: rgb(243,245,243);
@@ -411,7 +410,8 @@ pre {
 .login-form-header {
   font-size: 1.75em;
   margin-bottom: 1em;
-=======
+}
+
 .phet-button {
   text-transform: uppercase;
   font-variant: small-caps;
@@ -453,5 +453,4 @@ pre {
 
 .loginout-list a:hover {
   text-decoration: underline;
->>>>>>> html5-sim-pages
 }
