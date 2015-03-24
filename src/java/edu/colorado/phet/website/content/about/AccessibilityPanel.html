@@ -21,7 +21,7 @@
             border: 1px solid #999;
             padding: 0.5rem;
             text-align: left;
-            font-size: 1.2em;
+            /*font-size: 1.2em;*/
         }
     </style>
 </wicket:head>
@@ -41,10 +41,54 @@
 
         <h2>Keyboard Navigation and Auditory Descriptions</h2>
 
+        <p>At PhET Interactive Simulations, we are researching and investigating ways to provide keyboard and screen reader
+            support to facilitate learning for students with visual or motor impairments. The simulations are rendered using
+            SVG or Canvas (with WebGL support planned for the future) which makes it impossible to use conventional DOM-based
+            approaches for accessibility. We have created the following prototypes as part of our research. These prototypes
+            are known to have many issues and are not ready for broad usage.</p>
+
         <p>Below are prototypes of simulations containing implementations of keyboard navigation (allowing interactions without the use of a mouse or
             touch interface) and auditory descriptions (for screen readers).</p>
 
-        <p>(Coming soon)</p>
+        <h2>Custom Support in Forces and Motion: Basics (Net Force Screen)</h2>
+
+        <table style="width:100%">
+            <tr>
+                <td>This prototype is rendered with SVG and uses global key listeners to provide our own keyboard accessibility
+                    support.
+                    Focused elements are managed using custom data structures and the focus rectangle is drawn in SVG.
+                    Text is read aloud using a single ARIA live region, whose text is changed to respond to the users key events and
+                    to describe the initial scene. Even though it has
+                    only been tested on a few browsers, we expect this version to work well on many browsers. While it
+                    provides keyboard support, display of focus regions and text readout, the elements are not exposed to assistive
+                    technology
+                    so some features such as zooming in on the focused element or using a keyboard shortcut to navigate to the next
+                    checkbox
+                    are not available.
+                </td>
+                <td><a target="_blank"
+                    href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.4/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.4</a>
+                </td>
+            </tr>
+        </table>
+
+        <h2>ARIA Support on SVG Elements in Forces and Motion: Basics (Net Force Screen)</h2>
+
+        <table style="border: 1px solid black">
+            <tr>
+                <td>
+                    This prototype is rendered using SVG and uses ARIA markup to present the elements to assistive technology.  Text is provided by "aria-label"
+                    and all elements are exposed as role="button".  This version works on OS X Chrome + OS X Safari.  Firefox 36.0.4 does not
+                    work but a nightly build of Firefox does work.  When using NVDA on windows, it must be put into "Forms Mode" before
+                    interaction with the sim is possible.  Windows + Chrome + NVDA (in forms mode) works ok.  Other Windows browsers and
+                    screen readers have not been tested.  This version exhibits significant differences on different browsers, but provides support
+                    for zooming and other screen reader features.
+                </td>
+                <td><a target="_blank"
+                    href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.9/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.9</a>
+                </td>
+            </tr>
+        </table>
 
         <br/>
 
