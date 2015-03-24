@@ -53,12 +53,12 @@ public class HTML5Panel extends PhetPanel {
                 query.setLocale( "english", englishLocale );
                 Set resultSet = new HashSet( query.list() ); // ensure unique results
                 simulations.addAll( resultSet );
+                HibernateUtils.orderSimulations( simulations, context.getLocale() );
                 return true;
             }
         } );
 
         if ( showIndex ) {
-            HibernateUtils.orderSimulations( simulations, context.getLocale() );
             SimulationIndexPanel indexPanel = new SimulationIndexPanel( "simulation-display-panel", context, simulations );
             add( indexPanel );
 
