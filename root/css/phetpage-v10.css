@@ -392,9 +392,9 @@ pre {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  padding: 0 20px;
+  padding: 0 15px;
   height: 25px;
-  text-decoration: none;
+  text-decoration: none !important;
   color: rgb(50, 50, 50);
 }
 
