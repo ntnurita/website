@@ -112,9 +112,7 @@ public class IndexPanel extends PhetPanel {
 
         add( WorkshopsPanel.getLinker().getLink( "workshops-link", context, getPhetCycle() ) );
 
-        add( DonatePanel.getLinker().getLink( "support-phet-link", context, getPhetCycle() ) );
         add( TranslationUtilityPanel.getLinker().getLink( "translate-sims-link", context, getPhetCycle() ) );
-       
 
         add( AboutMainPanel.getLinker().getLink( "about-general", context, getPhetCycle() ) );
         add( AboutMainPanel.getLinker().getLink( "about-phet", context, getPhetCycle() ) );

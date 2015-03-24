@@ -14,7 +14,6 @@ import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
 
@@ -67,6 +66,7 @@ public class LogInOutPanel extends PhetPanel {
             addWithId( SignOutPage.getLinker().getLink( "sign-out", context, getPhetCycle() ), SIGN_OUT_ID );
             add( EditProfilePage.getLinker( path ).getLink( "edit-profile", context, getPhetCycle() ) );
             add( new InvisibleComponent( "sign-in" ) );
+            add( new InvisibleComponent( "register" ) );
             add( new Label( "current-email", psession.getUser().getEmail() ) );
             if ( PhetSession.get().getUser().isTeamMember() ) {
                 BookmarkablePageLink link = new BookmarkablePageLink<Void>( "admin-link", AdminMainPage.class );
@@ -83,9 +83,12 @@ public class LogInOutPanel extends PhetPanel {
             add( new InvisibleComponent( "sign-out" ) );
             if ( DistributionHandler.displayLogin( getPhetCycle() ) ) {
                 add( new WebMarkupContainer( "sign-in" ) );
+//                addWithId( SignInPage.getLinker( path ).getLink( "sign-in", context, getPhetCycle() ), SIGN_IN_ID );
+                add( RegisterPage.getLinker( path ).getLink( "register", context, getPhetCycle() ) );
             }
             else {
                 add( new InvisibleComponent( "sign-in" ) );
+                add( new InvisibleComponent( "register" ) );
             }
             add( new InvisibleComponent( "team-member" ) );
         }

@@ -114,22 +114,12 @@
                                 playButton.style.top = buttonTop + "px";
                             }
                         </script>
-                        <a class="sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
+                        <a class="phet-button sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
                             <img src="/images/icons/download-icon.png" alt=" " class="download-icon">
                             <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
                         </a>
 
-                        <!--<wicket:enclosure child="html-button">-->
-                            <!--<div style="clear: both; width: 100%; height: 0; padding: 0; margin: 0; padding-bottom: 12px;"></div>-->
-                            <!--<div style="text-align: center;" wicket:id="html-button">-->
-                                <!--<a class="simStyleOrange sim-button" href="#" target="_blank" wicket:id="html-link">-->
-                                    <!--<wicket:message key="simulationMainPanel.runHTML">Run in HTML5</wicket:message>-->
-                                <!--</a><br/>-->
-                                <!--<div style="margin-top: 3px;"><wicket:message key="simulationMainPanel.worksInBrowsersTablets">works in browsers/tablets</wicket:message></div>-->
-                            <!--</div>-->
-                        <!--</wicket:enclosure>-->
-
-                        <a class="sim-embed sim-button" href="#" wicket:id="embed-button"
+                        <a class="phet-button sim-embed sim-button" href="#" wicket:id="embed-button"
                            onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
                           <img src="/images/icons/embed-icon.png" alt=" " class="download-icon">
                           <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
@@ -188,7 +178,7 @@
                     </wicket:enclosure>
 
                     <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
-                        <a class="simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
+                        <a class="phet-button simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
                             <span><wicket:message key="donate.donateNowBang">Donate</wicket:message></span>
                         </a>
                     </div>

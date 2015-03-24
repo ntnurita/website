@@ -6,10 +6,12 @@ package edu.colorado.phet.website.content.troubleshooting;
 
 import edu.colorado.phet.website.cache.InstallerCache;
 import edu.colorado.phet.website.components.LocalizedText;
+import edu.colorado.phet.website.constants.Linkers;
 import edu.colorado.phet.website.content.ForTranslatorsPanel;
 import edu.colorado.phet.website.content.about.AboutLicensingPanel;
 import edu.colorado.phet.website.content.about.AboutSourceCodePanel;
 import edu.colorado.phet.website.content.getphet.FullInstallPanel;
+import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.links.AbstractLinker;
@@ -29,11 +31,17 @@ public class GeneralFAQPanel extends PhetPanel {
                 TroubleshootingMainPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
-        add( new LocalizedText( "troubleshooting-main-q2-answer", "troubleshooting.main.q2.answer", new Object[] {
+        add( new LocalizedText( "faq-main-q2-answer-java-flash", "faq.main.q2.answer.java-flash", new Object[] {
                 FullInstallPanel.getLinker().getHref( context, getPhetCycle() ),
                 InstallerCache.getWinSize() / 1000000,
                 InstallerCache.getMacSize() / 1000000,
                 InstallerCache.getLinuxSize() / 1000000
+        } ) );
+
+        add( new LocalizedText( "faq-main-q2-answer-html5", "faq.main.q2.answer.html5", new Object[] {
+                CategoryPage.getLinker( "by-device/ipad-tablet" ).getHref( context, getPhetCycle() ),
+                Linkers.PHET_HELP_LINK,
+                CategoryPage.getLinker( "by-device/chromebook" ).getHref( context, getPhetCycle() ),
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q6-answer", "troubleshooting.main.q6.answer" ) );

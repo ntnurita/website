@@ -31,6 +31,10 @@ import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.wicket.IComponentFactory;
 import edu.colorado.phet.website.util.wicket.WicketUtils;
 
+/**
+ * WARNING: When making a static page you must have strings nav.[key] and [key].title,
+ * as well as adding a null location in NavMenu, see AccessibilityPanel for an example
+ */
 public class StaticPage extends PhetRegularPage {
 
     private static final Logger logger = Logger.getLogger( StaticPage.class.getName() );
