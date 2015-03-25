@@ -58,21 +58,13 @@ div.rtl #page-header-logo {
 }
 
 #search-submit-id {
-    border: 2px solid #2a326a;
+    height: 29px;
     border-radius: 4px;
-    background-color: white;
 }
 
 .search-focus {
-    border: 2px inset white;
-}
-
-#search-submit-id:focus {
-    outline: none;
-    border: 2px solid orange;
-    border-radius: 3px;
-    -webkit-box-shadow: 0px 0px 12px 0px orange;
-    box-shadow: 0px 0px 12px 0px orange;
+    border: 2px solid #2a326a;
+    border-radius: 4px;
 }
 
 .search-focus:focus {
@@ -314,6 +306,8 @@ div.copyright {
 
 .acInput {
     width: 200px;
+    height: 21px;
+    border-radius: 3px;
 }
 
 .acResults {
