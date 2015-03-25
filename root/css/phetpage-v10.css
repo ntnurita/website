@@ -391,6 +391,7 @@ pre {
     margin: 10px auto;
     cursor: pointer;
     padding: 10px 15px;
+    border-radius: 3px;
 }
 
 .login-form-text {
@@ -447,4 +448,8 @@ pre {
 
 .loginout-list a:hover {
   text-decoration: underline;
+}
+
+.no-underline {
+  text-decoration: none;
 }
