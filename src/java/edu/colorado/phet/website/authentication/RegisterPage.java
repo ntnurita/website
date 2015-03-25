@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.RedirectToUrlException;
 
 import edu.colorado.phet.website.authentication.panels.RegisterPanel;
 import edu.colorado.phet.website.templates.PhetMenuPage;
@@ -25,6 +26,13 @@ public class RegisterPage extends PhetMenuPage {
     public RegisterPage( PageParameters parameters ) {
         super( parameters );
 
+        // redirect to the page with HTTPS if they have come using HTTP
+        if ( !getPhetCycle().isOriginalSecure() ) {
+            String url = RegisterPage.getLinker( this.getFullPath() ).getRawUrl( getPageContext(), getPhetCycle() );
+            String[] urlAndQuery = url.split( "\\?" );
+            throw new RedirectToUrlException( urlAndQuery[0] + "?dest=/" );
+        }
+
         String destination = null;
 
         if ( parameters != null && parameters.containsKey( "dest" ) ) {
@@ -37,7 +45,7 @@ public class RegisterPage extends PhetMenuPage {
     }
 
     public static RawLinkable getLinker( final String destination ) {
-        return new AuthenticatedLinker() {
+        return new AbstractLinker() {
             @Override
             public String getSubUrl( PageContext context ) {
                 try {
@@ -52,6 +60,11 @@ public class RegisterPage extends PhetMenuPage {
                     e.printStackTrace();
                     throw new RuntimeException( e );
                 }
+            }
+
+            @Override
+            public boolean requireHttpsIfAvailable() {
+                return true;
             }
         };
     }

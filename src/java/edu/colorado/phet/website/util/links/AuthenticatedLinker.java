@@ -6,7 +6,7 @@ package edu.colorado.phet.website.util.links;
 public abstract class AuthenticatedLinker extends AbstractLinker implements RawLinkable {
 
     @Override
-    public boolean requireHttpsIfAvailable() {
+    public boolean requireLogin() {
         return true;
     }
 

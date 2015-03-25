@@ -44,7 +44,9 @@ public abstract class AbstractLinker implements RawLinkable {
 
     public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
         RawLink link = new RawLink( id, getRawUrl( context, cycle ) );
-        if ( requireHttpsIfAvailable() ) {
+
+        // Any AuthenticatedLinkers will require login
+        if ( requireLogin() ) {
             CharSequence url = link.getURL();
             link.add( new AttributeModifier( "onclick", true, new Model<String>( "phet.ensureLogin( '" + url + "' ); return false;" ) ) );
         }
@@ -56,6 +58,10 @@ public abstract class AbstractLinker implements RawLinkable {
     }
 
     public boolean requireHttpsIfAvailable() {
+        return false;
+    }
+
+    public boolean requireLogin() {
         return false;
     }
 
