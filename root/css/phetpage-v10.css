@@ -57,9 +57,16 @@ div.rtl #page-header-logo {
     box-shadow: 0px 0px 4px 0px white;
 }
 
-#search-submit-id {
+#search-submit {
     height: 29px;
     border-radius: 4px;
+    padding: 3px;
+    top: 5px;
+}
+
+button#search-submit span {
+  display: inline-block;
+  background: url(../images/icons/search-icon.png) no-repeat;
 }
 
 .search-focus {
@@ -101,8 +108,8 @@ div.rtl #page-header-search {
 
 #page-header-cu {
     position: absolute;
-    right: 19px;
-    top: 25px;
+    right: -77px;
+    top: 43px;
     border: none;
 }
 
@@ -386,6 +393,7 @@ pre {
   cursor: pointer;
   display: inline-block;
   position: relative;
+  padding: 0 10px;
   padding: 0 10px;
   height: 25px;
   text-decoration: none !important;

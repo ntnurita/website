@@ -16,6 +16,7 @@ public class Images {
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
     public static final ImageHandle CU_LOGO_HALF = new ImageHandle( "/images/cu-logo-half.png", true );
     public static final ImageHandle CU_LOGO_HALF_COLORED = new ImageHandle( "/images/logos/cu-logo-half-colored-150.png", true );
+    public static final ImageHandle CU_LOGO_HORIZONTAL = new ImageHandle( "/images/logos/cu-logo-horizontal-240.png", true );
 
     public static final ImageHandle HTML5_LOGO_80 = new ImageHandle( "/images/HTML5_Badge_80_clean.svg", true );
     public static final ImageHandle HTML5_LOGO_40 = new ImageHandle( "/images/HTML5_Badge_40_clean.svg", true );
