@@ -320,8 +320,12 @@
                             <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
                         </wicket:enclosure>
 
-                        <p style="text-align: center" wicket:id="submit-a">You can <a href="#">submit your own ideas and
-                            activities</a></p>
+                        <p style="text-align: center">
+                            <wicket:message key="simulationMainPanel.youCan">You can</wicket:message>
+                            <a wicket:id="submit-a" href="#">
+                                <wicket:message key="simulationMainPanel.submitYourOwn">submit your own ideas and activities</wicket:message>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
