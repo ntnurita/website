@@ -140,6 +140,7 @@ div.rtl #page-header-cu {
     right: 0;
     color: white;
     padding: 0.5em;
+    z-index: 1000; /* make sure it is on top of other elements so it remains clickable */
 }
 
 body.rtl .log-in-out {
