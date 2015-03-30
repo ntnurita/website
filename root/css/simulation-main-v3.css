@@ -104,10 +104,6 @@ div.rtl .simulation-main-image-panel {
     background-color: rgb(170,170,170);
 }
 
-.sim-button:active {
-    border: 1px solid rgb(110,110,110);
-}
-
 .sim-download {
     float: left;
 }
@@ -123,10 +119,6 @@ div.rtl .simulation-main-image-panel {
 
 .simStyleOrange:hover {
     background-color: rgb(253,164,108);
-}
-
-.simStyleOrange:active {
-    border: 1px solid rgb(253,131,54);
 }
 
 .keyword-list-holder {
