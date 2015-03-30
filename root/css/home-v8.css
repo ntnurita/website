@@ -456,12 +456,6 @@ div.practices dd a:hover {
     content: url("/images/pdficon_small.png");
 }
 
-.circle-arrow-link::before {
-    content: url("/images/circleArrow_Icon.gif");
-    vertical-align: middle;
-    line-height: 14px;
-}
-
 .box {
     margin-top: 0;
     position: absolute;
