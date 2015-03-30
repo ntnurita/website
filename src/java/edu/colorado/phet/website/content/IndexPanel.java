@@ -16,7 +16,9 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.ResourceModel;
 
+import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.cache.EventDependency;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
@@ -81,7 +83,15 @@ public class IndexPanel extends PhetPanel {
             }
         } ) );
 
-        Link playSimsLink = CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() );
+        // add play with sims button. If in a non-English locale, link to all sims instead of new sims
+        boolean isEnglish = PhetSession.get().getLocale().equals( LocaleUtils.stringToLocale( "en" ) );
+        Link playSimsLink;
+        if ( isEnglish ) {
+            playSimsLink = CategoryPage.getDefaultLinker().getLink( "play-sims-link", context, getPhetCycle() );
+        }
+        else {
+            playSimsLink = CategoryPage.getAllSimsLinker().getLink( "play-sims-link", context, getPhetCycle() );
+        }
         playSimsLink.add( new StaticImage( "phet-airplane", Images.PHET_AIRPLANE, null ) );
         addWithId( playSimsLink , PLAY_SIMS_ID );
 
