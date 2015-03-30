@@ -38,8 +38,11 @@ public class StringChanges {
         StringUtils.addString( session, "simulationMainPanel.activities", "Activities" );
         StringUtils.addString( session, "simulationMainPanel.translations", "Translations" );
 
-        StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations >>" );
-        StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version >>" );
+        StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations" );
+        StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version" );
+
+        StringUtils.overwriteString( session, "simulationMainPanel.originalSim", "Original Sim and Translations >>", "Original Sim and Translations"  );
+        StringUtils.overwriteString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version >>", "Back to HTML5 Version" );
 
         StringUtils.addString( session, "simulationMainPanel.teacherTips", "Teacher Tips" );
         StringUtils.addString( session, "simulationMainPanel.and", "and" );

@@ -243,16 +243,17 @@ div.rtl div.rating-holder {
     float: right;
     background-color: rgb(235,235,235);
     display: block;
-    padding: 7px;
+    padding: 5px;
     margin-top: 4px;
     width: 180px;
     cursor: pointer;
 }
 
 .other-sim-link {
-    padding-left: 50px;
+    padding-left: 5px;
     display: block;
-    font-size: 1.25em;
+    font-size: 1.1667em;
+    line-height: 1.333em;
 }
 
 body#offline-installer-body .sim-download {
