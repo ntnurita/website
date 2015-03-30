@@ -41,6 +41,10 @@ div.rtl .simulation-main-image-panel {
     width: 595px;
 }
 
+.sim-page-content {
+    width: 450px;
+}
+
 .simulation-main-description {
     vertical-align: top;
     padding: 0;
@@ -240,13 +244,14 @@ div.rtl div.rating-holder {
 }
 
 .other-sim-page {
-    float: right;
     background-color: rgb(235,235,235);
     display: block;
     padding: 5px;
     margin-top: 4px;
     width: 180px;
     cursor: pointer;
+    position: absolute;
+    right: -70px;
 }
 
 .other-sim-link {

@@ -231,14 +231,6 @@ public class SimulationMainPanel extends PhetPanel {
         final boolean signedIn = PhetSession.get().isSignedIn();
         final boolean hasVideo = isHTML; // for now assume all html sims have a video
 
-        // add the word "and" between "Teacher Tips" and "Video Primer" only if both are present
-        if ( hasVideo && hasTeacherTips ) {
-            add( new LocalizedText( "and", "simulationMainPanel.and" ) );
-        }
-        else {
-            add( new InvisibleComponent( "and" ) );
-        }
-
         if ( hasVideo ) {
             add( new LocalizedText( "video-primer", "simulationMainPanel.videoPrimer" ) );
 

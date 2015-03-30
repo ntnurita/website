@@ -230,13 +230,12 @@
                     </tr>
                 </table>
             </a>
-            <a id="content"></a><a id="teaching-resources"></a>
 
             <h2 id="about-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('about')">
                 <wicket:message key="simulationMainPanel.about">About</wicket:message>
             </h2>
 
-            <div id="about" class="answer">
+            <div id="about" class="answer sim-page-content">
 
                 <wicket:enclosure child="topic-list">
                     <h3>
@@ -285,34 +284,35 @@
             </h2>
 
             <div id="for-teachers" class="answer">
-                <wicket:enclosure child="learning-goals">
-                    <h3>
-                        <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
-                    </h3>
-                    <ul>
-                        <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
-                    </ul>
-                </wicket:enclosure>
+                <div class="sim-page-content">
+                    <wicket:enclosure child="learning-goals">
+                        <h3>
+                            <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
+                        </h3>
+                        <ul>
+                            <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
+                        </ul>
+                    </wicket:enclosure>
 
-                <wicket:enclosure child="faq-text">
-                    <h3>
-                        <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
-                    </h3>
-                    <div wicket:id="faq-text" class="teachers-tips-holder sim-description">
-                        This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
-                    </div>
-                </wicket:enclosure>
+                    <wicket:enclosure child="faq-text">
+                        <h3>
+                            <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
+                        </h3>
+                        <div wicket:id="faq-text" class="teachers-tips-holder sim-description">
+                            This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
+                        </div>
+                    </wicket:enclosure>
 
-                <h3>
-                    <span wicket:id="teacher-tips">Teacher Tips</span>
-                    <span wicket:id="and">and</span>
-                    <span wicket:id="video-primer">Video Primer</span>
-                </h3>
-                <div wicket:id="guide-text" class="teachers-tips-holder sim-description">
-                    Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
+                    <wicket:enclosure child="guide-text">
+                        <h3 wicket:id="teacher-tips">Teacher Tips</h3>
+                        <div wicket:id="guide-text" class="teachers-tips-holder sim-description">
+                            Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
+                        </div>
+                    </wicket:enclosure>
                 </div>
 
                 <div id="teachers-video-container">
+                    <h3 wicket:id="video-primer">Video Primer</h3>
                     <div wicket:id="sign-in-prompt-div">
                         <span wicket:id="sign-in-prompt"></span>
                     </div>
