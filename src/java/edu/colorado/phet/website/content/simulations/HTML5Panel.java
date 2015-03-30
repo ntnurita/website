@@ -14,6 +14,7 @@ import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.RawLink;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -40,7 +41,11 @@ public class HTML5Panel extends PhetPanel {
             add( new InvisibleComponent( "html-translations-coming-soon" ) );
         }
         else {
-            add( new WebMarkupContainer( "html-translations-coming-soon" ) );
+            add( new WebMarkupContainer( "html-translations-coming-soon" ) {{
+                add( new LocalizedText( "not-translated-text", "html5.translations-soon", new Object[] {
+                    CategoryPage.getAllSimsLinker().getHref( context, getPhetCycle() )
+                } ) );
+            }} );
         }
 
         final List<LocalizedSimulation> simulations = new LinkedList<LocalizedSimulation>();
