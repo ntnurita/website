@@ -59,6 +59,14 @@ phet.compareClassText = function( className, reverse ) {
     };
 };
 
+phet.compareIconPresent = function( className, reverse ) {
+  return function( a, b ) {
+    var iconPresentA = $( a ).find( '.' + className + ' img' ).length;
+    var iconPresentB = $( b ).find( '.' + className + ' img' ).length;
+    return ( reverse ) ? iconPresentA > iconPresentB : iconPresentA < iconPresentB;
+  };
+};
+
 phet.compareClassRel = function( className, reverse ) {
     return function( a, b ) {
         // that's right. we are storing the timestamps in the 'rel' attribute so this will validate
@@ -77,13 +85,6 @@ phet.sortContributionsWithFunction = function( compare ) {
     arr.sort( compare );
 
     $.each( arr, function( idx, tr ) {
-        // give every other row a background color
-        if ( idx % 2 == 0 ) {
-            $( tr ).addClass( 'list-highlight-background' );
-        }
-        else {
-            $( tr ).removeClass( 'list-highlight-background' );
-        }
         table.appendChild( tr );
     } );
 };
@@ -92,6 +93,18 @@ phet.sortContributionsByTitle = function() {
     phet.beforeSort( 'ct-title' );
     phet.sortContributionsWithFunction( phet.compareClassText( 'ct-title', phet.currentSort.reverse ) );
     return false;
+};
+
+phet.sortContributionsByGoldStar = function() {
+  phet.beforeSort( 'ct-gold-star' );
+  phet.sortContributionsWithFunction( phet.compareIconPresent( 'ct-gold-star', phet.currentSort.reverse ) );
+  return false;
+};
+
+phet.sortContributionsByPhet = function() {
+  phet.beforeSort( 'ct-phet' );
+  phet.sortContributionsWithFunction( phet.compareIconPresent( 'ct-phet', phet.currentSort.reverse ) );
+  return false;
 };
 
 phet.sortContributionsByAuthors = function() {
@@ -136,12 +149,6 @@ phet.sortContributionsByTag = function( className, tags ) {
             phet.addContributionSeparator( tagString );
             $.each( directory[tagString], function( idx, tr ) {
                 var newNode = tr.cloneNode( true );
-                if ( idx % 2 == 0 ) {
-                    $( newNode ).addClass( 'list-highlight-background' );
-                }
-                else {
-                    $( newNode ).removeClass( 'list-highlight-background' );
-                }
                 table.appendChild( newNode );
             } );
         }
@@ -190,12 +197,6 @@ phet.sortContributionsBySimulations = function() {
         phet.addContributionSeparator( simName );
         $.each( directory[simName], function( idx, tr ) {
             var newNode = tr.cloneNode( true );
-            if ( idx % 2 == 0 ) {
-                $( newNode ).addClass( 'list-highlight-background' );
-            }
-            else {
-                $( newNode ).removeClass( 'list-highlight-background' );
-            }
             table.appendChild( newNode );
         } );
     } );

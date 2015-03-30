@@ -179,8 +179,6 @@ public class ContributionBrowsePanel extends PhetPanel {
                     // will render dates in different orders in different locales. This would be an utter mess in JS.
                     updatedLabel.add( new AttributeModifier( "rel", true, new Model<String>( Long.toString( contribution.getDateUpdated().getTime() ) ) ) );
                     item.add( updatedLabel );
-
-                    WicketUtils.highlightListItem( item );
                 }
             } );
 
