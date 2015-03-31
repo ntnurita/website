@@ -255,6 +255,7 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "video-primer" ) );
+            add( new InvisibleComponent( "video-blocker" ) );
             add( new InvisibleComponent( "sign-in-prompt-div" ) );
         }
 
@@ -292,11 +293,6 @@ public class SimulationMainPanel extends PhetPanel {
             } );
         }
 
-        // if video is enabled we need to use absolute positioning below the video because it is used to layer the lock on top of the video
-//        if ( hasVideo ) {
-//            String px = ( signedIn ) ? "250" : " 275"; // give extra room for the sign in message if not signed in
-//            add( new AttributeModifier( "style", true, new Model<String>( "position: absolute; width: 100%; top: " + px + "px;" ) ) );
-//        }
         if ( displayContributions ) {
             add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
         }
@@ -327,26 +323,35 @@ public class SimulationMainPanel extends PhetPanel {
             protected void populateItem( ListItem<LocalizedSimulation> item ) {
                 LocalizedSimulation simulation = item.getModelObject();
                 Locale simLocale = simulation.getLocale();
-                RawLink runLink = simulation.getRunLink( "simulation-main-translation-link" );
-                RawLink downloadLink = simulation.getDownloadLink( "simulation-main-translation-download" );
                 String defaultLanguageName = simLocale.getDisplayName( context.getLocale() );
                 String languageName = ( (PhetLocalizer) getLocalizer() ).getString( "language.names." + LocaleUtils.localeToString( simLocale ), this, null, defaultLanguageName, false );
-                item.add( runLink );
+
+                // columns 1 and 2
+                item.add( new Label( "simulation-main-translation-locale-name-1", languageName ) );
+                item.add( new Label( "simulation-main-translation-locale-translated-name", simLocale.getDisplayName( simLocale ) ) );
+
+                // column 3 (download link)
+                RawLink downloadLink = simulation.getDownloadLink( "simulation-main-translation-download" );
+                downloadLink.add( new StaticImage( "translation-download-icon", WebImage.get( "/images/icons/download-icon.png", true ), "Download", 20, 20 ) );
                 if ( DistributionHandler.displayJARLink( getPhetCycle(), simulation ) ) {
                     item.add( downloadLink );
                 }
                 else {
                     item.add( new InvisibleComponent( "simulation-main-translation-download" ) );
                 }
-                item.add( new Label( "simulation-main-translation-title", simulation.getTitle() ) );
-                Link lang1 = TranslatedSimsPage.getLinker( simLocale ).getLink( "language-link-1", context, getPhetCycle() );
-                item.add( lang1 );
-                Link lang2 = TranslatedSimsPage.getLinker( simLocale ).getLink( "language-link-2", context, getPhetCycle() );
-                item.add( lang2 );
-                lang1.add( new Label( "simulation-main-translation-locale-name", languageName ) );
-                lang2.add( new Label( "simulation-main-translation-locale-translated-name", simLocale.getDisplayName( simLocale ) ) );
 
-                WicketUtils.highlightListItem( item );
+                // columns 4 and 5 (run icon and link)
+                RawLink runLink1 = simulation.getRunLink( "simulation-main-translation-link-1" );
+                RawLink runLink2 = simulation.getRunLink( "simulation-main-translation-link-2" );
+                runLink1.add( new StaticImage( "translation-run-now-icon", WebImage.get( "/images/icons/play-sim.png", true ), "Run now", 20, 20 ) );
+                item.add( runLink1 );
+                runLink2.add( new Label( "simulation-main-translation-title", simulation.getTitle() ) );
+                item.add( runLink2 );
+
+                // column 6 (all sims in locale)
+                Link language = TranslatedSimsPage.getLinker( simLocale ).getLink( "language-link", context, getPhetCycle() );
+                language.add( new Label( "simulation-main-translation-locale-name-2", languageName ) );
+                item.add( language );
             }
         };
 

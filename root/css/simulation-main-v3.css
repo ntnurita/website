@@ -195,10 +195,23 @@ table.credits-table ul {
 }
 
 table.translations-table {
-    margin: 5px 0 15px;
-    position: relative;
-    left: 5px;
-    width: 505px;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+#translations-table-header {
+  background-color: #0071bc;
+  height: 25px;
+}
+
+.translations-table tr {
+  border-bottom: solid thin #0071bc;
+  height: 40px;
+}
+
+.translations-table th {
+  color: white;
 }
 
 table.translations-table th {
