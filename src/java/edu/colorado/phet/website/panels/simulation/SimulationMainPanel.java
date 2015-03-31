@@ -360,8 +360,13 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "simulation-main-translation-list" ) );
-
         }
+
+//        add( new InvisibleComponent( "translate-sim-link" ) );
+        add( new LocalizedText( "translator-info", "simulationMainPanel.translatorInfo", new Object[] {
+                TranslatedSimsPage.getLinker().getHref( context, getPhetCycle() )
+        } ) );
+
         /*---------------------------------------------------------------------------*
         * run / download links
         *----------------------------------------------------------------------------*/

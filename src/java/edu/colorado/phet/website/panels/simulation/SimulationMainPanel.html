@@ -340,23 +340,17 @@
                 </h2>
                 <div id="translations" class="answer">
                     <table class="translations-table">
-                        <tr id="translations-table-header">
-                            <th>
+                        <span id="translations-table-header">
+                            <span id="translations-table-language-header">
                                 <wicket:message key="simulationMainPanel.language">Language</wicket:message>
-                            </th>
-                            <th></th>
-                            <th>
-                                <wicket:message key="simulationMainPanel.downloadOrRun">Download or Run</wicket:message>
-                            </th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                            </span>
+                            <wicket:message key="simulationMainPanel.downloadOrRun">Download or Run</wicket:message>
+                        </span>
                         <tr wicket:id="simulation-main-translation-list" class="simulation-main-translation-list">
-                            <td>
+                            <td class="list-highlight-background">
                                 <span wicket:id="simulation-main-translation-locale-name-1">Pig Latin</span>
                             </td>
-                            <td>
+                            <td class="list-highlight-background">
                                 <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
                             </td>
                             <td>
@@ -376,11 +370,22 @@
                             </td>
                             <td>
                                 <a href="#" wicket:id="language-link">
-                                    <span wicket:id="simulation-main-translation-locale-name-2">Pig Latin</span>
+                                    <wicket:message key="simulationMainPanel.allSimsIn">All sims in </wicket:message> <span wicket:id="simulation-main-translation-locale-name-2">Pig Latin</span>
                                 </a>
                             </td>
                         </tr>
                     </table>
+
+                    <div style="text-align: center; padding-top: 17px">
+                        <!--<a wicket:id="translate-sim-link" class="phet-button blue-button" href="#">-->
+                        <a class="phet-button blue-button" href="#">
+                            <wicket:message key="simulationMainPanel.translateThisSim">Translate this Sim</wicket:message>
+                        </a>
+                        <p wicket:id="translator-info" style="margin-top: 20px">
+                            Find more information <a href="#">for translators</a>
+                        </p>
+                    </div>
+
                 </div>
             </wicket:enclosure>
 

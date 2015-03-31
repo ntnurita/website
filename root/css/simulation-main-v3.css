@@ -201,17 +201,27 @@ table.translations-table {
 }
 
 #translations-table-header {
+  display: block;
+  width: 100%;
   background-color: #0071bc;
   height: 25px;
+  line-height: 25px;
+  color: white;
+  padding: 5px 0;
+}
+
+#translations-table-language-header {
+  display: inline-block;
+  width: 200px;
+  padding-left: 10px;
 }
 
 .translations-table tr {
   border-bottom: solid thin #0071bc;
-  height: 40px;
 }
 
-.translations-table th {
-  color: white;
+.translations-table td, th {
+  padding: 5px 10px;
 }
 
 table.translations-table th {
