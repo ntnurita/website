@@ -28,69 +28,53 @@
 
 <wicket:panel>
     <div wicket:message="dir:language.dir" class="accessibility-panel standard-content">
-        <h2>Accessibility Prototypes</h2>
+        <!--<h2>Accessibility Prototypes</h2>-->
 
         <p>The PhET Interactive Simulations project is actively engaged in efforts to increase the accessibility of interactive simulations for
-            diverse students, including students with disabilities. Our goal is to design, implement, research, and refine accessibility features for
-            PhET simulations, and share our findings and insights with the broader educational technology community. As part of this work, we have
-            developed prototypes of PhET simulations with preliminary implementations of accessibility features, e.g., simulations with keyboard
-            navigation, or sonification. Below you will find links to some of the prototypes we have developed. As you explore these prototypes,
+            diverse students, including students with disabilities. As part of this work, we have
+            developed prototypes of PhET simulations with preliminary implementations of accessibility features. As you explore these prototypes,
             please make note of the specific browser and assistive technology they were tested on.</p>
-
-        <br/>
 
         <h2>Keyboard Navigation and Auditory Descriptions</h2>
 
-        <p>At PhET Interactive Simulations, we are researching and investigating ways to provide keyboard and screen reader
-            support to facilitate learning for students with visual or motor impairments. The simulations are rendered using
+        <p>PhET simulations are rendered using
             SVG or Canvas (with WebGL support planned for the future) which makes it impossible to use conventional DOM-based
-            approaches for accessibility. We have created the following prototypes as part of our research. These prototypes
-            are known to have many issues and are not ready for broad usage.</p>
+            approaches for accessibility. Below are prototypes of simulations containing implementations of keyboard navigation (allowing interactions
+            without the use of a mouse or
+            touch interface) and auditory descriptions (for screen readers).<br/>
+            Note: These prototypes are known to have many issues and are not intended for broad usage.
+        </p>
 
-        <p>Below are prototypes of simulations containing implementations of keyboard navigation (allowing interactions without the use of a mouse or
-            touch interface) and auditory descriptions (for screen readers).</p>
+        <h3>Forces and Motion: Basics (Net Force Screen) - Custom Support</h3>
 
-        <h2>Custom Support in Forces and Motion: Basics (Net Force Screen)</h2>
+        <p>
+            <i>Rendered with SVG. Uses global key listeners to provide custom keyboard accessibility support</i><br/>
+            <b>Implementation:</b> Focused elements are managed using custom data structures and the focus rectangle is drawn in SVG.
+                Text is read aloud using a single ARIA live region, whose text is changed to respond to the users key events and
+                to describe the initial scene.<br/>
+            <b>Browser Compatibility:</b> Even though it has only been tested on a few browsers, we expect this version to work well on many
+            browsers<br/>
+            <b>Limitations:</b> While it provides keyboard support, display of focus regions, and text readout, the elements are not exposed to
+            assistive technology so some features (such as zooming) or changes based on user preferences/customizations are not available.<br/>
+            <b>Link:</b> <a target="_blank"
+                            href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.4/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.4</a>
+        </p>
 
-        <table style="width:100%">
-            <tr>
-                <td>This prototype is rendered with SVG and uses global key listeners to provide our own keyboard accessibility
-                    support.
-                    Focused elements are managed using custom data structures and the focus rectangle is drawn in SVG.
-                    Text is read aloud using a single ARIA live region, whose text is changed to respond to the users key events and
-                    to describe the initial scene. Even though it has
-                    only been tested on a few browsers, we expect this version to work well on many browsers. While it
-                    provides keyboard support, display of focus regions and text readout, the elements are not exposed to assistive
-                    technology
-                    so some features such as zooming in on the focused element or using a keyboard shortcut to navigate to the next
-                    checkbox
-                    are not available.
-                </td>
-                <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.4/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.4</a>
-                </td>
-            </tr>
-        </table>
+        <h3>Forces and Motion: Basics (Net Force Screen) - ARIA Support on SVG Elements</h3>
 
-        <h2>ARIA Support on SVG Elements in Forces and Motion: Basics (Net Force Screen)</h2>
+        <p>
+            <i>Rendered with SVG. Uses ARIA markup to present the elements to assistive technology</i><br/>
+            <b>Implementation:</b> Text is provided by "aria-label" and all elements are exposed as role="button"<br/>
+            <b>Browser Compatibility:</b> This version works on OS X Chrome + OS X Safari. Firefox 36.0.4 does not
+            work but a nightly build of Firefox does work. When using NVDA on windows, it must be put into "Forms Mode" before
+            interaction with the sim is possible. Windows + Chrome + NVDA (in forms mode) works ok. Other Windows browsers and
+            screen readers have not been tested.
+            <b>Limitations:</b> This version exhibits significant differences on different browsers, but provides support
+            for zooming and other screen reader features.<br/>
+            <b>Link:</b> <a target="_blank"
+                            href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.9/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.9</a>
 
-        <table style="border: 1px solid black">
-            <tr>
-                <td>
-                    This prototype is rendered using SVG and uses ARIA markup to present the elements to assistive technology.  Text is provided by "aria-label"
-                    and all elements are exposed as role="button".  This version works on OS X Chrome + OS X Safari.  Firefox 36.0.4 does not
-                    work but a nightly build of Firefox does work.  When using NVDA on windows, it must be put into "Forms Mode" before
-                    interaction with the sim is possible.  Windows + Chrome + NVDA (in forms mode) works ok.  Other Windows browsers and
-                    screen readers have not been tested.  This version exhibits significant differences on different browsers, but provides support
-                    for zooming and other screen reader features.
-                </td>
-                <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.9/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.9</a>
-                </td>
-            </tr>
-        </table>
-
-        <br/>
+        </p>
 
         <h2>Sonification Prototypes</h2>
 
@@ -99,16 +83,14 @@
 
         <p>Note: As of February 2015, these prototypes have only been tested in the Chrome browser.</p>
 
-        <br/>
-
-        <h2>Faraday's Law</h2>
+        <h3>Faraday's Law</h3>
         <table style="width:100%">
             <tr>
                 <td>Theremin-like sound with heavy reverb for voltage level and light bulb brightness, stereo panning that
                     corresponds to needle deflection, various audio icons for controls.
                 </td>
                 <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.9/faradays-law_en.html">1.0.1-sonification.9</a>
+                       href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.9/faradays-law_en.html">1.0.1-sonification.9</a>
                 </td>
             </tr>
             <tr>
@@ -116,7 +98,7 @@
                     corresponds to needle deflection, various audio icons for controls.
                 </td>
                 <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.8/faradays-law_en.html">1.0.1-sonification.8</a>
+                       href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.8/faradays-law_en.html">1.0.1-sonification.8</a>
                 </td>
             </tr>
             <tr>
@@ -124,7 +106,7 @@
                     corresponds to needle deflection, various audio icons for controls.
                 </td>
                 <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.7/faradays-law_en.html">1.0.1-sonification.7</a>
+                       href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.7/faradays-law_en.html">1.0.1-sonification.7</a>
                 </td>
             </tr>
             <tr>
@@ -133,11 +115,11 @@
                     Various audio icons for controls.
                 </td>
                 <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.2/faradays-law_en.html">1.0.1-sonification.2</a>
+                       href="http://www.colorado.edu/physics/phet/dev/html/faradays-law/1.0.1-sonification.2/faradays-law_en.html">1.0.1-sonification.2</a>
                 </td>
             </tr>
         </table>
-        <h2>Concentration</h2>
+        <h3>Concentration</h3>
         <table style="border: 1px solid black">
             <tr>
                 <td>Realistic sounds for water and solution being added and removed, fed through a filter in order to create a
@@ -145,7 +127,7 @@
                     icons for controls. No sound for evaporation or concentration readout.
                 </td>
                 <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/concentration/1.2.0-sonification.3/concentration_en.html">1.2.0-sonification.3</a>
+                       href="http://www.colorado.edu/physics/phet/dev/html/concentration/1.2.0-sonification.3/concentration_en.html">1.2.0-sonification.3</a>
                 </td>
             </tr>
             <tr>
@@ -153,7 +135,7 @@
                     for controls. No sound for several major simulation features.
                 </td>
                 <td><a target="_blank"
-                    href="http://www.colorado.edu/physics/phet/dev/html/concentration/1.2.0-sonification.1/concentration_en.html">1.2.0-sonification.1</a>
+                       href="http://www.colorado.edu/physics/phet/dev/html/concentration/1.2.0-sonification.1/concentration_en.html">1.2.0-sonification.1</a>
                 </td>
             </tr>
         </table>
