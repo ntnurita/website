@@ -89,33 +89,70 @@ phet.sortContributionsWithFunction = function( compare ) {
     } );
 };
 
+/**
+ * Lengthen the height of the element with the given id.
+ * This is used on the sim page to adjust the height of the expandable text area when the table
+ * size changes dynamically.
+ * @param id
+ */
+phet.lengthenExpandableText = function( id ) {
+  var element = document.getElementById( id );
+  element.style.height = element.scrollHeight + 'px';
+};
+
+/**
+ * Shorten the height of the element with the given id.
+ * This is used on the sim page to adjust the height of the expandable text area when the table
+ * size changes dynamically.
+ * @param id
+ */
+phet.shortenExpandableText = function( id ) {
+  var element = document.getElementById( id );
+  element.style.height = phet.originalHeights[ id ];
+};
+
 phet.sortContributionsByTitle = function() {
     phet.beforeSort( 'ct-title' );
     phet.sortContributionsWithFunction( phet.compareClassText( 'ct-title', phet.currentSort.reverse ) );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
     return false;
 };
 
 phet.sortContributionsByGoldStar = function() {
   phet.beforeSort( 'ct-gold-star' );
   phet.sortContributionsWithFunction( phet.compareIconPresent( 'ct-gold-star', phet.currentSort.reverse ) );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
   return false;
 };
 
 phet.sortContributionsByPhet = function() {
   phet.beforeSort( 'ct-phet' );
   phet.sortContributionsWithFunction( phet.compareIconPresent( 'ct-phet', phet.currentSort.reverse ) );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
   return false;
 };
 
 phet.sortContributionsByAuthors = function() {
     phet.beforeSort( 'ct-authors' );
     phet.sortContributionsWithFunction( phet.compareClassText( 'ct-authors', phet.currentSort.reverse ) );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
     return false;
 };
 
 phet.sortContributionsByUpdated = function() {
     phet.beforeSort( 'ct-updated' );
     phet.sortContributionsWithFunction( phet.compareClassRel( 'ct-updated', phet.currentSort.reverse ) );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
     return false;
 };
 
@@ -153,15 +190,24 @@ phet.sortContributionsByTag = function( className, tags ) {
             } );
         }
     } );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
 };
 
 phet.sortContributionsByLevel = function() {
     phet.sortContributionsByTag( "ct-level", phet.getAllLevels() );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.lengthenExpandableText( 'for-teachers' );
+  }
     return false;
 };
 
 phet.sortContributionsByType = function() {
     phet.sortContributionsByTag( "ct-type", phet.getAllTypes() );
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.lengthenExpandableText( 'for-teachers' );
+  }
     return false;
 };
 
@@ -201,12 +247,20 @@ phet.sortContributionsBySimulations = function() {
         } );
     } );
 
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    phet.shortenExpandableText( 'for-teachers' );
+  }
     return false;
 };
 
 // initial setup and handling
 $( document ).ready( function() {
-
+    // only do this on the simulation pages
+    if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+      var forTeachers = 'for-teachers';
+      phet.originalHeights = {};
+      phet.originalHeights[ forTeachers ] = document.getElementById( forTeachers ).scrollHeight + 'px';
+    }
 } );
 
 phet.currentSort = {className: 'BOGUS_CLASS_NAME', reverse: false}; // set up initial conditions
