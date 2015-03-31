@@ -234,16 +234,19 @@ public class SimulationMainPanel extends PhetPanel {
         if ( hasVideo ) {
             add( new LocalizedText( "video-primer", "simulationMainPanel.videoPrimer" ) );
 
-            add( new WebMarkupContainer( "video-iframe" ) {{
-                add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc" ) ) );
+            add( new WebMarkupContainer( "video-blocker" ) {{
+                if ( !signedIn ) {
+                    add( new AttributeModifier( "class", true, new Model<String>( "teachers-video-player teachers-video-blocker" ) ) );
+                }
+                add( new WebMarkupContainer( "video-iframe" ) {{
+                    add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc" ) ) );
+                }} );
             }} );
 
             if ( signedIn ) {
-                add( new InvisibleComponent( "video-block" ) );
                 add( new InvisibleComponent( "sign-in-prompt-div" ) );
             }
             else {
-                add( new WebMarkupContainer( "video-block" ) );
                 add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
                     add( new LocalizedText( "sign-in-prompt", "simulationMainPanel.signInPrompt" ) );
                     add( new AttributeModifier( "style", true, new Model<String>( "text-align: center; color: red" ) ) );
@@ -252,8 +255,6 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "video-primer" ) );
-            add( new InvisibleComponent( "video-iframe" ) );
-            add( new InvisibleComponent( "video-block" ) );
             add( new InvisibleComponent( "sign-in-prompt-div" ) );
         }
 
@@ -291,23 +292,21 @@ public class SimulationMainPanel extends PhetPanel {
             } );
         }
 
-        // if video is enabled we need to use absolute positioning below the video because it used to layer the lock on top of the video
-        add( new WebMarkupContainer( "below-teachers-video" ) {{
-            if ( hasVideo ) {
-                String px = ( signedIn ) ? "250" : " 275"; // give extra room for the sign in message if not signed in
-                add( new AttributeModifier( "style", true, new Model<String>( "position: absolute; width: 100%; top: " + px + "px;" ) ) );
-            }
-            if ( displayContributions ) {
-                add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
-            }
-            else {
-                add( new InvisibleComponent( "contributions-panel" ) );
-            }
-            String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
-            add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
-                    ContributionCreatePage.getLinker( query ).getHref( context, getPhetCycle() )
-            } ) );
-        }} );
+        // if video is enabled we need to use absolute positioning below the video because it is used to layer the lock on top of the video
+//        if ( hasVideo ) {
+//            String px = ( signedIn ) ? "250" : " 275"; // give extra room for the sign in message if not signed in
+//            add( new AttributeModifier( "style", true, new Model<String>( "position: absolute; width: 100%; top: " + px + "px;" ) ) );
+//        }
+        if ( displayContributions ) {
+            add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
+        }
+        else {
+            add( new InvisibleComponent( "contributions-panel" ) );
+        }
+        String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
+        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
+                ContributionCreatePage.getLinker( query ).getHref( context, getPhetCycle() )
+        } ) );
 
         /*---------------------------------------------------------------------------*
         * translations

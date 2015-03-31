@@ -322,22 +322,28 @@ body#offline-installer-body .sim-download {
     background-image: url(../images/icons/sim-badges/html5-badge.png);
 }
 
-#teachers-video-container {
+.teachers-video-player {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 400px;
+    height: 225px;
     position: relative;
 }
 
-.teachers-video-player {
-    display: block;
-    margin-top: 1em;
-    position: absolute;
-    width: 400px;
-    height: 225px;
-    left: 50%;
-    margin-left: -200px;
+.teachers-video-blocker {
+  position: relative;
 }
 
-#teachers-video-blocker {
-    background: rgba(100, 100, 100, 0.5) url(../images/icons/lock.png) no-repeat center;
+.teachers-video-blocker:after {
+  content: '';
+  position: absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:1;
+  background: rgba(100, 100, 100, 0.5) url(../images/icons/lock.png) no-repeat center;
 }
 
 .download-icon {

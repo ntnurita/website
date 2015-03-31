@@ -311,27 +311,24 @@
                     </wicket:enclosure>
                 </div>
 
-                <div id="teachers-video-container">
-                    <h3 wicket:id="video-primer">Video Primer</h3>
-                    <div wicket:id="sign-in-prompt-div">
-                        <span wicket:id="sign-in-prompt"></span>
-                    </div>
-                    <iframe wicket:id="video-iframe" class="teachers-video-player" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-                    <div id="teachers-video-blocker" class="teachers-video-player" wicket:id="video-block"></div>
-
-                    <div wicket:id="below-teachers-video">
-                        <h3>
-                            <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
-                        </h3>
-
-                        <wicket:enclosure child="contributions-panel">
-                            <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
-                        </wicket:enclosure>
-
-                        <p style="text-align: center" wicket:id="submit-a">You can <a href="#">submit your own ideas and
-                            activities</a></p>
-                    </div>
+                <h3 wicket:id="video-primer">Video Primer</h3>
+                <div wicket:id="sign-in-prompt-div">
+                    <span wicket:id="sign-in-prompt"></span>
                 </div>
+                <div class="teachers-video-player" wicket:id="video-blocker">
+                    <iframe wicket:id="video-iframe" class="teachers-video-player" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+
+                <h3>
+                    <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
+                </h3>
+
+                <wicket:enclosure child="contributions-panel">
+                    <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
+                </wicket:enclosure>
+
+                <p style="text-align: center" wicket:id="submit-a">You can <a href="#">submit your own ideas and
+                    activities</a></p>
             </div>
 
             <wicket:enclosure child="simulation-main-translation-list">
