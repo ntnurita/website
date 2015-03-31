@@ -252,7 +252,6 @@ public class HibernateUtils {
 
         if ( simulations.size() <= 3 ) {
             for ( LocalizedSimulation localizedSim : simulations ) {
-                logger.warn( "Simulation title: " + localizedSim.getTitle() + " Project: " + localizedSim.getSimulation().getProject().getName() );
                 if ( localizedSim.getLocale().equals( locale ) ) {
                     return localizedSim;
                 }

@@ -42,6 +42,7 @@ public class StringChanges {
         StringUtils.addString( session, "simulationMainPanel.translateThisSim", "Translate this Sim" );
         StringUtils.addString( session, "simulationMainPanel.allSimsIn", "All sims in" );
         StringUtils.addString( session, "simulationMainPanel.translatorInfo", "Find more information <a {0}>for translators</a>" );
+        StringUtils.addString( session, "simulationMainPanel.downloadOrRun", "Download or Run" );
 
         StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations" );
         StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version" );
