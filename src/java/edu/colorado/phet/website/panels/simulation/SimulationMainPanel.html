@@ -219,16 +219,23 @@
         </table>
         <div class="simulation-main-content">
             <a class="other-sim-page" href="#" wicket:id="other-sim-page">
-                <img wicket:id="other-sim-icon" style="float: left;">
-                <span wicket:id="other-sim-text" class="other-sim-link"></span>
+                <table>
+                    <tr>
+                        <td>
+                            <img wicket:id="other-sim-icon" style="display: block;">
+                        </td>
+                        <td>
+                            <span wicket:id="other-sim-text" class="other-sim-link"></span>
+                        </td>
+                    </tr>
+                </table>
             </a>
-            <a id="content"></a><a id="teaching-resources"></a>
 
             <h2 id="about-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('about')">
                 <wicket:message key="simulationMainPanel.about">About</wicket:message>
             </h2>
 
-            <div id="about" class="answer">
+            <div id="about" class="answer sim-page-content">
 
                 <wicket:enclosure child="topic-list">
                     <h3>
@@ -246,7 +253,7 @@
                     <wicket:message key="simulationMainPanel.description">Description</wicket:message>
                 </h3>
 
-                <p class="sim-description" wicket:id="simulation-main-description" itemprop="description about">
+                <p class="simulation-panel-indent" wicket:id="simulation-main-description" itemprop="description about">
                     Play with one or two pendulums and discover how the period of a simple pendulum depends on the
                     length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
                     measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
@@ -277,107 +284,109 @@
             </h2>
 
             <div id="for-teachers" class="answer">
-                <wicket:enclosure child="learning-goals">
-                    <h3>
-                        <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
-                    </h3>
-                    <ul>
-                        <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
-                    </ul>
-                </wicket:enclosure>
+                <div class="sim-page-content">
+                    <wicket:enclosure child="learning-goals">
+                        <h3>
+                            <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
+                        </h3>
+                        <ul>
+                            <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
+                        </ul>
+                    </wicket:enclosure>
 
-                <wicket:enclosure child="faq-text">
-                    <h3>
-                        <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
-                    </h3>
-                    <div wicket:id="faq-text" class="teachers-tips-holder sim-description">
-                        This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
-                    </div>
-                </wicket:enclosure>
+                    <wicket:enclosure child="faq-text">
+                        <h3>
+                            <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
+                        </h3>
+                        <div wicket:id="faq-text" class="teachers-tips-holder simulation-panel-indent">
+                            This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
+                        </div>
+                    </wicket:enclosure>
+
+                    <wicket:enclosure child="guide-text">
+                        <h3 wicket:id="teacher-tips">Teacher Tips</h3>
+                        <div wicket:id="guide-text" class="teachers-tips-holder simulation-panel-indent">
+                            Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
+                        </div>
+                    </wicket:enclosure>
+                </div>
+
+                <h3 wicket:id="video-primer">Video Primer</h3>
+                <div wicket:id="sign-in-prompt-div">
+                    <span wicket:id="sign-in-prompt"></span>
+                </div>
+                <div class="teachers-video-player" wicket:id="video-blocker">
+                    <iframe wicket:id="video-iframe" class="teachers-video-player"
+                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
 
                 <h3>
-                    <span wicket:id="teacher-tips">Teacher Tips</span>
-                    <span wicket:id="and">and</span>
-                    <span wicket:id="video-primer">Video Primer</span>
+                    <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
                 </h3>
-                <div wicket:id="guide-text" class="teachers-tips-holder sim-description">
-                    Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
-                </div>
 
-                <div id="teachers-video-container">
-                    <div wicket:id="sign-in-prompt-div">
-                        <span wicket:id="sign-in-prompt"></span>
-                    </div>
-                    <iframe wicket:id="video-iframe" class="teachers-video-player" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-                    <div id="teachers-video-blocker" class="teachers-video-player" wicket:id="video-block"></div>
+                <wicket:enclosure child="contributions-panel">
+                    <div wicket:id="contributions-panel" class="simulation-contributions-pane simulation-panel-indent"></div>
+                </wicket:enclosure>
 
-                    <div wicket:id="below-teachers-video">
-                        <h3>
-                            <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
-                        </h3>
-
-                        <wicket:enclosure child="contributions-panel">
-                            <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
-                        </wicket:enclosure>
-
-                        <p style="text-align: center">
-                            <wicket:message key="simulationMainPanel.youCan">You can</wicket:message>
-                            <a wicket:id="submit-a" href="#">
-                                <wicket:message key="simulationMainPanel.submitYourOwn">submit your own ideas and activities</wicket:message>
-                            </a>
-                        </p>
-                    </div>
-                </div>
+                <p style="text-align: center">
+                    <a wicket:id="submit-a" class="phet-button purple-button" href="#">
+                        <wicket:message key="simulationMainPanel.shareAnActivity">Share an Activity!</wicket:message>
+                    </a>
+                </p>
             </div>
 
             <wicket:enclosure child="simulation-main-translation-list">
                 <h2 id="translations-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('translations')">
                     <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
                 </h2>
-                <div id="translations" class="answer">
-                    <table class="translations-table">
-                        <tr>
-                            <th>
+                <div id="translations" class="answer simulation-panel-indent">
+                    <table class="phet-table translations-table">
+                        <span id="translations-table-header">
+                            <span id="translations-table-language-header">
                                 <wicket:message key="simulationMainPanel.language">Language</wicket:message>
-                            </th>
-                            <th>
-                                <wicket:message key="simulationMainPanel.languageTranslated">Language (Translated)
-                                </wicket:message>
-                            </th>
-                            <th>
-                                <wicket:message key="simulationMainPanel.simulationTitleTranslated">Simulation Title
-                                </wicket:message>
-                            </th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                            </span>
+                            <wicket:message key="simulationMainPanel.downloadOrRun">Download or Run</wicket:message>
+                        </span>
                         <tr wicket:id="simulation-main-translation-list" class="simulation-main-translation-list">
-                            <td>
-                                <a href="#" wicket:id="language-link-1">
-                                    <span wicket:id="simulation-main-translation-locale-name">Pig Latin</span>
-                                </a>
+                            <td class="list-highlight-background">
+                                <span wicket:id="simulation-main-translation-locale-name-1">Pig Latin</span>
                             </td>
-                            <td>
-                                <a href="#" wicket:id="language-link-2">
-                                    <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
-                                </a>
-                            </td>
-                            <td>
-                                <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
-                            </td>
-                            <td>
-                                <a href="#" wicket:id="simulation-main-translation-link" rel="external"
-                                   class="sim-run-now-play">
-                                    <wicket:message key="simulations.translated.runNow">Run Now</wicket:message>
-                                </a>
+                            <td class="list-highlight-background">
+                                <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
                             </td>
                             <td>
                                 <a href="#" wicket:id="simulation-main-translation-download" class="sim-download-disk">
-                                    <wicket:message key="simulations.translated.download">Download</wicket:message>
+                                    <img wicket:id="translation-download-icon">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" wicket:id="simulation-main-translation-link-1" rel="external" class="sim-run-now-play">
+                                    <img wicket:id="translation-run-now-icon">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" wicket:id="simulation-main-translation-link-2" rel="external" class="sim-run-now-play">
+                                    <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" wicket:id="language-link">
+                                    <wicket:message key="simulationMainPanel.allSimsIn">All sims in </wicket:message> <span wicket:id="simulation-main-translation-locale-name-2">Pig Latin</span>
                                 </a>
                             </td>
                         </tr>
                     </table>
+
+                    <div style="text-align: center; padding-top: 17px">
+                        <!--<a wicket:id="translate-sim-link" class="phet-button blue-button" href="#">-->
+                        <a class="phet-button blue-button" href="#">
+                            <wicket:message key="simulationMainPanel.translateThisSim">Translate this Sim</wicket:message>
+                        </a>
+                        <p wicket:id="translator-info" style="margin-top: 20px">
+                            Find more information <a href="#">for translators</a>
+                        </p>
+                    </div>
+
                 </div>
             </wicket:enclosure>
 

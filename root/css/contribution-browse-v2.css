@@ -38,7 +38,16 @@ div.rtl .contribution-text-submit-row {
     text-align: left;
 }
 
-.contribution-browse-table {
-/* overridden in ie6 fixes */
-    width: 100%;
+#ct-table-header {
+  background-color: #662d91;
+  height: 25px;
+}
+
+.ct-table-header-link {
+  color: white;
+}
+
+.contribution-browse-table tr {
+  border-bottom: solid thin #662d91;
+  height: 40px;
 }

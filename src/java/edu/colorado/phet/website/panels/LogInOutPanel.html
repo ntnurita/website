@@ -13,11 +13,11 @@
 
 <wicket:panel>
     <wicket:enclosure child="sign-in">
-        <a wicket:id="sign-in" class="phet-button sign-in-button" id="login-button" href="#">
-        <!--onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">-->
+        <a wicket:id="sign-in" class="phet-button sign-in-button white-focus" href="#"
+           onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">
             <wicket:message key="signIn.submit">Sign in</wicket:message>
         </a>
-        <a wicket:id="register" class="phet-button register-button" href="#">
+        <a wicket:id="register" class="phet-button register-button white-focus" href="#">
             <wicket:message key="profile.register.submit">Register</wicket:message>
         </a>
     </wicket:enclosure>

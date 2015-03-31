@@ -84,12 +84,15 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.activities" );
         addString( "simulationMainPanel.translations" );
         addString( "simulationMainPanel.teacherTips" );
-        addString( "simulationMainPanel.and" );
         addString( "simulationMainPanel.videoPrimer" );
         addString( "simulationMainPanel.signInPrompt" );
         addString( "simulationMainPanel.submitYourOwn" );
         addString( "simulationMainPanel.youCan" );
-
+        addString( "simulationMainPanel.shareAnActivity" );
+        addString( "simulationMainPanel.translateThisSim" );
+        addString( "simulationMainPanel.allSimsIn" );
+        addString( "simulationMainPanel.translatorInfo" );
+        addString( "simulationMainPanel.downloadOrRun" );
         addString( "simulationMainPanel.originalSim" );
         addString( "simulationMainPanel.backToHTML" );
 

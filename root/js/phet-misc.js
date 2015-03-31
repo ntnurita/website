@@ -1,12 +1,12 @@
 // this causes all "external" rel-tagged links to open in a new tab / window
-$( document ).ready( function () {
-	$( 'a[rel*=external]' ).each( function () {
+$( document ).ready( function() {
+  $( 'a[rel*=external]' ).each( function() {
     $( this ).attr( 'target', '_blank' );
   } );
-  $( 'a[class*=external]' ).each( function () {
+  $( 'a[class*=external]' ).each( function() {
     $( this ).attr( 'target', '_blank' );
   } );
-  $( '.autocompleteOff' ).each( function () {
+  $( '.autocompleteOff' ).each( function() {
     $( this ).attr( 'autocomplete', 'off' );
   } );
   if ( !Modernizr.svg ) {
@@ -16,7 +16,7 @@ $( document ).ready( function () {
 //      return $(this).attr('src').replace('.png', '.svg');
 //    });
 
-    $( 'img[src*="svg"]' ).attr( 'src', function () {
+    $( 'img[src*="svg"]' ).attr( 'src', function() {
       return $( this ).attr( 'src' ).replace( '.svg', '.png' );
     } );
   }
@@ -38,8 +38,8 @@ $( document ).ready( function () {
       'json'
     ];
     for ( var i = 0; i < modernizrFeatures.length; i++ ) {
-      if ( !Modernizr[modernizrFeatures[i]] ) {
-        criticalFeaturesMissing.push( modernizrFeatures[i] );
+      if ( !Modernizr[ modernizrFeatures[ i ] ] ) {
+        criticalFeaturesMissing.push( modernizrFeatures[ i ] );
       }
     }
     if ( !( Array.prototype &&
@@ -77,10 +77,20 @@ $( document ).ready( function () {
   }
 } );
 
-// fix skip to main content links for chrome
-// see http://stackoverflow.com/questions/6280399/skip-links-not-working-in-chrome
-$(document).ready(function () {
-  $("#skipper").click(function () {
-    $('#main-content').attr('tabIndex', -1).focus();
-  });
-});
+$( document ).ready( function() {
+
+  // fix skip to main content links for chrome
+  // see http://stackoverflow.com/questions/6280399/skip-links-not-working-in-chrome
+  $( "#skipper" ).click( function() {
+    $( '#main-content' ).attr( 'tabIndex', -1 ).focus();
+  } );
+
+  // scripts to run on sim pages to adjust some formatting
+  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+    var translationTds = $( '.simulation-main-translation-list td' );
+    if ( translationTds.length >= 2 ) {
+      $( '#translations-table-language-header' ).width( $( translationTds[ 0 ] ).width() +
+                                                        $( translationTds[ 1 ] ).width() + 30 );
+    }
+  }
+} );

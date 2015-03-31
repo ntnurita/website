@@ -105,6 +105,8 @@ public class SimulationMainPanel extends PhetPanel {
         HTML_SIM_LINK_MAP.put( "gravity-force-lab", "/sims/html/gravity-force-lab/latest/gravity-force-lab_en.html" );
         HTML_SIM_LINK_MAP.put( "travoltage", "/sims/html/john-travoltage/latest/john-travoltage_en.html" );
         HTML_SIM_LINK_MAP.put( "molarity", "/sims/html/molarity/latest/molarity_en.html" );
+        HTML_SIM_LINK_MAP.put( "molecule-shapes", "/sims/html/molecule-shapes/latest/molecule-shapes_en.html" );
+        HTML_SIM_LINK_MAP.put( "molecule-shapes-basics", "/sims/html/molecule-shapes-basics/latest/molecule-shapes-basics_en.html" );
         HTML_SIM_LINK_MAP.put( "ohms-law", "/sims/html/ohms-law/latest/ohms-law_en.html" );
         HTML_SIM_LINK_MAP.put( "ph-scale", "/sims/html/ph-scale/latest/ph-scale_en.html" );
         // NOTE: no original sim for pH Scale: Basics, so it is omitted here
@@ -231,27 +233,22 @@ public class SimulationMainPanel extends PhetPanel {
         final boolean signedIn = PhetSession.get().isSignedIn();
         final boolean hasVideo = isHTML; // for now assume all html sims have a video
 
-        // add the word "and" between "Teacher Tips" and "Video Primer" only if both are present
-        if ( hasVideo && hasTeacherTips ) {
-            add( new LocalizedText( "and", "simulationMainPanel.and" ) );
-        }
-        else {
-            add( new InvisibleComponent( "and" ) );
-        }
-
         if ( hasVideo ) {
             add( new LocalizedText( "video-primer", "simulationMainPanel.videoPrimer" ) );
 
-            add( new WebMarkupContainer( "video-iframe" ) {{
-                add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc" ) ) );
+            add( new WebMarkupContainer( "video-blocker" ) {{
+                if ( !signedIn ) {
+                    add( new AttributeModifier( "class", true, new Model<String>( "teachers-video-player teachers-video-blocker" ) ) );
+                }
+                add( new WebMarkupContainer( "video-iframe" ) {{
+                    add( new AttributeModifier( "src", true, new Model<String>( "https://player.vimeo.com/video/123764106" ) ) );
+                }} );
             }} );
 
             if ( signedIn ) {
-                add( new InvisibleComponent( "video-block" ) );
                 add( new InvisibleComponent( "sign-in-prompt-div" ) );
             }
             else {
-                add( new WebMarkupContainer( "video-block" ) );
                 add( new WebMarkupContainer( "sign-in-prompt-div" ) {{
                     add( new LocalizedText( "sign-in-prompt", "simulationMainPanel.signInPrompt" ) );
                     add( new AttributeModifier( "style", true, new Model<String>( "text-align: center; color: red" ) ) );
@@ -260,8 +257,7 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "video-primer" ) );
-            add( new InvisibleComponent( "video-iframe" ) );
-            add( new InvisibleComponent( "video-block" ) );
+            add( new InvisibleComponent( "video-blocker" ) );
             add( new InvisibleComponent( "sign-in-prompt-div" ) );
         }
 
@@ -299,25 +295,14 @@ public class SimulationMainPanel extends PhetPanel {
             } );
         }
 
-        // if video is enabled we need to use absolute positioning below the video because it used to layer the lock on top of the video
-        add( new WebMarkupContainer( "below-teachers-video" ) {{
-            if ( hasVideo ) {
-                String px = ( signedIn ) ? "250" : " 275"; // give extra room for the sign in message if not signed in
-                add( new AttributeModifier( "style", true, new Model<String>( "position: absolute; width: 100%; top: " + px + "px;" ) ) );
-            }
-            if ( displayContributions ) {
-                add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
-            }
-            else {
-                add( new InvisibleComponent( "contributions-panel" ) );
-            }
-            String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
-//            add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
-//                    ContributionCreatePage.getLinker( query ).getHref( context, getPhetCycle() )
-//            } ) );
-
-            add( ContributionCreatePage.getLinker( query ).getLink( "submit-a", context, getPhetCycle() ) );
-        }} );
+        if ( displayContributions ) {
+            add( new ContributionBrowsePanel( "contributions-panel", context, contributions, false ) );
+        }
+        else {
+            add( new InvisibleComponent( "contributions-panel" ) );
+        }
+        String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
+        add( ContributionCreatePage.getLinker( query ).getLink( "submit-a", context, getPhetCycle() ) );
 
         /*---------------------------------------------------------------------------*
         * translations
@@ -340,26 +325,35 @@ public class SimulationMainPanel extends PhetPanel {
             protected void populateItem( ListItem<LocalizedSimulation> item ) {
                 LocalizedSimulation simulation = item.getModelObject();
                 Locale simLocale = simulation.getLocale();
-                RawLink runLink = simulation.getRunLink( "simulation-main-translation-link" );
-                RawLink downloadLink = simulation.getDownloadLink( "simulation-main-translation-download" );
                 String defaultLanguageName = simLocale.getDisplayName( context.getLocale() );
                 String languageName = ( (PhetLocalizer) getLocalizer() ).getString( "language.names." + LocaleUtils.localeToString( simLocale ), this, null, defaultLanguageName, false );
-                item.add( runLink );
+
+                // columns 1 and 2
+                item.add( new Label( "simulation-main-translation-locale-name-1", languageName ) );
+                item.add( new Label( "simulation-main-translation-locale-translated-name", simLocale.getDisplayName( simLocale ) ) );
+
+                // column 3 (download link)
+                RawLink downloadLink = simulation.getDownloadLink( "simulation-main-translation-download" );
+                downloadLink.add( new StaticImage( "translation-download-icon", WebImage.get( "/images/icons/download-icon-black-small.png", true ), "Download", 11, 15 ) );
                 if ( DistributionHandler.displayJARLink( getPhetCycle(), simulation ) ) {
                     item.add( downloadLink );
                 }
                 else {
                     item.add( new InvisibleComponent( "simulation-main-translation-download" ) );
                 }
-                item.add( new Label( "simulation-main-translation-title", simulation.getTitle() ) );
-                Link lang1 = TranslatedSimsPage.getLinker( simLocale ).getLink( "language-link-1", context, getPhetCycle() );
-                item.add( lang1 );
-                Link lang2 = TranslatedSimsPage.getLinker( simLocale ).getLink( "language-link-2", context, getPhetCycle() );
-                item.add( lang2 );
-                lang1.add( new Label( "simulation-main-translation-locale-name", languageName ) );
-                lang2.add( new Label( "simulation-main-translation-locale-translated-name", simLocale.getDisplayName( simLocale ) ) );
 
-                WicketUtils.highlightListItem( item );
+                // columns 4 and 5 (run icon and link)
+                RawLink runLink1 = simulation.getRunLink( "simulation-main-translation-link-1" );
+                RawLink runLink2 = simulation.getRunLink( "simulation-main-translation-link-2" );
+                runLink1.add( new StaticImage( "translation-run-now-icon", WebImage.get( "/images/icons/play-sim.png", true ), "Run now", 20, 20 ) );
+                item.add( runLink1 );
+                runLink2.add( new Label( "simulation-main-translation-title", simulation.getTitle() ) );
+                item.add( runLink2 );
+
+                // column 6 (all sims in locale)
+                Link language = TranslatedSimsPage.getLinker( simLocale ).getLink( "language-link", context, getPhetCycle() );
+                language.add( new Label( "simulation-main-translation-locale-name-2", languageName ) );
+                item.add( language );
             }
         };
 
@@ -368,8 +362,13 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "simulation-main-translation-list" ) );
-
         }
+
+//        add( new InvisibleComponent( "translate-sim-link" ) );
+        add( new LocalizedText( "translator-info", "simulationMainPanel.translatorInfo", new Object[] {
+                TranslatedSimsPage.getLinker().getHref( context, getPhetCycle() )
+        } ) );
+
         /*---------------------------------------------------------------------------*
         * run / download links
         *----------------------------------------------------------------------------*/

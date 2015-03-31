@@ -16,7 +16,7 @@ public class Images {
     public static final ImageHandle LOGO_TITLE = new ImageHandle( "/images/logo-title.jpg", true );
     public static final ImageHandle CU_LOGO_HALF = new ImageHandle( "/images/cu-logo-half.png", true );
     public static final ImageHandle CU_LOGO_HALF_COLORED = new ImageHandle( "/images/logos/cu-logo-half-colored-150.png", true );
-    public static final ImageHandle CU_LOGO_HORIZONTAL = new ImageHandle( "/images/logos/cu-logo-horizontal-240.png", true );
+    public static final ImageHandle CU_LOGO_HORIZONTAL = new ImageHandle( "/images/logos/cu-logo-horizontal-220.png", true );
 
     public static final ImageHandle HTML5_LOGO_80 = new ImageHandle( "/images/HTML5_Badge_80_clean.svg", true );
     public static final ImageHandle HTML5_LOGO_40 = new ImageHandle( "/images/HTML5_Badge_40_clean.svg", true );
@@ -47,8 +47,8 @@ public class Images {
     public static final ImageHandle NEWSLETTER_DECEMBER_13 = new ImageHandle( "/images/phet_newsletter_december_13_thumbnail.png", true );
     public static final ImageHandle NEWSLETTER_SPRING_14 = new ImageHandle( "/images/phet_newsletter_spring_14_thumbnail.png", true );
 
-    public static final ImageHandle PHET_LOGO_ICON_SMALL = new ImageHandle( "/images/contributions/phet-logo-new-icon-small.png", true );
-    public static final ImageHandle GOLD_STAR_SMALL = new ImageHandle( "/images/contributions/gold-star-small.jpg", true );
+    public static final ImageHandle PHET_LOGO_ICON_SMALL = new ImageHandle( "/images/icons/phet-logo-icon-black.png", true );
+    public static final ImageHandle GOLD_STAR_SMALL = new ImageHandle( "/images/icons/gold-star-icon-small.png", true );
     public static final ImageHandle GOLD_STAR = new ImageHandle( "/images/contributions/gold-star.jpg", true );
     public static final ImageHandle GOLD_STAR_LARGE = new ImageHandle( "/images/contributions/gold-star-large.jpg", true );
     public static final ImageHandle CHECK_MARK = new ImageHandle( "/images/checkmark.gif", true );

@@ -58,16 +58,21 @@ div.rtl #page-header-logo {
 }
 
 #search-submit {
-    height: 29px;
-    border-radius: 4px;
+    height: 23px;
+    width: 23px;
+    border: none;
+    border-radius: 0 2px 2px 0;
     padding: 3px;
-    top: 5px;
+    top: 0;
+    position: absolute;
+    left: 202px;
+    margin: 0;
 }
 
-button#search-submit span {
-  display: inline-block;
-  background: url(../images/icons/search-icon.png) no-repeat;
-}
+/*#search-submit:focus {*/
+  /*border: 1px solid white;*/
+  /*margin: -1px;*/
+/*}*/
 
 .search-focus {
     border: 2px solid #2a326a;
@@ -108,8 +113,8 @@ div.rtl #page-header-search {
 
 #page-header-cu {
     position: absolute;
-    right: -77px;
-    top: 43px;
+    right: -56px;
+    top: 44px;
     border: none;
 }
 
@@ -309,12 +314,20 @@ div.copyright {
     padding: 5px;
 }
 
+.search-box {
+  /*background-color: white;*/
+  /*border-radius: 2px 0 0 2px;*/
+  /*box-sizing: border-box;*/
+  /*-moz-box-sizing: border-box;*/
+}
+
 /* from jquery.autocomplete.css */
 
 .acInput {
     width: 200px;
     height: 21px;
-    border-radius: 3px;
+    border: none;
+    border-radius: 2px 0 0 2px;
 }
 
 .acResults {
@@ -432,6 +445,24 @@ pre {
   color: rgb(50, 50, 50);
 }
 
+.purple-button {
+  background: #662d91;
+  color: white;
+}
+
+.purple-button:hover {
+  background: #8d5eb7;
+}
+
+.blue-button {
+  background: #0071bc;
+  color: white;
+}
+
+.blue-button:hover {
+  background: #079bed;
+}
+
 .sign-in-button {
   background: rgb(230,230,230);
   color: black !important;
@@ -460,4 +491,15 @@ pre {
 
 .no-underline {
   text-decoration: none;
+}
+
+/* css common to all new phet tables, right now this include the contribution browse table and translation table */
+.phet-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.phet-table td, th {
+  padding: 5px 10px;
 }

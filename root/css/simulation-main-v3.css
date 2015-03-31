@@ -2,7 +2,7 @@
     color: #990000;
     font-size: 18px;
     font-weight: bold;
-    margin: 0 0 10px;
+    margin: 0 0 5px;
     min-height: 20px;
 }
 
@@ -23,9 +23,9 @@ div.rtl .simulation-main-image-panel {
 
 .simulation-main-screenshot {
     border: none;
-    -webkit-box-shadow: 10px 10px 30px 0 rgba(0,0,0,0.5);
-    -moz-box-shadow: 10px 10px 30px 0 rgba(0,0,0,0.5);
-    box-shadow: 10px 10px 30px 0 rgba(0,0,0,0.5);
+    -webkit-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);
 }
 
 .simulation-main-translation-list {
@@ -33,12 +33,16 @@ div.rtl .simulation-main-image-panel {
 }
 
 .simulation-main-table {
-    padding-bottom: 10px;
+    padding-bottom: 12px;
 }
 
 .simulation-main-content {
     border-top: 2px solid #c60;
     width: 595px;
+}
+
+.sim-page-content {
+    width: 450px;
 }
 
 .simulation-main-description {
@@ -76,7 +80,7 @@ div.rtl .simulation-main-image-panel {
     padding-left: 20px;
 }
 
-.sim-description {
+.simulation-panel-indent {
     padding-left: 25px;
 }
 
@@ -104,10 +108,6 @@ div.rtl .simulation-main-image-panel {
     background-color: rgb(170,170,170);
 }
 
-.sim-button:active {
-    border: 1px solid rgb(110,110,110);
-}
-
 .sim-download {
     float: left;
 }
@@ -123,10 +123,6 @@ div.rtl .simulation-main-image-panel {
 
 .simStyleOrange:hover {
     background-color: rgb(253,164,108);
-}
-
-.simStyleOrange:active {
-    border: 1px solid rgb(253,131,54);
 }
 
 .keyword-list-holder {
@@ -198,17 +194,24 @@ table.credits-table ul {
     list-style-position: inside;
 }
 
-table.translations-table {
-    margin: 5px 0 15px;
-    position: relative;
-    left: 5px;
-    width: 505px;
+#translations-table-header {
+  display: block;
+  width: 100%;
+  background-color: #0071bc;
+  height: 25px;
+  line-height: 25px;
+  color: white;
+  padding: 5px 0;
 }
 
-table.translations-table th {
-    text-align: left;
-    border-bottom: 1px solid #bbbbbb;
-    padding-bottom: 3px;
+#translations-table-language-header {
+  display: inline-block;
+  width: 200px;
+  padding-left: 10px;
+}
+
+.translations-table tr {
+  border-bottom: solid thin #0071bc;
 }
 
 table.simulation-main-translations-table {
@@ -248,19 +251,21 @@ div.rtl div.rating-holder {
 }
 
 .other-sim-page {
-    float: right;
     background-color: rgb(235,235,235);
     display: block;
-    padding: 7px;
+    padding: 5px;
     margin-top: 4px;
     width: 180px;
     cursor: pointer;
+    position: absolute;
+    right: -70px;
 }
 
 .other-sim-link {
-    padding-left: 50px;
+    padding-left: 5px;
     display: block;
-    font-size: 1.25em;
+    font-size: 1.1667em;
+    line-height: 1.333em;
 }
 
 body#offline-installer-body .sim-download {
@@ -324,22 +329,28 @@ body#offline-installer-body .sim-download {
     background-image: url(../images/icons/sim-badges/html5-badge.png);
 }
 
-#teachers-video-container {
+.teachers-video-player {
+    display: block;
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 400px;
+    height: 225px;
     position: relative;
 }
 
-.teachers-video-player {
-    display: block;
-    margin-top: 1em;
-    position: absolute;
-    width: 400px;
-    height: 225px;
-    left: 50%;
-    margin-left: -200px;
+.teachers-video-blocker {
+  position: relative;
 }
 
-#teachers-video-blocker {
-    background: rgba(100, 100, 100, 0.5) url(../images/icons/lock.png) no-repeat center;
+.teachers-video-blocker:after {
+  content: '';
+  position: absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:1;
+  background: rgba(100, 100, 100, 0.5) url(../images/icons/lock.png) no-repeat center;
 }
 
 .download-icon {

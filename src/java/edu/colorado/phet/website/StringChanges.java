@@ -30,13 +30,25 @@ public class StringChanges {
 
         StringUtils.overwriteString( session, "simulationMainPanel.topics", "Content", "Topics" );
 
+        StringUtils.overwriteString( session, "html5.translations-soon", "Our HTML5 simulations are currently English-only. Translations are one of our next steps, and we will contact translators once this is ready. Sorry for the inconvenience!",
+                                     "All of our newest sims are written in HTML5 and run in a browser, but are currently only available in English. Enabling translations is one of our next steps. In the meantime, browse all of our translated sims <a {0}>here</a>." );
+
         StringUtils.addString( session, "simulationMainPanel.description", "Description" );
         StringUtils.addString( session, "simulationMainPanel.forTeachers", "For Teachers" );
         StringUtils.addString( session, "simulationMainPanel.activities", "Activities" );
         StringUtils.addString( session, "simulationMainPanel.translations", "Translations" );
 
-        StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations >>" );
-        StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version >>" );
+        StringUtils.addString( session, "simulationMainPanel.shareAnActivity", "Share an Activity!" );
+        StringUtils.addString( session, "simulationMainPanel.translateThisSim", "Translate this Sim" );
+        StringUtils.addString( session, "simulationMainPanel.allSimsIn", "All sims in" );
+        StringUtils.addString( session, "simulationMainPanel.translatorInfo", "Find more information <a {0}>for translators</a>" );
+        StringUtils.addString( session, "simulationMainPanel.downloadOrRun", "Download or Run" );
+
+        StringUtils.addString( session, "simulationMainPanel.originalSim", "Original Sim and Translations" );
+        StringUtils.addString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version" );
+
+        StringUtils.overwriteString( session, "simulationMainPanel.originalSim", "Original Sim and Translations >>", "Original Sim and Translations"  );
+        StringUtils.overwriteString( session, "simulationMainPanel.backToHTML", "Back to HTML5 Version >>", "Back to HTML5 Version" );
 
         StringUtils.addString( session, "simulationMainPanel.teacherTips", "Teacher Tips" );
         StringUtils.addString( session, "simulationMainPanel.and", "and" );

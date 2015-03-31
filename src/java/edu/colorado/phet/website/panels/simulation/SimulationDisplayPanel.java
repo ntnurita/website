@@ -21,6 +21,7 @@ import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.StaticImage;
+import edu.colorado.phet.website.content.simulations.HTML5Page;
 import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
@@ -43,7 +44,7 @@ public class SimulationDisplayPanel extends PhetPanel {
         super( id, context );
 
         final boolean isEnglish = PhetSession.get().getLocale().equals( LocaleUtils.stringToLocale( "en" ) );
-        final boolean isHTML5Page = context.getPath().contains( "simulations/category/html" );
+        final boolean isHTML5Page = context.getPath().contains( "simulations/category/new" );
 
         SimulationDataProvider simData = new SimulationDataProvider( simulations );
         GridView gridView = new GridView<LocalizedSimulation>( "rows", simData ) {

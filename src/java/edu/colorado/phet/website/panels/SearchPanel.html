@@ -20,12 +20,14 @@
             <label for="search-text-id" class="hidden">
                 <wicket:message key="search.label">Search the PhET Website</wicket:message>
             </label>
-            <input type="text" size="15" name="q" class="always-enabled acInput search-focus" id="search-text-id"/>
+            <div class="search-box">
+                <input type="text" size="15" name="q" class="always-enabled acInput white-focus" id="search-text-id"/>
+            </div>
             <!--<input type="submit" value="Go" wicket:message="title:search.clickSearch,value:search.search"-->
                    <!--title="Click here to search the PhET website"-->
                    <!--class="search-focus phet-button sign-in-button always-enabled autocompleteOff" id="search-submit"/>-->
             <button type="submit" form="search-form" id="search-submit" wicket:message="title:search.clickSearch"
-                    class="search-focus phet-button sign-in-button always-enabled autocompleteOff">
+                    class="phet-button sign-in-button always-enabled autocompleteOff white-focus">
                 <img src="/images/icons/search-icon.png" style="height: 100%" wicket:message="alt:search.search"/>
             </button>
         </div>

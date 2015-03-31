@@ -15,38 +15,50 @@
 <wicket:panel>
     <div wicket:message="dir:language.dir">
         <wicket:enclosure child="contributions">
-            <table class="contribution-browse-table" id="ct-table" wicket:message="rel:style.orders">
+            <table class="phet-table contribution-browse-table" id="ct-table" wicket:message="rel:style.orders">
                 <tr id="ct-table-header">
                     <th>
-                        <a href="#" onclick="return phet.sortContributionsByTitle()">
+                        <a href="#" onclick="return phet.sortContributionsByTitle()" class="ct-table-header-link">
                             <wicket:message key="contribution.browse.title">Title</wicket:message>
                         </a>
                     </th>
                     <th>
-                        <a href="#" onclick="return phet.sortContributionsByAuthors()">
+                        <a href="#" onclick="return phet.sortContributionsByGoldStar()" class="ct-table-header-link">
+                            <img src="/images/icons/gold-star-icon-white-small.png"
+                                 alt="Gold Star Contribution" wicket:message="title:tooltip.legend.goldStar"/>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" onclick="return phet.sortContributionsByPhet()" class="ct-table-header-link">
+                            <img src="/images/icons/phet-logo-icon-white-small.png"
+                                 alt="Contribution by PhET" wicket:message="title:tooltip.legend.phetDesigned"/>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" onclick="return phet.sortContributionsByAuthors()" class="ct-table-header-link">
                             <wicket:message key="contribution.browse.authors">Authors</wicket:message>
                         </a>
                     </th>
                     <th>
-                        <a href="#" onclick="return phet.sortContributionsByLevel()">
+                        <a href="#" onclick="return phet.sortContributionsByLevel()" class="ct-table-header-link">
                             <wicket:message key="contribution.browse.level">Level</wicket:message>
                         </a>
                     </th>
                     <th>
-                        <a href="#" onclick="return phet.sortContributionsByType()">
+                        <a href="#" onclick="return phet.sortContributionsByType()" class="ct-table-header-link">
                             <wicket:message key="contribution.browse.type">Type</wicket:message>
                         </a>
                     </th>
                     <wicket:enclosure child="sim-col-1">
                         <th>
-                            <a href="#" onclick="return phet.sortContributionsBySimulations()">
+                            <a href="#" onclick="return phet.sortContributionsBySimulations()" class="ct-table-header-link">
                                 <wicket:message key="contribution.browse.simulations">Simulations</wicket:message>
                             </a>
                             <span wicket:id="sim-col-1"></span>
                         </th>
                     </wicket:enclosure>
                     <th>
-                        <a href="#" onclick="return phet.sortContributionsByUpdated()">
+                        <a href="#" onclick="return phet.sortContributionsByUpdated()" class="ct-table-header-link">
                             <wicket:message key="contribution.browse.updated">Updated</wicket:message>
                         </a>
                     </th>
@@ -54,16 +66,20 @@
                 </tr>
                 <tr wicket:id="contributions" class="ct-contribution">
 
-                    <td>
+                    <td class="list-highlight-background">
                         <a href="#" wicket:id="contribution-link">
                             <span wicket:id="contribution-title" class="ct-title"></span>
                         </a>
-                        <img wicket:id="phet-contribution"
-                             src="../../../../../../../../root/images/contributions/phet-logo-icon-small.jpg"
-                             alt="Contribution by PhET" wicket:message="title:tooltip.legend.phetDesigned"/>
+                    </td>
+                    <td class="ct-gold-star">
                         <img wicket:id="gold-star-contribution"
                              src="../../../../../../../../root/images/contributions/gold-star-small.jpg"
                              alt="Gold Star Contribution" wicket:message="title:tooltip.legend.goldStar"/>
+                    </td>
+                    <td class="ct-phet">
+                        <img wicket:id="phet-contribution"
+                             src="../../../../../../../../root/images/contributions/phet-logo-icon-small.jpg"
+                             alt="Contribution by PhET" wicket:message="title:tooltip.legend.phetDesigned"/>
                     </td>
                     <td wicket:id="contribution-authors" class="ct-authors"></td>
                     <td wicket:id="contribution-level" class="ct-level"></td>
