@@ -239,7 +239,7 @@ public class SimulationMainPanel extends PhetPanel {
                     add( new AttributeModifier( "class", true, new Model<String>( "teachers-video-player teachers-video-blocker" ) ) );
                 }
                 add( new WebMarkupContainer( "video-iframe" ) {{
-                    add( new AttributeModifier( "src", true, new Model<String>( "//www.youtube.com/embed/mEe3lD5l0dc" ) ) );
+                    add( new AttributeModifier( "src", true, new Model<String>( "https://player.vimeo.com/video/123764106" ) ) );
                 }} );
             }} );
 
