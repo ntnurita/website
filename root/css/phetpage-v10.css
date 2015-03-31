@@ -456,3 +456,14 @@ pre {
 .loginout-list a:hover {
   text-decoration: underline;
 }
+
+/* css common to all new phet tables, right now this include the contribution browse table and translation table */
+.phet-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.phet-table td, th {
+  padding: 5px 10px;
+}

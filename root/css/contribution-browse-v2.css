@@ -38,13 +38,6 @@ div.rtl .contribution-text-submit-row {
     text-align: left;
 }
 
-.contribution-browse-table {
-/* overridden in ie6 fixes */
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
 #ct-table-header {
   background-color: #662d91;
   height: 25px;

@@ -253,7 +253,7 @@
                     <wicket:message key="simulationMainPanel.description">Description</wicket:message>
                 </h3>
 
-                <p class="sim-description" wicket:id="simulation-main-description" itemprop="description about">
+                <p class="simulation-panel-indent" wicket:id="simulation-main-description" itemprop="description about">
                     Play with one or two pendulums and discover how the period of a simple pendulum depends on the
                     length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
                     measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
@@ -298,14 +298,14 @@
                         <h3>
                             <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
                         </h3>
-                        <div wicket:id="faq-text" class="teachers-tips-holder sim-description">
+                        <div wicket:id="faq-text" class="teachers-tips-holder simulation-panel-indent">
                             This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
                         </div>
                     </wicket:enclosure>
 
                     <wicket:enclosure child="guide-text">
                         <h3 wicket:id="teacher-tips">Teacher Tips</h3>
-                        <div wicket:id="guide-text" class="teachers-tips-holder sim-description">
+                        <div wicket:id="guide-text" class="teachers-tips-holder simulation-panel-indent">
                             Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
                         </div>
                     </wicket:enclosure>
@@ -324,7 +324,7 @@
                 </h3>
 
                 <wicket:enclosure child="contributions-panel">
-                    <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
+                    <div wicket:id="contributions-panel" class="simulation-contributions-pane simulation-panel-indent"></div>
                 </wicket:enclosure>
 
                 <p style="text-align: center">
@@ -338,8 +338,8 @@
                 <h2 id="translations-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('translations')">
                     <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
                 </h2>
-                <div id="translations" class="answer">
-                    <table class="translations-table">
+                <div id="translations" class="answer simulation-panel-indent">
+                    <table class="phet-table translations-table">
                         <span id="translations-table-header">
                             <span id="translations-table-language-header">
                                 <wicket:message key="simulationMainPanel.language">Language</wicket:message>
