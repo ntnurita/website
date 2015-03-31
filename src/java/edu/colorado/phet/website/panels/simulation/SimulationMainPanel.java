@@ -332,7 +332,7 @@ public class SimulationMainPanel extends PhetPanel {
 
                 // column 3 (download link)
                 RawLink downloadLink = simulation.getDownloadLink( "simulation-main-translation-download" );
-                downloadLink.add( new StaticImage( "translation-download-icon", WebImage.get( "/images/icons/download-icon.png", true ), "Download", 20, 20 ) );
+                downloadLink.add( new StaticImage( "translation-download-icon", WebImage.get( "/images/icons/download-icon-black-small.png", true ), "Download", 11, 15 ) );
                 if ( DistributionHandler.displayJARLink( getPhetCycle(), simulation ) ) {
                     item.add( downloadLink );
                 }
