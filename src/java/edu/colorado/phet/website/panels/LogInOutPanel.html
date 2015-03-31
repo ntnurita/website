@@ -13,8 +13,7 @@
 
 <wicket:panel>
     <wicket:enclosure child="sign-in">
-        <a wicket:id="sign-in" class="phet-button sign-in-button white-focus" href="#"
-           onclick="if(window.location.hash){document.getElementById('sign-in-link').href += '&urlHash=' + window.location.hash.substring(1);}return true;">
+        <a wicket:id="sign-in" class="phet-button sign-in-button white-focus" id="login-button" href="#">
             <wicket:message key="signIn.submit">Sign in</wicket:message>
         </a>
         <a wicket:id="register" class="phet-button register-button white-focus" href="#">
@@ -43,13 +42,6 @@
 
         <div class="login-form-header">Sign In</div>
 
-        <!--<div wicket:id="feedback" class="sign-in-feedback">-->
-            <!--<ul class="feedbackPanel">-->
-                <!--<li class="feedbackPanelERROR">-->
-                    <!--<span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
         <div id="login-validation-message" style="display: none">
             <wicket:message key="signIn.validation.failed">An invalid username and/or password has been entered.</wicket:message>
         </div>
