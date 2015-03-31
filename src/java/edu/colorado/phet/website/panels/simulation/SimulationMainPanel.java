@@ -304,9 +304,7 @@ public class SimulationMainPanel extends PhetPanel {
             add( new InvisibleComponent( "contributions-panel" ) );
         }
         String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
-        add( new LocalizedText( "submit-a", "simulationMainPanel.submitActivities", new Object[]{
-                ContributionCreatePage.getLinker( query ).getHref( context, getPhetCycle() )
-        } ) );
+        add( ContributionCreatePage.getLinker( query ).getLink( "submit-a", context, getPhetCycle() ) );
 
         /*---------------------------------------------------------------------------*
         * translations

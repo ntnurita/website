@@ -413,6 +413,24 @@ pre {
   color: rgb(50, 50, 50);
 }
 
+.purple-button {
+  background: #662d91;
+  color: white;
+}
+
+.purple-button:hover {
+  background: #8d5eb7;
+}
+
+.blue-button {
+  background: #0071bc;
+  color: white;
+}
+
+.blue-button:hover {
+  background: #079bed;
+}
+
 .sign-in-button {
   background: rgb(230,230,230);
   color: black !important;

@@ -327,8 +327,11 @@
                     <div wicket:id="contributions-panel" class="simulation-contributions-pane sim-description"></div>
                 </wicket:enclosure>
 
-                <p style="text-align: center" wicket:id="submit-a">You can <a href="#">submit your own ideas and
-                    activities</a></p>
+                <p style="text-align: center">
+                    <a wicket:id="submit-a" class="phet-button purple-button" href="#">
+                        <wicket:message key="simulationMainPanel.shareAnActivity">Share an Activity!</wicket:message>
+                    </a>
+                </p>
             </div>
 
             <wicket:enclosure child="simulation-main-translation-list">
