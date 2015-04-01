@@ -5,6 +5,7 @@
 package edu.colorado.phet.website.panels;
 
 import org.apache.wicket.RedirectToUrlException;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
@@ -20,6 +21,7 @@ import org.apache.wicket.util.value.ValueMap;
 import edu.colorado.phet.website.DistributionHandler;
 import edu.colorado.phet.website.admin.AdminMainPage;
 import edu.colorado.phet.website.authentication.EditProfilePage;
+import edu.colorado.phet.website.authentication.LoginFormHandlerPage;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.authentication.RegisterPage;
 import edu.colorado.phet.website.authentication.ResetPasswordRequestPage;
@@ -141,6 +143,7 @@ public class LogInOutPanel extends PhetPanel {
                 }
 
                 public void validate( Form form ) {
+                    System.out.println( "calling validate" );
                     if ( !PhetSession.get().signIn( (PhetRequestCycle) getRequestCycle(), username.getInput(), password.getInput() ) ) {
                         String url = StringUtils.makeUrlAbsolute( path );
                         url += "?login-failed";
@@ -157,10 +160,18 @@ public class LogInOutPanel extends PhetPanel {
 //            feedback.setVisible( feedback.anyMessage() );
         }
 
-        public final void onSubmit() {
-            String dest = destination.getInput();
-            String url = ( dest.isEmpty() ) ? StringUtils.makeUrlHTTPS( path ) : dest;
-            throw new RedirectToUrlException( url );
+        @Override
+        protected void onComponentTag( ComponentTag tag ) {
+            super.onComponentTag( tag );
+//            String action = urlFor(LoginFormHandlerPage.class, null).toString();
+            String action = StringUtils.makeUrlHTTPS( "/" + urlFor( LoginFormHandlerPage.class, null ).toString() );
+            tag.put( "action", action );
         }
+
+//        public final void onSubmit() {
+//            String dest = destination.getInput();
+//            String url = ( dest.isEmpty() ) ? StringUtils.makeUrlHTTPS( path ) : dest;
+//            throw new RedirectToUrlException( url );
+//        }
     }
 }
