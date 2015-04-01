@@ -97,7 +97,9 @@ phet.sortContributionsWithFunction = function( compare ) {
  */
 phet.lengthenExpandableText = function( id ) {
   var element = document.getElementById( id );
-  element.style.height = element.scrollHeight + 'px';
+  if ( element ) {
+    element.style.height = element.scrollHeight + 'px';
+  }
 };
 
 /**
@@ -108,13 +110,15 @@ phet.lengthenExpandableText = function( id ) {
  */
 phet.shortenExpandableText = function( id ) {
   var element = document.getElementById( id );
-  element.style.height = phet.originalHeights[ id ];
+  if ( element ) {
+    element.style.height = phet.originalHeights[ id ];
+  }
 };
 
 phet.sortContributionsByTitle = function() {
   phet.beforeSort( 'ct-title' );
   phet.sortContributionsWithFunction( phet.compareClassText( 'ct-title', phet.currentSort.reverse ) );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
   return false;
@@ -123,7 +127,7 @@ phet.sortContributionsByTitle = function() {
 phet.sortContributionsByGoldStar = function() {
   phet.beforeSort( 'ct-gold-star' );
   phet.sortContributionsWithFunction( phet.compareIconPresent( 'ct-gold-star', phet.currentSort.reverse ) );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
   return false;
@@ -132,7 +136,7 @@ phet.sortContributionsByGoldStar = function() {
 phet.sortContributionsByPhet = function() {
   phet.beforeSort( 'ct-phet' );
   phet.sortContributionsWithFunction( phet.compareIconPresent( 'ct-phet', phet.currentSort.reverse ) );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
   return false;
@@ -141,7 +145,7 @@ phet.sortContributionsByPhet = function() {
 phet.sortContributionsByAuthors = function() {
   phet.beforeSort( 'ct-authors' );
   phet.sortContributionsWithFunction( phet.compareClassText( 'ct-authors', phet.currentSort.reverse ) );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
   return false;
@@ -150,7 +154,7 @@ phet.sortContributionsByAuthors = function() {
 phet.sortContributionsByUpdated = function() {
   phet.beforeSort( 'ct-updated' );
   phet.sortContributionsWithFunction( phet.compareClassRel( 'ct-updated', phet.currentSort.reverse ) );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
   return false;
@@ -190,14 +194,14 @@ phet.sortContributionsByTag = function( className, tags ) {
       } );
     }
   } );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
 };
 
 phet.sortContributionsByLevel = function() {
   phet.sortContributionsByTag( "ct-level", phet.getAllLevels() );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.lengthenExpandableText( 'for-teachers' );
   }
   return false;
@@ -205,7 +209,7 @@ phet.sortContributionsByLevel = function() {
 
 phet.sortContributionsByType = function() {
   phet.sortContributionsByTag( "ct-type", phet.getAllTypes() );
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.lengthenExpandableText( 'for-teachers' );
   }
   return false;
@@ -247,7 +251,7 @@ phet.sortContributionsBySimulations = function() {
     } );
   } );
 
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     phet.shortenExpandableText( 'for-teachers' );
   }
   return false;
@@ -256,10 +260,13 @@ phet.sortContributionsBySimulations = function() {
 // initial setup and handling
 $( document ).ready( function() {
   // only do this on the simulation pages
-  if ( window.location.href.indexOf( 'simulation' ) > -1 ) {
+  if ( window.location.href.indexOf( '/simulation/' ) > -1 ) {
     var forTeachers = 'for-teachers';
+    var element = document.getElementById( forTeachers );
     phet.originalHeights = {};
-    phet.originalHeights[ forTeachers ] = document.getElementById( forTeachers ).scrollHeight + 'px';
+    if ( element ) {
+      phet.originalHeights[ forTeachers ] = element.scrollHeight + 'px';
+    }
   }
 } );
 
@@ -306,5 +313,3 @@ phet.getAllLevels = function() {
 phet.getAllTypes = function() {
   return $( '#ct-table' ).attr( 'rel' ).split( '|' )[ 1 ].split( ',' );
 };
-
-
