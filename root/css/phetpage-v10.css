@@ -69,10 +69,11 @@ div.rtl #page-header-logo {
     margin: 0;
 }
 
-/*#search-submit:focus {*/
-  /*border: 1px solid white;*/
-  /*margin: -1px;*/
-/*}*/
+#search-submit:focus {
+  border: 1px solid white;
+  margin: -1px;
+  height: 25px;
+}
 
 .search-focus {
     border: 2px solid #2a326a;

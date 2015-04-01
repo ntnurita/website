@@ -305,19 +305,24 @@
 
                     <wicket:enclosure child="guide-text">
                         <h3 wicket:id="teacher-tips">Teacher Tips</h3>
-                        <div wicket:id="guide-text" class="teachers-tips-holder simulation-panel-indent">
-                            Overview of sim controls and insights into student thinking (<a href="#">Teacher Tips pdf</a>)
+                        <div class="simulation-panel-indent">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td><a wicket:id="guide-link" href="#"><img wicket:id="pdf-icon" src="#"></a></td>
+                                    <td><span wicket:id="guide-text">Overview of sim controls, model simplifications, and insights into student thinking (<a href="#">PDF</a>)</span></td>
+                                </tr>
+                            </table>
                         </div>
                     </wicket:enclosure>
-                </div>
 
-                <h3 wicket:id="video-primer">Video Primer</h3>
-                <div wicket:id="sign-in-prompt-div">
-                    <span wicket:id="sign-in-prompt"></span>
-                </div>
-                <div class="teachers-video-player" wicket:id="video-blocker">
-                    <iframe wicket:id="video-iframe" class="teachers-video-player"
-                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <h3 wicket:id="video-primer">Video Primer</h3>
+                    <div wicket:id="sign-in-prompt-div">
+                        <span wicket:id="sign-in-prompt"></span>
+                    </div>
+                    <div class="teachers-video-player" wicket:id="video-blocker">
+                        <iframe wicket:id="video-iframe" class="teachers-video-player"
+                                frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
                 </div>
 
                 <h3>

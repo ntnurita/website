@@ -132,8 +132,7 @@ div.rtl .simulation-main-image-panel {
 }
 
 .teachers-tips-holder {
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
+    padding: 0.25em 0;
 }
 
 .keyword {
@@ -331,8 +330,7 @@ body#offline-installer-body .sim-download {
 
 .teachers-video-player {
     display: block;
-    margin: 0 auto;
-    margin-top: 1em;
+    margin: 1em auto 2em auto;
     width: 400px;
     height: 225px;
     position: relative;

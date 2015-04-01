@@ -57,10 +57,8 @@ public class StringChanges {
 
         StringUtils.addString( session, "simulationMainPanel.signInPrompt", "Please sign in to watch the video primer" );
 
-        StringUtils.addString( session, "simulationMainPanel.submitYourOwn", "submit your own ideas and activities" );
-        StringUtils.addString( session, "simulationMainPanel.youCan", "You can" );
-
-        StringUtils.overwriteString( session, "simulationMainPanel.teachersGuide", "The <a {0} target=\"_blank\">teacher's guide</a> (pdf) contains tips created by the PhET team.", "Overview of sim controls and insights into student thinking (<a {0} target=\"_blank\">Teacher Tips pdf</a>)" );
+        StringUtils.overwriteString( session, "simulationMainPanel.teachersGuide", "The <a {0} target=\"_blank\">teacher's guide</a> (pdf) contains tips created by the PhET team.", "Overview of sim controls, model simplifications, and insights into student thinking (<a {0} target=\"_blank\">PDF</a>)." );
+        StringUtils.overwriteString( session, "simulationMainPanel.teachersGuide", "Overview of sim controls and insights into student thinking (<a {0} target=\"_blank\">Teacher Tips pdf</a>)", "Overview of sim controls, model simplifications, and insights into student thinking (<a {0} target=\"_blank\">PDF</a>)." );
 
         StringUtils.overwriteString( session, "nav.teacherIdeas", "For Teachers", "Teaching Resources" );
         StringUtils.overwriteString( session, "home.teacherIdeasAndActivities", "For Teachers", "Teaching Resources" );

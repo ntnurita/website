@@ -221,11 +221,15 @@ public class SimulationMainPanel extends PhetPanel {
             add( new LocalizedText( "guide-text", "simulationMainPanel.teachersGuide", new Object[]{
                     guides.get( 0 ).getLinker().getHref( context, getPhetCycle() )
             } ) );
+            Link guideLink = guides.get( 0 ).getLinker().getLink( "guide-link", context, getPhetCycle() );
+            guideLink.add( new StaticImage( "pdf-icon", WebImage.get( "/images/icons/pdf-icon-40.png", true ), " " ) );
+            add( guideLink );
             hasTeacherTips = true;
         }
         else {
             // make the teachers guide text (and whole section) invisible
             add( new InvisibleComponent( "guide-text" ) );
+            add( new InvisibleComponent( "guide-link" ) );
             add( new InvisibleComponent( "teacher-tips" ) );
             hasTeacherTips = false;
         }
