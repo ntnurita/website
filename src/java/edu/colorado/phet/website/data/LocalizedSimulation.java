@@ -144,6 +144,15 @@ public class LocalizedSimulation implements Serializable, IntId {
         return title;
     }
 
+    public String getTitleWithHTMLSuffix() {
+        if ( getSimulation().isHTML() ) {
+            return title + " (HTML5)";
+        }
+        else {
+            return title;
+        }
+    }
+
     public void setTitle( String title ) {
         this.title = title;
     }

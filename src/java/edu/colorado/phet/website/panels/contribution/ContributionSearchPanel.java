@@ -91,8 +91,8 @@ public class ContributionSearchPanel extends PhetPanel {
                     value = "all";
                 }
                 else {
-                    optionComponent = new Label( "simulation-title", lsim.getTitle() );
-                    item.add( new AttributeModifier( "title", true, new Model<String>( HtmlUtils.encode( lsim.getTitle() ) ) ) );
+                    optionComponent = new Label( "simulation-title", lsim.getTitleWithHTMLSuffix() );
+                    item.add( new AttributeModifier( "title", true, new Model<String>( HtmlUtils.encode( lsim.getTitleWithHTMLSuffix() ) ) ) );
                     value = Integer.toString( lsim.getSimulation().getId() );
                 }
                 optionComponent.setRenderBodyOnly( true );

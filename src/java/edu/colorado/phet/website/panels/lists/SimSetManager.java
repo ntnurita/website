@@ -65,10 +65,7 @@ public abstract class SimSetManager implements Serializable {
             public boolean run( Session session ) {
                 for ( Simulation simulation : allSimulations ) {
                     LocalizedSimulation sim = simulation.getBestLocalizedSimulation( locale );
-                    String title = sim.getTitle();
-                    if ( sim.getSimulation().isHTML() ) {
-                        title += " (HTML5)";
-                    }
+                    String title = sim.getTitleWithHTMLSuffix();
                     titleMap.put( simulation, title );
                 }
                 return true;

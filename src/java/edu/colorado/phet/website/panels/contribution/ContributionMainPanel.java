@@ -32,6 +32,7 @@ import edu.colorado.phet.website.content.contribution.ContributionGuidelinesPane
 import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.contribution.NominateContributionPage;
 import edu.colorado.phet.website.content.search.SearchResultsPage;
+import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.PhetUser;
@@ -276,8 +277,13 @@ public class ContributionMainPanel extends PhetPanel {
                     Simulation sim = (Simulation) o;
                     Simulation simulation = (Simulation) session.load( Simulation.class, sim.getId() );
                     LocalizedSimulation lsim = simulation.getBestLocalizedSimulation( getLocale() );
-                    String simTitle = lsim.getTitle();
-                    simStrings.add( "<a " + SimulationPage.getLinker( lsim ).getHref( context, getPhetCycle() ) + ">" + simTitle + "</a>" );
+                    String simTitle = lsim.getTitleWithHTMLSuffix();
+                    if ( lsim.getSimulation().isHTML() ) {
+                        simStrings.add( "<a " + SimulationPage.getLinker( lsim ).getHref( context, getPhetCycle() ) + ">" + simTitle + "</a>" );
+                    }
+                    else {
+                        simStrings.add( "<a " + LegacySimulationPage.getLinker( lsim ).getHref( context, getPhetCycle() ) + ">" + simTitle + "</a>" );
+                    }
                 }
 
                 return true;
