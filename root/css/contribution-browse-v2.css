@@ -1,3 +1,7 @@
+.contribution-search {
+  padding-bottom: 20px;
+}
+
 .contribution-search .simulations {
     width: 265px;
     padding: 0;
@@ -50,4 +54,9 @@ div.rtl .contribution-text-submit-row {
 .contribution-browse-table tr {
   border-bottom: solid thin #662d91;
   height: 40px;
+}
+
+/* prevent table from expanding beyond the container div without using table-layout: fixed */
+td.ct-authors {
+  max-width: 200px;
 }
