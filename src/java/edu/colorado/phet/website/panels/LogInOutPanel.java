@@ -4,16 +4,13 @@
 
 package edu.colorado.phet.website.panels;
 
-import org.apache.wicket.RedirectToUrlException;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -30,7 +27,6 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.StringPasswordTextField;
 import edu.colorado.phet.website.components.StringTextField;
 import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.PhetRequestCycle;
 import edu.colorado.phet.website.util.StringUtils;
 
 /**
@@ -48,10 +44,9 @@ public class LogInOutPanel extends PhetPanel {
     private TextField username;
     private PasswordTextField password;
     private TextField destination;
+    private TextField source;
 
     private String path;
-
-//    FeedbackPanel feedback;
 
     /**
      * Whether to remember the user or not.
@@ -91,7 +86,6 @@ public class LogInOutPanel extends PhetPanel {
             add( new InvisibleComponent( "sign-out" ) );
             if ( DistributionHandler.displayLogin( getPhetCycle() ) ) {
                 add( new WebMarkupContainer( "sign-in" ) );
-//                addWithId( SignInPage.getLinker( path ).getLink( "sign-in", context, getPhetCycle() ), SIGN_IN_ID );
                 add( RegisterPage.getLinker( path ).getLink( "register", context, getPhetCycle() ) );
             }
             else {
@@ -102,9 +96,6 @@ public class LogInOutPanel extends PhetPanel {
         }
 
         WebMarkupContainer formContainer = new WebMarkupContainer( "login-form-container" ) {{
-//            feedback = new FeedbackPanel( "feedback" );
-//            feedback.setVisible( false );
-//            add( feedback );
             add( new SignInForm( "sign-in-form", context ) );
         }};
         add( formContainer );
@@ -120,6 +111,7 @@ public class LogInOutPanel extends PhetPanel {
             super( id );
 
             add( destination = new StringTextField( "destination", new PropertyModel( properties, "destination" ) ) );
+            add( source = new StringTextField( "source", new PropertyModel( properties, "source" ) ) );
 
             add( username = new StringTextField( "username", new PropertyModel( properties, "username" ) ) );
 
@@ -136,42 +128,13 @@ public class LogInOutPanel extends PhetPanel {
             add( RegisterPage.getLinker( "/" ).getLink( "register-link", context, getPhetCycle() ) );
 
             username.setPersistent( remember );
-
-            add( new AbstractFormValidator() {
-                public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{username, password};
-                }
-
-                public void validate( Form form ) {
-                    System.out.println( "calling validate" );
-                    if ( !PhetSession.get().signIn( (PhetRequestCycle) getRequestCycle(), username.getInput(), password.getInput() ) ) {
-                        String url = StringUtils.makeUrlAbsolute( path );
-                        url += "?login-failed";
-                        throw new RedirectToUrlException( url );
-//                        error( password, "signIn.validation.failed" );
-                    }
-                }
-            } );
-        }
-
-        @Override
-        protected void onValidate() {
-            super.onValidate();
-//            feedback.setVisible( feedback.anyMessage() );
         }
 
         @Override
         protected void onComponentTag( ComponentTag tag ) {
             super.onComponentTag( tag );
-//            String action = urlFor(LoginFormHandlerPage.class, null).toString();
             String action = StringUtils.makeUrlHTTPS( "/" + urlFor( LoginFormHandlerPage.class, null ).toString() );
             tag.put( "action", action );
         }
-
-//        public final void onSubmit() {
-//            String dest = destination.getInput();
-//            String url = ( dest.isEmpty() ) ? StringUtils.makeUrlHTTPS( path ) : dest;
-//            throw new RedirectToUrlException( url );
-//        }
     }
 }

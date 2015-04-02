@@ -24,6 +24,7 @@ $( document ).ready( function() {
   };
 
   $( '#login-button' ).click( function( e ) {
+    $( '#sourceURL' ).val( window.location.pathname );
     openLoginDialog();
     e.preventDefault();
   } );
