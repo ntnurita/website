@@ -69,6 +69,11 @@ div.rtl #page-header-logo {
     margin: 0;
 }
 
+#magnifying-glass {
+  height: 100%;
+  display: block;
+}
+
 #search-submit:focus {
   border: 1px solid white;
   margin: -1px;
