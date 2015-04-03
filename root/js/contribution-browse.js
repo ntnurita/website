@@ -63,7 +63,8 @@ phet.compareIconPresent = function( className, reverse ) {
   return function( a, b ) {
     var iconPresentA = $( a ).find( '.' + className + ' img' ).length;
     var iconPresentB = $( b ).find( '.' + className + ' img' ).length;
-    return ( reverse ) ? iconPresentA > iconPresentB : iconPresentA < iconPresentB;
+    var result = ( reverse ) ? iconPresentA > iconPresentB : iconPresentA < iconPresentB;
+    return ( result ) ? 1 : -1;
   };
 };
 
@@ -72,7 +73,7 @@ phet.compareClassRel = function( className, reverse ) {
     // that's right. we are storing the timestamps in the 'rel' attribute so this will validate
     var timestampA = parseInt( $( a ).find( '.' + className ).attr( 'rel' ) );
     var timestampB = parseInt( $( b ).find( '.' + className ).attr( 'rel' ) );
-    return (timestampA - timestampB ) * (reverse ? 1 : -1);
+    return ( timestampA - timestampB ) * ( reverse ? 1 : -1 );
   };
 };
 
