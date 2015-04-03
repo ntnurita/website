@@ -46,15 +46,23 @@ div.rtl #page-header-logo {
     outline: none;
     border: 1px solid white;
     margin: -1px;
-    -webkit-box-shadow: 0px 0px 4px 0px white;
-    box-shadow: 0px 0px 4px 0px white;
+    -webkit-box-shadow: 0 0 4px 0 white;
+    box-shadow: 0 0 4px 0 white;
+}
+
+.orange-focus:focus {
+  outline: none;
+  border: 2px solid orange;
+  margin: -2px;
+  -webkit-box-shadow: 0 0 4px 0 orange;
+  box-shadow: 0 0 4px 0 orange;
 }
 
 .sign-in-links:focus {
     outline: none;
     border: 1px solid white;
-    -webkit-box-shadow: 0px 0px 4px 0px white;
-    box-shadow: 0px 0px 4px 0px white;
+    -webkit-box-shadow: 0 0 4px 0 white;
+    box-shadow: 0 0 4px 0 white;
 }
 
 #search-submit {
@@ -75,9 +83,13 @@ div.rtl #page-header-logo {
 }
 
 #search-submit:focus {
-  border: 1px solid white;
-  margin: -1px;
-  height: 25px;
+  outline: none;
+  border: 2px solid orange;
+  box-shadow: 0 0 8px 0 orange;
+  margin: -2px;
+  height: 27px;
+  width: 27px;
+  border-radius: 2px;
 }
 
 .search-focus {
