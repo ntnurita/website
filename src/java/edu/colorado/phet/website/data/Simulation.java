@@ -149,7 +149,13 @@ public class Simulation implements Serializable, IntId {
 
         // old JPEG low-quality thumbnail. TODO: (performance) remove this and the below check on file existence AFTER ALL .png thumbnails are in place
         String jpgUrl = "/sims/" + getProject().getName() + "/" + getName() + "-thumbnail.jpg";
-        if ( UrlUtils.getDocrootFile( pngUrl ).exists() ) {
+
+        String newThumbnailUrl = "/sims/" + getProject().getName() + "/" + getName() + "-128.png";
+
+        if ( UrlUtils.getDocrootFile( newThumbnailUrl ).exists() ) {
+            return newThumbnailUrl;
+        }
+        else if ( UrlUtils.getDocrootFile( pngUrl ).exists() ) {
             return pngUrl;
         }
         else {
@@ -162,7 +168,13 @@ public class Simulation implements Serializable, IntId {
             return "/sims/" + getProject().getName() + "/latest/" + getName() + "-600.png";
         }
         else {
-            return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+            String newScreenshotUrl = "/sims/" + getProject().getName() + "/" + getName() + "-600.png";
+            if ( UrlUtils.getDocrootFile( newScreenshotUrl ).exists() ) {
+                return newScreenshotUrl;
+            }
+            else {
+                return "/sims/" + getProject().getName() + "/" + getName() + "-screenshot.png";
+            }
         }
     }
 
