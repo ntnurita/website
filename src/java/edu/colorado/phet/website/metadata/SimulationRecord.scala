@@ -65,11 +65,18 @@ class SimulationRecord(str: String) {
       "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-128.png"
     }
     else {
-      "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-thumbnail.jpg"
+      "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName + "-128.jpg"
     }
   }
 
-  def screenshotLink = "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-screenshot.png"
+  def screenshotLink = {
+    if ( isHTML ) {
+      "http://phet.colorado.edu/sims/" + projectName + "/latest/" + simulationName + "-600.png"
+    }
+    else {
+      "http://phet.colorado.edu/sims/" + projectName + "/" + simulationName + "-600.png"
+    }
+  }
 
   def runNowUrl(language: String): String = {
     if ( isJava ) {
