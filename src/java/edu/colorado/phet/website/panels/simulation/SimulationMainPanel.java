@@ -41,9 +41,9 @@ import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
+import edu.colorado.phet.website.content.ForTranslatorsPanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
-import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
@@ -72,7 +72,6 @@ import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 import static edu.colorado.phet.website.util.HtmlUtils.encode;
 
@@ -309,7 +308,7 @@ public class SimulationMainPanel extends PhetPanel {
 
         if ( simulation.getSimulation().isHTML() && contributions.size() == 0 ) {
             add( new LocalizedText( "no-activities", "simulationMainPanel.noActivities", new Object[]{
-                    LegacySimulationPage.getLinker( simulation ).getHref( context, getPhetCycle() )
+                    LegacySimulationPage.getLinker( simulation ).getHrefWithHash( context, getPhetCycle(), "for-teachers-header" )
             } ) );
         }
         else {
@@ -381,7 +380,7 @@ public class SimulationMainPanel extends PhetPanel {
 
 //        add( new InvisibleComponent( "translate-sim-link" ) );
         add( new LocalizedText( "translator-info", "simulationMainPanel.translatorInfo", new Object[] {
-                TranslatedSimsPage.getLinker().getHref( context, getPhetCycle() )
+                ForTranslatorsPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
         /*---------------------------------------------------------------------------*
