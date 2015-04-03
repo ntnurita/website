@@ -49,11 +49,16 @@ div.rtl .contribution-text-submit-row {
 
 .ct-table-header-link {
   color: white;
+  text-transform: uppercase;
 }
 
 .contribution-browse-table tr {
   border-bottom: solid thin #662d91;
   height: 40px;
+}
+
+.contribution-browse-table th {
+  text-align: left;
 }
 
 /* prevent table from expanding beyond the container div without using table-layout: fixed */

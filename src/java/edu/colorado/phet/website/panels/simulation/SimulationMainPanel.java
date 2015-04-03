@@ -43,6 +43,7 @@ import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
+import edu.colorado.phet.website.content.contribution.ContributionPage;
 import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimsByKeywordPage;
 import edu.colorado.phet.website.content.simulations.SimulationFAQPage;
@@ -305,6 +306,16 @@ public class SimulationMainPanel extends PhetPanel {
         else {
             add( new InvisibleComponent( "contributions-panel" ) );
         }
+
+        if ( simulation.getSimulation().isHTML() && contributions.size() == 0 ) {
+            add( new LocalizedText( "no-activities", "simulationMainPanel.noActivities", new Object[]{
+                    LegacySimulationPage.getLinker( simulation ).getHref( context, getPhetCycle() )
+            } ) );
+        }
+        else {
+            add( new InvisibleComponent( "no-activities" ) );
+        }
+
         String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
         add( ContributionCreatePage.getLinker( query ).getLink( "submit-a", context, getPhetCycle() ) );
 

@@ -485,3 +485,7 @@ pre {
 .phet-table td, th {
   padding: 5px 10px;
 }
+
+td.translation-table-icon {
+  padding: 5px 0 5px 5px;
+}
