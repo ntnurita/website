@@ -42,6 +42,10 @@ public abstract class AbstractLinker implements RawLinkable {
         return "href=\"" + getRawUrl( context, cycle ) + "\"";
     }
 
+    public String getHrefWithHash( PageContext context, PhetRequestCycle cycle, String hash ) {
+        return "href=\"" + getRawUrl( context, cycle ) + "#" + hash + "\"";
+    }
+
     public Link getLink( String id, PageContext context, PhetRequestCycle cycle ) {
         RawLink link = new RawLink( id, getRawUrl( context, cycle ) );
 

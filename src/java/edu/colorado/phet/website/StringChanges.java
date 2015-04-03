@@ -56,6 +56,7 @@ public class StringChanges {
         StringUtils.overwriteString( session, "simulationMainPanel.videoPrimer", "and Video Primer", "Video Primer" );
 
         StringUtils.addString( session, "simulationMainPanel.signInPrompt", "Please sign in to watch the video primer" );
+        StringUtils.addString( session, "simulationMainPanel.noActivities", "Check out <a {0}>activities for the original sim</a> for ideas" );
 
         StringUtils.overwriteString( session, "simulationMainPanel.teachersGuide", "The <a {0} target=\"_blank\">teacher's guide</a> (pdf) contains tips created by the PhET team.", "Overview of sim controls, model simplifications, and insights into student thinking (<a {0} target=\"_blank\">PDF</a>)." );
         StringUtils.overwriteString( session, "simulationMainPanel.teachersGuide", "Overview of sim controls and insights into student thinking (<a {0} target=\"_blank\">Teacher Tips pdf</a>)", "Overview of sim controls, model simplifications, and insights into student thinking (<a {0} target=\"_blank\">PDF</a>)." );

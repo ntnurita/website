@@ -333,11 +333,14 @@
                     <div wicket:id="contributions-panel" class="simulation-contributions-pane simulation-panel-indent"></div>
                 </wicket:enclosure>
 
-                <p style="text-align: center">
-                    <a wicket:id="submit-a" class="phet-button purple-button" href="#">
-                        <wicket:message key="simulationMainPanel.shareAnActivity">Share an Activity!</wicket:message>
-                    </a>
-                </p>
+                <div class="simulation-panel-indent" style="text-align: center">
+                    <p wicket:id="no-activities">Check out <a href="#">activities for the original sim for ideas.</a></p>
+                    <p>
+                        <a wicket:id="submit-a" class="phet-button purple-button" href="#">
+                            <wicket:message key="simulationMainPanel.shareAnActivity">Share an Activity!</wicket:message>
+                        </a>
+                    </p>
+                </div>
             </div>
 
             <wicket:enclosure child="simulation-main-translation-list">
@@ -360,17 +363,17 @@
                                 <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
                             </td>
                             <td>
-                                <a href="#" wicket:id="simulation-main-translation-download" class="sim-download-disk">
+                                <a href="#" wicket:id="simulation-main-translation-download">
                                     <img wicket:id="translation-download-icon">
                                 </a>
                             </td>
-                            <td>
-                                <a href="#" wicket:id="simulation-main-translation-link-1" rel="external" class="sim-run-now-play">
+                            <td class="translation-table-icon">
+                                <a href="#" wicket:id="simulation-main-translation-link-1" rel="external">
                                     <img wicket:id="translation-run-now-icon">
                                 </a>
                             </td>
                             <td>
-                                <a href="#" wicket:id="simulation-main-translation-link-2" rel="external" class="sim-run-now-play">
+                                <a href="#" wicket:id="simulation-main-translation-link-2" rel="external">
                                     <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
                                 </a>
                             </td>
@@ -382,12 +385,13 @@
                         </tr>
                     </table>
 
-                    <div style="text-align: center; padding-top: 17px">
-                        <!--<a wicket:id="translate-sim-link" class="phet-button blue-button" href="#">-->
-                        <a class="phet-button blue-button" href="#">
-                            <wicket:message key="simulationMainPanel.translateThisSim">Translate this Sim</wicket:message>
-                        </a>
-                        <p wicket:id="translator-info" style="margin-top: 20px">
+                    <div style="text-align: center">
+                        <p>
+                            <a class="phet-button blue-button" href="#">
+                                <wicket:message key="simulationMainPanel.translateThisSim">Translate this Sim</wicket:message>
+                            </a>
+                        </p>
+                        <p wicket:id="translator-info">
                             Find more information <a href="#">for translators</a>
                         </p>
                     </div>

@@ -41,6 +41,7 @@ import edu.colorado.phet.website.components.StaticImage;
 import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
+import edu.colorado.phet.website.content.ForTranslatorsPanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
@@ -71,7 +72,6 @@ import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
-import edu.colorado.phet.website.util.wicket.WicketUtils;
 
 import static edu.colorado.phet.website.util.HtmlUtils.encode;
 
@@ -138,13 +138,11 @@ public class SimulationMainPanel extends PhetPanel {
         WebImage image = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLImage() : simulation.getSimulation().getImage();
 
         // Set image width to 300px. We have 600px width images on the server so they look good on retina displays
-        if ( simulation.getSimulation().isHTML() ) {
-            if ( image != null && image.getDimension() != null ) {
-                image.getDimension().setSize( 300, 197 );
-            }
-            else {
-                logger.warn( "NULL image for simulation: " + simulation.getSimulation().getName() );
-            }
+        if ( image != null && image.getDimension() != null ) {
+            image.getDimension().setSize( 300, 197 );
+        }
+        else {
+            logger.warn( "NULL image for simulation: " + simulation.getSimulation().getName() );
         }
         link.add( new StaticImage( "simulation-main-screenshot", image, StringUtils.messageFormat( getPhetLocalizer().getString( "simulationMainPanel.screenshot.alt", this ), new Object[]{
                 encode( simulation.getTitle() )
@@ -305,6 +303,16 @@ public class SimulationMainPanel extends PhetPanel {
         else {
             add( new InvisibleComponent( "contributions-panel" ) );
         }
+
+        if ( simulation.getSimulation().isHTML() && contributions.size() == 0 ) {
+            add( new LocalizedText( "no-activities", "simulationMainPanel.noActivities", new Object[]{
+                    LegacySimulationPage.getLinker( simulation ).getHrefWithHash( context, getPhetCycle(), "for-teachers-header" )
+            } ) );
+        }
+        else {
+            add( new InvisibleComponent( "no-activities" ) );
+        }
+
         String query = "simulation=" + simulation.getSimulation().getName() + "&isHTML=" + simulation.getSimulation().isHTML();
         add( ContributionCreatePage.getLinker( query ).getLink( "submit-a", context, getPhetCycle() ) );
 
@@ -370,7 +378,7 @@ public class SimulationMainPanel extends PhetPanel {
 
 //        add( new InvisibleComponent( "translate-sim-link" ) );
         add( new LocalizedText( "translator-info", "simulationMainPanel.translatorInfo", new Object[] {
-                TranslatedSimsPage.getLinker().getHref( context, getPhetCycle() )
+                ForTranslatorsPanel.getLinker().getHref( context, getPhetCycle() )
         } ) );
 
         /*---------------------------------------------------------------------------*

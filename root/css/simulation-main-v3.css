@@ -141,15 +141,6 @@ div.rtl .simulation-main-image-panel {
     padding: 0 5px 0 0;
 }
 
-/*.simulation-contributions-pane {*/
-    /*margin-left: 5px;*/
-/*}*/
-
-/*div.rtl .simulation-contributions-pane {*/
-/* leave the other margin? */
-    /*margin-right: 5px;*/
-/*}*/
-
 /* TODO: Clean up this table CSS */
 table.system-requirements-table {
     margin: 5px 0 5px;
@@ -269,20 +260,6 @@ div.rtl div.rating-holder {
 
 body#offline-installer-body .sim-download {
     visibility: hidden;
-}
-
-.sim-run-now-play {
-    padding-left: 10px;
-    background-image: url(images/control-play.gif);
-    background-position: left center;
-    background-repeat: no-repeat;
-}
-
-.sim-download-disk {
-    padding-left: 14px;
-    background-image: url(images/arrow-down.gif);
-    background-position: left center;
-    background-repeat: no-repeat;
 }
 
 .triangle-down {

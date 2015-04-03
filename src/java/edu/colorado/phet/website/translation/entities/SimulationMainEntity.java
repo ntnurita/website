@@ -93,6 +93,7 @@ public class SimulationMainEntity extends TranslationEntity {
         addString( "simulationMainPanel.allSimsIn" );
         addString( "simulationMainPanel.translatorInfo" );
         addString( "simulationMainPanel.downloadOrRun" );
+        addString( "simulationMainPanel.noActivities" );
         addString( "simulationMainPanel.originalSim" );
         addString( "simulationMainPanel.backToHTML" );
 
