@@ -304,10 +304,17 @@ public class SimulationMainPanel extends PhetPanel {
             add( new InvisibleComponent( "contributions-panel" ) );
         }
 
-        if ( simulation.getSimulation().isHTML() && contributions.size() == 0 ) {
-            add( new LocalizedText( "no-activities", "simulationMainPanel.noActivities", new Object[]{
-                    LegacySimulationPage.getLinker( simulation ).getHrefWithHash( context, getPhetCycle(), "for-teachers-header" )
-            } ) );
+        if ( simulation.getSimulation().isHTML() ) {
+            if ( contributions.size() == 0 ) {
+                add( new LocalizedText( "no-activities", "simulationMainPanel.noActivities", new Object[]{
+                        LegacySimulationPage.getLinker( simulation ).getHrefWithHash( context, getPhetCycle(), "for-teachers-header" )
+                } ) );
+            }
+            else {
+                add( new LocalizedText( "no-activities", "simulationMainPanel.moreActivities", new Object[]{
+                        LegacySimulationPage.getLinker( simulation ).getHrefWithHash( context, getPhetCycle(), "for-teachers-header" )
+                } ) );
+            }
         }
         else {
             add( new InvisibleComponent( "no-activities" ) );
