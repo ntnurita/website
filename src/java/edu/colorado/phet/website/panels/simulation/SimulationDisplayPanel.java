@@ -81,7 +81,11 @@ public class SimulationDisplayPanel extends PhetPanel {
                 // rotate among the data servers
                 String[] dataServers = DistributionHandler.getDistributionServers( getPhetCycle() );
                 int dataServerIndex = simulation.getId() % dataServers.length;
-                final String dataServer = dataServers[dataServerIndex];
+//                final String dataServer = dataServers[dataServerIndex];
+
+                // TODO: for now don't use dataservers when not on figaro since the new screenshots are not there
+                String serverName = getPhetCycle().getHttpServletRequest().getServerName();
+                final String dataServer = ( !serverName.equals( "phet.colorado.edu" ) ) ? serverName : dataServers[dataServerIndex];
 
                 WebImage thumbnail = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLThumbnail() : simulation.getSimulation().getThumbnail();
                 link.add( new StaticImage( "thumbnail", thumbnail, alt ) {{
