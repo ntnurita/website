@@ -249,6 +249,7 @@ div.rtl div.rating-holder {
     cursor: pointer;
     position: absolute;
     right: -70px;
+    z-index: 2;
 }
 
 .other-sim-link {
