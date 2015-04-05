@@ -231,9 +231,11 @@
                 </table>
             </a>
 
-            <h2 id="about-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('about')">
-                <wicket:message key="simulationMainPanel.about">About</wicket:message>
-            </h2>
+            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('about')">
+                <h2 id="about-header" class="question triangle-right">
+                    <wicket:message key="simulationMainPanel.about">About</wicket:message>
+                </h2>
+            </a>
 
             <div id="about" class="answer sim-page-content">
 
@@ -279,9 +281,11 @@
                 </wicket:enclosure>
             </div>
 
-            <h2 id="for-teachers-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('for-teachers')">
-                <wicket:message key="simulationMainPanel.forTeachers">For Teachers</wicket:message>
-            </h2>
+            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('for-teachers')">
+                <h2 id="for-teachers-header" class="question triangle-right">
+                    <wicket:message key="simulationMainPanel.forTeachers">For Teachers</wicket:message>
+                </h2>
+            </a>
 
             <div id="for-teachers" class="answer">
                 <div class="sim-page-content">
@@ -344,9 +348,11 @@
             </div>
 
             <wicket:enclosure child="simulation-main-translation-list">
-                <h2 id="translations-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('translations')">
-                    <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
-                </h2>
+                <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('translations')">
+                    <h2 id="translations-header" class="question triangle-right">
+                        <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
+                    </h2>
+                </a>
                 <div id="translations" class="answer simulation-panel-indent">
                     <table class="phet-table translations-table">
                         <span id="translations-table-header">
@@ -400,15 +406,19 @@
             </wicket:enclosure>
 
             <wicket:enclosure child="related-simulations-panel">
-                <h2 id="related-sims-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('related-sims')">
-                    <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
-                </h2>
+                <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('related-sims')">
+                    <h2 id="related-sims-header" class="question triangle-right">
+                        <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
+                    </h2>
+                </a>
                 <div id="related-sims" class="answer" wicket:id="related-simulations-panel"></div>
             </wicket:enclosure>
 
-            <h2 id="requirements-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('requirements')">
-                <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
-            </h2>
+            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('requirements')">
+                <h2 id="requirements-header" class="question triangle-right">
+                    <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
+                </h2>
+            </a>
 
             <div id="requirements" class="answer">
                 <table class="system-requirements-table">
@@ -444,9 +454,11 @@
 
             </div>
 
-            <h2 id="credits-header" class="question triangle-right" onclick="return false" onmousedown="return phet.toggleExpandableText('credits')">
-                <wicket:message key="simulationMainPanel.credits">Credits</wicket:message>
-            </h2>
+            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('credits')">
+                <h2 id="credits-header" class="question triangle-right">
+                    <wicket:message key="simulationMainPanel.credits">Credits</wicket:message>
+                </h2>
+            </a>
 
             <div id="credits" class="answer">
                 <table class="credits-table">
