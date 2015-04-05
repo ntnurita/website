@@ -334,3 +334,14 @@ body#offline-installer-body .sim-download {
     height: 1.25em;
     margin-top: 5px;
 }
+
+.click-area-expand {
+  padding-left: 20px;
+  display: inline-block;
+  position: relative;
+  left: -20px;
+  width: 100%;
+  z-index: 1;
+  cursor: pointer;
+  text-decoration: none !important;
+}

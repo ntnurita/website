@@ -7,10 +7,13 @@ package edu.colorado.phet.website.content.getphet;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.components.LocalizedText;
@@ -45,6 +48,9 @@ public class OneAtATimePanel extends PhetPanel {
             protected void populateItem( ListItem item ) {
                 LocalizedSimulation simulation = (LocalizedSimulation) item.getModel().getObject();
                 Link link = simulation.getDownloadLink( "download-link" );
+                if ( simulation.getSimulation().isHTML() ) {
+                    link.add( new AttributeModifier( "download", true, new Model<String>( "" ) ) );
+                }
                 link.add( new Label( "simulation-title", simulation.getTitle() ) );
                 item.add( link );
             }
