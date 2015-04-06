@@ -421,15 +421,15 @@ pre {
 }
 
 .login-form-submit {
-    color: white;
+    color: white !important;
     background-color: rgb(42,50,106);
-    text-align: center;
-    display: block;
+    display: block !important;
     border: none;
     margin: 10px auto;
-    cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 3px;
+}
+
+.login-form-submit:hover {
+  background-color: rgb(62,70,126);
 }
 
 .login-form-text {
@@ -456,7 +456,6 @@ pre {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  padding: 0 10px;
   padding: 0 10px;
   height: 25px;
   text-decoration: none !important;
