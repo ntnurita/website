@@ -50,12 +50,8 @@ public class SignInPanel extends PhetPanel {
 
         setRenderBodyOnly( true );
 
-        add( new SignInForm( "sign-in-form" ) );
+        add( new SignInForm( "sign-in-form", context ) );
 
-        add( new LocalizedText( "to-register", "signIn.toRegister", new Object[] {
-                RegisterPage.getLinker( destination == null ? "/" : destination ).getHref( context, getPhetCycle() )
-        } ) );
-        add( ResetPasswordRequestPage.getLinker().getLink( "reset-your-password", context, getPhetCycle() ) );
         feedback = new FeedbackPanel( "feedback" );
         feedback.setVisible( false );
         add( feedback );
@@ -68,7 +64,7 @@ public class SignInPanel extends PhetPanel {
 
         private final ValueMap properties = new ValueMap();
 
-        public SignInForm( final String id ) {
+        public SignInForm( final String id, PageContext context ) {
             super( id );
 
             add( username = new StringTextField( "username", new PropertyModel( properties, "username" ) ) );
@@ -81,8 +77,11 @@ public class SignInPanel extends PhetPanel {
             add( rememberBox );
 
             rememberBox.add( new CheckBox( "remember-check", new PropertyModel( SignInPanel.this, "remember" ) ) );
+            rememberBox.add( ResetPasswordRequestPage.getLinker().getLink( "password-link", context, getPhetCycle() ) );
 
             username.setPersistent( remember );
+
+            add( RegisterPage.getLinker( destination == null ? "/" : destination ).getLink( "register-link", context, getPhetCycle() ) );
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {

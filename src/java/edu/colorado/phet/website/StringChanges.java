@@ -65,9 +65,16 @@ public class StringChanges {
         StringUtils.overwriteString( session, "nav.teacherIdeas", "For Teachers", "Teaching Resources" );
         StringUtils.overwriteString( session, "home.teacherIdeasAndActivities", "For Teachers", "Teaching Resources" );
 
+        StringUtils.overwriteString( session, "signIn.signIn", "Sign in:", "Sign in" );
+        StringUtils.overwriteString( session, "signIn.email", "Email address:", "Email address" );
+        StringUtils.overwriteString( session, "signIn.password", "Password:", "Password" );
+        StringUtils.overwriteString( session, "home.teacherIdeasAndActivities", "For Teachers", "Teaching Resources" );
+
+        StringUtils.addString( session, "signIn.noAccount", "No account?" );
+        StringUtils.addString( session, "signIn.needAccount", "Need an account?" );
+
 
         StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:", "Support PhET:" );
-
 
 
         StringUtils.addString( session, "about.accessibility.title", "Accessibility" );

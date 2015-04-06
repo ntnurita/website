@@ -32,6 +32,8 @@ public class UserEntity extends TranslationEntity {
         addString( "signIn.toRegister" );
         addString( "signIn.validation.failed" );
         addString( "signIn.resetYourPassword" );
+        addString( "signIn.noAccount" );
+        addString( "signIn.needAccount" );
 
         addString( "validation.user.email" );
         addString( "validation.user.user" );
