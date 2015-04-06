@@ -11,7 +11,6 @@ import edu.colorado.phet.website.panels.contribution.ContributionManagePanel;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
-import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.AuthenticatedLinker;
 import edu.colorado.phet.website.util.links.RawLinkable;
 
@@ -23,7 +22,7 @@ public class ContributionManagePage extends PhetRegularPage {
         super( parameters );
 
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.manage" ) );
-        verifySignedIn();
+        tryHttpsAndVerifySignedIn( ContributionManagePage.getLinker().getRawUrl( getPageContext(), getPhetCycle() ) );
 
         setTitle( getLocalizer().getString( "contribution.manage.pageTitle", this ) );
 

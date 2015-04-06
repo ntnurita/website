@@ -16,7 +16,6 @@ import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.AuthenticatedLinker;
-import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class ContributionCreatePage extends PhetRegularPage {
 
@@ -34,7 +33,7 @@ public class ContributionCreatePage extends PhetRegularPage {
 
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.submit" ) );
 
-        verifySignedIn();
+        tryHttpsAndVerifySignedIn( ContributionCreatePage.getLinker().getHttpsUrl( getPageContext(), getPhetCycle() ) );
 
         setTitle( getLocalizer().getString( "contribution.create.pageTitle", this ) );
 
@@ -53,7 +52,7 @@ public class ContributionCreatePage extends PhetRegularPage {
         mapper.addMap( "^teaching-resources/submit-activity$", ContributionCreatePage.class );
     }
 
-    public static RawLinkable getLinker() {
+    public static AbstractLinker getLinker() {
         return new AuthenticatedLinker() {
             public String getSubUrl( PageContext context ) {
                 return "teaching-resources/submit-activity";
@@ -61,7 +60,7 @@ public class ContributionCreatePage extends PhetRegularPage {
         };
     }
 
-    public static RawLinkable getLinker( final String query ) {
+    public static AbstractLinker getLinker( final String query ) {
         return new AuthenticatedLinker() {
             public String getSubUrl( PageContext context ) {
                 return "teaching-resources/submit-activity?" + query;

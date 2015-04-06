@@ -487,7 +487,16 @@ public abstract class PhetPage extends WebPage implements Stylable {
         if ( !PhetSession.get().isSignedIn() ) {
             throwRedirectException();
         }
-//        AuthenticatedPage.checkSignedIn( getPageContext() );
+    }
+
+    /**
+     * Try redirecting to the https url given, then verify the user is logged in and redirect to the sign in page if not
+     * @param url - the https url of the current page
+     */
+    protected void tryHttpsAndVerifySignedIn( String url ) {
+        if ( !PhetSession.get().isSignedIn() ) {
+            throwRedirectException( url );
+        }
     }
 
     /**

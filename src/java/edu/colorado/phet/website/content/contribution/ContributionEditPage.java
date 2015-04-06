@@ -13,10 +13,10 @@ import edu.colorado.phet.website.panels.contribution.ContributionEditPanel;
 import edu.colorado.phet.website.templates.PhetRegularPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.links.AbstractLinker;
-import edu.colorado.phet.website.util.links.RawLinkable;
 
 public class ContributionEditPage extends PhetRegularPage {
 
@@ -28,7 +28,7 @@ public class ContributionEditPage extends PhetRegularPage {
         super( parameters );
 
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.edit" ) );
-        verifySignedIn();
+        tryHttpsAndVerifySignedIn( StringUtils.makeUrlHTTPS( getFullPath() ) );
 
         String contributionIdString = parameters.getString( "contributionId" );
         final int contributionId = Integer.parseInt( contributionIdString );
@@ -51,7 +51,7 @@ public class ContributionEditPage extends PhetRegularPage {
         mapper.addMap( "^contributions/edit/([^/]+)$", ContributionEditPage.class, new String[] { "contributionId" } );
     }
 
-    public static RawLinkable getLinker( final int contributionId ) {
+    public static AbstractLinker getLinker( final int contributionId ) {
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
                 return "contributions/edit/" + String.valueOf( contributionId );
@@ -59,7 +59,7 @@ public class ContributionEditPage extends PhetRegularPage {
         };
     }
 
-    public static RawLinkable getLinker( final Contribution contribution ) {
+    public static AbstractLinker getLinker( final Contribution contribution ) {
         return getLinker( contribution.getId() );
     }
 
