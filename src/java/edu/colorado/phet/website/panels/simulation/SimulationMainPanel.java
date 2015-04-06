@@ -304,7 +304,7 @@ public class SimulationMainPanel extends PhetPanel {
             add( new InvisibleComponent( "contributions-panel" ) );
         }
 
-        if ( simulation.getSimulation().isHTML() ) {
+        if ( simulation.getSimulation().isHTML() && simulation.getSimulation().getLegacyVersion( getHibernateSession() ) != null ) {
             if ( contributions.size() == 0 ) {
                 add( new LocalizedText( "no-activities", "simulationMainPanel.noActivities", new Object[]{
                         LegacySimulationPage.getLinker( simulation ).getHrefWithHash( context, getPhetCycle(), "for-teachers-header" )

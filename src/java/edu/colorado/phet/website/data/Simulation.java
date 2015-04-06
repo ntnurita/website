@@ -104,6 +104,27 @@ public class Simulation implements Serializable, IntId {
     }
 
     /**
+     * @param session - hibernate session
+     * @return The legacy version of the given sim or null
+     */
+    public Simulation getLegacyVersion( Session session ) {
+        String simulationName = getName();
+
+        // try looking up the sim from the mapping in case it is not found due to a name mismatch between the legacy and html versions
+        if ( AbstractSimulationPage.CURRENT_SIM_NAME_TO_LEGACY.containsKey( simulationName ) ) {
+            simulationName = AbstractSimulationPage.CURRENT_SIM_NAME_TO_LEGACY.get( simulationName );
+        }
+
+        List<Simulation> sims = session.createQuery( "select s from Simulation as s where s.name = :name" ).setString( "name", simulationName ).list();
+        for ( Simulation s : sims ) {
+            if ( s.isVisible() && !s.isHTML() ) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns the best matching localized simulation.
      * <p/>
      * Note: should be in a Hibernate session, so localizedSimulations is instantiated
