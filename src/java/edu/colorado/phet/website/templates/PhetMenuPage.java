@@ -83,20 +83,6 @@ public abstract class PhetMenuPage extends PhetPage {
 
     }
 
-    /**
-     * If the user is not signed in, redirect them to the sign-in page but keep the correct navigation locations
-     */
-    protected void verifySignedIn() {
-        if ( initializedLocations ) {
-            // TODO: figure out how to keep the nav locations on when signing in without using RestartResponseAtInterceptPageException
-            super.verifySignedIn();
-//            AuthenticatedPage.checkSignedIn( navLocations, getPageContext() );
-        }
-        else {
-            super.verifySignedIn();
-        }
-    }
-
     public void hideSocialBookmarkButtons() {
         showSocialBookmarkButtons = false;
     }

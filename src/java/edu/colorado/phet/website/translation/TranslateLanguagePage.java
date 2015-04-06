@@ -44,11 +44,7 @@ public class TranslateLanguagePage extends TranslationPage {
     private static final Logger logger = Logger.getLogger( TranslateLanguagePage.class.getName() );
 
     public TranslateLanguagePage( PageParameters parameters ) {
-        super( parameters );
-
-        if ( !PhetSession.get().isSignedIn() ) {
-            throwRedirectException();
-        }
+        super( parameters, TranslateLanguagePage.getLinker() );
 
         locale = LocaleUtils.stringToLocale( parameters.getString( TRANSLATION_LOCALE ) );
 

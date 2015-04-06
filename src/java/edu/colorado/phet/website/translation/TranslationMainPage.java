@@ -10,13 +10,11 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.markup.html.form.Form;
 import org.hibernate.Session;
 
 import edu.colorado.phet.common.phetcommon.util.LocaleUtils;
 import edu.colorado.phet.website.authentication.PhetSession;
-import edu.colorado.phet.website.authentication.SignInPage;
 import edu.colorado.phet.website.data.PhetUser;
 import edu.colorado.phet.website.data.Translation;
 import edu.colorado.phet.website.util.PageContext;
@@ -25,7 +23,6 @@ import edu.colorado.phet.website.util.hibernate.HibernateUtils;
 import edu.colorado.phet.website.util.hibernate.VoidTask;
 import edu.colorado.phet.website.util.links.AbstractLinker;
 import edu.colorado.phet.website.util.links.AuthenticatedLinker;
-import edu.colorado.phet.website.util.links.RawLinkable;
 
 /**
  * The main "website translation" page. Contains a list of translations that a user has access to, plus instructions.
@@ -35,11 +32,7 @@ public class TranslationMainPage extends TranslationPage {
     private static final Logger logger = Logger.getLogger( TranslationMainPage.class.getName() );
 
     public TranslationMainPage( PageParameters parameters ) {
-        super( parameters );
-
-        if ( !PhetSession.get().isSignedIn() ) {
-            throwRedirectException();
-        }
+        super( parameters, TranslationMainPage.getLinker() );
 
         final List<Translation> translations = new LinkedList<Translation>();
         final PhetUser user = PhetSession.get().getUser();
@@ -89,7 +82,7 @@ public class TranslationMainPage extends TranslationPage {
         mapper.addMap( "for-translators/website", TranslationMainPage.class, new String[] { } );
     }
 
-    public static RawLinkable getLinker() {
+    public static AbstractLinker getLinker() {
         return new AuthenticatedLinker() {
             @Override
             public String getSubUrl( PageContext context ) {

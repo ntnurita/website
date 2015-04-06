@@ -6,10 +6,8 @@ package edu.colorado.phet.website.authentication;
 
 import java.util.Collection;
 
-import org.apache.http.client.RedirectException;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.RedirectToUrlException;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 
 import edu.colorado.phet.website.data.PhetUser;
@@ -18,6 +16,7 @@ import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.templates.PhetPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlStrategy;
+import edu.colorado.phet.website.util.links.AbstractLinker;
 
 /**
  * Class and methods for requiring authentication (user log in) before viewing a page
@@ -31,6 +30,14 @@ public class AuthenticatedPage extends PhetPage {
 
         if ( !PhetSession.get().isSignedIn() ) {
             throwRedirectException();
+        }
+    }
+
+    public AuthenticatedPage( PageParameters parameters, AbstractLinker linker ) {
+        super( parameters );
+
+        if ( !PhetSession.get().isSignedIn() ) {
+            throwRedirectException( linker.getHttpsUrl( getPageContext(), getPhetCycle() ) );
         }
     }
 

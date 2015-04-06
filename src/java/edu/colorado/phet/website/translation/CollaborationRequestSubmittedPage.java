@@ -17,13 +17,6 @@ public class CollaborationRequestSubmittedPage extends TranslationPage {
 
     public CollaborationRequestSubmittedPage( PageParameters parameters ) {
         super( parameters );
-
-        if ( !PhetSession.get().isSignedIn() ) {
-            throwRedirectException();
-        }
-
         add( TranslationMainPage.getLinker().getLink( "return", getPageContext(), getPhetCycle() ) );
-
     }
-
 }

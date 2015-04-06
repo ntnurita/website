@@ -53,6 +53,7 @@ import edu.colorado.phet.website.translation.TranslationUrlStrategy;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetRequestCycle;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.WebImage;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
@@ -425,6 +426,14 @@ public abstract class PhetPage extends WebPage implements Stylable {
         }
         String url = SignInPage.getLinker( uri ).getRawUrl( getPageContext(), getPhetCycle() );
         throw new RedirectToUrlException( url );
+    }
+
+    public void throwRedirectException( String url ) {
+        // redirect to the page with HTTPS if they have come using HTTP
+        if ( !getPhetCycle().isOriginalSecure() ) {
+            throw new RedirectToUrlException( url );
+        }
+        throwRedirectException();
     }
 
     @Override

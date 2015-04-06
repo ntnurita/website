@@ -38,6 +38,10 @@ public abstract class AbstractLinker implements RawLinkable {
         return context.getPrefix() + getSubUrl( context );
     }
 
+    public String getHttpsUrl( PageContext context, PhetRequestCycle cycle ) {
+        return "https://" + cycle.getServerName() + context.getPrefix() + getSubUrl( context );
+    }
+
     public String getHref( PageContext context, PhetRequestCycle cycle ) {
         return "href=\"" + getRawUrl( context, cycle ) + "\"";
     }

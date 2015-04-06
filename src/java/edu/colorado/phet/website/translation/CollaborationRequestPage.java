@@ -35,10 +35,6 @@ public class CollaborationRequestPage extends TranslationPage {
     public CollaborationRequestPage( PageParameters parameters ) {
         super( parameters );
 
-        if ( !PhetSession.get().isSignedIn() ) {
-            throwRedirectException();
-        }
-
         translationId = Integer.parseInt( parameters.getString( TRANSLATION_ID ) );
 
         add( TranslationMainPage.getLinker().getLink( "return", getPageContext(), getPhetCycle() ) );

@@ -18,12 +18,6 @@ public class TranslationSubmittedPage extends TranslationPage {
     public TranslationSubmittedPage( PageParameters parameters ) {
         super( parameters );
 
-        if ( !PhetSession.get().isSignedIn() ) {
-            throwRedirectException();
-        }
-
         add( TranslationMainPage.getLinker().getLink( "return", getPageContext(), getPhetCycle() ) );
-
     }
-
 }
