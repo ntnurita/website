@@ -170,6 +170,5 @@ input.contribution-input {
 .contribution-edit #simulations {
   height: 150px;
   overflow: auto;
-  font-size: 5em;
   border: solid 1px #d3d3d3;
 }

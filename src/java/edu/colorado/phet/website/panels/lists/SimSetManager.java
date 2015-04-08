@@ -84,28 +84,28 @@ public abstract class SimSetManager implements Serializable {
         }
     }
 
-    public SortedList<SimOrderItem> getComponent( final String id, PageContext context ) {
-        return new SortedList<SimOrderItem>( id, context, items, allItems ) {
-            {
-                setOutputMarkupId( true );
-                setMarkupId( "sim-manager-" + HtmlUtils.sanitizeId( id ) );
-            }
-
-            public boolean onItemAdd( final SimOrderItem item ) {
-                for ( SimOrderItem oldItem : items ) {
-                    if ( oldItem.getId() == item.getId() ) {
-                        // already in list. don't want duplicates!
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            public boolean onItemRemove( final SimOrderItem item, int index ) {
-                return true;
-            }
-
-        };
+    public SortedCheckboxList getComponent( final String id, PageContext context ) {
+        return new SortedCheckboxList( id, context, items, allItems );
+//        {
+//            {
+//                setOutputMarkupId( true );
+//                setMarkupId( "sim-manager-" + HtmlUtils.sanitizeId( id ) );
+//            }
+//
+//            public boolean onItemAdd( final SimOrderItem item ) {
+//                for ( SimOrderItem oldItem : items ) {
+//                    if ( oldItem.getId() == item.getId() ) {
+//                        // already in list. don't want duplicates!
+//                        return false;
+//                    }
+//                }
+//                return true;
+//            }
+//
+//            public boolean onItemRemove( final SimOrderItem item, int index ) {
+//                return true;
+//            }
+//        };
     }
 
     public List<SimOrderItem> getItems() {

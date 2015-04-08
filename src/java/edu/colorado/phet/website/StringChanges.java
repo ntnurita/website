@@ -84,6 +84,7 @@ public class StringChanges {
          */
         StringUtils.addString( session, "contribution.edit.activityTitle", "Activity Title" );
         StringUtils.addString( session, "contribution.edit.simulations.tip", "Choose the simulation(s) associated with your activity" );
+        StringUtils.addString( session, "contribution.edit.simulations.selectAll", "Select All" );
 
 
         /**

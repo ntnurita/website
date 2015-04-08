@@ -44,7 +44,6 @@ import org.apache.wicket.validation.validator.EmailAddressValidator;
 import org.hibernate.Session;
 
 import edu.colorado.phet.website.PhetWicketApplication;
-import edu.colorado.phet.website.authentication.AuthenticatedPage;
 import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
@@ -67,6 +66,7 @@ import edu.colorado.phet.website.panels.lists.EnumSetManager;
 import edu.colorado.phet.website.panels.lists.LevelSetManager;
 import edu.colorado.phet.website.panels.lists.SimOrderItem;
 import edu.colorado.phet.website.panels.lists.SimSetManager;
+import edu.colorado.phet.website.panels.lists.SortedCheckboxList;
 import edu.colorado.phet.website.panels.lists.SortedList;
 import edu.colorado.phet.website.panels.lists.SubjectSetManager;
 import edu.colorado.phet.website.panels.lists.TypeSetManager;
@@ -279,8 +279,8 @@ public class ContributionEditPanel extends PhetPanel {
                     ContributionFile.getFiletypes( ContributionEditPanel.this )
             } ) );
 
-//            final SortedList<SimOrderItem> simList = simManager.getComponent( "simulations", context );
-//            add( simList );
+            final SortedCheckboxList simList = simManager.getComponent( "simulations", context );
+            add( simList );
             final SortedList<EnumSetManager.ListItem<Type>> typeList = typeManager.getComponent( "types", context );
             add( typeList );
             final SortedList<EnumSetManager.ListItem<Level>> levelList = levelManager.getComponent( "levels", context );
@@ -355,9 +355,9 @@ public class ContributionEditPanel extends PhetPanel {
                 }
 
                 public void validate( Form form ) {
-//                    if ( simManager.getSimulations().isEmpty() ) {
-//                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
-//                    }
+                    if ( simManager.getSimulations().isEmpty() ) {
+                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
+                    }
                     if ( typeManager.getValues().isEmpty() ) {
                         error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
                     }

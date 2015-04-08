@@ -74,6 +74,8 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.keywords" );
         addString( "contribution.edit.keywords.tip" );
         addString( "contribution.edit.simulations" );
+        addString( "contribution.edit.simulations.tip" );
+        addString( "contribution.edit.simulations.selectAll" );
         addString( "contribution.edit.types" );
         addString( "contribution.edit.levels" );
         addString( "contribution.edit.existingFiles" );
