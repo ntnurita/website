@@ -11,58 +11,59 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Check;
 import org.apache.wicket.markup.html.form.CheckGroup;
 import org.apache.wicket.markup.html.form.CheckGroupSelector;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
-import org.apache.wicket.model.Model;
 
+import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 
 /**
  * Like the OrderList, however items are automatically sorted (and thus cannot be rearranged). Applicable for use with sets
  */
-public class SortedCheckboxList extends PhetPanel {
-    public final CheckGroup<SimOrderItem> checkGroup;
-    private List<SimOrderItem> items;
-    private List<SimOrderItem> allItems;
+public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel {
+    public final CheckGroup<Item> checkGroup;
+    private List<Item> items;
+    private List<Item> allItems;
 
     private static final Logger logger = Logger.getLogger( SortedCheckboxList.class.getName() );
 
-    public SortedCheckboxList( String id, PageContext context, final LinkedList<SimOrderItem> items, final LinkedList<SimOrderItem> allItems ) {
+    public SortedCheckboxList( String id, PageContext context, final LinkedList<Item> items, final LinkedList<Item> allItems, boolean groupSelector ) {
         super( id, context );
         this.items = items;
         this.allItems = allItems;
 
-        // output a markup ID so this component can be updated within ajax
-//        setOutputMarkupId( true );
-
         sortItems( items );
         sortItems( allItems );
 
-        checkGroup = new CheckGroup<SimOrderItem>( "group", new ArrayList<SimOrderItem>() );
+        checkGroup = new CheckGroup<Item>( "group", new ArrayList<Item>() );
 
         Form form = new Form( "form" )
         {
             @Override
             protected void onSubmit()
             {
-                info("selected items(s): " + checkGroup.getDefaultModelObjectAsString());
+                info( "selected items(s): " + checkGroup.getDefaultModelObjectAsString() );
             }
         };
         add( form );
 
         form.add( checkGroup );
-        checkGroup.add( new CheckGroupSelector( "groupselector" ) );
-        ListView<SimOrderItem> sims = new ListView<SimOrderItem>( "sims", allItems ) {
+        if ( groupSelector ) {
+            checkGroup.add( new CheckGroupSelector( "groupselector" ) );
+        }
+        else {
+            checkGroup.add( new InvisibleComponent( "groupselector" ) );
+        }
+        ListView<Item> sims = new ListView<Item>( "sims", allItems ) {
             @Override
-            protected void populateItem( final ListItem<SimOrderItem> listItem ) {
-                final SimOrderItem item = listItem.getModelObject();
-                listItem.add( new Check<SimOrderItem>( "checkbox", listItem.getModel() ) );
+            protected void populateItem( final ListItem<Item> listItem ) {
+                final Item item = listItem.getModelObject();
+                listItem.add( new Check<Item>( "checkbox", listItem.getModel() ) );
                 listItem.add( item.getDisplayComponent( "name" ) );
             }
         };
@@ -71,15 +72,15 @@ public class SortedCheckboxList extends PhetPanel {
         checkGroup.add( sims );
     }
 
-    private void sortItems( List<SimOrderItem> list ) {
-        Collections.sort( list, new Comparator<SimOrderItem>() {
-            public int compare( SimOrderItem a, SimOrderItem b ) {
+    private void sortItems( List<Item> list ) {
+        Collections.sort( list, new Comparator<Item>() {
+            public int compare( Item a, Item b ) {
                 return a.compareTo( b, getLocale() );
             }
         } );
     }
 
-    public CheckGroup<SimOrderItem> getFormComponent() {
+    public CheckGroup<Item> getFormComponent() {
         return checkGroup;
     }
 }

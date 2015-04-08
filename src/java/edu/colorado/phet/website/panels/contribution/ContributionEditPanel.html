@@ -98,6 +98,25 @@
                 </table>
             </div>
 
+            <table id="cep-checkbox-table">
+                <tr>
+                    <th>Subject(s)</th>
+                    <th>Grade Level(s)</th>
+                    <th>Type(s)</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div wicket:id="subjects"></div>
+                    </td>
+                    <td>
+                        <div wicket:id="levels"></div>
+                    </td>
+                    <td>
+                        <div wicket:id="types"></div>
+                    </td>
+                </tr>
+            </table>
+
 
             <table class="contribution-edit-table">
 
@@ -138,16 +157,6 @@
                     </td>
                     <td class="contribution-edit-input">
                         <textarea rows="5" cols="40" wicket:id="description" id="cep-desc"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="contribution-edit-label">
-                        <wicket:message key="contribution.edit.subjects">
-                            subject areas
-                        </wicket:message>
-                    </td>
-                    <td class="contribution-edit-input">
-                        <div wicket:id="subjects"></div>
                     </td>
                 </tr>
                 <tr>

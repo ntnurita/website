@@ -99,7 +99,10 @@ public class ContributionEditPanel extends PhetPanel {
     private LevelSetManager levelManager;
     private SubjectSetManager subjectManager;
 
-    private SortedCheckboxList simList;
+    private SortedCheckboxList<SimOrderItem> simList;
+    private SortedCheckboxList<EnumSetManager.ListItem<Type>> typeList;
+    private SortedCheckboxList<EnumSetManager.ListItem<Level>> levelList;
+    private SortedCheckboxList<EnumSetManager.ListItem<Subject>> subjectList;
 
     private List existingFiles;
     private List filesToRemove;
@@ -283,12 +286,12 @@ public class ContributionEditPanel extends PhetPanel {
 
             simList = simManager.getComponent( "simulations", context );
             add( simList );
-//            final SortedList<EnumSetManager.ListItem<Type>> typeList = typeManager.getComponent( "types", context );
-//            add( typeList );
-//            final SortedList<EnumSetManager.ListItem<Level>> levelList = levelManager.getComponent( "levels", context );
-//            add( levelList );
-
-            add( subjectManager.getComponent( "subjects", context ) );
+            subjectList = subjectManager.getCheckboxGroup( "subjects", context );
+            add( subjectList );
+            levelList = levelManager.getCheckboxGroup( "levels", context );
+            add( levelList );
+            typeList = typeManager.getCheckboxGroup( "types", context );
+            add( typeList );
 
             durationChoice = new DurationDropDownChoice( "duration", creating ? 0 : contribution.getDuration() );
             add( durationChoice );

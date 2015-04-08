@@ -15,12 +15,14 @@
     <div wicket:message="dir:language.dir">
         <form wicket:id="form">
             <div wicket:id="group">
-                <input wicket:id="groupselector" type="checkbox">
-                <span>
-                    <wicket:message key="contribution.edit.simulations.selectAll">
-                        Select All
-                    </wicket:message>
-                </span>
+                <wicket:enclosure child="groupselector">
+                    <input wicket:id="groupselector" type="checkbox">
+                    <span>
+                        <wicket:message key="contribution.edit.simulations.selectAll">
+                            Select All
+                        </wicket:message>
+                    </span>
+                </wicket:enclosure>
                 <div wicket:id="sims">
                     <input wicket:id="checkbox" type="checkbox">
                     <span wicket:id="name"></span>

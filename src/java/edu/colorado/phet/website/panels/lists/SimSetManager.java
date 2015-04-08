@@ -84,8 +84,8 @@ public abstract class SimSetManager implements Serializable {
         }
     }
 
-    public SortedCheckboxList getComponent( final String id, PageContext context ) {
-        return new SortedCheckboxList( id, context, items, allItems );
+    public SortedCheckboxList<SimOrderItem> getComponent( final String id, PageContext context ) {
+        return new SortedCheckboxList<SimOrderItem>( id, context, items, allItems, true );
 //        {
 //            {
 //                setOutputMarkupId( true );

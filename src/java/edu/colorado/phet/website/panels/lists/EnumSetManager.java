@@ -154,6 +154,10 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
         };
     }
 
+    public SortedCheckboxList<ListItem<E>> getCheckboxGroup( final String id, PageContext context ) {
+        return new SortedCheckboxList<ListItem<E>>( id, context, items, allItems, false );
+    }
+
     public List<ListItem<E>> getItems() {
         return items;
     }

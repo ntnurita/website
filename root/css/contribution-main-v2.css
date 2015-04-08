@@ -172,3 +172,7 @@ input.contribution-input {
   overflow: auto;
   border: solid 1px #d3d3d3;
 }
+
+.cep-checkbox-table td {
+  vertical-align: top;
+}
