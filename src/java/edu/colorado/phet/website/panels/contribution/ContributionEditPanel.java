@@ -279,8 +279,8 @@ public class ContributionEditPanel extends PhetPanel {
                     ContributionFile.getFiletypes( ContributionEditPanel.this )
             } ) );
 
-            final SortedList<SimOrderItem> simList = simManager.getComponent( "simulations", context );
-            add( simList );
+//            final SortedList<SimOrderItem> simList = simManager.getComponent( "simulations", context );
+//            add( simList );
             final SortedList<EnumSetManager.ListItem<Type>> typeList = typeManager.getComponent( "types", context );
             add( typeList );
             final SortedList<EnumSetManager.ListItem<Level>> levelList = levelManager.getComponent( "levels", context );
@@ -351,13 +351,13 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent() };
+                    return new FormComponent[] { typeList.getFormComponent(), levelList.getFormComponent() };
                 }
 
                 public void validate( Form form ) {
-                    if ( simManager.getSimulations().isEmpty() ) {
-                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
-                    }
+//                    if ( simManager.getSimulations().isEmpty() ) {
+//                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
+//                    }
                     if ( typeManager.getValues().isEmpty() ) {
                         error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
                     }

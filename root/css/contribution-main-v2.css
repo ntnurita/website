@@ -37,6 +37,7 @@ div.rtl .contribute-standard-label {
 .contribution-form-tip {
     font-size: 9px;
     color: gray;
+   margin-left: 5px;
 }
 
 .contribution-feedback span {
@@ -148,3 +149,27 @@ div.rtl .comment-clear {
     
 }
 
+label.bold-label {
+  margin-left: 5px;
+  font-weight: bold;
+  display: block;
+  padding-bottom: 3px;
+}
+
+input.contribution-input {
+  display: block;
+  width: 100%;
+  padding: 0 5px;
+  line-height: 1.667em;
+}
+
+#contribution-form-top {
+  width: 450px;
+}
+
+.contribution-edit #simulations {
+  height: 150px;
+  overflow: auto;
+  font-size: 5em;
+  border: solid 1px #d3d3d3;
+}

@@ -70,6 +70,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.organization" );
         addString( "contribution.edit.email" );
         addString( "contribution.edit.title" );
+        addString( "contribution.edit.activityTitle" );
         addString( "contribution.edit.keywords" );
         addString( "contribution.edit.keywords.tip" );
         addString( "contribution.edit.simulations" );

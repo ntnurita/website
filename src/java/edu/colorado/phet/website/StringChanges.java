@@ -25,6 +25,9 @@ public class StringChanges {
 //        StringUtils.deleteString( session, "simulationMainPanel.mainTopics" );
 //        StringUtils.deleteString( session, "simulationMainPanel.teachingIdeas" );
 
+        /**
+         * New sim page strings
+         */
         StringUtils.addString( session, "simulationMainPanel.about", "About" );
         StringUtils.addString( session, "simulationMainPanel.topics", "Topics" );
 
@@ -70,11 +73,25 @@ public class StringChanges {
         StringUtils.overwriteString( session, "signIn.password", "Password:", "Password" );
         StringUtils.overwriteString( session, "home.teacherIdeasAndActivities", "For Teachers", "Teaching Resources" );
 
+        /**
+         * Sign in Strings
+         */
         StringUtils.addString( session, "signIn.noAccount", "No account?" );
         StringUtils.addString( session, "signIn.needAccount", "Need an account?" );
 
+        /**
+         * Contribution Edit Strings
+         */
+        StringUtils.addString( session, "contribution.edit.activityTitle", "Activity Title" );
+        StringUtils.addString( session, "contribution.edit.simulations.tip", "Choose the simulation(s) associated with your activity" );
 
+
+        /**
+         * General strings
+         */
         StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:", "Support PhET:" );
+
+
 
 
         StringUtils.addString( session, "about.accessibility.title", "Accessibility" );
