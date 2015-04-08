@@ -99,6 +99,8 @@ public class ContributionEditPanel extends PhetPanel {
     private LevelSetManager levelManager;
     private SubjectSetManager subjectManager;
 
+    private SortedCheckboxList simList;
+
     private List existingFiles;
     private List filesToRemove;
 
@@ -279,12 +281,12 @@ public class ContributionEditPanel extends PhetPanel {
                     ContributionFile.getFiletypes( ContributionEditPanel.this )
             } ) );
 
-            final SortedCheckboxList simList = simManager.getComponent( "simulations", context );
+            simList = simManager.getComponent( "simulations", context );
             add( simList );
-            final SortedList<EnumSetManager.ListItem<Type>> typeList = typeManager.getComponent( "types", context );
-            add( typeList );
-            final SortedList<EnumSetManager.ListItem<Level>> levelList = levelManager.getComponent( "levels", context );
-            add( levelList );
+//            final SortedList<EnumSetManager.ListItem<Type>> typeList = typeManager.getComponent( "types", context );
+//            add( typeList );
+//            final SortedList<EnumSetManager.ListItem<Level>> levelList = levelManager.getComponent( "levels", context );
+//            add( levelList );
 
             add( subjectManager.getComponent( "subjects", context ) );
 
@@ -349,26 +351,26 @@ public class ContributionEditPanel extends PhetPanel {
                 }
             } );
 
-            add( new AbstractFormValidator() {
-                public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { typeList.getFormComponent(), levelList.getFormComponent() };
-                }
-
-                public void validate( Form form ) {
-                    if ( simManager.getSimulations().isEmpty() ) {
-                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
-                    }
-                    if ( typeManager.getValues().isEmpty() ) {
-                        error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
-                    }
-                    if ( levelManager.getValues().isEmpty() ) {
-                        error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
-                    }
+//            add( new AbstractFormValidator() {
+//                public FormComponent[] getDependentFormComponents() {
+//                    return new FormComponent[] { typeList.getFormComponent(), levelList.getFormComponent() };
+//                }
+//
+//                public void validate( Form form ) {
+//                    if ( simManager.getSimulations().isEmpty() ) {
+//                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
+//                    }
+//                    if ( typeManager.getValues().isEmpty() ) {
+//                        error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
+//                    }
+//                    if ( levelManager.getValues().isEmpty() ) {
+//                        error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
+//                    }
 //                    if ( !creativeCommonsCheckbox.getConvertedInput() ) {
 //                        error( creativeCommonsCheckbox, "contribution.edit.validation.mustHaveLicense" );
 //                    }
-                }
-            } );
+//                }
+//            } );
 
         }
 
@@ -422,9 +424,9 @@ public class ContributionEditPanel extends PhetPanel {
                     Set selectedSims = new HashSet();
 
                     // load into persistence
-                    for ( Simulation presim : simManager.getSimulations() ) {
+                    for ( SimOrderItem presim : simList.getFormComponent().getModel().getObject() ) {
                         Simulation sim = (Simulation) session.load( Simulation.class, presim.getId() );
-                        selectedSims.add( presim );
+                        selectedSims.add( sim );
                     }
 
                     for ( Object sim : selectedSims ) {

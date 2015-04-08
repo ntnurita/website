@@ -30,7 +30,6 @@ public class SortedCheckboxList extends PhetPanel {
     public final CheckGroup<SimOrderItem> checkGroup;
     private List<SimOrderItem> items;
     private List<SimOrderItem> allItems;
-    private Label listEmpty;
 
     private static final Logger logger = Logger.getLogger( SortedCheckboxList.class.getName() );
 
@@ -45,12 +44,17 @@ public class SortedCheckboxList extends PhetPanel {
         sortItems( items );
         sortItems( allItems );
 
-        Form form = new Form( "form" );
-        add( form );
-
-        Model<LinkedList<SimOrderItem>> itemsModel = new Model<LinkedList<SimOrderItem>>( allItems );
-
         checkGroup = new CheckGroup<SimOrderItem>( "group", new ArrayList<SimOrderItem>() );
+
+        Form form = new Form( "form" )
+        {
+            @Override
+            protected void onSubmit()
+            {
+                info("selected items(s): " + checkGroup.getDefaultModelObjectAsString());
+            }
+        };
+        add( form );
 
         form.add( checkGroup );
         checkGroup.add( new CheckGroupSelector( "groupselector" ) );
@@ -65,10 +69,6 @@ public class SortedCheckboxList extends PhetPanel {
 
         sims.setReuseItems( true );
         checkGroup.add( sims );
-    }
-
-    private void updateEmpty() {
-        listEmpty.setVisible( items.isEmpty() );
     }
 
     private void sortItems( List<SimOrderItem> list ) {
