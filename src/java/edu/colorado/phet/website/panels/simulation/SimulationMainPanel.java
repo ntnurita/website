@@ -107,6 +107,7 @@ public class SimulationMainPanel extends PhetPanel {
         HTML_SIM_LINK_MAP.put( "gravity-force-lab", "/sims/html/gravity-force-lab/latest/gravity-force-lab_en.html" );
         HTML_SIM_LINK_MAP.put( "travoltage", "/sims/html/john-travoltage/latest/john-travoltage_en.html" );
         HTML_SIM_LINK_MAP.put( "molarity", "/sims/html/molarity/latest/molarity_en.html" );
+        HTML_SIM_LINK_MAP.put( "molecules-and-light", "/sims/html/molecules-and-light/latest/molecules-and-light_en.html" );
         HTML_SIM_LINK_MAP.put( "molecule-shapes", "/sims/html/molecule-shapes/latest/molecule-shapes_en.html" );
         HTML_SIM_LINK_MAP.put( "molecule-shapes-basics", "/sims/html/molecule-shapes-basics/latest/molecule-shapes-basics_en.html" );
         HTML_SIM_LINK_MAP.put( "ohms-law", "/sims/html/ohms-law/latest/ohms-law_en.html" );
