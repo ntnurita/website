@@ -317,11 +317,11 @@ public class ContributionEditPanel extends PhetPanel {
 
             //stdK4A = new CheckBox( "stdK4A", new Model( creating ? Boolean.FALSE : new Boolean( contribution.isStandardK4A() ) ) ); add( stdK4A );
 
-            for ( String level : new String[] { "K4", "58", "912" } ) {
-                for ( String standard : new String[] { "A", "B", "C", "D", "E", "F", "G" } ) {
-                    add( new CheckBox( "standard" + level + standard ) );
-                }
-            }
+//            for ( String level : new String[] { "K4", "58", "912" } ) {
+//                for ( String standard : new String[] { "A", "B", "C", "D", "E", "F", "G" } ) {
+//                    add( new CheckBox( "standard" + level + standard ) );
+//                }
+//            }
 
             // wrap the existing files in a container so we can refresh it via ajax without wiping other form changes.
             // particularly significant, since if would wipe any files to be uploaded otherwise
