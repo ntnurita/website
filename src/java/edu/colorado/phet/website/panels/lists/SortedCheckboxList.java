@@ -11,14 +11,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Check;
 import org.apache.wicket.markup.html.form.CheckGroup;
 import org.apache.wicket.markup.html.form.CheckGroupSelector;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.SimpleFormComponentLabel;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.components.InvisibleComponent;
+import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 
@@ -63,8 +68,19 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
             @Override
             protected void populateItem( final ListItem<Item> listItem ) {
                 final Item item = listItem.getModelObject();
-                listItem.add( new Check<Item>( "checkbox", listItem.getModel() ) );
-                listItem.add( item.getDisplayComponent( "name" ) );
+                Check check = new Check<Item>( "checkbox", listItem.getModel() );
+                check.setLabel( new Model<String>( item.getDisplayValue() ) );
+                SimpleFormComponentLabel label = new SimpleFormComponentLabel( "name", check );
+
+                listItem.add( check );
+                listItem.add( label );
+
+                if ( item instanceof SimOrderItem ) {
+                    Simulation sim = ( (SimOrderItem) item ).getSimulation();
+                    listItem.add( new AttributeModifier( "onclick", true, new Model<String>(
+                            "phet.checkboxToggle( '" + sim.getName() + "', this, '" + sim.getThumbnailUrl() + "' )"
+                    ) ) );
+                }
             }
         };
 
