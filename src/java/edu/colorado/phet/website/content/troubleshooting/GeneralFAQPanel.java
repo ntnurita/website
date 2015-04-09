@@ -55,7 +55,7 @@ public class GeneralFAQPanel extends PhetPanel {
 
                 // make the text expand when clicking this click too, if it isn't expanded already
                 GeneralFAQPanel.getLinker().getHrefWithHash( context, getPhetCycle(), "q2-header" ) +
-                " onclick=\"var e = document.getElementById( id ); if ( !e.style.height || e.style.height === '0px' ) {phet.toggleExpandableText('q2');} return true;\""
+                " onclick=\"var e = document.getElementById( 'q2' ); if ( !e.style.height || e.style.height === '0px' ) {phet.toggleExpandableText('q2');} return true;\""
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q15-answer", "troubleshooting.main.q15.answer" ) );
