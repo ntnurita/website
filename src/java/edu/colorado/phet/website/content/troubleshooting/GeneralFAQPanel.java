@@ -15,7 +15,6 @@ import edu.colorado.phet.website.content.simulations.CategoryPage;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.links.AbstractLinker;
-import edu.colorado.phet.website.util.links.RawLinkable;
 
 /**
  * General troubleshooting panel
@@ -51,7 +50,12 @@ public class GeneralFAQPanel extends PhetPanel {
         } ) );
 
         add( new LocalizedText( "mobileDevices-answer", "faq.mobileDevices.answer", new Object[] {
-                "href=\"#q2\""
+                CategoryPage.getLinker( "by-device/ipad-tablet" ).getHref( context, getPhetCycle() ),
+                CategoryPage.getLinker( "by-device/chromebook" ).getHref( context, getPhetCycle() ),
+
+                // make the text expand when clicking this click too, if it isn't expanded already
+                GeneralFAQPanel.getLinker().getHrefWithHash( context, getPhetCycle(), "q2-header" ) +
+                " onclick=\"var e = document.getElementById( 'q2' ); if ( !e.style.height || e.style.height === '0px' ) {phet.toggleExpandableText('q2');} return true;\""
         } ) );
 
         add( new LocalizedText( "troubleshooting-main-q15-answer", "troubleshooting.main.q15.answer" ) );
@@ -80,7 +84,7 @@ public class GeneralFAQPanel extends PhetPanel {
         return "faqs";
     }
 
-    public static RawLinkable getLinker() {
+    public static AbstractLinker getLinker() {
         return new AbstractLinker() {
             public String getSubUrl( PageContext context ) {
                 return getUrl();

@@ -27,6 +27,7 @@ public class PhetUser implements Serializable, IntId {
     private String email;
     private String hashedPassword;
     private boolean teamMember = false;
+    private boolean trustedTranslator = false;
     private boolean newsletterOnlyAccount;
     private boolean confirmed = false;
     private Set translations = new HashSet();
@@ -77,7 +78,7 @@ public class PhetUser implements Serializable, IntId {
      * Assumes that it is within a transaction
      *
      * @param session
-     * @param subscribeKey
+     * @param confirmationKey
      * @return
      */
     public static PhetUser getUserFromConfirmationKey( Session session, String confirmationKey ) {
@@ -183,6 +184,14 @@ public class PhetUser implements Serializable, IntId {
 
     public void setTeamMember( boolean teamMember ) {
         this.teamMember = teamMember;
+    }
+
+    public boolean isTrustedTranslator() {
+        return trustedTranslator;
+    }
+
+    public void setTrustedTranslator( boolean trustedTranslator ) {
+        this.trustedTranslator = trustedTranslator;
     }
 
     public boolean isConfirmed() {

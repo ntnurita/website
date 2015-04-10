@@ -87,6 +87,7 @@ public class EditProfilePanel extends PhetPanel {
         private CheckBox receiveSimulationNotifications;
         private CheckBox receiveWebsiteNotifications;
         private CheckBox teamMember;
+        private CheckBox trustedTranslator;
 
         private final ValueMap properties = new ValueMap();
 
@@ -133,10 +134,12 @@ public class EditProfilePanel extends PhetPanel {
                 label.setRenderBodyOnly( true );
                 add( receiveWebsiteNotifications = new CheckBox( "receiveWebsiteNotifications", new Model<Boolean>( user.isReceiveWebsiteNotifications() ) ) );
                 add( teamMember = new CheckBox( "phetTeamMember", new Model<Boolean>( user.isTeamMember() ) ) );
+                add( trustedTranslator = new CheckBox( "trustedTranslator", new Model<Boolean>( user.isTrustedTranslator() ) ) );
             }
             else {
                 add( new InvisibleComponent( "rwn-phet" ) );
                 add( new InvisibleComponent( "phetTeamMember" ) );
+                add( new InvisibleComponent( "trustedTranslator" ) );
                 add( new InvisibleComponent( "receiveWebsiteNotifications" ) );
             }
 
@@ -180,6 +183,7 @@ public class EditProfilePanel extends PhetPanel {
                         user.setFax( fax.getModelObject().toString() );
                         user.setReceiveEmail( receiveEmail.getModelObject() );
                         user.setReceiveSimulationNotifications( receiveSimulationNotifications.getModelObject() );
+                        user.setTrustedTranslator( trustedTranslator.getModelObject() );
                         if ( PhetSession.get().getUser().isTeamMember() ) {
                             user.setReceiveWebsiteNotifications( receiveWebsiteNotifications.getModelObject() );
                             user.setTeamMember( teamMember.getModelObject() );
@@ -208,6 +212,7 @@ public class EditProfilePanel extends PhetPanel {
                     user.setFax( fax.getModelObject().toString() );
                     user.setReceiveEmail( receiveEmail.getModelObject() );
                     user.setReceiveSimulationNotifications( receiveSimulationNotifications.getModelObject() );
+                    user.setTrustedTranslator( trustedTranslator.getModelObject() );
                     if ( PhetSession.get().getUser().isTeamMember() ) {
                         user.setReceiveWebsiteNotifications( receiveWebsiteNotifications.getModelObject() );
                         user.setTeamMember( teamMember.getModelObject() );
