@@ -68,7 +68,16 @@
                 <div wicket:id="simulations" id="simulations" class="contribution-input"></div>
             </div>
 
-            <div id="sim-thumbnails"></div>
+            <table>
+                <tbody id="sim-thumbnails">
+                <tr>
+                    <td class="thumbnail-spacer"></td>
+                    <td class="thumbnail-spacer"></td>
+                    <td class="thumbnail-spacer"></td>
+                    <td class="thumbnail-spacer"></td>
+                </tr>
+                </tbody>
+            </table>
 
             <wicket:message key="contribution.edit.existingFiles">
                 existing file(s)
@@ -143,6 +152,7 @@
                     Language
                 </wicket:message>
             </label>
+
             <div wicket:id="locale" id="cep-locale">
             </div>
 

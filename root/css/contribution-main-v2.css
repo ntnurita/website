@@ -177,3 +177,20 @@ label.bold-label {
 .top-align {
   vertical-align: top;
 }
+
+#sim-thumbnails td {
+  padding-bottom: 16px;
+}
+
+span.sim-thumbnail {
+  margin-right: 32px;
+  position: relative;
+}
+
+.sim-checkbox-div input, label {
+  cursor: pointer;
+}
+
+.thumbnail-spacer {
+  width: 172px;
+}

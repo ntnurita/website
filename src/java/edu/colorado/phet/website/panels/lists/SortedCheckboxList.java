@@ -77,8 +77,9 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
 
                 if ( item instanceof SimOrderItem ) {
                     Simulation sim = ( (SimOrderItem) item ).getSimulation();
+                    String simType = ( sim.isHTML() ) ? "html" : ( sim.isJava() ) ? "java" : "flash";
                     listItem.add( new AttributeModifier( "onclick", true, new Model<String>(
-                            "phet.checkboxToggle( '" + sim.getName() + "', this, '" + sim.getThumbnailUrl() + "' )"
+                            "phet.checkboxToggle( '" + sim.getName() + "', this, '" + sim.getThumbnailUrl() + "', '" + simType + "' )"
                     ) ) );
                 }
             }
