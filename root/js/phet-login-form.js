@@ -2,6 +2,7 @@ var phet = phet || {};
 
 $( document ).ready( function() {
   var openLoginDialog = function() {
+    $( '#sourceURL' ).val( window.location.pathname );
     $( '#login-form' ).lightbox_me( {
       centered: true,
       onLoad: function() {
@@ -24,7 +25,6 @@ $( document ).ready( function() {
   };
 
   $( '#login-button' ).click( function( e ) {
-    $( '#sourceURL' ).val( window.location.pathname );
     openLoginDialog();
     e.preventDefault();
   } );

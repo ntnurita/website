@@ -22,16 +22,22 @@ public class LoginFormHandlerPage extends WebPage {
         // destination url, the url of the link that the user clicked that requires login
         String destination = req.getParameter( "destination" );
 
-        // source url, the url of the page the user is currently on. This is present only if the user clicks the login button,
-        // so we know which page to send them back to after they are logged in.
+        // source url, the url of the page the user is currently on
         String source = req.getParameter( "source" );
 
-        // if source is present, send the back to the source url instead of the destination
-        if ( source == null || source.isEmpty() ) {
-            source = "/";
+        // redirect to the destination if it exists, otherwise the stay on the current page (source)
+        String redirectUrl;
+        if ( destination == null || destination.isEmpty() ) {
+            if ( source == null || source.isEmpty() ) {
+                redirectUrl = "/";
+                source = "/";
+            }
+            else {
+                redirectUrl = source;
+            }
         }
         else {
-            destination = source;
+            redirectUrl = destination;
         }
 
         if ( !PhetSession.get().signIn( (PhetRequestCycle) getRequestCycle(), username, password ) ) {
@@ -40,10 +46,6 @@ public class LoginFormHandlerPage extends WebPage {
             throw new RedirectToUrlException( url );
         }
 
-        if ( destination == null || destination.isEmpty() ) {
-            destination = "/";
-        }
-
-        throw new RedirectToUrlException( StringUtils.makeUrlHTTPS( destination ) );
+        throw new RedirectToUrlException( StringUtils.makeUrlHTTPS( redirectUrl ) );
     }
 }
