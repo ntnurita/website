@@ -12,6 +12,7 @@
         we need this mapping to maintain compatibility with the pre-existing database entries.-->
         <property name="hashedPassword" column="password"/>
         <property name="teamMember"/>
+        <property name="trustedTranslator"/>
         <property name="confirmed"/>
         <property name="newsletterOnlyAccount"/>
         <set name="translations" table="user_translation_mapping">
