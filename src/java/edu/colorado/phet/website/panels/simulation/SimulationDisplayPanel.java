@@ -88,7 +88,7 @@ public class SimulationDisplayPanel extends PhetPanel {
                 final String dataServer = ( !serverName.equals( "phet.colorado.edu" ) ) ? serverName : dataServers[dataServerIndex];
 
                 WebImage thumbnail = ( simulation.getSimulation().isHTML() ) ? simulation.getSimulation().getHTMLThumbnail() : simulation.getSimulation().getThumbnail();
-                link.add( new StaticImage( "thumbnail", thumbnail, alt ) {{
+                link.add( new StaticImage( "thumbnail", thumbnail, alt, 128, 84 ) {{
                     setOutputMarkupId( true );
                     setMarkupId( "simulation-display-thumbnail-" + simulation.getSimulation().getName() );
                     setDataServer( dataServer );
