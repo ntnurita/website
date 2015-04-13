@@ -59,13 +59,13 @@
                         Simulation(s)
                     </wicket:message>
                 </label>
-                <span class="contribution-form-tip">
+                <span class="contribution-form-tip contribution-tip-indent">
                     <wicket:message key="contribution.edit.simulations.tip">
                         Choose the simulation(s) associated with your activity
                     </wicket:message>
                 </span>
 
-                <div wicket:id="simulations" id="simulations" class="contribution-input"></div>
+                <div wicket:id="simulations" id="simulations" class="scrolling-div contribution-input"></div>
             </div>
 
             <table>
@@ -87,7 +87,7 @@
                 new file(s)
             </wicket:message>
             <div wicket:id="file-upload"></div>
-            <span class="contribution-form-tip" wicket:id="contribution-file-tip">
+            <span class="contribution-form-tip contribution-tip-indent" wicket:id="contribution-file-tip">
                 The following file extensions are allowed: pdf, .....
             </span>
 
@@ -164,12 +164,30 @@
             <select wicket:id="duration" id="cep-duration">
             </select><br/>
 
-            <label class="bold-label" for="cep-answers">
-                <wicket:message key="contribution.edit.answers">
-                    Answers Included
-                </wicket:message>
-            </label>
-            <input type="checkbox" wicket:id="answersIncluded" id="cep-answers"/><br/>
+            <table>
+                <tr>
+                    <td>
+                        <input type="checkbox" wicket:id="answersIncluded" id="cep-answers"/>
+                    </td>
+                    <td>
+                        <label for="cep-answers">
+                            <wicket:message key="contribution.edit.answers">
+                                Answers Included
+                            </wicket:message>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <span class="contribution-form-tip">
+                            <wicket:message key="contribution.edit.answers.tip">
+                                Please be aware that all users can see the answers if included
+                            </wicket:message>
+                        </span>
+                    </td>
+                </tr>
+            </table>
 
             <wicket:enclosure child="fromPhet">
                 <tr>
@@ -207,6 +225,17 @@
                     </td>
                 </tr>
             </wicket:enclosure>
+
+            <div class="contribution-edit-column">
+                <label class="bold-label">
+                    <wicket:message key="contribution.edit.licensing">
+                        Licensing Agreement
+                    </wicket:message>
+                </label>
+
+                <div class="scrolling-div contribution-input">
+                </div>
+            </div>
 
             <div>
                 <input type="submit" name="submit" wicket:message="value:form.submit"/>

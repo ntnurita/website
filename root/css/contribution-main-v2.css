@@ -37,7 +37,10 @@ div.rtl .contribute-standard-label {
 .contribution-form-tip {
     font-size: 9px;
     color: gray;
-   margin-left: 5px;
+}
+
+.contribution-tip-indent {
+  margin-left: 5px;
 }
 
 .contribution-feedback span {
@@ -168,7 +171,7 @@ label.bold-label {
   width: 450px;
 }
 
-.contribution-edit #simulations {
+.scrolling-div {
   height: 150px;
   overflow: auto;
   border: solid 1px #d3d3d3;
