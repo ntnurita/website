@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
@@ -32,6 +32,33 @@
         <h2>Introduction</h2>
 
         A brief introduction about the technologies used, directory structures and organization.
+
+        <h3>Sending emails/newsletters</h3>
+
+        <ul>
+
+            <li>Edit the file: /data/share/phet/newsletter/newsletter.properties on figaro. Make sure the subject is correct, etc.
+                For emails, set automated = false, for newsletters set to true.
+            </li>
+
+            <li>If sending a newsletter, copy the last newsletter directory to a new directory in /server-docroot/newsletter. Edit
+                the newsletter.html and newsletter.txt files to have the new content. Copy these files to
+                /data/share/phet/newsletter/newsletter when they are correct.
+            </li>
+
+            <li>If just sending an email (not a newsletter), edit the files newsletter.html and newsletter.txt directly in
+                /data/share/phet/newsletter/newsletter.
+            </li>
+
+            <li>The email is sent as an html file with a text fallback.
+                Make sure newlines are replaced with br tags, links have a tags, etc. in the html file.
+                Always include unsubscribe link and address (required by law).
+            </li>
+
+            <li>Send out test emails from the admin page to make sure the email looks right.</li>
+
+            <li>Send the email from the admin page.</li>
+        </ul>
 
         <h3>Technologies</h3>
 
