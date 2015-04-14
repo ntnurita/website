@@ -219,7 +219,13 @@ span.sim-thumbnail {
   background-size: 20px 20px;
 }
 
-.wicket-mfu-container div {
-
+.file-upload {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgb(42, 50, 106);
+  border: 0;
+  margin: 10px auto;
 }
 
+.file-upload:hover {
+  background-color: rgb(62,70,126);
+}

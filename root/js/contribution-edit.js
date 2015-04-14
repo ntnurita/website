@@ -45,8 +45,7 @@ phet.checkboxToggle = function( simName, checkboxDiv, thumbnailUrl, simType ) {
     }
   }
 
-  // if the checkbox has been unchecked, delete the thumbnail and the containing table row if it
-  // is empty
+  // if the checkbox has been unchecked, delete the thumbnail and the containing table row if it is empty
   else if ( td ) {
     currentRow = td.parentNode;
     currentRow.removeChild( td );
@@ -88,8 +87,8 @@ var fileAdded = function() {
 
   var inputs = $( 'input[type=file]' );
   for ( i = 0; i < inputs.length; i++ ) {
-    //inputs[ i ].style.position = 'absolute';
-    //inputs[ i ].style.left = '-1000px';
+    inputs[ i ].style.position = 'absolute';
+    inputs[ i ].style.left = '-1000px';
     inputs[ i ].removeEventListener( 'change', fileAdded, false );
     inputs[ i ].addEventListener( 'change', fileAdded, false );
   }
@@ -98,6 +97,12 @@ var fileAdded = function() {
 $( 'document' ).ready( function() {
   var fileInput = $( '.wicket-mfu-field' )[ 0 ];
   if ( fileInput ) {
+    $( '#fake-file' ).click( function() {
+      $( 'input[type=file]' )[ 0 ].click();
+    } );
+
+    fileInput.style.position = 'absolute';
+    fileInput.style.left = '-1000px';
     fileInput.addEventListener( 'click', fileAdded, false );
   }
 } );
