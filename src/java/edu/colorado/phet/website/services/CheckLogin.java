@@ -18,12 +18,13 @@ public class CheckLogin extends WebPage {
             String userId = "\"userId\": " + user.getId();
             String signedIn = "\"loggedIn\": " + psession.isSignedIn();
             String teamMember = "\"teamMember\": " + psession.getUser().isTeamMember();
-            add( new RawLabel( "data", "{ " + username + ", " + userId + ", " + email + ", " + signedIn + ", " + teamMember + " }") {{
+            String trustedTranslator = "\"trustedTranslator\": " + psession.getUser().isTrustedTranslator();
+            add( new RawLabel( "data", "{ " + username + ", " + userId + ", " + email + ", " + signedIn + ", " + teamMember + ", " + trustedTranslator + " }" ) {{
                 setRenderBodyOnly( true );
             }} );
         }
         else {
-            add( new RawLabel( "data", "{ \"loggedIn\": false }" )  {{
+            add( new RawLabel( "data", "{ \"loggedIn\": false }" ) {{
                 setRenderBodyOnly( true );
             }} );
         }
