@@ -229,3 +229,8 @@ span.sim-thumbnail {
 .file-upload:hover {
   background-color: rgb(62,70,126);
 }
+
+.file-div {
+  display: table;
+  line-height: 20px;
+}

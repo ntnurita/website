@@ -323,13 +323,6 @@ public class ContributionEditPanel extends PhetPanel {
             uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
             add( uploadPanel );
 
-            // wrap the existing files in a container so we can refresh it via ajax without wiping other form changes.
-            // particularly significant, since if would wipe any files to be uploaded otherwise
-//            WebMarkupContainer fileContainer = new WebMarkupContainer( "file-markup-container" );
-//            fileContainer.setOutputMarkupId( true );
-//            add( fileContainer );
-//            fileContainer.add( new ExistingListView( "existing-files" ) );
-
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
                     return new FormComponent[]{uploadPanel.getField()};

@@ -76,6 +76,7 @@ var fileAdded = function() {
     }
 
     console.log( file );
+    file.className = 'file-div';
 
     var input = file.childNodes[ 1 ];
     console.log( input );
