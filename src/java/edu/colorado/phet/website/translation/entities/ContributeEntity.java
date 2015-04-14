@@ -91,6 +91,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.uploadFiles" );
         addString( "contribution.edit.uploadFiles.tip" );
         addString( "contribution.edit.chooseFile" );
+        addString( "contribution.edit.submitActivity" );
 
         addString( "contribution.edit.continueToActivity" );
         addString( "contribution.edit.successHeader" );
