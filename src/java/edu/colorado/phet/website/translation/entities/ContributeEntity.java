@@ -78,9 +78,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.simulations.selectAll" );
         addString( "contribution.edit.types" );
         addString( "contribution.edit.levels" );
-        addString( "contribution.edit.existingFiles" );
         addString( "contribution.edit.removeFile" );
-        addString( "contribution.edit.newFiles" );
         addString( "contribution.edit.newfiles.tip" );
         addString( "contribution.edit.optionalInformation" );
         addString( "contribution.edit.description" );
@@ -90,6 +88,8 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.answers.tip" );
         addString( "contribution.edit.language" );
         addString( "contribution.edit.licensing" );
+        addString( "contribution.edit.uploadFiles" );
+        addString( "contribution.edit.uploadFiles.tip" );
 
         addString( "contribution.edit.continueToActivity" );
         addString( "contribution.edit.successHeader" );

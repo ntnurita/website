@@ -63,3 +63,41 @@ phet.checkboxToggle = function( simName, checkboxDiv, thumbnailUrl, simType ) {
 
   return true;
 };
+
+var fileAdded = function() {
+  console.log( 'called' );
+  var files = $( '.wicket-mfu-container' )[ 0 ].childNodes;
+  var i;
+  console.log( files );
+
+  for ( i = 0; i < files.length; i++ ) {
+    var file = files[ i ];
+    if ( file.nodeType === 3 ) {
+      continue;
+    }
+
+    console.log( file );
+
+    var input = file.childNodes[ 1 ];
+    console.log( input );
+    input.value = '';
+
+    var text = file.childNodes[ 0 ].textContent;
+    file.childNodes[ 0 ].textContent = text.replace( 'C:\\fakepath\\', '' );
+  }
+
+  var inputs = $( 'input[type=file]' );
+  for ( i = 0; i < inputs.length; i++ ) {
+    //inputs[ i ].style.position = 'absolute';
+    //inputs[ i ].style.left = '-1000px';
+    inputs[ i ].removeEventListener( 'change', fileAdded, false );
+    inputs[ i ].addEventListener( 'change', fileAdded, false );
+  }
+};
+
+$( 'document' ).ready( function() {
+  var fileInput = $( '.wicket-mfu-field' )[ 0 ];
+  if ( fileInput ) {
+    fileInput.addEventListener( 'click', fileAdded, false );
+  }
+} );

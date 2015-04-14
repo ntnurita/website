@@ -277,10 +277,7 @@ public class ContributionEditPanel extends PhetPanel {
             add( new RequiredTextField<String>( "keywords" ) );
             add( new TextArea<String>( "description" ) );
 
-            uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
-            add( uploadPanel );
-
-            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[] {
+            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[]{
                     ContributionFile.getFiletypes( ContributionEditPanel.this )
             } ) );
 
@@ -323,16 +320,19 @@ public class ContributionEditPanel extends PhetPanel {
 //                }
 //            }
 
+            uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
+            add( uploadPanel );
+
             // wrap the existing files in a container so we can refresh it via ajax without wiping other form changes.
             // particularly significant, since if would wipe any files to be uploaded otherwise
-            WebMarkupContainer fileContainer = new WebMarkupContainer( "file-markup-container" );
-            fileContainer.setOutputMarkupId( true );
-            add( fileContainer );
-            fileContainer.add( new ExistingListView( "existing-files" ) );
+//            WebMarkupContainer fileContainer = new WebMarkupContainer( "file-markup-container" );
+//            fileContainer.setOutputMarkupId( true );
+//            add( fileContainer );
+//            fileContainer.add( new ExistingListView( "existing-files" ) );
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { uploadPanel.getField() };
+                    return new FormComponent[]{uploadPanel.getField()};
                 }
 
                 public void validate( Form form ) {
@@ -577,7 +577,7 @@ public class ContributionEditPanel extends PhetPanel {
                         try {
                             upload.writeTo( file );
                         }
-                        catch ( IOException e ) {
+                        catch( IOException e ) {
                             e.printStackTrace();
                             logger.warn( "upload failed", e );
                             return false;
@@ -643,6 +643,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             protected void populateItem( ListItem item ) {
                 final ContributionFile cfile = (ContributionFile) item.getModel().getObject();
+                System.out.println( cfile.getFilename() );
                 item.add( new Label( "file-name", cfile.getFilename() ) );
                 item.add( new AjaxFallbackLink( "remove-link" ) {
                     public void onClick( AjaxRequestTarget target ) {

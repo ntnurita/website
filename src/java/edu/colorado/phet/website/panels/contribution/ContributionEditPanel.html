@@ -79,30 +79,35 @@
                 </tbody>
             </table>
 
-            <wicket:message key="contribution.edit.existingFiles">
-                existing file(s)
-            </wicket:message>
-
-            <wicket:message key="contribution.edit.newFiles">
-                new file(s)
-            </wicket:message>
-            <div wicket:id="file-upload"></div>
-            <span class="contribution-form-tip contribution-tip-indent" wicket:id="contribution-file-tip">
-                The following file extensions are allowed: pdf, .....
-            </span>
-
-            <div wicket:id="file-markup-container">
-                <table style="width: 100%">
-                    <tr wicket:id="existing-files">
-                        <td wicket:id="file-name"></td>
-                        <td><a href="#" wicket:id="remove-link">
-                            <wicket:message key="contribution.edit.removeFile">
-                                remove
-                            </wicket:message>
-                        </a></td>
-                    </tr>
-                </table>
+            <label class="bold-label">
+                <wicket:message key="contribution.edit.uploadFiles">
+                    Upload File(s)
+                </wicket:message>
+            </label>
+            <div class="contribution-tip-indent">
+                <span class="contribution-form-tip-dark">
+                    <wicket:message key="contribution.edit.uploadFiles.tip">
+                        Please include an editable version of your activity.
+                    </wicket:message>
+                </span><br/>
+                <span class="contribution-form-tip" wicket:id="contribution-file-tip">
+                    The following file extensions are allowed: pdf, .....
+                </span>
             </div>
+
+            <div wicket:id="file-upload"></div>
+
+            <!--<div wicket:id="file-markup-container">-->
+                <!--<table style="width: 100%">-->
+                    <!--<tr wicket:id="existing-files">-->
+                        <!--<input wicket:id="file-input" type="file" style="display: none;">-->
+                        <!--<td><a href="#" wicket:id="remove-link">-->
+                            <!--<img src="/todo" alt="Remove file" width="15" height="15">-->
+                        <!--</a></td>-->
+                        <!--<td wicket:id="file-name"></td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</div>-->
 
             <div class="contribution-edit-column">
                 <label class="bold-label" for="cep-title">

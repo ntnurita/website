@@ -35,8 +35,13 @@ div.rtl .contribute-standard-label {
 }
 
 .contribution-form-tip {
-    font-size: 9px;
+    font-size: 0.75em;
     color: gray;
+}
+
+.contribution-form-tip-dark {
+  font-size: 0.833em;
+  color: darkgray;
 }
 
 .contribution-tip-indent {
@@ -197,3 +202,24 @@ span.sim-thumbnail {
 .thumbnail-spacer {
   width: 172px;
 }
+
+.wicket-mfu-container input {
+  float: left;
+  background: url(../images/icons/x-icon.png) no-repeat;
+  cursor: pointer;
+  border: none;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.wicket-mfu-container input:hover {
+  background: url(../images/icons/x-icon-hover.png) no-repeat;
+  background-size: 20px 20px;
+}
+
+.wicket-mfu-container div {
+
+}
+
