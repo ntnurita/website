@@ -252,6 +252,10 @@ div.rtl div.rating-holder {
     z-index: 2;
 }
 
+.other-sim-page[dir="rtl"] {
+  right: 405px;
+}
+
 .other-sim-link {
     padding-left: 5px;
     display: block;
@@ -264,18 +268,61 @@ body#offline-installer-body .sim-download {
 }
 
 .triangle-down {
-    background-image: url(../images/icons/triangle-down.png);
-    background-repeat: no-repeat;
     padding-left: 20px;
     color: black;
-    background-position: 0 2px;
+}
+
+.triangle-down:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url(../images/icons/triangle-down.png) no-repeat;
+  background-position: 0 2px;
+}
+
+div.ltr .triangle-down:before {
+  left: 20px;
+}
+
+div.rtl .triangle-down:before {
+  right: -20px;
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .triangle-right {
-    background-image: url(../images/icons/triangle-right.png);
-    background-repeat: no-repeat;
-    padding-left: 20px;
-    color: rgb(110,110,110);
+  color: rgb(110,110,110);
+}
+
+div.ltr .triangle-right {
+  padding-left: 20px;
+}
+
+.triangle-right:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url(../images/icons/triangle-right.png) no-repeat;
+}
+
+div.ltr .triangle-right:before {
+  left: 20px;
+}
+
+div.rtl .triangle-right:before {
+  right: -20px;
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 #play-sim-icon {
@@ -338,12 +385,19 @@ body#offline-installer-body .sim-download {
 }
 
 .click-area-expand {
-  padding-left: 20px;
   display: inline-block;
   position: relative;
-  left: -20px;
-  width: 100%;
   z-index: 1;
+  width: 100%;
   cursor: pointer;
   text-decoration: none !important;
+}
+
+div.ltr .click-area-expand {
+  left: -20px;
+  padding-left: 20px;
+}
+
+div.rtl .click-area-expand {
+  right: 20px;
 }
