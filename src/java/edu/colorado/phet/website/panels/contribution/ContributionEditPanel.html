@@ -4,244 +4,247 @@
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] ContributionEditPanel</title>
-    <wicket:remove>
-        <!-- for preview purposes only -->
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-        <style type="text/css">
-            .contribution-edit {
-                width: 525px;
-                margin: 0 auto;
-            }
-        </style>
-    </wicket:remove>
+  <title>[PREVIEW] ContributionEditPanel</title>
+  <wicket:remove>
+    <!-- for preview purposes only -->
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    <style type="text/css">
+      .contribution-edit {
+        width: 525px;
+        margin: 0 auto;
+      }
+    </style>
+  </wicket:remove>
 </head>
 <body>
 
 <wicket:panel>
-    <div class="contribution-edit" wicket:message="dir:language.dir">
-        <wicket:enclosure child="feedback">
-            <div id="contribution-feedback">
+  <div class="contribution-edit" wicket:message="dir:language.dir">
+    <wicket:enclosure child="feedback">
+      <div id="contribution-feedback">
                 <span style="font-weight: bold; color: red;">
                     <wicket:message key="contribution.edit.validation.pleaseCorrect">
-                        Please correct the following:
+                      Please correct the following:
                     </wicket:message>
                 </span>
-                <span wicket:id="feedback"></span>
-            </div>
-        </wicket:enclosure>
-        <form wicket:id="contributionform">
+        <span wicket:id="feedback"></span>
+      </div>
+    </wicket:enclosure>
+    <form wicket:id="contributionform">
 
-            <div class="contribution-edit-column">
-                <label class="bold-label" for="cep-author">
-                    <wicket:message key="contribution.edit.authors">
-                        Author(s)
-                    </wicket:message>
-                </label>
-                <input wicket:id="authors" id="cep-author" type="text" value="" name="email" class="contribution-input"><br/>
+      <div class="contribution-edit-column">
+        <label class="bold-label" for="cep-author">
+          <wicket:message key="contribution.edit.authors">
+            Author(s)
+          </wicket:message>
+        </label>
+        <input wicket:id="authors" id="cep-author" type="text" value="" name="email" class="contribution-input"><br/>
 
-                <label class="bold-label" for="cep-org">
-                    <wicket:message key="contribution.edit.organization">
-                        1st author's organization
-                    </wicket:message>
-                </label>
-                <input wicket:id="authorOrganization" type="text" value="" id="cep-org" class="contribution-input"/><br/>
+        <label class="bold-label" for="cep-org">
+          <wicket:message key="contribution.edit.organization">
+            1st author's organization
+          </wicket:message>
+        </label>
+        <input wicket:id="authorOrganization" type="text" value="" id="cep-org" class="contribution-input"/><br/>
 
-                <label class="bold-label" for="cep-email">
-                    <wicket:message key="contribution.edit.email">
-                        Contact email
-                    </wicket:message>
-                </label>
-                <input wicket:id="contactEmail" type="text" value="" id="cep-email" class="contribution-input"/><br/>
+        <label class="bold-label" for="cep-email">
+          <wicket:message key="contribution.edit.email">
+            Contact email
+          </wicket:message>
+        </label>
+        <input wicket:id="contactEmail" type="text" value="" id="cep-email" class="contribution-input"/><br/>
 
-                <label class="bold-label" for="simulations">
-                    <wicket:message key="contribution.edit.simulations">
-                        Simulation(s)
-                    </wicket:message>
-                </label>
-                <span class="contribution-form-tip contribution-tip-indent">
-                    <wicket:message key="contribution.edit.simulations.tip">
-                        Choose the simulation(s) associated with your activity
-                    </wicket:message>
-                </span>
+        <label class="bold-label" for="simulations">
+          <wicket:message key="contribution.edit.simulations">
+            Simulation(s)
+          </wicket:message>
+        </label>
+        <span class="contribution-form-tip contribution-tip-indent">
+          <wicket:message key="contribution.edit.simulations.tip">
+            Choose the simulation(s) associated with your activity
+          </wicket:message>
+        </span>
 
-                <div wicket:id="simulations" id="simulations" class="scrolling-div contribution-input"></div>
-            </div>
+        <div wicket:id="simulations" id="simulations" class="scrolling-div contribution-input"></div>
+      </div>
 
-            <table>
-                <tbody id="sim-thumbnails">
-                <tr>
-                    <td class="thumbnail-spacer"></td>
-                    <td class="thumbnail-spacer"></td>
-                    <td class="thumbnail-spacer"></td>
-                    <td class="thumbnail-spacer"></td>
-                </tr>
-                </tbody>
-            </table>
+      <table>
+        <tbody id="sim-thumbnails">
+        <tr>
+          <td class="thumbnail-spacer"></td>
+          <td class="thumbnail-spacer"></td>
+          <td class="thumbnail-spacer"></td>
+          <td class="thumbnail-spacer"></td>
+        </tr>
+        </tbody>
+      </table>
 
-            <label class="bold-label" style="margin: 0;">
-                <wicket:message key="contribution.edit.uploadFiles">
-                    Upload File(s)
-                </wicket:message>
+      <label class="bold-label" style="margin: 0;">
+        <wicket:message key="contribution.edit.uploadFiles">
+          Upload File(s)
+        </wicket:message>
+      </label>
+
+      <div>
+        <span class="contribution-form-tip-dark">
+          <wicket:message key="contribution.edit.uploadFiles.tip">
+            Please include an editable version of your activity.
+          </wicket:message>
+        </span><br/>
+        <span class="contribution-form-tip" wicket:id="contribution-file-tip">
+          The following file extensions are allowed: pdf, .....
+        </span>
+      </div>
+
+      <span class="phet-button file-upload" id="fake-file">
+        <wicket:message key="contribution.edit.chooseFile">
+          Choose File
+        </wicket:message>
+      </span>
+
+      <div wicket:id="file-upload"></div>
+
+      <div class="contribution-edit-column" style="padding-top: 20px;">
+        <label class="bold-label" for="cep-title">
+          <wicket:message key="contribution.edit.title">
+            Activity Title
+          </wicket:message>
+        </label>
+        <input wicket:id="title" type="text" value="" id="cep-title" class="contribution-input"/><br/>
+
+        <label class="bold-label" for="cep-keywords">
+          <wicket:message key="contribution.edit.keywords">
+            Keywords
+          </wicket:message>
+        </label>
+        <input wicket:id="keywords" type="text" value="" id="cep-keywords" class="contribution-input"
+               wicket:message="placeholder:contribution.edit.keywords.tip"/><br/>
+
+        <label class="bold-label" for="cep-desc">
+          <wicket:message key="contribution.edit.description">
+            Description
+          </wicket:message>
+        </label>
+        <textarea rows="5" cols="40" wicket:id="description" id="cep-desc" class="contribution-input"></textarea>
+      </div>
+
+      <table id="cep-checkbox-table">
+        <tr>
+          <th>Subject(s)</th>
+          <th>Grade Level(s)</th>
+          <th>Type(s)</th>
+        </tr>
+        <tr>
+          <td class="top-align">
+            <div wicket:id="subjects"></div>
+          </td>
+          <td class="top-align">
+            <div wicket:id="levels"></div>
+          </td>
+          <td class="top-align">
+            <div wicket:id="types"></div>
+          </td>
+        </tr>
+      </table>
+
+
+      <label class="bold-label" for="cep-locale">
+        <wicket:message key="contribution.edit.language">
+          Language
+        </wicket:message>
+      </label>
+
+      <div wicket:id="locale" id="cep-locale">
+      </div>
+
+      <label class="bold-label" for="cep-duration">
+        <wicket:message key="contribution.edit.duration">
+          Duration
+        </wicket:message>
+      </label>
+      <select wicket:id="duration" id="cep-duration">
+      </select><br/>
+
+      <table>
+        <tr>
+          <td>
+            <input type="checkbox" wicket:id="answersIncluded" id="cep-answers"/>
+          </td>
+          <td>
+            <label for="cep-answers">
+              <wicket:message key="contribution.edit.answers">
+                Answers Included
+              </wicket:message>
             </label>
-            <div>
-                <span class="contribution-form-tip-dark">
-                    <wicket:message key="contribution.edit.uploadFiles.tip">
-                        Please include an editable version of your activity.
-                    </wicket:message>
-                </span><br/>
-                <span class="contribution-form-tip" wicket:id="contribution-file-tip">
-                    The following file extensions are allowed: pdf, .....
-                </span>
-            </div>
-
-            <span class="phet-button file-upload" id="fake-file">
-                <wicket:message key="contribution.edit.chooseFile">
-                    Choose File
-                </wicket:message>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <span class="contribution-form-tip">
+              <wicket:message key="contribution.edit.answers.tip">
+                Please be aware that all users can see the answers if included
+              </wicket:message>
             </span>
-            <div wicket:id="file-upload"></div>
+          </td>
+        </tr>
+      </table>
 
-            <div class="contribution-edit-column" style="padding-top: 20px;">
-                <label class="bold-label" for="cep-title">
-                    <wicket:message key="contribution.edit.title">
-                        Activity Title
-                    </wicket:message>
-                </label>
-                <input wicket:id="title" type="text" value="" id="cep-title" class="contribution-input"/><br/>
-
-                <label class="bold-label" for="cep-keywords">
-                    <wicket:message key="contribution.edit.keywords">
-                        Keywords
-                    </wicket:message>
-                </label>
-                <input wicket:id="keywords" type="text" value="" id="cep-keywords" class="contribution-input"
-                       wicket:message="placeholder:contribution.edit.keywords.tip"/><br/>
-
-                <label class="bold-label" for="cep-desc">
-                    <wicket:message key="contribution.edit.description">
-                        Description
-                    </wicket:message>
-                </label>
-                <textarea rows="5" cols="40" wicket:id="description" id="cep-desc" class="contribution-input"></textarea>
-            </div>
-
-            <table id="cep-checkbox-table">
-                <tr>
-                    <th>Subject(s)</th>
-                    <th>Grade Level(s)</th>
-                    <th>Type(s)</th>
-                </tr>
-                <tr>
-                    <td class="top-align">
-                        <div wicket:id="subjects"></div>
-                    </td>
-                    <td class="top-align">
-                        <div wicket:id="levels"></div>
-                    </td>
-                    <td class="top-align">
-                        <div wicket:id="types"></div>
-                    </td>
-                </tr>
-            </table>
-
-            <label class="bold-label" for="cep-locale">
-                <wicket:message key="contribution.edit.language">
-                    Language
-                </wicket:message>
+      <wicket:enclosure child="fromPhet">
+        <tr>
+          <td class="contribution-edit-label">
+            <label for="cep-fromPhet">
+              From PhET
             </label>
-
-            <div wicket:id="locale" id="cep-locale">
-            </div>
-
-            <label class="bold-label" for="cep-duration">
-                <wicket:message key="contribution.edit.duration">
-                    Duration
-                </wicket:message>
+          </td>
+          <td class="contribution-edit-input">
+            <input type="checkbox" wicket:id="fromPhet" id="cep-fromPhet"/>
+          </td>
+        </tr>
+      </wicket:enclosure>
+      <wicket:enclosure child="goldStar">
+        <tr>
+          <td class="contribution-edit-label">
+            <label for="cep-goldStar">
+              Gold Star
             </label>
-            <select wicket:id="duration" id="cep-duration">
-            </select><br/>
+          </td>
+          <td class="contribution-edit-input">
+            <input type="checkbox" wicket:id="goldStar" id="cep-goldStar"/>
+          </td>
+        </tr>
+      </wicket:enclosure>
+      <wicket:enclosure child="approved">
+        <tr>
+          <td class="contribution-edit-label">
+            <label for="cep-approved">
+              Approved
+            </label>
+          </td>
+          <td class="contribution-edit-input">
+            <input type="checkbox" wicket:id="approved" id="cep-approved"/>
+          </td>
+        </tr>
+      </wicket:enclosure>
 
-            <table>
-                <tr>
-                    <td>
-                        <input type="checkbox" wicket:id="answersIncluded" id="cep-answers"/>
-                    </td>
-                    <td>
-                        <label for="cep-answers">
-                            <wicket:message key="contribution.edit.answers">
-                                Answers Included
-                            </wicket:message>
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <span class="contribution-form-tip">
-                            <wicket:message key="contribution.edit.answers.tip">
-                                Please be aware that all users can see the answers if included
-                            </wicket:message>
-                        </span>
-                    </td>
-                </tr>
-            </table>
+      <div class="contribution-edit-column">
+        <label class="bold-label">
+          <wicket:message key="contribution.edit.licensing">
+            Licensing Agreement
+          </wicket:message>
+        </label>
 
-            <wicket:enclosure child="fromPhet">
-                <tr>
-                    <td class="contribution-edit-label">
-                        <label for="cep-fromPhet">
-                            From PhET
-                        </label>
-                    </td>
-                    <td class="contribution-edit-input">
-                        <input type="checkbox" wicket:id="fromPhet" id="cep-fromPhet"/>
-                    </td>
-                </tr>
-            </wicket:enclosure>
-            <wicket:enclosure child="goldStar">
-                <tr>
-                    <td class="contribution-edit-label">
-                        <label for="cep-goldStar">
-                            Gold Star
-                        </label>
-                    </td>
-                    <td class="contribution-edit-input">
-                        <input type="checkbox" wicket:id="goldStar" id="cep-goldStar"/>
-                    </td>
-                </tr>
-            </wicket:enclosure>
-            <wicket:enclosure child="approved">
-                <tr>
-                    <td class="contribution-edit-label">
-                        <label for="cep-approved">
-                            Approved
-                        </label>
-                    </td>
-                    <td class="contribution-edit-input">
-                        <input type="checkbox" wicket:id="approved" id="cep-approved"/>
-                    </td>
-                </tr>
-            </wicket:enclosure>
+        <div class="scrolling-div contribution-input">
+        </div>
+      </div>
 
-            <div class="contribution-edit-column">
-                <label class="bold-label">
-                    <wicket:message key="contribution.edit.licensing">
-                        Licensing Agreement
-                    </wicket:message>
-                </label>
+      <div>
+        <input class="phet-button file-upload" type="submit" name="submit" wicket:message="value:contribution.edit.submitActivity"/>
+      </div>
 
-                <div class="scrolling-div contribution-input">
-                </div>
-            </div>
+    </form>
 
-            <div>
-                <input class="phet-button file-upload" type="submit" name="submit" wicket:message="value:contribution.edit.submitActivity"/>
-            </div>
-
-        </form>
-
-    </div>
+  </div>
 </wicket:panel>
 
 </body>
