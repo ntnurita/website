@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
@@ -29,6 +30,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
+import org.apache.wicket.markup.html.form.IFormVisitorParticipant;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
@@ -344,13 +346,18 @@ public class ContributionEditPanel extends PhetPanel {
                 }
             } );
 
-            add( new LocalizedText( "licensingTip", "contribution.edit.licensing.tip", new Object[] {
-                  "#" // TODO, where should this link to?
+            add( new LocalizedText( "licensingTip", "contribution.edit.licensing.tip", new Object[]{
+                    "#" // TODO, where should this link to?
             } ) );
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] { simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent(), subjectList.getFormComponent() };
+                    return new FormComponent[] {
+                            simList.getFormComponent(),
+                            typeList.getFormComponent(),
+                            levelList.getFormComponent(),
+                            subjectList.getFormComponent(),
+                    };
                 }
 
                 public void validate( Form form ) {

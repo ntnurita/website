@@ -243,3 +243,7 @@ table#cep-checkbox-table th {
 table#cep-checkbox-table td {
   width: 230px;
 }
+
+.validation-error {
+  outline: 2px solid rgb(255, 0, 0);
+}

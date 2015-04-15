@@ -79,30 +79,32 @@
         </tbody>
       </table>
 
-      <label class="bold-label" style="margin: 0;">
-        <wicket:message key="contribution.edit.uploadFiles">
-          Upload File(s)
-        </wicket:message>
-      </label>
-
-      <div>
-        <span class="contribution-form-tip-dark">
-          <wicket:message key="contribution.edit.uploadFiles.tip">
-            Please include an editable version of your activity.
+      <div id="cep-upload" class="contribution-edit-column">
+        <label class="bold-label" style="margin: 0;">
+          <wicket:message key="contribution.edit.uploadFiles">
+            Upload File(s)
           </wicket:message>
-        </span><br/>
-        <span class="contribution-form-tip" wicket:id="contribution-file-tip">
-          The following file extensions are allowed: pdf, .....
+        </label>
+
+        <div>
+          <span class="contribution-form-tip-dark">
+            <wicket:message key="contribution.edit.uploadFiles.tip">
+              Please include an editable version of your activity.
+            </wicket:message>
+          </span><br/>
+          <span class="contribution-form-tip" wicket:id="contribution-file-tip">
+            The following file extensions are allowed: pdf, .....
+          </span>
+        </div>
+
+        <span class="phet-button file-upload" id="fake-file">
+          <wicket:message key="contribution.edit.chooseFile">
+            Choose File
+          </wicket:message>
         </span>
+
+        <div wicket:id="file-upload"></div>
       </div>
-
-      <span class="phet-button file-upload" id="fake-file">
-        <wicket:message key="contribution.edit.chooseFile">
-          Choose File
-        </wicket:message>
-      </span>
-
-      <div wicket:id="file-upload"></div>
 
       <div class="contribution-edit-column" style="padding-top: 20px;">
         <label class="bold-label" for="cep-title">
@@ -130,7 +132,7 @@
 
       <br/>
 
-      <table id="cep-checkbox-table">
+      <table id="cep-checkbox-table" style="border-collapse: collapse;">
         <tr>
           <th>Subject(s)</th>
           <th>Grade Level(s)</th>

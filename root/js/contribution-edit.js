@@ -95,6 +95,46 @@ var fileAdded = function() {
   }
 };
 
+phet.markUnvalidatedComponents = function() {
+  var borderStyle = '2px solid red';
+  var markTableColumn = function ( index ) {
+    $( $( '#cep-checkbox-table th' )[ index ] ).css( {
+      'border-top': borderStyle,
+      'border-left': borderStyle,
+      'border-right': borderStyle
+    } );
+    $( $( '#cep-checkbox-table td' )[ index ] ).css( {
+      'border-bottom': borderStyle,
+      'border-left': borderStyle,
+      'border-right': borderStyle
+    } );
+  };
+
+  $( 'span.feedbackPanelERROR' ).each( function( index, item ) {
+    if ( item.textContent.indexOf( 'title' ) > -1 ) {
+      $( '#cep-title' ).addClass( 'validation-error' );
+    }
+    if ( item.textContent.indexOf( 'keywords' ) > -1 ) {
+      $( '#cep-keywords' ).addClass( 'validation-error' );
+    }
+    if ( item.textContent.indexOf( 'file' ) > -1 ) {
+      $( '#cep-upload' ).addClass( 'validation-error' );
+    }
+    if ( item.textContent.indexOf( 'simulation' ) > -1 ) {
+      $( '#simulations' ).addClass( 'validation-error' );
+    }
+    if ( item.textContent.indexOf( 'type' ) > -1 ) {
+      markTableColumn( 0 );
+    }
+    if ( item.textContent.indexOf( 'level' ) > -1 ) {
+      markTableColumn( 1 );
+    }
+    if ( item.textContent.indexOf( 'subject' ) > -1 ) {
+      markTableColumn( 2 );
+    }
+  } );
+};
+
 $( 'document' ).ready( function() {
   var fileInput = $( '.wicket-mfu-field' )[ 0 ];
   if ( fileInput ) {
@@ -105,5 +145,9 @@ $( 'document' ).ready( function() {
     fileInput.style.position = 'absolute';
     fileInput.style.left = '-1000px';
     fileInput.addEventListener( 'click', fileAdded, false );
+  }
+
+  if ( $('#contribution-feedback').length ) {
+    phet.markUnvalidatedComponents();
   }
 } );
