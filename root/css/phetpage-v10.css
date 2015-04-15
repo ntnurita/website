@@ -69,12 +69,20 @@ div.rtl #page-header-logo {
     height: 23px;
     width: 23px;
     border: none;
-    border-radius: 0 2px 2px 0;
     padding: 3px;
     top: 0;
     position: absolute;
-    left: 202px;
     margin: 0;
+}
+
+div.ltr #search-submit {
+  border-radius: 0 2px 2px 0;
+  left: 202px;
+}
+
+div.rtl #search-submit {
+  border-radius: 2px 0 0 2px;
+  left: -23px;
 }
 
 #magnifying-glass {
@@ -345,7 +353,14 @@ div.copyright {
     width: 200px;
     height: 21px;
     border: none;
-    border-radius: 2px 0 0 2px;
+}
+
+div.ltr .acInput {
+  border-radius: 2px 0 0 2px;
+}
+
+div.rtl .acInput {
+  border-radius: 0 2px 2px 0;
 }
 
 .acResults {
