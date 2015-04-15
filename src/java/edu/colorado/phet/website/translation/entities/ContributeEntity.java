@@ -88,6 +88,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.answers.tip" );
         addString( "contribution.edit.language" );
         addString( "contribution.edit.licensing" );
+        addString( "contribution.edit.licensing.tip" );
         addString( "contribution.edit.uploadFiles" );
         addString( "contribution.edit.uploadFiles.tip" );
         addString( "contribution.edit.chooseFile" );

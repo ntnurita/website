@@ -22,12 +22,12 @@
   <div class="contribution-edit" wicket:message="dir:language.dir">
     <wicket:enclosure child="feedback">
       <div id="contribution-feedback">
-                <span style="font-weight: bold; color: red;">
-                    <wicket:message key="contribution.edit.validation.pleaseCorrect">
-                      Please correct the following:
-                    </wicket:message>
-                </span>
-        <span wicket:id="feedback"></span>
+        <span style="font-weight: bold; color: red;">
+          <wicket:message key="contribution.edit.validation.pleaseCorrect">
+            Please correct the following:
+          </wicket:message>
+        </span>
+      <span wicket:id="feedback"></span>
       </div>
     </wicket:enclosure>
     <form wicket:id="contributionform">
@@ -128,6 +128,8 @@
         <textarea rows="5" cols="40" wicket:id="description" id="cep-desc" class="contribution-input"></textarea>
       </div>
 
+      <br/>
+
       <table id="cep-checkbox-table">
         <tr>
           <th>Subject(s)</th>
@@ -147,6 +149,7 @@
         </tr>
       </table>
 
+      <br/>
 
       <label class="bold-label" for="cep-locale">
         <wicket:message key="contribution.edit.language">
@@ -157,30 +160,29 @@
       <div wicket:id="locale" id="cep-locale">
       </div>
 
+      <br/>
+
       <label class="bold-label" for="cep-duration">
         <wicket:message key="contribution.edit.duration">
           Duration
         </wicket:message>
       </label>
       <select wicket:id="duration" id="cep-duration">
-      </select><br/>
+      </select>
+
+      <br/><br/>
 
       <table>
         <tr>
-          <td>
+          <td style="vertical-align: top">
             <input type="checkbox" wicket:id="answersIncluded" id="cep-answers"/>
           </td>
-          <td>
+          <td style="padding-top: 3px;">
             <label for="cep-answers">
               <wicket:message key="contribution.edit.answers">
                 Answers Included
               </wicket:message>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
+            </label><br/>
             <span class="contribution-form-tip">
               <wicket:message key="contribution.edit.answers.tip">
                 Please be aware that all users can see the answers if included
@@ -189,6 +191,8 @@
           </td>
         </tr>
       </table>
+
+      <br/>
 
       <wicket:enclosure child="fromPhet">
         <tr>
@@ -225,6 +229,7 @@
             <input type="checkbox" wicket:id="approved" id="cep-approved"/>
           </td>
         </tr>
+        <br/><br/>
       </wicket:enclosure>
 
       <div class="contribution-edit-column">
@@ -236,6 +241,9 @@
 
         <div class="scrolling-div contribution-input">
         </div>
+        <span wicket:id="licensingTip" class="contribution-form-tip">
+          By submitting the the activity, you are agreeing to the <a href="#">Licensing Agreement</a> above.
+        </span>
       </div>
 
       <div>

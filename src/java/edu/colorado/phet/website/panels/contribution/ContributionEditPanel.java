@@ -347,6 +347,10 @@ public class ContributionEditPanel extends PhetPanel {
                 }
             } );
 
+            add( new LocalizedText( "licensingTip", "contribution.edit.licensing.tip", new Object[] {
+                  "#" // TODO, where should this link to?
+            } ) );
+
 //            add( new AbstractFormValidator() {
 //                public FormComponent[] getDependentFormComponents() {
 //                    return new FormComponent[] { typeList.getFormComponent(), levelList.getFormComponent() };
