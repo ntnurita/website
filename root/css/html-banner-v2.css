@@ -57,17 +57,17 @@
     right: 16px;
 }
 
-.html-banner-image[dir="rtl"] {
+div.rtl .html-banner-image {
     right: inherit;
     left: 18px;
 }
 
-.html-banner-html[dir="rtl"] {
+div.rtl .html-banner-html {
     right: inherit;
     left: 20px;
 }
 
-#html-banner-link[dir="rtl"] {
+div.rtl #html-banner-link {
     right: inherit;
     left: 0;
 }
@@ -96,7 +96,7 @@ div.rtl .html-banner-container .html-banner-html {
     left: -2px;
 }
 
-.html-banner-container .html-banner-crowdfundText[dir="rtl"] {
+div.rtl .html-banner-container .html-banner-crowdfundText {
     float: right;
 }
 
@@ -110,7 +110,7 @@ div.rtl .html-banner-container .html-banner-html {
   top: 12px;
 }
 
-.html-banner-simsText[dir="rtl"] {
+div.rtl .html-banner-simsText {
   right: inherit;
   left: 75px;
   float: left;
@@ -127,7 +127,7 @@ div.rtl .html-banner-container .html-banner-html {
     top: 12px;
 }
 
-.html-banner-button[dir="rtl"] {
+div.rtl .html-banner-button {
     /*margin-left: 2px;*/
     right: 15px;
     float: right;
