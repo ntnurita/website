@@ -92,6 +92,7 @@ public class StringChanges {
         StringUtils.addString( session, "contribution.edit.uploadFiles.tip", "Please include an editable version of your activity." );
         StringUtils.addString( session, "contribution.edit.chooseFile", "Choose File" );
         StringUtils.addString( session, "contribution.edit.submitActivity", "Submit Activity" );
+        StringUtils.addString( session, "contribution.edit.validation.mustHaveSubjects", "The activity must specify at least one subject" );
         StringUtils.overwriteString( session, "contribution.edit.title", "Title", "Activity Title" );
 
         /**

@@ -295,9 +295,6 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new CheckBox( "answersIncluded" ) );
 
-//            creativeCommonsCheckbox = new CheckBox( "creativeCommons" );
-//            add( creativeCommonsCheckbox );
-
             localeChoice = new LocaleDropDownChoice( "locale", context );
             add( localeChoice );
 
@@ -351,26 +348,26 @@ public class ContributionEditPanel extends PhetPanel {
                   "#" // TODO, where should this link to?
             } ) );
 
-//            add( new AbstractFormValidator() {
-//                public FormComponent[] getDependentFormComponents() {
-//                    return new FormComponent[] { typeList.getFormComponent(), levelList.getFormComponent() };
-//                }
-//
-//                public void validate( Form form ) {
-//                    if ( simManager.getSimulations().isEmpty() ) {
-//                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
-//                    }
-//                    if ( typeManager.getValues().isEmpty() ) {
-//                        error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
-//                    }
-//                    if ( levelManager.getValues().isEmpty() ) {
-//                        error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
-//                    }
-//                    if ( !creativeCommonsCheckbox.getConvertedInput() ) {
-//                        error( creativeCommonsCheckbox, "contribution.edit.validation.mustHaveLicense" );
-//                    }
-//                }
-//            } );
+            add( new AbstractFormValidator() {
+                public FormComponent[] getDependentFormComponents() {
+                    return new FormComponent[] { simList.getFormComponent(), typeList.getFormComponent(), levelList.getFormComponent(), subjectList.getFormComponent() };
+                }
+
+                public void validate( Form form ) {
+                    if ( simList.getFormComponent().getModel().getObject().isEmpty() ) {
+                        error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
+                    }
+                    if ( typeList.getFormComponent().getModel().getObject().isEmpty() ) {
+                        error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
+                    }
+                    if ( levelList.getFormComponent().getModel().getObject().isEmpty() ) {
+                        error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
+                    }
+                    if ( subjectList.getFormComponent().getModel().getObject().isEmpty() ) {
+                        error( subjectList.getFormComponent(), "contribution.edit.validation.mustHaveSubjects" );
+                    }
+                }
+            } );
 
         }
 
@@ -392,7 +389,6 @@ public class ContributionEditPanel extends PhetPanel {
                     // pull out values
                     int duration = ( (DurationItem) durationChoice.getModelObject() ).getDuration();
                     boolean answers = getModelObject().isAnswersIncluded();
-                    boolean creativeCommons = getModelObject().isCreativeCommons();
                     Locale locale = localeChoice.getLocale() == null ? WebsiteConstants.ENGLISH : localeChoice.getLocale();
 
                     //Contribution contribution;
