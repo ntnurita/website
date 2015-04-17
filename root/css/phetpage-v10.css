@@ -85,9 +85,17 @@ div.rtl #search-submit {
   left: -23px;
 }
 
-#magnifying-glass {
+div.ltr #magnifying-glass {
   height: 100%;
   display: block;
+}
+
+/* This is a workaround for firefox - in other browsers the div.ltr css works for rtl too */
+div.rtl #magnifying-glass {
+  position: absolute;
+  top: 3px;
+  height: 17px;
+  left: 3px;
 }
 
 #search-submit:focus {
