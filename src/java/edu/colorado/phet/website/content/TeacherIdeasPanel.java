@@ -47,7 +47,7 @@ public class TeacherIdeasPanel extends PhetPanel {
         String submitActivityLink = ContributionCreatePage.getLinker().getRawUrl( context, getPhetCycle() );
         WebMarkupContainer submitActivityContainer = new WebMarkupContainer( "submit-activity-button" );
         submitActivityContainer.add( ContributionCreatePage.getLinker().getLink( "submit-activity-link", context, getPhetCycle() ) );
-        submitActivityContainer.add( new AttributeModifier( "onclick", true, new Model<String>( "document.location = '" + submitActivityLink + "'" ) ) );
+        submitActivityContainer.add( new AttributeModifier( "onclick", true, new Model<String>( "phet.ensureLogin( '" + submitActivityLink + "' ); return false;" ) ) );
         add( submitActivityContainer );
     }
 
