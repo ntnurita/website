@@ -449,6 +449,7 @@ pre {
     display: block !important;
     border: none;
     margin: 10px auto;
+    line-height: initial !important;
 }
 
 .login-form-submit:hover {
