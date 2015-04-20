@@ -7,6 +7,7 @@ package edu.colorado.phet.website.panels.contribution;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -18,13 +19,17 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Check;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.CheckGroup;
+import org.apache.wicket.markup.html.form.CheckGroupSelector;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -32,6 +37,7 @@ import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
 import org.apache.wicket.markup.html.form.IFormVisitorParticipant;
 import org.apache.wicket.markup.html.form.RequiredTextField;
+import org.apache.wicket.markup.html.form.SimpleFormComponentLabel;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
@@ -361,6 +367,16 @@ public class ContributionEditPanel extends PhetPanel {
                 }
 
                 public void validate( Form form ) {
+                    simList.getFormComponent().validate();
+                    typeList.getFormComponent().validate();
+                    levelList.getFormComponent().validate();
+                    subjectList.getFormComponent().validate();
+
+                    simList.getFormComponent().updateModel();
+                    typeList.getFormComponent().updateModel();
+                    levelList.getFormComponent().updateModel();
+                    subjectList.getFormComponent().updateModel();
+
                     if ( simList.getFormComponent().getModel().getObject().isEmpty() ) {
                         error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
                     }
@@ -429,6 +445,7 @@ public class ContributionEditPanel extends PhetPanel {
                     // load into persistence
                     for ( SimOrderItem presim : simList.getFormComponent().getModel().getObject() ) {
                         Simulation sim = (Simulation) session.load( Simulation.class, presim.getId() );
+                        System.out.println( "SIM " + sim.getName());
                         selectedSims.add( sim );
                     }
 

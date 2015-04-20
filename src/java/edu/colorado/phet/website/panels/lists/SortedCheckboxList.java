@@ -47,14 +47,7 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
 
         checkGroup = new CheckGroup<Item>( "group", new ArrayList<Item>() );
 
-        Form form = new Form( "form" )
-        {
-            @Override
-            protected void onSubmit()
-            {
-                info( "selected items(s): " + checkGroup.getDefaultModelObjectAsString() );
-            }
-        };
+        Form form = new Form( "form" );
         add( form );
 
         form.add( checkGroup );
