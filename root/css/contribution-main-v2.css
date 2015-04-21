@@ -269,15 +269,21 @@ div.rtl #check-guidelines {
   left: 140px;
 }
 
+.sim-thumbnails {
+  padding-bottom: 20px;
+}
+
 .sim-thumbnail {
-  -webkit-box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);
-  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.5);
   width: 128px;
   height: 84px;
+  display: inline-block;
+  padding: 30px 50px 10px 0;
 }
 
 .sim-thumbnail img {
+  -webkit-box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3);
   width: 128px;
   height: 84px;
 }
@@ -295,11 +301,11 @@ div.rtl #check-guidelines {
 .sim-thumbnail-x {
   display: block;
   position: relative;
-  background-size: 28px 28px;
-  width: 28px;
-  height: 28px;
-  left: 115px;
-  bottom: 128px;
+  background-size: 26px 26px;
+  width: 26px;
+  height: 26px;
+  left: 116px;
+  bottom: 127px;
   cursor: pointer;
   background-image: url(../images/icons/x-icon.png);
 }
