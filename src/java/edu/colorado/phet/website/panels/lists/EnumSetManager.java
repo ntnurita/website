@@ -129,7 +129,6 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
             for ( E type : values ) {
                 if ( allValuesType == type ) {
                     items.add( listItem );
-                    System.out.println( "Equal! " + type.toString() );
                 }
             }
             allItems.add( listItem );

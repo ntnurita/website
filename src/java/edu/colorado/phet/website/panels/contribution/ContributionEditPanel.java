@@ -445,7 +445,6 @@ public class ContributionEditPanel extends PhetPanel {
                     // load into persistence
                     for ( SimOrderItem presim : simList.getFormComponent().getModel().getObject() ) {
                         Simulation sim = (Simulation) session.load( Simulation.class, presim.getId() );
-                        System.out.println( "SIM " + sim.getName() );
                         selectedSims.add( sim );
                     }
 
@@ -470,8 +469,9 @@ public class ContributionEditPanel extends PhetPanel {
                     Set types = contribution.getTypes();
                     Set iterTypes = new HashSet( types );
 
-                    for ( Type type : typeManager.getValues() ) {
+                    for ( EnumSetManager.ListItem<Type> typeListItem : typeList.getFormComponent().getModelObject() ) {
                         boolean exists = false;
+                        Type type = typeListItem.getValue();
                         for ( Object o : types ) {
                             if ( ( (ContributionType) o ).getType() == type ) {
                                 exists = true;
@@ -491,7 +491,7 @@ public class ContributionEditPanel extends PhetPanel {
 
                     for ( Object o : iterTypes ) {
                         ContributionType ctype = (ContributionType) o;
-                        if ( !typeManager.getValues().contains( ctype.getType() ) ) {
+                        if ( !typeList.getFormComponent().getModelObject().contains( ctype.getType() ) ) {
                             contribution.getTypes().remove( ctype );
                         }
                     }
@@ -503,8 +503,9 @@ public class ContributionEditPanel extends PhetPanel {
                     Set levels = contribution.getLevels();
                     Set iterLevels = new HashSet( levels );
 
-                    for ( Level level : levelManager.getValues() ) {
+                    for ( EnumSetManager.ListItem<Level> levelListItem : levelList.getFormComponent().getModelObject() ) {
                         boolean exists = false;
+                        Level level = levelListItem.getValue();
                         for ( Object o : levels ) {
                             if ( ( (ContributionLevel) o ).getLevel() == level ) {
                                 exists = true;
@@ -524,7 +525,7 @@ public class ContributionEditPanel extends PhetPanel {
 
                     for ( Object o : iterLevels ) {
                         ContributionLevel clevel = (ContributionLevel) o;
-                        if ( !levelManager.getValues().contains( clevel.getLevel() ) ) {
+                        if ( !levelList.getFormComponent().getModelObject().contains( clevel.getLevel() ) ) {
                             contribution.getLevels().remove( clevel );
                         }
                     }
@@ -536,8 +537,9 @@ public class ContributionEditPanel extends PhetPanel {
                     Set subjects = contribution.getSubjects();
                     Set iterSubjects = new HashSet( subjects );
 
-                    for ( Subject subject : subjectManager.getValues() ) {
+                    for ( EnumSetManager.ListItem<Subject> levelListItem : subjectList.getFormComponent().getModelObject() ) {
                         boolean exists = false;
+                        Subject subject = levelListItem.getValue();
                         for ( Object o : subjects ) {
                             if ( ( (ContributionSubject) o ).getSubject() == subject ) {
                                 exists = true;
@@ -557,7 +559,7 @@ public class ContributionEditPanel extends PhetPanel {
 
                     for ( Object o : iterSubjects ) {
                         ContributionSubject csubject = (ContributionSubject) o;
-                        if ( !subjectManager.getValues().contains( csubject.getSubject() ) ) {
+                        if ( !subjectList.getFormComponent().getModelObject().contains( csubject.getSubject() ) ) {
                             contribution.getSubjects().remove( csubject );
                         }
                     }
