@@ -11,20 +11,25 @@ phet.checkboxToggle = function( simName, checkboxDiv, thumbnailUrl, simType ) {
   // if the thumbnail doesn't exist already and the checkbox has just been checked,
   // create a new td (and a new tr if necessary) to hold the thumbnail image and sim badge
   if ( !td && checkbox.checked ) {
-    td = document.createElement( 'td' );
-    td.id = thumbnailId;
+    //td = document.createElement( 'td' );
+    //td.id = thumbnailId;
 
-    var container = document.createElement( 'span' );
+    var container = document.createElement( 'div' );
     container.className = 'sim-thumbnail';
 
     var image = document.createElement( 'img' );
     image.src = thumbnailUrl;
 
-    var badge = document.createElement( 'span' );
-    badge.className = 'sim-display-badge sim-badge-' + simType;
+    var badge = document.createElement( 'div' );
+    badge.className = 'sim-thumbnail-badge sim-badge-' + simType;
+
+    var x = document.createElement( 'div' );
+    x.className = 'sim-thumbnail-x';
+    x.onclick = function() { phet.checkboxToggle( simName, checkboxDiv, thumbnailUrl, simType ) };
 
     container.appendChild( image );
     container.appendChild( badge );
+    container.appendChild( x );
     td.appendChild( container );
 
     if ( thumbnailTable.children.length ) {
@@ -57,6 +62,10 @@ phet.checkboxToggle = function( simName, checkboxDiv, thumbnailUrl, simType ) {
       var lastTd = lastRow.children[ lastRow.children.length - 1 ];
       lastRow.removeChild( lastTd );
       currentRow.appendChild( lastTd );
+    }
+
+    if ( checkbox.checked ) {
+      checkbox.checked = false;
     }
   }
 

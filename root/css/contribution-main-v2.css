@@ -268,3 +268,42 @@ div.ltr #check-guidelines {
 div.rtl #check-guidelines {
   left: 140px;
 }
+
+.sim-thumbnail {
+  -webkit-box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.5);
+  width: 128px;
+  height: 84px;
+}
+
+.sim-thumbnail img {
+  width: 128px;
+  height: 84px;
+}
+
+.sim-thumbnail-badge {
+  display: block;
+  position: relative;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  left: 115px;
+  top: -25px;
+}
+
+.sim-thumbnail-x {
+  display: block;
+  position: relative;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  left: 115px;
+  bottom: 128px;
+  cursor: pointer;
+  background-image: url(../images/icons/x-icon.png);
+}
+
+.sim-thumbnail-x:hover {
+  background-image: url(../images/icons/x-icon-hover.png);
+}
