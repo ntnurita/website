@@ -30,6 +30,8 @@ public class ContributionEditPage extends PhetRegularPage {
         initializeLocation( getNavMenu().getLocationByKey( "teacherIdeas.edit" ) );
         tryHttpsAndVerifySignedIn( StringUtils.makeUrlHTTPS( getFullPath() ) );
 
+        setContentWidth( 1120 );
+
         String contributionIdString = parameters.getString( "contributionId" );
         final int contributionId = Integer.parseInt( contributionIdString );
 
