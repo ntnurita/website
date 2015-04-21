@@ -307,14 +307,14 @@ public class ContributionEditPanel extends PhetPanel {
             add( localeChoice );
 
             if ( PhetSession.get().getUser().isTeamMember() ) {
-                add( new CheckBox( "fromPhet" ) );
-                add( new CheckBox( "goldStar" ) );
-                add( new CheckBox( "approved" ) );
+                add( new WebMarkupContainer( "admin-options" ) {{
+                    add( new CheckBox( "fromPhet" ) );
+                    add( new CheckBox( "goldStar" ) );
+                    add( new CheckBox( "approved" ) );
+                }} );
             }
             else {
-                add( new InvisibleComponent( "fromPhet" ) );
-                add( new InvisibleComponent( "goldStar" ) );
-                add( new InvisibleComponent( "approved" ) );
+                add( new InvisibleComponent( "admin-options" ) );
             }
 
             //stdK4A = new CheckBox( "stdK4A", new Model( creating ? Boolean.FALSE : new Boolean( contribution.isStandardK4A() ) ) ); add( stdK4A );
@@ -358,7 +358,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[] {
+                    return new FormComponent[]{
                             simList.getFormComponent(),
                             typeList.getFormComponent(),
                             levelList.getFormComponent(),
@@ -445,7 +445,7 @@ public class ContributionEditPanel extends PhetPanel {
                     // load into persistence
                     for ( SimOrderItem presim : simList.getFormComponent().getModel().getObject() ) {
                         Simulation sim = (Simulation) session.load( Simulation.class, presim.getId() );
-                        System.out.println( "SIM " + sim.getName());
+                        System.out.println( "SIM " + sim.getName() );
                         selectedSims.add( sim );
                     }
 

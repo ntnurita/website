@@ -17,6 +17,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.hibernate.Session;
 
+import edu.colorado.phet.website.data.Simulation;
 import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.StringUtils;
@@ -120,12 +121,18 @@ public abstract class EnumSetManager<E extends Enum> implements Serializable {
         items = new LinkedList<ListItem<E>>();
         allItems = new LinkedList<ListItem<E>>();
 
-        for ( E type : values ) {
-            items.add( new ListItem( type, titleMap.get( type ) ) );
-        }
+        for ( E allValuesType : allValues ) {
+            ListItem listItem = new ListItem( allValuesType, titleMap.get( allValuesType ) );
 
-        for ( E type : allValues ) {
-            allItems.add( new ListItem( type, titleMap.get( type ) ) );
+            // the references in items and allItems must match for the checkbox list, so we need to add the same
+            // ListItem to items that is in allItems
+            for ( E type : values ) {
+                if ( allValuesType == type ) {
+                    items.add( listItem );
+                    System.out.println( "Equal! " + type.toString() );
+                }
+            }
+            allItems.add( listItem );
         }
     }
 

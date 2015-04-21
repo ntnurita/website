@@ -75,12 +75,17 @@ public abstract class SimSetManager implements Serializable {
         items = new LinkedList<SimOrderItem>();
         allItems = new LinkedList<SimOrderItem>();
 
-        for ( Simulation simulation : simulations ) {
-            items.add( new SimOrderItem( simulation, titleMap.get( simulation ) ) );
-        }
+        for ( Simulation allSimsSim : allSimulations ) {
+            SimOrderItem simOrderItem = new SimOrderItem( allSimsSim, titleMap.get( allSimsSim ) );
 
-        for ( Simulation simulation : allSimulations ) {
-            allItems.add( new SimOrderItem( simulation, titleMap.get( simulation ) ) );
+            // the references in items and allItems must match for the checkbox list, so we need to add the same
+            // SimOrderItem to items that is in allItems
+            for ( Simulation sim : simulations ) {
+                if ( sim.getId() == allSimsSim.getId() ) {
+                    items.add( simOrderItem );
+                }
+            }
+            allItems.add( simOrderItem );
         }
     }
 

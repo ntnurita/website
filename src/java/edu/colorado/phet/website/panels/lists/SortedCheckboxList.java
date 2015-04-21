@@ -45,7 +45,7 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
         sortItems( items );
         sortItems( allItems );
 
-        checkGroup = new CheckGroup<Item>( "group", new ArrayList<Item>() );
+        checkGroup = new CheckGroup<Item>( "group", new ArrayList<Item>( items ) );
 
         Form form = new Form( "form" );
         add( form );

@@ -196,7 +196,7 @@
 
       <br/>
 
-      <wicket:enclosure child="fromPhet">
+      <table wicket:id="admin-options">
         <tr>
           <td class="contribution-edit-label">
             <label for="cep-fromPhet">
@@ -206,10 +206,6 @@
           <td class="contribution-edit-input">
             <input type="checkbox" wicket:id="fromPhet" id="cep-fromPhet"/>
           </td>
-        </tr>
-      </wicket:enclosure>
-      <wicket:enclosure child="goldStar">
-        <tr>
           <td class="contribution-edit-label">
             <label for="cep-goldStar">
               Gold Star
@@ -218,10 +214,6 @@
           <td class="contribution-edit-input">
             <input type="checkbox" wicket:id="goldStar" id="cep-goldStar"/>
           </td>
-        </tr>
-      </wicket:enclosure>
-      <wicket:enclosure child="approved">
-        <tr>
           <td class="contribution-edit-label">
             <label for="cep-approved">
               Approved
@@ -231,8 +223,8 @@
             <input type="checkbox" wicket:id="approved" id="cep-approved"/>
           </td>
         </tr>
-        <br/><br/>
-      </wicket:enclosure>
+      </table>
+      <br/><br/>
 
       <div class="contribution-edit-column">
         <label class="bold-label">
