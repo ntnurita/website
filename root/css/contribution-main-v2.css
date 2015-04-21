@@ -195,6 +195,10 @@ span.sim-thumbnail {
   position: relative;
 }
 
+.sim-checkbox-div {
+  display: inline-block;
+}
+
 .sim-checkbox-div input, label {
   cursor: pointer;
 }
@@ -249,7 +253,7 @@ table#cep-checkbox-table td {
 }
 
 #check-guidelines {
-  background-color: rgb(186, 235, 235);
+  background-color: #BAEBFF;
   display: block;
   padding: 5px;
   width: 180px;

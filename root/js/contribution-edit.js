@@ -147,6 +147,19 @@ $( 'document' ).ready( function() {
     fileInput.addEventListener( 'click', fileAdded, false );
   }
 
+  var simCheckboxes = $( '.sim-checkbox-div input' );
+  if ( simCheckboxes.length ) {
+    simCheckboxes.each( function( index, checkbox ) {
+      if ( checkbox.getAttribute( 'checked' ) ) {
+        // this is a hack to get the thumbnail images to trigger for pre-checked boxes
+        // the thumbnails appear onclick, so they won't appear when the page first loads
+        checkbox.parentNode.onclick();
+        checkbox.parentNode.onclick();
+        checkbox.parentNode.onclick();
+      }
+    } );
+  }
+
   if ( $('#contribution-feedback').length ) {
     phet.markUnvalidatedComponents();
   }
