@@ -85,7 +85,7 @@ public class StringChanges {
         StringUtils.addString( session, "contribution.edit.activityTitle", "Activity Title" );
         StringUtils.addString( session, "contribution.edit.simulations.tip", "Choose the simulation(s) associated with your activity" );
         StringUtils.addString( session, "contribution.edit.simulations.selectAll", "Select All" );
-        StringUtils.addString( session, "contribution.edit.answers.tip", "Please be aware that all users can see the answers if included" );
+        StringUtils.addString( session, "contribution.edit.answers.tip", "Please be aware that all users can see the answers if included." );
         StringUtils.addString( session, "contribution.edit.licensing", "Licensing Agreement" );
         StringUtils.addString( session, "contribution.edit.licensing.tip", "By submitting the the activity, you are agreeing to the <a href={0}>Licensing Agreement</a> above." );
         StringUtils.addString( session, "contribution.edit.uploadFiles", "Upload File(s)" );
