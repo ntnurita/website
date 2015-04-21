@@ -196,7 +196,7 @@ span.sim-thumbnail {
 }
 
 .sim-checkbox-div {
-  display: inline-block;
+  display: table;
 }
 
 .sim-checkbox-div input, label {
