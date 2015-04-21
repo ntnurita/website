@@ -1,13 +1,12 @@
 var phet = phet || {};
 
-phet.checkboxToggle = function( simName, checkboxDiv, thumbnailUrl, simType ) {
+phet.checkboxToggle = function( simName, checkbox, thumbnailUrl, simType ) {
   var thumbnailId = 'sim-thumbnail-' + simName + '-' + simType;
-  var checkbox = checkboxDiv.children[ 0 ];
   var thumbnailTable = document.getElementById( 'sim-thumbnails' );
   var container = document.getElementById( thumbnailId );
 
   // if the thumbnail doesn't exist already and the checkbox has just been checked,
-  // create a new td (and a new tr if necessary) to hold the thumbnail image and sim badge
+  // create a new div to hold the thumbnail image and sim badge
   if ( !container && checkbox.checked ) {
 
     container = document.createElement( 'div' );
@@ -22,7 +21,7 @@ phet.checkboxToggle = function( simName, checkboxDiv, thumbnailUrl, simType ) {
 
     var x = document.createElement( 'div' );
     x.className = 'sim-thumbnail-x';
-    x.onclick = function() { phet.checkboxToggle( simName, checkboxDiv, thumbnailUrl, simType ) };
+    x.onclick = function() { phet.checkboxToggle( simName, checkbox, thumbnailUrl, simType ) };
 
     container.appendChild( image );
     container.appendChild( badge );
@@ -130,11 +129,7 @@ $( 'document' ).ready( function() {
   if ( simCheckboxes.length ) {
     simCheckboxes.each( function( index, checkbox ) {
       if ( checkbox.getAttribute( 'checked' ) ) {
-        // this is a hack to get the thumbnail images to trigger for pre-checked boxes
-        // the thumbnails appear onclick, so they won't appear when the page first loads
-        checkbox.parentNode.onclick();
-        checkbox.parentNode.onclick();
-        checkbox.parentNode.onclick();
+        checkbox.onclick();
       }
     } );
   }

@@ -96,6 +96,9 @@ public class StringChanges {
         StringUtils.addString( session, "contribution.create.alignActivity", "Align your activity to <br/><a href={0}>PhET Design Guidelines</a>" );
         StringUtils.overwriteString( session, "contribution.edit.title", "Title", "Activity Title" );
 
+        StringUtils.deleteString( session, "tooltip.legend.goldStar" );
+        StringUtils.addString( session, "tooltip.legend.goldStar", "A gold star is used to indicate high quality, inquiry-based activities that follow the PhET design guidelines and that teachers have found to be useful." );
+
         /**
          * General strings
          */
