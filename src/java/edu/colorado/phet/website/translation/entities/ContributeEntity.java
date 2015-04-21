@@ -100,6 +100,7 @@ public class ContributeEntity extends TranslationEntity {
 
         addString( "contribution.create.pageTitle" );
         addString( "contribution.create.checkGuidelines" );
+        addString( "contribution.create.alignActivity" );
 
         addString( "contribution.manage.pageTitle" );
         addString( "contribution.manage.myContributions" );

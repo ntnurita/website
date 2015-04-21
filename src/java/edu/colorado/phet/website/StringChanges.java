@@ -93,6 +93,7 @@ public class StringChanges {
         StringUtils.addString( session, "contribution.edit.chooseFile", "Choose File" );
         StringUtils.addString( session, "contribution.edit.submitActivity", "Submit Activity" );
         StringUtils.addString( session, "contribution.edit.validation.mustHaveSubjects", "The activity must specify at least one subject" );
+        StringUtils.addString( session, "contribution.create.alignActivity", "Align your activity to <br/><a href={0}>PhET Design Guidelines</a>" );
         StringUtils.overwriteString( session, "contribution.edit.title", "Title", "Activity Title" );
 
         /**

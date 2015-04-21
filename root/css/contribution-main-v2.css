@@ -247,3 +247,20 @@ table#cep-checkbox-table td {
 .validation-error {
   outline: 2px solid rgb(255, 0, 0);
 }
+
+#check-guidelines {
+  background-color: rgb(186, 235, 235);
+  display: block;
+  padding: 5px;
+  width: 180px;
+  position: absolute;
+  top: 58px;
+}
+
+div.ltr #check-guidelines {
+  right: 140px;
+}
+
+div.rtl #check-guidelines {
+  left: 140px;
+}
