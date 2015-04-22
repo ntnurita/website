@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponentLabel;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioChoice;
@@ -133,10 +134,23 @@ public class RegisterPanel extends PhetPanel {
             // phet experience
             IModel<String> selected = new Model<String>(); // TODO: user property model
             RadioGroup group = new RadioGroup( "phetExperienceRadios", selected );
-            group.add( new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) ) );
-            group.add( new Radio( "occasionalUserRadio", new Model<String>( "OCCASIONAL_USER" ) ) );
-            group.add( new Radio( "experiencedUserRadio", new Model<String>( "EXPERIENCED_USER" ) ) );
-            group.add( new Radio( "powerUserRadio", new Model<String>( "POWER_USER" ) ) );
+
+            Radio newUserRadio = new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) );
+            group.add( newUserRadio );
+            group.add( new FormComponentLabel( "newUserLabel", newUserRadio ) );
+
+            Radio occasionalUserRadio = new Radio( "occasionalUserRadio", new Model<String>( "OCCASIONAL_USER" ) );
+            group.add( occasionalUserRadio );
+            group.add( new FormComponentLabel( "occasionalUserLabel", occasionalUserRadio ) );
+
+            Radio experiencedUserRadio = new Radio( "experiencedUserRadio", new Model<String>( "EXPERIENCED_USER" ) );
+            group.add( experiencedUserRadio );
+            group.add( new FormComponentLabel( "experiencedUserLabel", experiencedUserRadio ) );
+
+            Radio powerUserRadio = new Radio( "powerUserRadio", new Model<String>( "POWER_USER" ) );
+            group.add( powerUserRadio );
+            group.add( new FormComponentLabel( "powerUserLabel", experiencedUserRadio ) );
+
             add( group );
 
 

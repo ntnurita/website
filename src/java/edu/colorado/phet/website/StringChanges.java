@@ -102,7 +102,26 @@ public class StringChanges {
         /**
          * New register page strings
          */
-//        StringUtils.addString( session, "profile.register.country", "Country" );
+        StringUtils.addString( session, "profile.firstName", "First name" );
+        StringUtils.addString( session, "profile.lastName", "Last name" );
+
+        StringUtils.addString( session, "register.teacher", "Teacher" );
+        StringUtils.addString( session, "register.student", "Student" );
+        StringUtils.addString( session, "register.researcher", "Researcher" );
+        StringUtils.addString( session, "register.translator", "Translator" );
+        StringUtils.addString( session, "register.other", "Other" );
+        StringUtils.addString( session, "register.generalSciences", "General Sciences" );
+        StringUtils.addString( session, "register.earthScience", "Earth Science" );
+        StringUtils.addString( session, "register.biology", "Biology" );
+        StringUtils.addString( session, "register.physics", "Physics" );
+        StringUtils.addString( session, "register.chemistry", "Chemistry" );
+        StringUtils.addString( session, "register.astronomy", "Astronomy" );
+        StringUtils.addString( session, "register.math", "Math" );
+        StringUtils.addString( session, "register.years", "years" );
+        StringUtils.addString( session, "register.newUser", "New user" );
+        StringUtils.addString( session, "register.occasionalUser", "Occasional user (I've used a few sims)" );
+        StringUtils.addString( session, "register.experiencedUser", "Experienced user (I regularly use sims in my classroom)" );
+        StringUtils.addString( session, "register.powerUser", "Power user (I tell everyone about PhET!)" );
 
 
 
