@@ -100,6 +100,13 @@ public class StringChanges {
         StringUtils.addString( session, "tooltip.legend.goldStar", "A gold star is used to indicate high quality, inquiry-based activities that follow the PhET design guidelines and that teachers have found to be useful." );
 
         /**
+         * New register page strings
+         */
+//        StringUtils.addString( session, "profile.register.country", "Country" );
+
+
+
+        /**
          * General strings
          */
         StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:", "Support PhET:" );

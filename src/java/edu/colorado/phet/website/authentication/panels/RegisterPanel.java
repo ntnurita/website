@@ -34,9 +34,10 @@ public class RegisterPanel extends PhetPanel {
 
     // TODO: use regular form validation, not this hacked version that was done before I knew about form validation feedback
 
-    private TextField name;
+    private TextField firstName;
+    private TextField lastName;
     private TextField organization;
-    private TextField username;
+    private TextField username; // email
     private PasswordTextField password;
     private PasswordTextField passwordCopy;
     private DropDownChoice<String> description;
@@ -71,13 +72,14 @@ public class RegisterPanel extends PhetPanel {
         public RegisterForm( final String id ) {
             super( id );
 
-            add( name = new StringTextField( "name", new PropertyModel( properties, "name" ) ) );
+            add( firstName = new StringTextField( "firstName", new PropertyModel( properties, "firstName" ) ) );
+            add( lastName = new StringTextField( "lastName", new PropertyModel( properties, "lastName" ) ) );
             add( organization = new StringTextField( "organization", new PropertyModel( properties, "organization" ) ) );
-            add( description = new DropDownChoice<String>( "description", new PropertyModel<String>( properties, "description" ), PhetUser.getDescriptionOptions() ) );
+//            add( description = new DropDownChoice<String>( "description", new PropertyModel<String>( properties, "description" ), PhetUser.getDescriptionOptions() ) );
             add( username = new StringTextField( "username", new PropertyModel( properties, "username" ) ) );
             add( password = new StringPasswordTextField( "password", new PropertyModel( properties, "password" ) ) );
             add( passwordCopy = new StringPasswordTextField( "passwordCopy", new PropertyModel( properties, "passwordCopy" ) ) );
-            add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
+//            add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
 
             // so we can respond to the error messages
             password.setRequired( false );
@@ -91,7 +93,7 @@ public class RegisterPanel extends PhetPanel {
             String errorString = "";
             String err = null;
 
-            String nom = name.getModelObject().toString();
+            String nom = firstName.getModelObject().toString() + " " + lastName.getModelObject().toString();
             String org = organization.getModelObject().toString();
             String email = username.getModelObject().toString();
             String pass = password.getInput();
