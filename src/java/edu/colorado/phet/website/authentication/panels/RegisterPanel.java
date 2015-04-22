@@ -69,6 +69,8 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox otherSubjectCheckbox;
     private TextField otherSubject;
 
+    // teaching experience
+    private TextField yearsTeaching;
 
     private String destination = null;
 
@@ -124,6 +126,9 @@ public class RegisterPanel extends PhetPanel {
             add( mathCheckbox = new CheckBox( "math", new PropertyModel<Boolean>( properties, "math" ) ) );
             add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
             add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
+
+            // teaching experience
+            add( yearsTeaching = new StringTextField( "teachingExperience", new PropertyModel( properties, "teachingExperience" ) ) );
 
             // phet experience
             IModel<String> selected = new Model<String>(); // TODO: user property model
