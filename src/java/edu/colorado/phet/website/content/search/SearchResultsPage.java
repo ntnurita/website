@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 
 import edu.colorado.phet.website.templates.PhetRegularPage;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
 import edu.colorado.phet.website.util.StringUtils;
@@ -29,7 +30,7 @@ public class SearchResultsPage extends PhetRegularPage {
         initializeLocation( getNavMenu().getLocationByKey( "search.results" ) );
 
         if ( query != null ) {
-            setTitle( StringUtils.messageFormat( getPhetLocalizer().getString( "search.title", this ), query ) );
+            setTitle( StringUtils.messageFormat( getPhetLocalizer().getString( "search.title", this ), HtmlUtils.encode( query ) ) );
         }
         else {
             setTitle( StringUtils.messageFormat( getPhetLocalizer().getString( "search.title", this ), "-" ) );

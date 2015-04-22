@@ -19,6 +19,7 @@ import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
 import edu.colorado.phet.website.panels.PhetPanel;
+import edu.colorado.phet.website.util.HtmlUtils;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.SearchUtils;
 
@@ -55,7 +56,7 @@ public class SearchResultsPanel extends PhetPanel {
         } );
 
         if ( query != null ) {
-            add( new LocalizedText( "search-query", "search.query", new Object[] { lsims.size() + contributions.size(), query } ) );
+            add( new LocalizedText( "search-query", "search.query", new Object[] { lsims.size() + contributions.size(), HtmlUtils.encode( query ) } ) );
         }
         else {
             add( new InvisibleComponent( "search-query" ) );
