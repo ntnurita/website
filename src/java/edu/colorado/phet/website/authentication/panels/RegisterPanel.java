@@ -45,6 +45,24 @@ public class RegisterPanel extends PhetPanel {
     private Model errorModel;
     private PageContext context;
 
+    // I am a... checkboxes
+    private CheckBox teacherCheckbox;
+    private CheckBox studentCheckbox;
+    private CheckBox researcherCheckbox;
+    private CheckBox translatorCheckbox;
+    private CheckBox otherRoleCheckbox;
+
+    // Subjects checkboxes
+    private CheckBox generalSciencesCheckbox;
+    private CheckBox earthScienceCheckbox;
+    private CheckBox biologyCheckbox;
+    private CheckBox physicsCheckbox;
+    private CheckBox chemistryCheckbox;
+    private CheckBox astronomyCheckbox;
+    private CheckBox mathCheckbox;
+    private CheckBox otherSubjectCheckbox;
+
+
     private String destination = null;
 
     private static final String ERROR_SEPARATOR = "<br/>";
@@ -80,6 +98,13 @@ public class RegisterPanel extends PhetPanel {
             add( password = new StringPasswordTextField( "password", new PropertyModel( properties, "password" ) ) );
             add( passwordCopy = new StringPasswordTextField( "passwordCopy", new PropertyModel( properties, "passwordCopy" ) ) );
 //            add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
+
+            // add role checkboxes
+            add( teacherCheckbox = new CheckBox( "teacher", new PropertyModel<Boolean>( properties, "teacher" ) ) );
+            add( studentCheckbox = new CheckBox( "student", new PropertyModel<Boolean>( properties, "student" ) ) );
+            add( researcherCheckbox = new CheckBox( "researcher", new PropertyModel<Boolean>( properties, "researcher" ) ) );
+            add( translatorCheckbox = new CheckBox( "translator", new PropertyModel<Boolean>( properties, "translator" ) ) );
+            add( otherRoleCheckbox = new CheckBox( "otherRole", new PropertyModel<Boolean>( properties, "otherRole" ) ) );
 
             // so we can respond to the error messages
             password.setRequired( false );
