@@ -51,6 +51,7 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox researcherCheckbox;
     private CheckBox translatorCheckbox;
     private CheckBox otherRoleCheckbox;
+    private TextField otherRole;
 
     // Subjects checkboxes
     private CheckBox generalSciencesCheckbox;
@@ -61,6 +62,7 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox astronomyCheckbox;
     private CheckBox mathCheckbox;
     private CheckBox otherSubjectCheckbox;
+    private TextField otherSubject;
 
 
     private String destination = null;
@@ -105,6 +107,18 @@ public class RegisterPanel extends PhetPanel {
             add( researcherCheckbox = new CheckBox( "researcher", new PropertyModel<Boolean>( properties, "researcher" ) ) );
             add( translatorCheckbox = new CheckBox( "translator", new PropertyModel<Boolean>( properties, "translator" ) ) );
             add( otherRoleCheckbox = new CheckBox( "otherRole", new PropertyModel<Boolean>( properties, "otherRole" ) ) );
+            add( otherRole = new StringTextField( "otherRoleInput", new PropertyModel( properties, "otherRoleInput" ) ) );
+
+            // add subject checkboxes
+            add( generalSciencesCheckbox = new CheckBox( "generalSciences", new PropertyModel<Boolean>( properties, "generalSciences" ) ) );
+            add( earthScienceCheckbox = new CheckBox( "earthScience", new PropertyModel<Boolean>( properties, "earthScience" ) ) );
+            add( biologyCheckbox = new CheckBox( "biology", new PropertyModel<Boolean>( properties, "biology" ) ) );
+            add( physicsCheckbox = new CheckBox( "physics", new PropertyModel<Boolean>( properties, "physics" ) ) );
+            add( chemistryCheckbox = new CheckBox( "chemistry", new PropertyModel<Boolean>( properties, "chemistry" ) ) );
+            add( astronomyCheckbox = new CheckBox( "astronomy", new PropertyModel<Boolean>( properties, "astronomy" ) ) );
+            add( mathCheckbox = new CheckBox( "math", new PropertyModel<Boolean>( properties, "math" ) ) );
+            add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
+            add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
 
             // so we can respond to the error messages
             password.setRequired( false );

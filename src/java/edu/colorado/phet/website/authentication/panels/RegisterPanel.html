@@ -14,13 +14,47 @@
         margin: 0 auto;
       }
 
-      .register-holder input {
+      /*.register-holder input[type="text"], input[type="password"] {*/
+      /*float: right;*/
+      /*}*/
+
+      .register-text-field {
         margin-bottom: 10px;
-        float: right;
+        display: block;
+        width: 100%;
+        line-height: 1.667em;
+        border: 1px solid #d3d3d3;
+        box-sizing: border-box;
+      }
+
+      /*.other-input-holder {*/
+      /*display: table;*/
+      /*width: 100%;*/
+      /*}*/
+
+      /*.other-input-holder label {*/
+      /*display: table-cell;*/
+      /*width: 1px;*/
+      /*}*/
+      /*.other-input-holder input[type="text"] {*/
+      /*display: table-cell;*/
+      /*width: 100%*/
+      /*}*/
+      .other-input {
+        /*display: inline-block;*/
+      }
+
+      .half-width {
+        width: 47%;
+        display: inline;
       }
 
       .register-errors {
         color: red;
+      }
+
+      .bold {
+        font-weight: bold;
       }
     </style>
   </wicket:head>
@@ -38,93 +72,168 @@
     <form wicket:id="register-form">
 
       <div class="contribution-edit-column">
-        <input wicket:id="username" class="contribution-input" type="text" value="" wicket:message="placeholder:profile.email"/>
-        <input wicket:id="password" class="contribution-input" type="password" value="" wicket:message="placeholder:profile.password"/>
-        <input wicket:id="passwordCopy" class="contribution-input" type="password" value="" wicket:message="placeholder:profile.passwordCopy"/>
+        <input wicket:id="username" class="register-text-field" type="text" value="" wicket:message="placeholder:profile.email"/>
+        <input wicket:id="password" class="register-text-field" type="password" value=""
+               wicket:message="placeholder:profile.password"/>
+        <input wicket:id="passwordCopy" class="register-text-field" type="password" value=""
+               wicket:message="placeholder:profile.passwordCopy"/>
 
         <br/>
 
-        <input wicket:id="firstName" class="contribution-input" type="text" value="" wicket:message="placeholder:profile.firstName" style="float: left; width: 45%"/>
-        <input wicket:id="lastName" class="contribution-input" type="text" value="" wicket:message="placeholder:profile.lastName" style="width: 45%"/>
+        <input wicket:id="firstName" class="register-text-field half-width" type="text" value=""
+               wicket:message="placeholder:profile.firstName"/>
+        <input wicket:id="lastName" class="register-text-field half-width" type="text" value=""
+               wicket:message="placeholder:profile.lastName" style="float: right;"/>
 
-        <input wicket:id="organization" class="contribution-input" type="text" value="" wicket:message="placeholder:profile.organization"/>
+        <input wicket:id="organization" class="register-text-field" type="text" value=""
+               wicket:message="placeholder:profile.organization"/>
 
-        <label class="bold-label" for="register-country">
+        <label class="bold" for="register-country">
           <wicket:message key="profile.country">
             Country
           </wicket:message>
         </label>
         <select id="register-country">
         </select>
-      </div>
 
-      <br/><br/>
+        <br/><br/>
 
-      <span style="font-weight: bold">
+      <span class="bold">
         I am a...
       </span>
-      <table style="border-collapse: collapse;">
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="teacher" id="teacher-checkbox"/>
-          </td>
-          <td>
-            <label for="teacher-checkbox">
-              <wicket:message key="profile.teacher">
-                Teacher
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="student" id="student-checkbox"/>
-          </td>
-          <td>
-            <label for="student-checkbox">
-              <wicket:message key="profile.student">
-                Student
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="researcher" id="researcher-checkbox"/>
-          </td>
-          <td>
-            <label for="researcher-checkbox">
-              <wicket:message key="profile.researcher">
-                Researcher
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="translator" id="translator-checkbox"/>
-          </td>
-          <td>
-            <label for="translator-checkbox">
-              <wicket:message key="profile.translator">
-                Translator
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="otherRole" id="other-role-checkbox"/>
-          </td>
-          <td>
-            <label for="other-role-checkbox">
-              <wicket:message key="profile.other">
-                Other
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-      </table>
+
+        <div>
+          <input type="checkbox" wicket:id="teacher" id="teacher-checkbox"/>
+          <label for="teacher-checkbox">
+            <wicket:message key="profile.teacher">
+              Teacher
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="student" id="student-checkbox"/>
+          <label for="student-checkbox">
+            <wicket:message key="profile.student">
+              Student
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="researcher" id="researcher-checkbox"/>
+          <label for="researcher-checkbox">
+            <wicket:message key="profile.researcher">
+              Researcher
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="translator" id="translator-checkbox"/>
+          <label for="translator-checkbox">
+            <wicket:message key="profile.translator">
+              Translator
+            </wicket:message>
+          </label>
+        </div>
+        <div class="other-input-holder">
+          <input type="checkbox" wicket:id="otherRole" id="other-role-checkbox"/>
+          <label for="other-role-checkbox">
+            <wicket:message key="profile.other">
+              Other
+            </wicket:message>
+          </label>
+          <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
+        </div>
+
+        <br/>
+
+      <span class="bold">
+        Subject(s)
+      </span>
+
+        <div>
+          <input type="checkbox" wicket:id="generalSciences" id="generalSciences-checkbox"/>
+          <label for="general-sciences-checkbox">
+            <wicket:message key="profile.general-sciences">
+              General Sciences
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="earthScience" id="earth-science-checkbox"/>
+          <label for="earth-science-checkbox">
+            <wicket:message key="profile.earthScience">
+              Earth Science
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="biology" id="biology-checkbox"/>
+          <label for="biology-checkbox">
+            <wicket:message key="profile.biology">
+              Biology
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="physics" id="physics-checkbox"/>
+          <label for="physics-checkbox">
+            <wicket:message key="profile.physics">
+              Physics
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="chemistry" id="chemistry-checkbox"/>
+          <label for="chemistry-checkbox">
+            <wicket:message key="profile.chemistry">
+              Chemistry
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="astronomy" id="astronomy-checkbox"/>
+          <label for="astronomy-checkbox">
+            <wicket:message key="profile.astronomy">
+              Astronomy
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" wicket:id="math" id="math-checkbox"/>
+          <label for="math-checkbox">
+            <wicket:message key="profile.math">
+              Math
+            </wicket:message>
+          </label>
+        </div>
+        <div class="other-input-holder">
+          <input type="checkbox" wicket:id="otherSubject" id="other-subject-checkbox"/>
+          <label for="other-subject-checkbox">
+            <wicket:message key="profile.other">
+              Other
+            </wicket:message>
+          </label>
+          <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
+        </div>
+      </div>
+
+      <br/>
+
+      <span class="bold">
+        Grade(s)
+      </span>
+
+      <br/>
+
+      <span class="bold">
+        Teaching Experience
+      </span>
+
+      <br/>
+
+      <span class="bold">
+        PhET Experience
+      </span>
 
     </form>
   </div>
