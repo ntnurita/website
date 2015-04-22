@@ -4,6 +4,7 @@
 
 package edu.colorado.phet.website.authentication.panels;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,7 +12,11 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.Radio;
+import org.apache.wicket.markup.html.form.RadioChoice;
+import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -120,6 +125,16 @@ public class RegisterPanel extends PhetPanel {
             add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
             add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
 
+            // phet experience
+            IModel<String> selected = new Model<String>(); // TODO: user property model
+            RadioGroup group = new RadioGroup( "phetExperienceRadios", selected );
+            group.add( new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) ) );
+            group.add( new Radio( "occasionalUserRadio", new Model<String>( "OCCASIONAL_USER" ) ) );
+            group.add( new Radio( "experiencedUserRadio", new Model<String>( "EXPERIENCED_USER" ) ) );
+            group.add( new Radio( "powerUserRadio", new Model<String>( "POWER_USER" ) ) );
+            add( group );
+
+
             // so we can respond to the error messages
             password.setRequired( false );
             passwordCopy.setRequired( false );
@@ -215,13 +230,13 @@ public class RegisterPanel extends PhetPanel {
 
                     tx.commit();
                 }
-                catch ( RuntimeException e ) {
+                catch( RuntimeException e ) {
                     logger.warn( e );
                     if ( tx != null && tx.isActive() ) {
                         try {
                             tx.rollback();
                         }
-                        catch ( HibernateException e1 ) {
+                        catch( HibernateException e1 ) {
                             logger.error( "ERROR: Error rolling back transaction", e1 );
                         }
                         throw e;

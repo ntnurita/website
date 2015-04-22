@@ -235,6 +235,41 @@
         PhET Experience
       </span>
 
+      <div wicket:id="phetExperienceRadios">
+        <div>
+          <input wicket:id="newUserRadio" type="radio" name="phet-experience" id="new-user-radio">
+          <label for="new-user-radio">
+            <wicket:message key="profile.newUser">
+              New user
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input wicket:id="occasionalUserRadio" type="radio" name="phet-experience" id="occasional-user-radio">
+          <label for="occasional-user-radio">
+            <wicket:message key="profile.occasionalUser">
+              Occasional user (I've used a few sims)
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input wicket:id="experiencedUserRadio" type="radio" name="phet-experience" id="experienced-user-radio">
+          <label for="experienced-user-radio">
+            <wicket:message key="profile.experiencedUser">
+              Experienced user (I regularly use sims in my classroom)
+            </wicket:message>
+          </label>
+        </div>
+        <div>
+          <input wicket:id="powerUserRadio" type="radio" name="phet-experience" id="power-user-radio">
+          <label for="power-user-radio">
+            <wicket:message key="profile.powerUser">
+              Power user (I tell everyone about PhET!)
+            </wicket:message>
+          </label>
+        </div>
+      </div>
+
     </form>
   </div>
 </wicket:panel>
