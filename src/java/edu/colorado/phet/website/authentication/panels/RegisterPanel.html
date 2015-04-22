@@ -14,10 +14,6 @@
         margin: 0 auto;
       }
 
-      /*.register-holder input[type="text"], input[type="password"] {*/
-      /*float: right;*/
-      /*}*/
-
       .register-text-field {
         margin-bottom: 10px;
         display: block;
@@ -28,15 +24,6 @@
         padding: 0 5px;
       }
 
-      /*.other-input-holder {*/
-      /*display: table;*/
-      /*width: 100%;*/
-      /*}*/
-
-      /*.other-input-holder input[type="checkbox"] {*/
-        /*float: right;*/
-      /*}*/
-
       .other-input-holder input[type="text"] {
         width: 100%
       }
@@ -45,10 +32,6 @@
         display: block;
         overflow: hidden;
         padding-right:10px;
-      }
-
-      .other-input {
-        /*display: inline-block;*/
       }
 
       .half-width {
@@ -62,6 +45,14 @@
 
       .bold {
         font-weight: bold;
+      }
+
+      table.grade-table td {
+        min-width: 5px;
+      }
+
+      table.grade-table td:first-child {
+        min-width: 100px;
       }
     </style>
   </wicket:head>
@@ -104,7 +95,7 @@
         <select id="register-country">
         </select>
 
-        <br/><br/>
+        <br/><br/><br/>
 
       <span class="bold">
         I am a...
@@ -156,7 +147,7 @@
           </span>
         </div>
 
-        <br/>
+        <br/><br/>
 
       <span class="bold">
         Subject(s)
@@ -228,18 +219,18 @@
             </label>
           </span>
           <span>
-            <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
+            <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
           </span>
         </div>
       </div>
 
-      <br/>
+      <br/><br/>
 
       <span class="bold">
         Grade(s)
       </span>
 
-      <table>
+      <table class="grade-table">
         <tr>
           <td>
             <input type="checkbox" wicket:id="elementary" id="elementary-checkbox"/>
@@ -424,7 +415,7 @@
         </tr>
       </table>
 
-      <br/>
+      <br/><br/>
 
       <span class="bold">
         Teaching Experience
@@ -439,7 +430,7 @@
         </span>
       </div>
 
-      <br/>
+      <br/><br/>
 
       <span class="bold">
         PhET Experience
@@ -479,6 +470,10 @@
           </label>
         </div>
       </div>
+
+      <br/>
+
+      <input type="submit" wicket:message="value:profile.register" class="phet-button login-form-submit"><br/>
 
     </form>
   </div>

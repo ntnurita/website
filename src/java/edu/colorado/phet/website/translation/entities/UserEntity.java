@@ -61,6 +61,27 @@ public class UserEntity extends TranslationEntity {
         addString( "register.experiencedUser" );
         addString( "register.powerUser" );
 
+        addString( "register.elementary" );
+        addString( "register.gradeK" );
+        addString( "register.grade1" );
+        addString( "register.grade2" );
+        addString( "register.grade3" );
+        addString( "register.grade4" );
+        addString( "register.grade5" );
+        addString( "register.middle" );
+        addString( "register.grade6" );
+        addString( "register.grade7" );
+        addString( "register.grade8" );
+        addString( "register.high" );
+        addString( "register.grade9" );
+        addString( "register.grade10" );
+        addString( "register.grade11" );
+        addString( "register.grade12" );
+        addString( "register.university" );
+        addString( "register.year1" );
+        addString( "register.year2plus" );
+        addString( "register.graduate" );
+
         addString( "profile.register" );
         addString( "profile.name" );
         addString( "profile.firstName" );

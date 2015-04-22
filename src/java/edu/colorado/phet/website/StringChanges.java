@@ -114,6 +114,7 @@ public class StringChanges {
         StringUtils.addString( session, "profile.organizationSchool", "Organization/School" );
 
         StringUtils.overwriteString( session, "profile.country", "Country:", "Country" );
+        StringUtils.overwriteString( session, "profile.register", "Register:", "Register" );
 
         StringUtils.addString( session, "register.teacher", "Teacher" );
         StringUtils.addString( session, "register.student", "Student" );
@@ -133,7 +134,26 @@ public class StringChanges {
         StringUtils.addString( session, "register.experiencedUser", "Experienced user (I regularly use sims in my classroom)" );
         StringUtils.addString( session, "register.powerUser", "Power user (I tell everyone about PhET!)" );
 
-
+        StringUtils.addString( session, "register.elementary", "Elementary" );
+        StringUtils.addString( session, "register.gradeK", "K" );
+        StringUtils.addString( session, "register.grade1", "1" );
+        StringUtils.addString( session, "register.grade2", "2" );
+        StringUtils.addString( session, "register.grade3", "3" );
+        StringUtils.addString( session, "register.grade4", "4" );
+        StringUtils.addString( session, "register.grade5", "5" );
+        StringUtils.addString( session, "register.middle", "Middle" );
+        StringUtils.addString( session, "register.grade6", "6" );
+        StringUtils.addString( session, "register.grade7", "7" );
+        StringUtils.addString( session, "register.grade8", "8" );
+        StringUtils.addString( session, "register.high", "High" );
+        StringUtils.addString( session, "register.grade9", "9" );
+        StringUtils.addString( session, "register.grade10", "10" );
+        StringUtils.addString( session, "register.grade11", "11" );
+        StringUtils.addString( session, "register.grade12", "12" );
+        StringUtils.addString( session, "register.university", "University" );
+        StringUtils.addString( session, "register.year1", "Year 1" );
+        StringUtils.addString( session, "register.year2plus", "Year 2+" );
+        StringUtils.addString( session, "register.graduate", "Graduate" );
 
         /**
          * General strings
