@@ -66,6 +66,7 @@ public class UserEntity extends TranslationEntity {
         addString( "profile.firstName" );
         addString( "profile.lastName" );
         addString( "profile.organization" );
+        addString( "profile.organizationSchool" );
         addString( "profile.description" );
         addString( "profile.email" );
         addString( "profile.password" );

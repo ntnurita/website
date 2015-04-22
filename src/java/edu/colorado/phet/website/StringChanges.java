@@ -102,8 +102,18 @@ public class StringChanges {
         /**
          * New register page strings
          */
+        StringUtils.deleteString( session, "profile.email" );
+        StringUtils.deleteString( session, "profile.password" );
+        StringUtils.deleteString( session, "profile.passwordCopy" );
+
         StringUtils.addString( session, "profile.firstName", "First name" );
         StringUtils.addString( session, "profile.lastName", "Last name" );
+        StringUtils.addString( session, "profile.email", "Email address" );
+        StringUtils.addString( session, "profile.password", "Password" );
+        StringUtils.addString( session, "profile.passwordCopy", "Confirm password" );
+        StringUtils.addString( session, "profile.organizationSchool", "Organization/School" );
+
+        StringUtils.overwriteString( session, "profile.country", "Country:", "Country" );
 
         StringUtils.addString( session, "register.teacher", "Teacher" );
         StringUtils.addString( session, "register.student", "Student" );

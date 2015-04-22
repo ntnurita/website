@@ -25,6 +25,7 @@
         line-height: 1.667em;
         border: 1px solid #d3d3d3;
         box-sizing: border-box;
+        padding: 0 5px;
       }
 
       /*.other-input-holder {*/
@@ -86,13 +87,14 @@
                wicket:message="placeholder:profile.lastName" style="float: right;"/>
 
         <input wicket:id="organization" class="register-text-field" type="text" value=""
-               wicket:message="placeholder:profile.organization"/>
+               wicket:message="placeholder:profile.organizationSchool"/>
 
-        <label class="bold" for="register-country">
+        <span class="bold">
           <wicket:message key="profile.country">
             Country
           </wicket:message>
-        </label>
+        </span>
+        <br/>
         <select id="register-country">
         </select>
 
