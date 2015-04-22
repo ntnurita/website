@@ -70,6 +70,29 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox otherSubjectCheckbox;
     private TextField otherSubject;
 
+    // grades checkboxes
+    private CheckBox elementaryCheckbox;
+    private CheckBox gradeKCheckbox;
+    private CheckBox grade1Checkbox;
+    private CheckBox grade2Checkbox;
+    private CheckBox grade3Checkbox;
+    private CheckBox grade4Checkbox;
+    private CheckBox grade5Checkbox;
+    private CheckBox middleCheckbox;
+    private CheckBox grade6Checkbox;
+    private CheckBox grade7Checkbox;
+    private CheckBox grade8Checkbox;
+    private CheckBox highCheckbox;
+    private CheckBox grade9Checkbox;
+    private CheckBox grade10Checkbox;
+    private CheckBox grade11Checkbox;
+    private CheckBox grade12Checkbox;
+    private CheckBox universityCheckbox;
+    private CheckBox year1Checkbox;
+    private CheckBox year2plusCheckbox;
+    private CheckBox graduateCheckbox;
+    private CheckBox otherGradeCheckbox;
+
     // teaching experience
     private TextField yearsTeaching;
 
@@ -127,6 +150,29 @@ public class RegisterPanel extends PhetPanel {
             add( mathCheckbox = new CheckBox( "math", new PropertyModel<Boolean>( properties, "math" ) ) );
             add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
             add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
+
+            // add grade checkboxes
+            add( elementaryCheckbox = new CheckBox( "elementary", new PropertyModel<Boolean>( properties, "elementary" ) ) );
+            add( gradeKCheckbox = new CheckBox( "gradeK", new PropertyModel<Boolean>( properties, "gradeK" ) ) );
+            add( grade1Checkbox = new CheckBox( "grade1", new PropertyModel<Boolean>( properties, "grade1" ) ) );
+            add( grade2Checkbox = new CheckBox( "grade2", new PropertyModel<Boolean>( properties, "grade2" ) ) );
+            add( grade3Checkbox = new CheckBox( "grade3", new PropertyModel<Boolean>( properties, "grade3" ) ) );
+            add( grade4Checkbox = new CheckBox( "grade4", new PropertyModel<Boolean>( properties, "grade4" ) ) );
+            add( grade5Checkbox = new CheckBox( "grade5", new PropertyModel<Boolean>( properties, "grade5" ) ) );
+            add( middleCheckbox = new CheckBox( "middle", new PropertyModel<Boolean>( properties, "middle" ) ) );
+            add( grade6Checkbox = new CheckBox( "grade6", new PropertyModel<Boolean>( properties, "grade6" ) ) );
+            add( grade7Checkbox = new CheckBox( "grade7", new PropertyModel<Boolean>( properties, "grade7" ) ) );
+            add( grade8Checkbox = new CheckBox( "grade8", new PropertyModel<Boolean>( properties, "grade8" ) ) );
+            add( highCheckbox = new CheckBox( "high", new PropertyModel<Boolean>( properties, "high" ) ) );
+            add( grade9Checkbox = new CheckBox( "grade9", new PropertyModel<Boolean>( properties, "grade9" ) ) );
+            add( grade10Checkbox = new CheckBox( "grade10", new PropertyModel<Boolean>( properties, "grade10" ) ) );
+            add( grade11Checkbox = new CheckBox( "grade11", new PropertyModel<Boolean>( properties, "grade11" ) ) );
+            add( grade12Checkbox = new CheckBox( "grade12", new PropertyModel<Boolean>( properties, "grade12" ) ) );
+            add( universityCheckbox = new CheckBox( "university", new PropertyModel<Boolean>( properties, "university" ) ) );
+            add( year1Checkbox = new CheckBox( "year1", new PropertyModel<Boolean>( properties, "year1" ) ) );
+            add( year2plusCheckbox = new CheckBox( "year2plus", new PropertyModel<Boolean>( properties, "year2plus" ) ) );
+            add( graduateCheckbox = new CheckBox( "graduate", new PropertyModel<Boolean>( properties, "graduate" ) ) );
+            add( otherGradeCheckbox = new CheckBox( "otherGrade", new PropertyModel<Boolean>( properties, "otherGrade" ) ) );
 
             // teaching experience
             add( yearsTeaching = new StringTextField( "teachingExperience", new PropertyModel( properties, "teachingExperience" ) ) );
