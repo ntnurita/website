@@ -195,7 +195,7 @@ public class RegisterPanel extends PhetPanel {
 
             Radio powerUserRadio = new Radio( "powerUserRadio", new Model<String>( "POWER_USER" ) );
             group.add( powerUserRadio );
-            group.add( new FormComponentLabel( "powerUserLabel", experiencedUserRadio ) );
+            group.add( new FormComponentLabel( "powerUserLabel", powerUserRadio ) );
 
             add( group );
 

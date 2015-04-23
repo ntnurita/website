@@ -37,10 +37,13 @@ public class LocaleDropDownChoice extends PhetPanel {
 
         for ( String name : phetLocales.getSortedNames() ) {
             Locale locale = phetLocales.getLocale( name );
-            models.add( new LocaleModel( locale, name ) );
+            LocaleModel localeModel = new LocaleModel( locale, name );
+            if ( locale.equals( defaultLocale ) ) {
+                selectedLocaleModel = localeModel;
+            }
+            models.add( localeModel );
         }
-
-        selectedLocaleModel = new LocaleModel( defaultLocale, phetLocales.getName( defaultLocale ) );
+//        selectedLocaleModel = new LocaleModel( defaultLocale, phetLocales.getName( defaultLocale ) );
 
         DropDownChoice localeChoice = new DropDownChoice( "locales", selectedLocaleModel, models );
         add( localeChoice );
