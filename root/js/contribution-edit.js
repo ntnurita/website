@@ -125,6 +125,10 @@ $( 'document' ).ready( function() {
     fileInput.addEventListener( 'click', fileAdded, false );
   }
 
+  if ( $('#contribution-feedback').length ) {
+    phet.markUnvalidatedComponents();
+  }
+
   var simCheckboxes = $( '.sim-checkbox-div input' );
   if ( simCheckboxes.length ) {
     simCheckboxes.each( function( index, checkbox ) {
@@ -132,9 +136,5 @@ $( 'document' ).ready( function() {
         checkbox.onclick();
       }
     } );
-  }
-
-  if ( $('#contribution-feedback').length ) {
-    phet.markUnvalidatedComponents();
   }
 } );
