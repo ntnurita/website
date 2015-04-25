@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.model.ResourceModel;
 
 import edu.colorado.phet.website.DistributionHandler;
+import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.VisListView;
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -33,6 +34,11 @@ public class NavMenuList extends PhetPanel {
             protected void populateItem( ListItem item ) {
                 NavLocation location = (NavLocation) item.getModel().getObject();
                 Link link = location.getLink( "link", context, (PhetRequestCycle) getRequestCycle() );
+                if ( link == null ) {
+                    item.add( new InvisibleComponent( "link" ) );
+                    logger.error( "Null link in nav menu list" );
+                    return;
+                }
                 link.setMarkupId( "nav-location-" + HtmlUtils.sanitizeId( location.getLocalizationKey() ) );
                 link.setOutputMarkupId( true );
 

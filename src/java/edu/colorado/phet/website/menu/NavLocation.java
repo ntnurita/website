@@ -170,7 +170,13 @@ public class NavLocation implements Serializable {
             // this must be detached. this is error-worthy
             logger.error( "NavLocation linker == null on getLink. key=" + key + ", id=" + id + ", context=" + context );
         }
-        return linker.getLink( id, context, cycle );
+        try {
+            return linker.getLink( id, context, cycle );
+        }
+        catch( NullPointerException e ) {
+            logger.error( "NULL POINTER EXCEPTION: NavLocation linker == null on getLink. key=" + key + ", id=" + id + ", context=" + context );
+            return null;
+        }
     }
 
     public void addChild( NavLocation location ) {
