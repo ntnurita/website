@@ -55,6 +55,53 @@ public class PhetUser implements Serializable, IntId {
     private boolean receiveSimulationNotifications = false; // for receiving notifications about new / modified simulations (for everyone)
     private boolean receiveWebsiteNotifications = false; // for receiving internal (team-member) only notifications
 
+    // new fields added in April 2015, see https://github.com/phetsims/website/issues/94
+
+    // roles
+    private boolean teacher;
+    private boolean student;
+    private boolean researcher;
+    private boolean translator;
+    private boolean otherRole;
+    private String otherRoleText;
+
+    // subjects
+    private boolean generalScience;
+    private boolean earthScience;
+    private boolean biology;
+    private boolean physics;
+    private boolean chemistry;
+    private boolean astronomy;
+    private boolean math;
+    private boolean otherSubject;
+    private String otherSubjectText;
+
+    // grades
+    private boolean elementary;
+    private boolean middle;
+    private boolean high;
+    private boolean university;
+    private boolean gradeK;
+    private boolean grade1;
+    private boolean grade2;
+    private boolean grade3;
+    private boolean grade4;
+    private boolean grade5;
+    private boolean grade6;
+    private boolean grade7;
+    private boolean grade8;
+    private boolean grade9;
+    private boolean grade10;
+    private boolean grade11;
+    private boolean grade12;
+    private boolean year1;
+    private boolean year2plus;
+    private boolean graduate;
+    private boolean otherGrade;
+
+    // years teaching
+    private String yearsTeaching;
+
     private static Random random = new Random(); // for computing things like the confirmation keys
     private static Logger logger = Logger.getLogger( PhetUser.class );
 
@@ -352,6 +399,302 @@ public class PhetUser implements Serializable, IntId {
 
     public void setReceiveSimulationNotifications( boolean receiveSimulationNotifications ) {
         this.receiveSimulationNotifications = receiveSimulationNotifications;
+    }
+
+    public boolean isTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher( boolean teacher ) {
+        this.teacher = teacher;
+    }
+
+    public boolean isStudent() {
+        return student;
+    }
+
+    public void setStudent( boolean student ) {
+        this.student = student;
+    }
+
+    public boolean isResearcher() {
+        return researcher;
+    }
+
+    public void setResearcher( boolean researcher ) {
+        this.researcher = researcher;
+    }
+
+    public boolean isTranslator() {
+        return translator;
+    }
+
+    public void setTranslator( boolean translator ) {
+        this.translator = translator;
+    }
+
+    public boolean isOtherRole() {
+        return otherRole;
+    }
+
+    public void setOtherRole( boolean otherRole ) {
+        this.otherRole = otherRole;
+    }
+
+    public String getOtherRoleText() {
+        return otherRoleText;
+    }
+
+    public void setOtherRoleText( String otherRoleText ) {
+        this.otherRoleText = otherRoleText;
+    }
+
+    public boolean isGeneralScience() {
+        return generalScience;
+    }
+
+    public void setGeneralScience( boolean generalScience ) {
+        this.generalScience = generalScience;
+    }
+
+    public boolean isEarthScience() {
+        return earthScience;
+    }
+
+    public void setEarthScience( boolean earthScience ) {
+        this.earthScience = earthScience;
+    }
+
+    public boolean isBiology() {
+        return biology;
+    }
+
+    public void setBiology( boolean biology ) {
+        this.biology = biology;
+    }
+
+    public boolean isPhysics() {
+        return physics;
+    }
+
+    public void setPhysics( boolean physics ) {
+        this.physics = physics;
+    }
+
+    public boolean isChemistry() {
+        return chemistry;
+    }
+
+    public void setChemistry( boolean chemistry ) {
+        this.chemistry = chemistry;
+    }
+
+    public boolean isAstronomy() {
+        return astronomy;
+    }
+
+    public void setAstronomy( boolean astronomy ) {
+        this.astronomy = astronomy;
+    }
+
+    public boolean isMath() {
+        return math;
+    }
+
+    public void setMath( boolean math ) {
+        this.math = math;
+    }
+
+    public boolean isOtherSubject() {
+        return otherSubject;
+    }
+
+    public void setOtherSubject( boolean otherSubject ) {
+        this.otherSubject = otherSubject;
+    }
+
+    public String getOtherSubjectText() {
+        return otherSubjectText;
+    }
+
+    public void setOtherSubjectText( String otherSubjectText ) {
+        this.otherSubjectText = otherSubjectText;
+    }
+
+    public boolean isElementary() {
+        return elementary;
+    }
+
+    public void setElementary( boolean elementary ) {
+        this.elementary = elementary;
+    }
+
+    public boolean isMiddle() {
+        return middle;
+    }
+
+    public void setMiddle( boolean middle ) {
+        this.middle = middle;
+    }
+
+    public boolean isHigh() {
+        return high;
+    }
+
+    public void setHigh( boolean high ) {
+        this.high = high;
+    }
+
+    public boolean isUniversity() {
+        return university;
+    }
+
+    public void setUniversity( boolean university ) {
+        this.university = university;
+    }
+
+    public boolean isGradeK() {
+        return gradeK;
+    }
+
+    public void setGradeK( boolean gradeK ) {
+        this.gradeK = gradeK;
+    }
+
+    public boolean isGrade1() {
+        return grade1;
+    }
+
+    public void setGrade1( boolean grade1 ) {
+        this.grade1 = grade1;
+    }
+
+    public boolean isGrade2() {
+        return grade2;
+    }
+
+    public void setGrade2( boolean grade2 ) {
+        this.grade2 = grade2;
+    }
+
+    public boolean isGrade3() {
+        return grade3;
+    }
+
+    public void setGrade3( boolean grade3 ) {
+        this.grade3 = grade3;
+    }
+
+    public boolean isGrade4() {
+        return grade4;
+    }
+
+    public void setGrade4( boolean grade4 ) {
+        this.grade4 = grade4;
+    }
+
+    public boolean isGrade5() {
+        return grade5;
+    }
+
+    public void setGrade5( boolean grade5 ) {
+        this.grade5 = grade5;
+    }
+
+    public boolean isGrade6() {
+        return grade6;
+    }
+
+    public void setGrade6( boolean grade6 ) {
+        this.grade6 = grade6;
+    }
+
+    public boolean isGrade7() {
+        return grade7;
+    }
+
+    public void setGrade7( boolean grade7 ) {
+        this.grade7 = grade7;
+    }
+
+    public boolean isGrade8() {
+        return grade8;
+    }
+
+    public void setGrade8( boolean grade8 ) {
+        this.grade8 = grade8;
+    }
+
+    public boolean isGrade9() {
+        return grade9;
+    }
+
+    public void setGrade9( boolean grade9 ) {
+        this.grade9 = grade9;
+    }
+
+    public boolean isGrade10() {
+        return grade10;
+    }
+
+    public void setGrade10( boolean grade10 ) {
+        this.grade10 = grade10;
+    }
+
+    public boolean isGrade11() {
+        return grade11;
+    }
+
+    public void setGrade11( boolean grade11 ) {
+        this.grade11 = grade11;
+    }
+
+    public boolean isGrade12() {
+        return grade12;
+    }
+
+    public void setGrade12( boolean grade12 ) {
+        this.grade12 = grade12;
+    }
+
+    public boolean isYear1() {
+        return year1;
+    }
+
+    public void setYear1( boolean year1 ) {
+        this.year1 = year1;
+    }
+
+    public boolean isYear2plus() {
+        return year2plus;
+    }
+
+    public void setYear2plus( boolean year2plus ) {
+        this.year2plus = year2plus;
+    }
+
+    public boolean isGraduate() {
+        return graduate;
+    }
+
+    public void setGraduate( boolean graduate ) {
+        this.graduate = graduate;
+    }
+
+    public boolean isOtherGrade() {
+        return otherGrade;
+    }
+
+    public void setOtherGrade( boolean otherGrade ) {
+        this.otherGrade = otherGrade;
+    }
+
+    public String getYearsTeaching() {
+        return yearsTeaching;
+    }
+
+    public void setYearsTeaching( String yearsTeaching ) {
+        this.yearsTeaching = yearsTeaching;
     }
 
     /*_/|

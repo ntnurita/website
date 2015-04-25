@@ -199,7 +199,6 @@ public class RegisterPanel extends PhetPanel {
 
             add( group );
 
-
             // so we can respond to the error messages
             password.setRequired( false );
             passwordCopy.setRequired( false );
@@ -252,6 +251,8 @@ public class RegisterPanel extends PhetPanel {
 
             PhetUser user = null;
 
+            boolean update = false;
+
             // TODO: a bunch of refactoring and cleanup around here
             if ( !error ) {
                 Transaction tx = null;
@@ -273,23 +274,65 @@ public class RegisterPanel extends PhetPanel {
                             user.setNewsletterOnlyAccount( false );
                             user.setConfirmed( false );
                             user.setConfirmationKey( PhetUser.generateConfirmationKey() ); // regenerate
-                            confirmationKey = user.getConfirmationKey();
-                            user.setName( nom );
-                            user.setOrganization( org );
-                            user.setDescription( desc );
-                            user.setPassword( pass, email );
-                            user.setReceiveEmail( receiveNewsletters );
-                            session.update( user );
+                            update = true;
                         }
                     }
                     else {
                         user = new PhetUser( email, false );
-                        confirmationKey = user.getConfirmationKey();
-                        user.setName( nom );
-                        user.setOrganization( org );
-                        user.setDescription( desc );
-                        user.setPassword( pass, email );
-                        user.setReceiveEmail( receiveNewsletters );
+                    }
+
+                    confirmationKey = user.getConfirmationKey();
+                    user.setName( nom );
+                    user.setOrganization( org );
+                    user.setDescription( desc );
+                    user.setPassword( pass, email );
+                    user.setReceiveEmail( receiveNewsletters );
+
+                    user.setTeacher( teacherCheckbox.getModelObject() );
+                    user.setStudent( studentCheckbox.getModelObject() );
+                    user.setResearcher( researcherCheckbox.getModelObject() );
+                    user.setTranslator( translatorCheckbox.getModelObject() );
+                    user.setOtherRole( otherRoleCheckbox.getModelObject() );
+                    user.setOtherRoleText( otherRole.getModelObject().toString() );
+
+                    user.setGeneralScience( generalSciencesCheckbox.getModelObject() );
+                    user.setEarthScience( earthScienceCheckbox.getModelObject() );
+                    user.setBiology( biologyCheckbox.getModelObject() );
+                    user.setPhysics( physicsCheckbox.getModelObject() );
+                    user.setChemistry( chemistryCheckbox.getModelObject() );
+                    user.setAstronomy( astronomyCheckbox.getModelObject() );
+                    user.setMath( mathCheckbox.getModelObject() );
+                    user.setOtherSubject( otherSubjectCheckbox.getModelObject() );
+                    user.setOtherSubjectText( otherSubject.getModelObject().toString() );
+
+                    user.setElementary( elementaryCheckbox.getModelObject() );
+                    user.setGradeK( gradeKCheckbox.getModelObject() );
+                    user.setGrade1( grade1Checkbox.getModelObject() );
+                    user.setGrade2( grade2Checkbox.getModelObject() );
+                    user.setGrade3( grade3Checkbox.getModelObject() );
+                    user.setGrade4( grade4Checkbox.getModelObject() );
+                    user.setGrade5( grade5Checkbox.getModelObject() );
+                    user.setMiddle( middleCheckbox.getModelObject() );
+                    user.setGrade7( grade6Checkbox.getModelObject() );
+                    user.setGrade8( grade7Checkbox.getModelObject() );
+                    user.setGrade9( grade8Checkbox.getModelObject() );
+                    user.setHigh( highCheckbox.getModelObject() );
+                    user.setGrade9( grade9Checkbox.getModelObject() );
+                    user.setGrade10( grade10Checkbox.getModelObject() );
+                    user.setGrade11( grade11Checkbox.getModelObject() );
+                    user.setGrade12( grade12Checkbox.getModelObject() );
+                    user.setUniversity( universityCheckbox.getModelObject() );
+                    user.setYear1( year1Checkbox.getModelObject() );
+                    user.setYear2plus( year2plusCheckbox.getModelObject() );
+                    user.setGraduate( graduateCheckbox.getModelObject() );
+                    user.setOtherGrade( otherGradeCheckbox.getModelObject() );
+
+                    user.setYearsTeaching( yearsTeaching.getModelObject().toString() );
+
+                    if ( update ) {
+                        session.update( user );
+                    }
+                    else {
                         session.save( user );
                     }
 
@@ -327,5 +370,4 @@ public class RegisterPanel extends PhetPanel {
             }
         }
     }
-
 }
