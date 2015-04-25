@@ -42,6 +42,7 @@ import edu.colorado.phet.website.constants.Images;
 import edu.colorado.phet.website.constants.WebsiteConstants;
 import edu.colorado.phet.website.content.DonatePanel;
 import edu.colorado.phet.website.content.ForTranslatorsPanel;
+import edu.colorado.phet.website.content.TranslationUtilityPanel;
 import edu.colorado.phet.website.content.about.AboutLegendPanel;
 import edu.colorado.phet.website.content.contribution.ContributionCreatePage;
 import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
@@ -385,6 +386,13 @@ public class SimulationMainPanel extends PhetPanel {
         }
         else {
             add( new InvisibleComponent( "simulation-main-translation-list" ) );
+        }
+
+        if ( simulation.getSimulation().isHTML() ) {
+            add ( new InvisibleComponent( "translateThisSim" ) );
+        }
+        else {
+            add( TranslationUtilityPanel.getLinker().getLink( "translateThisSim", context, getPhetCycle() ) );
         }
 
 //        add( new InvisibleComponent( "translate-sim-link" ) );
