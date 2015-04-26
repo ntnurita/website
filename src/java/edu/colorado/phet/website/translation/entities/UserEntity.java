@@ -43,6 +43,16 @@ public class UserEntity extends TranslationEntity {
         addString( "validation.user.emailUsed" );
         addString( "validation.user.problems" );
 
+        addString( "validation.user.role" );
+        addString( "validation.user.subject" );
+        addString( "validation.user.grade" );
+        addString( "validation.user.otherRole" );
+        addString( "validation.user.otherSubject" );
+        addString( "validation.user.country" );
+        addString( "validation.user.firstName" );
+        addString( "validation.user.lastName" );
+        addString( "validation.user.phetExperience" );
+
         addString( "register.teacher" );
         addString( "register.student" );
         addString( "register.researcher" );

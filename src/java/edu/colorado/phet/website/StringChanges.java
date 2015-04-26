@@ -156,8 +156,14 @@ public class StringChanges {
         StringUtils.addString( session, "register.graduate", "Graduate" );
 
         StringUtils.addString( session, "validation.user.role", "Please fill in at least one checkbox under \"I am a...\"" );
+        StringUtils.addString( session, "validation.user.subject", "Please fill in at least one checkbox under \"Subject(s)\"" );
+        StringUtils.addString( session, "validation.user.grade", "Please fill in at least one checkbox under \"Grade(s)\"" );
         StringUtils.addString( session, "validation.user.otherRole", "Please fill out the text field next to Other under \"I am a...\"" );
         StringUtils.addString( session, "validation.user.otherSubject", "Please fill out the text field next to Other under \"Subject(s)\"" );
+        StringUtils.addString( session, "validation.user.country", "Please select a country" );
+        StringUtils.addString( session, "validation.user.firstName", "Please enter your first name" );
+        StringUtils.addString( session, "validation.user.lastName", "Please enter your last name" );
+        StringUtils.addString( session, "validation.user.phetExperience", "Please indicate your experience with PhET" );
 
         /**
          * General strings

@@ -6,9 +6,9 @@ package edu.colorado.phet.website.authentication.panels;
 
 import java.util.List;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.FormComponentLabel;
@@ -25,7 +25,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringPasswordTextField;
 import edu.colorado.phet.website.components.StringTextField;
@@ -34,13 +33,10 @@ import edu.colorado.phet.website.newsletter.ConfirmEmailSentPage;
 import edu.colorado.phet.website.newsletter.NewsletterUtils;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
-import edu.colorado.phet.website.util.PhetRequestCycle;
 
 public class RegisterPanel extends PhetPanel {
 
     // TODO: i18n (align the fields correctly within the table!)
-
-    // TODO: use regular form validation, not this hacked version that was done before I knew about form validation feedback
 
     private TextField firstName;
     private TextField lastName;
@@ -51,6 +47,7 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox receiveEmail;
     private Model errorModel;
     private PageContext context;
+    private DropDownChoice country;
 
     // I am a... checkboxes
     private CheckBox teacherCheckbox;
@@ -140,6 +137,7 @@ public class RegisterPanel extends PhetPanel {
             add( password = new StringPasswordTextField( "password", new PropertyModel( properties, "password" ) ) );
             add( passwordCopy = new StringPasswordTextField( "passwordCopy", new PropertyModel( properties, "passwordCopy" ) ) );
             add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
+            add( country = new DropDownChoice<String>( "country", new PropertyModel<String>( properties, "country" ), PhetUser.getCountries() ) );
 
             // add role checkboxes
             add( teacherCheckbox = new CheckBox( "teacher", new PropertyModel<Boolean>( properties, "teacher" ) ) );
@@ -213,20 +211,20 @@ public class RegisterPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup,
-                            otherRoleCheckbox, otherRole, otherSubjectCheckbox, otherSubject
+                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup, country,
+                            otherRole, otherSubject,
 
                             // role checkboxes
-//                            teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, otherRoleCheckbox,
-//
-//                            // subject checkboxes
-//                            generalSciencesCheckbox, earthScienceCheckbox, biologyCheckbox, physicsCheckbox, chemistryCheckbox,
-//                            astronomyCheckbox, mathCheckbox, otherSubjectCheckbox,
-//
-//                            // grade checkboxes
-//                            elementaryCheckbox, gradeKCheckbox, grade1Checkbox, grade2Checkbox, grade3Checkbox, grade4Checkbox,
-//                            grade5Checkbox, middleCheckbox, grade6Checkbox, grade7Checkbox, grade8Checkbox, highCheckbox, grade9Checkbox, grade10Checkbox,
-//                            grade11Checkbox, grade12Checkbox, universityCheckbox, year1Checkbox, year2plusCheckbox, graduateCheckbox, otherGradeCheckbox
+                            teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, otherRoleCheckbox,
+
+                            // subject checkboxes
+                            generalSciencesCheckbox, earthScienceCheckbox, biologyCheckbox, physicsCheckbox, chemistryCheckbox,
+                            astronomyCheckbox, mathCheckbox, otherSubjectCheckbox,
+
+                            // grade checkboxes
+                            elementaryCheckbox, gradeKCheckbox, grade1Checkbox, grade2Checkbox, grade3Checkbox, grade4Checkbox,
+                            grade5Checkbox, middleCheckbox, grade6Checkbox, grade7Checkbox, grade8Checkbox, highCheckbox, grade9Checkbox, grade10Checkbox,
+                            grade11Checkbox, grade12Checkbox, universityCheckbox, year1Checkbox, year2plusCheckbox, graduateCheckbox, otherGradeCheckbox
                     };
                 }
 
@@ -235,11 +233,11 @@ public class RegisterPanel extends PhetPanel {
                     phetExperienceRadioGroup.updateModel();
 
                     if ( firstName.getInput() == null || firstName.getInput().length() == 0 ) {
-                        error( firstName, "validation.user.user" );
+                        error( firstName, "validation.user.firstName" );
                     }
 
                     if ( lastName.getInput() == null || lastName.getInput().length() == 0 ) {
-                        error( lastName, "validation.user.user" );
+                        error( lastName, "validation.user.lastName" );
                     }
 
                     if ( !password.getInput().equals( passwordCopy.getInput() ) ) {
@@ -256,7 +254,7 @@ public class RegisterPanel extends PhetPanel {
                     }
 
                     if ( phetExperienceRadioGroup.getModelObject() == null ) {
-                        error( phetExperienceRadioGroup, "validation.user.description" );
+                        error( phetExperienceRadioGroup, "validation.user.phetExperience" );
                     }
 
                     if ( otherRoleCheckbox.getConvertedInput() && ( otherRole.getInput() == null || otherRole.getInput().length() == 0 ) ) {
@@ -267,16 +265,30 @@ public class RegisterPanel extends PhetPanel {
                         error( otherSubject, "validation.user.otherSubject" );
                     }
 
-//                    if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||
-//                            translatorCheckbox.getConvertedInput() || otherRoleCheckbox.getConvertedInput() ) ) {
-//                        error( teacherCheckbox, "validation.user.role" );
-//                    }
-//
-//                    if ( !( generalSciencesCheckbox.getConvertedInput() || earthScienceCheckbox.getConvertedInput() || biologyCheckbox.getConvertedInput() ||
-//                            physicsCheckbox.getConvertedInput() || chemistryCheckbox.getConvertedInput() || astronomyCheckbox.getConvertedInput() ||
-//                            mathCheckbox.getConvertedInput() || otherSubjectCheckbox.getConvertedInput() ) ) {
-//                        error( generalSciencesCheckbox, "validation.user.subject" );
-//                    }
+                    if ( country.getInput().length() == 0 ) {
+                        error( country, "validation.user.country" );
+                    }
+
+                    if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||
+                            translatorCheckbox.getConvertedInput() || otherRoleCheckbox.getConvertedInput() ) ) {
+                        error( teacherCheckbox, "validation.user.role" );
+                    }
+
+                    if ( !( generalSciencesCheckbox.getConvertedInput() || earthScienceCheckbox.getConvertedInput() || biologyCheckbox.getConvertedInput() ||
+                            physicsCheckbox.getConvertedInput() || chemistryCheckbox.getConvertedInput() || astronomyCheckbox.getConvertedInput() ||
+                            mathCheckbox.getConvertedInput() || otherSubjectCheckbox.getConvertedInput() ) ) {
+                        error( generalSciencesCheckbox, "validation.user.subject" );
+                    }
+
+                    if ( !( elementaryCheckbox.getConvertedInput() || gradeKCheckbox.getConvertedInput() || grade1Checkbox.getConvertedInput() ||
+                            grade2Checkbox.getConvertedInput() || grade3Checkbox.getConvertedInput() || grade4Checkbox.getConvertedInput() ||
+                            grade5Checkbox.getConvertedInput() || middleCheckbox.getConvertedInput() || grade6Checkbox.getConvertedInput() ||
+                            grade7Checkbox.getConvertedInput() || grade8Checkbox.getConvertedInput() || highCheckbox.getConvertedInput() ||
+                            grade9Checkbox.getConvertedInput() || grade10Checkbox.getConvertedInput() || grade11Checkbox.getConvertedInput() ||
+                            grade12Checkbox.getConvertedInput() || universityCheckbox.getConvertedInput() || year1Checkbox.getConvertedInput() ||
+                            year2plusCheckbox.getConvertedInput() || graduateCheckbox.getConvertedInput() || otherGradeCheckbox.getConvertedInput() ) ) {
+                        error( generalSciencesCheckbox, "validation.user.grade" );
+                    }
                 }
             } );
         }
@@ -292,7 +304,6 @@ public class RegisterPanel extends PhetPanel {
 
             boolean error = false;
             String errorString = "";
-            String err = null;
 
             String nom = firstName.getModelObject().toString() + " " + lastName.getModelObject().toString();
             String org = organization.getModelObject().toString();
