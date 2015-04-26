@@ -123,7 +123,7 @@
 
       <br/>
 
-      <table id="cep-checkbox-table" style="border-collapse: collapse;">
+      <table id="cep-checkbox-table" style="border-collapse: collapse; width: 500px">
         <tr>
           <th>Subject(s)</th>
           <th>Grade Level(s)</th>
@@ -187,35 +187,17 @@
 
       <br/>
 
-      <table wicket:id="admin-options">
-        <tr>
-          <td class="contribution-edit-label">
-            <label for="cep-fromPhet">
-              From PhET
-            </label>
-          </td>
-          <td class="contribution-edit-input">
-            <input type="checkbox" wicket:id="fromPhet" id="cep-fromPhet"/>
-          </td>
-          <td class="contribution-edit-label">
-            <label for="cep-goldStar">
-              Gold Star
-            </label>
-          </td>
-          <td class="contribution-edit-input">
-            <input type="checkbox" wicket:id="goldStar" id="cep-goldStar"/>
-          </td>
-          <td class="contribution-edit-label">
-            <label for="cep-approved">
-              Approved
-            </label>
-          </td>
-          <td class="contribution-edit-input">
-            <input type="checkbox" wicket:id="approved" id="cep-approved"/>
-          </td>
-        </tr>
-      </table>
-      <br/><br/>
+      <div wicket:id="admin-options">
+        <div class="sim-checkbox-div">
+          <input type="checkbox" wicket:id="fromPhet" id="cep-fromPhet">
+          <label for="cep-fromPhet">From PhET</label>
+        </div>
+        <div class="sim-checkbox-div">
+          <input type="checkbox" wicket:id="goldStar" id="cep-goldStar">
+          <label for="cep-goldStar">Gold Star</label>
+        </div>
+      </div>
+      <br/>
 
       <div class="contribution-edit-column">
         <label class="bold-label">

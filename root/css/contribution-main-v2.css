@@ -313,3 +313,7 @@ div.rtl #check-guidelines {
 .sim-thumbnail-x:hover {
   background-image: url(../images/icons/x-icon-hover.png);
 }
+
+.contribution-edit select {
+  width: 200px;
+}

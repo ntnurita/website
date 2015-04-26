@@ -310,7 +310,6 @@ public class ContributionEditPanel extends PhetPanel {
                 add( new WebMarkupContainer( "admin-options" ) {{
                     add( new CheckBox( "fromPhet" ) );
                     add( new CheckBox( "goldStar" ) );
-                    add( new CheckBox( "approved" ) );
                 }} );
             }
             else {
@@ -721,7 +720,7 @@ public class ContributionEditPanel extends PhetPanel {
         public String getDisplayValue() {
             // TODO: localize
             if ( duration == 0 ) {
-                return "NA";
+                return "Choose One";
             }
             return String.valueOf( duration ) + " minutes";
         }
