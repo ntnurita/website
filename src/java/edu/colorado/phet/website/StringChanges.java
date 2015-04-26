@@ -100,7 +100,7 @@ public class StringChanges {
         StringUtils.overwriteString( session, "contribution.level.undergraduateAdvanced", "Undergraduate - Advanced", "Undergrad - Advanced" );
 
         StringUtils.deleteString( session, "tooltip.legend.goldStar" );
-        StringUtils.addString( session, "tooltip.legend.goldStar", "A gold star is used to indicate high quality, inquiry-based activities that follow the PhET design guidelines and that teachers have found to be useful." );
+        StringUtils.addString( session, "tooltip.legend.goldStar", "A gold star indicates high-quality, inquiry-based activities that follow the PhET design guidelines." );
 
         /**
          * New register page strings
