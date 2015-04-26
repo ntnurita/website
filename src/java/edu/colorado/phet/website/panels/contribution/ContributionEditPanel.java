@@ -317,16 +317,15 @@ public class ContributionEditPanel extends PhetPanel {
                 add( new InvisibleComponent( "admin-options" ) );
             }
 
-            //stdK4A = new CheckBox( "stdK4A", new Model( creating ? Boolean.FALSE : new Boolean( contribution.isStandardK4A() ) ) ); add( stdK4A );
-
-//            for ( String level : new String[] { "K4", "58", "912" } ) {
-//                for ( String standard : new String[] { "A", "B", "C", "D", "E", "F", "G" } ) {
-//                    add( new CheckBox( "standard" + level + standard ) );
-//                }
-//            }
-
             uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
             add( uploadPanel );
+
+            // wrap the existing files in a container so we can refresh it via ajax without wiping other form changes.
+            // particularly significant, since if would wipe any files to be uploaded otherwise
+            WebMarkupContainer fileContainer = new WebMarkupContainer( "file-markup-container" );
+            fileContainer.setOutputMarkupId( true );
+            add( fileContainer );
+            fileContainer.add( new ExistingListView( "existing-files" ) );
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
@@ -667,7 +666,6 @@ public class ContributionEditPanel extends PhetPanel {
 
             protected void populateItem( ListItem item ) {
                 final ContributionFile cfile = (ContributionFile) item.getModel().getObject();
-                System.out.println( cfile.getFilename() );
                 item.add( new Label( "file-name", cfile.getFilename() ) );
                 item.add( new AjaxFallbackLink( "remove-link" ) {
                     public void onClick( AjaxRequestTarget target ) {

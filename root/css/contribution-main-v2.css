@@ -317,3 +317,14 @@ div.rtl #check-guidelines {
 .contribution-edit select {
   width: 200px;
 }
+
+.remove-x {
+  float: left;
+  background: url(../images/icons/x-icon.png) no-repeat;
+  cursor: pointer;
+  border: 0;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}

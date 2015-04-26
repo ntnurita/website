@@ -27,7 +27,7 @@
             Please correct the following:
           </wicket:message>
         </span>
-      <span wicket:id="feedback"></span>
+        <span wicket:id="feedback"></span>
       </div>
     </wicket:enclosure>
     <form wicket:id="contributionform">
@@ -95,6 +95,13 @@
         </span>
 
         <div wicket:id="file-upload"></div>
+        <div wicket:id="file-markup-container">
+          <div wicket:id="existing-files" class="file-div">
+            <span wicket:id="file-name"></span>
+            <a href="#" wicket:id="remove-link" class="remove-x">
+            </a>
+          </div>
+        </div>
       </div>
 
       <div class="contribution-edit-column" style="padding-top: 20px;">
