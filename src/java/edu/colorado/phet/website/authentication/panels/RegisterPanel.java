@@ -118,7 +118,7 @@ public class RegisterPanel extends PhetPanel {
 
         errorModel = new Model<String>( "" );
 
-//        add( new RawLabel( "register-errors", errorModel ) );
+        add( new RawLabel( "register-errors", errorModel ) );
 
         feedback = new FeedbackPanel( "feedback" );
         feedback.setVisible( false );
@@ -213,7 +213,8 @@ public class RegisterPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup
+                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup,
+                            otherRoleCheckbox, otherRole, otherSubjectCheckbox, otherSubject
 
                             // role checkboxes
 //                            teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, otherRoleCheckbox,
@@ -256,6 +257,14 @@ public class RegisterPanel extends PhetPanel {
 
                     if ( phetExperienceRadioGroup.getModelObject() == null ) {
                         error( phetExperienceRadioGroup, "validation.user.description" );
+                    }
+
+                    if ( otherRoleCheckbox.getConvertedInput() && ( otherRole.getInput() == null || otherRole.getInput().length() == 0 ) ) {
+                        error( otherRole, "validation.user.otherRole" );
+                    }
+
+                    if ( otherSubjectCheckbox.getConvertedInput() && ( otherSubject.getInput() == null || otherSubject.getInput().length() == 0 ) ) {
+                        error( otherSubject, "validation.user.otherSubject" );
                     }
 
 //                    if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||

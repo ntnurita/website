@@ -156,6 +156,8 @@ public class StringChanges {
         StringUtils.addString( session, "register.graduate", "Graduate" );
 
         StringUtils.addString( session, "validation.user.role", "Please fill in at least one checkbox under \"I am a...\"" );
+        StringUtils.addString( session, "validation.user.otherRole", "Please fill out the text field next to Other under \"I am a...\"" );
+        StringUtils.addString( session, "validation.user.otherSubject", "Please fill out the text field next to Other under \"Subject(s)\"" );
 
         /**
          * General strings
