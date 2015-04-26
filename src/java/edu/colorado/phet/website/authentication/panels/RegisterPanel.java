@@ -4,20 +4,16 @@
 
 package edu.colorado.phet.website.authentication.panels;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponentLabel;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.Radio;
-import org.apache.wicket.markup.html.form.RadioChoice;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -46,7 +42,6 @@ public class RegisterPanel extends PhetPanel {
     private TextField username; // email
     private PasswordTextField password;
     private PasswordTextField passwordCopy;
-    private DropDownChoice<String> description;
     private CheckBox receiveEmail;
     private Model errorModel;
     private PageContext context;
@@ -96,6 +91,9 @@ public class RegisterPanel extends PhetPanel {
     // teaching experience
     private TextField yearsTeaching;
 
+    // PhET experience
+    private RadioGroup phetExperienceRadioGroup;
+
     private String destination = null;
 
     private static final String ERROR_SEPARATOR = "<br/>";
@@ -126,7 +124,6 @@ public class RegisterPanel extends PhetPanel {
             add( firstName = new StringTextField( "firstName", new PropertyModel( properties, "firstName" ) ) );
             add( lastName = new StringTextField( "lastName", new PropertyModel( properties, "lastName" ) ) );
             add( organization = new StringTextField( "organization", new PropertyModel( properties, "organization" ) ) );
-//            add( description = new DropDownChoice<String>( "description", new PropertyModel<String>( properties, "description" ), PhetUser.getDescriptionOptions() ) );
             add( username = new StringTextField( "username", new PropertyModel( properties, "username" ) ) );
             add( password = new StringPasswordTextField( "password", new PropertyModel( properties, "password" ) ) );
             add( passwordCopy = new StringPasswordTextField( "passwordCopy", new PropertyModel( properties, "passwordCopy" ) ) );
@@ -178,26 +175,25 @@ public class RegisterPanel extends PhetPanel {
             add( yearsTeaching = new StringTextField( "teachingExperience", new PropertyModel( properties, "teachingExperience" ) ) );
 
             // phet experience
-            IModel<String> selected = new Model<String>(); // TODO: user property model
-            RadioGroup group = new RadioGroup( "phetExperienceRadios", selected );
+            phetExperienceRadioGroup = new RadioGroup( "phetExperienceRadios", new PropertyModel( properties, "phetExperience" ) );
 
             Radio newUserRadio = new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) );
-            group.add( newUserRadio );
-            group.add( new FormComponentLabel( "newUserLabel", newUserRadio ) );
+            phetExperienceRadioGroup.add( newUserRadio );
+            phetExperienceRadioGroup.add( new FormComponentLabel( "newUserLabel", newUserRadio ) );
 
             Radio occasionalUserRadio = new Radio( "occasionalUserRadio", new Model<String>( "OCCASIONAL_USER" ) );
-            group.add( occasionalUserRadio );
-            group.add( new FormComponentLabel( "occasionalUserLabel", occasionalUserRadio ) );
+            phetExperienceRadioGroup.add( occasionalUserRadio );
+            phetExperienceRadioGroup.add( new FormComponentLabel( "occasionalUserLabel", occasionalUserRadio ) );
 
             Radio experiencedUserRadio = new Radio( "experiencedUserRadio", new Model<String>( "EXPERIENCED_USER" ) );
-            group.add( experiencedUserRadio );
-            group.add( new FormComponentLabel( "experiencedUserLabel", experiencedUserRadio ) );
+            phetExperienceRadioGroup.add( experiencedUserRadio );
+            phetExperienceRadioGroup.add( new FormComponentLabel( "experiencedUserLabel", experiencedUserRadio ) );
 
             Radio powerUserRadio = new Radio( "powerUserRadio", new Model<String>( "POWER_USER" ) );
-            group.add( powerUserRadio );
-            group.add( new FormComponentLabel( "powerUserLabel", powerUserRadio ) );
+            phetExperienceRadioGroup.add( powerUserRadio );
+            phetExperienceRadioGroup.add( new FormComponentLabel( "powerUserLabel", powerUserRadio ) );
 
-            add( group );
+            add( phetExperienceRadioGroup );
 
             // so we can respond to the error messages
             password.setRequired( false );
@@ -215,13 +211,22 @@ public class RegisterPanel extends PhetPanel {
             String org = organization.getModelObject().toString();
             String email = username.getModelObject().toString();
             String pass = password.getInput();
-            String desc = description.getModelObject();
+            String desc;
+            try {
+                desc = phetExperienceRadioGroup.getModelObject().toString();
+            }
+            catch( NullPointerException e ) {
+                System.out.println( phetExperienceRadioGroup.getModel().toString() );
+                System.out.println( phetExperienceRadioGroup.getModelObject());
+                desc = null;
+            }
             String confirmationKey = null;
-            boolean receiveNewsletters = receiveEmail.getModelObject();
+//            boolean receiveNewsletters = receiveEmail.getModelObject();
+            boolean receiveNewsletters = true;
 
-            logger.debug( "name: " + nom );
-            logger.debug( "org: " + org );
-            logger.debug( "desc: " + desc );
+            logger.warn( "name: " + nom );
+            logger.warn( "org: " + org );
+            logger.warn( "desc: " + desc );
 
             if ( nom == null || nom.length() == 0 ) {
                 error = true;
