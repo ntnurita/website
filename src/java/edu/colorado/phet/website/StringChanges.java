@@ -155,6 +155,8 @@ public class StringChanges {
         StringUtils.addString( session, "register.year2plus", "Year 2+" );
         StringUtils.addString( session, "register.graduate", "Graduate" );
 
+        StringUtils.addString( session, "validation.user.role", "Please fill in at least one checkbox under \"I am a...\"" );
+
         /**
          * General strings
          */

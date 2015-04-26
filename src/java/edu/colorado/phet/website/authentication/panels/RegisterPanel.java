@@ -6,14 +6,18 @@ package edu.colorado.phet.website.authentication.panels;
 
 import java.util.List;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.FormComponentLabel;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.Radio;
 import org.apache.wicket.markup.html.form.RadioGroup;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -21,6 +25,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import edu.colorado.phet.website.authentication.PhetSession;
 import edu.colorado.phet.website.components.RawLabel;
 import edu.colorado.phet.website.components.StringPasswordTextField;
 import edu.colorado.phet.website.components.StringTextField;
@@ -29,6 +34,7 @@ import edu.colorado.phet.website.newsletter.ConfirmEmailSentPage;
 import edu.colorado.phet.website.newsletter.NewsletterUtils;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.PhetRequestCycle;
 
 public class RegisterPanel extends PhetPanel {
 
@@ -100,6 +106,8 @@ public class RegisterPanel extends PhetPanel {
 
     private static final Logger logger = Logger.getLogger( RegisterPanel.class.getName() );
 
+    FeedbackPanel feedback;
+
     public RegisterPanel( String id, PageContext context, String destination ) {
         super( id, context );
         this.context = context;
@@ -110,7 +118,11 @@ public class RegisterPanel extends PhetPanel {
 
         errorModel = new Model<String>( "" );
 
-        add( new RawLabel( "register-errors", errorModel ) );
+//        add( new RawLabel( "register-errors", errorModel ) );
+
+        feedback = new FeedbackPanel( "feedback" );
+        feedback.setVisible( false );
+        add( feedback );
     }
 
     public final class RegisterForm extends Form {
@@ -127,7 +139,7 @@ public class RegisterPanel extends PhetPanel {
             add( username = new StringTextField( "username", new PropertyModel( properties, "username" ) ) );
             add( password = new StringPasswordTextField( "password", new PropertyModel( properties, "password" ) ) );
             add( passwordCopy = new StringPasswordTextField( "passwordCopy", new PropertyModel( properties, "passwordCopy" ) ) );
-//            add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
+            add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
 
             // add role checkboxes
             add( teacherCheckbox = new CheckBox( "teacher", new PropertyModel<Boolean>( properties, "teacher" ) ) );
@@ -198,6 +210,72 @@ public class RegisterPanel extends PhetPanel {
             // so we can respond to the error messages
             password.setRequired( false );
             passwordCopy.setRequired( false );
+
+            add( new AbstractFormValidator() {
+                public FormComponent[] getDependentFormComponents() {
+                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup
+
+                            // role checkboxes
+//                            teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, otherRoleCheckbox,
+//
+//                            // subject checkboxes
+//                            generalSciencesCheckbox, earthScienceCheckbox, biologyCheckbox, physicsCheckbox, chemistryCheckbox,
+//                            astronomyCheckbox, mathCheckbox, otherSubjectCheckbox,
+//
+//                            // grade checkboxes
+//                            elementaryCheckbox, gradeKCheckbox, grade1Checkbox, grade2Checkbox, grade3Checkbox, grade4Checkbox,
+//                            grade5Checkbox, middleCheckbox, grade6Checkbox, grade7Checkbox, grade8Checkbox, highCheckbox, grade9Checkbox, grade10Checkbox,
+//                            grade11Checkbox, grade12Checkbox, universityCheckbox, year1Checkbox, year2plusCheckbox, graduateCheckbox, otherGradeCheckbox
+                    };
+                }
+
+                public void validate( Form form ) {
+                    phetExperienceRadioGroup.validate();
+                    phetExperienceRadioGroup.updateModel();
+
+                    if ( firstName.getInput() == null || firstName.getInput().length() == 0 ) {
+                        error( firstName, "validation.user.user" );
+                    }
+
+                    if ( lastName.getInput() == null || lastName.getInput().length() == 0 ) {
+                        error( lastName, "validation.user.user" );
+                    }
+
+                    if ( !password.getInput().equals( passwordCopy.getInput() ) ) {
+                        error( password, "validation.user.passwordMatch" );
+                    }
+
+                    if ( password.getInput().length() == 0 ) {
+                        error( password, "validation.user.password" );
+                    }
+
+                    String err = PhetUser.validateEmail( username.getInput() );
+                    if ( err != null ) {
+                        error( username, "validation.user.email" );
+                    }
+
+                    if ( phetExperienceRadioGroup.getModelObject() == null ) {
+                        error( phetExperienceRadioGroup, "validation.user.description" );
+                    }
+
+//                    if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||
+//                            translatorCheckbox.getConvertedInput() || otherRoleCheckbox.getConvertedInput() ) ) {
+//                        error( teacherCheckbox, "validation.user.role" );
+//                    }
+//
+//                    if ( !( generalSciencesCheckbox.getConvertedInput() || earthScienceCheckbox.getConvertedInput() || biologyCheckbox.getConvertedInput() ||
+//                            physicsCheckbox.getConvertedInput() || chemistryCheckbox.getConvertedInput() || astronomyCheckbox.getConvertedInput() ||
+//                            mathCheckbox.getConvertedInput() || otherSubjectCheckbox.getConvertedInput() ) ) {
+//                        error( generalSciencesCheckbox, "validation.user.subject" );
+//                    }
+                }
+            } );
+        }
+
+        @Override
+        protected void onValidate() {
+            super.onValidate();
+            feedback.setVisible( feedback.anyMessage() );
         }
 
         public final void onSubmit() {
@@ -211,48 +289,13 @@ public class RegisterPanel extends PhetPanel {
             String org = organization.getModelObject().toString();
             String email = username.getModelObject().toString();
             String pass = password.getInput();
-            String desc;
-            try {
-                desc = phetExperienceRadioGroup.getModelObject().toString();
-            }
-            catch( NullPointerException e ) {
-                System.out.println( phetExperienceRadioGroup.getModel().toString() );
-                System.out.println( phetExperienceRadioGroup.getModelObject());
-                desc = null;
-            }
+            String desc = phetExperienceRadioGroup.getModelObject().toString();
             String confirmationKey = null;
-//            boolean receiveNewsletters = receiveEmail.getModelObject();
-            boolean receiveNewsletters = true;
+            boolean receiveNewsletters = receiveEmail.getModelObject();
 
             logger.warn( "name: " + nom );
             logger.warn( "org: " + org );
             logger.warn( "desc: " + desc );
-
-            if ( nom == null || nom.length() == 0 ) {
-                error = true;
-                errorString += ERROR_SEPARATOR + getPhetLocalizer().getString( "validation.user.user", this, "Please fill in the name field" );
-            }
-
-            if ( !pass.equals( passwordCopy.getInput() ) ) {
-                error = true;
-                errorString += ERROR_SEPARATOR + getPhetLocalizer().getString( "validation.user.passwordMatch", this, "The entered passwords do not match" );
-            }
-
-            if ( pass.length() == 0 ) {
-                error = true;
-                errorString += ERROR_SEPARATOR + getPhetLocalizer().getString( "validation.user.password", this, "Please enter a password" );
-            }
-
-            err = PhetUser.validateEmail( email );
-            if ( err != null ) {
-                error = true;
-                errorString += ERROR_SEPARATOR + getPhetLocalizer().getString( "validation.user.email", this, "Please enter a valid email address" );
-            }
-
-            if ( desc == null || desc.length() == 0 ) {
-                error = true;
-                errorString += ERROR_SEPARATOR + getPhetLocalizer().getString( "validation.user.description", this, "Please pick a description" );
-            }
 
             PhetUser user = null;
 

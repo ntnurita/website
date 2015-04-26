@@ -65,7 +65,15 @@
       <wicket:message key="profile.register">Register</wicket:message>
     </h2>
 
-    <p wicket:id="register-errors" class="register-errors"> | Errors go here</p>
+    <!--<p wicket:id="register-errors" class="register-errors"> | Errors go here</p>-->
+
+    <div wicket:id="feedback" class="sign-in-feedback">
+      <ul class="feedbackPanel">
+        <li class="feedbackPanelERROR">
+          <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
+        </li>
+      </ul>
+    </div>
 
     <form wicket:id="register-form">
 
@@ -472,6 +480,13 @@
       </div>
 
       <br/>
+
+      <input type="checkbox" wicket:id="receiveEmail" id="receive-email"/>
+      <label for="receive-email">
+        <wicket:message key="profile.receiveEmail">
+          Receive email
+        </wicket:message>
+      </label>
 
       <input type="submit" wicket:message="value:profile.register" class="phet-button login-form-submit"><br/>
 
