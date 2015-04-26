@@ -115,6 +115,7 @@ public class ContributionEditPanel extends PhetPanel {
     private List existingFiles;
     private List filesToRemove;
 
+    private static final String CHOOSE_ONE = "Choose One";
     private static final Logger logger = Logger.getLogger( ContributionEditPanel.class.getName() );
     private FeedbackPanel feedback;
 
@@ -362,6 +363,7 @@ public class ContributionEditPanel extends PhetPanel {
                             typeList.getFormComponent(),
                             levelList.getFormComponent(),
                             subjectList.getFormComponent(),
+                            durationChoice
                     };
                 }
 
@@ -387,6 +389,10 @@ public class ContributionEditPanel extends PhetPanel {
                     }
                     if ( subjectList.getFormComponent().getModel().getObject().isEmpty() ) {
                         error( subjectList.getFormComponent(), "contribution.edit.validation.mustHaveSubjects" );
+                    }
+
+                    if ( durationChoice.getInput().equals( "0" ) ) {
+                        error( durationChoice, "contribution.edit.validation.mustHaveDuration" );
                     }
                 }
             } );
@@ -720,7 +726,7 @@ public class ContributionEditPanel extends PhetPanel {
         public String getDisplayValue() {
             // TODO: localize
             if ( duration == 0 ) {
-                return "Choose One";
+                return CHOOSE_ONE;
             }
             return String.valueOf( duration ) + " minutes";
         }

@@ -190,6 +190,7 @@ public class ContributeEntity extends TranslationEntity {
         addString( "contribution.edit.validation.mustHaveSubjects" );
         addString( "contribution.edit.validation.fileType" );
         addString( "contribution.edit.validation.pleaseCorrect" );
+        addString( "contribution.edit.validation.mustHaveDuration" );
 
         addString( "contribution.comment.successRedirection" );
         addString( "contribution.comment.success" );
