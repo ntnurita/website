@@ -3,101 +3,84 @@
 /* Contains CSS for the HTML5 banner */
 
 .html-banner-container {
-    display: block;
-    /*background-color: #ff9933;*/
-  background-color: rgb(146,159,204);
-    border-top: 1px solid white;
-    margin-bottom: 10px;
-    position: relative;
-    height: 50px;
-    width: 100%;
-    text-decoration: none;
+  display: block;
+  /*background-color: #ff9933;*/
+  background-color: rgb(146, 159, 204);
+  border-top: 1px solid white;
+  margin-bottom: 10px;
+  position: relative;
+  height: 50px;
+  width: 100%;
+  text-decoration: none;
 }
 
 #html-banner-content {
-    width: 765px;
-    display: block;
-    position: relative;
-    height: 50px;
-    margin: 0 auto;
+  width: 765px;
+  display: block;
+  position: relative;
+  height: 50px;
+  margin: 0 auto;
 }
 
 .html-banner-container:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .html-banner-container .html-banner-image {
-    position: absolute;
-    top: 14px;
-    border: none;
-    height: 40px;
-    right: 14px;
+  position: absolute;
+  top: 14px;
+  border: none;
+  height: 40px;
+  right: 14px;
 }
 
-/*#html-banner-link {*/
-    /*display: inline-block;*/
-    /*position: absolute;*/
-    /*right: 0;*/
-    /*height: 50px;  *//* height and width needed so tabbing over works in safari */
-    /*width: 40px;*/
-/*}*/
-
 .html-banner-container .html-banner-html {
-    position: absolute;
-    color: black;
-    top: 0;
-    line-height: 14px;
-    font-weight: bold;
-    font-size: 12px;
-    padding: 0;
-    width: 36px;
-    text-align: center;
-    background-color: white;
-    font-stretch: expanded;
-    right: 16px;
+  position: absolute;
+  color: black;
+  top: 0;
+  line-height: 14px;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 0;
+  width: 36px;
+  text-align: center;
+  background-color: white;
+  font-stretch: expanded;
+  right: 16px;
 }
 
 div.rtl .html-banner-image {
-    right: inherit;
-    left: 18px;
+  right: inherit;
+  left: 18px;
 }
 
 div.rtl .html-banner-html {
-    right: inherit;
-    left: 20px;
+  right: inherit;
+  left: 20px;
 }
 
 div.rtl #html-banner-link {
-    right: inherit;
-    left: 0;
+  right: inherit;
+  left: 0;
 }
 
-/*div.rtl .html-banner-container .html-banner-image {*/
-    /*left: -380px !important;*/
-/*}*/
-
-/*div.rtl .html-banner-container .html-banner-html {*/
-    /*left: -375px !important;*/
-/*}*/
-
-
 #html-sims-link {
-    display: block;
+  display: block;
 }
 
 .html-banner-container .html-banner-crowdfundText {
-    text-align: center;
-    color: white;
-    font-size: 17px;
-    line-height: 50px;
-    cursor: default;
-    position: relative;
-    float: left;
-    left: -2px;
+  text-align: center;
+  color: white;
+  font-size: 17px;
+  line-height: 50px;
+  cursor: default;
+  position: relative;
+  float: left;
+  left: -2px;
 }
 
 div.rtl .html-banner-container .html-banner-crowdfundText {
-    float: right;
+  float: right;
 }
 
 .html-banner-container .html-banner-simsText {
@@ -106,7 +89,7 @@ div.rtl .html-banner-container .html-banner-crowdfundText {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   right: 70px;
   float: right;
-  background-color: rgb(230,230,230);
+  background-color: rgb(230, 230, 230);
   top: 12px;
 }
 
@@ -117,28 +100,27 @@ div.rtl .html-banner-simsText {
 }
 
 .html-banner-container .html-banner-simsText:hover {
-  background: rgb(245,245,245);
+  background: rgb(245, 245, 245);
 }
 
 .html-banner-container .html-banner-button {
-    background: rgb(244,233,23);
-    float: left;
-    left: 15px;
-    top: 12px;
+  background: rgb(244, 233, 23);
+  float: left;
+  left: 15px;
+  top: 12px;
 }
 
 div.rtl .html-banner-button {
-    /*margin-left: 2px;*/
-    right: 15px;
-    float: right;
+  right: 15px;
+  float: right;
 }
 
 .html-banner-container .html-banner-button:hover {
-    background: rgb(249,244,147);
+  background: rgb(249, 244, 147);
 }
 
 .html-banner-container .html-banner-button:active {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }

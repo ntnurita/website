@@ -4,7 +4,7 @@
 }
 
 .html-breadcrumbs {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .html-social-bookmark-panel {
@@ -21,80 +21,80 @@ div.rtl .html-social-bookmark-panel {
 }
 
 .html-video-container {
-    position: relative;
-    display: block;
-    text-decoration: none;
-    background-color: black;
-    border: none;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 324px;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background-color: black;
+  border: none;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 324px;
 }
 
 .html-video-thumbnail {
-    display: block;
-    border: 2px solid black;
+  display: block;
+  border: 2px solid black;
 }
 
 .html-video-play-button {
-    position: absolute;
-    width: 70px;
-    height: 50px;
-    background-color: black;
-    top: 37px;
-    left: 77px;
-    border-radius: 15px;
-    opacity: 0.7;
+  position: absolute;
+  width: 70px;
+  height: 50px;
+  background-color: black;
+  top: 37px;
+  left: 77px;
+  border-radius: 15px;
+  opacity: 0.7;
 }
 
 .html-video-play-button:after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left: 24px solid white;
-    top: 13px;
-    left: 25px;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 24px solid white;
+  top: 13px;
+  left: 25px;
 }
 
 .html-video-container:hover .html-video-play-button {
-    background-color: #c00;
+  background-color: #c00;
 }
 
 .html-text-our-new-html5-sims {
-    display: block;
-    color: black;
-    font-size: 1.5em;
-    padding: 5px;
-    background-color: #eee;
-    border: 1px solid #ddd;
-    border-top: none;
-    width: 312px;
+  display: block;
+  color: black;
+  font-size: 1.5em;
+  padding: 5px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-top: none;
+  width: 312px;
 }
 
 .html-why-html5 {
-    font-size: 1.5em;
-    text-align: center;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 #html5-features-missing {
-    display: none;
-    font-size: 18px;
-    background-color: #f88;
-    padding: 10px;
-    border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
-    font-weight: bold;
+  display: none;
+  font-size: 18px;
+  background-color: #f88;
+  padding: 10px;
+  border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
+  font-weight: bold;
 }
 
 #html5-translations-soon {
-    /*display: none;*/
-    font-size: 16px;
-    background-color: #ccc;
-    padding: 10px;
-    border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
-    border: 1px solid #444;
-    font-weight: bold;
+  /*display: none;*/
+  font-size: 16px;
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 10px; /* yeah, like they will have border-radius on a browser that has missing features. let's at least be hopeful! */
+  border: 1px solid #444;
+  font-weight: bold;
 }

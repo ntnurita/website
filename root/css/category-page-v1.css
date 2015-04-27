@@ -1,69 +1,69 @@
 .simulation-list-item {
-    text-align: center;
-    padding: 10px 20px;
-    margin-right: 10px;
-    width: 130px;
-    vertical-align: top;
-    font-size: 12px;
-    font-weight: bold;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    position: relative;
+  text-align: center;
+  padding: 10px 20px;
+  margin-right: 10px;
+  width: 130px;
+  vertical-align: top;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  position: relative;
 }
 
 .simulation-list-item .simulation-link {
-    position: relative;
-    display: block;
+  position: relative;
+  display: block;
 }
 
 .sim-display-badge {
-    display: block;
-    position: absolute;
-    background-size: 28px 28px;
-    width: 28px;
-    height: 28px;
-    left: 111px;
-    top: 62px;
+  display: block;
+  position: absolute;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+  left: 111px;
+  top: 62px;
 }
 
 div.rtl .sim-display-badge {
-    left: -13px;
+  left: -13px;
 }
 
 .sim-badge-html {
-    background-image: url(../images/icons/sim-badges/html5-badge.png);
+  background-image: url(../images/icons/sim-badges/html5-badge.png);
 }
 
 .sim-badge-java {
-    background-image: url(../images/icons/sim-badges/java-badge.png);
+  background-image: url(../images/icons/sim-badges/java-badge.png);
 }
 
 .sim-badge-flash {
-    background-image: url(../images/icons/sim-badges/flash-badge.png);
+  background-image: url(../images/icons/sim-badges/flash-badge.png);
 }
 
 .simulation-list-thumbnail {
-    margin-bottom: 5px;
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  margin-bottom: 5px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .simulation-list-title {
-    color: #c14120;
-    text-decoration: none;
+  color: #c14120;
+  text-decoration: none;
 }
 
 .untranslated-sim .simulation-list-title {
-    color: #888888;
+  color: #888888;
 }
 
 .simulation-link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a.simulation-link:hover .simulation-list-title {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .simulation-link img {
-    border: none;
-    font-size: 2px;
+  border: none;
+  font-size: 2px;
 }
