@@ -1,503 +1,513 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] SimulationMainPanel</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-        <style type="text/css">
-            .simulation-main-container {
-                width: 525px;
-                margin: 0 auto;
-            }
-        </style>
-    </wicket:remove>
+  <title>[PREVIEW] SimulationMainPanel</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+    <style type="text/css">
+      .simulation-main-container {
+        width: 525px;
+        margin: 0 auto;
+      }
+    </style>
+  </wicket:remove>
 </head>
 <body>
 
 <wicket:panel>
-    <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope="itemscope" itemtype="http://schema.org/SoftwareApplication">
+  <div class="simulation-main-container" wicket:message="dir:language.dir" itemscope="itemscope" itemtype="http://schema.org/SoftwareApplication">
 
-        <!-- educationalAlignment ! teaches for mingradelevel and maxgradelevel -->
+    <!-- educationalAlignment ! teaches for mingradelevel and maxgradelevel -->
 
-        <!-- TODO: the changelog link is included in the software version! -->
+    <!-- TODO: the changelog link is included in the software version! -->
 
-        <meta itemprop="educationalAlignment" itemscope="itemscope" itemtype="http://schema.org/AlignmentObject" wicket:id="alignment-list">
-            <meta itemprop="alignmentType" content="teaches" />
-            <meta itemprop="targetUrl" wicket:id="alignment" content="..." />
-        </meta>
+    <meta itemprop="educationalAlignment" itemscope="itemscope" itemtype="http://schema.org/AlignmentObject" wicket:id="alignment-list">
+    <meta itemprop="alignmentType" content="teaches"/>
+    <meta itemprop="targetUrl" wicket:id="alignment" content="..."/>
+    </meta>
 
-        <!-- Schema.org contributor (for credits, etc.) -->
+    <!-- Schema.org contributor (for credits, etc.) -->
 
-        <meta itemprop="intendedEndUserRole" content="student"/>
-        <meta itemprop="educationalUse" content="classroom"/>
-        <meta itemprop="educationalUse" content="homework"/>
-        <meta itemprop="educationalUse" content="simulation"/>
-        <!--<meta itemprop="timeRequired" content="TODO"/>-->
-        <!--<meta itemprop="typicalAgeRange" content="TODO"/>-->
+    <meta itemprop="intendedEndUserRole" content="student"/>
+    <meta itemprop="educationalUse" content="classroom"/>
+    <meta itemprop="educationalUse" content="homework"/>
+    <meta itemprop="educationalUse" content="simulation"/>
+    <!--<meta itemprop="timeRequired" content="TODO"/>-->
+    <!--<meta itemprop="typicalAgeRange" content="TODO"/>-->
 
-        <meta itemprop="useRightsUrl" content="http://phet.colorado.edu/en/about/licensing"/>
-        <div style="display: none;" wicket:id="license-list">
-            <meta itemprop="useRightsUrl" wicket:id="license-meta-tag"/>
-        </div>
+    <meta itemprop="useRightsUrl" content="http://phet.colorado.edu/en/about/licensing"/>
+    <div style="display: none;" wicket:id="license-list">
+      <meta itemprop="useRightsUrl" wicket:id="license-meta-tag"/>
+    </div>
 
-        <meta itemprop="interactivityType" content="active"/>
-        <meta itemprop="learningResourceType" content="simulation"/>
+    <meta itemprop="interactivityType" content="active"/>
+    <meta itemprop="learningResourceType" content="simulation"/>
 
-        <meta itemprop="dateCreated" wicket:id="schema-date-created" content="simulation"/>
-        <meta itemprop="dateModified" wicket:id="schema-date-modified" content="simulation"/>
+    <meta itemprop="dateCreated" wicket:id="schema-date-created" content="simulation"/>
+    <meta itemprop="dateModified" wicket:id="schema-date-modified" content="simulation"/>
 
-        <meta itemprop="inLanguage" wicket:id="schema-inLanguage" content="..."/>
+    <meta itemprop="inLanguage" wicket:id="schema-inLanguage" content="..."/>
 
-        <div style="display: none;" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Organization">
-            <meta itemprop="name" content="PhET Interactive Simulations"/>
-            <meta itemprop="url" content="http://phet.colorado.edu"/>
-        </div>
-        <div style="display: none;" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
-            <meta itemprop="name" content="PhET Interactive Simulations"/>
-            <meta itemprop="url" content="http://phet.colorado.edu"/>
-        </div>
+    <div style="display: none;" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PhET Interactive Simulations"/>
+      <meta itemprop="url" content="http://phet.colorado.edu"/>
+    </div>
+    <div style="display: none;" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PhET Interactive Simulations"/>
+      <meta itemprop="url" content="http://phet.colorado.edu"/>
+    </div>
 
-        <meta itemprop="thumbnailUrl" wicket:id="schema-thumbnail" content="..."/>
-        <!--<meta itemprop="fileFormat" content="TODO"/>-->
+    <meta itemprop="thumbnailUrl" wicket:id="schema-thumbnail" content="..."/>
+    <!--<meta itemprop="fileFormat" content="TODO"/>-->
 
-        <meta itemprop="applicationCategory" content="Educational"/>
+    <meta itemprop="applicationCategory" content="Educational"/>
 
-        <h1 wicket:id="simulation-main-title" class="simulation-main-title" itemprop="name">
-            Simulation Title
-        </h1>
+    <h1 wicket:id="simulation-main-title" class="simulation-main-title" itemprop="name">
+      Simulation Title
+    </h1>
 
-        <div class="rating-holder">
-            <a href="#" wicket:id="rating-under-construction-link">
-                <img src="../../../../../../../../root/images/ratings/under-construction-small.png"
-                     alt="Under Construction icon" class="noborder" wicket:id="rating-under-construction-image"
-                     wicket:message="title:tooltip.legend.underConstruction"/>
+    <div class="rating-holder">
+      <a href="#" wicket:id="rating-under-construction-link">
+        <img src="../../../../../../../../root/images/ratings/under-construction-small.png"
+             alt="Under Construction icon" class="noborder" wicket:id="rating-under-construction-image"
+             wicket:message="title:tooltip.legend.underConstruction"/>
+      </a>
+      <a href="#" wicket:id="rating-guidance-recommended-link">
+        <img src="../../../../../../../../root/images/ratings/guidance-recommended-small.png"
+             alt="Guidance Recommended icon" class="noborder" wicket:id="rating-guidance-recommended-image"
+             wicket:message="title:tooltip.legend.guidanceRecommended"/>
+      </a>
+      <a href="#" wicket:id="rating-classroom-tested-link">
+        <img src="../../../../../../../../root/images/ratings/classroom-tested-small.png"
+             alt="Classroom Tested icon" class="noborder" wicket:id="rating-classroom-tested-image"
+             wicket:message="title:tooltip.legend.classroomTested"/>
+      </a>
+    </div>
+
+    <p wicket:id="untranslated-sim-text" class="untranslated-sim-text">
+      This simulation has not been translated into this language. You can still access the English version below.
+    </p>
+
+    <table class="simulation-main-table">
+      <tr>
+        <td style="width: 300px; vertical-align: top;">
+          <div class="simulation-main-image-panel">
+            <a href="#" wicket:id="simulation-main-link-run-main" rel="external"
+               class="simulation-main-link-run-main" style="position: relative; display: inline-block">
+              <img wicket:id="simulation-main-screenshot" class="simulation-main-screenshot"
+                   src="../../../../../../../../template-files/images/arithmetic-screenshot.png"
+                   width="300" id="simulation-main-screenshot-image" itemprop="image screenshot"
+                   onload="adjustPlayButton()"/>
+              <img src="/images/icons/play-sim.png" alt=" " id="play-sim-icon" width="100" height="100">
+              <span wicket:id="html5-badge"></span>
             </a>
-            <a href="#" wicket:id="rating-guidance-recommended-link">
-                <img src="../../../../../../../../root/images/ratings/guidance-recommended-small.png"
-                     alt="Guidance Recommended icon" class="noborder" wicket:id="rating-guidance-recommended-image"
-                     wicket:message="title:tooltip.legend.guidanceRecommended"/>
+            <script type="text/javascript">
+              function adjustPlayButton() {
+                var playButton = document.getElementById( 'play-sim-icon' );
+                var screenShot = document.getElementById( 'simulation-main-screenshot-image' );
+                var buttonLeft = screenShot.offsetWidth / 2 - playButton.offsetWidth / 2;
+                var buttonTop = screenShot.offsetHeight / 2 - playButton.offsetHeight / 2;
+                playButton.style.left = buttonLeft + "px";
+                playButton.style.top = buttonTop + "px";
+              }
+            </script>
+            <a class="phet-button sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl"
+               content-type="application/octet-stream" download>
+              <img src="/images/icons/download-icon.png" alt=" " class="download-icon">
+              <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
             </a>
-            <a href="#" wicket:id="rating-classroom-tested-link">
-                <img src="../../../../../../../../root/images/ratings/classroom-tested-small.png"
-                     alt="Classroom Tested icon" class="noborder" wicket:id="rating-classroom-tested-image"
-                     wicket:message="title:tooltip.legend.classroomTested"/>
+
+            <a class="phet-button sim-embed sim-button" href="#" wicket:id="embed-button"
+               onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
+              <img src="/images/icons/embed-icon.png" alt=" " class="download-icon">
+              <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
             </a>
-        </div>
 
-        <p wicket:id="untranslated-sim-text" class="untranslated-sim-text">
-            This simulation has not been translated into this language. You can still access the English version below.
-        </p>
-
-        <table class="simulation-main-table">
-            <tr>
-                <td style="width: 300px; vertical-align: top;">
-                    <div class="simulation-main-image-panel">
-                        <a href="#" wicket:id="simulation-main-link-run-main" rel="external"
-                           class="simulation-main-link-run-main" style="position: relative; display: inline-block">
-                            <img wicket:id="simulation-main-screenshot" class="simulation-main-screenshot"
-                                 src="../../../../../../../../template-files/images/arithmetic-screenshot.png"
-                                 width="300" id="simulation-main-screenshot-image" itemprop="image screenshot"
-                                 onload="adjustPlayButton()" />
-                            <img src="/images/icons/play-sim.png" alt=" " id="play-sim-icon" width="100" height="100">
-                            <span wicket:id="html5-badge"></span>
-                        </a>
-                        <script type="text/javascript">
-                            function adjustPlayButton() {
-                                var playButton = document.getElementById('play-sim-icon');
-                                var screenShot = document.getElementById('simulation-main-screenshot-image');
-                                var buttonLeft = screenShot.offsetWidth / 2 - playButton.offsetWidth / 2;
-                                var buttonTop = screenShot.offsetHeight / 2 - playButton.offsetHeight / 2;
-                                playButton.style.left = buttonLeft + "px";
-                                playButton.style.top = buttonTop + "px";
-                            }
-                        </script>
-                        <a class="phet-button sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl" content-type="application/octet-stream" download>
-                            <img src="/images/icons/download-icon.png" alt=" " class="download-icon">
-                            <wicket:message key="simulationMainPanel.runOffline">Download</wicket:message>
-                        </a>
-
-                        <a class="phet-button sim-embed sim-button" href="#" wicket:id="embed-button"
-                           onclick="var pop = document.getElementById('embed-popup');if( pop.style.display == 'none') {pop.style.display = 'block';document.getElementById('embeddable-text').select()}else{pop.style.display = 'none';}return false;">
-                          <img src="/images/icons/embed-icon.png" alt=" " class="download-icon">
-                          <wicket:message key="simulationMainPanel.embed">Embed</wicket:message>
-                        </a>
-
-                        <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
-                            <div style="position: absolute; background-color: #fff; border: 1px solid #666; width: 500px; z-index: 10">
-                                <div style="text-align: right; width: 100%; position: absolute;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;" style="padding: 0.2em;">
-                                    <wicket:message key="embed.close">close</wicket:message>
-                                </a></div>
-                                <div style="padding: 0 1em 1em;">
-                                    <wicket:enclosure child="direct-embed-text">
-                                        <p style="font-weight: bold; font-size: 14px;">
-                                            <wicket:message key="embed.direct.title">
-                                                Embed a running copy of this simulation
-                                            </wicket:message>
-                                        </p>
+            <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
+              <div style="position: absolute; background-color: #fff; border: 1px solid #666; width: 500px; z-index: 10">
+                <div style="text-align: right; width: 100%; position: absolute;"><a href="#"
+                                                                                    onclick="document.getElementById('embed-popup').style.display = 'none';return false;"
+                                                                                    style="padding: 0.2em;">
+                  <wicket:message key="embed.close">close</wicket:message>
+                </a></div>
+                <div style="padding: 0 1em 1em;">
+                  <wicket:enclosure child="direct-embed-text">
+                    <p style="font-weight: bold; font-size: 14px;">
+                      <wicket:message key="embed.direct.title">
+                        Embed a running copy of this simulation
+                      </wicket:message>
+                    </p>
                                         <textarea rows="3" cols="50" id="embeddable-text" wicket:id="direct-embed-text">This
                                             is some Text</textarea>
 
-                                        <p>
-                                            <wicket:message key="embed.direct.instructions">
-                                                Use this HTML to embed a running copy of this simulation.
-                                                You can change the width and height of the embedded simulation by
-                                                changing the "width" and "height" attributes in the HTML.
-                                            </wicket:message>
-                                        </p>
-                                    </wicket:enclosure>
-                                    <p style="font-weight: bold; font-size: 14px;">
-                                        <wicket:message key="embed.indirect.title">
-                                            Embed an image that will launch the simulation when clicked
-                                        </wicket:message>
-                                    </p>
+                    <p>
+                      <wicket:message key="embed.direct.instructions">
+                        Use this HTML to embed a running copy of this simulation.
+                        You can change the width and height of the embedded simulation by
+                        changing the "width" and "height" attributes in the HTML.
+                      </wicket:message>
+                    </p>
+                  </wicket:enclosure>
+                  <p style="font-weight: bold; font-size: 14px;">
+                    <wicket:message key="embed.indirect.title">
+                      Embed an image that will launch the simulation when clicked
+                    </wicket:message>
+                  </p>
                                     <textarea rows="3" cols="50" wicket:id="indirect-embed-text">This is some
                                         Text</textarea>
 
-                                    <p>
-                                        <wicket:message key="embed.indirect.instructions">
-                                            Use this HTML code to display a screenshot with the words "Click to Run".
-                                        </wicket:message>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="simulation-main-description">
+                  <p>
+                    <wicket:message key="embed.indirect.instructions">
+                      Use this HTML code to display a screenshot with the words "Click to Run".
+                    </wicket:message>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="simulation-main-description">
 
-                    <wicket:enclosure child="top-topic-list">
-                        <ul style="margin-top: 0">
-                            <li wicket:id="top-topic-list">
+          <wicket:enclosure child="top-topic-list">
+            <ul style="margin-top: 0">
+              <li wicket:id="top-topic-list">
                         <span wicket:id="top-topic-label" itemprop="keywords">
                         </span>
-                            </li>
-                        </ul>
-                    </wicket:enclosure>
+              </li>
+            </ul>
+          </wicket:enclosure>
 
-                    <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
-                        <a class="phet-button simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
-                            <span><wicket:message key="donate.donateNowBang">Donate</wicket:message></span>
-                        </a>
-                    </div>
+          <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+            <a class="phet-button simStyleOrange sim-button" href="#" wicket:id="donate-link" target="_blank">
+              <span><wicket:message key="donate.donateNowBang">Donate</wicket:message></span>
+            </a>
+          </div>
 
-                    <div id="sponsor-spot" style="padding-top: 10px;display: none;"></div>
-                    <script type="text/javascript">
-                        //<![CDATA[
-                        (function() {
-                            var r = Math.random() * phetSimSponsors.totalWeight;
-                            var i;
-                            for ( i = 0; i <= phetSimSponsors.sponsors.length; i++ ) {
-                                r -= phetSimSponsors.sponsors[i].weight;
-                                if ( r <= 0 ) {
-                                    break;
-                                }
-                            }
-                            var html = phetSimSponsors.sponsors[i].html;
-                            var ddToReplace = document.getElementById( 'sponsor-spot' );
-                            ddToReplace.innerHTML = html;
-                            ddToReplace.style.display = "block";
-                        })();
-                        //]]>
-                    </script>
-                    <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
-                        (function() {
-                            var otherImageSrc = document.getElementById( "phet-logo-main-image" ).src;
-                            // 0x2F is for a slash, to fool the httrack ripper
-                            var lastIndex = Math.max( otherImageSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), otherImageSrc.lastIndexOf( "\\" ) );
-                            var newImagesDirectory = otherImageSrc.substring( 0, lastIndex );
-                            document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
-                        })();
-                    </script>
-                    <noscript>
-                        <div wicket:id="pearson-sponsor" style="padding-top: 10px;"></div>
-                    </noscript>
-                </td>
-            </tr>
+          <div id="sponsor-spot" style="padding-top: 10px;display: none;"></div>
+          <script type="text/javascript">
+            //<![CDATA[
+            (function() {
+              var r = Math.random() * phetSimSponsors.totalWeight;
+              var i;
+              for ( i = 0; i <= phetSimSponsors.sponsors.length; i++ ) {
+                r -= phetSimSponsors.sponsors[ i ].weight;
+                if ( r <= 0 ) {
+                  break;
+                }
+              }
+              var html = phetSimSponsors.sponsors[ i ].html;
+              var ddToReplace = document.getElementById( 'sponsor-spot' );
+              ddToReplace.innerHTML = html;
+              ddToReplace.style.display = "block";
+            })();
+            //]]>
+          </script>
+          <script type="text/javascript" wicket:id="sim-sponsor-installer-js">
+            (function() {
+              var otherImageSrc = document.getElementById( "phet-logo-main-image" ).src;
+              // 0x2F is for a slash, to fool the httrack ripper
+              var lastIndex = Math.max( otherImageSrc.lastIndexOf( String.fromCharCode( 0x2F ) ), otherImageSrc.lastIndexOf( "\\" ) );
+              var newImagesDirectory = otherImageSrc.substring( 0, lastIndex );
+              document.getElementById( 'sponsor-spot' ).innerHTML = document.getElementById( 'sponsor-spot' ).innerHTML.replace( /\/images/g, newImagesDirectory );
+            })();
+          </script>
+          <noscript>
+            <div wicket:id="pearson-sponsor" style="padding-top: 10px;"></div>
+          </noscript>
+        </td>
+      </tr>
+    </table>
+    <div class="simulation-main-content">
+      <a class="other-sim-page" href="#" wicket:id="other-sim-page" wicket:message="dir:language.dir">
+        <table>
+          <tr>
+            <td>
+              <img wicket:id="other-sim-icon" style="display: block;">
+            </td>
+            <td>
+              <span wicket:id="other-sim-text" class="other-sim-link"></span>
+            </td>
+          </tr>
         </table>
-        <div class="simulation-main-content">
-            <a class="other-sim-page" href="#" wicket:id="other-sim-page" wicket:message="dir:language.dir">
-                <table>
-                    <tr>
-                        <td>
-                            <img wicket:id="other-sim-icon" style="display: block;">
-                        </td>
-                        <td>
-                            <span wicket:id="other-sim-text" class="other-sim-link"></span>
-                        </td>
-                    </tr>
-                </table>
-            </a>
+      </a>
 
-            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('about')">
-                <h2 id="about-header" class="question triangle-right">
-                    <wicket:message key="simulationMainPanel.about">About</wicket:message>
-                </h2>
-            </a>
+      <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('about')">
+        <h2 id="about-header" class="question triangle-right">
+          <wicket:message key="simulationMainPanel.about">About</wicket:message>
+        </h2>
+      </a>
 
-            <div id="about" class="answer sim-page-content">
+      <div id="about" class="answer sim-page-content">
 
-                <wicket:enclosure child="topic-list">
-                    <h3>
-                        <wicket:message key="simulationMainPanel.topics">Topics</wicket:message>
-                    </h3>
-                    <ul>
-                        <li wicket:id="topic-list">
+        <wicket:enclosure child="topic-list">
+          <h3>
+            <wicket:message key="simulationMainPanel.topics">Topics</wicket:message>
+          </h3>
+          <ul>
+            <li wicket:id="topic-list">
                             <span wicket:id="topic-label" itemprop="keywords">
                             </span>
-                        </li>
-                    </ul>
-                </wicket:enclosure>
+            </li>
+          </ul>
+        </wicket:enclosure>
 
-                <h3>
-                    <wicket:message key="simulationMainPanel.description">Description</wicket:message>
-                </h3>
+        <h3>
+          <wicket:message key="simulationMainPanel.description">Description</wicket:message>
+        </h3>
 
-                <p class="simulation-panel-indent" wicket:id="simulation-main-description" itemprop="description about">
-                    Play with one or two pendulums and discover how the period of a simple pendulum depends on the
-                    length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
-                    measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
-                    the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
-                </p>
+        <p class="simulation-panel-indent" wicket:id="simulation-main-description" itemprop="description about">
+          Play with one or two pendulums and discover how the period of a simple pendulum depends on the
+          length of the string, the mass of the pendulum bob, and the amplitude of the swing. It's easy to
+          measure the period using the photogate timer. You can vary friction and the strength of gravity. Use
+          the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
+        </p>
 
-                <span class="sim-version" wicket:id="simulationMainPanel.version" itemprop="version softwareVersion">Version: 2.0</span>
+        <span class="sim-version" wicket:id="simulationMainPanel.version" itemprop="version softwareVersion">Version: 2.0</span>
+      </div>
+
+      <div style="display: none;">
+        <!-- TODO get rid of this part -->
+        <wicket:enclosure child="keyword-list">
+          <h3>
+            <wicket:message key="simulationMainPanel.keywords">Related Topics</wicket:message>
+          </h3>
+          <ul class="keyword-list-holder">
+            <li class="keyword" wicket:id="keyword-list">
+              <a wicket:id="keyword-link" href="SimulationMainPanel.html#">
+                <span wicket:id="keyword-label" itemprop="keywords">Keyword</span>
+              </a>
+            </li>
+          </ul>
+        </wicket:enclosure>
+      </div>
+
+      <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('for-teachers')">
+        <h2 id="for-teachers-header" class="question triangle-right">
+          <wicket:message key="simulationMainPanel.forTeachers">For Teachers</wicket:message>
+        </h2>
+      </a>
+
+      <div id="for-teachers" class="answer">
+        <div class="sim-page-content">
+          <wicket:enclosure child="learning-goals">
+            <h3>
+              <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
+            </h3>
+            <ul>
+              <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
+            </ul>
+          </wicket:enclosure>
+
+          <wicket:enclosure child="faq-text">
+            <h3>
+              <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
+            </h3>
+            <div wicket:id="faq-text" class="teachers-tips-holder simulation-panel-indent">
+              This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
             </div>
+          </wicket:enclosure>
 
-            <div style="display: none;">
-                <!-- TODO get rid of this part -->
-                <wicket:enclosure child="keyword-list">
-                    <h3>
-                        <wicket:message key="simulationMainPanel.keywords">Related Topics</wicket:message>
-                    </h3>
-                    <ul class="keyword-list-holder">
-                        <li class="keyword" wicket:id="keyword-list">
-                            <a wicket:id="keyword-link" href="SimulationMainPanel.html#">
-                                <span wicket:id="keyword-label" itemprop="keywords">Keyword</span>
-                            </a>
-                        </li>
-                    </ul>
-                </wicket:enclosure>
+          <wicket:enclosure child="guide-text">
+            <h3 wicket:id="teacher-tips">Teacher Tips</h3>
+
+            <div class="simulation-panel-indent">
+              <table style="width: 100%">
+                <tr>
+                  <td><a wicket:id="guide-link" href="#"><img wicket:id="pdf-icon" src="#"></a></td>
+                  <td><span wicket:id="guide-text">Overview of sim controls, model simplifications, and insights into student thinking (<a href="#">PDF</a>)</span>
+                  </td>
+                </tr>
+              </table>
             </div>
+          </wicket:enclosure>
 
-            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('for-teachers')">
-                <h2 id="for-teachers-header" class="question triangle-right">
-                    <wicket:message key="simulationMainPanel.forTeachers">For Teachers</wicket:message>
-                </h2>
+          <h3 wicket:id="video-primer">Video Primer</h3>
+
+          <div wicket:id="sign-in-prompt-div" class="simulation-panel-indent">
+            <span wicket:id="sign-in-prompt"></span>
+          </div>
+          <div class="teachers-video-player" wicket:id="video-blocker">
+            <iframe wicket:id="video-iframe" width="425" height="239"
+                    frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <h3>
+          <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
+        </h3>
+
+        <wicket:enclosure child="contributions-panel">
+          <div wicket:id="contributions-panel" class="simulation-contributions-pane simulation-panel-indent"></div>
+        </wicket:enclosure>
+
+        <div class="simulation-panel-indent" style="text-align: center">
+          <p wicket:id="no-activities">Check out <a href="#">activities for the original sim for ideas.</a></p>
+
+          <p>
+            <a wicket:id="submit-a" class="phet-button purple-button" href="#">
+              <wicket:message key="simulationMainPanel.shareAnActivity">Share an Activity!</wicket:message>
             </a>
+          </p>
+        </div>
+      </div>
 
-            <div id="for-teachers" class="answer">
-                <div class="sim-page-content">
-                    <wicket:enclosure child="learning-goals">
-                        <h3>
-                            <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
-                        </h3>
-                        <ul>
-                            <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
-                        </ul>
-                    </wicket:enclosure>
+      <wicket:enclosure child="simulation-main-translation-list">
+        <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('translations')">
+          <h2 id="translations-header" class="question triangle-right">
+            <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
+          </h2>
+        </a>
 
-                    <wicket:enclosure child="faq-text">
-                        <h3>
-                            <wicket:message key="simulationMainPanel.frequentlyAskedQuestions">Frequently Asked Questions</wicket:message>
-                        </h3>
-                        <div wicket:id="faq-text" class="teachers-tips-holder simulation-panel-indent">
-                            This simulation has a list of <a href="#">Frequently Asked Questions</a> (<a href="#">pdf</a>).
-                        </div>
-                    </wicket:enclosure>
-
-                    <wicket:enclosure child="guide-text">
-                        <h3 wicket:id="teacher-tips">Teacher Tips</h3>
-                        <div class="simulation-panel-indent">
-                            <table style="width: 100%">
-                                <tr>
-                                    <td><a wicket:id="guide-link" href="#"><img wicket:id="pdf-icon" src="#"></a></td>
-                                    <td><span wicket:id="guide-text">Overview of sim controls, model simplifications, and insights into student thinking (<a href="#">PDF</a>)</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </wicket:enclosure>
-
-                    <h3 wicket:id="video-primer">Video Primer</h3>
-                    <div wicket:id="sign-in-prompt-div" class="simulation-panel-indent">
-                        <span wicket:id="sign-in-prompt"></span>
-                    </div>
-                    <div class="teachers-video-player" wicket:id="video-blocker">
-                        <iframe wicket:id="video-iframe" width="425" height="239"
-                                frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <h3>
-                    <wicket:message key="simulationMainPanel.activities">Activities</wicket:message>
-                </h3>
-
-                <wicket:enclosure child="contributions-panel">
-                    <div wicket:id="contributions-panel" class="simulation-contributions-pane simulation-panel-indent"></div>
-                </wicket:enclosure>
-
-                <div class="simulation-panel-indent" style="text-align: center">
-                    <p wicket:id="no-activities">Check out <a href="#">activities for the original sim for ideas.</a></p>
-                    <p>
-                        <a wicket:id="submit-a" class="phet-button purple-button" href="#">
-                            <wicket:message key="simulationMainPanel.shareAnActivity">Share an Activity!</wicket:message>
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-            <wicket:enclosure child="simulation-main-translation-list">
-                <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('translations')">
-                    <h2 id="translations-header" class="question triangle-right">
-                        <wicket:message key="simulationMainPanel.translations">Translations</wicket:message>
-                    </h2>
-                </a>
-                <div id="translations" class="answer simulation-panel-indent">
-                    <table class="phet-table translations-table">
+        <div id="translations" class="answer simulation-panel-indent">
+          <table class="phet-table translations-table">
                         <span id="translations-table-header">
                             <span id="translations-table-language-header">
                                 <wicket:message key="simulationMainPanel.language">Language</wicket:message>
                             </span>
                             <wicket:message key="simulationMainPanel.downloadOrRun">Download or Run</wicket:message>
                         </span>
-                        <tr wicket:id="simulation-main-translation-list" class="simulation-main-translation-list">
-                            <td class="list-highlight-background">
-                                <span wicket:id="simulation-main-translation-locale-name-1">Pig Latin</span>
-                            </td>
-                            <td class="list-highlight-background">
-                                <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
-                            </td>
-                            <td>
-                                <a href="#" wicket:id="simulation-main-translation-download">
-                                    <img wicket:id="translation-download-icon">
-                                </a>
-                            </td>
-                            <td class="translation-table-icon">
-                                <a href="#" wicket:id="simulation-main-translation-link-1" rel="external">
-                                    <img wicket:id="translation-run-now-icon">
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" wicket:id="simulation-main-translation-link-2" rel="external">
-                                    <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" wicket:id="language-link">
-                                    <wicket:message key="simulationMainPanel.allSimsIn">All sims in </wicket:message> <span wicket:id="simulation-main-translation-locale-name-2">Pig Latin</span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-
-                    <div style="text-align: center">
-                        <p>
-                            <a class="phet-button blue-button" wicket:id="translateThisSim">
-                                <wicket:message key="simulationMainPanel.translateThisSim">Translate this Sim</wicket:message>
-                            </a>
-                        </p>
-                    </div>
-
-                </div>
-            </wicket:enclosure>
-
-            <wicket:enclosure child="related-simulations-panel">
-                <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('related-sims')">
-                    <h2 id="related-sims-header" class="question triangle-right">
-                        <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
-                    </h2>
+            <tr wicket:id="simulation-main-translation-list" class="simulation-main-translation-list">
+              <td class="list-highlight-background">
+                <span wicket:id="simulation-main-translation-locale-name-1">Pig Latin</span>
+              </td>
+              <td class="list-highlight-background">
+                <span wicket:id="simulation-main-translation-locale-translated-name">Ig-pay Atin-lay</span>
+              </td>
+              <td>
+                <a href="#" wicket:id="simulation-main-translation-download">
+                  <img wicket:id="translation-download-icon">
                 </a>
-                <div id="related-sims" class="answer" wicket:id="related-simulations-panel"></div>
-            </wicket:enclosure>
+              </td>
+              <td class="translation-table-icon">
+                <a href="#" wicket:id="simulation-main-translation-link-1" rel="external">
+                  <img wicket:id="translation-run-now-icon">
+                </a>
+              </td>
+              <td>
+                <a href="#" wicket:id="simulation-main-translation-link-2" rel="external">
+                  <span wicket:id="simulation-main-translation-title">Arithmetic-ay</span>
+                </a>
+              </td>
+              <td>
+                <a href="#" wicket:id="language-link">
+                  <wicket:message key="simulationMainPanel.allSimsIn">All sims in</wicket:message>
+                  <span wicket:id="simulation-main-translation-locale-name-2">Pig Latin</span>
+                </a>
+              </td>
+            </tr>
+          </table>
 
-            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('requirements')">
-                <h2 id="requirements-header" class="question triangle-right">
-                    <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
-                </h2>
-            </a>
+          <div style="text-align: center">
+            <p>
+              <a class="phet-button blue-button" wicket:id="translateThisSim">
+                <wicket:message key="simulationMainPanel.translateThisSim">Translate this Sim</wicket:message>
+              </a>
+            </p>
+          </div>
 
-            <div id="requirements" class="answer">
-                <table class="system-requirements-table">
-                    <tr>
-                        <th wicket:id="column1-header">Windows</th>
-                        <th wicket:id="column2-header">Macintosh</th>
-                        <th wicket:id="column3-header">Linux</th>
-                        <th wicket:id="column4-header"></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <wicket:enclosure child="column1-list">
-                                <div wicket:id="column1-list"><span wicket:id="column1-item">An item</span><br/></div>
-                            </wicket:enclosure>
-                        </td>
-                        <td>
-                            <wicket:enclosure child="column2-list">
-                                <div wicket:id="column2-list"><span wicket:id="column2-item">An item</span><br/></div>
-                            </wicket:enclosure>
-                        </td>
-                        <td>
-                            <wicket:enclosure child="column3-list">
-                                <div wicket:id="column3-list"><span wicket:id="column3-item">An item</span><br/></div>
-                            </wicket:enclosure>
-                        </td>
-                        <wicket:enclosure child="column4-list">
-                            <td>
-                                <div wicket:id="column4-list"><span wicket:id="column4-item">An item</span><br/></div>
-                            </td>
-                        </wicket:enclosure>
-                    </tr>
-                </table>
-
-            </div>
-
-            <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('credits')">
-                <h2 id="credits-header" class="question triangle-right">
-                    <wicket:message key="simulationMainPanel.credits">Credits</wicket:message>
-                </h2>
-            </a>
-
-            <div id="credits" class="answer">
-                <table class="credits-table">
-                    <tr>
-                        <th>
-                            <wicket:message key="simulationMainPanel.designTeam">Design Team</wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="simulationMainPanel.thirdPartyLibraries">Third-party Libraries
-                            </wicket:message>
-                        </th>
-                        <th>
-                            <wicket:message key="simulationMainPanel.thanksTo">Thanks To</wicket:message>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <wicket:enclosure child="design-list">
-                                <ul>
-                                    <li wicket:id="design-list"><span wicket:id="design-item">A person</span></li>
-                                </ul>
-                            </wicket:enclosure>
-                        </td>
-                        <td>
-                            <wicket:enclosure child="library-list">
-                                <ul>
-                                    <li wicket:id="library-list"><span wicket:id="library-item">Some library</span></li>
-                                </ul>
-                            </wicket:enclosure>
-                        </td>
-                        <td>
-                            <wicket:enclosure child="thanks-list">
-                                <ul>
-                                    <li wicket:id="thanks-list"><span wicket:id="thanks-item">Everyone</span></li>
-                                </ul>
-                            </wicket:enclosure>
-                        </td>
-                    </tr>
-                </table>
-            </div>
         </div>
+      </wicket:enclosure>
+
+      <wicket:enclosure child="related-simulations-panel">
+        <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('related-sims')">
+          <h2 id="related-sims-header" class="question triangle-right">
+            <wicket:message key="simulationMainPanel.relatedSimulations">Related Simulations</wicket:message>
+          </h2>
+        </a>
+
+        <div id="related-sims" class="answer" wicket:id="related-simulations-panel"></div>
+      </wicket:enclosure>
+
+      <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('requirements')">
+        <h2 id="requirements-header" class="question triangle-right">
+          <wicket:message key="simulationMainPanel.softwareRequirements">Software Requirements</wicket:message>
+        </h2>
+      </a>
+
+      <div id="requirements" class="answer">
+        <table class="system-requirements-table">
+          <tr>
+            <th wicket:id="column1-header">Windows</th>
+            <th wicket:id="column2-header">Macintosh</th>
+            <th wicket:id="column3-header">Linux</th>
+            <th wicket:id="column4-header"></th>
+          </tr>
+          <tr>
+            <td>
+              <wicket:enclosure child="column1-list">
+                <div wicket:id="column1-list"><span wicket:id="column1-item">An item</span><br/></div>
+              </wicket:enclosure>
+            </td>
+            <td>
+              <wicket:enclosure child="column2-list">
+                <div wicket:id="column2-list"><span wicket:id="column2-item">An item</span><br/></div>
+              </wicket:enclosure>
+            </td>
+            <td>
+              <wicket:enclosure child="column3-list">
+                <div wicket:id="column3-list"><span wicket:id="column3-item">An item</span><br/></div>
+              </wicket:enclosure>
+            </td>
+            <wicket:enclosure child="column4-list">
+              <td>
+                <div wicket:id="column4-list"><span wicket:id="column4-item">An item</span><br/></div>
+              </td>
+            </wicket:enclosure>
+          </tr>
+        </table>
+
+      </div>
+
+      <a class="click-area-expand" onclick="return false" onmousedown="return phet.toggleExpandableText('credits')">
+        <h2 id="credits-header" class="question triangle-right">
+          <wicket:message key="simulationMainPanel.credits">Credits</wicket:message>
+        </h2>
+      </a>
+
+      <div id="credits" class="answer">
+        <table class="credits-table">
+          <tr>
+            <th>
+              <wicket:message key="simulationMainPanel.designTeam">Design Team</wicket:message>
+            </th>
+            <th>
+              <wicket:message key="simulationMainPanel.thirdPartyLibraries">Third-party Libraries
+              </wicket:message>
+            </th>
+            <th>
+              <wicket:message key="simulationMainPanel.thanksTo">Thanks To</wicket:message>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <wicket:enclosure child="design-list">
+                <ul>
+                  <li wicket:id="design-list"><span wicket:id="design-item">A person</span></li>
+                </ul>
+              </wicket:enclosure>
+            </td>
+            <td>
+              <wicket:enclosure child="library-list">
+                <ul>
+                  <li wicket:id="library-list"><span wicket:id="library-item">Some library</span></li>
+                </ul>
+              </wicket:enclosure>
+            </td>
+            <td>
+              <wicket:enclosure child="thanks-list">
+                <ul>
+                  <li wicket:id="thanks-list"><span wicket:id="thanks-item">Everyone</span></li>
+                </ul>
+              </wicket:enclosure>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
+  </div>
 </wicket:panel>
 
 </body>
