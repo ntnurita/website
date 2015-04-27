@@ -4,32 +4,32 @@
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en"
       lang="en">
 <head>
-    <title>[PREVIEW] SortedList</title>
-    <wicket:remove>
-        <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
-    </wicket:remove>
+  <title>[PREVIEW] SortedList</title>
+  <wicket:remove>
+    <link rel="stylesheet" type="text/css" href="../../../../../../../../root/css/preview.css"/>
+  </wicket:remove>
 </head>
 <body>
 
 <wicket:panel>
-    <div wicket:message="dir:language.dir">
-        <form wicket:id="form">
-            <div wicket:id="group">
-                <wicket:enclosure child="groupselector">
-                    <input wicket:id="groupselector" type="checkbox">
+  <div wicket:message="dir:language.dir">
+    <form wicket:id="form">
+      <div wicket:id="group">
+        <wicket:enclosure child="groupselector">
+          <input wicket:id="groupselector" type="checkbox">
                     <span>
                         <wicket:message key="contribution.edit.simulations.selectAll">
-                            Select All
+                          Select All
                         </wicket:message>
                     </span>
-                </wicket:enclosure>
-                <div wicket:id="check-list">
-                    <input wicket:id="checkbox" type="checkbox">
-                    <label wicket:id="name"></label>
-                </div>
-            </div>
-        </form>
-    </div>
+        </wicket:enclosure>
+        <div wicket:id="check-list">
+          <input wicket:id="checkbox" type="checkbox">
+          <label wicket:id="name"></label>
+        </div>
+      </div>
+    </form>
+  </div>
 </wicket:panel>
 
 </body>
