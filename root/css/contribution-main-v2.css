@@ -280,6 +280,10 @@ div.rtl #check-guidelines {
   padding: 30px 50px 10px 0;
 }
 
+div.rtl .sim-thumbnail {
+  padding: 30px 0 10px 50px;
+}
+
 .sim-thumbnail img {
   -webkit-box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3);
@@ -298,6 +302,10 @@ div.rtl #check-guidelines {
   top: -25px;
 }
 
+div.rtl .sim-thumbnail-badge {
+  left: -113px;
+}
+
 .sim-thumbnail-x {
   display: block;
   position: relative;
@@ -308,6 +316,10 @@ div.rtl #check-guidelines {
   bottom: 127px;
   cursor: pointer;
   background-image: url(../images/icons/x-icon.png);
+}
+
+div.rtl .sim-thumbnail-x {
+  left: -114px;
 }
 
 .sim-thumbnail-x:hover {
