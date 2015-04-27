@@ -15,6 +15,7 @@ import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.components.LocalizedText;
 import edu.colorado.phet.website.components.VisListView;
 import edu.colorado.phet.website.content.contribution.ContributionPage;
+import edu.colorado.phet.website.content.simulations.LegacySimulationPage;
 import edu.colorado.phet.website.content.simulations.SimulationPage;
 import edu.colorado.phet.website.data.LocalizedSimulation;
 import edu.colorado.phet.website.data.contribution.Contribution;
@@ -41,9 +42,16 @@ public class SearchResultsPanel extends PhetPanel {
         add( new VisListView<LocalizedSimulation>( "sims", lsims ) {
             protected void populateItem( ListItem<LocalizedSimulation> item ) {
                 LocalizedSimulation lsim = item.getModelObject();
-                Link link = SimulationPage.getLinker( lsim ).getLink( "sim-link", context, getPhetCycle() );
+                Link link;
+                if ( lsim.getSimulation().isHTML() ) {
+                    link = SimulationPage.getLinker( lsim ).getLink( "sim-link", context, getPhetCycle() );
+                    link.add( new Label( "sim-title", lsim.getTitle() + " (HTML5)" ) );
+                }
+                else {
+                    link = LegacySimulationPage.getLinker( lsim ).getLink( "sim-link", context, getPhetCycle() );
+                    link.add( new Label( "sim-title", lsim.getTitle() ) );
+                }
                 item.add( link );
-                link.add( new Label( "sim-title", lsim.getTitle() ) );
             }
         } );
         add( new VisListView<Contribution>( "contribs", contributions ) {
