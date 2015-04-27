@@ -57,7 +57,7 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
         else {
             checkGroup.add( new InvisibleComponent( "groupselector" ) );
         }
-        ListView<Item> sims = new ListView<Item>( "sims", allItems ) {
+        ListView<Item> sims = new ListView<Item>( "check-list", allItems ) {
             @Override
             protected void populateItem( final ListItem<Item> listItem ) {
                 final Item item = listItem.getModelObject();
@@ -70,6 +70,7 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
 
                 if ( item instanceof SimOrderItem ) {
                     Simulation sim = ( (SimOrderItem) item ).getSimulation();
+                    listItem.add( new AttributeModifier( "class", true, new Model<String>( "sim-checkbox-div") ) );
                     String simType = ( sim.isHTML() ) ? "html" : ( sim.isJava() ) ? "java" : "flash";
                     check.add( new AttributeModifier( "onclick", true, new Model<String>(
                             "phet.checkboxToggle( '" + sim.getName() + "', this, '" + sim.getThumbnailUrl() + "', '" + simType + "' )"

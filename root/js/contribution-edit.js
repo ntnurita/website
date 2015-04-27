@@ -75,7 +75,7 @@ var fileAdded = function() {
 
 phet.markUnvalidatedComponents = function() {
   var borderStyle = '2px solid red';
-  var markTableColumn = function ( index ) {
+  var markTableColumn = function( index ) {
     $( $( '#cep-checkbox-table th' )[ index ] ).css( {
       'border-top': borderStyle,
       'border-left': borderStyle,
@@ -128,7 +128,7 @@ $( 'document' ).ready( function() {
     fileInput.addEventListener( 'click', fileAdded, false );
   }
 
-  if ( $('#contribution-feedback').length ) {
+  if ( $( '#contribution-feedback' ).length ) {
     phet.markUnvalidatedComponents();
   }
 

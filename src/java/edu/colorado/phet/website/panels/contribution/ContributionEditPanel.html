@@ -21,9 +21,9 @@
 <wicket:panel>
   <div class="contribution-edit" wicket:message="dir:language.dir">
     <wicket:enclosure child="feedback">
-      <div class="validation-error" style="color: red; width: 350px">
-        <img src="#" style="width: 30px; height: 30px; display: block; float: left">
-        <span style="line-height: 30px; margin-left: 20px">
+      <div id="contribution-feedback" class="validation-error" style="color: red; width: 350px">
+        <img src="/images/icons/error.png" style="margin: 2px 5px; float: left" alt="Warning">
+        <span style="line-height: 30px">
           <wicket:message key="contribution.edit.validation.pleaseCorrectRed">
             Please correct the fields marked in red.
           </wicket:message>
@@ -196,11 +196,11 @@
       <br/>
 
       <div wicket:id="admin-options">
-        <div class="sim-checkbox-div">
+        <div>
           <input type="checkbox" wicket:id="fromPhet" id="cep-fromPhet">
           <label for="cep-fromPhet">From PhET</label>
         </div>
-        <div class="sim-checkbox-div">
+        <div>
           <input type="checkbox" wicket:id="goldStar" id="cep-goldStar">
           <label for="cep-goldStar">Gold Star</label>
         </div>
