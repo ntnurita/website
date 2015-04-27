@@ -52,10 +52,15 @@ public class SortedCheckboxList<Item extends SortableListItem> extends PhetPanel
 
         form.add( checkGroup );
         if ( groupSelector ) {
-            checkGroup.add( new CheckGroupSelector( "groupselector" ) );
+            CheckGroupSelector selector = new CheckGroupSelector( "groupselector" ) {{
+                setLabelInternal( new Model<String>( "Select All" ) );
+            }};
+            checkGroup.add( selector );
+            checkGroup.add( new SimpleFormComponentLabel( "groupselector-label", selector ) ) ;
         }
         else {
             checkGroup.add( new InvisibleComponent( "groupselector" ) );
+            checkGroup.add( new InvisibleComponent( "groupselector-label" ) );
         }
         ListView<Item> sims = new ListView<Item>( "check-list", allItems ) {
             @Override

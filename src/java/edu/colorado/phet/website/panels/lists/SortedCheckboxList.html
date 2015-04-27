@@ -16,12 +16,10 @@
     <form wicket:id="form">
       <div wicket:id="group">
         <wicket:enclosure child="groupselector">
-          <input wicket:id="groupselector" type="checkbox">
-                    <span>
-                        <wicket:message key="contribution.edit.simulations.selectAll">
-                          Select All
-                        </wicket:message>
-                    </span>
+          <div class="sim-checkbox-div">
+            <input wicket:id="groupselector" type="checkbox">
+            <label wicket:id="groupselector-label"></label>
+          </div>
         </wicket:enclosure>
         <div wicket:id="check-list">
           <input wicket:id="checkbox" type="checkbox">
