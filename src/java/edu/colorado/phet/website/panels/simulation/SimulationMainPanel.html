@@ -265,6 +265,15 @@
           the pendulum to find the value of g on planet X. Notice the anharmonic behavior at large amplitude.
         </p>
 
+        <wicket:enclosure child="learning-goals">
+          <h3>
+            <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
+          </h3>
+          <ul>
+            <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
+          </ul>
+        </wicket:enclosure>
+
         <span class="sim-version" wicket:id="simulationMainPanel.version" itemprop="version softwareVersion">Version: 2.0</span>
       </div>
 
@@ -292,14 +301,6 @@
 
       <div id="for-teachers" class="answer">
         <div class="sim-page-content">
-          <wicket:enclosure child="learning-goals">
-            <h3>
-              <wicket:message key="simulationMainPanel.sampleLearningGoals">Sample Learning Goals</wicket:message>
-            </h3>
-            <ul>
-              <li wicket:id="learning-goals"><span wicket:id="goal">Some library</span></li>
-            </ul>
-          </wicket:enclosure>
 
           <wicket:enclosure child="faq-text">
             <h3>
