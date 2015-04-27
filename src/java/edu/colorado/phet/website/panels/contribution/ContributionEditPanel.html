@@ -21,14 +21,15 @@
 <wicket:panel>
   <div class="contribution-edit" wicket:message="dir:language.dir">
     <wicket:enclosure child="feedback">
-      <div id="contribution-feedback">
-        <span style="font-weight: bold; color: red;">
-          <wicket:message key="contribution.edit.validation.pleaseCorrect">
-            Please correct the following:
+      <div class="validation-error" style="color: red; width: 350px">
+        <img src="#" style="width: 30px; height: 30px; display: block; float: left">
+        <span style="line-height: 30px; margin-left: 20px">
+          <wicket:message key="contribution.edit.validation.pleaseCorrectRed">
+            Please correct the fields marked in red.
           </wicket:message>
         </span>
-        <span wicket:id="feedback"></span>
       </div>
+      <span wicket:id="feedback"></span>
     </wicket:enclosure>
     <form wicket:id="contributionform">
 

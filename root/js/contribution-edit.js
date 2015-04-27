@@ -110,6 +110,9 @@ phet.markUnvalidatedComponents = function() {
     if ( item.textContent.indexOf( 'subject' ) > -1 ) {
       markTableColumn( 2 );
     }
+    if ( item.textContent.indexOf( 'duration' ) > -1 ) {
+      $( '#cep-duration' ).addClass( 'validation-error' );
+    }
   } );
 };
 

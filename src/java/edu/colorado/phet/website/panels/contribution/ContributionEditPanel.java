@@ -304,7 +304,7 @@ public class ContributionEditPanel extends PhetPanel {
 
             add( new CheckBox( "answersIncluded" ) );
 
-            localeChoice = new LocaleDropDownChoice( "locale", context );
+            localeChoice = new LocaleDropDownChoice( "locale", context, context.getLocale() );
             add( localeChoice );
 
             if ( PhetSession.get().getUser().isTeamMember() ) {

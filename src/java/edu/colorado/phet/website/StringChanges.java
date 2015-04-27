@@ -95,6 +95,7 @@ public class StringChanges {
         StringUtils.addString( session, "contribution.edit.validation.mustHaveSubjects", "The activity must specify at least one subject" );
         StringUtils.addString( session, "contribution.create.alignActivity", "Align your activity to <br/><a href={0}>PhET Design Guidelines</a>" );
         StringUtils.addString( session, "contribution.edit.validation.mustHaveDuration", "The activity must have a duration" );
+        StringUtils.addString( session, "contribution.edit.validation.pleaseCorrectRed", "Please correct the fields marked in red." );
         StringUtils.overwriteString( session, "contribution.edit.title", "Title", "Activity Title" );
         StringUtils.overwriteString( session, "contribution.level.undergraduateIntro", "Undergraduate - Intro", "Undergrad - Intro" );
         StringUtils.overwriteString( session, "contribution.level.undergraduateAdvanced", "Undergraduate - Advanced", "Undergrad - Advanced" );
@@ -162,6 +163,7 @@ public class StringChanges {
          * General strings
          */
         StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:", "Support PhET:" );
+
 
         session.close();
     }
