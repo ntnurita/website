@@ -36,5 +36,46 @@
         <property name="receiveEmail"/>
         <property name="receiveWebsiteNotifications"/>
         <property name="receiveSimulationNotifications"/>
+
+        <property name="teacher"/>
+        <property name="student"/>
+        <property name="researcher"/>
+        <property name="translator"/>
+        <property name="otherRole"/>
+        <property name="otherRoleText"/>
+
+        <property name="generalScience"/>
+        <property name="earthScience"/>
+        <property name="biology"/>
+        <property name="physics"/>
+        <property name="chemistry"/>
+        <property name="astronomy"/>
+        <property name="math"/>
+        <property name="otherSubject"/>
+        <property name="otherSubjectText"/>
+
+        <property name="elementary"/>
+        <property name="middle"/>
+        <property name="high"/>
+        <property name="university"/>
+        <property name="gradeK"/>
+        <property name="grade1"/>
+        <property name="grade2"/>
+        <property name="grade3"/>
+        <property name="grade4"/>
+        <property name="grade5"/>
+        <property name="grade6"/>
+        <property name="grade7"/>
+        <property name="grade8"/>
+        <property name="grade9"/>
+        <property name="grade10"/>
+        <property name="grade11"/>
+        <property name="grade12"/>
+        <property name="year1"/>
+        <property name="year2plus"/>
+        <property name="graduate"/>
+        <property name="otherGrade"/>
+
+        <property name="yearsTeaching"/>
     </class>
 </hibernate-mapping>

@@ -55,6 +55,8 @@
         min-width: 100px;
       }
     </style>
+
+    <script type="text/javascript" src="/js/register-page.js"></script>
   </wicket:head>
 </head>
 <body>
@@ -66,6 +68,14 @@
     </h2>
 
     <p wicket:id="register-errors" class="register-errors"> | Errors go here</p>
+
+    <div wicket:id="feedback" class="sign-in-feedback">
+      <ul class="feedbackPanel">
+        <li class="feedbackPanelERROR">
+          <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
+        </li>
+      </ul>
+    </div>
 
     <form wicket:id="register-form">
 
@@ -92,7 +102,7 @@
           </wicket:message>
         </span>
         <br/>
-        <select id="register-country">
+        <select id="register-country" wicket:id="country">
         </select>
 
         <br/><br/><br/>
@@ -472,6 +482,13 @@
       </div>
 
       <br/>
+
+      <input type="checkbox" wicket:id="receiveEmail" id="receive-email"/>
+      <label for="receive-email">
+        <wicket:message key="profile.receiveEmail">
+          Receive email
+        </wicket:message>
+      </label>
 
       <input type="submit" wicket:message="value:profile.register" class="phet-button login-form-submit"><br/>
 
