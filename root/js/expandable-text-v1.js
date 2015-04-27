@@ -17,10 +17,16 @@ phet.toggleExpandableText = function( id, jumpToLocation ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
+    var hash = '#' + id + '-header';
     if ( jumpToLocation ) {
       window.location.hash = '';
-      window.location.hash = '#' + id + '-header';
+      window.location.hash = hash;
     }
+    // change url hash without jumping in the browser if supported
+    else if ( history.pushState ) {
+      history.pushState( null, null, hash );
+    }
+    
     phet.textIds[ 'text_' + id ] = true;
     newClass = thisElement.className.replace( 'right', 'down' );
     thisElement.className = newClass;
