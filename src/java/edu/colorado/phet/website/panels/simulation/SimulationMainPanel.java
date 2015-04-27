@@ -396,9 +396,6 @@ public class SimulationMainPanel extends PhetPanel {
         }
 
 //        add( new InvisibleComponent( "translate-sim-link" ) );
-        add( new LocalizedText( "translator-info", "simulationMainPanel.translatorInfo", new Object[] {
-                ForTranslatorsPanel.getLinker().getHref( context, getPhetCycle() )
-        } ) );
 
         /*---------------------------------------------------------------------------*
         * run / download links
