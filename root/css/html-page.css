@@ -8,9 +8,16 @@
 }
 
 .html-social-bookmark-panel {
-    position: absolute;
-    right: -100px;
-    top: 33px;
+  position: absolute;
+  top: 33px;
+}
+
+div.ltr .html-social-bookmark-panel {
+  right: -100px;
+}
+
+div.rtl .html-social-bookmark-panel {
+  right: 535px;
 }
 
 .html-video-container {

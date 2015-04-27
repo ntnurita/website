@@ -72,13 +72,13 @@ div.rtl #html-banner-link {
     left: 0;
 }
 
-div.rtl .html-banner-container .html-banner-image {
-    left: -380px !important;
-}
+/*div.rtl .html-banner-container .html-banner-image {*/
+    /*left: -380px !important;*/
+/*}*/
 
-div.rtl .html-banner-container .html-banner-html {
-    left: -375px !important;
-}
+/*div.rtl .html-banner-container .html-banner-html {*/
+    /*left: -375px !important;*/
+/*}*/
 
 
 #html-sims-link {
