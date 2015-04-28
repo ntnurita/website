@@ -170,6 +170,7 @@ label.bold-label {
   padding: 0 5px;
   line-height: 1.667em;
   border: 1px solid #d3d3d3;
+  box-sizing: border-box;
 }
 
 .contribution-edit-column {

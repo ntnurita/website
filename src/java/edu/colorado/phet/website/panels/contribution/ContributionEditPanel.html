@@ -66,12 +66,14 @@
           </wicket:message>
         </span>
 
-        <div wicket:id="simulations" id="simulations" class="scrolling-div contribution-input"></div>
+        <div wicket:id="simulations-container">
+          <div wicket:id="simulations" id="simulations" class="scrolling-div contribution-input"></div>
+        </div>
       </div>
 
       <div id="sim-thumbnails"></div>
 
-      <div id="cep-upload" class="contribution-edit-column">
+      <div id="cep-upload" class="contribution-edit-column" wicket:id="file-upload-container">
         <label class="bold-label" style="margin: 0;">
           <wicket:message key="contribution.edit.uploadFiles">
             Upload File(s)
@@ -133,18 +135,18 @@
 
       <table id="cep-checkbox-table" style="border-collapse: collapse; width: 500px">
         <tr>
-          <th>Subject(s)</th>
-          <th>Grade Level(s)</th>
-          <th>Type(s)</th>
+          <th wicket:id="subjects-header">Subject(s)</th>
+          <th wicket:id="grades-header">Grade Level(s)</th>
+          <th wicket:id="types-header">Type(s)</th>
         </tr>
         <tr>
-          <td class="top-align">
+          <td wicket:id="subjects-td" class="top-align">
             <div wicket:id="subjects"></div>
           </td>
-          <td class="top-align">
+          <td wicket:id="levels-td" class="top-align">
             <div wicket:id="levels"></div>
           </td>
-          <td class="top-align">
+          <td wicket:id="types-td" class="top-align">
             <div wicket:id="types"></div>
           </td>
         </tr>

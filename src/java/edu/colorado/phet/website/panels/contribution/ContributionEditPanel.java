@@ -7,7 +7,6 @@ package edu.colorado.phet.website.panels.contribution;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -19,25 +18,20 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
-import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.behavior.AbstractBehavior;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Check;
 import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.CheckGroup;
-import org.apache.wicket.markup.html.form.CheckGroupSelector;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
-import org.apache.wicket.markup.html.form.IFormVisitorParticipant;
 import org.apache.wicket.markup.html.form.RequiredTextField;
-import org.apache.wicket.markup.html.form.SimpleFormComponentLabel;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.validation.AbstractFormValidator;
@@ -75,13 +69,13 @@ import edu.colorado.phet.website.panels.lists.LevelSetManager;
 import edu.colorado.phet.website.panels.lists.SimOrderItem;
 import edu.colorado.phet.website.panels.lists.SimSetManager;
 import edu.colorado.phet.website.panels.lists.SortedCheckboxList;
-import edu.colorado.phet.website.panels.lists.SortedList;
 import edu.colorado.phet.website.panels.lists.SubjectSetManager;
 import edu.colorado.phet.website.panels.lists.TypeSetManager;
 import edu.colorado.phet.website.translation.LocaleDropDownChoice;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.hibernate.HibernateTask;
 import edu.colorado.phet.website.util.hibernate.HibernateUtils;
+import edu.colorado.phet.website.util.wicket.ErrorAppender;
 
 /**
  * This panel presents the user with a form that either creates a new contribution or modifies an existing one.
@@ -111,6 +105,19 @@ public class ContributionEditPanel extends PhetPanel {
     private SortedCheckboxList<EnumSetManager.ListItem<Type>> typeList;
     private SortedCheckboxList<EnumSetManager.ListItem<Level>> levelList;
     private SortedCheckboxList<EnumSetManager.ListItem<Subject>> subjectList;
+
+    private ErrorAppender simsErrorAppender;
+
+    private ErrorAppender fileUploadErrorAppender;
+
+    private CheckListErrorAppender subjectsTdErrorAppender;
+    private CheckListErrorAppender subjectsHeaderErrorAppender;
+
+    private CheckListErrorAppender levelsTdErrorAppender;
+    private CheckListErrorAppender levelsHeaderErrorAppender;
+
+    private CheckListErrorAppender typesTdErrorAppender;
+    private CheckListErrorAppender typesHeaderErrorAppender;
 
     private List existingFiles;
     private List filesToRemove;
@@ -279,27 +286,45 @@ public class ContributionEditPanel extends PhetPanel {
             setMultiPart( true );
             setMaxSize( Bytes.megabytes( ( PhetSession.get().getUser().isTeamMember() ? 1048576 : 64 ) ) ); // 1 TB for team members, 64 MB for others
 
-            add( new RequiredTextField<String>( "authors" ) );
-            add( new RequiredTextField<String>( "authorOrganization" ) );
-            add( new RequiredTextField<String>( "contactEmail" ).add( EmailAddressValidator.getInstance() ) );
-            add( new RequiredTextField<String>( "title" ) );
-            add( new RequiredTextField<String>( "keywords" ) );
+            add( new RequiredTextField<String>( "authors" ).add( new ErrorAppender() ) );
+            add( new RequiredTextField<String>( "authorOrganization" ).add( new ErrorAppender() ) );
+            add( new RequiredTextField<String>( "contactEmail" ).add( EmailAddressValidator.getInstance() ).add( new ErrorAppender() ) );
+            add( new RequiredTextField<String>( "title" ).add( new ErrorAppender() ) );
+            add( new RequiredTextField<String>( "keywords" ).add( new ErrorAppender() ) );
             add( new TextArea<String>( "description" ) );
 
-            add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[]{
-                    ContributionFile.getFiletypes( ContributionEditPanel.this )
-            } ) );
-
+            final WebMarkupContainer simsContainer = new WebMarkupContainer( "simulations-container" );
+            add( simsContainer );
             simList = simManager.getComponent( "simulations", context );
-            add( simList );
+            simsContainer.add( simList );
+            simsContainer.add( simsErrorAppender = new ErrorAppender( false ) );
+
+            WebMarkupContainer subjectsHeader, subjectsTd;
+            add( subjectsHeader = new WebMarkupContainer( "subjects-header" ) );
+            add( subjectsTd = new WebMarkupContainer( "subjects-td" ) );
             subjectList = subjectManager.getCheckboxGroup( "subjects", context );
-            add( subjectList );
+            subjectsTd.add( subjectList );
+            subjectsTd.add( subjectsTdErrorAppender = new CheckListErrorAppender( false ) );
+            subjectsHeader.add( subjectsHeaderErrorAppender = new CheckListErrorAppender( true ) );
+
+            WebMarkupContainer levelsHeader, levelsTd;
+            add( levelsHeader = new WebMarkupContainer( "grades-header" ) );
+            add( levelsTd = new WebMarkupContainer( "levels-td" ) );
             levelList = levelManager.getCheckboxGroup( "levels", context );
-            add( levelList );
+            levelsTd.add( levelList );
+            levelsTd.add( levelsTdErrorAppender = new CheckListErrorAppender( false ) );
+            levelsHeader.add( levelsHeaderErrorAppender = new CheckListErrorAppender( true ) );
+
+            WebMarkupContainer typesHeader, typesTd;
+            add( typesHeader = new WebMarkupContainer( "types-header" ) );
+            add( typesTd = new WebMarkupContainer( "types-td" ) );
             typeList = typeManager.getCheckboxGroup( "types", context );
-            add( typeList );
+            typesTd.add( typeList );
+            typesTd.add( typesTdErrorAppender = new CheckListErrorAppender( false ) );
+            typesHeader.add( typesHeaderErrorAppender = new CheckListErrorAppender( true ) );
 
             durationChoice = new DurationDropDownChoice( "duration", creating ? 0 : contribution.getDuration() );
+            durationChoice.add( new ErrorAppender() );
             add( durationChoice );
 
             add( new CheckBox( "answersIncluded" ) );
@@ -317,15 +342,23 @@ public class ContributionEditPanel extends PhetPanel {
                 add( new InvisibleComponent( "admin-options" ) );
             }
 
+            WebMarkupContainer fileUploadContainer;
+            add( fileUploadContainer = new WebMarkupContainer( "file-upload-container" ) );
+            fileUploadContainer.add( fileUploadErrorAppender = new ErrorAppender( false ) );
+
+            fileUploadContainer.add( new LocalizedText( "contribution-file-tip", "contribution.edit.newfiles.tip", new Object[]{
+                    ContributionFile.getFiletypes( ContributionEditPanel.this )
+            } ) );
+
             uploadPanel = new MultipleFileUploadPanel( "file-upload", context );
-            add( uploadPanel );
+            fileUploadContainer.add( uploadPanel );
 
             // wrap the existing files in a container so we can refresh it via ajax without wiping other form changes.
             // particularly significant, since if would wipe any files to be uploaded otherwise
-            WebMarkupContainer fileContainer = new WebMarkupContainer( "file-markup-container" );
-            fileContainer.setOutputMarkupId( true );
-            add( fileContainer );
-            fileContainer.add( new ExistingListView( "existing-files" ) );
+            WebMarkupContainer existingFilesContainer = new WebMarkupContainer( "file-markup-container" );
+            existingFilesContainer.setOutputMarkupId( true );
+            fileUploadContainer.add( existingFilesContainer );
+            existingFilesContainer.add( new ExistingListView( "existing-files" ) );
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
@@ -336,8 +369,13 @@ public class ContributionEditPanel extends PhetPanel {
                     uploadPanel.getField().updateModel();
                     if ( uploadPanel.getUploadedFiles().size() + existingFiles.size() == 0 ) {
                         error( uploadPanel.getField(), "contribution.edit.validation.mustHaveFiles" );
+                        fileUploadErrorAppender.isValid = false;
+                    }
+                    else {
+                        fileUploadErrorAppender.isValid = true;
                     }
                     List<FileUpload> newFiles = uploadPanel.getUploadedFiles();
+                    boolean isValid = true;
                     for ( FileUpload fileUpload : newFiles ) {
                         if ( !ContributionFile.validateFileExtension( fileUpload.getClientFileName() ) ) {
                             // TODO: verify that everything is properly escaped
@@ -345,8 +383,12 @@ public class ContributionEditPanel extends PhetPanel {
                             map.put( "0", fileUpload.getClientFileName() );
                             map.put( "1", ContributionFile.getFiletypes( ContributionEditPanel.this ) );
                             error( uploadPanel.getField(), "contribution.edit.validation.fileType", map );
+                            isValid = false;
                             logger.warn( "Attempt to upload unaccepted file type for file: " + fileUpload.getClientFileName() );
                         }
+                    }
+                    if ( fileUploadErrorAppender.isValid ) {
+                        fileUploadErrorAppender.isValid = isValid;
                     }
                 }
             } );
@@ -379,15 +421,40 @@ public class ContributionEditPanel extends PhetPanel {
 
                     if ( simList.getFormComponent().getModel().getObject().isEmpty() ) {
                         error( simList.getFormComponent(), "contribution.edit.validation.mustHaveSims" );
+                        simsErrorAppender.isValid = false;
                     }
+                    else {
+                        simsErrorAppender.isValid = true;
+                    }
+
                     if ( typeList.getFormComponent().getModel().getObject().isEmpty() ) {
                         error( typeList.getFormComponent(), "contribution.edit.validation.mustHaveTypes" );
+                        typesTdErrorAppender.isValid = false;
+                        typesHeaderErrorAppender.isValid = false;
                     }
+                    else {
+                        typesTdErrorAppender.isValid = true;
+                        typesHeaderErrorAppender.isValid = true;
+                    }
+
                     if ( levelList.getFormComponent().getModel().getObject().isEmpty() ) {
                         error( levelList.getFormComponent(), "contribution.edit.validation.mustHaveLevels" );
+                        levelsTdErrorAppender.isValid = false;
+                        levelsHeaderErrorAppender.isValid = false;
                     }
+                    else {
+                        levelsTdErrorAppender.isValid = true;
+                        levelsHeaderErrorAppender.isValid = true;
+                    }
+
                     if ( subjectList.getFormComponent().getModel().getObject().isEmpty() ) {
                         error( subjectList.getFormComponent(), "contribution.edit.validation.mustHaveSubjects" );
+                        subjectsTdErrorAppender.isValid = false;
+                        subjectsHeaderErrorAppender.isValid = false;
+                    }
+                    else {
+                        subjectsTdErrorAppender.isValid = true;
+                        subjectsHeaderErrorAppender.isValid = true;
                     }
 
                     if ( durationChoice.getInput().equals( "0" ) ) {
@@ -679,6 +746,34 @@ public class ContributionEditPanel extends PhetPanel {
             }
         }
     }
+
+    /**
+     * This class is used to append a validation-error class to checklist components that fail to validate.
+     *
+     * <p/>
+     * This code taken from the Apache Wicket Cookbook and modified.
+     */
+    public class CheckListErrorAppender extends AbstractBehavior {
+        private boolean isValid = true;
+        private boolean topBorder;
+        private static final String BORDER_STYLE = "2px solid red";
+
+        public CheckListErrorAppender( boolean topBorder ) {
+            super();
+            this.topBorder = topBorder;
+        }
+
+        @Override
+        public void onComponentTag( Component component, ComponentTag componentTag ) {
+//            System.out.println( "called for " + component.toString() + " valid: " + isValid );
+            if ( !isValid ) {
+                String style = ( topBorder ) ? "border-top: " + BORDER_STYLE + "; " : "border-bottom: " + BORDER_STYLE + "; ";
+                style += "border-left: " + BORDER_STYLE + "; border-right: " + BORDER_STYLE + ";";
+                componentTag.put( "style", style );
+            }
+        }
+    }
+
 
     public class DurationDropDownChoice extends DropDownChoice {
         public DurationDropDownChoice( String id, int initialDuration ) {
