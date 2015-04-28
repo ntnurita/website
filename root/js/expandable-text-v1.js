@@ -10,6 +10,7 @@ phet.textIds = {};
  * @returns {boolean}
  */
 phet.toggleExpandableText = function( id, jumpToLocation ) {
+  var sessionStorageSupported = window.sessionStorage;
   var e = document.getElementById( id );
   var thisElement = document.getElementById( id + '-header' );
   var newClass;
@@ -17,16 +18,14 @@ phet.toggleExpandableText = function( id, jumpToLocation ) {
     return true;
   }
   if ( !e.style.height || e.style.height === "0px" ) {
+    if ( sessionStorageSupported ) {
+      sessionStorage.setItem( id, true );
+    }
     var hash = '#' + id + '-header';
     if ( jumpToLocation ) {
       window.location.hash = '';
       window.location.hash = hash;
     }
-    // change url hash without jumping in the browser if supported
-    else if ( history.pushState ) {
-      history.pushState( null, null, hash );
-    }
-    
     phet.textIds[ 'text_' + id ] = true;
     newClass = thisElement.className.replace( 'right', 'down' );
     thisElement.className = newClass;
@@ -44,6 +43,9 @@ phet.toggleExpandableText = function( id, jumpToLocation ) {
     }, 8 );
   }
   else {
+    if ( sessionStorageSupported ) {
+      sessionStorage.setItem( id, false );
+    }
     phet.textIds[ 'text_' + id ] = true;
     newClass = thisElement.className.replace( 'down', 'right' );
     thisElement.className = newClass;
@@ -65,4 +67,15 @@ phet.toggleExpandableText = function( id, jumpToLocation ) {
 
 $( document ).ready( function() {
   phet.toggleExpandableText( window.location.hash.replace( '#', '' ).replace( '-header', '' ), true );
+
+  // save the state of expandable texts for when the back button is used
+  if ( window.sessionStorage ) {
+    for ( var i = 0; i < sessionStorage.length; i++ ) {
+      var key = sessionStorage.key( i );
+      var val = sessionStorage.getItem( key );
+      if ( val === 'true' ) {
+        phet.toggleExpandableText( key, false );
+      }
+    }
+  }
 } );
