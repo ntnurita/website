@@ -104,7 +104,9 @@ public class RegisterPanel extends PhetPanel {
     private ErrorAppender gradeErrorAppender;
 
     // teaching experience
-    private TextField yearsTeaching;
+    private RadioGroup teachingExperienceRadioGroup;
+    private WebMarkupContainer teachingExperienceRadioGroupContainer;
+    private ErrorAppender teachingExperienceErrorAppender;
 
     // PhET experience
     private RadioGroup phetExperienceRadioGroup;
@@ -214,15 +216,42 @@ public class RegisterPanel extends PhetPanel {
             gradeContainer.add( otherGrade = new StringTextField( "otherGradeInput", new PropertyModel( properties, "otherGradeInput" ) ) );
 
             // teaching experience
-            add( yearsTeaching = new StringTextField( "teachingExperience", new PropertyModel( properties, "teachingExperience" ) ) );
-            yearsTeaching.add( new ErrorAppender() );
+            add( teachingExperienceRadioGroupContainer = new WebMarkupContainer( "teachingExperienceContainer" ) );
+            teachingExperienceRadioGroupContainer.add( teachingExperienceErrorAppender = new ErrorAppender( false ) );
+
+            teachingExperienceRadioGroup = new RadioGroup( "teachingExperienceRadios", new PropertyModel( properties, "teachingExperience" ) );
+
+            Radio noneRadio = new Radio( "noneRadio", new Model<String>( "NONE" ) );
+            teachingExperienceRadioGroup.add( noneRadio );
+            teachingExperienceRadioGroup.add( new FormComponentLabel( "noneLabel", noneRadio ) );
+
+            Radio oneToTwoRadio = new Radio( "oneToTwoRadio", new Model<String>( "ONE_TO_TWO" ) );
+            teachingExperienceRadioGroup.add( oneToTwoRadio );
+            teachingExperienceRadioGroup.add( new FormComponentLabel( "oneToTwoLabel", oneToTwoRadio ) );
+
+            Radio threeToFiveRadio = new Radio( "threeToFiveRadio", new Model<String>( "THREE_TO_FIVE" ) );
+            teachingExperienceRadioGroup.add( threeToFiveRadio );
+            teachingExperienceRadioGroup.add( new FormComponentLabel( "threeToFiveLabel", threeToFiveRadio ) );
+
+            Radio sixToTenRadio = new Radio( "sixToTenRadio", new Model<String>( "SIX_TO_TEN" ) );
+            teachingExperienceRadioGroup.add( sixToTenRadio );
+            teachingExperienceRadioGroup.add( new FormComponentLabel( "sixToTenLabel", sixToTenRadio ) );
+
+            Radio elevenToTwentyRadio = new Radio( "elevenToTwentyRadio", new Model<String>( "ELEVEN_TO_TWENTY" ) );
+            teachingExperienceRadioGroup.add( elevenToTwentyRadio );
+            teachingExperienceRadioGroup.add( new FormComponentLabel( "elevenToTwentyLabel", elevenToTwentyRadio ) );
+
+            Radio twentyOnePlusRadio = new Radio( "twentyOnePlusRadio", new Model<String>( "TWENTY_ONE_PLUS" ) );
+            teachingExperienceRadioGroup.add( twentyOnePlusRadio );
+            teachingExperienceRadioGroup.add( new FormComponentLabel( "twentyOnePlusLabel", twentyOnePlusRadio ) );
+
+            teachingExperienceRadioGroupContainer.add( teachingExperienceRadioGroup );
 
             // phet experience
             add( phetExperienceRadioGroupContainer = new WebMarkupContainer( "phetExperienceContainer" ) );
             phetExperienceRadioGroupContainer.add( phetExperienceErrorAppender = new ErrorAppender( false ) );
 
             phetExperienceRadioGroup = new RadioGroup( "phetExperienceRadios", new PropertyModel( properties, "phetExperience" ) );
-            phetExperienceRadioGroup.add( new ErrorAppender() );
 
             Radio newUserRadio = new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) );
             phetExperienceRadioGroup.add( newUserRadio );
@@ -298,6 +327,14 @@ public class RegisterPanel extends PhetPanel {
                         phetExperienceErrorAppender.isValid = true;
                     }
 
+                    if ( teachingExperienceRadioGroup.getModelObject() == null ) {
+                        error( teachingExperienceRadioGroup, "validation.user.teachingExperience" );
+                        teachingExperienceErrorAppender.isValid = false;
+                    }
+                    else {
+                        teachingExperienceErrorAppender.isValid = true;
+                    }
+
                     if ( otherRoleCheckbox.getConvertedInput() && ( otherRole.getInput() == null || otherRole.getInput().length() == 0 ) ) {
                         error( otherRole, "validation.user.otherRole" );
                     }
@@ -341,10 +378,6 @@ public class RegisterPanel extends PhetPanel {
                     }
                     else {
                         gradeErrorAppender.isValid = true;
-                    }
-
-                    if ( !Pattern.matches( "^[0-9]*$", yearsTeaching.getInput() ) ) {
-                        error( yearsTeaching, "validation.user.yearsTeaching" );
                     }
                 }
             } );
@@ -452,7 +485,7 @@ public class RegisterPanel extends PhetPanel {
                     user.setGraduate( graduateCheckbox.getModelObject() );
                     user.setOtherGrade( otherGradeCheckbox.getModelObject() );
 
-                    user.setYearsTeaching( yearsTeaching.getModelObject().toString() );
+//                    user.setYearsTeaching( yearsTeaching.getModelObject().toString() );
 
                     if ( update ) {
                         session.update( user );

@@ -138,6 +138,13 @@ public class StringChanges {
         StringUtils.addString( session, "register.experiencedUser", "Experienced user (I regularly use sims in my classroom)" );
         StringUtils.addString( session, "register.powerUser", "Power user (I tell everyone about PhET!)" );
 
+        StringUtils.addString( session, "register.none", "None / Not applicable" );
+        StringUtils.addString( session, "register.oneToTwo", "1-2 years" );
+        StringUtils.addString( session, "register.threeToFive", "3-5 years" );
+        StringUtils.addString( session, "register.sixToTen", "6-10 years" );
+        StringUtils.addString( session, "register.elevenToTwenty", "11-20 years" );
+        StringUtils.addString( session, "register.twentyOnePLus", "21+ years" );
+
         StringUtils.addString( session, "register.elementary", "Elementary" );
         StringUtils.addString( session, "register.gradeK", "K" );
         StringUtils.addString( session, "register.grade1", "1" );
@@ -170,7 +177,7 @@ public class StringChanges {
         StringUtils.addString( session, "validation.user.firstName", "Please enter your first name" );
         StringUtils.addString( session, "validation.user.lastName", "Please enter your last name" );
         StringUtils.addString( session, "validation.user.phetExperience", "Please indicate your experience with PhET" );
-        StringUtils.addString( session, "validation.user.yearsTeaching", "Teaching experience must contain only numeric characters" );
+        StringUtils.addString( session, "validation.user.teachingExperience", "Please indicate your teaching experience" );
 
         /**
          * General strings

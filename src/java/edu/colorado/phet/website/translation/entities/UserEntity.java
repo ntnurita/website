@@ -52,7 +52,7 @@ public class UserEntity extends TranslationEntity {
         addString( "validation.user.firstName" );
         addString( "validation.user.lastName" );
         addString( "validation.user.phetExperience" );
-        addString( "validation.user.yearsTeaching" );
+        addString( "validation.user.teachingExperience" );
 
         addString( "register.teacher" );
         addString( "register.student" );
@@ -94,6 +94,13 @@ public class UserEntity extends TranslationEntity {
         addString( "register.year2plus" );
         addString( "register.graduate" );
         addString( "register.adultEducation" );
+
+        addString( "register.none" );
+        addString( "register.oneToTwo" );
+        addString( "register.threeToFive" );
+        addString( "register.sixToTen" );
+        addString( "register.elevenToTwenty" );
+        addString( "register.twentyOnePLus" );
 
         addString( "profile.register" );
         addString( "profile.name" );

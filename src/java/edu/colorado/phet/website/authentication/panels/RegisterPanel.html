@@ -471,14 +471,57 @@
       <span class="bold">
         Teaching Experience
       </span>
-
-      <div>
-        <input wicket:id="teachingExperience" type="text" maxlength="2" size="4"/>
-        <span>
-          <wicket:message key="register.years">
-            years
-          </wicket:message>
-        </span>
+      <div wicket:id="teachingExperienceContainer">
+        <div wicket:id="teachingExperienceRadios">
+          <div>
+            <input wicket:id="noneRadio" type="radio" name="teaching-experience">
+            <label wicket:id="noneLabel">
+              <wicket:message key="register.none">
+                None / Not applicable
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="oneToTwoRadio" type="radio" name="teaching-experience">
+            <label wicket:id="oneToTwoLabel">
+              <wicket:message key="register.oneToTwo">
+                1-2 years
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="threeToFiveRadio" type="radio" name="teaching-experience">
+            <label wicket:id="threeToFiveLabel">
+              <wicket:message key="register.threeToFive">
+                3-5 years
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="sixToTenRadio" type="radio" name="teaching-experience">
+            <label wicket:id="sixToTenLabel">
+              <wicket:message key="register.sixToTen">
+                6-10 years
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="elevenToTwentyRadio" type="radio" name="teaching-experience">
+            <label wicket:id="elevenToTwentyLabel">
+              <wicket:message key="register.elevenToTwenty">
+                11-20 years
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="twentyOnePlusRadio" type="radio" name="teaching-experience">
+            <label wicket:id="twentyOnePlusLabel">
+              <wicket:message key="register.twentyOnePlus">
+                21+ years
+              </wicket:message>
+            </label>
+          </div>
+        </div>
       </div>
 
       <br/><br/>
