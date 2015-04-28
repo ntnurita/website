@@ -31,7 +31,26 @@
       .other-input-holder span {
         display: block;
         overflow: hidden;
-        padding-right:10px;
+      }
+
+      div.ltr .other-input-holder span {
+        padding-right: 10px;
+      }
+
+      div.rtl .text-holder {
+        padding: 0 10px;
+      }
+
+      /*div.rtl .checkbox-holder {*/
+        /*padding: 0 0 0 10px*/
+      /*}*/
+
+      div.ltr .checkbox-holder {
+        float: left;
+      }
+
+      div.rtl .checkbox-holder {
+        float: right;
       }
 
       .half-width {
@@ -89,7 +108,7 @@
         <br/>
 
         <input wicket:id="firstName" class="register-text-field half-width" type="text" value=""
-               wicket:message="placeholder:profile.firstName"/>
+               wicket:message="placeholder:profile.firstName" style="float: left;"/>
         <input wicket:id="lastName" class="register-text-field half-width" type="text" value=""
                wicket:message="placeholder:profile.lastName" style="float: right;"/>
 
@@ -144,7 +163,7 @@
           </label>
         </div>
         <div class="other-input-holder">
-          <span style="float: left;">
+          <span class="checkbox-holder">
             <input type="checkbox" wicket:id="otherRole" id="other-role-checkbox"/>
             <label for="other-role-checkbox">
               <wicket:message key="register.other">
@@ -152,7 +171,7 @@
               </wicket:message>
             </label>
           </span>
-          <span>
+          <span class="text-holder">
             <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
           </span>
         </div>
@@ -220,7 +239,7 @@
           </label>
         </div>
         <div class="other-input-holder">
-          <span style="float: left;">
+          <span class="checkbox-holder">
             <input type="checkbox" wicket:id="otherSubject" id="other-subject-checkbox"/>
             <label for="other-subject-checkbox">
               <wicket:message key="register.other">
@@ -228,7 +247,7 @@
               </wicket:message>
             </label>
           </span>
-          <span>
+          <span class="text-holder">
             <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
           </span>
         </div>
