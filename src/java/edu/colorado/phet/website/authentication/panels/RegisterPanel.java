@@ -5,8 +5,13 @@
 package edu.colorado.phet.website.authentication.panels;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
+import org.apache.wicket.behavior.AbstractBehavior;
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -56,6 +61,8 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox translatorCheckbox;
     private CheckBox otherRoleCheckbox;
     private TextField otherRole;
+    private WebMarkupContainer roleContainer;
+    private ErrorAppender roleErrorAppender;
 
     // Subjects checkboxes
     private CheckBox generalSciencesCheckbox;
@@ -67,6 +74,8 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox mathCheckbox;
     private CheckBox otherSubjectCheckbox;
     private TextField otherSubject;
+    private WebMarkupContainer subjectContainer;
+    private ErrorAppender subjectErrorAppender;
 
     // grades checkboxes
     private CheckBox elementaryCheckbox;
@@ -90,12 +99,16 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox year2plusCheckbox;
     private CheckBox graduateCheckbox;
     private CheckBox otherGradeCheckbox;
+    private WebMarkupContainer gradeContainer;
+    private ErrorAppender gradeErrorAppender;
 
     // teaching experience
     private TextField yearsTeaching;
 
     // PhET experience
     private RadioGroup phetExperienceRadioGroup;
+    private WebMarkupContainer phetExperienceRadioGroupContainer;
+    private ErrorAppender phetExperienceErrorAppender;
 
     private String destination = null;
 
@@ -139,53 +152,73 @@ public class RegisterPanel extends PhetPanel {
             add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
             add( country = new DropDownChoice<String>( "country", new PropertyModel<String>( properties, "country" ), PhetUser.getCountries() ) );
 
+            firstName.add( new ErrorAppender() );
+            lastName.add( new ErrorAppender() );
+            organization.add( new ErrorAppender() );
+            username.add( new ErrorAppender() );
+            password.add( new ErrorAppender() );
+            passwordCopy.add( new ErrorAppender() );
+            receiveEmail.add( new ErrorAppender() );
+            country.add( new ErrorAppender() );
+
             // add role checkboxes
-            add( teacherCheckbox = new CheckBox( "teacher", new PropertyModel<Boolean>( properties, "teacher" ) ) );
-            add( studentCheckbox = new CheckBox( "student", new PropertyModel<Boolean>( properties, "student" ) ) );
-            add( researcherCheckbox = new CheckBox( "researcher", new PropertyModel<Boolean>( properties, "researcher" ) ) );
-            add( translatorCheckbox = new CheckBox( "translator", new PropertyModel<Boolean>( properties, "translator" ) ) );
-            add( otherRoleCheckbox = new CheckBox( "otherRole", new PropertyModel<Boolean>( properties, "otherRole" ) ) );
-            add( otherRole = new StringTextField( "otherRoleInput", new PropertyModel( properties, "otherRoleInput" ) ) );
+            add( roleContainer = new WebMarkupContainer( "roleContainer" ) );
+            roleContainer.add( roleErrorAppender = new ErrorAppender( false ) );
+            roleContainer.add( teacherCheckbox = new CheckBox( "teacher", new PropertyModel<Boolean>( properties, "teacher" ) ) );
+            roleContainer.add( studentCheckbox = new CheckBox( "student", new PropertyModel<Boolean>( properties, "student" ) ) );
+            roleContainer.add( researcherCheckbox = new CheckBox( "researcher", new PropertyModel<Boolean>( properties, "researcher" ) ) );
+            roleContainer.add( translatorCheckbox = new CheckBox( "translator", new PropertyModel<Boolean>( properties, "translator" ) ) );
+            roleContainer.add( otherRoleCheckbox = new CheckBox( "otherRole", new PropertyModel<Boolean>( properties, "otherRole" ) ) );
+            roleContainer.add( otherRole = new StringTextField( "otherRoleInput", new PropertyModel( properties, "otherRoleInput" ) ) );
 
             // add subject checkboxes
-            add( generalSciencesCheckbox = new CheckBox( "generalSciences", new PropertyModel<Boolean>( properties, "generalSciences" ) ) );
-            add( earthScienceCheckbox = new CheckBox( "earthScience", new PropertyModel<Boolean>( properties, "earthScience" ) ) );
-            add( biologyCheckbox = new CheckBox( "biology", new PropertyModel<Boolean>( properties, "biology" ) ) );
-            add( physicsCheckbox = new CheckBox( "physics", new PropertyModel<Boolean>( properties, "physics" ) ) );
-            add( chemistryCheckbox = new CheckBox( "chemistry", new PropertyModel<Boolean>( properties, "chemistry" ) ) );
-            add( astronomyCheckbox = new CheckBox( "astronomy", new PropertyModel<Boolean>( properties, "astronomy" ) ) );
-            add( mathCheckbox = new CheckBox( "math", new PropertyModel<Boolean>( properties, "math" ) ) );
-            add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
-            add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
+            add( subjectContainer = new WebMarkupContainer( "subjectContainer" ) );
+            subjectContainer.add( subjectErrorAppender = new ErrorAppender( false ) );
+            subjectContainer.add( generalSciencesCheckbox = new CheckBox( "generalSciences", new PropertyModel<Boolean>( properties, "generalSciences" ) ) );
+            subjectContainer.add( earthScienceCheckbox = new CheckBox( "earthScience", new PropertyModel<Boolean>( properties, "earthScience" ) ) );
+            subjectContainer.add( biologyCheckbox = new CheckBox( "biology", new PropertyModel<Boolean>( properties, "biology" ) ) );
+            subjectContainer.add( physicsCheckbox = new CheckBox( "physics", new PropertyModel<Boolean>( properties, "physics" ) ) );
+            subjectContainer.add( chemistryCheckbox = new CheckBox( "chemistry", new PropertyModel<Boolean>( properties, "chemistry" ) ) );
+            subjectContainer.add( astronomyCheckbox = new CheckBox( "astronomy", new PropertyModel<Boolean>( properties, "astronomy" ) ) );
+            subjectContainer.add( mathCheckbox = new CheckBox( "math", new PropertyModel<Boolean>( properties, "math" ) ) );
+            subjectContainer.add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
+            subjectContainer.add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
 
             // add grade checkboxes
-            add( elementaryCheckbox = new CheckBox( "elementary", new PropertyModel<Boolean>( properties, "elementary" ) ) );
-            add( gradeKCheckbox = new CheckBox( "gradeK", new PropertyModel<Boolean>( properties, "gradeK" ) ) );
-            add( grade1Checkbox = new CheckBox( "grade1", new PropertyModel<Boolean>( properties, "grade1" ) ) );
-            add( grade2Checkbox = new CheckBox( "grade2", new PropertyModel<Boolean>( properties, "grade2" ) ) );
-            add( grade3Checkbox = new CheckBox( "grade3", new PropertyModel<Boolean>( properties, "grade3" ) ) );
-            add( grade4Checkbox = new CheckBox( "grade4", new PropertyModel<Boolean>( properties, "grade4" ) ) );
-            add( grade5Checkbox = new CheckBox( "grade5", new PropertyModel<Boolean>( properties, "grade5" ) ) );
-            add( middleCheckbox = new CheckBox( "middle", new PropertyModel<Boolean>( properties, "middle" ) ) );
-            add( grade6Checkbox = new CheckBox( "grade6", new PropertyModel<Boolean>( properties, "grade6" ) ) );
-            add( grade7Checkbox = new CheckBox( "grade7", new PropertyModel<Boolean>( properties, "grade7" ) ) );
-            add( grade8Checkbox = new CheckBox( "grade8", new PropertyModel<Boolean>( properties, "grade8" ) ) );
-            add( highCheckbox = new CheckBox( "high", new PropertyModel<Boolean>( properties, "high" ) ) );
-            add( grade9Checkbox = new CheckBox( "grade9", new PropertyModel<Boolean>( properties, "grade9" ) ) );
-            add( grade10Checkbox = new CheckBox( "grade10", new PropertyModel<Boolean>( properties, "grade10" ) ) );
-            add( grade11Checkbox = new CheckBox( "grade11", new PropertyModel<Boolean>( properties, "grade11" ) ) );
-            add( grade12Checkbox = new CheckBox( "grade12", new PropertyModel<Boolean>( properties, "grade12" ) ) );
-            add( universityCheckbox = new CheckBox( "university", new PropertyModel<Boolean>( properties, "university" ) ) );
-            add( year1Checkbox = new CheckBox( "year1", new PropertyModel<Boolean>( properties, "year1" ) ) );
-            add( year2plusCheckbox = new CheckBox( "year2plus", new PropertyModel<Boolean>( properties, "year2plus" ) ) );
-            add( graduateCheckbox = new CheckBox( "graduate", new PropertyModel<Boolean>( properties, "graduate" ) ) );
-            add( otherGradeCheckbox = new CheckBox( "otherGrade", new PropertyModel<Boolean>( properties, "otherGrade" ) ) );
+            add( gradeContainer = new WebMarkupContainer( "gradeContainer" ) );
+            gradeContainer.add( gradeErrorAppender = new ErrorAppender( false ) );
+            gradeContainer.add( elementaryCheckbox = new CheckBox( "elementary", new PropertyModel<Boolean>( properties, "elementary" ) ) );
+            gradeContainer.add( gradeKCheckbox = new CheckBox( "gradeK", new PropertyModel<Boolean>( properties, "gradeK" ) ) );
+            gradeContainer.add( grade1Checkbox = new CheckBox( "grade1", new PropertyModel<Boolean>( properties, "grade1" ) ) );
+            gradeContainer.add( grade2Checkbox = new CheckBox( "grade2", new PropertyModel<Boolean>( properties, "grade2" ) ) );
+            gradeContainer.add( grade3Checkbox = new CheckBox( "grade3", new PropertyModel<Boolean>( properties, "grade3" ) ) );
+            gradeContainer.add( grade4Checkbox = new CheckBox( "grade4", new PropertyModel<Boolean>( properties, "grade4" ) ) );
+            gradeContainer.add( grade5Checkbox = new CheckBox( "grade5", new PropertyModel<Boolean>( properties, "grade5" ) ) );
+            gradeContainer.add( middleCheckbox = new CheckBox( "middle", new PropertyModel<Boolean>( properties, "middle" ) ) );
+            gradeContainer.add( grade6Checkbox = new CheckBox( "grade6", new PropertyModel<Boolean>( properties, "grade6" ) ) );
+            gradeContainer.add( grade7Checkbox = new CheckBox( "grade7", new PropertyModel<Boolean>( properties, "grade7" ) ) );
+            gradeContainer.add( grade8Checkbox = new CheckBox( "grade8", new PropertyModel<Boolean>( properties, "grade8" ) ) );
+            gradeContainer.add( highCheckbox = new CheckBox( "high", new PropertyModel<Boolean>( properties, "high" ) ) );
+            gradeContainer.add( grade9Checkbox = new CheckBox( "grade9", new PropertyModel<Boolean>( properties, "grade9" ) ) );
+            gradeContainer.add( grade10Checkbox = new CheckBox( "grade10", new PropertyModel<Boolean>( properties, "grade10" ) ) );
+            gradeContainer.add( grade11Checkbox = new CheckBox( "grade11", new PropertyModel<Boolean>( properties, "grade11" ) ) );
+            gradeContainer.add( grade12Checkbox = new CheckBox( "grade12", new PropertyModel<Boolean>( properties, "grade12" ) ) );
+            gradeContainer.add( universityCheckbox = new CheckBox( "university", new PropertyModel<Boolean>( properties, "university" ) ) );
+            gradeContainer.add( year1Checkbox = new CheckBox( "year1", new PropertyModel<Boolean>( properties, "year1" ) ) );
+            gradeContainer.add( year2plusCheckbox = new CheckBox( "year2plus", new PropertyModel<Boolean>( properties, "year2plus" ) ) );
+            gradeContainer.add( graduateCheckbox = new CheckBox( "graduate", new PropertyModel<Boolean>( properties, "graduate" ) ) );
+            gradeContainer.add( otherGradeCheckbox = new CheckBox( "otherGrade", new PropertyModel<Boolean>( properties, "otherGrade" ) ) );
 
             // teaching experience
             add( yearsTeaching = new StringTextField( "teachingExperience", new PropertyModel( properties, "teachingExperience" ) ) );
+            yearsTeaching.add( new ErrorAppender() );
 
             // phet experience
+            add( phetExperienceRadioGroupContainer = new WebMarkupContainer( "phetExperienceContainer" ) );
+            phetExperienceRadioGroupContainer.add( phetExperienceErrorAppender = new ErrorAppender( false ) );
+
             phetExperienceRadioGroup = new RadioGroup( "phetExperienceRadios", new PropertyModel( properties, "phetExperience" ) );
+            phetExperienceRadioGroup.add( new ErrorAppender() );
 
             Radio newUserRadio = new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) );
             phetExperienceRadioGroup.add( newUserRadio );
@@ -203,7 +236,7 @@ public class RegisterPanel extends PhetPanel {
             phetExperienceRadioGroup.add( powerUserRadio );
             phetExperienceRadioGroup.add( new FormComponentLabel( "powerUserLabel", powerUserRadio ) );
 
-            add( phetExperienceRadioGroup );
+            phetExperienceRadioGroupContainer.add( phetExperienceRadioGroup );
 
             // so we can respond to the error messages
             password.setRequired( false );
@@ -255,6 +288,10 @@ public class RegisterPanel extends PhetPanel {
 
                     if ( phetExperienceRadioGroup.getModelObject() == null ) {
                         error( phetExperienceRadioGroup, "validation.user.phetExperience" );
+                        phetExperienceErrorAppender.isValid = false;
+                    }
+                    else {
+                        phetExperienceErrorAppender.isValid = true;
                     }
 
                     if ( otherRoleCheckbox.getConvertedInput() && ( otherRole.getInput() == null || otherRole.getInput().length() == 0 ) ) {
@@ -272,12 +309,20 @@ public class RegisterPanel extends PhetPanel {
                     if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||
                             translatorCheckbox.getConvertedInput() || otherRoleCheckbox.getConvertedInput() ) ) {
                         error( teacherCheckbox, "validation.user.role" );
+                        roleErrorAppender.isValid = false;
+                    }
+                    else {
+                        roleErrorAppender.isValid = true;
                     }
 
                     if ( !( generalSciencesCheckbox.getConvertedInput() || earthScienceCheckbox.getConvertedInput() || biologyCheckbox.getConvertedInput() ||
                             physicsCheckbox.getConvertedInput() || chemistryCheckbox.getConvertedInput() || astronomyCheckbox.getConvertedInput() ||
                             mathCheckbox.getConvertedInput() || otherSubjectCheckbox.getConvertedInput() ) ) {
                         error( generalSciencesCheckbox, "validation.user.subject" );
+                        subjectErrorAppender.isValid = false;
+                    }
+                    else {
+                        subjectErrorAppender.isValid = true;
                     }
 
                     if ( !( elementaryCheckbox.getConvertedInput() || gradeKCheckbox.getConvertedInput() || grade1Checkbox.getConvertedInput() ||
@@ -288,6 +333,14 @@ public class RegisterPanel extends PhetPanel {
                             grade12Checkbox.getConvertedInput() || universityCheckbox.getConvertedInput() || year1Checkbox.getConvertedInput() ||
                             year2plusCheckbox.getConvertedInput() || graduateCheckbox.getConvertedInput() || otherGradeCheckbox.getConvertedInput() ) ) {
                         error( generalSciencesCheckbox, "validation.user.grade" );
+                        gradeErrorAppender.isValid = false;
+                    }
+                    else {
+                        gradeErrorAppender.isValid = true;
+                    }
+
+                    if ( !Pattern.matches( "^[0-9]*$", yearsTeaching.getInput() ) ) {
+                        error( yearsTeaching, "validation.user.yearsTeaching" );
                     }
                 }
             } );
@@ -435,6 +488,51 @@ public class RegisterPanel extends PhetPanel {
             else {
                 errorModel.setObject( "" );
                 setResponsePage( ConfirmEmailSentPage.class, ConfirmEmailSentPage.getParameters( user ) );
+            }
+        }
+    }
+
+    /**
+     * This class is used to append a validation-error class to components that fail to validate.
+     * If the component is not a FormComponent (such as a div surrounding several FromComponents),
+     * then isValid must be manually set.
+     */
+    public class ErrorAppender extends AbstractBehavior {
+        private boolean formComponent; // true if the component is a FormComponent
+        public boolean isValid = true;
+
+        public ErrorAppender() {
+            this( true );
+        }
+
+        public ErrorAppender( boolean formComponent ) {
+            super();
+            this.formComponent = formComponent;
+        }
+
+        @Override
+        public void onComponentTag( Component component, ComponentTag componentTag ) {
+            if ( formComponent ) {
+                if ( !( (FormComponent<?>) component ).isValid() ) {
+                    String cl = componentTag.getAttribute( "class" );
+                    if ( cl == null ) {
+                        componentTag.put( "class", "validation-error" );
+                    }
+                    else {
+                        componentTag.put( "class", "validation-error " + cl );
+                    }
+                }
+            }
+            else {
+                if ( !isValid ) {
+                    String cl = componentTag.getAttribute( "class" );
+                    if ( cl == null ) {
+                        componentTag.put( "class", "validation-error" );
+                    }
+                    else {
+                        componentTag.put( "class", "validation-error " + cl );
+                    }
+                }
             }
         }
     }

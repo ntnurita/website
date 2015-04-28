@@ -52,6 +52,7 @@ public class UserEntity extends TranslationEntity {
         addString( "validation.user.firstName" );
         addString( "validation.user.lastName" );
         addString( "validation.user.phetExperience" );
+        addString( "validation.user.yearsTeaching" );
 
         addString( "register.teacher" );
         addString( "register.student" );

@@ -122,43 +122,44 @@
 
         <br/><br/><br/>
 
-      <span class="bold">
-        I am a...
-      </span>
+        <span class="bold">
+          I am a...
+        </span>
 
-        <div>
-          <input type="checkbox" wicket:id="teacher" id="teacher-checkbox"/>
-          <label for="teacher-checkbox">
-            <wicket:message key="register.teacher">
-              Teacher
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="student" id="student-checkbox"/>
-          <label for="student-checkbox">
-            <wicket:message key="register.student">
-              Student
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="researcher" id="researcher-checkbox"/>
-          <label for="researcher-checkbox">
-            <wicket:message key="register.researcher">
-              Researcher
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="translator" id="translator-checkbox"/>
-          <label for="translator-checkbox">
-            <wicket:message key="register.translator">
-              Translator
-            </wicket:message>
-          </label>
-        </div>
-        <div class="other-input-holder">
+        <div wicket:id="roleContainer">
+          <div>
+            <input type="checkbox" wicket:id="teacher" id="teacher-checkbox"/>
+            <label for="teacher-checkbox">
+              <wicket:message key="register.teacher">
+                Teacher
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="student" id="student-checkbox"/>
+            <label for="student-checkbox">
+              <wicket:message key="register.student">
+                Student
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="researcher" id="researcher-checkbox"/>
+            <label for="researcher-checkbox">
+              <wicket:message key="register.researcher">
+                Researcher
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="translator" id="translator-checkbox"/>
+            <label for="translator-checkbox">
+              <wicket:message key="register.translator">
+                Translator
+              </wicket:message>
+            </label>
+          </div>
+          <div class="other-input-holder">
           <span class="checkbox-holder">
             <input type="checkbox" wicket:id="otherRole" id="other-role-checkbox"/>
             <label for="other-role-checkbox">
@@ -170,71 +171,73 @@
           <span class="text-holder">
             <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
           </span>
+          </div>
         </div>
 
         <br/><br/>
 
-      <span class="bold">
-        Subject(s)
-      </span>
+        <span class="bold">
+          Subject(s)
+        </span>
 
-        <div>
-          <input type="checkbox" wicket:id="generalSciences" id="generalSciences-checkbox"/>
-          <label for="general-sciences-checkbox">
-            <wicket:message key="register.generalSciences">
-              General Sciences
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="earthScience" id="earth-science-checkbox"/>
-          <label for="earth-science-checkbox">
-            <wicket:message key="register.earthScience">
-              Earth Science
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="biology" id="biology-checkbox"/>
-          <label for="biology-checkbox">
-            <wicket:message key="register.biology">
-              Biology
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="physics" id="physics-checkbox"/>
-          <label for="physics-checkbox">
-            <wicket:message key="register.physics">
-              Physics
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="chemistry" id="chemistry-checkbox"/>
-          <label for="chemistry-checkbox">
-            <wicket:message key="register.chemistry">
-              Chemistry
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="astronomy" id="astronomy-checkbox"/>
-          <label for="astronomy-checkbox">
-            <wicket:message key="register.astronomy">
-              Astronomy
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input type="checkbox" wicket:id="math" id="math-checkbox"/>
-          <label for="math-checkbox">
-            <wicket:message key="register.math">
-              Math
-            </wicket:message>
-          </label>
-        </div>
-        <div class="other-input-holder">
+        <div wicket:id="subjectContainer">
+          <div>
+            <input type="checkbox" wicket:id="generalSciences" id="generalSciences-checkbox"/>
+            <label for="general-sciences-checkbox">
+              <wicket:message key="register.generalSciences">
+                General Sciences
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="earthScience" id="earth-science-checkbox"/>
+            <label for="earth-science-checkbox">
+              <wicket:message key="register.earthScience">
+                Earth Science
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="biology" id="biology-checkbox"/>
+            <label for="biology-checkbox">
+              <wicket:message key="register.biology">
+                Biology
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="physics" id="physics-checkbox"/>
+            <label for="physics-checkbox">
+              <wicket:message key="register.physics">
+                Physics
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="chemistry" id="chemistry-checkbox"/>
+            <label for="chemistry-checkbox">
+              <wicket:message key="register.chemistry">
+                Chemistry
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="astronomy" id="astronomy-checkbox"/>
+            <label for="astronomy-checkbox">
+              <wicket:message key="register.astronomy">
+                Astronomy
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input type="checkbox" wicket:id="math" id="math-checkbox"/>
+            <label for="math-checkbox">
+              <wicket:message key="register.math">
+                Math
+              </wicket:message>
+            </label>
+          </div>
+          <div class="other-input-holder">
           <span class="checkbox-holder">
             <input type="checkbox" wicket:id="otherSubject" id="other-subject-checkbox"/>
             <label for="other-subject-checkbox">
@@ -246,6 +249,7 @@
           <span class="text-holder">
             <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
           </span>
+          </div>
         </div>
       </div>
 
@@ -255,7 +259,7 @@
         Grade(s)
       </span>
 
-      <table class="grade-table">
+      <table class="grade-table" wicket:id="gradeContainer">
         <tr>
           <td>
             <input type="checkbox" wicket:id="elementary" id="elementary-checkbox"/>
@@ -461,38 +465,40 @@
         PhET Experience
       </span>
 
-      <div wicket:id="phetExperienceRadios">
-        <div>
-          <input wicket:id="newUserRadio" type="radio" name="phet-experience">
-          <label wicket:id="newUserLabel">
-            <wicket:message key="register.newUser">
-              New user
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input wicket:id="occasionalUserRadio" type="radio" name="phet-experience">
-          <label wicket:id="occasionalUserLabel">
-            <wicket:message key="register.occasionalUser">
-              Occasional user (I've used a few sims)
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input wicket:id="experiencedUserRadio" type="radio" name="phet-experience">
-          <label wicket:id="experiencedUserLabel">
-            <wicket:message key="register.experiencedUser">
-              Experienced user (I regularly use sims in my classroom)
-            </wicket:message>
-          </label>
-        </div>
-        <div>
-          <input wicket:id="powerUserRadio" type="radio" name="phet-experience">
-          <label wicket:id="powerUserLabel">
-          <wicket:message key="register.powerUser">
-              Power user (I tell everyone about PhET!)
-            </wicket:message>
-          </label>
+      <div wicket:id="phetExperienceContainer">
+        <div wicket:id="phetExperienceRadios">
+          <div>
+            <input wicket:id="newUserRadio" type="radio" name="phet-experience">
+            <label wicket:id="newUserLabel">
+              <wicket:message key="register.newUser">
+                New user
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="occasionalUserRadio" type="radio" name="phet-experience">
+            <label wicket:id="occasionalUserLabel">
+              <wicket:message key="register.occasionalUser">
+                Occasional user (I've used a few sims)
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="experiencedUserRadio" type="radio" name="phet-experience">
+            <label wicket:id="experiencedUserLabel">
+              <wicket:message key="register.experiencedUser">
+                Experienced user (I regularly use sims in my classroom)
+              </wicket:message>
+            </label>
+          </div>
+          <div>
+            <input wicket:id="powerUserRadio" type="radio" name="phet-experience">
+            <label wicket:id="powerUserLabel">
+              <wicket:message key="register.powerUser">
+                Power user (I tell everyone about PhET!)
+              </wicket:message>
+            </label>
+          </div>
         </div>
       </div>
 

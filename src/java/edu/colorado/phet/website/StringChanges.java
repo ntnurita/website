@@ -168,6 +168,7 @@ public class StringChanges {
         StringUtils.addString( session, "validation.user.firstName", "Please enter your first name" );
         StringUtils.addString( session, "validation.user.lastName", "Please enter your last name" );
         StringUtils.addString( session, "validation.user.phetExperience", "Please indicate your experience with PhET" );
+        StringUtils.addString( session, "validation.user.yearsTeaching", "Teaching experience must contain only numeric characters" );
 
         /**
          * General strings
