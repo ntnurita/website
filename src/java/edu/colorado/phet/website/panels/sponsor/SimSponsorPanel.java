@@ -22,7 +22,7 @@ import edu.colorado.phet.website.util.wicket.WicketUtils;
  * component strings during a cachable-panel construction
  */
 public class SimSponsorPanel extends PhetPanel {
-    public static final String SIM_SPONSOR_STYLE = "padding-top: 5px; border: none;";
+    public static final String SIM_SPONSOR_STYLE = "padding-top: 5px; border: none; max-height: 95px;";
 
     private static final Logger logger = Logger.getLogger( FeaturedSponsorPanel.class.getName() );
     private PageContext context;

@@ -587,7 +587,6 @@ public abstract class Sponsor implements Serializable {
         public LogoSponsor( String fullName, String url, ImageHandle imageHandle ) {
             super( fullName, url );
             this.imageHandle = imageHandle;
-            this.imageStyle += "max-height: 110px"; // prevent images from extend top section of sim page
         }
 
         public LogoSponsor( String fullName, String url, ImageHandle imageHandle, String style ) {
@@ -597,7 +596,7 @@ public abstract class Sponsor implements Serializable {
 
         @Override
         protected Component createLogoComponent( String id, String style, PageContext context, SponsorContext sponsorContext ) {
-            StaticImage image = new StaticImage( id, WebImage.get( imageHandle ), getFullName() + " logo" );
+            StaticImage image = new StaticImage( id, imageHandle.src, getFullName() + " logo" );
             String combinedStyle = style + ( style.endsWith( ";" ) ? "" : ";" ) + imageStyle;
             image.add( new AttributeModifier( "style", true, new Model<String>( combinedStyle ) ) );
             return image;
