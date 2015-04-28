@@ -99,21 +99,20 @@
                class="simulation-main-link-run-main" style="position: relative; display: inline-block">
               <img wicket:id="simulation-main-screenshot" class="simulation-main-screenshot"
                    src="../../../../../../../../template-files/images/arithmetic-screenshot.png"
-                   width="300" id="simulation-main-screenshot-image" itemprop="image screenshot"
-                   onload="adjustPlayButton()"/>
+                   width="300" id="simulation-main-screenshot-image" itemprop="image screenshot" />
               <img src="/images/icons/play-sim.png" alt=" " id="play-sim-icon" width="100" height="100">
               <span wicket:id="html5-badge"></span>
             </a>
-            <script type="text/javascript">
-              function adjustPlayButton() {
-                var playButton = document.getElementById( 'play-sim-icon' );
-                var screenShot = document.getElementById( 'simulation-main-screenshot-image' );
-                var buttonLeft = screenShot.offsetWidth / 2 - playButton.offsetWidth / 2;
-                var buttonTop = screenShot.offsetHeight / 2 - playButton.offsetHeight / 2;
-                playButton.style.left = buttonLeft + "px";
-                playButton.style.top = buttonTop + "px";
-              }
-            </script>
+            <!--<script type="text/javascript">-->
+              <!--function adjustPlayButton() {-->
+                <!--var playButton = document.getElementById( 'play-sim-icon' );-->
+                <!--var screenShot = document.getElementById( 'simulation-main-screenshot-image' );-->
+                <!--var buttonLeft = screenShot.offsetWidth / 2 - playButton.offsetWidth / 2;-->
+                <!--var buttonTop = screenShot.offsetHeight / 2 - playButton.offsetHeight / 2;-->
+                <!--playButton.style.left = buttonLeft + "px";-->
+                <!--playButton.style.top = buttonTop + "px";-->
+              <!--}-->
+            <!--</script>-->
             <a class="phet-button sim-download sim-button" href="#" wicket:id="run-offline-link" itemprop="downloadUrl"
                content-type="application/octet-stream" download>
               <img src="/images/icons/download-icon.png" alt=" " class="download-icon">
@@ -128,8 +127,7 @@
 
             <div style="float: left; clear: left; width: 500px; display: none;" id="embed-popup">
               <div style="position: absolute; background-color: #fff; border: 1px solid #666; width: 500px; z-index: 10">
-                <div style="text-align: right; width: 100%; position: absolute;"><a href="#"
-                                                                                    onclick="document.getElementById('embed-popup').style.display = 'none';return false;"
+                <div style="text-align: right; width: 100%; position: absolute;"><a href="#" onclick="document.getElementById('embed-popup').style.display = 'none';return false;"
                                                                                     style="padding: 0.2em;">
                   <wicket:message key="embed.close">close</wicket:message>
                 </a></div>
@@ -140,9 +138,7 @@
                         Embed a running copy of this simulation
                       </wicket:message>
                     </p>
-                                        <textarea rows="3" cols="50" id="embeddable-text" wicket:id="direct-embed-text">This
-                                            is some Text</textarea>
-
+                    <textarea rows="3" cols="50" id="embeddable-text" wicket:id="direct-embed-text">This is some Text</textarea>
                     <p>
                       <wicket:message key="embed.direct.instructions">
                         Use this HTML to embed a running copy of this simulation.
@@ -156,9 +152,7 @@
                       Embed an image that will launch the simulation when clicked
                     </wicket:message>
                   </p>
-                                    <textarea rows="3" cols="50" wicket:id="indirect-embed-text">This is some
-                                        Text</textarea>
-
+                  <textarea rows="3" cols="50" wicket:id="indirect-embed-text">This is some Text</textarea>
                   <p>
                     <wicket:message key="embed.indirect.instructions">
                       Use this HTML code to display a screenshot with the words "Click to Run".
@@ -174,8 +168,8 @@
           <wicket:enclosure child="top-topic-list">
             <ul style="margin-top: 0">
               <li wicket:id="top-topic-list">
-                        <span wicket:id="top-topic-label" itemprop="keywords">
-                        </span>
+                <span wicket:id="top-topic-label" itemprop="keywords">
+                </span>
               </li>
             </ul>
           </wicket:enclosure>
