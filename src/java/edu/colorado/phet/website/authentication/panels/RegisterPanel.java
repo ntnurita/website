@@ -57,6 +57,7 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox studentCheckbox;
     private CheckBox researcherCheckbox;
     private CheckBox translatorCheckbox;
+    private CheckBox educatorCheckbox;
     private CheckBox otherRoleCheckbox;
     private TextField otherRole;
     private WebMarkupContainer roleContainer;
@@ -96,7 +97,9 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox year1Checkbox;
     private CheckBox year2plusCheckbox;
     private CheckBox graduateCheckbox;
+    private CheckBox adultEducationCheckbox;
     private CheckBox otherGradeCheckbox;
+    private TextField otherGrade;
     private WebMarkupContainer gradeContainer;
     private ErrorAppender gradeErrorAppender;
 
@@ -166,6 +169,7 @@ public class RegisterPanel extends PhetPanel {
             roleContainer.add( studentCheckbox = new CheckBox( "student", new PropertyModel<Boolean>( properties, "student" ) ) );
             roleContainer.add( researcherCheckbox = new CheckBox( "researcher", new PropertyModel<Boolean>( properties, "researcher" ) ) );
             roleContainer.add( translatorCheckbox = new CheckBox( "translator", new PropertyModel<Boolean>( properties, "translator" ) ) );
+            roleContainer.add( educatorCheckbox = new CheckBox( "educator", new PropertyModel<Boolean>( properties, "educator" ) ) );
             roleContainer.add( otherRoleCheckbox = new CheckBox( "otherRole", new PropertyModel<Boolean>( properties, "otherRole" ) ) );
             roleContainer.add( otherRole = new StringTextField( "otherRoleInput", new PropertyModel( properties, "otherRoleInput" ) ) );
 
@@ -205,7 +209,9 @@ public class RegisterPanel extends PhetPanel {
             gradeContainer.add( year1Checkbox = new CheckBox( "year1", new PropertyModel<Boolean>( properties, "year1" ) ) );
             gradeContainer.add( year2plusCheckbox = new CheckBox( "year2plus", new PropertyModel<Boolean>( properties, "year2plus" ) ) );
             gradeContainer.add( graduateCheckbox = new CheckBox( "graduate", new PropertyModel<Boolean>( properties, "graduate" ) ) );
+            gradeContainer.add( adultEducationCheckbox = new CheckBox( "adultEducation", new PropertyModel<Boolean>( properties, "adultEducation" ) ) );
             gradeContainer.add( otherGradeCheckbox = new CheckBox( "otherGrade", new PropertyModel<Boolean>( properties, "otherGrade" ) ) );
+            gradeContainer.add( otherGrade = new StringTextField( "otherGradeInput", new PropertyModel( properties, "otherGradeInput" ) ) );
 
             // teaching experience
             add( yearsTeaching = new StringTextField( "teachingExperience", new PropertyModel( properties, "teachingExperience" ) ) );

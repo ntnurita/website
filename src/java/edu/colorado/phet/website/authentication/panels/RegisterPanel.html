@@ -159,18 +159,26 @@
               </wicket:message>
             </label>
           </div>
-          <div class="other-input-holder">
-          <span class="checkbox-holder">
-            <input type="checkbox" wicket:id="otherRole" id="other-role-checkbox"/>
-            <label for="other-role-checkbox">
-              <wicket:message key="register.other">
-                Other
+          <div>
+            <input type="checkbox" wicket:id="educator" id="educator-checkbox"/>
+            <label for="educator-checkbox">
+              <wicket:message key="register.educator">
+                Educator
               </wicket:message>
             </label>
-          </span>
-          <span class="text-holder">
-            <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
-          </span>
+          </div>
+          <div class="other-input-holder">
+            <span class="checkbox-holder">
+              <input type="checkbox" wicket:id="otherRole" id="other-role-checkbox"/>
+              <label for="other-role-checkbox">
+                <wicket:message key="register.other">
+                  Other
+                </wicket:message>
+              </label>
+            </span>
+            <span class="text-holder">
+              <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
+            </span>
           </div>
         </div>
 
@@ -238,17 +246,17 @@
             </label>
           </div>
           <div class="other-input-holder">
-          <span class="checkbox-holder">
-            <input type="checkbox" wicket:id="otherSubject" id="other-subject-checkbox"/>
-            <label for="other-subject-checkbox">
-              <wicket:message key="register.other">
-                Other
-              </wicket:message>
-            </label>
-          </span>
-          <span class="text-holder">
-            <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
-          </span>
+            <span class="checkbox-holder">
+              <input type="checkbox" wicket:id="otherSubject" id="other-subject-checkbox"/>
+              <label for="other-subject-checkbox">
+                <wicket:message key="register.other">
+                  Other
+                </wicket:message>
+              </label>
+            </span>
+            <span class="text-holder">
+              <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
+            </span>
           </div>
         </div>
       </div>
@@ -434,12 +442,26 @@
 
         <tr>
           <td>
+            <input type="checkbox" wicket:id="adultEducation" id="adult-education-checkbox"/>
+            <label for="adult-education-checkbox">
+              <wicket:message key="register.adultEducation">
+                Adult Education
+              </wicket:message>
+            </label>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
             <input type="checkbox" wicket:id="otherGrade" id="other-grade-checkbox"/>
             <label for="other-grade-checkbox">
               <wicket:message key="register.other">
                 Other
               </wicket:message>
             </label>
+          </td>
+          <td colspan="6">
+            <input wicket:id="otherGradeInput" type="text" value="" class="other-input" style="width: 100%"/>
           </td>
         </tr>
       </table>

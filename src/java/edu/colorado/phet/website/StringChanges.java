@@ -158,6 +158,8 @@ public class StringChanges {
         StringUtils.addString( session, "register.year1", "Year 1" );
         StringUtils.addString( session, "register.year2plus", "Year 2+" );
         StringUtils.addString( session, "register.graduate", "Graduate" );
+        StringUtils.addString( session, "register.adultEducation", "Adult Education" );
+        StringUtils.addString( session, "register.educator", "Teacher educator / Coach" );
 
         StringUtils.addString( session, "validation.user.role", "Please fill in at least one checkbox under \"I am a...\"" );
         StringUtils.addString( session, "validation.user.subject", "Please fill in at least one checkbox under \"Subject(s)\"" );

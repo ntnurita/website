@@ -58,6 +58,7 @@ public class UserEntity extends TranslationEntity {
         addString( "register.student" );
         addString( "register.researcher" );
         addString( "register.translator" );
+        addString( "register.educator" );
         addString( "register.other" );
         addString( "register.generalSciences" );
         addString( "register.earthScience" );
@@ -92,6 +93,7 @@ public class UserEntity extends TranslationEntity {
         addString( "register.year1" );
         addString( "register.year2plus" );
         addString( "register.graduate" );
+        addString( "register.adultEducation" );
 
         addString( "profile.register" );
         addString( "profile.name" );
