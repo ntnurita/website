@@ -297,6 +297,8 @@ public class RegisterPanel extends PhetPanel {
                 public void validate( Form form ) {
                     phetExperienceRadioGroup.validate();
                     phetExperienceRadioGroup.updateModel();
+                    teachingExperienceRadioGroup.validate();
+                    teachingExperienceRadioGroup.updateModel();
 
                     if ( firstName.getInput() == null || firstName.getInput().length() == 0 ) {
                         error( firstName, "validation.user.firstName" );
@@ -317,6 +319,10 @@ public class RegisterPanel extends PhetPanel {
                     String err = PhetUser.validateEmail( username.getInput() );
                     if ( err != null ) {
                         error( username, "validation.user.email" );
+                    }
+
+                    if ( organization.getInput() == null || organization.getInput().length() == 0 ) {
+                        error( organization, "validation.user.organization" );
                     }
 
                     if ( phetExperienceRadioGroup.getModelObject() == null ) {
