@@ -101,7 +101,7 @@ public class UserEntity extends TranslationEntity {
         addString( "register.threeToFive" );
         addString( "register.sixToTen" );
         addString( "register.elevenToTwenty" );
-        addString( "register.twentyOnePLus" );
+        addString( "register.twentyOnePlus" );
 
         addString( "profile.register" );
         addString( "profile.name" );

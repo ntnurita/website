@@ -143,7 +143,7 @@ public class StringChanges {
         StringUtils.addString( session, "register.threeToFive", "3-5 years" );
         StringUtils.addString( session, "register.sixToTen", "6-10 years" );
         StringUtils.addString( session, "register.elevenToTwenty", "11-20 years" );
-        StringUtils.addString( session, "register.twentyOnePLus", "21+ years" );
+        StringUtils.addString( session, "register.twentyOnePlus", "21+ years" );
 
         StringUtils.addString( session, "register.elementary", "Elementary" );
         StringUtils.addString( session, "register.gradeK", "K" );
