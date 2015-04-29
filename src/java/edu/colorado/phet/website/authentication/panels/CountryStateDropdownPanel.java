@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.Model;
@@ -280,51 +282,34 @@ public class CountryStateDropdownPanel extends PhetPanel {
         s_a[251] = "Central|Copperbelt|Eastern|Luapula|Lusaka|North-Western|Northern|Southern|Western";
         s_a[252] = "Bulawayo|Harare|ManicalandMashonaland Central|Mashonaland East|Mashonaland West|Masvingo|Matabeleland North|Matabeleland South|Midlands";
 
-        Form form = new Form( "form" );
-        add( form );
-
-         countryDropdown = new DropDownChoice( "country", new Model<String>( "" ), countryList ) {
-            /**
-             * Whether this component's onSelectionChanged event handler should called using
-             * javascript if the selection changes.
-             *
-             * @return True if this component's onSelectionChanged event handler should
-             *         called using javascript if the selection changes
-             */
-            protected boolean wantOnSelectionChangedNotifications() {
-                return true;
+        countryDropdown = new DropDownChoice( "country", new Model<String>( "" ), countryList );
+        countryDropdown.add( new AjaxFormComponentUpdatingBehavior( "onchange" ) {
+            protected void onUpdate( AjaxRequestTarget target ) {
+                stateDropdown.setChoices( getStatesByCountry( countryDropdown.getModelValue() ) );
+                target.addComponent( stateDropdown );
             }
+        } );
 
-            /**
-             * Called when a option is selected of a dropdown list that wants to be
-             * notified of this event.
-             *
-             * @param newSelection The newly selected object of the backing model
-             */
-            protected void onSelectionChanged( final Object newSelection ) {
-                String country = (String) newSelection;
-                stateDropdown.setChoices( getStatesByCountry( country ) );
-            }
-        };
-
-        form.add( countryDropdown );
+        add( countryDropdown );
 
         String country = countryDropdown.getModelValue();
 
-        stateDropdown = new DropDownChoice( "state", new Model<String>( "" ), getStatesByCountry( country ) ) {
-            protected boolean wantOnSelectionChangedNotifications() {
-                return true;
-            }
-        };
-        form.add( stateDropdown );
+        stateDropdown = new DropDownChoice( "state", new Model<String>( "" ), getStatesByCountry( country ) );
+        stateDropdown.setOutputMarkupId( true );
+        add( stateDropdown );
     }
 
-    private List<String> getStatesByCountry( String country ) {
-        int index = countryList.indexOf( country );
-        if ( index != -1 ) {
-            return Arrays.asList( s_a[ index ].split( "\\|" ) );
+    private List<String> getStatesByCountry( String countryIndex ) {
+        try {
+            int index = Integer.parseInt( countryIndex );
+            return Arrays.asList( s_a[index + 1].split( "\\|" ) );
         }
-        return Collections.EMPTY_LIST;
+        catch( NumberFormatException e ) {
+            return Collections.EMPTY_LIST;
+        }
+        catch( ArrayIndexOutOfBoundsException e ) {
+            return Collections.EMPTY_LIST;
+        }
     }
 
     public String getCountry() {
