@@ -5,7 +5,6 @@
 package edu.colorado.phet.website.authentication.panels;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -60,7 +59,6 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox educatorCheckbox;
     private CheckBox otherRoleCheckbox;
     private TextField otherRole;
-    private WebMarkupContainer roleContainer;
     private ErrorAppender roleErrorAppender;
 
     // Subjects checkboxes
@@ -73,7 +71,6 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox mathCheckbox;
     private CheckBox otherSubjectCheckbox;
     private TextField otherSubject;
-    private WebMarkupContainer subjectContainer;
     private ErrorAppender subjectErrorAppender;
 
     // grades checkboxes
@@ -100,17 +97,14 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox adultEducationCheckbox;
     private CheckBox otherGradeCheckbox;
     private TextField otherGrade;
-    private WebMarkupContainer gradeContainer;
     private ErrorAppender gradeErrorAppender;
 
     // teaching experience
     private RadioGroup teachingExperienceRadioGroup;
-    private WebMarkupContainer teachingExperienceRadioGroupContainer;
     private ErrorAppender teachingExperienceErrorAppender;
 
     // PhET experience
     private RadioGroup phetExperienceRadioGroup;
-    private WebMarkupContainer phetExperienceRadioGroupContainer;
     private ErrorAppender phetExperienceErrorAppender;
 
     private String destination = null;
@@ -165,6 +159,7 @@ public class RegisterPanel extends PhetPanel {
             country.add( new ErrorAppender() );
 
             // add role checkboxes
+            WebMarkupContainer roleContainer;
             add( roleContainer = new WebMarkupContainer( "roleContainer" ) );
             roleContainer.add( roleErrorAppender = new ErrorAppender( false ) );
             roleContainer.add( teacherCheckbox = new CheckBox( "teacher", new PropertyModel<Boolean>( properties, "teacher" ) ) );
@@ -174,8 +169,10 @@ public class RegisterPanel extends PhetPanel {
             roleContainer.add( educatorCheckbox = new CheckBox( "educator", new PropertyModel<Boolean>( properties, "educator" ) ) );
             roleContainer.add( otherRoleCheckbox = new CheckBox( "otherRole", new PropertyModel<Boolean>( properties, "otherRole" ) ) );
             roleContainer.add( otherRole = new StringTextField( "otherRoleInput", new PropertyModel( properties, "otherRoleInput" ) ) );
+            otherRole.add ( new ErrorAppender() );
 
             // add subject checkboxes
+            WebMarkupContainer subjectContainer;
             add( subjectContainer = new WebMarkupContainer( "subjectContainer" ) );
             subjectContainer.add( subjectErrorAppender = new ErrorAppender( false ) );
             subjectContainer.add( generalSciencesCheckbox = new CheckBox( "generalSciences", new PropertyModel<Boolean>( properties, "generalSciences" ) ) );
@@ -187,8 +184,10 @@ public class RegisterPanel extends PhetPanel {
             subjectContainer.add( mathCheckbox = new CheckBox( "math", new PropertyModel<Boolean>( properties, "math" ) ) );
             subjectContainer.add( otherSubjectCheckbox = new CheckBox( "otherSubject", new PropertyModel<Boolean>( properties, "otherSubject" ) ) );
             subjectContainer.add( otherSubject = new StringTextField( "otherSubjectInput", new PropertyModel( properties, "otherSubjectInput" ) ) );
+            otherSubject.add ( new ErrorAppender() );
 
             // add grade checkboxes
+            WebMarkupContainer gradeContainer;
             add( gradeContainer = new WebMarkupContainer( "gradeContainer" ) );
             gradeContainer.add( gradeErrorAppender = new ErrorAppender( false ) );
             gradeContainer.add( elementaryCheckbox = new CheckBox( "elementary", new PropertyModel<Boolean>( properties, "elementary" ) ) );
@@ -214,8 +213,10 @@ public class RegisterPanel extends PhetPanel {
             gradeContainer.add( adultEducationCheckbox = new CheckBox( "adultEducation", new PropertyModel<Boolean>( properties, "adultEducation" ) ) );
             gradeContainer.add( otherGradeCheckbox = new CheckBox( "otherGrade", new PropertyModel<Boolean>( properties, "otherGrade" ) ) );
             gradeContainer.add( otherGrade = new StringTextField( "otherGradeInput", new PropertyModel( properties, "otherGradeInput" ) ) );
+            otherGrade.add ( new ErrorAppender() );
 
             // teaching experience
+            WebMarkupContainer teachingExperienceRadioGroupContainer;
             add( teachingExperienceRadioGroupContainer = new WebMarkupContainer( "teachingExperienceContainer" ) );
             teachingExperienceRadioGroupContainer.add( teachingExperienceErrorAppender = new ErrorAppender( false ) );
 
@@ -248,6 +249,7 @@ public class RegisterPanel extends PhetPanel {
             teachingExperienceRadioGroupContainer.add( teachingExperienceRadioGroup );
 
             // phet experience
+            WebMarkupContainer phetExperienceRadioGroupContainer;
             add( phetExperienceRadioGroupContainer = new WebMarkupContainer( "phetExperienceContainer" ) );
             phetExperienceRadioGroupContainer.add( phetExperienceErrorAppender = new ErrorAppender( false ) );
 
@@ -281,7 +283,7 @@ public class RegisterPanel extends PhetPanel {
                             otherRole, otherSubject,
 
                             // role checkboxes
-                            teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, otherRoleCheckbox,
+                            teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, educatorCheckbox, otherRoleCheckbox,
 
                             // subject checkboxes
                             generalSciencesCheckbox, earthScienceCheckbox, biologyCheckbox, physicsCheckbox, chemistryCheckbox,
@@ -290,7 +292,8 @@ public class RegisterPanel extends PhetPanel {
                             // grade checkboxes
                             elementaryCheckbox, gradeKCheckbox, grade1Checkbox, grade2Checkbox, grade3Checkbox, grade4Checkbox,
                             grade5Checkbox, middleCheckbox, grade6Checkbox, grade7Checkbox, grade8Checkbox, highCheckbox, grade9Checkbox, grade10Checkbox,
-                            grade11Checkbox, grade12Checkbox, universityCheckbox, year1Checkbox, year2plusCheckbox, graduateCheckbox, otherGradeCheckbox
+                            grade11Checkbox, grade12Checkbox, universityCheckbox, year1Checkbox, year2plusCheckbox, graduateCheckbox, adultEducationCheckbox,
+                            otherGradeCheckbox
                     };
                 }
 
@@ -349,12 +352,16 @@ public class RegisterPanel extends PhetPanel {
                         error( otherSubject, "validation.user.otherSubject" );
                     }
 
+                    if ( otherSubjectCheckbox.getConvertedInput() && ( otherSubject.getInput() == null || otherSubject.getInput().length() == 0 ) ) {
+                        error( otherGrade, "validation.user.otherSubject" );
+                    }
+
                     if ( country.getInput().length() == 0 ) {
                         error( country, "validation.user.country" );
                     }
 
                     if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||
-                            translatorCheckbox.getConvertedInput() || otherRoleCheckbox.getConvertedInput() ) ) {
+                            translatorCheckbox.getConvertedInput() || educatorCheckbox.getConvertedInput() || otherRoleCheckbox.getConvertedInput() ) ) {
                         error( teacherCheckbox, "validation.user.role" );
                         roleErrorAppender.isValid = false;
                     }
@@ -378,7 +385,8 @@ public class RegisterPanel extends PhetPanel {
                             grade7Checkbox.getConvertedInput() || grade8Checkbox.getConvertedInput() || highCheckbox.getConvertedInput() ||
                             grade9Checkbox.getConvertedInput() || grade10Checkbox.getConvertedInput() || grade11Checkbox.getConvertedInput() ||
                             grade12Checkbox.getConvertedInput() || universityCheckbox.getConvertedInput() || year1Checkbox.getConvertedInput() ||
-                            year2plusCheckbox.getConvertedInput() || graduateCheckbox.getConvertedInput() || otherGradeCheckbox.getConvertedInput() ) ) {
+                            year2plusCheckbox.getConvertedInput() || graduateCheckbox.getConvertedInput() || otherGradeCheckbox.getConvertedInput() ||
+                            adultEducationCheckbox.getConvertedInput() ) ) {
                         error( generalSciencesCheckbox, "validation.user.grade" );
                         gradeErrorAppender.isValid = false;
                     }
@@ -456,6 +464,7 @@ public class RegisterPanel extends PhetPanel {
                     user.setStudent( studentCheckbox.getModelObject() );
                     user.setResearcher( researcherCheckbox.getModelObject() );
                     user.setTranslator( translatorCheckbox.getModelObject() );
+                    user.setTeacherEducator( educatorCheckbox.getModelObject() );
                     user.setOtherRole( otherRoleCheckbox.getModelObject() );
                     user.setOtherRoleText( otherRole.getModelObject().toString() );
 
@@ -489,9 +498,10 @@ public class RegisterPanel extends PhetPanel {
                     user.setYear1( year1Checkbox.getModelObject() );
                     user.setYear2plus( year2plusCheckbox.getModelObject() );
                     user.setGraduate( graduateCheckbox.getModelObject() );
+                    user.setAdultEducation( adultEducationCheckbox.getModelObject() );
                     user.setOtherGrade( otherGradeCheckbox.getModelObject() );
 
-//                    user.setYearsTeaching( yearsTeaching.getModelObject().toString() );
+                    user.setYearsTeaching( teachingExperienceRadioGroup.getModelObject().toString() );
 
                     if ( update ) {
                         session.update( user );

@@ -62,6 +62,7 @@ public class PhetUser implements Serializable, IntId {
     private Boolean student;
     private Boolean researcher;
     private Boolean translator;
+    private Boolean teacherEducator;
     private Boolean otherRole;
     private String otherRoleText;
 
@@ -97,6 +98,7 @@ public class PhetUser implements Serializable, IntId {
     private Boolean year1;
     private Boolean year2plus;
     private Boolean graduate;
+    private Boolean adultEducation;
     private Boolean otherGrade;
 
     // years teaching
@@ -944,6 +946,22 @@ public class PhetUser implements Serializable, IntId {
 
     public void setYearsTeaching( String yearsTeaching ) {
         this.yearsTeaching = yearsTeaching;
+    }
+
+    public Boolean getAdultEducation() {
+        return adultEducation;
+    }
+
+    public void setAdultEducation( Boolean adultEducation ) {
+        this.adultEducation = adultEducation;
+    }
+
+    public Boolean getTeacherEducator() {
+        return teacherEducator;
+    }
+
+    public void setTeacherEducator( Boolean teacherEducator ) {
+        this.teacherEducator = teacherEducator;
     }
 
     /*_/|
