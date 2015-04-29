@@ -174,6 +174,7 @@ public class StringChanges {
         StringUtils.addString( session, "validation.user.otherRole", "Please fill out the text field next to Other under \"I am a...\"" );
         StringUtils.addString( session, "validation.user.otherSubject", "Please fill out the text field next to Other under \"Subject(s)\"" );
         StringUtils.addString( session, "validation.user.country", "Please select a country" );
+        StringUtils.addString( session, "validation.user.state", "Please select a state/province" );
         StringUtils.addString( session, "validation.user.firstName", "Please enter your first name" );
         StringUtils.addString( session, "validation.user.lastName", "Please enter your last name" );
         StringUtils.addString( session, "validation.user.phetExperience", "Please indicate your experience with PhET" );

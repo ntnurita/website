@@ -49,7 +49,7 @@ public class RegisterPanel extends PhetPanel {
     private CheckBox receiveEmail;
     private Model errorModel;
     private PageContext context;
-    private DropDownChoice country;
+    private CountryStateDropdownPanel countryStatePanel;
 
     // I am a... checkboxes
     private CheckBox teacherCheckbox;
@@ -147,7 +147,6 @@ public class RegisterPanel extends PhetPanel {
             add( password = new StringPasswordTextField( "password", new PropertyModel( properties, "password" ) ) );
             add( passwordCopy = new StringPasswordTextField( "passwordCopy", new PropertyModel( properties, "passwordCopy" ) ) );
             add( receiveEmail = new CheckBox( "receiveEmail", new PropertyModel<Boolean>( properties, "receiveEmail" ) ) );
-            add( country = new DropDownChoice<String>( "country", new PropertyModel<String>( properties, "country" ), PhetUser.getCountries() ) );
 
             firstName.add( new ErrorAppender() );
             lastName.add( new ErrorAppender() );
@@ -156,7 +155,10 @@ public class RegisterPanel extends PhetPanel {
             password.add( new ErrorAppender() );
             passwordCopy.add( new ErrorAppender() );
             receiveEmail.add( new ErrorAppender() );
-            country.add( new ErrorAppender() );
+
+            add( countryStatePanel = new CountryStateDropdownPanel( "countryState", context ) );
+            countryStatePanel.getCountryDropdown().add( new ErrorAppender() );
+            countryStatePanel.getStateDropdown().add( new ErrorAppender() );
 
             // add role checkboxes
             WebMarkupContainer roleContainer;
@@ -279,8 +281,8 @@ public class RegisterPanel extends PhetPanel {
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup, country,
-                            otherRole, otherSubject,
+                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup,
+                            countryStatePanel.getCountryDropdown(), countryStatePanel.getStateDropdown(), otherRole, otherSubject,
 
                             // role checkboxes
                             teacherCheckbox, studentCheckbox, researcherCheckbox, translatorCheckbox, educatorCheckbox, otherRoleCheckbox,
@@ -356,8 +358,12 @@ public class RegisterPanel extends PhetPanel {
                         error( otherGrade, "validation.user.otherSubject" );
                     }
 
-                    if ( country.getInput().length() == 0 ) {
-                        error( country, "validation.user.country" );
+                    if ( countryStatePanel.getCountryDropdown().getInput().length() == 0 ) {
+                        error( countryStatePanel.getCountryDropdown(), "validation.user.country" );
+                    }
+
+                    if ( countryStatePanel.getStateDropdown().getInput().length() == 0 ) {
+                        error( countryStatePanel.getStateDropdown(), "validation.user.state" );
                     }
 
                     if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||
