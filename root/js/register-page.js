@@ -26,8 +26,52 @@
     var year2PlusCheckbox = $( '#year2plus-checkbox' );
     var graduateCheckbox = $( '#graduate-checkbox' );
 
+    var otherRoleCheckbox = $( '#other-role-checkbox' );
+    var otherSubjectCheckbox = $( '#other-subject-checkbox' );
+    var otherGradeCheckbox = $( '#other-grade-checkbox' );
+
+    var checkAll = $( '#check-all' );
+
+    var updateCheckAllVisibility = function() {
+      if ( !elementaryCheckbox.attr( 'checked' ) && !middleCheckbox.attr( 'checked' ) && !highCheckbox.attr( 'checked' ) && !universityCheckbox.attr( 'checked' ) ) {
+        checkAll.hide();
+      }
+      else {
+        checkAll.show();
+      }
+    };
+
+    otherRoleCheckbox.change( function() {
+      if ( otherRoleCheckbox.attr( 'checked' ) ) {
+        $( '#other-role' ).show();
+      }
+      else {
+        $( '#other-role' ).hide();
+      }
+    } );
+
+    otherSubjectCheckbox.change( function() {
+      if ( otherSubjectCheckbox.attr( 'checked' ) ) {
+        $( '#other-subject' ).show();
+      }
+      else {
+        $( '#other-subject' ).hide();
+      }
+    } );
+
+    otherGradeCheckbox.change( function() {
+      if ( otherGradeCheckbox.attr( 'checked' ) ) {
+        $( '#other-grade' ).show();
+      }
+      else {
+        $( '#other-grade' ).hide();
+      }
+    } );
+
     elementaryCheckbox.change( function() {
+      updateCheckAllVisibility();
       if ( elementaryCheckbox.attr( 'checked' ) ) {
+        $( '#elementary-row td + td' ).show();
         gradeKCheckbox.attr( 'checked', true );
         grade1Checkbox.attr( 'checked', true );
         grade2Checkbox.attr( 'checked', true );
@@ -35,30 +79,64 @@
         grade4Checkbox.attr( 'checked', true );
         grade5Checkbox.attr( 'checked', true );
       }
+      else {
+        $( '#elementary-row td + td' ).hide();
+        gradeKCheckbox.attr( 'checked', false );
+        grade1Checkbox.attr( 'checked', false );
+        grade2Checkbox.attr( 'checked', false );
+        grade3Checkbox.attr( 'checked', false );
+        grade4Checkbox.attr( 'checked', false );
+        grade5Checkbox.attr( 'checked', false );
+      }
     } );
 
     middleCheckbox.change( function() {
+      updateCheckAllVisibility();
       if ( middleCheckbox.attr( 'checked' ) ) {
+        $( '#middle-row td + td' ).show();
         grade6Checkbox.attr( 'checked', true );
         grade7Checkbox.attr( 'checked', true );
         grade8Checkbox.attr( 'checked', true );
       }
+      else {
+        $( '#middle-row td + td' ).hide();
+        grade6Checkbox.attr( 'checked', false );
+        grade7Checkbox.attr( 'checked', false );
+        grade8Checkbox.attr( 'checked', false );
+      }
     } );
 
     highCheckbox.change( function() {
+      updateCheckAllVisibility();
       if ( highCheckbox.attr( 'checked' ) ) {
+        $( '#high-row td + td' ).show();
         grade9Checkbox.attr( 'checked', true );
         grade10Checkbox.attr( 'checked', true );
         grade11Checkbox.attr( 'checked', true );
         grade12Checkbox.attr( 'checked', true );
       }
+      else {
+        $( '#high-row td + td' ).hide();
+        grade9Checkbox.attr( 'checked', false );
+        grade10Checkbox.attr( 'checked', false );
+        grade11Checkbox.attr( 'checked', false );
+        grade12Checkbox.attr( 'checked', false );
+      }
     } );
 
     universityCheckbox.change( function() {
+      updateCheckAllVisibility();
       if ( universityCheckbox.attr( 'checked' ) ) {
+        $( '#university-row td + td' ).show();
         year1Checkbox.attr( 'checked', true );
         year2PlusCheckbox.attr( 'checked', true );
         graduateCheckbox.attr( 'checked', true );
+      }
+      else {
+        $( '#university-row td + td' ).hide();
+        year1Checkbox.attr( 'checked', false );
+        year2PlusCheckbox.attr( 'checked', false );
+        graduateCheckbox.attr( 'checked', false );
       }
     } );
 

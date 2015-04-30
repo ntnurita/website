@@ -15,7 +15,7 @@
       }
 
       .register-holder select {
-        width: 300px;
+        width: 250px;
       }
 
       .register-text-field {
@@ -66,12 +66,21 @@
         font-weight: bold;
       }
 
+      table.grade-table {
+        border-collapse: collapse;
+      }
+
       table.grade-table td {
         min-width: 55px;
+        padding: 0;
       }
 
       table.grade-table td:first-child {
         min-width: 100px;
+      }
+
+      table.grade-table tr td + td {
+        display: none;
       }
     </style>
 
@@ -178,7 +187,7 @@
               </label>
             </span>
             <span class="text-holder">
-              <input wicket:id="otherRoleInput" type="text" value="" class="other-input"/>
+              <input wicket:id="otherRoleInput" type="text" value="" class="other-input" id="other-role" style="display: none;"/>
             </span>
           </div>
         </div>
@@ -256,222 +265,231 @@
               </label>
             </span>
             <span class="text-holder">
-              <input wicket:id="otherSubjectInput" type="text" value="" class="other-input"/>
+              <input wicket:id="otherSubjectInput" type="text" value="" class="other-input" id="other-subject" style="display: none;"/>
+            </span>
+          </div>
+        </div>
+
+        <br/><br/>
+
+      <span class="bold">
+        Grade(s)
+      </span>
+      <span id="check-all">
+        <wicket:message key="register.checkAll">
+          Check all that apply
+        </wicket:message>
+      </span>
+
+        <div wicket:id="gradeContainer">
+          <table class="grade-table">
+            <tr id="elementary-row">
+              <td>
+                <input type="checkbox" wicket:id="elementary" id="elementary-checkbox"/>
+                <label for="elementary-checkbox">
+                  <wicket:message key="register.elementary">
+                    Elementary
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="gradeK" id="grade-k-checkbox"/>
+                <label for="grade-k-checkbox">
+                  <wicket:message key="register.gradeK">
+                    K
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade1" id="grade1-checkbox"/>
+                <label for="grade1-checkbox">
+                  <wicket:message key="register.grade1">
+                    1
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade2" id="grade2-checkbox"/>
+                <label for="grade2-checkbox">
+                  <wicket:message key="register.grade2">
+                    2
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade3" id="grade3-checkbox"/>
+                <label for="grade3-checkbox">
+                  <wicket:message key="register.grade3">
+                    3
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade4" id="grade4-checkbox"/>
+                <label for="grade4-checkbox">
+                  <wicket:message key="register.grade4">
+                    4
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade5" id="grade5-checkbox"/>
+                <label for="grade5-checkbox">
+                  <wicket:message key="register.grade5">
+                    5
+                  </wicket:message>
+                </label>
+              </td>
+            </tr>
+
+            <tr id="middle-row">
+              <td>
+                <input type="checkbox" wicket:id="middle" id="middle-checkbox"/>
+                <label for="middle-checkbox">
+                  <wicket:message key="register.middle">
+                    Middle
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade6" id="grade6-checkbox"/>
+                <label for="grade6-checkbox">
+                  <wicket:message key="register.grade6">
+                    6
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade7" id="grade7-checkbox"/>
+                <label for="grade7-checkbox">
+                  <wicket:message key="register.grade7">
+                    7
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade8" id="grade8-checkbox"/>
+                <label for="grade8-checkbox">
+                  <wicket:message key="register.grade8">
+                    8
+                  </wicket:message>
+                </label>
+              </td>
+            </tr>
+
+            <tr id="high-row">
+              <td>
+                <input type="checkbox" wicket:id="high" id="high-checkbox"/>
+                <label for="high-checkbox">
+                  <wicket:message key="register.high">
+                    High
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade9" id="grade9-checkbox"/>
+                <label for="grade9-checkbox">
+                  <wicket:message key="register.grade9">
+                    9
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade10" id="grade10-checkbox"/>
+                <label for="grade10-checkbox">
+                  <wicket:message key="register.grade10">
+                    10
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade11" id="grade11-checkbox"/>
+                <label for="grade11-checkbox">
+                  <wicket:message key="register.grade11">
+                    11
+                  </wicket:message>
+                </label>
+              </td>
+              <td>
+                <input type="checkbox" wicket:id="grade12" id="grade12-checkbox"/>
+                <label for="grade12-checkbox">
+                  <wicket:message key="register.grade12">
+                    12
+                  </wicket:message>
+                </label>
+              </td>
+            </tr>
+
+            <tr id="university-row">
+              <td>
+                <input type="checkbox" wicket:id="university" id="university-checkbox"/>
+                <label for="university-checkbox">
+                  <wicket:message key="register.university">
+                    University
+                  </wicket:message>
+                </label>
+              </td>
+              <td colspan="2">
+                <input type="checkbox" wicket:id="year1" id="year1-checkbox"/>
+                <label for="year1-checkbox">
+                  <wicket:message key="register.year1">
+                    Year 1
+                  </wicket:message>
+                </label>
+              </td>
+              <td colspan="2">
+                <input type="checkbox" wicket:id="year2plus" id="year2plus-checkbox"/>
+                <label for="year2plus-checkbox">
+                  <wicket:message key="register.year2plus">
+                    Year 2+
+                  </wicket:message>
+                </label>
+              </td>
+              <td colspan="2">
+                <input type="checkbox" wicket:id="graduate" id="graduate-checkbox"/>
+                <label for="graduate-checkbox">
+                  <wicket:message key="register.graduate">
+                    Graduate
+                  </wicket:message>
+                </label>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="checkbox" wicket:id="adultEducation" id="adult-education-checkbox"/>
+                <label for="adult-education-checkbox">
+                  <wicket:message key="register.adultEducation">
+                    Adult Education
+                  </wicket:message>
+                </label>
+              </td>
+            </tr>
+          </table>
+
+          <div class="other-input-holder">
+            <span class="checkbox-holder">
+              <input type="checkbox" wicket:id="otherGrade" id="other-grade-checkbox"/>
+              <label for="other-grade-checkbox">
+                <wicket:message key="register.other">
+                  Other
+                </wicket:message>
+              </label>
+            </span>
+            <span class="text-holder">
+              <input wicket:id="otherGradeInput" type="text" value="" class="other-input" id="other-grade" style="display: none;"/>
             </span>
           </div>
         </div>
       </div>
 
-      <br/><br/>
-
-      <span class="bold">
-        Grade(s)
-      </span>
-
-      <table class="grade-table" wicket:id="gradeContainer">
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="elementary" id="elementary-checkbox"/>
-            <label for="elementary-checkbox">
-              <wicket:message key="register.elementary">
-                Elementary
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="gradeK" id="grade-k-checkbox"/>
-            <label for="grade-k-checkbox">
-              <wicket:message key="register.gradeK">
-                K
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade1" id="grade1-checkbox"/>
-            <label for="grade1-checkbox">
-              <wicket:message key="register.grade1">
-                1
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade2" id="grade2-checkbox"/>
-            <label for="grade2-checkbox">
-              <wicket:message key="register.grade2">
-                2
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade3" id="grade3-checkbox"/>
-            <label for="grade3-checkbox">
-              <wicket:message key="register.grade3">
-                3
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade4" id="grade4-checkbox"/>
-            <label for="grade4-checkbox">
-              <wicket:message key="register.grade4">
-                4
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade5" id="grade5-checkbox"/>
-            <label for="grade5-checkbox">
-              <wicket:message key="register.grade5">
-                5
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="middle" id="middle-checkbox"/>
-            <label for="middle-checkbox">
-              <wicket:message key="register.middle">
-                Middle
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade6" id="grade6-checkbox"/>
-            <label for="grade6-checkbox">
-              <wicket:message key="register.grade6">
-                6
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade7" id="grade7-checkbox"/>
-            <label for="grade7-checkbox">
-              <wicket:message key="register.grade7">
-                7
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade8" id="grade8-checkbox"/>
-            <label for="grade8-checkbox">
-              <wicket:message key="register.grade8">
-                8
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="high" id="high-checkbox"/>
-            <label for="high-checkbox">
-              <wicket:message key="register.high">
-                High
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade9" id="grade9-checkbox"/>
-            <label for="grade9-checkbox">
-              <wicket:message key="register.grade9">
-                9
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade10" id="grade10-checkbox"/>
-            <label for="grade10-checkbox">
-              <wicket:message key="register.grade10">
-                10
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade11" id="grade11-checkbox"/>
-            <label for="grade11-checkbox">
-              <wicket:message key="register.grade11">
-                11
-              </wicket:message>
-            </label>
-          </td>
-          <td>
-            <input type="checkbox" wicket:id="grade12" id="grade12-checkbox"/>
-            <label for="grade12-checkbox">
-              <wicket:message key="register.grade12">
-                12
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="university" id="university-checkbox"/>
-            <label for="university-checkbox">
-              <wicket:message key="register.university">
-                University
-              </wicket:message>
-            </label>
-          </td>
-          <td colspan="2">
-            <input type="checkbox" wicket:id="year1" id="year1-checkbox"/>
-            <label for="year1-checkbox">
-              <wicket:message key="register.year1">
-                Year 1
-              </wicket:message>
-            </label>
-          </td>
-          <td colspan="2">
-            <input type="checkbox" wicket:id="year2plus" id="year2plus-checkbox"/>
-            <label for="year2plus-checkbox">
-              <wicket:message key="register.year2plus">
-                Year 2+
-              </wicket:message>
-            </label>
-          </td>
-          <td colspan="2">
-            <input type="checkbox" wicket:id="graduate" id="graduate-checkbox"/>
-            <label for="graduate-checkbox">
-              <wicket:message key="register.graduate">
-                Graduate
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="adultEducation" id="adult-education-checkbox"/>
-            <label for="adult-education-checkbox">
-              <wicket:message key="register.adultEducation">
-                Adult Education
-              </wicket:message>
-            </label>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <input type="checkbox" wicket:id="otherGrade" id="other-grade-checkbox"/>
-            <label for="other-grade-checkbox">
-              <wicket:message key="register.other">
-                Other
-              </wicket:message>
-            </label>
-          </td>
-          <td colspan="6">
-            <input wicket:id="otherGradeInput" type="text" value="" class="other-input" style="width: 100%"/>
-          </td>
-        </tr>
-      </table>
 
       <br/><br/>
 
       <span class="bold">
         Teaching Experience
       </span>
+
       <div wicket:id="teachingExperienceContainer">
         <div wicket:id="teachingExperienceRadios">
           <div>

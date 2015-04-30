@@ -137,6 +137,7 @@ public class StringChanges {
         StringUtils.addString( session, "register.occasionalUser", "Occasional user (I've used a few sims)" );
         StringUtils.addString( session, "register.experiencedUser", "Experienced user (I regularly use sims in my classroom)" );
         StringUtils.addString( session, "register.powerUser", "Power user (I tell everyone about PhET!)" );
+        StringUtils.addString( session, "register.checkAll", "Check all the apply" );
 
         StringUtils.addString( session, "register.none", "None / Not applicable" );
         StringUtils.addString( session, "register.oneToTwo", "1-2 years" );
