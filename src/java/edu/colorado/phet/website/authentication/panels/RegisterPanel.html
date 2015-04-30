@@ -88,13 +88,17 @@
 
     <p wicket:id="register-errors" class="register-errors"> | Errors go here</p>
 
-    <div wicket:id="feedback" class="sign-in-feedback">
-      <ul class="feedbackPanel">
-        <li class="feedbackPanelERROR">
-          <span class="feedbackPanelERROR">An invalid username and/or password has been entered.</span>
-        </li>
-      </ul>
-    </div>
+    <wicket:enclosure child="feedback">
+      <div id="contribution-feedback" class="validation-error" style="color: red; width: 350px">
+        <img src="/images/icons/warning-icon.png" style="margin: -1px 5px 0 2px; float: left" alt="Warning">
+        <span style="line-height: 30px">
+          <wicket:message key="contribution.edit.validation.pleaseCorrectRed">
+            Please correct the fields marked in red.
+          </wicket:message>
+        </span>
+      </div>
+      <span wicket:id="feedback"></span>
+    </wicket:enclosure>
 
     <form wicket:id="register-form">
 
