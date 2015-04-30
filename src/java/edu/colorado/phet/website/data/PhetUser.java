@@ -700,7 +700,7 @@ public class PhetUser implements Serializable, IntId {
         this.yearsTeaching = yearsTeaching;
     }
 
-    public Boolean getAdultEducation() {
+    public Boolean isAdultEducation() {
         return adultEducation;
     }
 
@@ -708,7 +708,7 @@ public class PhetUser implements Serializable, IntId {
         this.adultEducation = adultEducation;
     }
 
-    public Boolean getTeacherEducator() {
+    public Boolean isTeacherEducator() {
         return teacherEducator;
     }
 

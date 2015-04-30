@@ -49,7 +49,8 @@ public class EditProfilePanel extends PhetPanel {
         errorModel = new Model<String>( "" );
         add( new RawLabel( "profile-errors", errorModel ) );
 
-        add( new EditProfileForm( "edit-profile-form", user ) );
+//        add( new EditProfileForm( "edit-profile-form", user ) );
+        add( new RegisterPanel( "edit-profile-form", context, destination, true ) );
 
         if ( PhetSession.get().getUser().getId() == user.getId() ) {
             Label signal = new Label( "edit-self-profile", "" );
