@@ -159,6 +159,7 @@ public class RegisterPanel extends PhetPanel {
             add( countryStatePanel = new CountryStateDropdownPanel( "countryState", context ) );
             countryStatePanel.getCountryDropdown().add( new ErrorAppender() );
             countryStatePanel.getStateDropdown().add( new ErrorAppender() );
+            countryStatePanel.getCityTextField().add( new ErrorAppender() );
 
             // add role checkboxes
             WebMarkupContainer roleContainer;
@@ -354,8 +355,8 @@ public class RegisterPanel extends PhetPanel {
                         error( otherSubject, "validation.user.otherSubject" );
                     }
 
-                    if ( otherSubjectCheckbox.getConvertedInput() && ( otherSubject.getInput() == null || otherSubject.getInput().length() == 0 ) ) {
-                        error( otherGrade, "validation.user.otherSubject" );
+                    if ( otherGradeCheckbox.getConvertedInput() && ( otherGrade.getInput() == null || otherGrade.getInput().length() == 0 ) ) {
+                        error( otherGrade, "validation.user.otherGrade" );
                     }
 
                     if ( countryStatePanel.getCountryDropdown().getInput().length() == 0 ) {
@@ -364,6 +365,10 @@ public class RegisterPanel extends PhetPanel {
 
                     if ( countryStatePanel.getStateDropdown().getInput().length() == 0 ) {
                         error( countryStatePanel.getStateDropdown(), "validation.user.state" );
+                    }
+
+                    if ( countryStatePanel.getCityTextField().getInput() == null || countryStatePanel.getCityTextField().getInput().length() == 0 ) {
+                        error( countryStatePanel.getCityTextField(), "validation.user.city" );
                     }
 
                     if ( !( teacherCheckbox.getConvertedInput() || studentCheckbox.getConvertedInput() || researcherCheckbox.getConvertedInput() ||

@@ -20,8 +20,11 @@
       </wicket:message>
     </span>
     <br/>
-    <select wicket:id="country">
-    </select>
+
+    <div id="country-select-container">
+      <select wicket:id="country">
+      </select>
+    </div>
 
     <br/>
     <br/>
@@ -32,10 +35,14 @@
       </wicket:message>
     </span>
     <br/>
-    <select wicket:id="state" style="float: left;">
-    </select>
-    <input class="register-text-field" type="text" value="" wicket:message="placeholder:profile.city"
-           style="float: right; width: 190px; top: -1px; position: relative;"/>
+
+    <div id="state-select-container">
+      <select wicket:id="state" style="float: left;">
+      </select>
+      <input wicket:id="city" id="city-field" class="register-text-field" type="text" value="" wicket:message="placeholder:profile.city"
+             style="float: right; width: 190px; top: -1px; position: relative; display: none;"/>
+    </div>
+
     <br/>
   </div>
 </wicket:panel>

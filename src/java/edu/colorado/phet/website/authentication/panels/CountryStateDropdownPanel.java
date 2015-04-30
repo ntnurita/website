@@ -9,6 +9,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
 
 import edu.colorado.phet.website.panels.PhetPanel;
@@ -24,6 +25,7 @@ public class CountryStateDropdownPanel extends PhetPanel {
 
     private DropDownChoice stateDropdown;
     private DropDownChoice countryDropdown;
+    private TextField city;
 
     public CountryStateDropdownPanel( String id, PageContext context ) {
         super( id, context );
@@ -297,6 +299,8 @@ public class CountryStateDropdownPanel extends PhetPanel {
         stateDropdown = new DropDownChoice( "state", new Model<String>( "" ), getStatesByCountry( country ) );
         stateDropdown.setOutputMarkupId( true );
         add( stateDropdown );
+
+        add( city = new TextField( "city", new Model<String>( "" ) ) );
     }
 
     private List<String> getStatesByCountry( String countryIndex ) {
@@ -320,11 +324,19 @@ public class CountryStateDropdownPanel extends PhetPanel {
         return stateDropdown.getModelValue();
     }
 
+    public String getCity() {
+        return city.getInput();
+    }
+
     public DropDownChoice getCountryDropdown() {
         return countryDropdown;
     }
 
     public DropDownChoice getStateDropdown() {
         return stateDropdown;
+    }
+
+    public TextField getCityTextField() {
+        return city;
     }
 }

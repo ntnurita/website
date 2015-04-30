@@ -31,6 +31,22 @@
     var otherGradeCheckbox = $( '#other-grade-checkbox' );
 
     var checkAll = $( '#check-all' );
+    var cityField = $( '#city-field' );
+    var stateSelect = $( '#state-select-container select' );
+    var countrySelect = $( '#country-select-container select' );
+
+    countrySelect.change( function() {
+      console.log( 'country' );
+      stateSelect.change( function() {
+        console.log( 'called' );
+        if ( stateSelect.val() === "" ) {
+          cityField.hide();
+        }
+        else {
+          cityField.show();
+        }
+      } );
+    } );
 
     var updateCheckAllVisibility = function() {
       if ( !elementaryCheckbox.attr( 'checked' ) && !middleCheckbox.attr( 'checked' ) && !highCheckbox.attr( 'checked' ) && !universityCheckbox.attr( 'checked' ) ) {

@@ -119,6 +119,7 @@ public class StringChanges {
 
         StringUtils.overwriteString( session, "profile.country", "Country:", "Country" );
         StringUtils.overwriteString( session, "profile.register", "Register:", "Register" );
+        StringUtils.overwriteString( session, "profile.city", "City:", "City" );
 
         StringUtils.addString( session, "register.teacher", "Teacher" );
         StringUtils.addString( session, "register.student", "Student" );
@@ -176,6 +177,7 @@ public class StringChanges {
         StringUtils.addString( session, "validation.user.otherSubject", "Please fill out the text field next to Other under \"Subject(s)\"" );
         StringUtils.addString( session, "validation.user.country", "Please select a country" );
         StringUtils.addString( session, "validation.user.state", "Please select a state/province" );
+        StringUtils.addString( session, "validation.user.city", "Please enter a city" );
         StringUtils.addString( session, "validation.user.firstName", "Please enter your first name" );
         StringUtils.addString( session, "validation.user.lastName", "Please enter your last name" );
         StringUtils.addString( session, "validation.user.phetExperience", "Please indicate your experience with PhET" );

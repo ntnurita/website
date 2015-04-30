@@ -55,6 +55,7 @@ public class UserEntity extends TranslationEntity {
         addString( "validation.user.teachingExperience" );
         addString( "validation.user.organization" );
         addString( "validation.user.state" );
+        addString( "validation.user.city" );
 
         addString( "register.teacher" );
         addString( "register.student" );
