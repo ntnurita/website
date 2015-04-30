@@ -23,6 +23,11 @@
       text-align: left;
       /*font-size: 1.2em;*/
     }
+
+    .table-section-header {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
   </style>
 </wicket:head>
 
@@ -42,34 +47,42 @@
       Note: These prototypes are known to have many issues and are not intended for broad usage.
     </p>
 
-    <h3>Forces and Motion: Basics (Net Force Screen) - Custom Support</h3>
+    <h3>Forces and Motion: Basics (Net Force Screen)</h3>
 
-    <p>
-      <i>Rendered with SVG. Uses global key listeners to provide custom keyboard accessibility support</i><br/>
-      <b>Implementation:</b> Focused elements are managed using custom data structures and the focus rectangle is drawn in SVG.
-      Text is read aloud using a single ARIA live region, whose text is changed to respond to the users key events and
-      to describe the initial scene.<br/>
-      <b>Browser Compatibility:</b> Even though it has only been tested on a few browsers, we expect this version to work well on many
-      browsers.<br/>
-      <b>Limitations:</b> While it provides keyboard support, display of focus regions, and text readout, the elements are not exposed to
-      assistive technology so some features (such as zooming) or changes based on user preferences/customizations are not available.<br/>
-      <b>Link:</b> <a target="_blank"
-                      href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.4/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.4</a>
-    </p>
-
-    <h3>Forces and Motion: Basics (Net Force Screen) - ARIA Support on SVG Elements</h3>
-
-    <p>
-      <i>Rendered with SVG. Uses ARIA markup to present the elements to assistive technology</i><br/>
-      <b>Implementation:</b> Text is provided by "aria-label" and all elements are exposed as role="button"<br/>
-      <b>Browser Compatibility:</b> This version works on OS X Chrome + OS X Safari, and a nightly build of Firefox (does not work with Firefox
-      36.0.4). Windows + Chrome + NVDA (in forms mode) works ok. Other Windows browsers and screen readers have not been tested.<br/>
-      <b>Limitations:</b> This version exhibits significant differences on different browsers, but provides support for zooming and user
-      preferences/customizations.<br/>
-      <b>Link:</b> <a target="_blank"
-                      href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.9/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.9</a>
-
-    </p>
+    <table style="width: 100%">
+      <tr>
+        <td>
+          <span class="table-section-header">Custom Support</span><br/>
+          <i>Rendered with SVG. Uses global key listeners to provide custom keyboard accessibility support</i><br/>
+          <b>Implementation:</b> Focused elements are managed using custom data structures and the focus rectangle is drawn in SVG.
+          Text is read aloud using a single ARIA live region, whose text is changed to respond to the users key events and
+          to describe the initial scene.<br/>
+          <b>Browser Compatibility:</b> Even though it has only been tested on a few browsers, we expect this version to work well on many
+          browsers.<br/>
+          <b>Limitations:</b> While it provides keyboard support, display of focus regions, and text readout, the elements are not exposed to
+          assistive technology so some features (such as zooming) or changes based on user preferences/customizations are not available.<br/>
+        </td>
+        <td>
+          <a target="_blank"
+             href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.4/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.4</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="table-section-header">ARIA Support on SVG Elements</span><br/>
+          <i>Rendered with SVG. Uses ARIA markup to present the elements to assistive technology</i><br/>
+          <b>Implementation:</b> Text is provided by "aria-label" and all elements are exposed as role="button"<br/>
+          <b>Browser Compatibility:</b> This version works on OS X Chrome + OS X Safari, and a nightly build of Firefox (does not work with Firefox
+          36.0.4). Windows + Chrome + NVDA (in forms mode) works ok. Other Windows browsers and screen readers have not been tested.<br/>
+          <b>Limitations:</b> This version exhibits significant differences on different browsers, but provides support for zooming and user
+          preferences/customizations.<br/>
+        </td>
+        <td>
+          <a target="_blank"
+             href="http://www.colorado.edu/physics/phet/dev/html/forces-and-motion-basics/1.1.5-dev.9/forces-and-motion-basics_en.html?screens=1">1.1.5-dev.9</a>
+        </td>
+      </tr>
+    </table>
 
     <h2>Sonification Prototypes</h2>
 
