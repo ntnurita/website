@@ -187,7 +187,6 @@ public class StringChanges {
          */
         StringUtils.overwriteString( session, "html5.crowdfundedProjects", "Support PhET's Annual Campaign:", "Support PhET:" );
 
-
         session.close();
     }
 
