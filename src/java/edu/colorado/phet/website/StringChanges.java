@@ -38,7 +38,7 @@ public class StringChanges {
 
         StringUtils.addString( session, "simulationMainPanel.description", "Description" );
         StringUtils.addString( session, "simulationMainPanel.forTeachers", "For Teachers" );
-        StringUtils.addString( session, "simulationMainPanel.activities", "Activities" );
+        StringUtils.addString( session, "simulationMainPanel.activities", "Teacher Submitted Activities" );
         StringUtils.addString( session, "simulationMainPanel.translations", "Translations" );
 
         StringUtils.addString( session, "simulationMainPanel.shareAnActivity", "Share an Activity!" );
