@@ -46,20 +46,8 @@ public class EditProfilePanel extends PhetPanel {
 
         this.destination = destination;
 
-        errorModel = new Model<String>( "" );
-        add( new RawLabel( "profile-errors", errorModel ) );
-
-//        add( new EditProfileForm( "edit-profile-form", user ) );
         add( new RegisterPanel( "edit-profile-form", context, destination, true ) );
 
-        if ( PhetSession.get().getUser().getId() == user.getId() ) {
-            Label signal = new Label( "edit-self-profile", "" );
-            add( signal );
-            signal.setRenderBodyOnly( true );
-        }
-        else {
-            add( new InvisibleComponent( "edit-self-profile" ) );
-        }
         add( ChangePasswordPage.getLinker().getLink( "changePassword", context, getPhetCycle() ) );
     }
 

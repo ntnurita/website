@@ -9,8 +9,10 @@ import java.net.URLEncoder;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.html.basic.Label;
 
 import edu.colorado.phet.website.authentication.panels.EditProfilePanel;
+import edu.colorado.phet.website.components.InvisibleComponent;
 import edu.colorado.phet.website.templates.PhetMenuPage;
 import edu.colorado.phet.website.util.PageContext;
 import edu.colorado.phet.website.util.PhetUrlMapper;
@@ -33,6 +35,10 @@ public class EditProfilePage extends PhetMenuPage {
         }
 
         setTitle( getLocalizer().getString( "editProfile.title", this ) );
+
+        Label signal = new Label( "edit-self-profile", "" );
+        add( signal );
+        signal.setRenderBodyOnly( true );
 
         add( new EditProfilePanel( "edit-profile-panel", getPageContext(), destination ) );
 
