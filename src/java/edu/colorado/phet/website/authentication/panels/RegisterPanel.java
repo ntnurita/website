@@ -124,6 +124,10 @@ public class RegisterPanel extends PhetPanel {
     public static final String PASSWORD = "password";
     public static final String PASSWORD_COPY = "passwordCopy";
 
+    public static final String COUNTRY = "country";
+    public static final String STATE = "state";
+    public static final String CITY = "city";
+
     public static final String TEACHER = "teacher";
     public static final String STUDENT = "student";
     public static final String RESEARCHER = "researcher";
@@ -165,6 +169,9 @@ public class RegisterPanel extends PhetPanel {
     public static final String ADULT_ED = "adultEducation";
     public static final String OTHER_GRADE = "otherGrade";
     public static final String OTHER_GRADE_INPUT = "otherGradeInput";
+
+    public static final String PHET_EXPERIENCE = "phetExperience";
+    public static final String TEACHING_EXPERIENCE = "teachingExperience";
 
     public RegisterPanel( String id, PageContext context, String destination ) {
         this( id, context, destination, false );
@@ -210,6 +217,10 @@ public class RegisterPanel extends PhetPanel {
                 properties.add( EMAIL, user.getEmail() );
                 properties.add( RECEIVE_EMAIL, String.valueOf( user.isReceiveEmail() ) );
 
+                properties.add( COUNTRY, user.getCountry() );
+                properties.add( STATE, user.getState() );
+                properties.add( CITY, user.getCity() );
+
                 properties.add( TEACHER, String.valueOf( user.isTeacher() ) );
                 properties.add( STUDENT, String.valueOf( user.isStudent() ) );
                 properties.add( RESEARCHER, String.valueOf( user.isResearcher() ) );
@@ -243,6 +254,9 @@ public class RegisterPanel extends PhetPanel {
                 properties.add( GRADE_12, String.valueOf( user.isEarthScience() ) );
                 properties.add( OTHER_SUBJECT, String.valueOf( user.isOtherSubject() ) );
                 properties.add( OTHER_SUBJECT_INPUT, user.getOtherSubjectText() );
+
+                properties.add( PHET_EXPERIENCE, user.getDescription() );
+                properties.add( TEACHING_EXPERIENCE, user.getYearsTeaching() );
             }
 
             add( firstName = new StringTextField( "firstName", new PropertyModel( properties, FIRST_NAME ) ) );
@@ -261,7 +275,7 @@ public class RegisterPanel extends PhetPanel {
             password.add( new ErrorAppender() );
             passwordCopy.add( new ErrorAppender() );
 
-            add( countryStatePanel = new CountryStateDropdownPanel( "countryState", context ) );
+            add( countryStatePanel = new CountryStateDropdownPanel( "countryState", context, properties ) );
             countryStatePanel.getCountryDropdown().add( new ErrorAppender() );
             countryStatePanel.getStateDropdown().add( new ErrorAppender() );
             countryStatePanel.getCityTextField().add( new ErrorAppender() );
@@ -328,7 +342,7 @@ public class RegisterPanel extends PhetPanel {
             add( teachingExperienceRadioGroupContainer = new WebMarkupContainer( "teachingExperienceContainer" ) );
             teachingExperienceRadioGroupContainer.add( teachingExperienceErrorAppender = new ErrorAppender( false ) );
 
-            teachingExperienceRadioGroup = new RadioGroup( "teachingExperienceRadios", new PropertyModel( properties, "teachingExperience" ) );
+            teachingExperienceRadioGroup = new RadioGroup( "teachingExperienceRadios", new PropertyModel( properties, TEACHING_EXPERIENCE ) );
 
             Radio noneRadio = new Radio( "noneRadio", new Model<String>( "NONE" ) );
             teachingExperienceRadioGroup.add( noneRadio );
@@ -361,7 +375,7 @@ public class RegisterPanel extends PhetPanel {
             add( phetExperienceRadioGroupContainer = new WebMarkupContainer( "phetExperienceContainer" ) );
             phetExperienceRadioGroupContainer.add( phetExperienceErrorAppender = new ErrorAppender( false ) );
 
-            phetExperienceRadioGroup = new RadioGroup( "phetExperienceRadios", new PropertyModel( properties, "phetExperience" ) );
+            phetExperienceRadioGroup = new RadioGroup( "phetExperienceRadios", new PropertyModel( properties, PHET_EXPERIENCE ) );
 
             Radio newUserRadio = new Radio( "newUserRadio", new Model<String>( "NEW_USER" ) );
             phetExperienceRadioGroup.add( newUserRadio );
@@ -389,10 +403,27 @@ public class RegisterPanel extends PhetPanel {
                 password.setVisible( false );
                 passwordCopy.setVisible( false );
             }
+            else {
+                add( new AbstractFormValidator() {
+                    @Override public FormComponent[] getDependentFormComponents() {
+                        return new FormComponent[] {password, passwordCopy};
+                    }
+
+                    @Override public void validate( Form form ) {
+                        if ( !password.getInput().equals( passwordCopy.getInput() ) ) {
+                            error( password, "validation.user.passwordMatch" );
+                        }
+
+                        if ( password.getInput().length() == 0 ) {
+                            error( password, "validation.user.password" );
+                        }
+                    }
+                } );
+            }
 
             add( new AbstractFormValidator() {
                 public FormComponent[] getDependentFormComponents() {
-                    return new FormComponent[]{firstName, lastName, password, passwordCopy, username, phetExperienceRadioGroup,
+                    return new FormComponent[]{firstName, lastName, username, phetExperienceRadioGroup, countryStatePanel.getCityTextField(),
                             countryStatePanel.getCountryDropdown(), countryStatePanel.getStateDropdown(), otherRole, otherSubject,
 
                             // role checkboxes
@@ -424,14 +455,6 @@ public class RegisterPanel extends PhetPanel {
                         error( lastName, "validation.user.lastName" );
                     }
 
-                    if ( !updateProfile && !password.getInput().equals( passwordCopy.getInput() ) ) {
-                        error( password, "validation.user.passwordMatch" );
-                    }
-
-                    if ( !updateProfile && password.getInput().length() == 0 ) {
-                        error( password, "validation.user.password" );
-                    }
-
                     String err = PhetUser.validateEmail( username.getInput() );
                     if ( err != null ) {
                         error( username, "validation.user.email" );
@@ -441,7 +464,7 @@ public class RegisterPanel extends PhetPanel {
                         error( organization, "validation.user.organization" );
                     }
 
-                    if ( phetExperienceRadioGroup.getModelObject() == null ) {
+                    if ( phetExperienceRadioGroup.getModelObject() == null || phetExperienceRadioGroup.getModelObject().toString().length() == 0 ) {
                         error( phetExperienceRadioGroup, "validation.user.phetExperience" );
                         phetExperienceErrorAppender.isValid = false;
                     }
@@ -449,7 +472,7 @@ public class RegisterPanel extends PhetPanel {
                         phetExperienceErrorAppender.isValid = true;
                     }
 
-                    if ( teachingExperienceRadioGroup.getModelObject() == null ) {
+                    if ( teachingExperienceRadioGroup.getModelObject() == null || teachingExperienceRadioGroup.getModelObject().toString().length() == 0 ) {
                         error( teachingExperienceRadioGroup, "validation.user.teachingExperience" );
                         teachingExperienceErrorAppender.isValid = false;
                     }
@@ -533,13 +556,13 @@ public class RegisterPanel extends PhetPanel {
             String nom = firstName.getModelObject().toString() + " " + lastName.getModelObject().toString();
             String org = organization.getModelObject().toString();
             String email = username.getModelObject().toString();
-            String desc = phetExperienceRadioGroup.getModelObject().toString();
+            String phetExperience = phetExperienceRadioGroup.getModelObject().toString();
+            String teachingExperience = teachingExperienceRadioGroup.getModelObject().toString();
             String confirmationKey = null;
             boolean receiveNewsletters = receiveEmail.getModelObject();
 
             logger.warn( "name: " + nom );
             logger.warn( "org: " + org );
-            logger.warn( "desc: " + desc );
 
             PhetUser user = null;
 
@@ -579,11 +602,14 @@ public class RegisterPanel extends PhetPanel {
                     confirmationKey = user.getConfirmationKey();
                     user.setName( nom );
                     user.setOrganization( org );
-                    user.setDescription( desc );
                     user.setReceiveEmail( receiveNewsletters );
                     if ( !updateProfile ) {
                         user.setPassword( password.getInput(), email );
                     }
+
+                    user.setCountry( countryStatePanel.getCountryDropdown().getModelObject().toString() );
+                    user.setState( countryStatePanel.getStateDropdown().getModelObject().toString() );
+                    user.setCity( countryStatePanel.getCityTextField().getModelObject().toString() );
 
                     user.setTeacher( teacherCheckbox.getModelObject() );
                     user.setStudent( studentCheckbox.getModelObject() );
@@ -626,7 +652,8 @@ public class RegisterPanel extends PhetPanel {
                     user.setAdultEducation( adultEducationCheckbox.getModelObject() );
                     user.setOtherGrade( otherGradeCheckbox.getModelObject() );
 
-                    user.setYearsTeaching( teachingExperienceRadioGroup.getModelObject().toString() );
+                    user.setDescription( phetExperience );
+                    user.setYearsTeaching( teachingExperience );
 
                     if ( update ) {
                         session.update( user );
@@ -653,6 +680,65 @@ public class RegisterPanel extends PhetPanel {
                 }
             }
 
+            // synchronize the user data for the session instance
+            if ( updateProfile ) {
+                int currentUserId = PhetSession.get().getUser().getId();
+                if ( currentUserId == user.getId() ) {
+                    user = PhetSession.get().getUser();
+                    user.setName( nom );
+                    user.setOrganization( org );
+                    user.setReceiveEmail( receiveNewsletters );
+
+                    user.setCountry( countryStatePanel.getCountryDropdown().getModelObject().toString() );
+                    user.setState( countryStatePanel.getStateDropdown().getModelObject().toString() );
+                    user.setCity( countryStatePanel.getCityTextField().getModelObject().toString() );
+
+                    user.setTeacher( teacherCheckbox.getModelObject() );
+                    user.setStudent( studentCheckbox.getModelObject() );
+                    user.setResearcher( researcherCheckbox.getModelObject() );
+                    user.setTranslator( translatorCheckbox.getModelObject() );
+                    user.setTeacherEducator( educatorCheckbox.getModelObject() );
+                    user.setOtherRole( otherRoleCheckbox.getModelObject() );
+                    user.setOtherRoleText( otherRole.getModelObject().toString() );
+
+                    user.setGeneralScience( generalSciencesCheckbox.getModelObject() );
+                    user.setEarthScience( earthScienceCheckbox.getModelObject() );
+                    user.setBiology( biologyCheckbox.getModelObject() );
+                    user.setPhysics( physicsCheckbox.getModelObject() );
+                    user.setChemistry( chemistryCheckbox.getModelObject() );
+                    user.setAstronomy( astronomyCheckbox.getModelObject() );
+                    user.setMath( mathCheckbox.getModelObject() );
+                    user.setOtherSubject( otherSubjectCheckbox.getModelObject() );
+                    user.setOtherSubjectText( otherSubject.getModelObject().toString() );
+
+                    user.setElementary( elementaryCheckbox.getModelObject() );
+                    user.setGradeK( gradeKCheckbox.getModelObject() );
+                    user.setGrade1( grade1Checkbox.getModelObject() );
+                    user.setGrade2( grade2Checkbox.getModelObject() );
+                    user.setGrade3( grade3Checkbox.getModelObject() );
+                    user.setGrade4( grade4Checkbox.getModelObject() );
+                    user.setGrade5( grade5Checkbox.getModelObject() );
+                    user.setMiddle( middleCheckbox.getModelObject() );
+                    user.setGrade7( grade6Checkbox.getModelObject() );
+                    user.setGrade8( grade7Checkbox.getModelObject() );
+                    user.setGrade9( grade8Checkbox.getModelObject() );
+                    user.setHigh( highCheckbox.getModelObject() );
+                    user.setGrade9( grade9Checkbox.getModelObject() );
+                    user.setGrade10( grade10Checkbox.getModelObject() );
+                    user.setGrade11( grade11Checkbox.getModelObject() );
+                    user.setGrade12( grade12Checkbox.getModelObject() );
+                    user.setUniversity( universityCheckbox.getModelObject() );
+                    user.setYear1( year1Checkbox.getModelObject() );
+                    user.setYear2plus( year2plusCheckbox.getModelObject() );
+                    user.setGraduate( graduateCheckbox.getModelObject() );
+                    user.setAdultEducation( adultEducationCheckbox.getModelObject() );
+                    user.setOtherGrade( otherGradeCheckbox.getModelObject() );
+
+                    user.setDescription( phetExperience );
+                    user.setYearsTeaching( teachingExperience );
+                }
+            }
+
             if ( !error && !updateProfile ) {
                 error = !NewsletterUtils.sendConfirmRegisterEmail( context, email, confirmationKey, destination );
             }
@@ -665,7 +751,14 @@ public class RegisterPanel extends PhetPanel {
             }
             else {
                 errorModel.setObject( "" );
-                setResponsePage( ConfirmEmailSentPage.class, ConfirmEmailSentPage.getParameters( user ) );
+                if ( updateProfile ) {
+                    if ( destination != null ) {
+                        getPhetCycle().redirectWithSameProtocol( destination );
+                    }
+                }
+                else {
+                    setResponsePage( ConfirmEmailSentPage.class, ConfirmEmailSentPage.getParameters( user ) );
+                }
             }
         }
     }

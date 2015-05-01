@@ -31,22 +31,13 @@
     var otherGradeCheckbox = $( '#other-grade-checkbox' );
 
     var checkAll = $( '#check-all' );
-    var cityField = $( '#city-field' );
-    var stateSelect = $( '#state-select-container select' );
-    var countrySelect = $( '#country-select-container select' );
-
-    countrySelect.change( function() {
-      console.log( 'country' );
-      stateSelect.change( function() {
-        console.log( 'called' );
-        if ( stateSelect.val() === "" ) {
-          cityField.hide();
-        }
-        else {
-          cityField.show();
-        }
-      } );
-    } );
+    var gradesHeader = checkAll.prev();
+    var checkAllOffset = ( $( $( '.grade-table td:first-child' )[ 0 ] ).width() - gradesHeader.width() ) + 'px';
+    var dir = $( 'body' ).attr( 'dir' );
+    if ( dir === 'rtl' ) {
+      checkAll.detach();
+      checkAll.insertBefore( gradesHeader );
+    }
 
     var updateCheckAllVisibility = function() {
       if ( !elementaryCheckbox.attr( 'checked' ) && !middleCheckbox.attr( 'checked' ) && !highCheckbox.attr( 'checked' ) && !universityCheckbox.attr( 'checked' ) ) {
@@ -54,33 +45,39 @@
       }
       else {
         checkAll.show();
+        if ( dir === 'rtl' ) {
+          $( '#check-all' ).css( 'right', checkAllOffset );
+        }
+        else {
+          $( '#check-all' ).css( 'left', checkAllOffset );
+        }
       }
     };
 
     otherRoleCheckbox.change( function() {
       if ( otherRoleCheckbox.attr( 'checked' ) ) {
-        $( '#other-role' ).show();
+        $( '#other-role' ).css( 'visibility', 'visible' );
       }
       else {
-        $( '#other-role' ).hide();
+        $( '#other-role' ).css( 'visibility', 'hidden' );
       }
     } );
 
     otherSubjectCheckbox.change( function() {
       if ( otherSubjectCheckbox.attr( 'checked' ) ) {
-        $( '#other-subject' ).show();
+        $( '#other-subject' ).css( 'visibility', 'visible' );
       }
       else {
-        $( '#other-subject' ).hide();
+        $( '#other-subject' ).css( 'visibility', 'hidden' );
       }
     } );
 
     otherGradeCheckbox.change( function() {
       if ( otherGradeCheckbox.attr( 'checked' ) ) {
-        $( '#other-grade' ).show();
+        $( '#other-grade' ).css( 'visibility', 'visible' );
       }
       else {
-        $( '#other-grade' ).hide();
+        $( '#other-grade' ).css( 'visibility', 'hidden' );
       }
     } );
 

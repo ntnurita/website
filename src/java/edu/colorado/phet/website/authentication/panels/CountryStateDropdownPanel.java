@@ -11,6 +11,8 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.util.value.ValueMap;
 
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
@@ -27,7 +29,7 @@ public class CountryStateDropdownPanel extends PhetPanel {
     private DropDownChoice countryDropdown;
     private TextField city;
 
-    public CountryStateDropdownPanel( String id, PageContext context ) {
+    public CountryStateDropdownPanel( String id, PageContext context, ValueMap properties ) {
         super( id, context );
 
         s_a[0] = "";
@@ -284,11 +286,16 @@ public class CountryStateDropdownPanel extends PhetPanel {
         s_a[251] = "Central|Copperbelt|Eastern|Luapula|Lusaka|North-Western|Northern|Southern|Western";
         s_a[252] = "Bulawayo|Harare|ManicalandMashonaland Central|Mashonaland East|Mashonaland West|Masvingo|Matabeleland North|Matabeleland South|Midlands";
 
-        countryDropdown = new DropDownChoice( "country", new Model<String>( "" ), countryList );
+        countryDropdown = new DropDownChoice( "country", new PropertyModel( properties, RegisterPanel.COUNTRY ), countryList );
         countryDropdown.add( new AjaxFormComponentUpdatingBehavior( "onchange" ) {
             protected void onUpdate( AjaxRequestTarget target ) {
                 stateDropdown.setChoices( getStatesByCountry( countryDropdown.getModelValue() ) );
                 target.addComponent( stateDropdown );
+                target.appendJavascript( "var stateSelect = $( '#state-select-container select' );" +
+                                         "var cityField = $( '#city-field' );" +
+                                         "stateSelect.change( function() {" +
+                                         "if ( stateSelect.val() === \"\" ) {cityField.hide();}" +
+                                         "else {cityField.show();} } );" );
             }
         } );
 
@@ -296,11 +303,11 @@ public class CountryStateDropdownPanel extends PhetPanel {
 
         String country = countryDropdown.getModelValue();
 
-        stateDropdown = new DropDownChoice( "state", new Model<String>( "" ), getStatesByCountry( country ) );
+        stateDropdown = new DropDownChoice( "state", new PropertyModel( properties, RegisterPanel.STATE ), getStatesByCountry( country ) );
         stateDropdown.setOutputMarkupId( true );
         add( stateDropdown );
 
-        add( city = new TextField( "city", new Model<String>( "" ) ) );
+        add( city = new TextField( "city", new PropertyModel( properties, RegisterPanel.CITY ), String.class ) );
     }
 
     private List<String> getStatesByCountry( String countryIndex ) {

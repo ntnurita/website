@@ -85,6 +85,12 @@
 
       #check-all {
         color: gray;
+        position: relative;
+        display: none;
+      }
+
+      .other-input-holder input[type="text"] {
+        visibility: hidden;
       }
     </style>
 
@@ -191,9 +197,8 @@
               </label>
             </span>
             <span class="text-holder">
-              <input wicket:id="otherRoleInput" type="text" value="" class="other-input" id="other-role" style="display: none;"/>
+              <input wicket:id="otherRoleInput" type="text" value="" class="other-input" id="other-role"/>
             </span>
-            <br style="display: none"/>
           </div>
         </div>
 
@@ -270,30 +275,23 @@
               </label>
             </span>
             <span class="text-holder">
-              <input wicket:id="otherSubjectInput" type="text" value="" class="other-input" id="other-subject" style="display: none;"/>
+              <input wicket:id="otherSubjectInput" type="text" value="" class="other-input" id="other-subject"/>
             </span>
-            <br style="display: none"/>
           </div>
         </div>
 
         <br/><br/>
 
+        <span class="bold">
+          Grade(s)
+        </span>
+        <span id="check-all">
+          <wicket:message key="register.checkAll">
+            Check all that apply
+          </wicket:message>
+        </span>
         <div wicket:id="gradeContainer">
           <table class="grade-table">
-            <tr>
-              <th>
-                <span class="bold">
-                  Grade(s)
-                </span>
-              </th>
-              <th>
-               <span id="check-all">
-                  <wicket:message key="register.checkAll">
-                    Check all that apply
-                  </wicket:message>
-                </span>
-              </th>
-            </tr>
             <tr id="elementary-row">
               <td>
                 <input type="checkbox" wicket:id="elementary" id="elementary-checkbox"/>
@@ -488,9 +486,8 @@
               </label>
             </span>
             <span class="text-holder">
-              <input wicket:id="otherGradeInput" type="text" value="" class="other-input" id="other-grade" style="display: none;"/>
+              <input wicket:id="otherGradeInput" type="text" value="" class="other-input" id="other-grade"/>
             </span>
-            <br style="display: none"/>
           </div>
         </div>
       </div>
