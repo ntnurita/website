@@ -7,6 +7,7 @@ package edu.colorado.phet.website.authentication.panels;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
@@ -34,6 +35,7 @@ import edu.colorado.phet.website.newsletter.ConfirmEmailSentPage;
 import edu.colorado.phet.website.newsletter.NewsletterUtils;
 import edu.colorado.phet.website.panels.PhetPanel;
 import edu.colorado.phet.website.util.PageContext;
+import edu.colorado.phet.website.util.StringUtils;
 import edu.colorado.phet.website.util.wicket.ErrorAppender;
 
 public class RegisterPanel extends PhetPanel {
@@ -394,6 +396,11 @@ public class RegisterPanel extends PhetPanel {
             phetExperienceRadioGroup.add( new FormComponentLabel( "powerUserLabel", powerUserRadio ) );
 
             phetExperienceRadioGroupContainer.add( phetExperienceRadioGroup );
+
+            add( new WebMarkupContainer( "submitButton" ) {{
+                String key = ( updateProfile ) ? "profile.update" : "profile.register";
+                add( new AttributeModifier( "value", true, new Model<String>( StringUtils.getStringDirect( getHibernateSession(), key, getLocale() ) ) ) );
+            }} );
 
             // so we can respond to the error messages
             password.setRequired( false );

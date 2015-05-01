@@ -116,6 +116,7 @@ public class StringChanges {
         StringUtils.addString( session, "profile.password", "Password" );
         StringUtils.addString( session, "profile.passwordCopy", "Confirm password" );
         StringUtils.addString( session, "profile.organizationSchool", "Organization/School" );
+        StringUtils.addString( session, "profile.update", "Update" );
 
         StringUtils.overwriteString( session, "profile.country", "Country:", "Country" );
         StringUtils.overwriteString( session, "profile.register", "Register:", "Register" );

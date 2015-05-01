@@ -108,6 +108,7 @@ public class UserEntity extends TranslationEntity {
         addString( "register.checkAll" );
 
         addString( "profile.register" );
+        addString( "profile.update" );
         addString( "profile.name" );
         addString( "profile.firstName" );
         addString( "profile.lastName" );
